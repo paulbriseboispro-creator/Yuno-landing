@@ -17,10 +17,19 @@
   },
   "observability": {
     "enabled": true
+  },
+  // Public (anon-level) runtime config — safe to commit; the publishable key is
+  // already shipped to the browser. Read via process.env.* during SSR.
+  "vars": {
+    "SUPABASE_PROJECT_ID": "xllotiduhyimfdsmsili",
+    "SUPABASE_URL": "https://xllotiduhyimfdsmsili.supabase.co",
+    "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_50Rlt9BywwRtedhGNZ6zew_F3XzD9Em"
   }
-  // Runtime env (SSR reads process.env.SUPABASE_*). Set these in the Cloudflare
-  // dashboard (Workers > Settings > Variables) or via `wrangler secret put`:
-  //   SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, SUPABASE_PROJECT_ID
-  //   SUPABASE_SERVICE_ROLE_KEY  (secret, only if server functions use the admin client)
-  // The VITE_SUPABASE_* vars are build-time only — set them as Build variables.
+  // SECRET (never committed): the contact form's server fn uses the service-role
+  // client to insert into demo_leads (RLS denies anon). Set it once with:
+  //   bunx wrangler secret put SUPABASE_SERVICE_ROLE_KEY
+  // or in the dashboard under Workers > your worker > Settings > Variables and Secrets.
+  //
+  // The VITE_SUPABASE_* vars are inlined at build time — set them as Build
+  // variables in the Cloudflare "Build" settings (not here).
 }
