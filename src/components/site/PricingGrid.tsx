@@ -1,14 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
-import { en } from "@/content/en";
+import { usePricing } from "@/content/pricing";
 import * as PricingCard from "@/components/pricing-card";
 import { CheckCircle2 } from "lucide-react";
 
 export function PricingGrid({ showFees = true }: { showFees?: boolean }) {
+  const t = usePricing();
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {en.pricing.plans.map((p, index) => (
+        {t.plans.map((p) => (
           <PricingCard.Card
             key={p.name}
             className={cn(
@@ -23,7 +24,7 @@ export function PricingGrid({ showFees = true }: { showFees?: boolean }) {
                 </PricingCard.PlanName>
                 {p.popular && (
                   <PricingCard.Badge className="bg-accent text-accent-foreground border-accent/40">
-                    Most popular
+                    {t.mostPopular}
                   </PricingCard.Badge>
                 )}
               </PricingCard.Plan>
@@ -45,7 +46,7 @@ export function PricingGrid({ showFees = true }: { showFees?: boolean }) {
                 {p.cta}
               </Link>
               <p className="mt-2 text-[11px] text-muted-foreground text-center">
-                No setup fee · Cancel anytime · No commitment
+                {t.cardNote}
               </p>
             </PricingCard.Header>
 
@@ -72,7 +73,7 @@ export function PricingGrid({ showFees = true }: { showFees?: boolean }) {
         ))}
       </div>
       {showFees && (
-        <p className="text-center text-xs text-muted-foreground mt-8">{en.pricing.fees}</p>
+        <p className="text-center text-xs text-muted-foreground mt-8">{t.fees}</p>
       )}
     </>
   );

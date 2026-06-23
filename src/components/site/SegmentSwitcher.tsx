@@ -1,13 +1,14 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
-import { en } from "@/content/en";
+import { useHome } from "@/content/home";
 import { CheckCircle2 } from "lucide-react";
 
 type Key = "clubs" | "organizers" | "promoters";
 
 export function SegmentSwitcher() {
+  const t = useHome();
   const [active, setActive] = useState<Key>("clubs");
-  const content = en.segmentContent[active === "promoters" ? "promoters" : active];
+  const content = t.segmentContent[active === "promoters" ? "promoters" : active];
   const segs: Key[] = ["clubs", "organizers", "promoters"];
 
   return (
@@ -32,7 +33,7 @@ export function SegmentSwitcher() {
               />
             )}
             <span className={["relative z-10", active === k ? "text-foreground" : "text-muted-foreground"].join(" ")}>
-              {en.segments[k]}
+              {t.segments[k]}
             </span>
           </button>
         ))}

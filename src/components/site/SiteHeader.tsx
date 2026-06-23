@@ -6,21 +6,22 @@ import { Button } from "@/components/ui/button";
 import { SiteMobileNav } from "./SiteMobileNav";
 import { SmartSearch } from "./SmartSearch";
 import { MagnifyNav } from "./MagnifyNav";
-import { en } from "@/content/en";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useCommon } from "@/content/common";
 import yunoLogo from "@/assets/yuno-logo.png";
 
-
-const navLinks = [
-  { label: en.nav.product, to: "/" },
-  { label: en.nav.pricing, to: "/pricing" },
-  { label: en.nav.clubs, to: "/clubs" },
-  { label: en.nav.organizers, to: "/organizers" },
-  { label: en.nav.affiliates, to: "/affiliates" },
-];
 
 export function SiteHeader() {
   const scrolled = useScroll(10);
   const [searchOpen, setSearchOpen] = useState(false);
+  const t = useCommon();
+  const navLinks = [
+    { label: t.nav.product, to: "/" },
+    { label: t.nav.pricing, to: "/pricing" },
+    { label: t.nav.clubs, to: "/clubs" },
+    { label: t.nav.organizers, to: "/organizers" },
+    { label: t.nav.affiliates, to: "/affiliates" },
+  ];
 
   return (
     <header
@@ -61,9 +62,10 @@ export function SiteHeader() {
             ))}
           </MagnifyNav>
           <SmartSearch compact onOpenChange={setSearchOpen} />
-          <Button asChild size="sm" className="ml-3">
+          <LanguageSwitcher compact className="ml-2" />
+          <Button asChild size="sm" className="ml-2">
 
-            <Link to="/contact">{en.nav.startFree}</Link>
+            <Link to="/contact">{t.nav.startFree}</Link>
           </Button>
         </div>
 

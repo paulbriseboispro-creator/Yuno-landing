@@ -1,16 +1,21 @@
 import { useMemo, useState } from "react";
 import { Banknote } from "lucide-react";
+import { usePricing } from "@/content/pricing";
+import { useLocale, type Locale } from "@/i18n/locale";
 
 type PlanKey = "essential" | "pro" | "elite";
 
-const PLANS: Record<PlanKey, { label: string; monthly: number }> = {
-  essential: { label: "Essential — €39/mo", monthly: 39 },
-  pro: { label: "Pro — €69/mo", monthly: 69 },
-  elite: { label: "Elite — €99/mo", monthly: 99 },
+const PLAN_MONTHLY: Record<PlanKey, number> = {
+  essential: 39,
+  pro: 69,
+  elite: 99,
 };
 
-function fmt(n: number) {
-  return `€${Math.round(n).toLocaleString("en-US")}`;
+function fmt(n: number, locale: Locale) {
+  const rounded = Math.round(n);
+  return locale === "fr"
+    ? `${rounded.toLocaleString("fr-FR")} €`
+    : `€${rounded.toLocaleString("en-US")}`;
 }
 
 type Row = {
@@ -25,11 +30,20 @@ type Row = {
 };
 
 export function SavingsCalculator() {
+  const t = usePricing();
+  const s = t.savings;
+  const locale = useLocale();
   const [ticketPrice, setTicketPrice] = useState(25);
   const [tickets, setTickets] = useState(5000);
   const [plan, setPlan] = useState<PlanKey>("pro");
 
-  const yunoCost = PLANS[plan].monthly * 12;
+  const planLabels: Record<PlanKey, string> = {
+    essential: s.plans.essential,
+    pro: s.plans.pro,
+    elite: s.plans.elite,
+  };
+
+  const yunoCost = PLAN_MONTHLY[plan] * 12;
   const gmv = ticketPrice * tickets;
 
   const rows = useMemo<Row[]>(() => {
@@ -40,16 +54,16 @@ export function SavingsCalculator() {
       {
         key: "yuno",
         name: "Yuno",
-        sub: "0% commission — subscription only",
+        sub: s.rows.yuno.sub,
         color: "text-accent",
         dotColor: "bg-accent",
         cost: yunoCost,
-        costLabel: "subscription only",
+        costLabel: s.rows.yuno.costLabel,
       },
       {
         key: "shotgun",
         name: "Shotgun",
-        sub: "10% commission — paid by you",
+        sub: s.rows.shotgun.sub,
         color: "text-red-400",
         dotColor: "bg-red-400",
         cost: shotgun,
@@ -57,7 +71,7 @@ export function SavingsCalculator() {
       {
         key: "weezevent",
         name: "Weezevent",
-        sub: "2.5% + €0.99 / ticket — paid by you",
+        sub: s.rows.weezevent.sub,
         color: "text-purple-400",
         dotColor: "bg-purple-400",
         cost: weezevent,
@@ -65,7 +79,7 @@ export function SavingsCalculator() {
       {
         key: "xceed",
         name: "Xceed Marketplace",
-        sub: "15% marketplace commission — paid by you",
+        sub: s.rows.xceed.sub,
         color: "text-blue-400",
         dotColor: "bg-blue-400",
         cost: xceed,
@@ -73,15 +87,15 @@ export function SavingsCalculator() {
       {
         key: "dice",
         name: "DICE",
-        sub: "~12% added on top of your price",
+        sub: s.rows.dice.sub,
         color: "text-muted-foreground",
         dotColor: "bg-muted-foreground",
         cost: null,
-        costLabel: "not organizer-side",
-        note: "n/a",
+        costLabel: s.rows.dice.costLabel,
+        note: s.notAvailable,
       },
     ];
-  }, [ticketPrice, tickets, yunoCost, gmv]);
+  }, [ticketPrice, tickets, yunoCost, gmv, s]);
 
   const maxCost = Math.max(
     ...rows.map((r) => r.cost ?? 0),
@@ -96,16 +110,16 @@ export function SavingsCalculator() {
         </div>
         <div>
           <h3 className="text-xl md:text-2xl font-medium tracking-tight">
-            Simulate your savings
+            {s.heading}
           </h3>
           <p className="text-sm text-muted-foreground">
-            What you actually pay with each platform — from your pocket.
+            {s.subheading}
           </p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <Field label="Ticket price">
+        <Field label={s.fieldTicketPrice}>
           <div className="relative">
             <input
               type="number"
@@ -117,7 +131,7 @@ export function SavingsCalculator() {
             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">€</span>
           </div>
         </Field>
-        <Field label="Tickets / year">
+        <Field label={s.fieldTicketsPerYear}>
           <input
             type="number"
             min={1}
@@ -127,14 +141,14 @@ export function SavingsCalculator() {
             className="w-full bg-background ring-1 ring-border rounded-xl px-4 py-3 text-lg font-medium focus:outline-none focus:ring-accent/60"
           />
         </Field>
-        <Field label="Your Yuno plan">
+        <Field label={s.fieldPlan}>
           <select
             value={plan}
             onChange={(e) => setPlan(e.target.value as PlanKey)}
             className="w-full bg-background ring-1 ring-border rounded-xl px-4 py-3 text-lg font-medium focus:outline-none focus:ring-accent/60 appearance-none"
           >
-            {Object.entries(PLANS).map(([k, v]) => (
-              <option key={k} value={k}>{v.label}</option>
+            {(Object.keys(PLAN_MONTHLY) as PlanKey[]).map((k) => (
+              <option key={k} value={k}>{planLabels[k]}</option>
             ))}
           </select>
         </Field>
@@ -142,9 +156,9 @@ export function SavingsCalculator() {
 
       <div className="border-t border-border pt-6">
         <div className="grid grid-cols-12 text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground mb-4 px-1">
-          <span className="col-span-6">Platform</span>
-          <span className="col-span-4 text-right">Cost to you / year</span>
-          <span className="col-span-2 text-right">You save</span>
+          <span className="col-span-6">{s.colPlatform}</span>
+          <span className="col-span-4 text-right">{s.colCost}</span>
+          <span className="col-span-2 text-right">{s.colSave}</span>
         </div>
 
         <div className="space-y-3">
@@ -167,7 +181,7 @@ export function SavingsCalculator() {
                     <span className="font-medium text-sm md:text-base">{r.name}</span>
                     {isYuno && (
                       <span className="text-[10px] font-medium uppercase tracking-[0.14em] bg-accent text-accent-foreground rounded px-1.5 py-0.5">
-                        Your platform
+                        {s.yourPlatform}
                       </span>
                     )}
                   </div>
@@ -183,10 +197,10 @@ export function SavingsCalculator() {
                   {r.cost != null ? (
                     <>
                       <div className={`text-xl md:text-2xl font-semibold ${r.color}`}>
-                        {fmt(r.cost)}
+                        {fmt(r.cost, locale)}
                       </div>
                       <div className="text-[11px] text-muted-foreground">
-                        {r.costLabel ?? "per year"}
+                        {r.costLabel ?? s.perYear}
                       </div>
                     </>
                   ) : (
@@ -198,13 +212,13 @@ export function SavingsCalculator() {
                 </div>
                 <div className="col-span-2 text-right">
                   {isYuno ? (
-                    <span className="text-[11px] text-muted-foreground bg-surface-2 rounded-full px-2.5 py-1">baseline</span>
+                    <span className="text-[11px] text-muted-foreground bg-surface-2 rounded-full px-2.5 py-1">{s.baseline}</span>
                   ) : savings != null && savings > 0 ? (
                     <span className="inline-block text-sm font-semibold text-emerald-400 bg-emerald-500/10 rounded-full px-2.5 py-1">
-                      +{fmt(savings)}
+                      +{fmt(savings, locale)}
                     </span>
                   ) : (
-                    <span className="text-[11px] text-muted-foreground bg-surface-2 rounded-full px-2.5 py-1">{r.note ?? "n/a"}</span>
+                    <span className="text-[11px] text-muted-foreground bg-surface-2 rounded-full px-2.5 py-1">{r.note ?? s.notAvailable}</span>
                   )}
                 </div>
               </div>
@@ -213,8 +227,8 @@ export function SavingsCalculator() {
         </div>
 
         <p className="text-[11px] text-muted-foreground leading-relaxed mt-6">
-          <span className="text-foreground font-medium">How it's calculated:</span>{" "}
-          Shotgun 10% organizer commission · Weezevent 2.5% + €0.99/ticket organizer-side · Xceed Marketplace 15% organizer commission · Yuno: 0% organizer commission, subscription only. DICE adds fees on top of your price for buyers — not comparable on organizer cost. Estimate only; actual fees vary by payment method and event.
+          <span className="text-foreground font-medium">{s.howCalculatedLabel}</span>{" "}
+          {s.howCalculated}
         </p>
       </div>
     </div>

@@ -9,37 +9,29 @@ import { Button } from "@/components/ui/button";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { contactContent, useContact } from "@/content/contact";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Book a demo — Yuno" },
-      {
-        name: "description",
-        content:
-          "Talk to a Yuno expert. We'll walk through your floor plan, your fee stack and what migrating would look like.",
-      },
-      { property: "og:title", content: "Book a demo — Yuno" },
-      {
-        property: "og:description",
-        content: "Talk to a Yuno expert. 30-minute call, no pressure.",
-      },
-      { property: "og:url", content: "/contact" },
-    ],
-    links: [{ rel: "canonical", href: "/contact" }],
-  }),
+  head: ({ match }) => {
+    const m = contactContent[match.context.locale].meta;
+    return {
+      meta: [
+        { title: m.title },
+        { name: "description", content: m.description },
+        { property: "og:title", content: m.title },
+        { property: "og:description", content: m.ogDescription },
+        { property: "og:url", content: "/contact" },
+      ],
+      links: [{ rel: "canonical", href: "/contact" }],
+    };
+  },
   component: ContactPage,
 });
 
 type Segment = "club" | "organizer" | "affiliate" | "other";
 
-const contactInfo = [
-  { icon: <MailIcon />, label: "Email", value: "hello@yuno.io" },
-  { icon: <PhoneIcon />, label: "Phone", value: "+33 1 86 65 12 34" },
-  { icon: <MapPinIcon />, label: "Based in", value: "Paris · Barcelona · London" },
-];
-
 function ContactPage() {
+  const t = useContact();
   const send = useServerFn(submitLead);
   const [segment, setSegment] = useState<Segment>("club");
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
@@ -67,15 +59,21 @@ function ContactPage() {
     } catch (err) {
       console.error(err);
       setStatus("error");
-      setError(err instanceof Error ? err.message : "Something went wrong.");
+      setError(t.form.errorMessage);
     }
   }
 
   const segments: { id: Segment; label: string }[] = [
-    { id: "club", label: "Nightclub" },
-    { id: "organizer", label: "Organizer" },
-    { id: "affiliate", label: "Promoter" },
-    { id: "other", label: "Other" },
+    { id: "club", label: t.form.segments.club },
+    { id: "organizer", label: t.form.segments.organizer },
+    { id: "affiliate", label: t.form.segments.affiliate },
+    { id: "other", label: t.form.segments.other },
+  ];
+
+  const contactInfo = [
+    { icon: <MailIcon />, label: t.contactInfo.emailLabel, value: "hello@yuno.io" },
+    { icon: <PhoneIcon />, label: t.contactInfo.phoneLabel, value: "+33 1 86 65 12 34" },
+    { icon: <MapPinIcon />, label: t.contactInfo.locationLabel, value: t.contactInfo.location },
   ];
 
   return (
@@ -85,18 +83,18 @@ function ContactPage() {
         <div className="col-span-1 flex flex-col space-y-5 p-8 lg:p-10">
           <span className="inline-flex w-fit items-center gap-2 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground border border-border rounded-full px-3 py-1">
             <span className="size-1.5 rounded-full bg-accent" />
-            Talk to us
+            {t.tag}
           </span>
           <h1 className="font-medium text-3xl tracking-tight md:text-4xl text-balance leading-[1.1]">
-            Book a 30-minute{" "}
-            <span className="serif italic text-muted-foreground">walkthrough</span>
+            {t.heading.lead}{" "}
+            <span className="serif italic text-muted-foreground">{t.heading.accent}</span>
           </h1>
           <p className="max-w-md text-muted-foreground text-sm leading-relaxed md:text-base">
-            Tell us about your venue or your events. We'll come back within one business day with a tailored demo and a fee comparison.
+            {t.subhead}
           </p>
 
           <ul className="space-y-2.5 text-sm pt-2">
-            {["No card, no commitment", "Migration plan from your current tooling", "EU-based, GDPR-native"].map((b) => (
+            {t.benefits.map((b) => (
               <li key={b} className="flex items-center gap-2.5 text-muted-foreground">
                 <CheckCircle2 className="size-4 text-accent" strokeWidth={1.75} />
                 {b}
@@ -122,16 +120,16 @@ function ContactPage() {
               <div className="mx-auto size-12 rounded-full bg-accent/15 grid place-items-center mb-4">
                 <CheckCircle2 className="size-6 text-accent" />
               </div>
-              <h2 className="text-2xl font-medium tracking-tight mb-2">You're on the list.</h2>
+              <h2 className="text-2xl font-medium tracking-tight mb-2">{t.success.title}</h2>
               <p className="text-sm text-muted-foreground max-w-[42ch] mx-auto">
-                We'll be in touch within one business day.
+                {t.success.body}
               </p>
             </motion.div>
           ) : (
             <form onSubmit={onSubmit} className="w-full">
               <FieldGroup>
                 <Field>
-                  <FieldLabel>I am a…</FieldLabel>
+                  <FieldLabel>{t.form.segmentLabel}</FieldLabel>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                     {segments.map((s) => (
                       <button
@@ -152,28 +150,28 @@ function ContactPage() {
                 </Field>
 
                 <Field>
-                  <FieldLabel htmlFor="name">Full name</FieldLabel>
-                  <Input id="name" name="name" required maxLength={120} placeholder="Alex Martin" autoComplete="name" />
+                  <FieldLabel htmlFor="name">{t.form.nameLabel}</FieldLabel>
+                  <Input id="name" name="name" required maxLength={120} placeholder={t.form.namePlaceholder} autoComplete="name" />
                 </Field>
 
                 <Field>
-                  <FieldLabel htmlFor="email">Work email</FieldLabel>
-                  <Input id="email" name="email" type="email" required maxLength={255} placeholder="alex@yourclub.com" autoComplete="email" />
+                  <FieldLabel htmlFor="email">{t.form.emailLabel}</FieldLabel>
+                  <Input id="email" name="email" type="email" required maxLength={255} placeholder={t.form.emailPlaceholder} autoComplete="email" />
                 </Field>
 
                 <Field>
-                  <FieldLabel htmlFor="company">Company / venue</FieldLabel>
-                  <Input id="company" name="company" maxLength={160} placeholder="Neon Room" />
+                  <FieldLabel htmlFor="company">{t.form.companyLabel}</FieldLabel>
+                  <Input id="company" name="company" maxLength={160} placeholder={t.form.companyPlaceholder} />
                 </Field>
 
                 <Field>
-                  <FieldLabel htmlFor="phone">Phone</FieldLabel>
-                  <Input id="phone" name="phone" type="tel" maxLength={40} placeholder="+33 6 ..." autoComplete="tel" />
+                  <FieldLabel htmlFor="phone">{t.form.phoneLabel}</FieldLabel>
+                  <Input id="phone" name="phone" type="tel" maxLength={40} placeholder={t.form.phonePlaceholder} autoComplete="tel" />
                 </Field>
 
                 <Field>
-                  <FieldLabel htmlFor="message">What do you want to fix first?</FieldLabel>
-                  <Textarea id="message" name="message" rows={3} maxLength={2000} placeholder="Bar queues, VIP tracking, ticketing fees..." />
+                  <FieldLabel htmlFor="message">{t.form.messageLabel}</FieldLabel>
+                  <Textarea id="message" name="message" rows={3} maxLength={2000} placeholder={t.form.messagePlaceholder} />
                 </Field>
               </FieldGroup>
 
@@ -184,17 +182,17 @@ function ContactPage() {
               <Button type="submit" disabled={status === "loading"} className="mt-8 w-full">
                 {status === "loading" ? (
                   <>
-                    <Loader2 className="size-4 animate-spin" /> Sending…
+                    <Loader2 className="size-4 animate-spin" /> {t.form.submitting}
                   </>
                 ) : (
                   <>
-                    Book my demo <ArrowRight className="size-4" />
+                    {t.form.submit} <ArrowRight className="size-4" />
                   </>
                 )}
               </Button>
 
               <p className="text-[11px] text-muted-foreground mt-4 text-center">
-                By submitting you agree to be contacted about Yuno. We never share your data.
+                {t.consent}
               </p>
             </form>
           )}

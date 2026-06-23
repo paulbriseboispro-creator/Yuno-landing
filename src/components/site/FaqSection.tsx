@@ -7,14 +7,7 @@ import {
 } from "@/components/ui/accordion";
 import { LayoutGridIcon, PowerIcon, FeatherIcon, CreditCardIcon, LifeBuoyIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const categories = [
-  { icon: <LayoutGridIcon className="size-4" />, id: "all", label: "All Topics" },
-  { icon: <PowerIcon className="size-4" />, id: "getting-started", label: "Getting Started" },
-  { icon: <FeatherIcon className="size-4" />, id: "features", label: "Features" },
-  { icon: <CreditCardIcon className="size-4" />, id: "billing", label: "Billing" },
-  { icon: <LifeBuoyIcon className="size-4" />, id: "support", label: "Support" },
-];
+import { useHome } from "@/content/home";
 
 export interface FaqItem {
   id: string;
@@ -24,7 +17,16 @@ export interface FaqItem {
 }
 
 export function FaqSection({ items, eyebrow, title }: { items: FaqItem[]; eyebrow: string; title: string }) {
+  const t = useHome();
   const [activeCategory, setActiveCategory] = React.useState("all");
+
+  const categories = [
+    { icon: <LayoutGridIcon className="size-4" />, id: "all", label: t.faq.categories.all },
+    { icon: <PowerIcon className="size-4" />, id: "getting-started", label: t.faq.categories["getting-started"] },
+    { icon: <FeatherIcon className="size-4" />, id: "features", label: t.faq.categories.features },
+    { icon: <CreditCardIcon className="size-4" />, id: "billing", label: t.faq.categories.billing },
+    { icon: <LifeBuoyIcon className="size-4" />, id: "support", label: t.faq.categories.support },
+  ];
 
   const filtered = React.useMemo(() => {
     if (activeCategory === "all") return items;
@@ -33,7 +35,7 @@ export function FaqSection({ items, eyebrow, title }: { items: FaqItem[]; eyebro
 
   const currentCategory = React.useMemo(
     () => categories.find((cat) => cat.id === activeCategory),
-    [activeCategory]
+    [activeCategory, categories]
   );
 
   return (

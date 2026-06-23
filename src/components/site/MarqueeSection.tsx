@@ -1,4 +1,5 @@
 import { ThreeDMarquee } from "@/components/ui/3d-marquee";
+import { useHome } from "@/content/home";
 import revenue from "@/assets/dashboards/revenue.png";
 import liveNight from "@/assets/dashboards/live-night.png";
 import customers from "@/assets/dashboards/customers.png";
@@ -21,15 +22,16 @@ const images = [
 ];
 
 export function MarqueeSection() {
+  const t = useHome();
   return (
     <section className="py-24 px-6 border-t border-border">
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-12 max-w-3xl mx-auto">
           <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-            In the wild
+            {t.marquee.eyebrow}
           </span>
           <h2 className="mt-3 text-3xl md:text-4xl font-medium tracking-tight text-balance">
-            See Yuno in action across every venue
+            {t.marquee.title}
           </h2>
         </div>
         <div className="relative mx-auto my-10 max-w-7xl rounded-3xl bg-surface/40 p-2 ring-1 ring-border">

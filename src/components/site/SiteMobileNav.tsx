@@ -4,18 +4,19 @@ import { Button } from "@/components/ui/button";
 import { Portal, PortalBackdrop } from "@/components/portal";
 import { Link } from "@tanstack/react-router";
 import { XIcon, MenuIcon } from "lucide-react";
-import { en } from "@/content/en";
-
-const navLinks = [
-  { label: en.nav.product, to: "/" },
-  { label: en.nav.pricing, to: "/pricing" },
-  { label: en.nav.clubs, to: "/clubs" },
-  { label: en.nav.organizers, to: "/organizers" },
-  { label: en.nav.affiliates, to: "/affiliates" },
-];
+import { useCommon } from "@/content/common";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function SiteMobileNav() {
   const [open, setOpen] = React.useState(false);
+  const t = useCommon();
+  const navLinks = [
+    { label: t.nav.product, to: "/" },
+    { label: t.nav.pricing, to: "/pricing" },
+    { label: t.nav.clubs, to: "/clubs" },
+    { label: t.nav.organizers, to: "/organizers" },
+    { label: t.nav.affiliates, to: "/affiliates" },
+  ];
 
   return (
     <div className="md:hidden">
@@ -59,11 +60,14 @@ export function SiteMobileNav() {
             </div>
             <div className="mt-12 flex flex-col gap-2">
               <Button asChild className="w-full" variant="outline" onClick={() => setOpen(false)}>
-                <Link to="/contact">{en.nav.bookDemo}</Link>
+                <Link to="/contact">{t.nav.bookDemo}</Link>
               </Button>
               <Button asChild className="w-full" onClick={() => setOpen(false)}>
-                <Link to="/contact">{en.nav.startFree}</Link>
+                <Link to="/contact">{t.nav.startFree}</Link>
               </Button>
+              <div className="mt-2 flex justify-center">
+                <LanguageSwitcher />
+              </div>
             </div>
           </div>
         </Portal>

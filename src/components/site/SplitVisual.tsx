@@ -1,8 +1,9 @@
 import { motion } from "motion/react";
-import { en } from "@/content/en";
+import { usePricing } from "@/content/pricing";
 import { ArrowDown } from "lucide-react";
 
 export function SplitVisual() {
+  const { splitVisual } = usePricing();
   return (
     <div className="p-6 md:p-8 bg-background rounded-3xl ring-1 ring-border relative overflow-hidden">
       <div className="absolute -top-32 -right-32 size-64 rounded-full bg-accent/10 blur-3xl pointer-events-none" />
@@ -15,9 +16,9 @@ export function SplitVisual() {
           className="flex justify-between items-center bg-surface p-4 rounded-xl ring-1 ring-border"
         >
           <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-            {en.split.ticketLabel}
+            {splitVisual.ticketLabel}
           </span>
-          <span className="text-lg font-medium">{en.split.ticketAmount}</span>
+          <span className="text-lg font-medium">{splitVisual.ticketAmount}</span>
         </motion.div>
 
         <div className="flex justify-center">
@@ -33,7 +34,7 @@ export function SplitVisual() {
         </div>
 
         <div className="grid grid-cols-3 gap-3">
-          {en.split.rows.map((r, i) => (
+          {splitVisual.rows.map((r, i) => (
             <motion.div
               key={r.label}
               initial={{ opacity: 0, y: 10 }}

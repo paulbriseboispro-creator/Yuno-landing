@@ -1,45 +1,45 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { legalContent, useLegal } from "@/content/legal";
 
 export const Route = createFileRoute("/terms")({
-  head: () => ({
-    meta: [
-      { title: "Terms of Service — Yuno" },
-      {
-        name: "description",
-        content:
-          "The terms governing use of the Yuno platform by clubs, organizers, promoters and their guests.",
-      },
-      { property: "og:title", content: "Terms of Service — Yuno" },
-      {
-        property: "og:description",
-        content: "Terms governing use of the Yuno platform.",
-      },
-      { property: "og:url", content: "/terms" },
-    ],
-    links: [{ rel: "canonical", href: "/terms" }],
-  }),
+  head: ({ match }) => {
+    const m = legalContent[match.context.locale].terms.meta;
+    return {
+      meta: [
+        { title: m.title },
+        { name: "description", content: m.description },
+        { property: "og:title", content: m.title },
+        { property: "og:description", content: m.description },
+        { property: "og:url", content: "/terms" },
+      ],
+      links: [{ rel: "canonical", href: "/terms" }],
+    };
+  },
   component: TermsPage,
 });
 
 function TermsPage() {
+  const t = useLegal().terms;
+  // The "Fees & payments" body links to the pricing page. Split its body around
+  // the localized link label so the <a> can be wired inline.
+  const [feesBefore, feesAfter] = t.sections[1].body.split(t.pricingLink);
   return (
     <section className="pt-24 pb-24 px-6">
       <div className="mx-auto max-w-3xl">
         <span className="inline-block text-xs font-medium uppercase tracking-[0.18em] text-accent border border-accent/40 rounded-full px-3 py-1 mb-6">
-          Legal
+          {t.badge}
         </span>
         <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-balance mb-4">
-          Terms of Service
+          {t.heading}
         </h1>
         <p className="text-sm text-muted-foreground mb-10">
-          Last updated: June 9, 2026
+          {t.lastUpdated}
         </p>
 
         <div className="rounded-2xl bg-surface ring-1 ring-border p-6 md:p-8 mb-10">
           <p className="text-sm text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">This is a placeholder document.</strong>{" "}
-            The final, lawyer-reviewed Terms of Service are on the way. For any question
-            in the meantime, contact{" "}
+            <strong className="text-foreground">{t.placeholder}</strong>{" "}
+            {t.notice}{" "}
             <a className="text-accent hover:underline" href="mailto:contact@yunoapp.eu">
               contact@yunoapp.eu
             </a>
@@ -50,36 +50,27 @@ function TermsPage() {
         <div className="space-y-8 text-sm text-muted-foreground leading-relaxed">
           <div>
             <h2 className="text-xl font-medium text-foreground tracking-tight mb-2">
-              Using Yuno
+              {t.sections[0].title}
             </h2>
-            <p>
-              By creating an account you agree to operate within the platform's intended
-              use: hosting and operating nightlife events, processing ticket sales and
-              bar / VIP transactions in compliance with local law.
-            </p>
+            <p>{t.sections[0].body}</p>
           </div>
           <div>
             <h2 className="text-xl font-medium text-foreground tracking-tight mb-2">
-              Fees & payments
+              {t.sections[1].title}
             </h2>
             <p>
-              Plan and transactional fees are described on the{" "}
+              {feesBefore}
               <a className="text-accent hover:underline" href="/pricing">
-                Pricing page
+                {t.pricingLink}
               </a>
-              . Payments are processed through Stripe Connect; each connected account is
-              bound by Stripe's own terms.
+              {feesAfter}
             </p>
           </div>
           <div>
             <h2 className="text-xl font-medium text-foreground tracking-tight mb-2">
-              Liability
+              {t.sections[2].title}
             </h2>
-            <p>
-              Yuno provides the platform "as is" while we finalize service-level
-              commitments. Operators remain responsible for ticket validity, capacity
-              enforcement and on-site decisions.
-            </p>
+            <p>{t.sections[2].body}</p>
           </div>
         </div>
       </div>

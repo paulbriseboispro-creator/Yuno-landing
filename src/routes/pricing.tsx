@@ -3,59 +3,41 @@ import { PricingGrid } from "@/components/site/PricingGrid";
 import { Reveal } from "@/components/site/Reveal";
 import { ServiceFeeCalculator } from "@/components/site/ServiceFeeCalculator";
 import { SavingsCalculator } from "@/components/site/SavingsCalculator";
-import { en } from "@/content/en";
+import { pricingContent, usePricing } from "@/content/pricing";
 import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/pricing")({
-  head: () => ({
-    meta: [
-      { title: "Pricing — Yuno" },
-      {
-        name: "description",
-        content:
-          "Yuno plans: Core (free), Essential €39/mo, Pro €69/mo, Elite €99/mo. Plus 4% per ticket with €0.99 minimum on transactions.",
-      },
-      { property: "og:title", content: "Pricing — Yuno" },
-      { property: "og:description", content: "Core, Essential €39, Pro €69, Elite €99 — plus low transactional fees." },
-      { property: "og:url", content: "/pricing" },
-    ],
-    links: [{ rel: "canonical", href: "/pricing" }],
-  }),
+  head: ({ match }) => {
+    const m = pricingContent[match.context.locale].meta;
+    return {
+      meta: [
+        { title: m.title },
+        { name: "description", content: m.description },
+        { property: "og:title", content: m.ogTitle },
+        { property: "og:description", content: m.ogDescription },
+        { property: "og:url", content: "/pricing" },
+      ],
+      links: [{ rel: "canonical", href: "/pricing" }],
+    };
+  },
   component: PricingPage,
 });
 
-const fees = [
-  {
-    title: "Tickets & tables",
-    body: "4% per order with a €0.99 minimum. The service fee is always paid by the customer at checkout — never deducted from your share. Stripe fees (1.5% + €0.25) apply on payout.",
-  },
-  {
-    title: "Drinks (Click & Collect)",
-    body: "A flat 3% service fee on every pre-ordered round, paid by the customer. You receive 100% of the menu price — pre-ordering is a guest-side perk that cuts your queue without costing you anything.",
-  },
-  {
-    title: "VIP tables",
-    body: "Same 4% / €0.99 minimum on online deposits and tables billed through Yuno — paid by the customer. No commission on cash collected at the door.",
-  },
-  {
-    title: "Promoter attribution",
-    body: "Commissions you've configured (fixed or %) are deducted from the venue's net share and paid directly to the promoter.",
-  },
-];
-
 function PricingPage() {
+  const t = usePricing();
+  const p = t.page;
   return (
     <>
       <section className="pt-24 pb-12 px-6">
         <div className="mx-auto max-w-7xl text-center">
           <span className="inline-block text-xs font-medium uppercase tracking-[0.18em] text-accent border border-accent/40 rounded-full px-3 py-1 mb-6">
-            Pricing
+            {p.eyebrow}
           </span>
           <h1 className="text-5xl md:text-6xl font-medium tracking-tight text-balance max-w-[24ch] mx-auto leading-[1.05]">
-            A plan for every <span className="serif italic text-muted-foreground">scale of night</span>
+            {p.titleA}<span className="serif italic text-muted-foreground">{p.titleEm}</span>
           </h1>
           <p className="mt-6 text-base text-muted-foreground max-w-[58ch] mx-auto text-pretty">
-            Monthly SaaS plans for the back office, plus transparent transactional fees on what actually moves money.
+            {p.sub}
           </p>
         </div>
       </section>
@@ -64,7 +46,7 @@ function PricingPage() {
         <div className="mx-auto max-w-3xl">
           <Reveal>
             <p className="text-center text-base text-muted-foreground text-pretty">
-              Yuno charges you a <span className="text-foreground">monthly subscription</span>. Ticket and drink fees are paid by your guests at checkout — <span className="text-foreground">not by you</span>. The fee calculator below shows what your attendees pay per purchase.
+              {p.feeIntroA}<span className="text-foreground">{p.feeIntroMonthly}</span>{p.feeIntroB}<span className="text-foreground">{p.feeIntroNotYou}</span>{p.feeIntroC}
             </p>
           </Reveal>
         </div>
@@ -76,9 +58,9 @@ function PricingPage() {
           <Reveal className="mb-10">
             <div className="mx-auto max-w-3xl rounded-2xl bg-accent/5 ring-1 ring-accent/30 p-6 md:p-8 text-center">
               <p className="text-base md:text-lg text-balance">
-                <span className="text-foreground font-medium">Yuno doesn't take a cut from your revenue.</span>{" "}
-                <span className="text-muted-foreground">The 4% service fee is paid by your customers at checkout — like a credit card processing fee. You keep 100% of your ticket price.</span>{" "}
-                <span className="text-accent">Compare that to Shotgun's 10% taken directly from your payout.</span>
+                <span className="text-foreground font-medium">{p.noCutBold}</span>{" "}
+                <span className="text-muted-foreground">{p.noCutBody}</span>{" "}
+                <span className="text-accent">{p.noCutCompare}</span>
               </p>
             </div>
           </Reveal>
@@ -91,13 +73,13 @@ function PricingPage() {
         <div className="mx-auto max-w-6xl">
           <Reveal className="mb-8 text-center">
             <span className="inline-block text-xs font-medium uppercase tracking-[0.18em] text-accent border border-accent/40 rounded-full px-3 py-1">
-              vs. Shotgun · Weezevent · Xceed · DICE
+              {p.savingsEyebrow}
             </span>
             <h2 className="mt-4 text-3xl md:text-4xl font-medium tracking-tight text-balance max-w-[26ch] mx-auto">
-              The cheapest ticketing platform for nightlife — by a wide margin
+              {p.savingsTitle}
             </h2>
             <p className="mt-3 text-sm text-muted-foreground max-w-[60ch] mx-auto">
-              Yuno is subscription only. No per-ticket commission. Compare what each platform actually costs you per year.
+              {p.savingsSub}
             </p>
           </Reveal>
           <Reveal>
@@ -110,13 +92,13 @@ function PricingPage() {
         <div className="mx-auto max-w-5xl">
           <Reveal className="mb-8 text-center">
             <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              See it in numbers
+              {p.serviceFeeEyebrow}
             </span>
             <h2 className="mt-3 text-3xl md:text-4xl font-medium tracking-tight text-balance">
-              What your customers actually pay in fees
+              {p.serviceFeeTitle}
             </h2>
             <p className="mt-3 text-sm text-muted-foreground max-w-[58ch] mx-auto">
-              Drag the sliders. Every service fee is paid by the customer at checkout — never by you. You keep 100% of your menu and ticket prices.
+              {p.serviceFeeSub}
             </p>
           </Reveal>
           <Reveal>
@@ -135,54 +117,48 @@ function PricingPage() {
                 <div className="flex items-center gap-2 mb-4">
                   <Sparkles className="size-4 text-accent" />
                   <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-accent border border-accent/40 rounded-full px-2 py-0.5">
-                    Early Adopters — 15 spots only
+                    {p.founding.badge}
                   </span>
                 </div>
                 <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-balance max-w-[24ch] mb-4">
-                  Founding Club Offer
+                  {p.founding.title}
                 </h2>
                 <p className="text-base text-muted-foreground max-w-[62ch] text-pretty mb-4">
-                  We're onboarding our first <span className="text-foreground font-medium">15 partner venues</span> — and that's where it stops.
+                  {p.founding.introA}<span className="text-foreground font-medium">{p.founding.introVenues}</span>{p.founding.introB}
                 </p>
                 <p className="text-base text-muted-foreground max-w-[62ch] text-pretty mb-6">
-                  Founding clubs get <span className="text-foreground font-medium">3 months completely free</span>, no credit card, no commitment. Run real nights on Yuno, see what it does for your operations, and decide after.
+                  {p.founding.bodyA}<span className="text-foreground font-medium">{p.founding.bodyFree}</span>{p.founding.bodyB}
                 </p>
                 <div className="mb-6">
-                  <p className="text-sm font-medium text-foreground mb-2">After your trial, two paths:</p>
+                  <p className="text-sm font-medium text-foreground mb-2">{p.founding.pathsLabel}</p>
                   <ul className="space-y-1.5 text-sm text-muted-foreground">
                     <li className="flex items-start gap-2">
                       <span className="size-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-                      <span>Go monthly at the standard rate, any time.</span>
+                      <span>{p.founding.pathMonthly}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="size-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-                      <span>Go annual and get <span className="text-foreground font-medium">2 extra months free</span> — plus a lifetime price lock. Your rate never increases, even as we add features and raise prices for everyone else.</span>
+                      <span>{p.founding.pathAnnualA}<span className="text-foreground font-medium">{p.founding.pathAnnualEm}</span>{p.founding.pathAnnualB}</span>
                     </li>
                   </ul>
                 </div>
                 <ul className="space-y-2 mb-6">
-                  <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="size-4 text-accent shrink-0" />
-                    <span>3 months free — no card, no strings</span>
-                  </li>
-                  <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="size-4 text-accent shrink-0" />
-                    <span>Direct onboarding with Paul, Yuno's founder</span>
-                  </li>
-                  <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="size-4 text-accent shrink-0" />
-                    <span>Annual plan = 2 months free + your rate locked forever</span>
-                  </li>
+                  {p.founding.checks.map((c) => (
+                    <li key={c} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <CheckCircle2 className="size-4 text-accent shrink-0" />
+                      <span>{c}</span>
+                    </li>
+                  ))}
                 </ul>
                 <p className="text-xs text-muted-foreground mb-6">
-                  Open until September 2026 — or until all 15 spots are claimed.
+                  {p.founding.deadline}
                 </p>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                   <Link to="/contact" className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-full text-sm font-semibold hover:brightness-110 transition-all">
-                    Claim your founding spot <ArrowRight className="size-4" />
+                    {p.founding.cta} <ArrowRight className="size-4" />
                   </Link>
                   <span className="text-xs text-muted-foreground">
-                    Free to join · No contract · Exclusive territory
+                    {p.founding.ctaMeta}
                   </span>
                 </div>
               </div>
@@ -195,15 +171,15 @@ function PricingPage() {
         <div className="mx-auto max-w-5xl">
           <Reveal className="mb-10">
             <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              Fee breakdown
+              {p.breakdownEyebrow}
             </span>
             <h2 className="mt-3 text-3xl md:text-4xl font-medium tracking-tight text-balance">
-              Service fees your customers pay at checkout
+              {p.breakdownTitle}
             </h2>
-            <p className="mt-4 text-sm text-muted-foreground max-w-[60ch]">{en.pricing.fees}</p>
+            <p className="mt-4 text-sm text-muted-foreground max-w-[60ch]">{t.fees}</p>
           </Reveal>
           <div className="grid sm:grid-cols-2 gap-4">
-            {fees.map((f, i) => (
+            {p.breakdownItems.map((f, i) => (
               <Reveal key={f.title} delay={i * 0.05}>
                 <div className="p-6 rounded-2xl bg-surface ring-1 ring-border h-full">
                   <h3 className="text-lg font-medium mb-2">{f.title}</h3>
