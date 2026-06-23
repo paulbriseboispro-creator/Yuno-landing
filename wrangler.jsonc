@@ -1,0 +1,26 @@
+{
+  // Cloudflare Workers config for the Yuno landing page (TanStack Start SSR).
+  // `bun run build` outputs:
+  //   - dist/server/server.js  -> the Worker (default export with a fetch handler)
+  //   - dist/client/           -> static assets (JS/CSS/images) served by Cloudflare
+  // Cloudflare serves a matching static asset first, and falls through to the
+  // Worker for everything else (SSR routes + server functions).
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "yuno-landing",
+  "main": "dist/server/server.js",
+  "compatibility_date": "2025-05-01",
+  // nodejs_compat gives the Supabase client Node built-ins and, with this
+  // compatibility_date, auto-populates process.env from the Worker's vars/secrets.
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "./dist/client"
+  },
+  "observability": {
+    "enabled": true
+  }
+  // Runtime env (SSR reads process.env.SUPABASE_*). Set these in the Cloudflare
+  // dashboard (Workers > Settings > Variables) or via `wrangler secret put`:
+  //   SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, SUPABASE_PROJECT_ID
+  //   SUPABASE_SERVICE_ROLE_KEY  (secret, only if server functions use the admin client)
+  // The VITE_SUPABASE_* vars are build-time only — set them as Build variables.
+}

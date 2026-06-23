@@ -1,0 +1,17 @@
+# Yuno
+
+> Yuno is the operating system for the after-dark economy: an all-in-one platform for nightclubs, party organizers and promoters covering VIP floor plans, click-and-collect bar, ticketing and automated Stripe Connect revenue splits.
+
+## Pages
+
+- [Home](/): Overview of the Yuno platform for clubs, organizers and promoters.
+- [Clubs](/clubs): Operations suite for nightclubs — VIP floor plans, click-and-collect bar, bouncer scanner, loyalty.
+- [Organizers](/organizers): Tools for party organizers — ticketing, revenue splits, Yuno Collab partner program.
+- [Affiliates](/affiliates): Promoter program — Linktree-style page, attribution and IBAN payouts.
+- [Pricing](/pricing): Plans, transactional fees and the service-fee calculator.
+- [Contact](/contact): Reach the Yuno team.
+
+## Optional
+
+- [Privacy](/privacy)
+- [Terms](/terms)

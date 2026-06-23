@@ -1,0 +1,74 @@
+import { useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { useScroll } from "@/hooks/use-scroll";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { SiteMobileNav } from "./SiteMobileNav";
+import { SmartSearch } from "./SmartSearch";
+import { MagnifyNav } from "./MagnifyNav";
+import { en } from "@/content/en";
+import yunoLogo from "@/assets/yuno-logo.png";
+
+
+const navLinks = [
+  { label: en.nav.product, to: "/" },
+  { label: en.nav.pricing, to: "/pricing" },
+  { label: en.nav.clubs, to: "/clubs" },
+  { label: en.nav.organizers, to: "/organizers" },
+  { label: en.nav.affiliates, to: "/affiliates" },
+];
+
+export function SiteHeader() {
+  const scrolled = useScroll(10);
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  return (
+    <header
+      className={cn(
+        "relative z-[70] mx-auto w-full max-w-4xl border-transparent border-b md:rounded-md md:border md:transition-all md:ease-out",
+        {
+          "border-border bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/50 md:top-2 md:shadow":
+            scrolled,
+          "md:max-w-3xl": scrolled && !searchOpen,
+          "md:max-w-4xl": scrolled && searchOpen,
+        }
+      )}
+    >
+      <nav
+        className={cn(
+          "flex h-14 w-full items-center justify-between px-4 md:h-12 md:transition-all md:ease-out",
+          {
+            "md:px-2": scrolled,
+          }
+        )}
+      >
+        <Link
+          to="/"
+          aria-label="Yuno"
+          className="flex shrink-0 items-center rounded-md p-2 hover:bg-muted dark:hover:bg-muted/50"
+        >
+          <img src={yunoLogo} alt="Yuno" className="h-[15px] w-auto md:h-[18px]" />
+        </Link>
+
+        <div className="hidden items-center gap-1 md:flex">
+          <MagnifyNav className="flex items-center gap-1">
+            {navLinks.map((link) => (
+              <Button asChild key={link.to} size="sm" variant="ghost">
+                <Link to={link.to} activeOptions={{ exact: link.to === "/" }}>
+                  {link.label}
+                </Link>
+              </Button>
+            ))}
+          </MagnifyNav>
+          <SmartSearch compact onOpenChange={setSearchOpen} />
+          <Button asChild size="sm" className="ml-3">
+
+            <Link to="/contact">{en.nav.startFree}</Link>
+          </Button>
+        </div>
+
+        <SiteMobileNav />
+      </nav>
+    </header>
+  );
+}

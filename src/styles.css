@@ -1,0 +1,155 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-hairline: var(--hairline);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", ui-serif, Georgia, serif;
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Premium Dark Editorial — locked tokens */
+  --background: #09090b;            /* zinc-950 */
+  --foreground: #e4e4e7;            /* zinc-200 */
+  --surface: #18181b;               /* zinc-900 */
+  --surface-2: #27272a;             /* zinc-800 */
+  --hairline: rgba(255, 255, 255, 0.06);
+
+  --card: #18181b;
+  --card-foreground: #e4e4e7;
+  --popover: #18181b;
+  --popover-foreground: #e4e4e7;
+
+  --primary: #e4e4e7;
+  --primary-foreground: #09090b;
+  --secondary: #27272a;
+  --secondary-foreground: #e4e4e7;
+  --muted: #18181b;
+  --muted-foreground: #a1a1aa;      /* zinc-400 */
+  --accent: #E8192C;                /* Yuno red */
+  --accent-foreground: #ffffff;
+  --accent-hover: #FF2438;          /* Yuno red hover */
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+
+  --yuno-red: #E8192C;
+  --yuno-red-hover: #FF2438;
+
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #E8192C;
+
+}
+
+.dark {
+  /* Site is dark-only by design */
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-accent) 35%, transparent);
+    color: #fff;
+  }
+}
+
+@utility serif {
+  font-family: var(--font-serif);
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility text-pretty {
+  text-wrap: pretty;
+}
+
+@layer components {
+  .fee-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 9999px;
+    background: linear-gradient(
+      to right,
+      var(--color-accent) 0%,
+      var(--color-accent) var(--pct, 0%),
+      color-mix(in oklab, var(--color-border) 70%, transparent) var(--pct, 0%),
+      color-mix(in oklab, var(--color-border) 70%, transparent) 100%
+    );
+    outline: none;
+    cursor: pointer;
+  }
+  .fee-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 9999px;
+    background: #0f0f10;
+    border: 2px solid var(--color-accent);
+    box-shadow: 0 2px 8px color-mix(in oklab, var(--color-accent) 35%, transparent);
+    transition: transform 0.15s ease;
+  }
+  .fee-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.08);
+  }
+  .fee-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 9999px;
+    background: #0f0f10;
+    border: 2px solid var(--color-accent);
+    box-shadow: 0 2px 8px color-mix(in oklab, var(--color-accent) 35%, transparent);
+    cursor: pointer;
+  }
+}
