@@ -71,7 +71,7 @@ function ContactPage() {
   ];
 
   const contactInfo = [
-    { icon: <MailIcon />, label: t.contactInfo.emailLabel, value: "hello@yuno.io" },
+    { icon: <MailIcon />, label: t.contactInfo.emailLabel, value: "hello@yunoapp.eu" },
     { icon: <PhoneIcon />, label: t.contactInfo.phoneLabel, value: "+33 1 86 65 12 34" },
     { icon: <MapPinIcon />, label: t.contactInfo.locationLabel, value: t.contactInfo.location },
   ];

@@ -15,15 +15,15 @@ const en = {
   },
   hero: {
     eyebrow: "The nightlife operating system",
-    titleA: "The operating system for the",
-    titleEm: "after-dark",
-    titleB: "economy",
+    titleA: "Run your whole",
+    titleEm: "night.",
+    titleB: "Keep 100% of every ticket.",
     sub: "Every night ends with a spreadsheet. Promoter payments, bar splits, guest list reconciliation — hours of work after a night that already ran on adrenaline. Yuno closes the loop automatically, so your next morning starts with a bank transfer, not a calculator.",
     ctaPrimary: "Start free",
     ctaSecondary: "Watch product tour",
   },
   logoCloud: {
-    label: "Trusted by venues across Europe",
+    label: "Already trusted by venues like",
   },
   comparison: {
     eyebrow: "Industry reality check",
@@ -43,7 +43,7 @@ const en = {
     footerA: "Over a 20-night season:",
     footerShotgun: "€8,000",
     footerShotgunRest: " paid to Shotgun in commission.",
-    footerYuno: "A full year of Yuno Pro costs €828.",
+    footerYuno: "A full year of Yuno Pro costs €1,188.",
   },
   differentiators: {
     eyebrow: "What makes us different",
@@ -64,7 +64,7 @@ const en = {
       {
         icon: "Tag",
         title: "Transparent pricing — you see it before you sign",
-        body: "No sales call. No annual contract. No \"contact us for pricing.\" Core starts at €0. Pro at €69/month. You decide.",
+        body: "No sales call. No annual contract. No \"contact us for pricing.\" Core starts at €0. Pro at €99/month. You decide.",
         tag: "Fourvenues will send you a quote. We'll send you a link.",
       },
     ] as DifferentiatorItem[],
@@ -287,7 +287,7 @@ const en = {
         id: "bug-report",
         category: "support",
         title: "How do I report a bug or request a feature?",
-        content: "Use the in-app feedback button or email support@yuno.io with details. Our team typically responds within 24 hours on business days.",
+        content: "Use the in-app feedback button or email support@yunoapp.eu with details. Our team typically responds within 24 hours on business days.",
       },
     ],
   },
@@ -331,15 +331,15 @@ const fr: HomeContent = {
   },
   hero: {
     eyebrow: "Le système d'exploitation de la vie nocturne",
-    titleA: "Le système d'exploitation de",
-    titleEm: "l'économie",
-    titleB: "de la nuit",
+    titleA: "Gérez toute votre",
+    titleEm: "soirée.",
+    titleB: "Gardez 100 % de chaque billet.",
     sub: "Chaque nuit se termine par un tableur. Paiements des promoteurs, répartition du bar, réconciliation de la liste d'invités — des heures de travail après une nuit déjà menée à l'adrénaline. Yuno boucle la boucle automatiquement, pour que votre matin commence par un virement, pas par une calculatrice.",
     ctaPrimary: "Commencer gratuitement",
     ctaSecondary: "Voir la démo produit",
   },
   logoCloud: {
-    label: "La confiance d'établissements partout en Europe",
+    label: "Déjà adoptée par des établissements comme",
   },
   comparison: {
     eyebrow: "Le vrai coût du secteur",
@@ -359,7 +359,7 @@ const fr: HomeContent = {
     footerA: "Sur une saison de 20 soirées :",
     footerShotgun: "8 000 €",
     footerShotgunRest: " versés à Shotgun en commissions.",
-    footerYuno: "Une année complète de Yuno Pro coûte 828 €.",
+    footerYuno: "Une année complète de Yuno Pro coûte 1 188 €.",
   },
   differentiators: {
     eyebrow: "Ce qui nous distingue",
@@ -368,7 +368,7 @@ const fr: HomeContent = {
       {
         icon: "Banknote",
         title: "Répartition automatique des revenus",
-        body: "À la fermeture, chaque partie est payée. Club, organisateur, promoteurs — chacun sur son propre compte Stripe, automatiquement. Pas d'Excel, pas de Venmo, pas de « je règle ça demain ».",
+        body: "À la fermeture, chaque partie est payée. Club, organisateur, promoteurs — chacun sur son propre compte Stripe, automatiquement. Pas d'Excel, pas de Lydia, pas de « je règle ça demain ».",
         tag: "La seule plateforme de vie nocturne avec répartition multi-parties via Stripe Connect.",
       },
       {
@@ -380,7 +380,7 @@ const fr: HomeContent = {
       {
         icon: "Tag",
         title: "Tarifs transparents — vous les voyez avant de signer",
-        body: "Pas d'appel commercial. Pas de contrat annuel. Pas de « contactez-nous pour un devis ». Core démarre à 0 €. Pro à 69 €/mois. Vous décidez.",
+        body: "Pas d'appel commercial. Pas de contrat annuel. Pas de « contactez-nous pour un devis ». Core démarre à 0 €. Pro à 99 €/mois. Vous décidez.",
         tag: "Fourvenues vous enverra un devis. Nous, un lien.",
       },
     ],
@@ -603,7 +603,7 @@ const fr: HomeContent = {
         id: "bug-report",
         category: "support",
         title: "Comment signaler un bug ou demander une fonctionnalité ?",
-        content: "Utilisez le bouton de feedback dans l'application ou écrivez à support@yuno.io avec les détails. Notre équipe répond généralement sous 24 heures les jours ouvrés.",
+        content: "Utilisez le bouton de feedback dans l'application ou écrivez à support@yunoapp.eu avec les détails. Notre équipe répond généralement sous 24 heures les jours ouvrés.",
       },
     ],
   },
