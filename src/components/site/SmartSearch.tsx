@@ -50,6 +50,7 @@ export function SmartSearch({ compact = false, onOpenChange }: { compact?: boole
     <div className="relative inline-block">
       <GooeyInput
         placeholder={t.search.placeholder}
+        label={t.search.label}
         collapsedWidth={compact ? 90 : 140}
         expandedWidth={compact ? 220 : 320}
         expandedOffset={0}

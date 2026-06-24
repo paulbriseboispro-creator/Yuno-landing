@@ -42,6 +42,7 @@ const en = {
     website: "Website",
   },
   search: {
+    label: "Search",
     placeholder: "Try ‘VIP tables’, ‘pricing’, ‘promoter’…",
     popular: "Popular",
     results: "Results",
@@ -120,6 +121,7 @@ const fr: CommonContent = {
     website: "Site web",
   },
   search: {
+    label: "Rechercher",
     placeholder: "Essayez « tables VIP », « tarifs », « promoteur »…",
     popular: "Populaire",
     results: "Résultats",

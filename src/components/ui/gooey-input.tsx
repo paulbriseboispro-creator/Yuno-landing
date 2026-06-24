@@ -74,6 +74,7 @@ export interface GooeyInputClassNames {
 
 export interface GooeyInputProps {
   placeholder?: string;
+  label?: string;
   className?: string;
   classNames?: GooeyInputClassNames;
   collapsedWidth?: number;
@@ -90,6 +91,7 @@ export interface GooeyInputProps {
 
 export function GooeyInput({
   placeholder = "Type to search...",
+  label = "Search",
   className,
   classNames,
   collapsedWidth = 115,
@@ -248,7 +250,7 @@ export function GooeyInput({
                   <circle cx="11" cy="11" r="7" />
                   <path d="m20 20-3.5-3.5" />
                 </svg>
-                <span>Search</span>
+                <span>{label}</span>
               </button>
             ) : (
               <input
