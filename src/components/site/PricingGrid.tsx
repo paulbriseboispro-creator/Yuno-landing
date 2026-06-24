@@ -27,6 +27,11 @@ export function PricingGrid({ showFees = true }: { showFees?: boolean }) {
                     {t.mostPopular}
                   </PricingCard.Badge>
                 )}
+                {p.comingSoon && (
+                  <PricingCard.Badge className="bg-surface-2 text-muted-foreground border-border">
+                    {t.comingSoonLabel}
+                  </PricingCard.Badge>
+                )}
               </PricingCard.Plan>
               <PricingCard.Price>
                 <PricingCard.MainPrice className="font-medium">
@@ -34,17 +39,26 @@ export function PricingGrid({ showFees = true }: { showFees?: boolean }) {
                 </PricingCard.MainPrice>
                 <PricingCard.Period>{p.suffix}</PricingCard.Period>
               </PricingCard.Price>
-              <Link
-                to="/contact"
-                className={cn(
-                  "inline-flex h-9 w-full items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-colors",
-                  p.popular
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                    : "bg-surface-2 text-foreground hover:bg-surface-2/70"
-                )}
-              >
-                {p.cta}
-              </Link>
+              {p.comingSoon ? (
+                <div
+                  aria-disabled="true"
+                  className="inline-flex h-9 w-full items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-surface-2 text-muted-foreground cursor-not-allowed select-none"
+                >
+                  {t.comingSoonLabel}
+                </div>
+              ) : (
+                <Link
+                  to="/contact"
+                  className={cn(
+                    "inline-flex h-9 w-full items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-colors",
+                    p.popular
+                      ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                      : "bg-surface-2 text-foreground hover:bg-surface-2/70"
+                  )}
+                >
+                  {p.cta}
+                </Link>
+              )}
               <p className="mt-2 text-[11px] text-muted-foreground text-center">
                 {t.cardNote}
               </p>

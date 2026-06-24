@@ -10,10 +10,10 @@ const en = {
   meta: {
     title: "Pricing — Yuno",
     description:
-      "Yuno plans: Core (free), Essential €39/mo, Pro €69/mo, Elite €99/mo. Plus 4% per ticket with €0.99 minimum on transactions.",
+      "Yuno plans: Core (free), Essential €49/mo, Pro €99/mo, Elite €199/mo. Plus 4% per ticket with €0.99 minimum on transactions.",
     ogTitle: "Pricing — Yuno",
     ogDescription:
-      "Core, Essential €39, Pro €69, Elite €99 — plus low transactional fees.",
+      "Core, Essential €49, Pro €99, Elite €199 — plus low transactional fees.",
   },
   plans: [
     {
@@ -22,6 +22,7 @@ const en = {
       suffix: "Pay-as-you-grow ticketing",
       cta: "Get started",
       popular: false,
+      comingSoon: false,
       featureGroups: [
         {
           label: "Core features",
@@ -37,10 +38,11 @@ const en = {
     },
     {
       name: "Essential",
-      price: "€39",
+      price: "€49",
       suffix: "/ month",
       cta: "Start 14-day trial",
       popular: false,
+      comingSoon: false,
       featureGroups: [
         {
           label: "Everything in Core, plus",
@@ -57,10 +59,11 @@ const en = {
     },
     {
       name: "Pro",
-      price: "€69",
+      price: "€99",
       suffix: "/ month",
       cta: "Start 14-day trial",
       popular: true,
+      comingSoon: false,
       featureGroups: [
         {
           label: "Everything in Essential, plus",
@@ -81,10 +84,11 @@ const en = {
     },
     {
       name: "Elite",
-      price: "€99",
+      price: "€199",
       suffix: "/ month",
       cta: "Talk to sales",
       popular: false,
+      comingSoon: true,
       featureGroups: [
         {
           label: "Everything in Pro, plus",
@@ -106,6 +110,7 @@ const en = {
   // PricingGrid sub-CTA under each plan card.
   cardNote: "No setup fee · Cancel anytime · No commitment",
   mostPopular: "Most popular",
+  comingSoonLabel: "Coming soon",
 
   // SplitVisual table data (the split prose lives in the home content module).
   splitVisual: {
@@ -126,9 +131,9 @@ const en = {
     fieldTicketsPerYear: "Tickets / year",
     fieldPlan: "Your Yuno plan",
     plans: {
-      essential: "Essential — €39/mo",
-      pro: "Pro — €69/mo",
-      elite: "Elite — €99/mo",
+      essential: "Essential — €49/mo",
+      pro: "Pro — €99/mo",
+      elite: "Elite — €199/mo",
     },
     colPlatform: "Platform",
     colCost: "Cost to you / year",
@@ -252,10 +257,10 @@ const fr: PricingContent = {
   meta: {
     title: "Tarifs — Yuno",
     description:
-      "Les formules Yuno : Core (gratuit), Essential 39 €/mois, Pro 69 €/mois, Elite 99 €/mois. Plus 4 % par billet avec un minimum de 0,99 € sur les transactions.",
+      "Les formules Yuno : Core (gratuit), Essential 49 €/mois, Pro 99 €/mois, Elite 199 €/mois. Plus 4 % par billet avec un minimum de 0,99 € sur les transactions.",
     ogTitle: "Tarifs — Yuno",
     ogDescription:
-      "Core, Essential 39 €, Pro 69 €, Elite 99 € — plus des frais de transaction réduits.",
+      "Core, Essential 49 €, Pro 99 €, Elite 199 € — plus des frais de transaction réduits.",
   },
   plans: [
     {
@@ -264,6 +269,7 @@ const fr: PricingContent = {
       suffix: "Billetterie à l'usage",
       cta: "Commencer",
       popular: false,
+      comingSoon: false,
       featureGroups: [
         {
           label: "Fonctionnalités de base",
@@ -279,10 +285,11 @@ const fr: PricingContent = {
     },
     {
       name: "Essential",
-      price: "39 €",
+      price: "49 €",
       suffix: "/ mois",
       cta: "Démarrer l'essai de 14 jours",
       popular: false,
+      comingSoon: false,
       featureGroups: [
         {
           label: "Tout Core, plus",
@@ -299,10 +306,11 @@ const fr: PricingContent = {
     },
     {
       name: "Pro",
-      price: "69 €",
+      price: "99 €",
       suffix: "/ mois",
       cta: "Démarrer l'essai de 14 jours",
       popular: true,
+      comingSoon: false,
       featureGroups: [
         {
           label: "Tout Essential, plus",
@@ -323,10 +331,11 @@ const fr: PricingContent = {
     },
     {
       name: "Elite",
-      price: "99 €",
+      price: "199 €",
       suffix: "/ mois",
       cta: "Contacter l'équipe commerciale",
       popular: false,
+      comingSoon: true,
       featureGroups: [
         {
           label: "Tout Pro, plus",
@@ -347,6 +356,7 @@ const fr: PricingContent = {
   fees: "Plus 4 % par billet (0,99 € min) et 3 % sur les boissons — des frais de service réglés par le client, jamais par vous. Les comptes Organisateur et Affilié sont gratuits.",
   cardNote: "Sans frais d'installation · Annulation à tout moment · Sans engagement",
   mostPopular: "Le plus populaire",
+  comingSoonLabel: "Bientôt disponible",
 
   splitVisual: {
     ticketLabel: "Vente de billet",
@@ -365,9 +375,9 @@ const fr: PricingContent = {
     fieldTicketsPerYear: "Billets / an",
     fieldPlan: "Votre formule Yuno",
     plans: {
-      essential: "Essential — 39 €/mois",
-      pro: "Pro — 69 €/mois",
-      elite: "Elite — 99 €/mois",
+      essential: "Essential — 49 €/mois",
+      pro: "Pro — 99 €/mois",
+      elite: "Elite — 199 €/mois",
     },
     colPlatform: "Plateforme",
     colCost: "Coût pour vous / an",

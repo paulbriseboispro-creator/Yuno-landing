@@ -6,9 +6,9 @@ import { useLocale, type Locale } from "@/i18n/locale";
 type PlanKey = "essential" | "pro" | "elite";
 
 const PLAN_MONTHLY: Record<PlanKey, number> = {
-  essential: 39,
-  pro: 69,
-  elite: 99,
+  essential: 49,
+  pro: 99,
+  elite: 199,
 };
 
 function fmt(n: number, locale: Locale) {
