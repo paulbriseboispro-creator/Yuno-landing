@@ -4,7 +4,7 @@ import { useHome } from "@/content/home";
 export function FounderQuote() {
   const t = useHome();
   return (
-    <section className="px-6 py-24 border-t border-border">
+    <section className="px-6 py-16 border-t border-border">
       <div className="mx-auto max-w-5xl grid md:grid-cols-2 gap-10 md:gap-16 items-center">
         <Reveal>
           <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">

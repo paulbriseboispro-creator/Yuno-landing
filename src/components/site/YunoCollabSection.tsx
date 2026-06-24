@@ -6,7 +6,7 @@ import { useHome } from "@/content/home";
 export function YunoCollabSection() {
   const t = useHome();
   return (
-    <section className="px-6 py-24 border-t border-border">
+    <section className="px-6 py-16 border-t border-border">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <article className="relative overflow-hidden rounded-3xl bg-surface ring-1 ring-border p-10 md:p-16">

@@ -79,7 +79,7 @@ function Index() {
 
 
       {/* Segment Switcher */}
-      <section className="py-24 px-6 border-t border-border">
+      <section className="py-16 px-6 border-t border-border">
         <div className="mx-auto max-w-7xl">
           <Reveal className="text-center mb-12">
             <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
@@ -94,7 +94,7 @@ function Index() {
       </section>
 
       {/* Feature Grid */}
-      <section className="py-24 px-6 border-t border-border">
+      <section className="py-16 px-6 border-t border-border">
         <div className="mx-auto max-w-7xl">
           <Reveal className="mb-12 max-w-2xl">
             <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
@@ -139,7 +139,7 @@ function Index() {
       </section>
 
       {/* Stripe split */}
-      <section className="py-24 px-6 bg-surface/40 border-y border-border">
+      <section className="py-16 px-6 bg-surface/40 border-y border-border">
         <div className="mx-auto max-w-7xl grid md:grid-cols-2 gap-16 items-center">
           <Reveal>
             <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
@@ -171,7 +171,7 @@ function Index() {
 
 
       {/* Onboarding — live in one afternoon */}
-      <section className="py-24 px-6 border-t border-border">
+      <section className="py-16 px-6 border-t border-border">
         <div className="mx-auto max-w-6xl">
           <Reveal className="text-center mb-12">
             <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
@@ -202,7 +202,7 @@ function Index() {
       </section>
 
       {/* Savings calculator */}
-      <section className="py-24 px-6 border-t border-border">
+      <section className="py-16 px-6 border-t border-border">
         <div className="mx-auto max-w-6xl">
           <Reveal className="text-center mb-12">
             <span className="inline-block text-xs font-medium uppercase tracking-[0.18em] text-accent border border-accent/40 rounded-full px-3 py-1">
@@ -222,7 +222,7 @@ function Index() {
       </section>
 
       {/* Pricing teaser */}
-      <section className="py-24 px-6">
+      <section className="py-16 px-6">
         <div className="mx-auto max-w-7xl">
           <Reveal className="text-center mb-16">
             <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
@@ -256,7 +256,7 @@ function Index() {
       </section>
 
       {/* Founding Members */}
-      <section className="py-24 px-6 border-t border-border">
+      <section className="py-16 px-6 border-t border-border">
         <Reveal className="mx-auto max-w-5xl">
           <article className="relative overflow-hidden rounded-3xl bg-surface ring-1 ring-accent/40 p-10 md:p-14">
             <div className="absolute -inset-x-20 -top-32 h-64 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--accent)_18%,transparent),transparent_70%)] pointer-events-none" />
@@ -294,7 +294,7 @@ function Index() {
       <FounderQuote />
 
       {/* FAQ */}
-      <section className="py-24 px-6 border-t border-border">
+      <section className="py-16 px-6 border-t border-border">
         <FaqSection
           eyebrow={t.faq.eyebrow}
           title={t.faq.title}
@@ -306,7 +306,7 @@ function Index() {
       <MarqueeSection />
 
       {/* Final CTA */}
-      <section className="py-24 px-6">
+      <section className="py-16 px-6">
         <Reveal className="mx-auto max-w-5xl">
           <div className="relative rounded-3xl overflow-hidden p-12 md:p-16 text-center bg-surface ring-1 ring-border">
             <div className="absolute -inset-x-20 -top-40 h-80 bg-[radial-gradient(ellipse_at_center,rgba(239,68,68,0.18),transparent_70%)] pointer-events-none" />

@@ -8,7 +8,7 @@ export function DifferentiatorsSection() {
   const t = useHome();
   const items = t.differentiators.items;
   return (
-    <section className="px-6 py-24 border-t border-border">
+    <section className="px-6 py-16 border-t border-border">
       <div className="mx-auto max-w-7xl">
         <Reveal className="mb-12 text-center">
           <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">

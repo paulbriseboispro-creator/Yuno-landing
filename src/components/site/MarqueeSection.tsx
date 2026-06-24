@@ -24,7 +24,7 @@ const images = [
 export function MarqueeSection() {
   const t = useHome();
   return (
-    <section className="py-24 px-6 border-t border-border">
+    <section className="py-16 px-6 border-t border-border">
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-12 max-w-3xl mx-auto">
           <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
