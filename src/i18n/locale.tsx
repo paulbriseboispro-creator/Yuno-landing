@@ -16,7 +16,7 @@ import {
 } from "react";
 import { useRouter } from "@tanstack/react-router";
 import { createIsomorphicFn } from "@tanstack/react-start";
-import { getCookie } from "@tanstack/react-start/server";
+import { getCookie, getRequestHeader } from "@tanstack/react-start/server";
 
 export const LOCALES = ["en", "fr"] as const;
 export type Locale = (typeof LOCALES)[number];
@@ -40,12 +40,36 @@ function readCookieFromDocument(name: string): string | undefined {
   return match ? decodeURIComponent(match[1]) : undefined;
 }
 
+// Picks our best-supported locale from an Accept-Language header
+// (e.g. "fr-FR,fr;q=0.9,en;q=0.8"). Returns null when the header expresses no
+// preference for a language we support, so the caller can fall back to the default.
+function localeFromAcceptLanguage(header: string | null | undefined): Locale | null {
+  if (!header) return null;
+  const ranked = header
+    .split(",")
+    .map((part) => {
+      const [tag, ...params] = part.trim().split(";");
+      const qParam = params.find((p) => p.trim().startsWith("q="));
+      const q = qParam ? Number.parseFloat(qParam.trim().slice(2)) : 1;
+      return { lang: tag.trim().toLowerCase().split("-")[0], q: Number.isNaN(q) ? 1 : q };
+    })
+    .filter((p): p is { lang: Locale; q: number } => p.lang === "fr" || p.lang === "en")
+    .sort((a, b) => b.q - a.q);
+  return ranked.length ? ranked[0].lang : null;
+}
+
 // Resolves the active locale on both sides of the wire: the server reads the
 // request cookie, the client (during client-side navigations) reads document.cookie.
 // The `.server()` branch — and its server-only import — is stripped from the
 // client bundle by the TanStack Start compiler.
 export const detectLocale = createIsomorphicFn()
-  .server(() => normalizeLocale(getCookie(LOCALE_COOKIE)))
+  .server(() => {
+    // An explicit choice (cookie) always wins; otherwise honor the browser's
+    // Accept-Language so a French visitor isn't greeted in English by default.
+    const cookie = getCookie(LOCALE_COOKIE);
+    if (cookie) return normalizeLocale(cookie);
+    return localeFromAcceptLanguage(getRequestHeader("accept-language")) ?? DEFAULT_LOCALE;
+  })
   .client(() => normalizeLocale(readCookieFromDocument(LOCALE_COOKIE)));
 
 type LocaleContextValue = {
