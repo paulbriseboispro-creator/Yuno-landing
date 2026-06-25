@@ -1,6 +1,14 @@
 import { Globe } from "lucide-react";
+import { useNavigate, useRouterState } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
-import { LOCALES, LOCALE_LABELS, useLocale, useSetLocale } from "@/i18n/locale";
+import {
+  LOCALES,
+  LOCALE_LABELS,
+  useLocale,
+  useSetLocale,
+  type Locale,
+} from "@/i18n/locale";
+import { localePath } from "@/i18n/seo";
 
 // Segmented EN/FR toggle. `compact` is the header pill; the default carries a
 // globe + label for the footer. Switching is instant (no reload) and persists
@@ -14,6 +22,17 @@ export function LanguageSwitcher({
 }) {
   const locale = useLocale();
   const setLocale = useSetLocale();
+  const navigate = useNavigate();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+
+  // Switch language by navigating to the same page's URL in the target locale
+  // (English at the root, French under /fr) and remembering the choice.
+  function switchTo(target: Locale) {
+    if (target === locale) return;
+    setLocale(target);
+    const base = pathname.replace(/^\/fr(?=\/|$)/, "") || "/";
+    navigate({ to: localePath(base, target), replace: true });
+  }
 
   return (
     <div
@@ -31,7 +50,7 @@ export function LanguageSwitcher({
           <button
             key={l}
             type="button"
-            onClick={() => setLocale(l)}
+            onClick={() => switchTo(l)}
             aria-pressed={active}
             aria-label={LOCALE_LABELS[l]}
             className={cn(

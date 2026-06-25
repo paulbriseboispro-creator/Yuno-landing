@@ -1,24 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { legalContent, useLegal } from "@/content/legal";
+import { pageSeo } from "@/i18n/seo";
 
 export const Route = createFileRoute("/terms")({
   head: ({ match }) => {
     const m = legalContent[match.context.locale].terms.meta;
-    return {
-      meta: [
-        { title: m.title },
-        { name: "description", content: m.description },
-        { property: "og:title", content: m.title },
-        { property: "og:description", content: m.description },
-        { property: "og:url", content: "/terms" },
-      ],
-      links: [{ rel: "canonical", href: "/terms" }],
-    };
+    return pageSeo("/terms", match.context.locale, {
+      title: m.title,
+      description: m.description,
+    });
   },
   component: TermsPage,
 });
 
-function TermsPage() {
+export function TermsPage() {
   const t = useLegal().terms;
   // The "Fees & payments" body links to the pricing page. Split its body around
   // the localized link label so the <a> can be wired inline.

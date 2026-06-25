@@ -10,27 +10,23 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { contactContent, useContact } from "@/content/contact";
+import { pageSeo } from "@/i18n/seo";
 
 export const Route = createFileRoute("/contact")({
   head: ({ match }) => {
     const m = contactContent[match.context.locale].meta;
-    return {
-      meta: [
-        { title: m.title },
-        { name: "description", content: m.description },
-        { property: "og:title", content: m.title },
-        { property: "og:description", content: m.ogDescription },
-        { property: "og:url", content: "/contact" },
-      ],
-      links: [{ rel: "canonical", href: "/contact" }],
-    };
+    return pageSeo("/contact", match.context.locale, {
+      title: m.title,
+      description: m.description,
+      ogDescription: m.ogDescription,
+    });
   },
   component: ContactPage,
 });
 
 type Segment = "club" | "organizer" | "affiliate" | "other";
 
-function ContactPage() {
+export function ContactPage() {
   const t = useContact();
   const send = useServerFn(submitLead);
   const [segment, setSegment] = useState<Segment>("club");

@@ -14,7 +14,6 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { useRouter } from "@tanstack/react-router";
 import { createIsomorphicFn } from "@tanstack/react-start";
 import { getCookie, getRequestHeader } from "@tanstack/react-start/server";
 
@@ -90,8 +89,10 @@ export function LocaleProvider({
   children: ReactNode;
 }) {
   const [locale, setLocaleState] = useState<Locale>(initialLocale);
-  const router = useRouter();
 
+  // Updates the cookie + React state. Navigation between the /x and /fr/x URLs
+  // is handled by the caller (LanguageSwitcher) — the URL is the source of
+  // truth for the language, the cookie only remembers the visitor's choice.
   const setLocale = useCallback(
     (next: Locale) => {
       if (next === locale) return;
@@ -100,10 +101,8 @@ export function LocaleProvider({
         document.cookie = `${LOCALE_COOKIE}=${next}; path=/; max-age=${ONE_YEAR_SECONDS}; samesite=lax`;
         document.documentElement.lang = next;
       }
-      // Re-run every route's head() so titles/meta/SEO follow the new language.
-      void router.invalidate();
     },
-    [locale, router],
+    [locale],
   );
 
   const value = useMemo(() => ({ locale, setLocale }), [locale, setLocale]);

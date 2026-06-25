@@ -2,25 +2,22 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { clubsContent, useClubs } from "@/content/clubs";
+import { pageSeo } from "@/i18n/seo";
 
 export const Route = createFileRoute("/clubs")({
   head: ({ match }) => {
     const m = clubsContent[match.context.locale].meta;
-    return {
-      meta: [
-        { title: m.title },
-        { name: "description", content: m.description },
-        { property: "og:title", content: m.ogTitle },
-        { property: "og:description", content: m.ogDescription },
-        { property: "og:url", content: "/clubs" },
-      ],
-      links: [{ rel: "canonical", href: "/clubs" }],
-    };
+    return pageSeo("/clubs", match.context.locale, {
+      title: m.title,
+      description: m.description,
+      ogTitle: m.ogTitle,
+      ogDescription: m.ogDescription,
+    });
   },
   component: ClubsPage,
 });
 
-function ClubsPage() {
+export function ClubsPage() {
   const t = useClubs();
   return (
     <>

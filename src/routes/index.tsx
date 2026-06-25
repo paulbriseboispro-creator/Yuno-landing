@@ -16,6 +16,7 @@ import { ShotgunComparison } from "@/components/site/ShotgunComparison";
 import { DifferentiatorsSection } from "@/components/site/DifferentiatorsSection";
 import { YunoCollabSection } from "@/components/site/YunoCollabSection";
 import { FounderQuote } from "@/components/site/FounderQuote";
+import { pageSeo } from "@/i18n/seo";
 
 
 
@@ -24,14 +25,11 @@ export const Route = createFileRoute("/")({
     const c = homeContent[match.context.locale];
     const m = c.meta;
     return {
-      meta: [
-        { title: m.title },
-        { name: "description", content: m.description },
-        { property: "og:title", content: m.title },
-        { property: "og:description", content: m.ogDescription },
-        { property: "og:url", content: "/" },
-      ],
-      links: [{ rel: "canonical", href: "/" }],
+      ...pageSeo("/", match.context.locale, {
+        title: m.title,
+        description: m.description,
+        ogDescription: m.ogDescription,
+      }),
       scripts: [
         {
           type: "application/ld+json",
@@ -51,7 +49,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-function Index() {
+export function Index() {
   const t = useHome();
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
 

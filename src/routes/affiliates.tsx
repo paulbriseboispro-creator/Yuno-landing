@@ -12,27 +12,23 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { affiliatesContent, useAffiliates } from "@/content/affiliates";
+import { pageSeo } from "@/i18n/seo";
 
 const stepIcons = [Mail, Handshake, Calendar, Globe];
 
 export const Route = createFileRoute("/affiliates")({
   head: ({ match }) => {
     const m = affiliatesContent[match.context.locale].meta;
-    return {
-      meta: [
-        { title: m.title },
-        { name: "description", content: m.description },
-        { property: "og:title", content: m.title },
-        { property: "og:description", content: m.ogDescription },
-        { property: "og:url", content: "/affiliates" },
-      ],
-      links: [{ rel: "canonical", href: "/affiliates" }],
-    };
+    return pageSeo("/affiliates", match.context.locale, {
+      title: m.title,
+      description: m.description,
+      ogDescription: m.ogDescription,
+    });
   },
   component: AffiliatesPage,
 });
 
-function AffiliatesPage() {
+export function AffiliatesPage() {
   const t = useAffiliates();
 
   return (

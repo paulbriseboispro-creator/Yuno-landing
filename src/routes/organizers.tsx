@@ -4,25 +4,22 @@ import { Reveal } from "@/components/site/Reveal";
 import { SplitVisual } from "@/components/site/SplitVisual";
 import { SavingsCalculator } from "@/components/site/SavingsCalculator";
 import { organizersContent, useOrganizers } from "@/content/organizers";
+import { pageSeo } from "@/i18n/seo";
 
 export const Route = createFileRoute("/organizers")({
   head: ({ match }) => {
     const m = organizersContent[match.context.locale].meta;
-    return {
-      meta: [
-        { title: m.title },
-        { name: "description", content: m.description },
-        { property: "og:title", content: m.ogTitle },
-        { property: "og:description", content: m.ogDescription },
-        { property: "og:url", content: "/organizers" },
-      ],
-      links: [{ rel: "canonical", href: "/organizers" }],
-    };
+    return pageSeo("/organizers", match.context.locale, {
+      title: m.title,
+      description: m.description,
+      ogTitle: m.ogTitle,
+      ogDescription: m.ogDescription,
+    });
   },
   component: OrganizersPage,
 });
 
-function OrganizersPage() {
+export function OrganizersPage() {
   const t = useOrganizers();
 
   return (

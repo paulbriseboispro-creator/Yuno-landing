@@ -4,26 +4,23 @@ import { Reveal } from "@/components/site/Reveal";
 import { ServiceFeeCalculator } from "@/components/site/ServiceFeeCalculator";
 import { SavingsCalculator } from "@/components/site/SavingsCalculator";
 import { pricingContent, usePricing } from "@/content/pricing";
+import { pageSeo } from "@/i18n/seo";
 import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/pricing")({
   head: ({ match }) => {
     const m = pricingContent[match.context.locale].meta;
-    return {
-      meta: [
-        { title: m.title },
-        { name: "description", content: m.description },
-        { property: "og:title", content: m.ogTitle },
-        { property: "og:description", content: m.ogDescription },
-        { property: "og:url", content: "/pricing" },
-      ],
-      links: [{ rel: "canonical", href: "/pricing" }],
-    };
+    return pageSeo("/pricing", match.context.locale, {
+      title: m.title,
+      description: m.description,
+      ogTitle: m.ogTitle,
+      ogDescription: m.ogDescription,
+    });
   },
   component: PricingPage,
 });
 
-function PricingPage() {
+export function PricingPage() {
   const t = usePricing();
   const p = t.page;
   return (

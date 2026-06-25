@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   createRootRouteWithContext,
+  redirect,
   useRouter,
   HeadContent,
   Scripts,
@@ -19,7 +20,21 @@ import {
   getStandaloneLocale,
   type Locale,
 } from "@/i18n/locale";
+import { localePath } from "@/i18n/seo";
 import { common } from "@/content/common";
+
+// Pages that exist in both languages. Only these get the French redirect, so
+// asset/server routes (sitemap.xml, og-image.png) are never rewritten to /fr.
+const LOCALIZED_PATHS = new Set([
+  "/",
+  "/clubs",
+  "/organizers",
+  "/affiliates",
+  "/pricing",
+  "/contact",
+  "/privacy",
+  "/terms",
+]);
 
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
@@ -57,7 +72,21 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  beforeLoad: () => ({ locale: detectLocale() }),
+  beforeLoad: ({ location }) => {
+    const path = location.pathname;
+    // French is served under /fr/* — there the URL is the source of truth.
+    if (path === "/fr" || path.startsWith("/fr/")) {
+      return { locale: "fr" as Locale };
+    }
+    // On an English (root) page, send a French-preferring visitor (cookie or
+    // browser Accept-Language) to the /fr twin so the priority market lands in
+    // its language at a real, crawlable URL. The URL still decides the language,
+    // so search engines and explicit en-pickers keep getting English here.
+    if (LOCALIZED_PATHS.has(path) && detectLocale() === "fr") {
+      throw redirect({ href: localePath(path, "fr") + (location.searchStr ?? "") });
+    }
+    return { locale: "en" as Locale };
+  },
   head: ({ match }) => {
     const locale = match.context.locale;
     const m = common[locale].meta;
