@@ -102,7 +102,7 @@ const fr: CommonContent = {
     privacy: "Confidentialité",
     terms: "Conditions",
     bookDemo: "Réserver une démo",
-    startFree: "Commencer gratuitement",
+    startFree: "Essai gratuit",
   },
   meta: {
     title: "Yuno — Le système d'exploitation de l'économie de la nuit",

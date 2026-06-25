@@ -30,14 +30,16 @@ export function SiteHeader() {
         {
           "border-border bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/50 md:top-2 md:shadow":
             scrolled,
-          "md:max-w-3xl": scrolled && !searchOpen,
-          "md:max-w-4xl": scrolled && searchOpen,
+          // When scrolled, shrink the bar to fit its content so it adapts to
+          // the label lengths of the active language (EN vs FR) instead of a
+          // fixed width that crops or leaves the bar feeling cramped.
+          "md:w-fit": scrolled && !searchOpen,
         }
       )}
     >
       <nav
         className={cn(
-          "flex h-14 w-full items-center justify-between px-4 md:h-12 md:transition-all md:ease-out",
+          "flex h-14 w-full items-center justify-between px-4 md:h-12 md:gap-6 md:transition-all md:ease-out",
           {
             "md:px-2": scrolled,
           }
