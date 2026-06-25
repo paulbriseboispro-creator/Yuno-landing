@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { organizersContent } from "@/content/organizers";
 import { pageSeo } from "@/i18n/seo";
-import { OrganizersPage } from "@/routes/organizers";
+import { OrganizersPage } from "@/pages/organizers";
 
 export const Route = createFileRoute("/fr/organizers")({
   head: ({ match }) => {

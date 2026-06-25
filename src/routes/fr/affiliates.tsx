@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { affiliatesContent } from "@/content/affiliates";
 import { pageSeo } from "@/i18n/seo";
-import { AffiliatesPage } from "@/routes/affiliates";
+import { AffiliatesPage } from "@/pages/affiliates";
 
 export const Route = createFileRoute("/fr/affiliates")({
   head: ({ match }) => {

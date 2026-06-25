@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { legalContent } from "@/content/legal";
 import { pageSeo } from "@/i18n/seo";
-import { PrivacyPage } from "@/routes/privacy";
+import { PrivacyPage } from "@/pages/privacy";
 
 export const Route = createFileRoute("/fr/privacy")({
   head: ({ match }) => {

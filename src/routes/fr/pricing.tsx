@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { pricingContent } from "@/content/pricing";
 import { pageSeo } from "@/i18n/seo";
-import { PricingPage } from "@/routes/pricing";
+import { PricingPage } from "@/pages/pricing";
 
 export const Route = createFileRoute("/fr/pricing")({
   head: ({ match }) => {

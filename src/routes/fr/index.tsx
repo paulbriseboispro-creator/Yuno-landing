@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { homeContent } from "@/content/home";
 import { pageSeo } from "@/i18n/seo";
-import { Index } from "@/routes/index";
+import { Index } from "@/pages/index";
 
 // French twin of "/". Reuses the home component; the root resolves locale=fr
 // from the /fr path, so head() and every hook render in French.
