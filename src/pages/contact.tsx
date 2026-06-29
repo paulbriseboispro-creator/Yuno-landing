@@ -55,8 +55,18 @@ export function ContactPage() {
   ];
 
   const contactInfo = [
-    { icon: <MailIcon />, label: t.contactInfo.emailLabel, value: "hello@yunoapp.eu" },
-    { icon: <PhoneIcon />, label: t.contactInfo.phoneLabel, value: "+33 1 86 65 12 34" },
+    {
+      icon: <MailIcon />,
+      label: t.contactInfo.emailLabel,
+      value: "paul.brisebois.pro@gmail.com",
+      href: "mailto:paul.brisebois.pro@gmail.com",
+    },
+    {
+      icon: <PhoneIcon />,
+      label: t.contactInfo.phoneLabel,
+      value: "+33 6 44 21 66 89",
+      href: "tel:+33644216689",
+    },
     { icon: <MapPinIcon />, label: t.contactInfo.locationLabel, value: t.contactInfo.location },
   ];
 
@@ -190,9 +200,10 @@ type ContactInfoProps = {
   icon: React.ReactNode;
   label: string;
   value: string;
+  href?: string;
 };
 
-function ContactInfo({ icon, label, value }: ContactInfoProps) {
+function ContactInfo({ icon, label, value, href }: ContactInfoProps) {
   return (
     <div className="flex items-center gap-3 py-1.5">
       <div className="rounded-lg border bg-card p-2.5 shadow-xs [&_svg]:size-4 text-accent">
@@ -200,7 +211,16 @@ function ContactInfo({ icon, label, value }: ContactInfoProps) {
       </div>
       <div>
         <p className="font-medium text-sm">{label}</p>
-        <p className="text-muted-foreground text-xs">{value}</p>
+        {href ? (
+          <a
+            href={href}
+            className="text-muted-foreground text-xs hover:text-accent hover:underline"
+          >
+            {value}
+          </a>
+        ) : (
+          <p className="text-muted-foreground text-xs">{value}</p>
+        )}
       </div>
     </div>
   );

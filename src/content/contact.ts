@@ -28,7 +28,7 @@ const en = {
     emailLabel: "Email",
     phoneLabel: "Phone",
     locationLabel: "Based in",
-    location: "Paris · Barcelona · London",
+    location: "Madrid · Toulouse",
   },
   form: {
     segmentLabel: "I am a…",
@@ -85,7 +85,7 @@ const fr: ContactContent = {
     emailLabel: "Email",
     phoneLabel: "Téléphone",
     locationLabel: "Basé à",
-    location: "Paris · Barcelone · Londres",
+    location: "Madrid · Toulouse",
   },
   form: {
     segmentLabel: "Je suis…",
