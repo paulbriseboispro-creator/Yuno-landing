@@ -40,20 +40,16 @@ const QUICK_ICONS: Record<string, LucideIcon> = {
   sparkles: Sparkles,
 };
 
-// 16 tiles for the 3D marquee, cycling the five public-design screens.
-const MARQUEE_IMAGES = [
-  eventFlyer, agenda, soldout, guestlist,
-  tickets, soldout, eventFlyer, agenda,
-  guestlist, eventFlyer, agenda, tickets,
-  soldout, guestlist, eventFlyer, agenda,
-];
-
-// 20 landscape tiles cycling the six BDE Yuno organizer dashboards.
-const BACKOFFICE_IMAGES = [
-  dashDashboard, dashAnalytics, dashEvents, dashOrders, dashClients,
-  dashProfile, dashDashboard, dashOrders, dashAnalytics, dashEvents,
-  dashClients, dashDashboard, dashProfile, dashAnalytics, dashOrders,
-  dashEvents, dashClients, dashDashboard, dashAnalytics, dashProfile,
+// One wall of the whole product — every BDE Yuno screen, public and back-office.
+// Dashboards and public designs alternate so each tile differs from its
+// neighbour and all eleven screens show up rather than the same few on repeat.
+const ALL_SCREENS = [
+  dashDashboard, guestlist, dashAnalytics, eventFlyer,
+  dashEvents, soldout, dashOrders, agenda,
+  dashClients, tickets, dashProfile, guestlist,
+  dashDashboard, eventFlyer, dashAnalytics, soldout,
+  dashEvents, agenda, dashOrders, tickets,
+  dashClients, guestlist, dashProfile, eventFlyer,
 ];
 
 // A single comparison cell: yes/no check or a piece of text. `accent` styles the
@@ -232,26 +228,6 @@ export function BdePage() {
         </div>
       </section>
 
-      {/* Back-office — the real BDE Yuno organizer dashboards (landscape wall) */}
-      <section className="border-t border-border px-6 py-16">
-        <div className="mx-auto max-w-7xl">
-          <Reveal className="mx-auto mb-10 max-w-3xl text-center">
-            <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              {t.backoffice.eyebrow}
-            </span>
-            <h2 className="mt-3 text-balance text-3xl font-medium tracking-tight md:text-4xl">
-              {t.backoffice.title}
-            </h2>
-            <p className="mt-3 text-sm text-muted-foreground text-pretty">{t.backoffice.sub}</p>
-          </Reveal>
-          <Reveal>
-            <div className="relative mx-auto max-w-7xl rounded-3xl bg-surface/40 p-2 ring-1 ring-border">
-              <ThreeDMarquee images={BACKOFFICE_IMAGES} />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* Payout */}
       <section className="border-t border-border px-6 py-16">
         <div className="mx-auto max-w-4xl">
@@ -345,7 +321,7 @@ export function BdePage() {
         </div>
       </section>
 
-      {/* 3D marquee — wall of the public Yuno design */}
+      {/* 3D marquee — the whole product, public designs and back-office together */}
       <section className="border-t border-border px-6 py-16">
         <div className="mx-auto max-w-7xl">
           <Reveal className="mx-auto mb-10 max-w-3xl text-center">
@@ -359,7 +335,7 @@ export function BdePage() {
           </Reveal>
           <Reveal>
             <div className="relative mx-auto max-w-7xl rounded-3xl bg-surface/40 p-2 ring-1 ring-border">
-              <ThreeDMarquee images={MARQUEE_IMAGES} aspectClassName="aspect-[9/16]" />
+              <ThreeDMarquee images={ALL_SCREENS} aspectClassName="aspect-square" driftY={150} />
             </div>
           </Reveal>
         </div>

@@ -22,8 +22,8 @@ import profile from "@/assets/bde/dashboards/profile.png";
 // Clients, Orders, Events, Public profile). Two rows drift in opposite directions
 // on scroll, tilting in 3D — so a BDE sees the command centre they'd pilot their
 // nights from the moment they land.
-const rowOne = [dashboard, analytics, events, orders, clients];
-const rowTwo = [profile, clients, orders, events, analytics];
+const rowOne = [dashboard, analytics, events, orders, clients, profile, dashboard, events];
+const rowTwo = [profile, clients, orders, events, analytics, dashboard, clients, orders];
 
 function PanelCard({
   src,
@@ -90,14 +90,17 @@ export function BdePhoneParallax() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const spring = { stiffness: 300, damping: 30, bounce: 100 };
+  // A soft, well-damped spring (the previous config used an invalid `bounce: 100`
+  // that made the drift snap). Lower stiffness + light mass = a smooth glide that
+  // settles instead of overshooting.
+  const spring = { stiffness: 90, damping: 22, mass: 0.6 };
 
-  const translateX = useSpring(useTransform(scrollYProgress, [0, 1], [0, 320]), spring);
-  const translateXReverse = useSpring(useTransform(scrollYProgress, [0, 1], [0, -320]), spring);
-  const rotateX = useSpring(useTransform(scrollYProgress, [0, 0.2], [12, 0]), spring);
-  const rotateZ = useSpring(useTransform(scrollYProgress, [0, 0.2], [8, 0]), spring);
-  const translateY = useSpring(useTransform(scrollYProgress, [0, 0.3], [40, -80]), spring);
-  const opacity = useSpring(useTransform(scrollYProgress, [0, 0.2], [0.4, 1]), spring);
+  const translateX = useSpring(useTransform(scrollYProgress, [0, 1], [0, 380]), spring);
+  const translateXReverse = useSpring(useTransform(scrollYProgress, [0, 1], [0, -380]), spring);
+  const rotateX = useSpring(useTransform(scrollYProgress, [0, 0.25], [10, 0]), spring);
+  const rotateZ = useSpring(useTransform(scrollYProgress, [0, 0.25], [5, 0]), spring);
+  const translateY = useSpring(useTransform(scrollYProgress, [0, 0.35], [60, -60]), spring);
+  const opacity = useSpring(useTransform(scrollYProgress, [0, 0.22], [0.5, 1]), spring);
 
   return (
     <div

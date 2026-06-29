@@ -9,10 +9,14 @@ export const ThreeDMarquee = ({
   // Aspect of each tile. Defaults to the landscape ratio used on the home page;
   // the BDE landing passes a portrait ratio so phone screens aren't cropped.
   aspectClassName = "aspect-[16/10]",
+  // Vertical drift (px) of the columns. Default keeps the home marquee as-is;
+  // the BDE landing turns it up for a livelier scroll-through.
+  driftY = 100,
 }: {
   images: string[];
   className?: string;
   aspectClassName?: string;
+  driftY?: number;
 }) => {
   const chunkSize = Math.ceil(images.length / 4);
   const chunks = Array.from({ length: 4 }, (_, colIndex) => {
@@ -36,11 +40,12 @@ export const ThreeDMarquee = ({
           >
             {chunks.map((subarray, colIndex) => (
               <motion.div
-                animate={{ y: colIndex % 2 === 0 ? 100 : -100 }}
+                animate={{ y: colIndex % 2 === 0 ? driftY : -driftY }}
                 transition={{
                   duration: colIndex % 2 === 0 ? 10 : 15,
                   repeat: Infinity,
                   repeatType: "reverse",
+                  ease: "easeInOut",
                 }}
                 key={colIndex + "marquee"}
                 className="flex flex-col items-start gap-8"

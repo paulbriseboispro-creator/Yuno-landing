@@ -88,14 +88,6 @@ export const bde = {
     ],
   },
 
-  // Back-office wall — the real BDE Yuno organizer dashboards (landscape),
-  // proving the "vous pilotez tout / stats en direct" promises above.
-  backoffice: {
-    eyebrow: "Le back-office BDE Yuno",
-    title: "Toute votre soirée se pilote depuis un seul tableau de bord.",
-    sub: "Recettes, billets vendus, entrées, commandes, invités : tout est suivi en direct. Le BDE garde la main, du premier billet jusqu'à la fermeture.",
-  },
-
   payout: {
     tag: "Votre argent",
     title: "Versé deux jours après la soirée, sans frais.",
@@ -124,11 +116,11 @@ export const bde = {
     ],
   },
 
-  // 3D marquee — a wall of the public Yuno design so a BDE sees the aesthetic.
+  // 3D marquee — the whole product: public designs and organizer back-office.
   marquee: {
-    eyebrow: "Le design public de Yuno",
-    title: "Vos soirées, à la hauteur de la nuit.",
-    sub: "Pages d'événement, flyers, guest lists, agenda : un univers premium, à votre image.",
+    eyebrow: "Tout l'univers Yuno",
+    title: "Du flyer de soirée jusqu'au tableau de bord.",
+    sub: "Pages d'événement, guest lists et billetterie côté invités ; commandes, clients et recettes côté BDE. Un seul produit, pensé pour la nuit.",
   },
 
   comparison: {
