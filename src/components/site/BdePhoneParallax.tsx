@@ -11,20 +11,21 @@ import {
 import { useRef } from "react";
 import { useBde } from "@/content/bde";
 
-import eventFlyer from "@/assets/bde/event-flyer.png";
-import soldout from "@/assets/bde/soldout.png";
-import agenda from "@/assets/bde/agenda.png";
-import guestlist from "@/assets/bde/guestlist.png";
-import tickets from "@/assets/bde/tickets.png";
+import dashboard from "@/assets/bde/dashboards/dashboard.png";
+import analytics from "@/assets/bde/dashboards/analytics.png";
+import events from "@/assets/bde/dashboards/events.png";
+import orders from "@/assets/bde/dashboards/orders.png";
+import clients from "@/assets/bde/dashboards/clients.png";
+import profile from "@/assets/bde/dashboards/profile.png";
 
-// Portrait phone screens of the public Yuno design. Two rows drift in opposite
-// directions on scroll, tilting in 3D — the same scroll-parallax feel as the
-// main landing's hero, but in phone format because Yuno is used on a phone and
-// these are the screens a BDE's guests actually see.
-const rowOne = [eventFlyer, soldout, agenda, guestlist, tickets];
-const rowTwo = [agenda, guestlist, tickets, eventFlyer, soldout];
+// Landscape screens of the BDE Yuno organizer back-office (Dashboard, Analytics,
+// Clients, Orders, Events, Public profile). Two rows drift in opposite directions
+// on scroll, tilting in 3D — so a BDE sees the command centre they'd pilot their
+// nights from the moment they land.
+const rowOne = [dashboard, analytics, events, orders, clients];
+const rowTwo = [profile, clients, orders, events, analytics];
 
-function PhoneCard({
+function PanelCard({
   src,
   translate,
 }: {
@@ -35,16 +36,16 @@ function PhoneCard({
     <motion.div
       style={{ x: translate }}
       whileHover={{ y: -16 }}
-      className="group/phone relative h-[24rem] w-[13.5rem] shrink-0 md:h-[26rem] md:w-[14.5rem]"
+      className="group/panel relative h-[15rem] w-[24rem] shrink-0 md:h-[16.5rem] md:w-[26.5rem]"
     >
       <img
         src={src}
         alt=""
         aria-hidden
         loading="lazy"
-        className="absolute inset-0 h-full w-full rounded-[1.6rem] object-cover object-top ring-1 ring-white/10 shadow-2xl"
+        className="absolute inset-0 h-full w-full rounded-2xl object-cover object-top ring-1 ring-white/10 shadow-2xl"
       />
-      <div className="pointer-events-none absolute inset-0 rounded-[1.6rem] ring-1 ring-inset ring-white/5" />
+      <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/5" />
     </motion.div>
   );
 }
@@ -115,12 +116,12 @@ export function BdePhoneParallax() {
       >
         <motion.div className="flex flex-row-reverse justify-center gap-6 md:gap-8">
           {rowOne.map((src, i) => (
-            <PhoneCard key={`r1-${i}`} src={src} translate={translateX} />
+            <PanelCard key={`r1-${i}`} src={src} translate={translateX} />
           ))}
         </motion.div>
         <motion.div className="flex flex-row justify-center gap-6 md:gap-8">
           {rowTwo.map((src, i) => (
-            <PhoneCard key={`r2-${i}`} src={src} translate={translateXReverse} />
+            <PanelCard key={`r2-${i}`} src={src} translate={translateXReverse} />
           ))}
         </motion.div>
       </motion.div>
