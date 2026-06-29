@@ -146,10 +146,14 @@ export function GooeyInput({
 
   const buttonVariants = useMemo(
     () => ({
-      collapsed: { width: collapsedWidth, marginLeft: 0 },
+      // Collapsed pill hugs its label (auto width) so longer translations
+      // like FR "Rechercher" fit without clipping; collapsedWidth becomes a
+      // minimum (via minWidth on the bubble) so the shorter EN "Search" keeps
+      // its padded look.
+      collapsed: { width: "auto", marginLeft: 0 },
       expanded: { width: expandedWidth, marginLeft: expandedOffset },
     }),
-    [collapsedWidth, expandedWidth, expandedOffset],
+    [expandedWidth, expandedOffset],
   );
 
   const iconVariants = useMemo(
@@ -217,9 +221,9 @@ export function GooeyInput({
             initial="collapsed"
             animate={isExpanded ? "expanded" : "collapsed"}
             transition={transition}
-            style={{ height }}
+            style={{ height, minWidth: collapsedWidth }}
             className={cn(
-              "flex items-center justify-center rounded-full px-4",
+              "flex items-center justify-center whitespace-nowrap rounded-full px-4",
               surfaceClass,
               classNames?.bubble,
               classNames?.bubbleSurface,
