@@ -16,6 +16,7 @@ import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as OrganizersRouteImport } from './routes/organizers'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ClubsRouteImport } from './routes/clubs'
+import { Route as BdeRouteImport } from './routes/bde'
 import { Route as AffiliatesRouteImport } from './routes/affiliates'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FrIndexRouteImport } from './routes/fr/index'
@@ -60,6 +61,11 @@ const ContactRoute = ContactRouteImport.update({
 const ClubsRoute = ClubsRouteImport.update({
   id: '/clubs',
   path: '/clubs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BdeRoute = BdeRouteImport.update({
+  id: '/bde',
+  path: '/bde',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AffiliatesRoute = AffiliatesRouteImport.update({
@@ -116,6 +122,7 @@ const FrAffiliatesRoute = FrAffiliatesRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/affiliates': typeof AffiliatesRoute
+  '/bde': typeof BdeRoute
   '/clubs': typeof ClubsRoute
   '/contact': typeof ContactRoute
   '/organizers': typeof OrganizersRoute
@@ -135,6 +142,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/affiliates': typeof AffiliatesRoute
+  '/bde': typeof BdeRoute
   '/clubs': typeof ClubsRoute
   '/contact': typeof ContactRoute
   '/organizers': typeof OrganizersRoute
@@ -155,6 +163,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/affiliates': typeof AffiliatesRoute
+  '/bde': typeof BdeRoute
   '/clubs': typeof ClubsRoute
   '/contact': typeof ContactRoute
   '/organizers': typeof OrganizersRoute
@@ -176,6 +185,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/affiliates'
+    | '/bde'
     | '/clubs'
     | '/contact'
     | '/organizers'
@@ -195,6 +205,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/affiliates'
+    | '/bde'
     | '/clubs'
     | '/contact'
     | '/organizers'
@@ -214,6 +225,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/affiliates'
+    | '/bde'
     | '/clubs'
     | '/contact'
     | '/organizers'
@@ -234,6 +246,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AffiliatesRoute: typeof AffiliatesRoute
+  BdeRoute: typeof BdeRoute
   ClubsRoute: typeof ClubsRoute
   ContactRoute: typeof ContactRoute
   OrganizersRoute: typeof OrganizersRoute
@@ -300,6 +313,13 @@ declare module '@tanstack/react-router' {
       path: '/clubs'
       fullPath: '/clubs'
       preLoaderRoute: typeof ClubsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bde': {
+      id: '/bde'
+      path: '/bde'
+      fullPath: '/bde'
+      preLoaderRoute: typeof BdeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/affiliates': {
@@ -378,6 +398,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AffiliatesRoute: AffiliatesRoute,
+  BdeRoute: BdeRoute,
   ClubsRoute: ClubsRoute,
   ContactRoute: ContactRoute,
   OrganizersRoute: OrganizersRoute,

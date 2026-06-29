@@ -6,9 +6,13 @@ import { cn } from "@/lib/utils";
 export const ThreeDMarquee = ({
   images,
   className,
+  // Aspect of each tile. Defaults to the landscape ratio used on the home page;
+  // the BDE landing passes a portrait ratio so phone screens aren't cropped.
+  aspectClassName = "aspect-[16/10]",
 }: {
   images: string[];
   className?: string;
+  aspectClassName?: string;
 }) => {
   const chunkSize = Math.ceil(images.length / 4);
   const chunks = Array.from({ length: 4 }, (_, colIndex) => {
@@ -51,7 +55,10 @@ export const ThreeDMarquee = ({
                       key={imageIndex + image}
                       src={image}
                       alt={`Image ${imageIndex + 1}`}
-                      className="aspect-[16/10] w-full rounded-lg object-cover object-left-top ring ring-border hover:shadow-2xl"
+                      className={cn(
+                        "w-full rounded-lg object-cover object-top ring ring-border hover:shadow-2xl",
+                        aspectClassName,
+                      )}
                       width={970}
                       height={606}
                     />

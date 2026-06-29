@@ -4,6 +4,7 @@ import {
   createRootRouteWithContext,
   redirect,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -13,6 +14,7 @@ import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { FoundingBanner } from "@/components/site/FoundingBanner";
+import { BdeHeader, BdeFooter } from "@/components/site/BdeChrome";
 import { NotFoundPage } from "@/components/not-found";
 import {
   LocaleProvider,
@@ -76,6 +78,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     const path = location.pathname;
     // French is served under /fr/* — there the URL is the source of truth.
     if (path === "/fr" || path.startsWith("/fr/")) {
+      return { locale: "fr" as Locale };
+    }
+    // /bde is the standalone French-only BDE landing (no /fr prefix, not in the
+    // bilingual set). Force French so the page, its minimal chrome and <html lang>
+    // all render in French regardless of cookie.
+    if (path === "/bde") {
       return { locale: "fr" as Locale };
     }
     // On an English (root) page, send a French-preferring visitor (cookie or
@@ -153,17 +161,27 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient, locale } = Route.useRouteContext();
+  // The /bde landing gets its own stripped-down chrome (no main nav, no founding
+  // banner) so a BDE handed the link stays focused and never crosses into the
+  // club/organizer funnel.
+  const isBde = useRouterState({ select: (s) => s.location.pathname === "/bde" });
   return (
     <QueryClientProvider client={queryClient}>
       <LocaleProvider initialLocale={locale as Locale}>
-        <div className="sticky top-0 z-[70] w-full">
-          <FoundingBanner />
-          <SiteHeader />
-        </div>
+        {isBde ? (
+          <div className="sticky top-0 z-[70] w-full">
+            <BdeHeader />
+          </div>
+        ) : (
+          <div className="sticky top-0 z-[70] w-full">
+            <FoundingBanner />
+            <SiteHeader />
+          </div>
+        )}
         <main className="min-h-[60vh]">
           <Outlet />
         </main>
-        <SiteFooter />
+        {isBde ? <BdeFooter /> : <SiteFooter />}
       </LocaleProvider>
     </QueryClientProvider>
   );
