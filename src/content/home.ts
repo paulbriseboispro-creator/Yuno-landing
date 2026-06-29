@@ -110,6 +110,35 @@ const en = {
       ],
     },
   },
+  personaPages: {
+    eyebrow: "Explore the public design",
+    title: "A page designed for your role",
+    sub: "Three real pages, live in production — open them to see the infrastructure behind every role.",
+    ctaLabel: "Open the live page",
+    items: [
+      {
+        key: "club",
+        tag: "Clubs",
+        title: "For clubs & venues",
+        body: "Floor plans, the click-and-collect bar, PIN-based staff and fee-free payouts — the full operating picture for the room.",
+        href: "https://yunoapp.eu/club/womber",
+      },
+      {
+        key: "orga",
+        tag: "Organizers",
+        title: "For organizers",
+        body: "Ticketing without the markup, automatic splits with your host venue and your own check-in app.",
+        href: "https://yunoapp.eu/o/yuno",
+      },
+      {
+        key: "dj",
+        tag: "DJs",
+        title: "For DJs",
+        body: "All your nights behind one link, the crowd you bring tracked to the cent, paid two days after the set.",
+        href: "https://yunoapp.eu/dj/marco-v",
+      },
+    ],
+  },
   features: {
     eyebrow: "What's inside",
     title: "Operator-grade tooling, end to end",
@@ -426,6 +455,35 @@ const fr: HomeContent = {
         "Classement en direct et analyses de conversion pour votre équipe",
       ],
     },
+  },
+  personaPages: {
+    eyebrow: "Découvrez la direction artistique",
+    title: "Une page pensée pour votre rôle",
+    sub: "Trois vraies pages, en production — ouvrez-les pour voir l'infrastructure derrière chaque rôle.",
+    ctaLabel: "Ouvrir la page live",
+    items: [
+      {
+        key: "club",
+        tag: "Clubs",
+        title: "Pour les clubs & établissements",
+        body: "Plans de salle, bar en click-and-collect, staff par PIN et versements sans frais — toute la vue opérationnelle de la salle.",
+        href: "https://yunoapp.eu/club/womber",
+      },
+      {
+        key: "orga",
+        tag: "Organisateurs",
+        title: "Pour les organisateurs",
+        body: "La billetterie sans la marge, la répartition automatique avec votre établissement hôte et votre propre app de contrôle d'accès.",
+        href: "https://yunoapp.eu/o/yuno",
+      },
+      {
+        key: "dj",
+        tag: "DJs",
+        title: "Pour les DJs",
+        body: "Toutes vos soirées derrière un seul lien, la foule que vous amenez suivie au centime, payé deux jours après le set.",
+        href: "https://yunoapp.eu/dj/marco-v",
+      },
+    ],
   },
   features: {
     eyebrow: "Ce qu'il y a à l'intérieur",

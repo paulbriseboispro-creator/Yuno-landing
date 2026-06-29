@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { motion } from "motion/react";
 import { homeContent, useHome } from "@/content/home";
@@ -17,8 +17,16 @@ import { DifferentiatorsSection } from "@/components/site/DifferentiatorsSection
 import { YunoCollabSection } from "@/components/site/YunoCollabSection";
 import { FounderQuote } from "@/components/site/FounderQuote";
 import { pageSeo } from "@/i18n/seo";
+import clubPreview from "@/assets/previews/club.png";
+import orgaPreview from "@/assets/previews/orga.png";
+import djPreview from "@/assets/previews/dj.png";
 
-
+// Live 9:16 mobile captures of the real Yuno pages, keyed by persona.
+const personaPreviews: Record<string, string> = {
+  club: clubPreview,
+  orga: orgaPreview,
+  dj: djPreview,
+};
 
 export function Index() {
   const t = useHome();
@@ -59,6 +67,58 @@ export function Index() {
             </h2>
           </Reveal>
           <SegmentSwitcher />
+        </div>
+      </section>
+
+      {/* Per-role design pages */}
+      <section className="py-16 px-6 border-t border-border">
+        <div className="mx-auto max-w-7xl">
+          <Reveal className="text-center mb-12">
+            <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+              {t.personaPages.eyebrow}
+            </span>
+            <h2 className="mt-3 text-3xl md:text-4xl font-medium tracking-tight text-balance max-w-[24ch] mx-auto">
+              {t.personaPages.title}
+            </h2>
+            <p className="mt-4 text-base text-muted-foreground max-w-[58ch] mx-auto text-pretty">
+              {t.personaPages.sub}
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {t.personaPages.items.map((p, i) => (
+              <Reveal key={p.key} delay={i * 0.08}>
+                <a
+                  href={p.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex h-full flex-col rounded-2xl bg-surface ring-1 ring-border p-6 transition-all hover:ring-accent/40"
+                >
+                  {/* Live 9:16 mobile preview of the real page */}
+                  <div className="relative mx-auto w-full max-w-[240px] overflow-hidden rounded-2xl ring-1 ring-border shadow-xl shadow-black/40">
+                    <img
+                      src={personaPreviews[p.key]}
+                      alt={p.title}
+                      loading="lazy"
+                      className="aspect-[9/16] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                    <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/5 rounded-2xl" />
+                  </div>
+                  {/* Meta */}
+                  <div className="mt-6 flex flex-1 flex-col">
+                    <span className="inline-block self-start text-[10px] font-medium uppercase tracking-[0.18em] text-accent border border-accent/40 rounded-full px-2 py-0.5 mb-4">
+                      {p.tag}
+                    </span>
+                    <h3 className="text-xl font-medium mb-2 tracking-tight">{p.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-5">{p.body}</p>
+                    <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-accent transition-colors">
+                      {t.personaPages.ctaLabel}
+                      <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
+                  </div>
+                </a>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
