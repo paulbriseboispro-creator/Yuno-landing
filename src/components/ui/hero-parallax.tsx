@@ -60,23 +60,23 @@ export const HeroParallax = ({
   return (
     <div
       ref={ref}
-      className="h-[180vh] py-32 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[150vh] py-20 md:h-[180vh] md:py-32 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
       {header}
       <motion.div
         style={{ rotateX, rotateZ, translateY, opacity }}
       >
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20">
+        <motion.div className="flex flex-row-reverse space-x-reverse space-x-5 mb-5 md:space-x-20 md:mb-20">
           {firstRow.map((product, i) => (
             <ProductCard product={product} translate={translateX} key={`${product.title}-${i}`} />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row mb-20 space-x-20">
+        <motion.div className="flex flex-row mb-5 space-x-5 md:mb-20 md:space-x-20">
           {secondRow.map((product, i) => (
             <ProductCard product={product} translate={translateXReverse} key={`r2-${product.title}-${i}`} />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
+        <motion.div className="flex flex-row-reverse space-x-reverse space-x-5 md:space-x-20">
           {thirdRow.map((product, i) => (
             <ProductCard product={product} translate={translateX} key={`r3-${product.title}-${i}`} />
           ))}
@@ -97,7 +97,7 @@ export const ProductCard = ({
     <motion.div
       style={{ x: translate }}
       whileHover={{ y: -20 }}
-      className="group/product h-96 w-[30rem] relative shrink-0"
+      className="group/product h-44 w-[17rem] sm:h-64 sm:w-[24rem] md:h-96 md:w-[30rem] relative shrink-0"
     >
       <a href={product.link} className="block group-hover/product:shadow-2xl">
         <img
