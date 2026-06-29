@@ -3,7 +3,11 @@
 // organizer site: it lives at /bde, is noindex, and ships with its own minimal
 // chrome so a BDE handed the link stays focused and never wanders into the
 // club/organizer funnel. Copy stays consistent with Yuno's real model:
-//   - 0 € to the BDE (only Stripe's processing fee), like HelloAsso.
+//   - 0 € to the BDE in Yuno fees (no subscription, no commission), but Stripe's
+//     processing fee stays on the BDE.
+//   - Unlike HelloAsso, which absorbs payment fees via the payer's voluntary
+//     contribution, Yuno passes Stripe's processing fee to the BDE — so "as free
+//     as HelloAsso" is overstated. Say "almost", and name the Stripe difference.
 //   - Service fee is paid by the customer: 4% on tickets/tables (BDE floor 0,49 €
 //     instead of 0,99 €), 3% on drinks. Shown before payment.
 //   - BDE events are PRIVATE by default — link-only, never in public search.
@@ -50,11 +54,11 @@ export const bde = {
 
   free: {
     tag: "Le prix",
-    title: "Aussi gratuit qu'HelloAsso. En beaucoup plus beau.",
-    body: "Comme sur HelloAsso, créer et vendre vos soirées ne coûte rien à votre BDE. La différence, c'est tout le reste : un produit fait pour la nuit, pas un formulaire associatif.",
+    title: "Presque aussi gratuit qu'HelloAsso. En beaucoup plus beau.",
+    body: "Comme sur HelloAsso, Yuno ne prend ni abonnement ni commission sur vos ventes. La seule différence côté prix : les frais de traitement Stripe restent à votre charge, là où HelloAsso les absorbe via la contribution volontaire du payeur. Quelques centimes par billet, en échange d'un vrai produit pour la nuit plutôt qu'un formulaire associatif.",
     bullets: [
-      "0 € pour le BDE — aucun abonnement, aucune commission Yuno",
-      "Vous ne réglez que les frais de traitement Stripe, comme partout",
+      "0 € d'abonnement, 0 % de commission Yuno",
+      "Vous ne réglez que les frais de traitement Stripe — qu'HelloAsso, lui, prend à sa charge",
       "Tarif étudiant : la part client tombe à 0,49 € par billet au lieu de 0,99 €",
       "Frais affichés au client avant le paiement, jamais de mauvaise surprise",
     ],
@@ -125,11 +129,11 @@ export const bde = {
 
   comparison: {
     eyebrow: "Yuno vs HelloAsso",
-    title: "Gratuit dans les deux cas. Mais une seule est faite pour vos soirées.",
+    title: "Aucune commission des deux côtés. Mais une seule est faite pour vos soirées.",
     colA: "HelloAsso",
     colB: "Yuno",
     rows: [
-      { label: "Coût pour le BDE", a: "0 €", b: "0 € (hors Stripe)" },
+      { label: "Coût pour le BDE", a: "0 € (frais Stripe absorbés)", b: "0 € + frais Stripe" },
       { label: "Pensé pour les soirées", a: "Plateforme associative", b: "Fait pour la nuit", highlight: true },
       { label: "Page de soirée à votre image", a: "Formulaire standard", b: "Page premium", highlight: true },
       { label: "Soirées privées par défaut", a: false, b: true, highlight: true },
@@ -141,7 +145,7 @@ export const bde = {
       { label: "Frais côté client", a: "Contribution « volontaire »", b: "4 % transparent, dès 0,49 €" },
     ] as { label: string; a: string | boolean; b: string | boolean; highlight?: boolean }[],
     footer:
-      "Vous utilisez déjà HelloAsso ? Gardez la gratuité, gagnez une vraie billetterie de soirée et le contrôle de votre public.",
+      "Vous utilisez déjà HelloAsso ? Pour quelques centimes de frais Stripe par billet, gagnez une vraie billetterie de soirée et le contrôle de votre public.",
   },
 
   steps: {
@@ -172,7 +176,7 @@ export const bde = {
     items: [
       {
         q: "C'est vraiment gratuit pour le BDE ?",
-        a: "Oui. Aucun abonnement et aucune commission Yuno. Votre BDE ne supporte que les frais de traitement Stripe, présents sur toutes les plateformes de paiement.",
+        a: "Côté Yuno, oui : aucun abonnement et aucune commission. La nuance honnête, c'est qu'il reste les frais de traitement Stripe, à la charge de votre BDE — là où HelloAsso, lui, les prend en charge. On parle de quelques centimes par billet.",
       },
       {
         q: "Alors, qui paie les frais ?",
@@ -192,7 +196,7 @@ export const bde = {
       },
       {
         q: "On utilise déjà HelloAsso, pourquoi changer ?",
-        a: "Vous gardez la gratuité d'HelloAsso, mais vous gagnez une billetterie pensée pour la nuit : page premium, billets à paliers, tables VIP, contrôle d'accès en direct, statistiques, et surtout des soirées privées réservées à votre école.",
+        a: "Côté prix, c'est presque pareil : pas de commission Yuno, seulement les frais Stripe (qu'HelloAsso absorbe, c'est la petite différence). En échange, vous gagnez une billetterie pensée pour la nuit : page premium, billets à paliers, tables VIP, contrôle d'accès en direct, statistiques, et surtout des soirées privées réservées à votre école.",
       },
     ],
   },
