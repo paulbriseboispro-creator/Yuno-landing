@@ -1,22 +1,24 @@
 import { ThreeDMarquee } from "@/components/ui/3d-marquee";
 import { useHome } from "@/content/home";
-import dashboard from "@/assets/dashboards/dashboard.png";
-import analytics from "@/assets/dashboards/analytics.png";
-import events from "@/assets/dashboards/events.png";
+import revenue from "@/assets/dashboards/revenue.png";
+import liveNight from "@/assets/dashboards/live-night.png";
+import customers from "@/assets/dashboards/customers.png";
 import orders from "@/assets/dashboards/orders.png";
-import clients from "@/assets/dashboards/clients.png";
-import profile from "@/assets/dashboards/profile.png";
+import recap from "@/assets/dashboards/recap.png";
+import invoices from "@/assets/dashboards/invoices.png";
+import menu from "@/assets/dashboards/menu.png";
+import subscription from "@/assets/dashboards/subscription.png";
 
-// 32 images distributed across 4 columns of 8. Dashboard weighted heaviest.
+// 32 images distributed across 4 columns of 8. Revenue weighted heaviest.
 const images = [
   // Col 1
-  dashboard, analytics, clients, dashboard, orders, events, dashboard, profile,
+  revenue, liveNight, customers, revenue, orders, recap, revenue, menu,
   // Col 2
-  analytics, dashboard, profile, clients, dashboard, events, orders, analytics,
+  liveNight, revenue, invoices, customers, revenue, subscription, orders, revenue,
   // Col 3
-  clients, orders, dashboard, analytics, profile, dashboard, events, clients,
+  recap, customers, revenue, liveNight, menu, revenue, invoices, recap,
   // Col 4
-  dashboard, analytics, events, profile, clients, orders, dashboard, analytics,
+  revenue, orders, subscription, revenue, customers, liveNight, revenue, menu,
 ];
 
 export function MarqueeSection() {

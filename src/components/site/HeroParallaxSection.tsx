@@ -3,32 +3,34 @@ import { ArrowRight } from "lucide-react";
 import { HeroParallax, type ParallaxProduct } from "@/components/ui/hero-parallax";
 import { useHome } from "@/content/home";
 
-import dashboard from "@/assets/dashboards/dashboard.png";
-import analytics from "@/assets/dashboards/analytics.png";
-import events from "@/assets/dashboards/events.png";
+import revenue from "@/assets/dashboards/revenue.png";
+import liveNight from "@/assets/dashboards/live-night.png";
+import customers from "@/assets/dashboards/customers.png";
 import orders from "@/assets/dashboards/orders.png";
-import clients from "@/assets/dashboards/clients.png";
-import profile from "@/assets/dashboards/profile.png";
+import recap from "@/assets/dashboards/recap.png";
+import invoices from "@/assets/dashboards/invoices.png";
+import menu from "@/assets/dashboards/menu.png";
+import subscription from "@/assets/dashboards/subscription.png";
 
 const products: ParallaxProduct[] = [
   // Row 1
-  { title: "Dashboard", link: "#product", thumbnail: dashboard },
-  { title: "Analytique", link: "#product", thumbnail: analytics },
-  { title: "Clients", link: "#product", thumbnail: clients },
-  { title: "Commandes", link: "#product", thumbnail: orders },
-  { title: "Événements", link: "#product", thumbnail: events },
+  { title: "Revenue Analytics", link: "#product", thumbnail: revenue },
+  { title: "Live Night", link: "#product", thumbnail: liveNight },
+  { title: "Customers", link: "#product", thumbnail: customers },
+  { title: "Revenue Analytics", link: "#product", thumbnail: revenue },
+  { title: "Orders", link: "#product", thumbnail: orders },
   // Row 2
-  { title: "Profil public", link: "#product", thumbnail: profile },
-  { title: "Dashboard", link: "#product", thumbnail: dashboard },
-  { title: "Événements", link: "#product", thumbnail: events },
-  { title: "Analytique", link: "#product", thumbnail: analytics },
-  { title: "Clients", link: "#product", thumbnail: clients },
+  { title: "Night Recap", link: "#product", thumbnail: recap },
+  { title: "Revenue Analytics", link: "#product", thumbnail: revenue },
+  { title: "Menu", link: "#product", thumbnail: menu },
+  { title: "Live Night", link: "#product", thumbnail: liveNight },
+  { title: "Invoices", link: "#product", thumbnail: invoices },
   // Row 3
-  { title: "Commandes", link: "#product", thumbnail: orders },
-  { title: "Dashboard", link: "#product", thumbnail: dashboard },
-  { title: "Profil public", link: "#product", thumbnail: profile },
-  { title: "Clients", link: "#product", thumbnail: clients },
-  { title: "Analytique", link: "#product", thumbnail: analytics },
+  { title: "Subscription", link: "#product", thumbnail: subscription },
+  { title: "Revenue Analytics", link: "#product", thumbnail: revenue },
+  { title: "Customers", link: "#product", thumbnail: customers },
+  { title: "Night Recap", link: "#product", thumbnail: recap },
+  { title: "Live Night", link: "#product", thumbnail: liveNight },
 ];
 
 
