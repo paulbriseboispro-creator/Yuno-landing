@@ -41,12 +41,12 @@ const en = {
     {
       tag: "Floor plan",
       title: "Design the room, price the table",
-      body: "Drag your tables, set shapes and zones, price each one with its own minimum spend. VIP hosts log bottles on iPad — Yuno tells them when a table is short and what to upsell.",
+      body: "Drag your tables, set shapes and zones, price each one with its own minimum spend. VIP hosts log bottles from their own phone — Yuno tells them when a table is short and what to upsell.",
       meaning: "No more overbooking a table that was already reserved on paper. Your host sees every table's status in real time.",
       bullets: [
         "Drag-and-drop editor, unlimited zones",
         "Live minimum-spend tracking per table",
-        "iPad-first VIP host app",
+        "VIP host app that runs on any phone — no extra hardware",
       ],
     },
     {
@@ -138,12 +138,12 @@ const fr: ClubsContent = {
     {
       tag: "Plan de salle",
       title: "Dessinez la salle, tarifez la table",
-      body: "Glissez vos tables, définissez formes et zones, tarifez chacune avec son propre minimum de consommation. Les hôtes VIP enregistrent les bouteilles sur iPad — Yuno leur indique quand une table est en retard et quoi proposer en plus.",
+      body: "Glissez vos tables, définissez formes et zones, tarifez chacune avec son propre minimum de consommation. Les hôtes VIP enregistrent les bouteilles depuis leur propre téléphone — Yuno leur indique quand une table est en retard et quoi proposer en plus.",
       meaning: "Fini la double réservation d'une table déjà bloquée sur papier. Votre hôte voit le statut de chaque table en temps réel.",
       bullets: [
         "Éditeur glisser-déposer, zones illimitées",
         "Suivi en direct du minimum de consommation par table",
-        "App hôte VIP pensée pour l'iPad",
+        "App hôte VIP qui tourne sur n'importe quel téléphone — sans matériel en plus",
       ],
     },
     {

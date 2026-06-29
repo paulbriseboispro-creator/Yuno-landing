@@ -18,7 +18,7 @@ const en = {
     titleLead: "Ticketing without the ",
     titleEmphasis: "markup",
     subtitle:
-      "Yuno is the missing layer between you, your host venue and the crowd you bring. Low fees, automatic splits, and the door app your team actually wants to use.",
+      "Yuno is the missing layer between you, your host venue and the crowd you bring. It costs you nothing — only Stripe's processing fee — with automatic splits and the door app your team actually wants to use.",
     primaryCta: "Create my first event",
     secondaryCta: "See pricing",
   },
@@ -30,8 +30,8 @@ const en = {
   },
   split: {
     tag: "How the split works",
-    title: "Money moves the second the card clears",
-    body: "Every ticket sale is broken into its agreed parts at the moment of payment. You see it land. The venue sees it land. The promoter who brought the sale sees their commission queued for payout.",
+    title: "Money settles two days after the event",
+    body: "Every ticket sale is broken into its agreed parts. Two days after the event the funds settle, fee-free — the short delay leaves room for refunds and disputes. You see your share. The venue sees theirs. The promoter who brought the sale sees their commission tracked to the cent.",
   },
   math: {
     tag: "The math",
@@ -56,18 +56,18 @@ const en = {
       title: "4% per ticket. €0.99 floor. No monthly fee.",
       body: "Stop bleeding 12–18% to legacy ticketing platforms. With Yuno the service fee is 4% per ticket (€0.99 minimum) — always paid by the customer at checkout, never by you.",
       bullets: [
-        "Zero monthly fee on the Yuno Core plan",
+        "0% commission to Yuno — you only pay Stripe's processing fee",
         "Service fees always paid by the customer",
         "Early Bird / Regular / Late tiers with quotas",
       ],
     },
     {
       tag: "Revenue split",
-      title: "Stripe Connect, settled at checkout",
-      body: "You and your host venue agree on a contractual split, e.g. 70/30. The instant a ticket clears, funds land in each party's Stripe account — no month-end reconciliation, no awkward DMs.",
+      title: "Stripe Connect, settled two days after",
+      body: "You and your host venue agree on a contractual split, e.g. 70/30. Two days after the event the funds settle into each party's Stripe account, fee-free — the short delay covers any refund or dispute, with no month-end reconciliation and no awkward DMs.",
       bullets: [
         "Stripe Connect Standard accounts",
-        "Promoter commissions deducted automatically",
+        "Promoter commissions tracked automatically",
         "Full audit trail per event",
       ],
     },
@@ -105,7 +105,7 @@ const fr: OrganizersContent = {
     titleLead: "La billetterie sans la ",
     titleEmphasis: "commission",
     subtitle:
-      "Yuno est la couche qui manquait entre vous, votre établissement hôte et le public que vous amenez. Des frais réduits, des répartitions automatiques et l'application d'accès que votre équipe a vraiment envie d'utiliser.",
+      "Yuno est la couche qui manquait entre vous, votre établissement hôte et le public que vous amenez. Il ne vous coûte rien — seulement les frais de traitement Stripe — avec des répartitions automatiques et l'application d'accès que votre équipe a vraiment envie d'utiliser.",
     primaryCta: "Créer mon premier événement",
     secondaryCta: "Voir les tarifs",
   },
@@ -117,8 +117,8 @@ const fr: OrganizersContent = {
   },
   split: {
     tag: "Comment fonctionne la répartition",
-    title: "L'argent circule dès que la carte est validée",
-    body: "Chaque vente de billet est répartie selon les parts convenues au moment du paiement. Vous la voyez arriver. L'établissement la voit arriver. Le promoteur qui a apporté la vente voit sa commission mise en file pour versement.",
+    title: "L'argent est réglé deux jours après l'événement",
+    body: "Chaque vente de billet est répartie selon les parts convenues. Deux jours après l'événement, les fonds sont réglés, sans frais — ce court délai laisse le temps de gérer remboursements et litiges. Vous voyez votre part. L'établissement voit la sienne. Le promoteur qui a apporté la vente voit sa commission suivie au centime près.",
   },
   math: {
     tag: "Le calcul",
@@ -145,18 +145,18 @@ const fr: OrganizersContent = {
       title: "4 % par billet. Plancher de 0,99 €. Sans frais mensuels.",
       body: "Arrêtez de perdre 12–18 % au profit des plateformes de billetterie classiques. Avec Yuno, les frais de service sont de 4 % par billet (0,99 € minimum) — toujours payés par le client au paiement, jamais par vous.",
       bullets: [
-        "Zéro frais mensuel sur le plan Yuno Core",
+        "0 % de commission pour Yuno — vous ne payez que les frais de traitement Stripe",
         "Les frais de service toujours payés par le client",
         "Paliers Early Bird / Regular / Late avec quotas",
       ],
     },
     {
       tag: "Répartition des revenus",
-      title: "Stripe Connect, réglée au paiement",
-      body: "Vous et votre établissement hôte convenez d'une répartition contractuelle, par ex. 70/30. Dès qu'un billet est validé, les fonds arrivent sur le compte Stripe de chaque partie — aucune réconciliation en fin de mois, aucun message gênant.",
+      title: "Stripe Connect, réglée deux jours après",
+      body: "Vous et votre établissement hôte convenez d'une répartition contractuelle, par ex. 70/30. Deux jours après l'événement, les fonds arrivent sur le compte Stripe de chaque partie, sans frais — ce court délai couvre un éventuel remboursement ou litige, sans réconciliation en fin de mois ni message gênant.",
       bullets: [
         "Comptes Stripe Connect Standard",
-        "Commissions promoteurs déduites automatiquement",
+        "Commissions promoteurs suivies automatiquement",
         "Traçabilité complète par événement",
       ],
     },

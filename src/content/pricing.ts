@@ -194,7 +194,7 @@ const en = {
     feeIntroC: ". The fee calculator below shows what your attendees pay per purchase.",
     noCutBold: "Yuno doesn't take a cut from your revenue.",
     noCutBody:
-      "The 4% service fee is paid by your customers at checkout — like a credit card processing fee. You keep 100% of your ticket price.",
+      "The 4% service fee is paid by your customers at checkout — like a credit card processing fee. You keep 100% of your ticket price. Only standard Stripe processing fees apply.",
     noCutCompare: "Compare that to Shotgun's 10% taken directly from your payout.",
     savingsEyebrow: "vs. Shotgun · Weezevent · Xceed · DICE",
     savingsTitle: "The cheapest ticketing platform for nightlife — by a wide margin",
@@ -203,7 +203,7 @@ const en = {
     serviceFeeEyebrow: "See it in numbers",
     serviceFeeTitle: "What your customers actually pay in fees",
     serviceFeeSub:
-      "Drag the sliders. Every service fee is paid by the customer at checkout — never by you. You keep 100% of your menu and ticket prices.",
+      "Drag the sliders. Every service fee is paid by the customer at checkout — never by you. You keep 100% of your menu and ticket prices. Standard Stripe processing fees still apply.",
     founding: {
       badge: "Early Adopters — 15 spots only",
       title: "Founding Club Offer",
@@ -237,7 +237,7 @@ const en = {
       },
       {
         title: "Drinks (Click & Collect)",
-        body: "A flat 3% service fee on every pre-ordered round, paid by the customer. You receive 100% of the menu price — pre-ordering is a guest-side perk that cuts your queue without costing you anything.",
+        body: "A flat 3% service fee on every pre-ordered round, paid by the customer. You receive 100% of the menu price, less standard Stripe processing — pre-ordering is a guest-side perk that cuts your queue.",
       },
       {
         title: "VIP tables",
@@ -245,7 +245,7 @@ const en = {
       },
       {
         title: "Promoter attribution",
-        body: "Commissions you've configured (fixed or %) are deducted from the venue's net share and paid directly to the promoter.",
+        body: "Commissions you've configured (fixed or %) are tracked against the venue's net share, so the club can settle up with the promoter.",
       },
     ],
   },
@@ -436,7 +436,7 @@ const fr: PricingContent = {
     feeIntroC: ". Le calculateur de frais ci-dessous montre ce que vos participants paient par achat.",
     noCutBold: "Yuno ne prend aucune part de vos revenus.",
     noCutBody:
-      "Les 4 % de frais de service sont réglés par vos clients au moment du paiement — comme des frais de carte bancaire. Vous conservez 100 % du prix de votre billet.",
+      "Les 4 % de frais de service sont réglés par vos clients au moment du paiement — comme des frais de carte bancaire. Vous conservez 100 % du prix de votre billet. Seuls les frais de traitement Stripe habituels s'appliquent.",
     noCutCompare: "Comparez cela aux 10 % de Shotgun prélevés directement sur votre versement.",
     savingsEyebrow: "vs. Shotgun · Weezevent · Xceed · DICE",
     savingsTitle: "La plateforme de billetterie la moins chère pour la nuit — de loin",
@@ -445,7 +445,7 @@ const fr: PricingContent = {
     serviceFeeEyebrow: "Les chiffres en clair",
     serviceFeeTitle: "Ce que vos clients paient réellement en frais",
     serviceFeeSub:
-      "Déplacez les curseurs. Chaque frais de service est réglé par le client au moment du paiement — jamais par vous. Vous conservez 100 % de vos prix de menu et de billet.",
+      "Déplacez les curseurs. Chaque frais de service est réglé par le client au moment du paiement — jamais par vous. Vous conservez 100 % de vos prix de menu et de billet. Les frais de traitement Stripe habituels s'appliquent tout de même.",
     founding: {
       badge: "Premiers adoptants — 15 places seulement",
       title: "Offre Club Fondateur",
@@ -479,7 +479,7 @@ const fr: PricingContent = {
       },
       {
         title: "Boissons (Click & Collect)",
-        body: "Un frais de service forfaitaire de 3 % sur chaque tournée précommandée, réglé par le client. Vous recevez 100 % du prix du menu — la précommande est un avantage côté client qui réduit votre file d'attente sans rien vous coûter.",
+        body: "Un frais de service forfaitaire de 3 % sur chaque tournée précommandée, réglé par le client. Vous recevez 100 % du prix du menu, hors frais de traitement Stripe habituels — la précommande est un avantage côté client qui réduit votre file d'attente.",
       },
       {
         title: "Tables VIP",
@@ -487,7 +487,7 @@ const fr: PricingContent = {
       },
       {
         title: "Attribution promoteurs",
-        body: "Les commissions que vous avez configurées (fixes ou %) sont déduites de la part nette du club et versées directement au promoteur.",
+        body: "Les commissions que vous avez configurées (fixes ou %) sont suivies sur la part nette du club, pour que le club règle directement le promoteur.",
       },
     ],
   },

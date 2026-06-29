@@ -21,9 +21,10 @@ const en = {
     sub: "Every night ends with a spreadsheet. Promoter payments, bar splits, guest list reconciliation — hours of work after a night that already ran on adrenaline. Yuno closes the loop automatically, so your next morning starts with a bank transfer, not a calculator.",
     ctaPrimary: "Start free",
     ctaSecondary: "Watch product tour",
+    fineprint: "You keep your full ticket price. Only standard Stripe processing fees apply.",
   },
   logoCloud: {
-    label: "Already trusted by venues like",
+    label: "In partnership with venues like",
   },
   comparison: {
     eyebrow: "Industry reality check",
@@ -37,7 +38,7 @@ const en = {
       { label: "Ticket commission", shotgun: "10% — paid by you", yuno: "0% — paid by the customer" },
       { label: "200 tickets at €20", shotgun: "You lose €400", yuno: "You receive €4,000", highlight: true },
       { label: "Bank transfer fees", shotgun: "+3%", yuno: "Included" },
-      { label: "Funds recovery", shotgun: "72h after the event", yuno: "Automatic at checkout" },
+      { label: "Funds recovery", shotgun: "72h after the event", yuno: "2 days after, fee-free" },
       { label: "Bar, floor plan, CRM", shotgun: false, yuno: true },
     ] as ComparisonRow[],
     footerA: "Over a 20-night season:",
@@ -52,8 +53,8 @@ const en = {
       {
         icon: "Banknote",
         title: "Automatic revenue splits",
-        body: "At closing, every party gets paid. Club, organizer, promoters — each to their own Stripe account, automatically. No Excel, no Venmo, no \"I'll sort it tomorrow.\"",
-        tag: "The only nightlife platform with multi-party Stripe Connect splits.",
+        body: "Two days after the night, the club and organizer are settled to their own Stripe accounts — fee-free, with a window to handle any refund or dispute first. Promoter commissions are tracked to the cent, so everyone knows exactly what they're owed. No Excel, no Venmo, no \"I'll sort it tomorrow.\"",
+        tag: "The only nightlife platform with automatic club-and-organizer splits.",
       },
       {
         icon: "Users",
@@ -104,7 +105,7 @@ const en = {
       bullets: [
         "Personal Linktree-style page with all your nights in one URL",
         "Per-click, per-ticket and per-table attribution — automated",
-        "IBAN payouts scheduled and traceable: pending, approved, paid",
+        "Track exactly what you're owed each night — pending, approved, paid — no chasing the club",
         "Live leaderboard and conversion analytics for your team",
       ],
     },
@@ -116,7 +117,7 @@ const en = {
       {
         tag: "Floor plan",
         title: "VIP Floor Plan Editor",
-        body: "Drag-and-drop your tables, zones and minimum spend. VIP hosts log bottles on iPad — the system flags shortfalls automatically.",
+        body: "Drag-and-drop your tables, zones and minimum spend. VIP hosts log bottles from their own phone — the system flags shortfalls automatically. No extra hardware to buy.",
       },
       {
         tag: "Bar",
@@ -136,7 +137,7 @@ const en = {
       {
         tag: "Promoters",
         title: "Promoter Attribution",
-        body: "Each promoter gets a unique link. Sales tracked live. Commission calculated automatically. Paid directly to their Stripe account after the night — zero manual work, zero disputes.",
+        body: "Each promoter gets a unique link. Sales tracked live. Commission calculated automatically — Yuno shows the club exactly what each promoter is owed, so settling up is instant and dispute-free.",
       },
       {
         tag: "Live night",
@@ -147,9 +148,9 @@ const en = {
   },
   split: {
     eyebrow: "Stripe Connect",
-    title: "Instant payouts with",
+    title: "Fee-free payouts with",
     titleEm: "automated splits",
-    body: "Every ticket sale is split at the moment the card clears — between the host venue, the organizer and the promoter who brought the sale. No month-end reconciliation, no awkward Whatsapps.",
+    body: "Two days after the night, every ticket is settled — split fee-free between the host venue and the organizer, with promoter commissions tracked to the cent. The short delay leaves room for refunds and disputes, so no one is chasing money the next morning.",
     bullets: [
       "Real-time promoter attribution",
       "Full audit trail per transaction (VAT invoice support coming)",
@@ -160,7 +161,7 @@ const en = {
     eyebrow: "For organizers — Yuno Collab",
     titleA: "Host a night anywhere.",
     titleEm: "Pay nothing.",
-    body: "Find a club already on Yuno. Create your event. Set your split. Sell tickets. The venue gets its cut automatically. You get yours. Promoters get theirs.",
+    body: "Find a club already on Yuno. Create your event. Set your split. Sell tickets. Two days after the night the venue gets its cut and you get yours, fee-free. Every promoter's commission is tracked automatically.",
     costLabel: "Your cost?",
     costValue: "Zero subscription. Ever.",
     note: "The club hosts the infrastructure. You bring the crowd. Stripe Connect handles the rest.",
@@ -189,7 +190,7 @@ const en = {
     sub: "Pick a plan that matches your venue. Switch any time.",
     calloutBold: "Yuno doesn't take a cut from your revenue.",
     calloutMuted:
-      "The 4% service fee is paid by your customers at checkout — like a credit card processing fee. You keep 100% of your ticket price.",
+      "The 4% service fee is paid by your customers at checkout — like a credit card processing fee. You keep 100% of your ticket price. Only standard Stripe processing fees apply.",
     calloutAccent: "Compare that to Shotgun's 10% taken directly from your payout.",
     compareLink: "Compare all plans",
   },
@@ -213,7 +214,7 @@ const en = {
   founderQuote: {
     eyebrow: "Why we built it",
     quote:
-      "We built Yuno because we spent too many Sunday mornings reconciling Excel sheets from the night before. There had to be a better way.",
+      "We didn't build Yuno to replace a spreadsheet — we built it to upgrade the whole night. A better experience for guests before, during and after the party, and one B2B platform built around how a club actually operates. It pulls in everyone around the venue too — organizers, DJs, promoters — into a single tool, so the whole scene benefits from the same network instead of juggling ten apps.",
     name: "Paul",
     title: "Co-founder, Yuno",
     statValue: "4h+",
@@ -257,7 +258,7 @@ const en = {
         id: "floor-plan",
         category: "features",
         title: "How does the VIP floor plan editor work?",
-        content: "Drag-and-drop tables, zones and minimum spend directly in the app. VIP hosts log bottles on iPad — the system flags shortfalls automatically and updates availability in real time.",
+        content: "Drag-and-drop tables, zones and minimum spend directly in the app. VIP hosts log bottles from their own phone — the system flags shortfalls automatically and updates availability in real time. No extra hardware required.",
       },
       {
         id: "bar-flow",
@@ -269,7 +270,7 @@ const en = {
         id: "revenue-split",
         category: "billing",
         title: "How does the revenue split with a host venue work?",
-        content: "When you onboard, both parties connect their Stripe Connect Standard accounts and agree on a split (e.g. 70/30). Every sale is split at the moment of payment — funds land in each account independently.",
+        content: "When you onboard, both parties connect their Stripe Connect Standard accounts and agree on a split (e.g. 70/30). Funds settle two days after the event, fee-free — the short delay leaves room to handle any refund or dispute before the money moves.",
       },
       {
         id: "plan-change",
@@ -281,7 +282,7 @@ const en = {
         id: "markets",
         category: "support",
         title: "Which markets do you operate in?",
-        content: "Europe-first. We currently serve venues and organizers across France, Spain, Belgium, Switzerland and the UK, and we settle payouts in EUR and GBP.",
+        content: "Europe-first. Yuno is built for venues and organizers across France, Spain, Belgium, Switzerland and the UK, and we settle payouts in EUR and GBP.",
       },
       {
         id: "bug-report",
@@ -337,9 +338,10 @@ const fr: HomeContent = {
     sub: "Chaque nuit se termine par un tableur. Paiements des promoteurs, répartition du bar, réconciliation de la liste d'invités — des heures de travail après une nuit déjà menée à l'adrénaline. Yuno boucle la boucle automatiquement, pour que votre matin commence par un virement, pas par une calculatrice.",
     ctaPrimary: "Commencer gratuitement",
     ctaSecondary: "Voir la démo produit",
+    fineprint: "Vous gardez l'intégralité du prix de votre billet. Seuls les frais de traitement Stripe habituels s'appliquent.",
   },
   logoCloud: {
-    label: "Déjà adoptée par des établissements comme",
+    label: "En partenariat avec des établissements comme",
   },
   comparison: {
     eyebrow: "Le vrai coût du secteur",
@@ -353,7 +355,7 @@ const fr: HomeContent = {
       { label: "Commission par billet", shotgun: "10 % — payés par vous", yuno: "0 % — payés par le client" },
       { label: "200 billets à 20 €", shotgun: "Vous perdez 400 €", yuno: "Vous recevez 4 000 €", highlight: true },
       { label: "Frais de virement", shotgun: "+3 %", yuno: "Inclus" },
-      { label: "Récupération des fonds", shotgun: "72 h après l'événement", yuno: "Automatique au paiement" },
+      { label: "Récupération des fonds", shotgun: "72 h après l'événement", yuno: "2 jours après, sans frais" },
       { label: "Bar, plan de salle, CRM", shotgun: false, yuno: true },
     ],
     footerA: "Sur une saison de 20 soirées :",
@@ -368,8 +370,8 @@ const fr: HomeContent = {
       {
         icon: "Banknote",
         title: "Répartition automatique des revenus",
-        body: "À la fermeture, chaque partie est payée. Club, organisateur, promoteurs — chacun sur son propre compte Stripe, automatiquement. Pas d'Excel, pas de Lydia, pas de « je règle ça demain ».",
-        tag: "La seule plateforme de vie nocturne avec répartition multi-parties via Stripe Connect.",
+        body: "Deux jours après la soirée, le club et l'organisateur sont réglés sur leur propre compte Stripe — sans frais, avec le temps de gérer d'abord un éventuel remboursement ou litige. Les commissions des promoteurs sont suivies au centime près, pour que chacun sache exactement ce qui lui revient. Pas d'Excel, pas de Lydia, pas de « je règle ça demain ».",
+        tag: "La seule plateforme de vie nocturne avec répartition automatique entre club et organisateur.",
       },
       {
         icon: "Users",
@@ -420,7 +422,7 @@ const fr: HomeContent = {
       bullets: [
         "Page personnelle façon Linktree avec toutes vos soirées dans une seule URL",
         "Attribution par clic, par billet et par table — automatisée",
-        "Versements IBAN planifiés et traçables : en attente, approuvé, payé",
+        "Suivez exactement ce qui vous revient chaque soirée — en attente, approuvé, payé — sans courir après le club",
         "Classement en direct et analyses de conversion pour votre équipe",
       ],
     },
@@ -432,7 +434,7 @@ const fr: HomeContent = {
       {
         tag: "Plan de salle",
         title: "Éditeur de plan de salle VIP",
-        body: "Glissez-déposez vos tables, zones et minimum de consommation. Les hôtes VIP enregistrent les bouteilles sur iPad — le système signale automatiquement les manques.",
+        body: "Glissez-déposez vos tables, zones et minimum de consommation. Les hôtes VIP enregistrent les bouteilles depuis leur propre téléphone — le système signale automatiquement les manques. Aucun matériel à acheter.",
       },
       {
         tag: "Bar",
@@ -452,7 +454,7 @@ const fr: HomeContent = {
       {
         tag: "Promoteurs",
         title: "Attribution des promoteurs",
-        body: "Chaque promoteur reçoit un lien unique. Ventes suivies en direct. Commission calculée automatiquement. Versée directement sur son compte Stripe après la soirée — zéro travail manuel, zéro litige.",
+        body: "Chaque promoteur reçoit un lien unique. Ventes suivies en direct. Commission calculée automatiquement — Yuno montre au club exactement ce qu'il doit à chaque promoteur, pour un règlement immédiat et sans litige.",
       },
       {
         tag: "Live night",
@@ -463,9 +465,9 @@ const fr: HomeContent = {
   },
   split: {
     eyebrow: "Stripe Connect",
-    title: "Versements instantanés avec",
+    title: "Versements sans frais avec",
     titleEm: "répartition automatique",
-    body: "Chaque vente de billet est répartie au moment où la carte est validée — entre l'établissement hôte, l'organisateur et le promoteur à l'origine de la vente. Pas de réconciliation en fin de mois, pas de WhatsApp gênants.",
+    body: "Deux jours après la soirée, chaque billet est réglé — réparti sans frais entre l'établissement hôte et l'organisateur, avec les commissions des promoteurs suivies au centime près. Ce court délai laisse le temps de gérer remboursements et litiges, pour que personne ne coure après son argent le lendemain.",
     bullets: [
       "Attribution des promoteurs en temps réel",
       "Piste d'audit complète par transaction (facturation TVA bientôt disponible)",
@@ -476,7 +478,7 @@ const fr: HomeContent = {
     eyebrow: "Pour les organisateurs — Yuno Collab",
     titleA: "Organisez une soirée n'importe où.",
     titleEm: "Ne payez rien.",
-    body: "Trouvez un club déjà sur Yuno. Créez votre événement. Définissez votre répartition. Vendez vos billets. L'établissement reçoit sa part automatiquement. Vous recevez la vôtre. Les promoteurs reçoivent la leur.",
+    body: "Trouvez un club déjà sur Yuno. Créez votre événement. Définissez votre répartition. Vendez vos billets. Deux jours après la soirée, l'établissement reçoit sa part et vous la vôtre, sans frais. La commission de chaque promoteur est suivie automatiquement.",
     costLabel: "Votre coût ?",
     costValue: "Zéro abonnement. Jamais.",
     note: "Le club héberge l'infrastructure. Vous amenez la foule. Stripe Connect gère le reste.",
@@ -505,7 +507,7 @@ const fr: HomeContent = {
     sub: "Choisissez une formule adaptée à votre établissement. Changez à tout moment.",
     calloutBold: "Yuno ne prend aucune part sur vos revenus.",
     calloutMuted:
-      "Les 4 % de frais de service sont payés par vos clients au paiement — comme des frais de traitement de carte. Vous gardez 100 % du prix de votre billet.",
+      "Les 4 % de frais de service sont payés par vos clients au paiement — comme des frais de traitement de carte. Vous gardez 100 % du prix de votre billet. Seuls les frais de traitement Stripe habituels s'appliquent.",
     calloutAccent: "Comparez avec les 10 % de Shotgun prélevés directement sur votre versement.",
     compareLink: "Comparer tous les plans",
   },
@@ -529,7 +531,7 @@ const fr: HomeContent = {
   founderQuote: {
     eyebrow: "Pourquoi nous l'avons créé",
     quote:
-      "Nous avons créé Yuno parce que nous avons passé trop de dimanches matin à réconcilier des feuilles Excel de la veille. Il devait y avoir une meilleure façon de faire.",
+      "Nous n'avons pas créé Yuno pour remplacer un tableur — nous l'avons créé pour améliorer toute la soirée. Une meilleure expérience pour les clients avant, pendant et après la fête, et une plateforme B2B pensée autour du fonctionnement réel d'un club. Elle réunit aussi tous ceux qui gravitent autour de l'établissement — organisateurs, DJs, promoteurs — dans un seul outil, pour que toute la scène profite du même réseau au lieu de jongler avec dix applications.",
     name: "Paul",
     title: "Co-fondateur, Yuno",
     statValue: "4h+",
@@ -573,7 +575,7 @@ const fr: HomeContent = {
         id: "floor-plan",
         category: "features",
         title: "Comment fonctionne l'éditeur de plan de salle VIP ?",
-        content: "Glissez-déposez tables, zones et minimum de consommation directement dans l'application. Les hôtes VIP enregistrent les bouteilles sur iPad — le système signale automatiquement les manques et met à jour la disponibilité en temps réel.",
+        content: "Glissez-déposez tables, zones et minimum de consommation directement dans l'application. Les hôtes VIP enregistrent les bouteilles depuis leur propre téléphone — le système signale automatiquement les manques et met à jour la disponibilité en temps réel. Aucun matériel supplémentaire requis.",
       },
       {
         id: "bar-flow",
@@ -585,7 +587,7 @@ const fr: HomeContent = {
         id: "revenue-split",
         category: "billing",
         title: "Comment fonctionne la répartition des revenus avec un établissement hôte ?",
-        content: "À l'onboarding, les deux parties connectent leurs comptes Stripe Connect Standard et conviennent d'une répartition (ex. 70/30). Chaque vente est répartie au moment du paiement — les fonds arrivent sur chaque compte indépendamment.",
+        content: "À l'onboarding, les deux parties connectent leurs comptes Stripe Connect Standard et conviennent d'une répartition (ex. 70/30). Les fonds sont réglés deux jours après l'événement, sans frais — ce court délai laisse le temps de gérer un éventuel remboursement ou litige avant que l'argent ne parte.",
       },
       {
         id: "plan-change",
@@ -597,7 +599,7 @@ const fr: HomeContent = {
         id: "markets",
         category: "support",
         title: "Dans quels marchés opérez-vous ?",
-        content: "L'Europe d'abord. Nous servons aujourd'hui des établissements et organisateurs en France, Espagne, Belgique, Suisse et au Royaume-Uni, et nous réglons les versements en EUR et GBP.",
+        content: "L'Europe d'abord. Yuno est conçu pour les établissements et organisateurs en France, Espagne, Belgique, Suisse et au Royaume-Uni, et nous réglons les versements en EUR et GBP.",
       },
       {
         id: "bug-report",

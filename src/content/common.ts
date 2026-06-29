@@ -32,7 +32,7 @@ const en = {
   },
   banner: {
     label: "Founding Club Offer",
-    rest: " — 9 of 15 spots remaining. 3 months free, no credit card.",
+    rest: " — 15 founding spots open. 3 months free, no credit card.",
     cta: "Claim your spot",
   },
   footer: {
@@ -111,7 +111,7 @@ const fr: CommonContent = {
   },
   banner: {
     label: "Offre Club Fondateur",
-    rest: " — 9 places sur 15 restantes. 3 mois offerts, sans carte bancaire.",
+    rest: " — 15 places fondatrices ouvertes. 3 mois offerts, sans carte bancaire.",
     cta: "Réserver ma place",
   },
   footer: {

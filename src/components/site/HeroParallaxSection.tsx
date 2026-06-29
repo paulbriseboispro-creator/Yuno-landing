@@ -65,6 +65,9 @@ function ParallaxHeader() {
           {t.hero.ctaSecondary}
         </a>
       </div>
+      <p className="mt-4 text-xs text-muted-foreground/80 max-w-md text-pretty">
+        {t.hero.fineprint}
+      </p>
     </div>
   );
 }
