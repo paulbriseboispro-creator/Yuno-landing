@@ -20,10 +20,6 @@ import { BdePhoneParallax } from "@/components/site/BdePhoneParallax";
 import { ThreeDMarquee } from "@/components/ui/3d-marquee";
 import { useBde } from "@/content/bde";
 
-import eventFlyer from "@/assets/bde/event-flyer.png";
-import soldout from "@/assets/bde/soldout.png";
-import agenda from "@/assets/bde/agenda.png";
-import guestlist from "@/assets/bde/guestlist.png";
 import tickets from "@/assets/bde/tickets.png";
 
 // Landscape organizer dashboards (the BDE Yuno back-office) for the wall further down.
@@ -40,16 +36,14 @@ const QUICK_ICONS: Record<string, LucideIcon> = {
   sparkles: Sparkles,
 };
 
-// One wall of the whole product — every BDE Yuno screen, public and back-office.
-// Dashboards and public designs alternate so each tile differs from its
-// neighbour and all eleven screens show up rather than the same few on repeat.
-const ALL_SCREENS = [
-  dashDashboard, guestlist, dashAnalytics, eventFlyer,
-  dashEvents, soldout, dashOrders, agenda,
-  dashClients, tickets, dashProfile, guestlist,
-  dashDashboard, eventFlyer, dashAnalytics, soldout,
-  dashEvents, agenda, dashOrders, tickets,
-  dashClients, guestlist, dashProfile, eventFlyer,
+// The back-office wall — only the BDE Yuno organizer dashboards, the same six
+// screens that lead the hero. Distributed so all six show across the four
+// columns rather than the same one or two on repeat.
+const DASHBOARD_SCREENS = [
+  dashDashboard, dashAnalytics, dashEvents, dashOrders, dashClients,
+  dashProfile, dashDashboard, dashOrders, dashAnalytics, dashEvents,
+  dashClients, dashProfile, dashDashboard, dashAnalytics, dashOrders,
+  dashEvents, dashClients, dashProfile, dashAnalytics, dashDashboard,
 ];
 
 // A single comparison cell: yes/no check or a piece of text. `accent` styles the
@@ -321,7 +315,7 @@ export function BdePage() {
         </div>
       </section>
 
-      {/* 3D marquee — the whole product, public designs and back-office together */}
+      {/* 3D marquee — the BDE Yuno organizer dashboards (same screens as the hero) */}
       <section className="border-t border-border px-6 py-16">
         <div className="mx-auto max-w-7xl">
           <Reveal className="mx-auto mb-10 max-w-3xl text-center">
@@ -335,7 +329,7 @@ export function BdePage() {
           </Reveal>
           <Reveal>
             <div className="relative mx-auto max-w-7xl rounded-3xl bg-surface/40 p-2 ring-1 ring-border">
-              <ThreeDMarquee images={ALL_SCREENS} aspectClassName="aspect-square" driftY={150} />
+              <ThreeDMarquee images={DASHBOARD_SCREENS} driftY={150} />
             </div>
           </Reveal>
         </div>

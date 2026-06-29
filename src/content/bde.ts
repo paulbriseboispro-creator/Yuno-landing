@@ -116,11 +116,11 @@ export const bde = {
     ],
   },
 
-  // 3D marquee — the whole product: public designs and organizer back-office.
+  // 3D marquee — the BDE Yuno organizer dashboards (the hero screens).
   marquee: {
-    eyebrow: "Tout l'univers Yuno",
-    title: "Du flyer de soirée jusqu'au tableau de bord.",
-    sub: "Pages d'événement, guest lists et billetterie côté invités ; commandes, clients et recettes côté BDE. Un seul produit, pensé pour la nuit.",
+    eyebrow: "Le back-office BDE Yuno",
+    title: "Toute votre soirée se pilote depuis un seul écran.",
+    sub: "Recettes, billets vendus, entrées, commandes, clients : chaque tableau de bord est suivi en direct, du premier billet jusqu'à la fermeture.",
   },
 
   comparison: {
