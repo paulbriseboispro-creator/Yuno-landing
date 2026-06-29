@@ -39,6 +39,11 @@ export function PricingGrid({ showFees = true }: { showFees?: boolean }) {
                 </PricingCard.MainPrice>
                 <PricingCard.Period>{p.suffix}</PricingCard.Period>
               </PricingCard.Price>
+              {p.annual && !p.comingSoon && (
+                <p className="mb-3 text-[11px] font-medium text-accent">
+                  {p.annual}
+                </p>
+              )}
               {p.comingSoon ? (
                 <div
                   aria-disabled="true"
@@ -87,7 +92,10 @@ export function PricingGrid({ showFees = true }: { showFees?: boolean }) {
         ))}
       </div>
       {showFees && (
-        <p className="text-center text-xs text-muted-foreground mt-8">{t.fees}</p>
+        <div className="mt-8 space-y-2 text-center text-xs text-muted-foreground">
+          <p className="text-foreground/80">{t.annualLine}</p>
+          <p>{t.fees}</p>
+        </div>
       )}
     </>
   );

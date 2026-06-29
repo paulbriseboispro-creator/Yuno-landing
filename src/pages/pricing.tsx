@@ -49,6 +49,26 @@ export function PricingPage() {
             </div>
           </Reveal>
           <PricingGrid />
+
+          <Reveal className="mt-12">
+            <div className="mx-auto max-w-3xl rounded-2xl bg-surface ring-1 ring-border p-6 md:p-8">
+              <span className="text-xs font-medium uppercase tracking-[0.18em] text-accent">
+                {p.organizerFree.eyebrow}
+              </span>
+              <h2 className="mt-3 text-2xl md:text-3xl font-medium tracking-tight text-balance max-w-[28ch]">
+                {p.organizerFree.title}
+              </h2>
+              <p className="mt-3 text-sm text-muted-foreground text-pretty">
+                {p.organizerFree.body}
+              </p>
+              <Link
+                to="/organizers"
+                className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
+              >
+                {p.organizerFree.cta} <ArrowRight className="size-4" />
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
