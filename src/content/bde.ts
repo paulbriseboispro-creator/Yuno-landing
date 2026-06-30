@@ -11,7 +11,11 @@
 //   - Service fee is paid by the customer: 4% on tickets/tables (BDE floor 0,49 €
 //     instead of 0,99 €), 3% on drinks. Shown before payment.
 //   - BDE events are PRIVATE by default — link-only, never in public search.
-//   - Money settles via Stripe Connect ~2 days after the night, fee-free.
+//   - Default (no club partner): the transfer is automatic, per sale — money
+//     lands on the BDE's Stripe account at each ticket sold, no waiting.
+//   - Collab mode: a BDE running a night INSIDE a club connects that club to the
+//     event (tickets, drinks, tables) so the venue gets access to the night's
+//     data and runs it alongside the BDE with Yuno's tools.
 // Pre-launch: no copy implying existing traction.
 
 export const bde = {
@@ -94,8 +98,23 @@ export const bde = {
 
   payout: {
     tag: "Votre argent",
-    title: "Versé deux jours après la soirée, sans frais.",
-    body: "L'argent des ventes arrive sur le compte Stripe de votre BDE deux jours après l'événement, sans frais. Ce court délai laisse le temps de gérer un éventuel remboursement avant le versement. Tout est tracé, au centime près.",
+    title: "Versé automatiquement, à chaque vente.",
+    body: "Pas d'attente : en général, dès qu'un billet est vendu, l'argent part directement sur le compte Stripe de votre BDE, sans frais Yuno. C'est le fonctionnement par défaut, quand vous organisez seuls. Tout est tracé, au centime près. Pour une soirée montée dans un club, le mode collab prend le relais (juste en dessous).",
+  },
+
+  // Collab mode — a BDE running a night inside a club connects that venue to the
+  // event so the club shares the night's data and runs it with Yuno's tools.
+  // Framed as the exception to the default (solo BDE, paid per sale).
+  collab: {
+    tag: "Mode collab",
+    title: "Une soirée dans un club ? Connectez-le, gardez la main.",
+    body: "Par défaut, votre BDE organise en solo et touche l'argent à chaque vente. Pour une soirée montée dans un club — billets, boissons et tables — passez en mode collab : vous connectez l'établissement à votre soirée pour la piloter à deux, sans perdre le contrôle.",
+    bullets: [
+      "Le mode collab s'active uniquement quand vous organisez dans un club",
+      "Le club accède aux données de la soirée : ventes, entrées, tables, conso",
+      "Billets, boissons et tables gérés au même endroit, par les deux équipes",
+      "Les outils Yuno côté club pour fluidifier la nuit et soigner l'expérience étudiante",
+    ],
   },
 
   // Showcase pairing the real ticket-selection UI with feature callouts —
@@ -141,7 +160,7 @@ export const bde = {
       { label: "Tables VIP & carrés", a: false, b: true },
       { label: "Contrôle d'accès à l'entrée", a: "QR basique", b: "App multi-scanneurs, PIN, live" },
       { label: "Statistiques en direct", a: false, b: true },
-      { label: "Versement", a: "Virement", b: "Stripe Connect, 2 j après" },
+      { label: "Versement", a: "Virement", b: "Automatique, à chaque vente" },
       { label: "Frais côté client", a: "Contribution « volontaire »", b: "4 % transparent, dès 0,49 €" },
     ] as { label: string; a: string | boolean; b: string | boolean; highlight?: boolean }[],
     footer:
@@ -192,7 +211,11 @@ export const bde = {
       },
       {
         q: "Comment et quand sommes-nous payés ?",
-        a: "L'argent arrive sur le compte Stripe de votre BDE deux jours après la soirée, sans frais. Ce délai couvre les éventuels remboursements. Chaque vente est tracée au centime.",
+        a: "En général, le versement est automatique : à chaque vente, l'argent part directement sur le compte Stripe de votre BDE, sans frais Yuno. Chaque transaction est tracée au centime. C'est le fonctionnement par défaut, quand votre BDE organise en solo.",
+      },
+      {
+        q: "On veut organiser une soirée dans un club, c'est possible ?",
+        a: "Oui, c'est le mode collab. Vous connectez le club à votre soirée : billets, boissons et tables au même endroit, et l'établissement accède aux données de la nuit pour la gérer avec vous, grâce aux outils Yuno. Le reste du temps, votre BDE organise seul et touche l'argent à chaque vente.",
       },
       {
         q: "On utilise déjà HelloAsso, pourquoi changer ?",

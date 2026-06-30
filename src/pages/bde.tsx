@@ -6,6 +6,7 @@ import {
   Gift,
   Lock,
   Sparkles,
+  Users,
   X,
   type LucideIcon,
 } from "lucide-react";
@@ -238,6 +239,33 @@ export function BdePage() {
                 <p className="mt-4 max-w-[60ch] text-pretty text-muted-foreground">{t.payout.body}</p>
               </div>
             </article>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Collab mode — connect a club for in-venue nights */}
+      <section id="collab" className="scroll-mt-24 border-t border-border px-6 py-16">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2">
+          <Reveal delay={0.12} className="order-2 md:order-1">
+            <ul className="space-y-3 rounded-3xl bg-surface p-6 ring-1 ring-border md:p-8">
+              {t.collab.bullets.map((b) => (
+                <li key={b} className="flex items-start gap-3 text-sm md:text-base">
+                  <span className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
+                    <Users className="size-3" strokeWidth={2} />
+                  </span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+          <Reveal className="order-1 md:order-2">
+            <span className="inline-block rounded-full border border-accent/40 px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.18em] text-accent">
+              {t.collab.tag}
+            </span>
+            <h2 className="mt-3 text-balance text-3xl font-medium tracking-tight md:text-4xl">
+              {t.collab.title}
+            </h2>
+            <p className="mt-4 max-w-[52ch] text-pretty text-muted-foreground">{t.collab.body}</p>
           </Reveal>
         </div>
       </section>
