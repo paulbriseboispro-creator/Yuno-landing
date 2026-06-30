@@ -1,10 +1,10 @@
-import { Link } from "@tanstack/react-router";
+import { useState } from "react";
 import {
-  ArrowRight,
   ArrowUpRight,
   BarChart3,
   Check,
   CheckCircle2,
+  ChevronDown,
   CreditCard,
   Gift,
   Layers,
@@ -23,8 +23,12 @@ import {
 } from "@/components/ui/accordion";
 import { Reveal } from "@/components/site/Reveal";
 import { RolePhoneParallax } from "@/components/site/RolePhoneParallax";
+import { PainChips } from "@/components/site/PainChips";
+import { NeedsModal } from "@/components/site/NeedsModal";
+import { RdvButtons } from "@/components/site/RdvButtons";
 import { ThreeDMarquee } from "@/components/ui/3d-marquee";
-import type { RoleImages, RoleLandingContent } from "@/content/role-landing";
+import { useLocale } from "@/i18n/locale";
+import type { RoleImages, RoleLandingContent, RolePain } from "@/content/role-landing";
 
 const QUICK_ICONS: Record<string, LucideIcon> = {
   gift: Gift,
@@ -66,22 +70,132 @@ function CompareValue({
   return <span className={cls}>{value}</span>;
 }
 
+// The hoisted "focus" proof block for the active pain: grounded copy + a real
+// screenshot (optionally a second one as an overlapping inset), shown right under
+// the hero so the visitor's pain is answered first.
+function PainFocus({
+  pain,
+  image,
+  altImage,
+}: {
+  pain: RolePain;
+  image?: string;
+  altImage?: string;
+}) {
+  return (
+    <section id="besoin" className="scroll-mt-24 px-6 pt-6 pb-4">
+      <div className="mx-auto max-w-6xl">
+        <Reveal>
+          <article className="grid items-center gap-8 overflow-hidden rounded-3xl bg-surface p-6 ring-1 ring-accent/30 md:grid-cols-2 md:p-10">
+            <div>
+              <span className="mb-4 inline-block rounded-full border border-accent/40 px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.18em] text-accent">
+                {pain.focus.tag}
+              </span>
+              <h2 className="text-balance text-2xl font-medium tracking-tight md:text-3xl">
+                {pain.focus.title}
+              </h2>
+              <p className="mt-4 max-w-[52ch] text-pretty text-muted-foreground">{pain.focus.body}</p>
+              <ul className="mt-6 space-y-3">
+                {pain.focus.bullets.map((b) => (
+                  <li key={b} className="flex items-start gap-3 text-sm md:text-base">
+                    <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-accent" strokeWidth={1.75} />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+              {pain.focus.caveat && (
+                <p className="mt-5 text-xs italic text-muted-foreground">{pain.focus.caveat}</p>
+              )}
+            </div>
+            {image && (
+              <div className={`relative ${altImage ? "md:pb-10 md:pr-8" : ""}`}>
+                <div className="pointer-events-none absolute -inset-4 rounded-3xl bg-accent/10 blur-3xl" />
+                <img
+                  src={image}
+                  alt={pain.focus.title}
+                  loading="lazy"
+                  className="relative w-full rounded-2xl object-cover object-top ring-1 ring-border shadow-2xl shadow-black/40"
+                />
+                {altImage && (
+                  <img
+                    src={altImage}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    className="absolute -bottom-1 -right-1 hidden w-2/5 rounded-xl object-cover object-top ring-1 ring-border shadow-2xl shadow-black/60 md:block"
+                  />
+                )}
+              </div>
+            )}
+          </article>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 // The bilingual, indexed twin of BdePage: same section skeleton, content + images
-// injected per role. Used by /clubs (Owner de club) and /organizers (Orga).
+// injected per role. Used by /clubs (Owner de club) and /organizers (Orga). When
+// the content carries `pains`, the landing becomes needs-driven: the active
+// ?besoin= re-leads the hero, renders the PainChips selector, and hoists that
+// pain's grounded proof block above the standard sections.
 export function RoleLanding({
   content: t,
   images,
+  role,
+  besoin,
 }: {
   content: RoleLandingContent;
   images: RoleImages;
+  role: "club" | "orga";
+  besoin?: string;
 }) {
+  const locale = useLocale();
+  const segment = role === "club" ? "club" : "organizer";
+  const basePath = role === "club" ? "/clubs" : "/organizers";
+
+  // Resolve the active pain: the ?besoin= one, else the page default.
+  const activePain =
+    t.pains?.find((p) => p.id === besoin) ??
+    t.pains?.find((p) => p.id === t.defaultPainId) ??
+    undefined;
+  const activeId = activePain?.id ?? "";
+
+  // When a pain is active, lead the hero with its copy but keep the page's CTAs.
+  const heroForRender = activePain ? { ...t.hero, ...activePain.hero } : t.hero;
+  const ctaSegment = segment as "club" | "organizer";
+  const chipsLabel = locale === "fr" ? "Quel est votre principal casse-tête ?" : "What's your main headache?";
+  const showcaseCaps =
+    locale === "fr"
+      ? ["Billets & liste d'invités", "Tables VIP & plan de salle"]
+      : ["Tickets & guest list", "VIP tables & floor plan"];
+  const [showAll, setShowAll] = useState(false);
+  const seeAllLabel = locale === "fr" ? "Voir tout ce que Yuno fait" : "See everything Yuno does";
+  const hideAllLabel = locale === "fr" ? "Réduire" : "Show less";
+
   return (
     <>
+      {t.pains && t.pains.length > 0 && (
+        <NeedsModal pains={t.pains} basePath={basePath} hasBesoin={!!besoin} />
+      )}
+
       {/* Hero — scroll parallax of the role's product screens */}
       <RolePhoneParallax
-        products={images.parallax.map((p) => ({ ...p, link: "#offre" }))}
-        hero={t.hero}
+        products={images.parallax.map((p) => ({ ...p, link: "#besoin" }))}
+        hero={heroForRender}
       />
+
+      {/* Needs selector + hoisted proof block for the active pain */}
+      {t.pains && t.pains.length > 0 && (
+        <PainChips pains={t.pains} active={activeId} basePath={basePath} label={chipsLabel} />
+      )}
+      {activePain && (
+        <PainFocus
+          pain={activePain}
+          image={images.painImages?.[activePain.id]}
+          altImage={images.painImagesAlt?.[activePain.id]}
+        />
+      )}
 
       {/* Quick points */}
       <section className="px-6 pb-4">
@@ -134,6 +248,24 @@ export function RoleLanding({
         </div>
       </section>
 
+      {/* Everything else Yuno does — collapsed by default so the page stays
+          focused on the visitor's one pain instead of dumping the full catalogue. */}
+      <section className="px-6 pt-6 pb-2">
+        <div className="mx-auto max-w-5xl text-center">
+          <button
+            type="button"
+            onClick={() => setShowAll((v) => !v)}
+            aria-expanded={showAll}
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:border-accent/40 hover:text-foreground"
+          >
+            {showAll ? hideAllLabel : seeAllLabel}
+            <ChevronDown className={`size-4 transition-transform ${showAll ? "rotate-180" : ""}`} />
+          </button>
+        </div>
+      </section>
+
+      {showAll && (
+        <>
       {/* Audience / first capability */}
       <section id="audience" className="scroll-mt-24 border-t border-border px-6 py-16">
         <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2">
@@ -196,20 +328,40 @@ export function RoleLanding({
             )}
           </Reveal>
 
-          {/* Phone frame */}
+          {/* Phone showcase — one screen, or two staggered device cards when the
+              page splits tickets/guest and VIP tables across separate screens. */}
           <Reveal delay={0.12} className="order-1 flex justify-center md:order-2">
-            <div className="group relative w-[15rem] shrink-0 sm:w-[16rem]">
-              <div className="pointer-events-none absolute -inset-6 rounded-[3rem] bg-accent/10 blur-3xl" />
-              <div className="relative overflow-hidden rounded-[2.2rem] border-[6px] border-zinc-800 bg-zinc-900 shadow-2xl ring-1 ring-white/10">
-                <img
-                  src={images.showcase}
-                  alt={t.showcase.imageAlt}
-                  className="h-[34rem] w-full object-cover object-top"
-                  loading="lazy"
-                />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-surface to-transparent" />
+            {images.showcaseAlt ? (
+              <div className="flex items-start justify-center gap-3 sm:gap-5">
+                {[
+                  { src: images.showcase, cap: showcaseCaps[0], offset: "" },
+                  { src: images.showcaseAlt, cap: showcaseCaps[1], offset: "mt-6 sm:mt-10" },
+                ].map(({ src, cap, offset }) => (
+                  <figure key={cap} className={`relative w-[9.5rem] shrink-0 sm:w-[11.5rem] ${offset}`}>
+                    <div className="pointer-events-none absolute -inset-4 rounded-[2.5rem] bg-accent/10 blur-3xl" />
+                    <div className="relative overflow-hidden rounded-[1.7rem] border-[5px] border-zinc-800 bg-zinc-900 shadow-2xl ring-1 ring-white/10">
+                      <img src={src} alt={cap} className="block w-full" loading="lazy" />
+                    </div>
+                    <figcaption className="mt-3 text-center text-xs text-muted-foreground">
+                      {cap}
+                    </figcaption>
+                  </figure>
+                ))}
               </div>
-            </div>
+            ) : (
+              <div className="group relative w-[15rem] shrink-0 sm:w-[16rem]">
+                <div className="pointer-events-none absolute -inset-6 rounded-[3rem] bg-accent/10 blur-3xl" />
+                <div className="relative overflow-hidden rounded-[2.2rem] border-[6px] border-zinc-800 bg-zinc-900 shadow-2xl ring-1 ring-white/10">
+                  <img
+                    src={images.showcase}
+                    alt={t.showcase.imageAlt}
+                    className="h-[34rem] w-full object-cover object-top"
+                    loading="lazy"
+                  />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-surface to-transparent" />
+                </div>
+              </div>
+            )}
           </Reveal>
         </div>
       </section>
@@ -386,6 +538,8 @@ export function RoleLanding({
           </Reveal>
         </div>
       </section>
+        </>
+      )}
 
       {/* How it works */}
       <section id="comment" className="scroll-mt-24 border-t border-border px-6 py-16">
@@ -456,12 +610,11 @@ export function RoleLanding({
                   {t.cta.body}
                 </p>
                 <div className="mt-8 flex justify-center">
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-                  >
-                    {t.cta.button} <ArrowRight className="size-4" />
-                  </Link>
+                  <RdvButtons
+                    segment={ctaSegment}
+                    besoin={activeId || undefined}
+                    formLabel={t.cta.button}
+                  />
                 </div>
                 {t.cta.note && <p className="mt-5 text-xs text-muted-foreground">{t.cta.note}</p>}
               </div>

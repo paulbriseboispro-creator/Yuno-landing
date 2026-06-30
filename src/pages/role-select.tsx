@@ -80,7 +80,44 @@ export function RoleSelectPage() {
           ))}
         </div>
 
+        {/* Shared wedge band — the co-soirée auto-split, the one thing no
+            incumbent does natively. Links into either role's co-soirée pain. */}
         <Reveal delay={0.2}>
+          <article className="relative mt-4 overflow-hidden rounded-3xl bg-surface p-7 ring-1 ring-accent/40 md:mt-6 md:p-10">
+            <div className="pointer-events-none absolute -inset-x-20 -top-32 h-64 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--accent)_18%,transparent),transparent_70%)]" />
+            <div className="relative z-10">
+              <span className="inline-block rounded-full border border-accent/40 px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.18em] text-accent">
+                {t.wedge.tag}
+              </span>
+              <h2 className="mt-4 max-w-[32ch] text-balance text-2xl font-medium tracking-tight md:text-3xl">
+                {t.wedge.title}
+              </h2>
+              <p className="mt-3 max-w-[64ch] text-pretty text-sm text-muted-foreground md:text-base">
+                {t.wedge.body}
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  to="/clubs"
+                  search={{ besoin: "co-soiree" }}
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+                >
+                  {t.wedge.clubCta.label}
+                  <ArrowRight className="size-4" />
+                </Link>
+                <Link
+                  to="/organizers"
+                  search={{ besoin: "co-soiree" }}
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-background/60 px-5 py-2.5 text-sm font-medium ring-1 ring-border transition-colors hover:bg-surface"
+                >
+                  {t.wedge.orgaCta.label}
+                  <ArrowRight className="size-4" />
+                </Link>
+              </div>
+            </div>
+          </article>
+        </Reveal>
+
+        <Reveal delay={0.25}>
           <p className="mt-10 text-center text-xs text-muted-foreground">{t.footnote}</p>
         </Reveal>
       </div>

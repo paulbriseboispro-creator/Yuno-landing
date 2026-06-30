@@ -14,6 +14,33 @@
 
 export type RoleQuickPoint = { icon: string; title: string; body: string };
 export type RoleFeature = { title: string; body: string };
+
+// A single need / pain point a visitor can self-select. Picking one (via the
+// PainChips row, persisted in the ?besoin= URL param) re-leads the hero and
+// hoists a grounded "focus" proof block — its own copy + a real screenshot —
+// above the standard sections. Every pain maps to a CONFIRMED Yuno feature; the
+// copy is grounded in the app PRD/audit, never invented. Image + parallax wiring
+// is locale-independent and lives in the page component (painImages /
+// painLeadScreens, both keyed by this `id`), so the content stays purely textual.
+export type RolePain = {
+  id: string;
+  chipLabel: string;
+  hero: {
+    badge: string;
+    titleLead: string;
+    titleEmphasis: string;
+    titleRest?: string;
+    subtitle: string;
+  };
+  focus: {
+    tag: string;
+    title: string;
+    body: string;
+    bullets: string[];
+    caveat?: string;
+  };
+  contactLabel: string;
+};
 export type RoleCompareRow = {
   label: string;
   a: string | boolean;
@@ -82,6 +109,11 @@ export type RoleLandingContent = {
   steps: { tag: string; title: string; items: RoleStep[] };
   faq: { eyebrow: string; title: string; items: RoleFaqItem[] };
   cta: { title: string; body: string; button: string; note?: string };
+  // Needs-based selector. When present, the landing renders a PainChips row under
+  // the hero and adapts to the active ?besoin=. `defaultPainId` is the pain the
+  // page leads with when no param is set (the wedge).
+  pains?: RolePain[];
+  defaultPainId?: string;
 };
 
 // Images for one role landing, supplied by the page component. `parallax` needs
@@ -91,4 +123,15 @@ export type RoleImages = {
   parallax: { title: string; thumbnail: string }[];
   marquee: string[];
   showcase: string;
+  // Optional second phone capture. When supplied, the showcase renders TWO phone
+  // screens side by side (e.g. tickets + guest list, then VIP tables + floor plan)
+  // because they don't fit legibly on one. Absent → the single-phone layout.
+  showcaseAlt?: string;
+  // Real screenshots keyed by RolePain.id — the proof image for each pain's
+  // hoisted focus block. Supplied by the page component.
+  painImages?: Record<string, string>;
+  // Optional second real screenshot, shown as an overlapping inset on the focus
+  // block (md+ only) so a pain can prove two surfaces at once (e.g. VIP plan +
+  // live minimum-spend). Keyed by RolePain.id.
+  painImagesAlt?: Record<string, string>;
 };

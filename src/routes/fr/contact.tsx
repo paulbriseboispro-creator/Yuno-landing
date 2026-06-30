@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { contactContent } from "@/content/contact";
 import { pageSeo } from "@/i18n/seo";
+import { validateContactSearch } from "@/lib/search-params";
 import { ContactPage } from "@/pages/contact";
 
 export const Route = createFileRoute("/fr/contact")({
+  validateSearch: validateContactSearch,
   head: ({ match }) => {
     const m = contactContent[match.context.locale].meta;
     return pageSeo("/contact", match.context.locale, {

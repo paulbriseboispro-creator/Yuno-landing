@@ -1,3 +1,4 @@
+import { useSearch } from "@tanstack/react-router";
 import { RoleLanding } from "@/components/site/RoleLanding";
 import { useClubs } from "@/content/clubs";
 import { useLocale } from "@/i18n/locale";
@@ -26,6 +27,8 @@ import dashStaff from "@/assets/dashboards/owner/staff.png";
 import dashDrinkMenu from "@/assets/dashboards/owner/drink-menu.png";
 import dashVipService from "@/assets/dashboards/owner/vip-service.png";
 import dashNotifications from "@/assets/dashboards/owner/notifications.png";
+// Live Night control room — a real owner screen (lives outside the 20-tile set).
+import dashLiveNight from "@/assets/dashboards/live-night.png";
 // Phone showcase — a club's customer-facing event page.
 import eventFlyer from "@/assets/bde/event-flyer.png";
 
@@ -72,9 +75,8 @@ const PARALLAX_TITLES: Record<"en" | "fr", string[]> = {
 };
 
 // Hero parallax renders 15 cards (three rows of five) — a curated, visually rich
-// subset (bold numbers / charts / artwork read best as big tilted cards). The
-// marquee below shows all 20, so every screen still appears on the page.
-const PARALLAX_SEQUENCE = [
+// subset. The marquee below shows all 20, so every screen still appears.
+const BASE_PARALLAX = [
   0, 1, 2, 5, 15, //   dashboard, analytics, events, vip-tables, accounting
   10, 11, 13, 14, 9, // customers, loyalty, orders, invoices, promoters
   6, 7, 8, 18, 3, //    djs, booking-dj, collaborations, vip-service, ticketing
@@ -86,16 +88,70 @@ const MARQUEE_SEQUENCE = [
   10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
 ];
 
+// When a pain is active, these DASHBOARDS indices lead the parallax hero so the
+// pain's own screens show first. (Index map: see DASHBOARDS comments above.)
+const PAIN_LEAD: Record<string, number[]> = {
+  vip: [5, 18, 8],
+  "co-soiree": [8, 5, 2],
+  data: [1, 4, 0],
+  fidelite: [10, 11, 12],
+  live: [0, 13, 1],
+  bar: [17, 13, 5],
+  staff: [16, 4, 19],
+  compta: [15, 14, 0],
+};
+
+// Real screenshot proving each pain's focus block (keyed by RolePain.id).
+const PAIN_IMAGES: Record<string, string> = {
+  vip: dashVipTables,
+  "co-soiree": dashCollaborations,
+  data: dashAnalytics,
+  fidelite: dashCustomers,
+  live: dashLiveNight,
+  bar: dashDrinkMenu,
+  staff: dashStaff,
+  compta: dashAccounting,
+};
+
+// Optional 2nd real screenshot (inset on md+) for the pains whose story spans two
+// surfaces — all from existing owner captures, no new exports needed.
+const PAIN_IMAGES_ALT: Record<string, string> = {
+  vip: dashVipService, // plan VIP + suivi du minimum de conso en direct
+  fidelite: dashLoyalty, // CRM + programme de fidélité
+  bar: dashOrders, // carte boissons + pipeline de commandes
+  compta: dashInvoices, // compta + factures PDF
+};
+
+// Lead the parallax with the active pain's screens, then fill from the base set
+// (deduped), capped at 15 cards.
+function buildParallax(besoin?: string): number[] {
+  const lead = (besoin && PAIN_LEAD[besoin]) || [];
+  const seen = new Set<number>();
+  const out: number[] = [];
+  for (const i of [...lead, ...BASE_PARALLAX]) {
+    if (!seen.has(i)) {
+      seen.add(i);
+      out.push(i);
+    }
+  }
+  return out.slice(0, 15);
+}
+
 export function ClubsPage() {
   const t = useClubs();
   const locale = useLocale();
+  const search = useSearch({ strict: false }) as { besoin?: string };
+  const besoin = search.besoin;
   const titles = PARALLAX_TITLES[locale];
+  const seq = buildParallax(besoin);
 
   const images: RoleImages = {
-    parallax: PARALLAX_SEQUENCE.map((i) => ({ title: titles[i], thumbnail: DASHBOARDS[i] })),
+    parallax: seq.map((i) => ({ title: titles[i], thumbnail: DASHBOARDS[i] })),
     marquee: MARQUEE_SEQUENCE.map((i) => DASHBOARDS[i]),
     showcase: eventFlyer,
+    painImages: PAIN_IMAGES,
+    painImagesAlt: PAIN_IMAGES_ALT,
   };
 
-  return <RoleLanding content={t} images={images} />;
+  return <RoleLanding content={t} images={images} role="club" besoin={besoin} />;
 }

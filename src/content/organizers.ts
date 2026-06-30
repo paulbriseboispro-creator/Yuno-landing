@@ -5,21 +5,20 @@
 // the event (J+2), promoter commissions are TRACKED (promoters are not paid out
 // via Stripe). Pre-launch: no traction claims.
 //
-// NOTE: the page currently reuses the club dashboards as placeholder imagery for
-// the parallax hero + 3D marquee. Swap to the real organizer screens when Paul
-// provides them (see src/pages/organizers.tsx).
+// Imagery: the parallax hero, 3D marquee and per-pain proof blocks run on the
+// real organizer captures in src/assets/organizers/ (see src/pages/organizers.tsx).
 import { useLocale, type Locale } from "@/i18n/locale";
 import type { RoleLandingContent } from "@/content/role-landing";
 
-// A live Yuno event page used as the showcase demo.
+// The live Yuno event page the showcase screens are captured from.
 const DEMO_EVENT =
-  "https://yunoapp.eu/club/2462e2f2-661c-491e-a5a9-9330f1d47503/event/e5500057-11d6-4469-ad16-d3f0e7e85501";
+  "https://yunoapp.eu/club/womber/event/e4436790-c3db-4de6-a9d5-f1bfd8d2f3e7/billets";
 
 const en: RoleLandingContent = {
   meta: {
     title: "Yuno for Organizers — Ticketing without the markup",
     description:
-      "Run events with the lowest ticketing fees in Europe and split revenue with your host venue automatically through Stripe Connect — settled two days after the event.",
+      "Run events with low ticketing fees and split revenue with your host venue automatically through Stripe Connect — settled two days after the event.",
     ogTitle: "Yuno for Organizers",
     ogDescription: "Low-fee ticketing, automated revenue splits, and your own check-in app.",
   },
@@ -31,44 +30,44 @@ const en: RoleLandingContent = {
   ],
   hero: {
     badge: "For event organizers",
-    titleLead: "Ticketing without the ",
-    titleEmphasis: "markup",
+    titleLead: "Your full event back-office: ",
+    titleEmphasis: "know if tonight fills, and what you actually net",
     titleRest: ".",
     subtitle:
-      "Yuno is the missing layer between you, your host venue and the crowd you bring. It costs you nothing — only Stripe's processing fee — with automatic splits and the door app your team actually wants to use.",
-    primaryCta: "Create my first event",
+      "Without a fixed venue, no screen tells you whether tonight will fill or what you really keep after fees, and you still split with the host by hand. Yuno gives you a Mission Control back-office, your own Stripe payout, and an automatic split with the venue.",
+    primaryCta: "Book a demo",
     secondaryCta: "See the price",
-    note: "0 € to you · Only Stripe's fee · No commitment",
+    note: "Core free · 4% per ticket (€0.99 min), paid by the buyer · You only pay Stripe",
   },
   quickPoints: [
     {
-      icon: "gift",
-      title: "0 € to you",
-      body: "No subscription, no Yuno commission. You only pay Stripe's processing fee on each sale.",
+      icon: "chart",
+      title: "Mission Control",
+      body: "Tonight at a glance: tickets sold, gross and net revenue, check-in rate, VIP tables — plus 30-day KPIs and your top events.",
     },
     {
       icon: "card",
-      title: "The lowest fees",
-      body: "4% per ticket, always paid by the customer — half the friction of the 8–18% legacy platforms charge.",
+      title: "Your own Stripe payout",
+      body: "Connect your own Stripe. The money lands in your account, then your bank — Yuno never holds your funds. 4% per ticket (€0.99 min), paid by the buyer.",
     },
     {
-      icon: "scan",
-      title: "Your own door app",
-      body: "Hand each scanner a PIN, their phone becomes a scanner, and the guest list syncs live across every device.",
+      icon: "users",
+      title: "Auto-split with the venue",
+      body: "Co-produce in a venue and the revenue share is a contract applied at every sale through Stripe Connect — no cash, no Excel.",
     },
   ],
   free: {
     tag: "Pricing",
-    title: "4% per ticket. €0.99 floor. No monthly fee.",
-    body: "Stop bleeding 12–18% to legacy ticketing platforms. With Yuno the service fee is 4% per ticket (€0.99 minimum) — always paid by the customer at checkout, never by you. You only ever pay Stripe's processing fee.",
+    title: "Core is free. 4% per ticket, paid by the buyer.",
+    body: "No mandatory subscription to sell. Yuno's fee is a flat 4% per ticket and VIP table (€0.99 minimum), 3% on drinks, added at checkout and paid by the buyer, so it isn't taken out of your revenue. You only ever pay Stripe's processing fee.",
     bullets: [
-      "0% commission to Yuno — only Stripe's processing fee",
-      "Service fees always paid by the customer",
+      "Core plan free — no subscription required to sell",
+      "Flat 4% tickets & tables, 3% drinks (€0.99 min), paid by the buyer",
       "Early Bird / Regular / Late tiers with quotas",
       "Fees shown to the buyer before payment — no surprises",
     ],
     caption:
-      "The 4% service fee (€0.99 floor) is added at checkout and paid by the customer, not deducted from your revenue.",
+      "The fee is added at checkout and paid by the buyer, not deducted from your revenue. You only pay Stripe's processing fee.",
   },
   audience: {
     tag: "On the door",
@@ -84,9 +83,9 @@ const en: RoleLandingContent = {
   showcase: {
     tag: "In the app",
     title: "The ticket page your guests actually see.",
-    body: "Not a clunky checkout: an event page built to make people want their ticket. Tiers, guest list and tables, all on one screen.",
+    body: "Not a clunky checkout: an event page built to make people want in. Tiered tickets and the guest list on one screen, VIP tables and the floor plan on the next.",
     demo: { label: "See a live event", href: DEMO_EVENT },
-    imageAlt: "A real Yuno event ticket page on a phone: tiers, guest list and tables.",
+    imageAlt: "Two real Yuno event screens on a phone: tiered tickets with the guest list, and VIP tables with the floor plan.",
     features: [
       {
         title: "Tiered tickets with quotas",
@@ -133,12 +132,12 @@ const en: RoleLandingContent = {
   },
   comparison: {
     eyebrow: "Yuno vs legacy ticketing",
-    title: "The same event, half the fee — and the split handled for you.",
+    title: "The same event, a flat fee — and the split handled for you.",
     colA: "Legacy platforms",
     colB: "Yuno",
     rows: [
-      { label: "Fee per ticket", a: "8–18%", b: "4%", highlight: true },
-      { label: "Who pays the fee", a: "The customer (high)", b: "The customer (half as much)" },
+      { label: "Fee per ticket", a: "8–18%", b: "4% (€0.99 min)", highlight: true },
+      { label: "Who pays the fee", a: "The customer", b: "The customer (flat 4%)" },
       { label: "Subscription", a: "Varies", b: "0 €" },
       {
         label: "Split with the venue",
@@ -194,7 +193,7 @@ const en: RoleLandingContent = {
       },
       {
         q: "So who pays the fees?",
-        a: "The customer, at checkout: 4% per ticket (€0.99 minimum), shown before payment. It's roughly half what legacy platforms charge, so fewer people drop off at the checkout.",
+        a: "The customer, at checkout: 4% per ticket (€0.99 minimum), shown before payment. It's often lower than what legacy platforms charge, so fewer people drop off at the checkout.",
       },
       {
         q: "How and when am I paid?",
@@ -215,11 +214,202 @@ const en: RoleLandingContent = {
     ],
   },
   cta: {
-    title: "Ready to create your first event?",
-    body: "Set up your first event for free. We'll help you get it online and agree the split with your venue.",
-    button: "Create my first event",
-    note: "0 € to you · Only Stripe's fee · No commitment",
+    title: "Ready to run your next event on Yuno?",
+    body: "Book a demo and we'll help you set up your back-office and agree the split with your venue.",
+    button: "Book a demo",
+    note: "Core free · 4% per ticket (€0.99 min), paid by the buyer · No commitment",
   },
+  defaultPainId: "orga",
+  pains: [
+    {
+      id: "orga",
+      chipLabel: "Back-office",
+      hero: {
+        badge: "Organizer back-office",
+        titleLead: "Your full event back-office: ",
+        titleEmphasis: "know if tonight fills, and what you actually net",
+        titleRest: ".",
+        subtitle:
+          "Without a fixed venue, no screen tells you whether tonight will fill or what you really keep after fees. Yuno gives you a Mission Control back-office and your own Stripe payout.",
+      },
+      focus: {
+        tag: "Mission Control",
+        title: "Tonight's event, gross and net, on one screen.",
+        body: "Mission Control shows tonight's event — tickets sold, gross and net revenue, check-in rate, VIP tables — plus 30-day KPIs, a revenue graph and your top events. Self-serve payment: connect your own Stripe, the money lands in your account then your bank. Yuno never holds the funds (4%, €0.99 min).",
+        bullets: [
+          "Tonight's event card: sold, gross and net, check-in, VIP tables",
+          "30-day KPIs, revenue graph, top events",
+          "Your own Stripe Connect — Yuno never holds your funds",
+        ],
+        caveat: "'Net' falls back to an estimate when distributions are missing; conversion-rate analytics are not live yet.",
+      },
+      contactLabel: "The organizer Mission Control back-office",
+    },
+    {
+      id: "co-soiree",
+      chipLabel: "Split with the venue",
+      hero: {
+        badge: "Co-hosted nights",
+        titleLead: "The co-produced night, ",
+        titleEmphasis: "split by contract and paid automatically",
+        titleRest: ".",
+        subtitle:
+          "You split the takings with the host venue by hand: cash, Excel, informal transfers, zero traceability, arguments at settlement. Yuno makes the split a contract applied to every sale.",
+      },
+      focus: {
+        tag: "Auto-split with the venue",
+        title: "Agree the split once. It applies to every sale.",
+        body: "Set the revenue share with your host venue and it's attached to the event before tickets sell. The money splits venue ↔ organizer at each sale through Stripe Connect, by item type. The club stays merchant of record (alcohol licence); you see your share to the cent.",
+        bullets: [
+          "Revenue-share contract with the host venue",
+          "Automatic split venue ↔ organizer via Stripe Connect, by item",
+          "Collaboration proposals inbox — no cash, no Excel",
+        ],
+      },
+      contactLabel: "Auto-split with a host venue (co-hosted night)",
+    },
+    {
+      id: "promo",
+      chipLabel: "Promoters",
+      hero: {
+        badge: "Promoters",
+        titleLead: "Finally know which promoter ",
+        titleEmphasis: "actually brought the crowd",
+        titleRest: " — and settle in one click.",
+        subtitle:
+          "Promoter commissions are cash and a spreadsheet, with arguments over who sold what. Yuno tracks it automatically and settles in one click.",
+      },
+      focus: {
+        tag: "Promoter attribution",
+        title: "Tracked clicks to sales, settled without a dispute.",
+        body: "Each promoter gets a tracked Linktree; clicks to conversions to sales are attributed automatically, on tickets and tables, with promoter ROI (revenue per €1 of commission) and a leaderboard. Settle in one click with a club-managed cycle pending → approved → paid to the promoter's IBAN.",
+        bullets: [
+          "Tracked promoter links, clicks → conversions → sales",
+          "Promoter ROI and a live leaderboard",
+          "One-click settle: pending → approved → paid to IBAN",
+        ],
+        caveat: "Promoter payout is a club-managed settlement to IBAN, not a per-sale Stripe split. Promoters are not affiliates.",
+      },
+      contactLabel: "Promoter attribution and one-click settlement",
+    },
+    {
+      id: "billetterie",
+      chipLabel: "Ticketing",
+      hero: {
+        badge: "Ticketing",
+        titleLead: "Publish, price in rounds, ",
+        titleEmphasis: "cash in before the night",
+        titleRest: ".",
+        subtitle:
+          "Ticketing is a third-party site plus a spreadsheet plus a notebook at the door, and the money comes in too late. Yuno puts ticketing and the door in one place.",
+      },
+      focus: {
+        tag: "Ticketing & door",
+        title: "Rounds, quotas, QR entry — the money in before the night.",
+        body: "Create your event with multi-round pricing (Early Bird to standard), per-round quotas and a global capacity, drink-included tickets, an entry deadline, recurring events and a guest list. Entry is by QR, scanned by your own crew on their phones. The cash is in before the night.",
+        bullets: [
+          "Multi-round pricing, quotas, global capacity",
+          "Drink-included tickets, recurring events, guest list",
+          "QR entry, multi-scanner PIN check-in on any phone",
+        ],
+      },
+      contactLabel: "Event ticketing and door check-in",
+    },
+    {
+      id: "data",
+      chipLabel: "Analytics",
+      hero: {
+        badge: "Analytics",
+        titleLead: "Know what actually sells — ",
+        titleEmphasis: "by event, by hour, by ticket",
+        titleRest: ".",
+        subtitle:
+          "Gross revenue, average order value, unique guests, and the exact hours your tickets move. Across everything or per event, exportable in one click.",
+      },
+      focus: {
+        tag: "Analytics",
+        title: "Detailed performance across all your events.",
+        body: "Gross revenue, total orders, average order value and unique guests, each with its trend. A gross-revenue-by-hour distribution shows when your crowd actually buys, so you time your pushes. Switch between global and per-event, and export the data.",
+        bullets: [
+          "Revenue, orders, avg order value, unique guests with trends",
+          "Gross-revenue-by-hour distribution",
+          "Global or per-event view, one-click export",
+        ],
+      },
+      contactLabel: "Event analytics and exports",
+    },
+    {
+      id: "fidelite",
+      chipLabel: "Customers & email",
+      hero: {
+        badge: "CRM & email",
+        titleLead: "Your crowd is a mailing list ",
+        titleEmphasis: "you actually own",
+        titleRest: ".",
+        subtitle:
+          "Every buyer across all your events in one CRM, auto-segmented, with email campaigns that fill the next night. No more starting from zero each event.",
+      },
+      focus: {
+        tag: "CRM & campaigns",
+        title: "Own your audience, fill the next event.",
+        body: "A customer base aggregated across all your events, auto-segmented (champions, loyal, promising, new, at-risk, lost) with average spend and where they came from. Send email campaigns and track opens and clicks, so the people who came last time hear about the next one first.",
+        bullets: [
+          "Cross-event CRM with RFM segments and origins",
+          "Email campaigns with open and click tracking",
+          "CSV export of your whole audience",
+        ],
+        caveat: "Client-side loyalty (points / QR) is live; the predictive engine is on the roadmap.",
+      },
+      contactLabel: "Cross-event CRM and email campaigns",
+    },
+    {
+      id: "porte",
+      chipLabel: "On the door",
+      hero: {
+        badge: "On the door",
+        titleLead: "Your own door app — ",
+        titleEmphasis: "scan tickets, drinks and cloakroom",
+        titleRest: ".",
+        subtitle:
+          "Turn any phone into a scanner. Tickets, drinks and cloakroom, each scanned by type, with a live guest list synced across every device.",
+      },
+      focus: {
+        tag: "Check-in & guest list",
+        title: "The door runs on your team's phones.",
+        body: "Each scanner signs in and validates entry by type — tickets, drinks, cloakroom — so nothing gets mixed up. The guest list is allocated per event with a share link your promoters and the host club can fill, and sign-ups sync live across every device.",
+        bullets: [
+          "Multi-type scanner: tickets, drinks, cloakroom",
+          "Live guest list with a shareable sign-up link",
+          "Synced across every device at the door",
+        ],
+      },
+      contactLabel: "Door check-in and guest list",
+    },
+    {
+      id: "compta",
+      chipLabel: "Accounting",
+      hero: {
+        badge: "Money & accounting",
+        titleLead: "What you actually net, ",
+        titleEmphasis: "your co-production share included",
+        titleRest: ".",
+        subtitle:
+          "A per-event financial report: revenue, VAT, Yuno and Stripe fees, and your exact share on co-produced nights. PDF invoices in FR or EN, ready for your accountant.",
+      },
+      focus: {
+        tag: "Accounting",
+        title: "Revenue, VAT, fees and your share — done for you.",
+        body: "A monthly financial report per event: revenue excl. and incl. tax, VAT collected, Yuno and Stripe fees, refunds, and net to receive. On co-produced nights it shows your share automatically (e.g. 50%). Export CSV and download PDF invoices in FR or EN.",
+        bullets: [
+          "Revenue, VAT, Yuno + Stripe fees, net to receive",
+          "Your co-production share computed per event",
+          "PDF invoices FR / EN and CSV export",
+        ],
+        caveat: "'Net' can use a fallback estimate when revenue distributions are missing.",
+      },
+      contactLabel: "Accounting, VAT and your co-production share",
+    },
+  ],
 };
 
 export type OrganizersContent = RoleLandingContent;
@@ -228,7 +418,7 @@ const fr: RoleLandingContent = {
   meta: {
     title: "Yuno pour les organisateurs — La billetterie sans la commission",
     description:
-      "Organisez vos événements avec les frais de billetterie les plus bas d'Europe et répartissez automatiquement les revenus avec votre établissement hôte via Stripe Connect — réglés deux jours après l'événement.",
+      "Organisez vos événements avec des frais de billetterie réduits et répartissez automatiquement les revenus avec votre établissement hôte via Stripe Connect — réglés deux jours après l'événement.",
     ogTitle: "Yuno pour les organisateurs",
     ogDescription:
       "Billetterie à frais réduits, répartition automatique des revenus et votre propre application de contrôle d'accès.",
@@ -241,44 +431,44 @@ const fr: RoleLandingContent = {
   ],
   hero: {
     badge: "Pour les organisateurs d'événements",
-    titleLead: "La billetterie sans la ",
-    titleEmphasis: "commission",
+    titleLead: "Votre back-office d'orga complet : ",
+    titleEmphasis: "savoir si ce soir se remplit, et ce que vous touchez vraiment",
     titleRest: ".",
     subtitle:
-      "Yuno est la couche qui manquait entre vous, votre établissement hôte et le public que vous amenez. Il ne vous coûte rien — seulement les frais de traitement Stripe — avec des répartitions automatiques et l'application d'accès que votre équipe a vraiment envie d'utiliser.",
-    primaryCta: "Créer mon premier événement",
+      "Sans salle fixe, aucun écran ne vous dit si ce soir va se remplir ni ce que vous gardez vraiment après frais, et vous partagez encore avec l'hôte à la main. Yuno vous donne un back-office Mission Control, votre propre payout Stripe, et une répartition automatique avec l'établissement.",
+    primaryCta: "Réserver une démo",
     secondaryCta: "Voir le prix",
-    note: "0 € pour vous · Frais Stripe uniquement · Sans engagement",
+    note: "Core gratuit · 4 % par billet (min 0,99 €), payés par l'acheteur · Vous ne payez que Stripe",
   },
   quickPoints: [
     {
-      icon: "gift",
-      title: "0 € pour vous",
-      body: "Aucun abonnement, aucune commission Yuno. Vous ne payez que les frais de traitement Stripe sur chaque vente.",
+      icon: "chart",
+      title: "Mission Control",
+      body: "Ce soir en un coup d'œil : billets vendus, revenu brut et net, taux de check-in, tables VIP — plus les KPIs sur 30 jours et vos meilleurs événements.",
     },
     {
       icon: "card",
-      title: "Les frais les plus bas",
-      body: "4 % par billet, toujours payés par le client — deux fois moins de friction que les 8 à 18 % des plateformes classiques.",
+      title: "Votre propre payout Stripe",
+      body: "Branchez votre propre Stripe. L'argent arrive sur votre compte, puis votre banque — Yuno ne détient jamais vos fonds. 4 % par billet (min 0,99 €), payés par l'acheteur.",
     },
     {
-      icon: "scan",
-      title: "Votre propre app d'accès",
-      body: "Donnez un PIN à chaque scanneur, son téléphone devient un scanneur, et la liste d'invités se synchronise en direct sur tous les appareils.",
+      icon: "users",
+      title: "Répartition auto avec la salle",
+      body: "Co-produisez dans un établissement et le partage des revenus est un contrat appliqué à chaque vente via Stripe Connect — sans cash, sans Excel.",
     },
   ],
   free: {
     tag: "Le prix",
-    title: "4 % par billet. Plancher de 0,99 €. Sans frais mensuels.",
-    body: "Arrêtez de perdre 12 à 18 % au profit des plateformes de billetterie classiques. Avec Yuno, les frais de service sont de 4 % par billet (0,99 € minimum) — toujours payés par le client au paiement, jamais par vous. Vous ne réglez que les frais de traitement Stripe.",
+    title: "Core est gratuit. 4 % par billet, payés par l'acheteur.",
+    body: "Aucun abonnement obligatoire pour vendre. Le frais Yuno est un taux plat de 4 % par billet et table VIP (0,99 € minimum), 3 % sur les boissons, ajouté au paiement et payé par l'acheteur, donc jamais déduit de vos revenus. Vous ne réglez que les frais de traitement Stripe.",
     bullets: [
-      "0 % de commission pour Yuno — seulement les frais de traitement Stripe",
-      "Les frais de service toujours payés par le client",
+      "Formule Core gratuite — aucun abonnement requis pour vendre",
+      "Taux plat 4 % billets & tables, 3 % boissons (min 0,99 €), payés par l'acheteur",
       "Paliers Early Bird / Regular / Late avec quotas",
       "Frais affichés à l'acheteur avant le paiement — aucune surprise",
     ],
     caption:
-      "Les frais de service de 4 % (plancher 0,99 €) sont ajoutés au paiement et payés par le client, jamais déduits de vos revenus.",
+      "Le frais est ajouté au paiement et payé par l'acheteur, jamais déduit de vos revenus. Vous ne payez que les frais de traitement Stripe.",
   },
   audience: {
     tag: "À l'entrée",
@@ -294,10 +484,10 @@ const fr: RoleLandingContent = {
   showcase: {
     tag: "Dans l'app",
     title: "La page de billetterie que vos invités voient vraiment.",
-    body: "Pas un paiement austère : une page d'événement pensée pour donner envie de prendre sa place. Paliers, liste d'invités et tables, sur une seule page.",
+    body: "Pas un paiement austère : une page d'événement pensée pour donner envie. Billets à paliers et liste d'invités sur un écran, tables VIP et plan de salle sur l'autre.",
     demo: { label: "Voir un événement en ligne", href: DEMO_EVENT },
     imageAlt:
-      "Une vraie page de billetterie Yuno sur un téléphone : paliers, liste d'invités et tables.",
+      "Deux écrans réels d'un événement Yuno sur téléphone : billets à paliers avec liste d'invités, et tables VIP avec plan de salle.",
     features: [
       {
         title: "Billets à paliers avec quotas",
@@ -344,12 +534,12 @@ const fr: RoleLandingContent = {
   },
   comparison: {
     eyebrow: "Yuno vs la billetterie classique",
-    title: "Le même événement, deux fois moins de frais — et la répartition gérée pour vous.",
+    title: "Le même événement, un taux plat — et la répartition gérée pour vous.",
     colA: "Plateformes classiques",
     colB: "Yuno",
     rows: [
-      { label: "Frais par billet", a: "8 à 18 %", b: "4 %", highlight: true },
-      { label: "Qui paie les frais", a: "Le client (élevés)", b: "Le client (moitié moins)" },
+      { label: "Frais par billet", a: "8 à 18 %", b: "4 % (min 0,99 €)", highlight: true },
+      { label: "Qui paie les frais", a: "Le client", b: "Le client (4 % plat)" },
       { label: "Abonnement", a: "Variable", b: "0 €" },
       {
         label: "Répartition avec le lieu",
@@ -405,7 +595,7 @@ const fr: RoleLandingContent = {
       },
       {
         q: "Alors, qui paie les frais ?",
-        a: "Le client, au moment du paiement : 4 % par billet (0,99 € minimum), affichés avant le paiement. C'est environ la moitié de ce que prennent les plateformes classiques, donc moins de monde abandonne au paiement.",
+        a: "Le client, au moment du paiement : 4 % par billet (0,99 € minimum), affichés avant le paiement. C'est souvent moins que ce que prennent les plateformes classiques, donc moins de monde abandonne au paiement.",
       },
       {
         q: "Comment et quand suis-je payé ?",
@@ -426,11 +616,202 @@ const fr: RoleLandingContent = {
     ],
   },
   cta: {
-    title: "Prêt à créer votre premier événement ?",
-    body: "Créez votre premier événement gratuitement. On vous accompagne pour le mettre en ligne et convenir de la répartition avec votre établissement.",
-    button: "Créer mon premier événement",
-    note: "0 € pour vous · Frais Stripe uniquement · Sans engagement",
+    title: "Prêt à faire tourner votre prochain événement sur Yuno ?",
+    body: "Réservez une démo et on vous aide à configurer votre back-office et à convenir de la répartition avec votre établissement.",
+    button: "Réserver une démo",
+    note: "Core gratuit · 4 % par billet (min 0,99 €), payés par l'acheteur · Sans engagement",
   },
+  defaultPainId: "orga",
+  pains: [
+    {
+      id: "orga",
+      chipLabel: "Back-office",
+      hero: {
+        badge: "Back-office orga",
+        titleLead: "Votre back-office d'orga complet : ",
+        titleEmphasis: "savoir si ce soir se remplit, et ce que vous touchez vraiment",
+        titleRest: ".",
+        subtitle:
+          "Sans salle fixe, aucun écran ne vous dit si ce soir va se remplir ni ce que vous gardez vraiment après frais. Yuno vous donne un back-office Mission Control et votre propre payout Stripe.",
+      },
+      focus: {
+        tag: "Mission Control",
+        title: "L'événement de ce soir, brut et net, sur un seul écran.",
+        body: "Mission Control affiche l'événement de ce soir — billets vendus, revenu brut et net, taux de check-in, tables VIP — plus les KPIs sur 30 jours, un graphe de revenus et vos meilleurs événements. Paiement self-serve : branchez votre propre Stripe, l'argent arrive sur votre compte puis votre banque. Yuno ne détient jamais les fonds (4 %, min 0,99 €).",
+        bullets: [
+          "Carte de l'événement de ce soir : vendus, brut et net, check-in, tables VIP",
+          "KPIs 30 jours, graphe de revenus, meilleurs événements",
+          "Votre propre Stripe Connect — Yuno ne détient jamais vos fonds",
+        ],
+        caveat: "Le « net » s'appuie parfois sur une estimation quand les répartitions manquent ; les analyses de taux de conversion ne sont pas encore live.",
+      },
+      contactLabel: "Le back-office Mission Control de l'orga",
+    },
+    {
+      id: "co-soiree",
+      chipLabel: "Répartition avec la salle",
+      hero: {
+        badge: "Soirées co-produites",
+        titleLead: "La soirée co-produite, ",
+        titleEmphasis: "splittée par contrat et payée automatiquement",
+        titleRest: ".",
+        subtitle:
+          "Vous partagez la recette avec l'établissement hôte à la main : cash, Excel, virements informels, zéro traçabilité, des disputes au règlement. Yuno fait du partage un contrat appliqué à chaque vente.",
+      },
+      focus: {
+        tag: "Répartition auto avec la salle",
+        title: "Convenez la répartition une fois. Elle s'applique à chaque vente.",
+        body: "Définissez le partage des revenus avec votre établissement hôte : il est attaché à l'événement avant la vente. L'argent se répartit salle ↔ orga à chaque vente via Stripe Connect, par type d'item. Le club reste vendeur de record (licence alcool) ; vous voyez votre part au centime près.",
+        bullets: [
+          "Contrat de partage des revenus avec l'établissement hôte",
+          "Répartition automatique salle ↔ orga via Stripe Connect, par item",
+          "Boîte de propositions de collab — sans cash, sans Excel",
+        ],
+      },
+      contactLabel: "Répartition auto avec un établissement hôte (soirée co-produite)",
+    },
+    {
+      id: "promo",
+      chipLabel: "Promoteurs",
+      hero: {
+        badge: "Promoteurs",
+        titleLead: "Enfin savoir quel promoteur ",
+        titleEmphasis: "a vraiment rapporté la foule",
+        titleRest: " — et le régler en un clic.",
+        subtitle:
+          "Les commissions promoteurs, c'est du cash et un tableur, avec des disputes sur qui a vendu quoi. Yuno suit tout automatiquement et règle en un clic.",
+      },
+      focus: {
+        tag: "Attribution promoteurs",
+        title: "Des clics trackés aux ventes, réglé sans dispute.",
+        body: "Chaque promoteur reçoit une Linktree trackée ; les clics, conversions et ventes sont attribués automatiquement, sur billets et tables, avec le ROI promoteur (revenu par 1 € de commission) et un classement. Réglez en un clic avec un cycle géré par le club : en attente → approuvé → payé vers l'IBAN du promoteur.",
+        bullets: [
+          "Liens promoteurs trackés, clics → conversions → ventes",
+          "ROI promoteur et classement en direct",
+          "Règlement en un clic : en attente → approuvé → payé vers l'IBAN",
+        ],
+        caveat: "Le paiement promoteur est un règlement géré par le club vers l'IBAN, pas un split Stripe par vente. Les promoteurs ne sont pas les affiliés.",
+      },
+      contactLabel: "Attribution promoteurs et règlement en un clic",
+    },
+    {
+      id: "billetterie",
+      chipLabel: "Billetterie",
+      hero: {
+        badge: "Billetterie",
+        titleLead: "Publiez, tarifez en rounds, ",
+        titleEmphasis: "encaissez avant la nuit",
+        titleRest: ".",
+        subtitle:
+          "La billetterie, c'est un site tiers, un tableur et un carnet à la porte, et l'argent rentre trop tard. Yuno met la billetterie et la porte au même endroit.",
+      },
+      focus: {
+        tag: "Billetterie & porte",
+        title: "Rounds, quotas, entrée par QR — l'argent rentre avant la nuit.",
+        body: "Créez votre événement avec tarifs en plusieurs rounds (Early Bird à standard), quotas par round et capacité globale, billets boisson-incluse, deadline d'entrée, événements récurrents et guestlist. Entrée par QR, scannée par votre équipe sur ses téléphones. Le cash rentre avant la soirée.",
+        bullets: [
+          "Tarifs multi-rounds, quotas, capacité globale",
+          "Billets boisson-incluse, événements récurrents, guestlist",
+          "Entrée par QR, contrôle multi-scanneurs par PIN sur n'importe quel téléphone",
+        ],
+      },
+      contactLabel: "Billetterie d'événement et contrôle d'accès",
+    },
+    {
+      id: "data",
+      chipLabel: "Analytics",
+      hero: {
+        badge: "Analytics",
+        titleLead: "Savoir ce qui vend vraiment — ",
+        titleEmphasis: "par événement, par heure, par billet",
+        titleRest: ".",
+        subtitle:
+          "Revenu brut, panier moyen, invités uniques, et les heures exactes où vos billets partent. Sur tout ou par événement, exportable en un clic.",
+      },
+      focus: {
+        tag: "Analytics",
+        title: "Performance détaillée sur tous vos événements.",
+        body: "Revenu brut, total des commandes, panier moyen et invités uniques, chacun avec sa tendance. Une distribution du revenu brut par heure montre quand votre public achète vraiment, pour caler vos relances. Basculez entre global et par événement, et exportez les données.",
+        bullets: [
+          "Revenu, commandes, panier moyen, invités uniques avec tendances",
+          "Distribution du revenu brut par heure",
+          "Vue globale ou par événement, export en un clic",
+        ],
+      },
+      contactLabel: "Analytics d'événement et exports",
+    },
+    {
+      id: "fidelite",
+      chipLabel: "Clients & email",
+      hero: {
+        badge: "CRM & email",
+        titleLead: "Votre public, c'est un fichier ",
+        titleEmphasis: "qui vous appartient vraiment",
+        titleRest: ".",
+        subtitle:
+          "Tous vos acheteurs, tous événements confondus, dans un seul CRM auto-segmenté, avec des campagnes email qui remplissent la prochaine soirée. Fini de repartir de zéro à chaque event.",
+      },
+      focus: {
+        tag: "CRM & campagnes",
+        title: "Possédez votre audience, remplissez le prochain event.",
+        body: "Une base clients agrégée sur tous vos événements, auto-segmentée (champions, fidèles, prometteurs, nouveaux, à risque, perdus) avec panier moyen et provenance. Envoyez des campagnes email et suivez ouvertures et clics, pour que ceux qui sont venus la dernière fois entendent parler de la prochaine en premier.",
+        bullets: [
+          "CRM multi-événements avec segments RFM et provenance",
+          "Campagnes email avec suivi des ouvertures et clics",
+          "Export CSV de toute votre audience",
+        ],
+        caveat: "La fidélité côté client (points / QR) est live ; le moteur prédictif est au roadmap.",
+      },
+      contactLabel: "CRM multi-événements et campagnes email",
+    },
+    {
+      id: "porte",
+      chipLabel: "À l'entrée",
+      hero: {
+        badge: "À l'entrée",
+        titleLead: "Votre propre app d'accès — ",
+        titleEmphasis: "scannez billets, boissons et vestiaire",
+        titleRest: ".",
+        subtitle:
+          "Transformez n'importe quel téléphone en scanneur. Billets, boissons et vestiaire, chacun scanné par type, avec une liste d'invités synchronisée sur tous les appareils.",
+      },
+      focus: {
+        tag: "Contrôle d'accès & liste d'invités",
+        title: "L'entrée tourne sur les téléphones de votre équipe.",
+        body: "Chaque scanneur se connecte et valide l'entrée par type — billets, boissons, vestiaire — pour que rien ne se mélange. La liste d'invités est allouée par événement avec un lien de partage que vos promoteurs et l'établissement hôte peuvent remplir, et les inscriptions se synchronisent en direct sur tous les appareils.",
+        bullets: [
+          "Scanneur multi-types : billets, boissons, vestiaire",
+          "Liste d'invités avec lien d'inscription partageable",
+          "Synchronisé sur tous les appareils à l'entrée",
+        ],
+      },
+      contactLabel: "Contrôle d'accès et liste d'invités",
+    },
+    {
+      id: "compta",
+      chipLabel: "Comptabilité",
+      hero: {
+        badge: "Argent & compta",
+        titleLead: "Ce que vous touchez vraiment, ",
+        titleEmphasis: "votre part de co-production incluse",
+        titleRest: ".",
+        subtitle:
+          "Un rapport financier par événement : revenu, TVA, frais Yuno et Stripe, et votre part exacte sur les soirées co-produites. Factures PDF en FR ou EN, prêtes pour votre comptable.",
+      },
+      focus: {
+        tag: "Comptabilité",
+        title: "Revenu, TVA, frais et votre part — fait pour vous.",
+        body: "Un rapport financier mensuel par événement : revenu HT et TTC, TVA collectée, frais Yuno et Stripe, remboursements, et net à recevoir. Sur les soirées co-produites, il affiche votre part automatiquement (ex. 50 %). Export CSV et factures PDF en FR ou EN.",
+        bullets: [
+          "Revenu, TVA, frais Yuno + Stripe, net à recevoir",
+          "Votre part de co-production calculée par événement",
+          "Factures PDF FR / EN et export CSV",
+        ],
+        caveat: "Le « net » peut utiliser une estimation de repli quand les répartitions manquent.",
+      },
+      contactLabel: "Comptabilité, TVA et votre part de co-production",
+    },
+  ],
 };
 
 export const organizersContent: Record<Locale, RoleLandingContent> = { en, fr };

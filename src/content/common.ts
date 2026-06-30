@@ -26,9 +26,9 @@ const en = {
     startFree: "Start free",
   },
   meta: {
-    title: "Yuno — The operating system for the after-dark economy",
+    title: "Yuno — Run the money, the floor and the night",
     description:
-      "All-in-one platform for clubs, organizers and promoters. VIP floor plans, click-and-collect bar, ticketing with automated revenue splits.",
+      "The platform for clubs and organizers: VIP tables, live night control, customer data and loyalty, with co-hosted revenue splits handled automatically.",
   },
   banner: {
     label: "Founding Club Offer",
@@ -71,6 +71,16 @@ const en = {
       { title: "Book a demo", category: "Company", to: "/contact", keywords: ["demo", "contact", "sales", "call"] },
     ] as SearchEntry[],
   },
+  // The rdv (meeting) choice surfaced at every CTA: book via the form, or talk to
+  // the team on WhatsApp. No calendar tool — these are the two real channels.
+  rdv: {
+    formCta: "Book a demo",
+    whatsappCta: "Message us on WhatsApp",
+    or: "or",
+    whatsappNumber: "33644216689",
+    whatsappMessage: "Hi Yuno 👋 I run a venue / events and I'd like to see a demo.",
+    whatsappHint: "Straight to the team, no form.",
+  },
   notFound: {
     title: "404",
     descLine1: "The page you're looking for might have been",
@@ -105,9 +115,9 @@ const fr: CommonContent = {
     startFree: "Essai gratuit",
   },
   meta: {
-    title: "Yuno — Le système d'exploitation de l'économie de la nuit",
+    title: "Yuno — Pilotez l'argent, la salle et la nuit",
     description:
-      "La plateforme tout-en-un pour les clubs, organisateurs et promoteurs. Plans de salle VIP, bar en click-and-collect, billetterie avec répartition automatique des revenus.",
+      "La plateforme pour les clubs et organisateurs : tables VIP, pilotage live de la soirée, données clients et fidélité, avec la répartition des soirées co-produites gérée automatiquement.",
   },
   banner: {
     label: "Offre Club Fondateur",
@@ -149,6 +159,14 @@ const fr: CommonContent = {
       { title: "Dans quels marchés opérez-vous ?", category: "FAQ", to: "/#faq", keywords: ["marchés", "pays", "europe", "france", "espagne"] },
       { title: "Réserver une démo", category: "Company", to: "/contact", keywords: ["démo", "contact", "commercial", "appel"] },
     ],
+  },
+  rdv: {
+    formCta: "Réserver une démo",
+    whatsappCta: "Écrire sur WhatsApp",
+    or: "ou",
+    whatsappNumber: "33644216689",
+    whatsappMessage: "Bonjour Yuno 👋 Je gère un établissement / des soirées et j'aimerais voir une démo.",
+    whatsappHint: "Réponse directe de l'équipe, sans formulaire.",
   },
   notFound: {
     title: "404",

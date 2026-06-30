@@ -1,8 +1,16 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { motion } from "motion/react";
-import { ArrowRight, CheckCircle2, Loader2, MailIcon, PhoneIcon, MapPinIcon } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Loader2,
+  MailIcon,
+  PhoneIcon,
+  MapPinIcon,
+  MessageCircle,
+} from "lucide-react";
 import { submitLead } from "@/lib/leads.functions";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -10,16 +18,26 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { contactContent, useContact } from "@/content/contact";
+import { useCommon } from "@/content/common";
 import { pageSeo } from "@/i18n/seo";
 
 type Segment = "club" | "organizer" | "affiliate" | "other";
 
 export function ContactPage() {
   const t = useContact();
+  const c = useCommon();
   const send = useServerFn(submitLead);
-  const [segment, setSegment] = useState<Segment>("club");
+  // The landing CTAs deep-link here with ?segment= and ?besoin=, so the form
+  // arrives pre-selected on the right role and pre-loaded with the chosen pain —
+  // Paul opens the call already knowing the one thing to charge at.
+  const search = useSearch({ strict: false }) as { segment?: Segment; besoin?: string };
+  const besoin = search.besoin;
+  const [segment, setSegment] = useState<Segment>(search.segment ?? "club");
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
+  const prefillMessage =
+    besoin && t.besoinLabels[besoin] ? `${t.prefillPrefix} : ${t.besoinLabels[besoin]}.` : "";
+  const waHref = `https://wa.me/${c.rdv.whatsappNumber}?text=${encodeURIComponent(c.rdv.whatsappMessage)}`;
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -36,7 +54,7 @@ export function ContactPage() {
           role: "",
           phone: String(fd.get("phone") || ""),
           message: String(fd.get("message") || ""),
-          source: "landing-contact",
+          source: besoin ? `landing-contact:${besoin}` : "landing-contact",
         },
       });
       setStatus("done");
@@ -165,7 +183,15 @@ export function ContactPage() {
 
                 <Field>
                   <FieldLabel htmlFor="message">{t.form.messageLabel}</FieldLabel>
-                  <Textarea id="message" name="message" rows={3} maxLength={2000} placeholder={t.form.messagePlaceholder} />
+                  <Textarea
+                    id="message"
+                    name="message"
+                    rows={3}
+                    maxLength={2000}
+                    placeholder={t.form.messagePlaceholder}
+                    key={besoin ?? "none"}
+                    defaultValue={prefillMessage}
+                  />
                 </Field>
               </FieldGroup>
 
@@ -184,6 +210,22 @@ export function ContactPage() {
                   </>
                 )}
               </Button>
+
+              <div className="mt-4 flex items-center gap-3">
+                <span className="h-px flex-1 bg-border" />
+                <span className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+                  {c.rdv.or}
+                </span>
+                <span className="h-px flex-1 bg-border" />
+              </div>
+              <a
+                href={waHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
+              >
+                <MessageCircle className="size-4" /> {c.rdv.whatsappCta}
+              </a>
 
               <p className="text-[11px] text-muted-foreground mt-4 text-center">
                 {t.consent}

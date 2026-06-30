@@ -13,17 +13,21 @@ const en = {
     ogDescription: "One platform for nightlife. Choose your role: club owner or event organizer.",
   },
   eyebrow: "Yuno",
-  title: "One platform. Pick your side of the night.",
+  title: "What's the one thing you'd fix about your nights?",
   subtitle:
-    "Yuno runs ticketing, the floor and the door for the whole nightlife stack. Tell us what you run and we'll show you the setup built for you.",
+    "Yuno runs the money, the floor, the door and the data for the whole night. Tell us what you run and we'll show you the setup built for your job.",
   roles: [
     {
       key: "club",
       to: "/clubs",
       tag: "Club owner",
       title: "I run a venue",
-      body: "Floor plan, bar, door staff and guest data in one operator-grade dashboard built for high-volume nights.",
-      bullets: ["VIP floor plan & tables", "Click-and-collect bar", "PIN staff login & live CRM"],
+      body: "VIP tables sold and cashed before the night, the whole night on one live screen, your customer data kept, and the money settled under the club's name.",
+      bullets: [
+        "VIP tables & live minimum-spend tracking",
+        "Live night control room + real attendance",
+        "CRM, loyalty & staff PIN access",
+      ],
       cta: "See Yuno for clubs",
     },
     {
@@ -31,15 +35,22 @@ const en = {
       to: "/organizers",
       tag: "Event organizer",
       title: "I throw events",
-      body: "The lowest ticketing fees in Europe, automatic revenue splits with your host venue, and the door app your team actually wants to use.",
+      body: "A full back-office that tells you if tonight fills and what you net, your own Stripe payout, and an automatic split with the host venue.",
       bullets: [
-        "4% per ticket, no monthly fee",
-        "Automatic Stripe Connect splits",
-        "Your own PIN-based check-in app",
+        "Mission Control: sold, gross & net, check-in",
+        "Your own Stripe — Yuno never holds funds",
+        "Auto-split with the venue, promoter attribution",
       ],
       cta: "See Yuno for organizers",
     },
   ],
+  wedge: {
+    tag: "Club × Organizer",
+    title: "Co-produce a night? Split it by contract, paid automatically.",
+    body: "The one thing no one else does natively: a recurring revenue-share between a club and an organizer or BDE, applied to every ticket, table and drink through Stripe Connect. No cash, no Excel, no argument at settlement.",
+    clubCta: { label: "I'm the venue", to: "/clubs", besoin: "co-soiree" },
+    orgaCta: { label: "I'm the organizer", to: "/organizers", besoin: "co-soiree" },
+  },
   footnote: "You can switch anytime — the whole platform is connected.",
 };
 
@@ -54,20 +65,20 @@ const fr: SelectContent = {
       "Une plateforme pour la nuit. Choisissez votre rôle : gérant de club ou organisateur d'événements.",
   },
   eyebrow: "Yuno",
-  title: "Une plateforme. Choisissez votre côté de la nuit.",
+  title: "Quelle est LA chose que vous régleriez dans vos soirées ?",
   subtitle:
-    "Yuno gère la billetterie, la salle et l'entrée pour toute la nuit. Dites-nous ce que vous gérez, on vous montre la configuration pensée pour vous.",
+    "Yuno gère l'argent, la salle, l'entrée et les données de toute la nuit. Dites-nous ce que vous gérez, on vous montre la configuration pensée pour votre métier.",
   roles: [
     {
       key: "club",
       to: "/clubs",
       tag: "Gérant de club",
       title: "Je gère un établissement",
-      body: "Plan de salle, bar, staff et données clients dans un seul tableau de bord de niveau opérateur, conçu pour les nuits à fort volume.",
+      body: "Des tables VIP vendues et encaissées avant la soirée, toute la nuit sur un écran en direct, vos données clients gardées, et l'argent réglé au nom du club.",
       bullets: [
-        "Plan de salle & tables VIP",
-        "Bar en click-and-collect",
-        "Staff par code PIN & CRM en direct",
+        "Tables VIP & minimum de conso en direct",
+        "War-room Live Night + présence réelle",
+        "CRM, fidélité & accès staff par PIN",
       ],
       cta: "Voir Yuno pour les clubs",
     },
@@ -76,15 +87,22 @@ const fr: SelectContent = {
       to: "/organizers",
       tag: "Organisateur d'événements",
       title: "J'organise des soirées",
-      body: "Les frais de billetterie les plus bas d'Europe, une répartition automatique avec votre établissement hôte, et l'app d'accès que votre équipe a vraiment envie d'utiliser.",
+      body: "Un back-office complet qui dit si ce soir se remplit et ce que vous touchez, votre propre payout Stripe, et une répartition automatique avec l'établissement hôte.",
       bullets: [
-        "4 % par billet, sans abonnement",
-        "Répartition Stripe Connect automatique",
-        "Votre propre app d'accès par code PIN",
+        "Mission Control : vendus, brut & net, check-in",
+        "Votre propre Stripe — Yuno ne détient jamais les fonds",
+        "Répartition auto avec la salle, attribution promoteurs",
       ],
       cta: "Voir Yuno pour les organisateurs",
     },
   ],
+  wedge: {
+    tag: "Club × Organisateur",
+    title: "Vous co-produisez une soirée ? Splittez-la par contrat, payée automatiquement.",
+    body: "La chose que personne d'autre ne fait nativement : un partage de revenus récurrent entre un club et un orga ou un BDE, appliqué à chaque billet, table et boisson via Stripe Connect. Sans cash, sans Excel, sans dispute au règlement.",
+    clubCta: { label: "Je suis l'établissement", to: "/clubs", besoin: "co-soiree" },
+    orgaCta: { label: "Je suis l'organisateur", to: "/organizers", besoin: "co-soiree" },
+  },
   footnote: "Vous pourrez changer à tout moment — toute la plateforme est connectée.",
 };
 
