@@ -1,8 +1,11 @@
-// Minimal chrome for the standalone /bde landing. Deliberately stripped of the
-// main site nav (Clubs, Organizers, Pricing…) so a BDE handed the link stays on
-// this page and never wanders into the club/organizer funnel. The header mirrors
-// the main site's shrink-on-scroll pill (it collapses to fit its content once you
-// scroll), but its links are in-page anchors, not cross-site routes. French-only.
+// Minimal chrome for the standalone /bde landing (shared with its /bde/contact
+// page). Deliberately stripped of the main site nav (Clubs, Organizers, Pricing…)
+// so a BDE handed the link stays in the BDE space and never wanders into the
+// club/organizer funnel. The header mirrors the main site's shrink-on-scroll pill
+// (it collapses to fit its content once you scroll). Its links resolve to the
+// landing's sections (`/bde#…`): on /bde they're same-document fragment scrolls,
+// and from /bde/contact they route back to the landing — so the logo and nav are
+// always a way back out of a sub-page. French-only.
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Instagram } from "lucide-react";
 import { useScroll } from "@/hooks/use-scroll";
@@ -37,7 +40,7 @@ export function BdeHeader() {
         )}
       >
         <a
-          href="#top"
+          href="/bde#top"
           aria-label="Yuno"
           className="flex shrink-0 items-center rounded-md p-2 hover:bg-muted/50"
         >
@@ -48,7 +51,7 @@ export function BdeHeader() {
           {BDE_NAV.map((item) => (
             <a
               key={item.href}
-              href={item.href}
+              href={`/bde${item.href}`}
               className="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
             >
               {item.label}
@@ -57,7 +60,7 @@ export function BdeHeader() {
         </div>
 
         <Link
-          to="/contact"
+          to="/bde/contact"
           className="ml-2 inline-flex shrink-0 items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
         >
           Créer ma soirée
@@ -87,7 +90,7 @@ export function BdeFooter() {
             <Instagram className="size-4" />
           </a>
           <Link
-            to="/contact"
+            to="/bde/contact"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
             Contact

@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
+  ArrowUpRight,
   Check,
   CheckCircle2,
   Gift,
@@ -178,22 +179,41 @@ export function BdePage() {
                 </li>
               ))}
             </ul>
+            <a
+              href={t.showcase.demo.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-7 inline-flex items-center gap-2 rounded-full border border-accent/40 px-5 py-2.5 text-sm font-medium text-accent transition-colors hover:bg-accent/10"
+            >
+              {t.showcase.demo.label}
+              <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </a>
           </Reveal>
 
-          {/* Phone frame */}
+          {/* Phone frame — the whole device links to the live demo soirée */}
           <Reveal delay={0.12} className="order-1 flex justify-center md:order-2">
-            <div className="relative w-[15rem] shrink-0 sm:w-[16rem]">
+            <a
+              href={t.showcase.demo.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t.showcase.demo.label}
+              className="group relative w-[15rem] shrink-0 sm:w-[16rem]"
+            >
               <div className="pointer-events-none absolute -inset-6 rounded-[3rem] bg-accent/10 blur-3xl" />
-              <div className="relative overflow-hidden rounded-[2.2rem] border-[6px] border-zinc-800 bg-zinc-900 shadow-2xl ring-1 ring-white/10">
+              <div className="relative overflow-hidden rounded-[2.2rem] border-[6px] border-zinc-800 bg-zinc-900 shadow-2xl ring-1 ring-white/10 transition-transform duration-300 group-hover:-translate-y-1">
                 <img
                   src={tickets}
-                  alt="La page de billetterie Yuno : billets à paliers, tables VIP et guest list"
+                  alt={t.showcase.imageAlt}
                   className="h-[34rem] w-full object-cover object-top"
                   loading="lazy"
                 />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-surface to-transparent" />
+                <span className="pointer-events-none absolute bottom-4 left-1/2 z-10 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-background/80 px-3 py-1.5 text-xs font-medium text-foreground opacity-0 ring-1 ring-border backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                  {t.showcase.demo.label}
+                  <ArrowUpRight className="size-3.5" />
+                </span>
               </div>
-            </div>
+            </a>
           </Reveal>
         </div>
       </section>
@@ -431,7 +451,7 @@ export function BdePage() {
                 <p className="mx-auto mt-4 max-w-[48ch] text-pretty text-muted-foreground">{t.cta.body}</p>
                 <div className="mt-8 flex justify-center">
                   <Link
-                    to="/contact"
+                    to="/bde/contact"
                     className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
                   >
                     {t.cta.button} <ArrowRight className="size-4" />

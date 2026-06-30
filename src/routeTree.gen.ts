@@ -27,6 +27,7 @@ import { Route as FrOrganizersRouteImport } from './routes/fr/organizers'
 import { Route as FrContactRouteImport } from './routes/fr/contact'
 import { Route as FrClubsRouteImport } from './routes/fr/clubs'
 import { Route as FrAffiliatesRouteImport } from './routes/fr/affiliates'
+import { Route as BdeContactRouteImport } from './routes/bde_.contact'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -118,6 +119,11 @@ const FrAffiliatesRoute = FrAffiliatesRouteImport.update({
   path: '/fr/affiliates',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BdeContactRoute = BdeContactRouteImport.update({
+  id: '/bde_/contact',
+  path: '/bde/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -130,6 +136,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/bde/contact': typeof BdeContactRoute
   '/fr/affiliates': typeof FrAffiliatesRoute
   '/fr/clubs': typeof FrClubsRoute
   '/fr/contact': typeof FrContactRoute
@@ -150,6 +157,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/bde/contact': typeof BdeContactRoute
   '/fr/affiliates': typeof FrAffiliatesRoute
   '/fr/clubs': typeof FrClubsRoute
   '/fr/contact': typeof FrContactRoute
@@ -171,6 +179,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/bde_/contact': typeof BdeContactRoute
   '/fr/affiliates': typeof FrAffiliatesRoute
   '/fr/clubs': typeof FrClubsRoute
   '/fr/contact': typeof FrContactRoute
@@ -193,6 +202,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
+    | '/bde/contact'
     | '/fr/affiliates'
     | '/fr/clubs'
     | '/fr/contact'
@@ -213,6 +223,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
+    | '/bde/contact'
     | '/fr/affiliates'
     | '/fr/clubs'
     | '/fr/contact'
@@ -233,6 +244,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
+    | '/bde_/contact'
     | '/fr/affiliates'
     | '/fr/clubs'
     | '/fr/contact'
@@ -254,6 +266,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  BdeContactRoute: typeof BdeContactRoute
   FrAffiliatesRoute: typeof FrAffiliatesRoute
   FrClubsRoute: typeof FrClubsRoute
   FrContactRoute: typeof FrContactRoute
@@ -392,6 +405,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrAffiliatesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bde_/contact': {
+      id: '/bde_/contact'
+      path: '/bde/contact'
+      fullPath: '/bde/contact'
+      preLoaderRoute: typeof BdeContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -406,6 +426,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  BdeContactRoute: BdeContactRoute,
   FrAffiliatesRoute: FrAffiliatesRoute,
   FrClubsRoute: FrClubsRoute,
   FrContactRoute: FrContactRoute,

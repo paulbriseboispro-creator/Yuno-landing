@@ -118,23 +118,31 @@ export const bde = {
   },
 
   // Showcase pairing the real ticket-selection UI with feature callouts —
-  // "démontrer ce qu'on dit" : the screen proves the claims.
+  // "démontrer ce qu'on dit" : the screen proves the claims. The image is a real
+  // capture of the demo BDE event below, and `demo` links straight to it so a
+  // prospect can open the live soirée page in a new tab.
   showcase: {
     tag: "Dans l'app",
     title: "La page de billetterie que vos invités voient vraiment.",
     body: "Pas un formulaire associatif : un écran de soirée pensé pour donner envie de prendre sa place. Tout ce dont vous avez besoin est là, en une seule page.",
+    demo: {
+      label: "Voir cette soirée en ligne",
+      href: "https://yunoapp.eu/club/2462e2f2-661c-491e-a5a9-9330f1d47503/event/e5500057-11d6-4469-ad16-d3f0e7e85501",
+    },
+    imageAlt:
+      "La page de billetterie d'une vraie soirée BDE sur Yuno : entrées, consommation et guest list.",
     features: [
       {
-        title: "Billets à paliers",
-        body: "Early Bird, First Release, Last Chance… Vos prix montent, vos invités achètent tôt.",
+        title: "Entrées simples ou avec conso",
+        body: "Entrée simple ou entrée + boisson incluse : vos invités choisissent leur formule en un tap, sur une seule page.",
       },
       {
         title: "Guest list intégrée",
-        body: "Entrée gratuite avant une heure, quotas par genre, places limitées affichées en direct.",
+        body: "Entrée gratuite jusqu'à l'heure que vous fixez, et places restantes affichées en direct.",
       },
       {
-        title: "Tables VIP & carrés",
-        body: "Réservation de tables avec minimum de conso et plan de salle, directement dans la page.",
+        title: "Tables VIP & carrés (en option)",
+        body: "Activez les tables VIP, avec minimum de conso et plan de salle, quand votre soirée le mérite.",
       },
     ],
   },
@@ -199,7 +207,7 @@ export const bde = {
       },
       {
         q: "Alors, qui paie les frais ?",
-        a: "Les frais de service sont ajoutés au prix et payés par le client à l'achat : 4 % sur les billets (dès 0,49 € au tarif BDE, contre 0,99 € en standard) et 3 % sur les boissons. Tout est affiché avant le paiement.",
+        a: "Les frais de service sont ajoutés au prix et payés par le client à l'achat : 4 % sur les billets (dès 0,49 € au tarif BDE) et 3 % sur les boissons. Tout est affiché avant le paiement.",
       },
       {
         q: "Nos soirées sont-elles visibles par tout le monde ?",
@@ -229,6 +237,56 @@ export const bde = {
     body: "Créez votre première soirée gratuitement. On vous accompagne pour la mettre en ligne.",
     button: "Créer ma soirée",
     note: "0 € pour votre BDE · Sans engagement",
+  },
+
+  // Dedicated contact page for the BDE space (/bde/contact). Kept inside the BDE
+  // chrome so a BDE handed the link never lands on the main club/organizer
+  // contact form. French-only, like the rest of the page.
+  contact: {
+    meta: {
+      title: "Contact BDE — Yuno",
+      description:
+        "Parlez-nous de votre prochaine soirée. On vous accompagne pour mettre votre billetterie en ligne, gratuitement pour votre BDE.",
+    },
+    tag: "Parlons-en",
+    heading: {
+      lead: "Parlons de votre",
+      accent: "prochaine soirée",
+    },
+    subhead:
+      "Dites-nous où vous en êtes — une date en tête, une asso à équiper, ou juste l'envie de tester. On revient vers vous sous un jour ouvré pour tout mettre en place.",
+    benefits: [
+      "Gratuit pour votre BDE, sans engagement",
+      "Mise en ligne accompagnée, soirée prête en quelques minutes",
+      "Vos soirées restent privées, réservées à votre école",
+    ],
+    contactInfo: {
+      emailLabel: "Email",
+      phoneLabel: "Téléphone",
+      locationLabel: "Basé à",
+      location: "Madrid · Toulouse",
+    },
+    form: {
+      nameLabel: "Votre nom",
+      namePlaceholder: "Alex Martin",
+      emailLabel: "Email",
+      emailPlaceholder: "alex@asso-etudiante.fr",
+      orgLabel: "BDE / association",
+      orgPlaceholder: "BDE de votre école",
+      phoneLabel: "Téléphone (optionnel)",
+      phonePlaceholder: "+33 6 ...",
+      messageLabel: "Votre projet de soirée",
+      messagePlaceholder: "Date, lieu, nombre d'invités attendus...",
+      submit: "Envoyer",
+      submitting: "Envoi…",
+      errorMessage: "Impossible d'enregistrer votre demande. Réessayez.",
+    },
+    success: {
+      title: "C'est noté !",
+      body: "On vous recontacte sous un jour ouvré pour préparer votre soirée.",
+    },
+    consent:
+      "En envoyant ce formulaire, vous acceptez d'être contacté au sujet de Yuno. Nous ne partageons jamais vos données.",
   },
 };
 

@@ -81,9 +81,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       return { locale: "fr" as Locale };
     }
     // /bde is the standalone French-only BDE landing (no /fr prefix, not in the
-    // bilingual set). Force French so the page, its minimal chrome and <html lang>
-    // all render in French regardless of cookie.
-    if (path === "/bde") {
+    // bilingual set), and /bde/contact is its dedicated contact page. Force French
+    // so the page, its minimal chrome and <html lang> all render in French
+    // regardless of cookie.
+    if (path === "/bde" || path.startsWith("/bde/")) {
       return { locale: "fr" as Locale };
     }
     // On an English (root) page, send a French-preferring visitor (cookie or
@@ -161,10 +162,12 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient, locale } = Route.useRouteContext();
-  // The /bde landing gets its own stripped-down chrome (no main nav, no founding
-  // banner) so a BDE handed the link stays focused and never crosses into the
-  // club/organizer funnel.
-  const isBde = useRouterState({ select: (s) => s.location.pathname === "/bde" });
+  // The /bde landing (and its /bde/contact page) get their own stripped-down
+  // chrome (no main nav, no founding banner) so a BDE handed the link stays
+  // focused and never crosses into the club/organizer funnel.
+  const isBde = useRouterState({
+    select: (s) => s.location.pathname === "/bde" || s.location.pathname.startsWith("/bde/"),
+  });
   return (
     <QueryClientProvider client={queryClient}>
       <LocaleProvider initialLocale={locale as Locale}>
