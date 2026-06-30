@@ -37,8 +37,8 @@ const products: ParallaxProduct[] = [
 function ParallaxHeader() {
   const t = useHome();
   return (
-    <div className="max-w-7xl absolute left-0 right-0 mx-auto py-20 md:py-28 px-4 w-full top-0 z-20">
-      <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground border border-border rounded-full px-3 py-1 mb-8">
+    <div className="max-w-7xl relative md:absolute left-0 right-0 mx-auto pt-4 pb-4 md:py-28 px-4 w-full md:top-0 z-20">
+      <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground border border-border rounded-full px-3 py-1 mb-4 md:mb-8">
         <span className="size-1.5 rounded-full bg-accent" />
         {t.hero.eyebrow}
       </span>
@@ -47,10 +47,10 @@ function ParallaxHeader() {
         <span className="serif italic text-muted-foreground">{t.hero.titleEm}</span>{" "}
         {t.hero.titleB}
       </h1>
-      <p className="max-w-2xl text-base md:text-lg mt-8 text-muted-foreground text-pretty">
+      <p className="max-w-2xl text-base md:text-lg mt-4 md:mt-8 text-muted-foreground text-pretty">
         {t.hero.sub}
       </p>
-      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mt-10">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mt-6 md:mt-10">
         <Link
           to="/contact"
           className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
@@ -65,7 +65,7 @@ function ParallaxHeader() {
           {t.hero.ctaSecondary}
         </a>
       </div>
-      <p className="mt-4 text-xs text-muted-foreground/80 max-w-md text-pretty">
+      <p className="mt-3 md:mt-4 text-xs text-muted-foreground/80 max-w-md text-pretty">
         {t.hero.fineprint}
       </p>
     </div>

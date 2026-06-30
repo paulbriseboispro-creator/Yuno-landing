@@ -14,6 +14,23 @@ export type ParallaxProduct = {
   thumbnail: string;
 };
 
+// Below Tailwind's `md` breakpoint we drop the 3D overlay treatment: the header
+// flows above the cards instead of floating over them, and the rows sit in
+// normal document height so there's no dead space and nothing bleeds into the
+// section below. The horizontal scroll-drift is kept (just gentler) so the
+// dashboards still glide past as you scroll.
+function useIsMobile() {
+  const [isMobile, setIsMobile] = React.useState(false);
+  React.useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return isMobile;
+}
+
 export const HeroParallax = ({
   products,
   header,
@@ -32,12 +49,14 @@ export const HeroParallax = ({
 
   const springConfig = { stiffness: 300, damping: 30, bounce: 100 };
 
+  const isMobile = useIsMobile();
+  const drift = isMobile ? 260 : 600;
   const translateX = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, 600]),
+    useTransform(scrollYProgress, [0, 1], [0, drift]),
     springConfig
   );
   const translateXReverse = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, -600]),
+    useTransform(scrollYProgress, [0, 1], [0, -drift]),
     springConfig
   );
   const rotateX = useSpring(
@@ -60,11 +79,11 @@ export const HeroParallax = ({
   return (
     <div
       ref={ref}
-      className="h-[150vh] py-20 md:h-[180vh] md:py-32 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="pb-12 md:h-[180vh] md:py-32 overflow-hidden antialiased relative flex flex-col self-auto md:[perspective:1000px] md:[transform-style:preserve-3d]"
     >
       {header}
       <motion.div
-        style={{ rotateX, rotateZ, translateY, opacity }}
+        style={isMobile ? undefined : { rotateX, rotateZ, translateY, opacity }}
       >
         <motion.div className="flex flex-row-reverse space-x-reverse space-x-5 mb-5 md:space-x-20 md:mb-20">
           {firstRow.map((product, i) => (

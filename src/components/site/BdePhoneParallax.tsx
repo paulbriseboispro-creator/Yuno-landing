@@ -38,9 +38,9 @@ function BdeParallaxHeader() {
   const t = useBde();
   return (
     <>
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[75vh] bg-gradient-to-b from-background via-background/85 to-transparent" />
-      <div className="absolute inset-x-0 top-0 z-20 mx-auto w-full max-w-3xl px-6 pt-16 text-center md:pt-24">
-        <span className="pointer-events-auto mb-6 inline-block rounded-full border border-accent/40 bg-background/40 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-accent backdrop-blur-sm">
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 hidden h-[75vh] bg-gradient-to-b from-background via-background/85 to-transparent md:block" />
+      <div className="relative z-20 mx-auto w-full max-w-3xl px-6 pt-4 pb-4 text-center md:absolute md:inset-x-0 md:top-0 md:pt-24 md:pb-0">
+        <span className="pointer-events-auto mb-4 md:mb-6 inline-block rounded-full border border-accent/40 bg-background/40 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-accent backdrop-blur-sm">
           {t.hero.badge}
         </span>
         <h1 className="text-balance text-4xl font-medium leading-[1.06] tracking-tight md:text-6xl">
@@ -48,10 +48,10 @@ function BdeParallaxHeader() {
           <span className="serif italic text-muted-foreground">{t.hero.titleEmphasis}</span>
           {t.hero.titleRest}
         </h1>
-        <p className="mx-auto mt-6 max-w-[52ch] text-pretty text-base text-muted-foreground md:text-lg">
+        <p className="mx-auto mt-4 md:mt-6 max-w-[52ch] text-pretty text-base text-muted-foreground md:text-lg">
           {t.hero.subtitle}
         </p>
-        <div className="pointer-events-auto mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="pointer-events-auto mt-6 md:mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link
             to="/contact"
             className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 sm:w-auto"
@@ -65,7 +65,7 @@ function BdeParallaxHeader() {
             {t.hero.secondaryCta}
           </a>
         </div>
-        <p className="mt-5 text-xs text-muted-foreground">{t.hero.note}</p>
+        <p className="mt-3 md:mt-5 text-xs text-muted-foreground">{t.hero.note}</p>
       </div>
     </>
   );
