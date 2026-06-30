@@ -1,157 +1,43 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { Reveal } from "@/components/site/Reveal";
-import { SplitVisual } from "@/components/site/SplitVisual";
-import { SavingsCalculator } from "@/components/site/SavingsCalculator";
-import { organizersContent, useOrganizers } from "@/content/organizers";
-import { pageSeo } from "@/i18n/seo";
+import { RoleLanding } from "@/components/site/RoleLanding";
+import { useOrganizers } from "@/content/organizers";
+import { useLocale } from "@/i18n/locale";
+import type { RoleImages } from "@/content/role-landing";
+
+// PLACEHOLDER IMAGERY — awaiting the real organizer screens from Paul.
+// The parallax hero + 3D marquee currently reuse the club back-office dashboards
+// so the page is visually complete; swap DASHBOARDS for the organizer captures
+// once they land (drop them in src/assets/organizers/ and update the imports).
+import dashDashboard from "@/assets/bde/dashboards/dashboard.png";
+import dashAnalytics from "@/assets/bde/dashboards/analytics.png";
+import dashEvents from "@/assets/bde/dashboards/events.png";
+import dashOrders from "@/assets/bde/dashboards/orders.png";
+import dashClients from "@/assets/bde/dashboards/clients.png";
+import dashProfile from "@/assets/bde/dashboards/profile.png";
+// Phone showcase — the real ticket-selection page guests buy from. Final, not a placeholder.
+import tickets from "@/assets/bde/tickets.png";
+
+const DASHBOARDS = [dashDashboard, dashAnalytics, dashEvents, dashOrders, dashClients, dashProfile];
+
+// Localized labels for the parallax cards (hover overlay + alt text).
+const PARALLAX_TITLES: Record<"en" | "fr", string[]> = {
+  en: ["Dashboard", "Analytics", "Events", "Orders", "Attendees", "Public profile"],
+  fr: ["Tableau de bord", "Analytique", "Événements", "Commandes", "Participants", "Profil public"],
+};
+
+// 15 cards (three rows of five); 20-tile marquee wall. Both cycle the six screens.
+const PARALLAX_SEQUENCE = [0, 1, 2, 3, 4, 5, 0, 3, 1, 2, 4, 5, 0, 1, 3];
+const MARQUEE_SEQUENCE = [0, 1, 2, 3, 4, 5, 0, 3, 1, 2, 4, 5, 0, 1, 3, 2, 4, 5, 1, 0];
 
 export function OrganizersPage() {
   const t = useOrganizers();
+  const locale = useLocale();
+  const titles = PARALLAX_TITLES[locale];
 
-  return (
-    <>
-      <section className="pt-24 pb-12 px-6">
-        <div className="mx-auto max-w-7xl text-center">
-          <span className="inline-block text-xs font-medium uppercase tracking-[0.18em] text-accent border border-accent/40 rounded-full px-3 py-1 mb-6">
-            {t.hero.badge}
-          </span>
-          <h1 className="text-5xl md:text-7xl font-medium tracking-tight text-balance max-w-[22ch] mx-auto leading-[1.05]">
-            {t.hero.titleLead}<span className="serif italic text-muted-foreground">{t.hero.titleEmphasis}</span>
-          </h1>
-          <p className="mt-6 text-lg text-muted-foreground max-w-[60ch] mx-auto text-pretty">
-            {t.hero.subtitle}
-          </p>
-          <div className="mt-10 flex justify-center gap-3">
-            <Link to="/contact" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">
-              {t.hero.primaryCta} <ArrowRight className="size-4" />
-            </Link>
-            <Link to="/pricing" className="inline-flex items-center text-sm font-medium px-6 py-3 rounded-full ring-1 ring-border hover:bg-surface transition-colors">
-              {t.hero.secondaryCta}
-            </Link>
-          </div>
-        </div>
-      </section>
+  const images: RoleImages = {
+    parallax: PARALLAX_SEQUENCE.map((i) => ({ title: titles[i], thumbnail: DASHBOARDS[i] })),
+    marquee: MARQUEE_SEQUENCE.map((i) => DASHBOARDS[i]),
+    showcase: tickets,
+  };
 
-      {/* Savings calculator */}
-      <section className="px-6 py-16 border-t border-border">
-        <div className="mx-auto max-w-6xl">
-          <Reveal className="text-center mb-10">
-            <span className="inline-block text-xs font-medium uppercase tracking-[0.18em] text-accent border border-accent/40 rounded-full px-3 py-1">
-              {t.calculator.badge}
-            </span>
-            <h2 className="mt-4 text-3xl md:text-4xl font-medium tracking-tight text-balance max-w-[26ch] mx-auto">
-              {t.calculator.title}
-            </h2>
-            <p className="mt-3 text-sm text-muted-foreground max-w-[60ch] mx-auto">
-              {t.calculator.subtitle}
-            </p>
-          </Reveal>
-          <Reveal>
-            <SavingsCalculator />
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="px-6 py-16 border-t border-border">
-        <div className="mx-auto max-w-7xl grid md:grid-cols-2 gap-12 items-center">
-          <Reveal>
-            <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              {t.split.tag}
-            </span>
-            <h2 className="mt-3 text-3xl md:text-4xl font-medium tracking-tight text-balance">
-              {t.split.title}
-            </h2>
-            <p className="mt-4 text-muted-foreground max-w-[52ch] text-pretty">
-              {t.split.body}
-            </p>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <SplitVisual />
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="px-6 pb-16">
-        <div className="mx-auto max-w-5xl">
-          <Reveal>
-            <article className="rounded-2xl bg-surface ring-1 ring-border p-8 md:p-12">
-              <span className="inline-block text-[10px] font-medium uppercase tracking-[0.18em] text-accent border border-accent/40 rounded-full px-2 py-0.5 mb-5">
-                {t.math.tag}
-              </span>
-              <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-balance mb-6">
-                {t.math.title}
-              </h2>
-              <p className="text-base text-muted-foreground mb-6">{t.math.eventPrefix}<span className="text-foreground font-medium">{t.math.eventHighlight}</span>{t.math.eventSuffix}</p>
-              <div className="grid sm:grid-cols-2 gap-4 mb-6">
-                <div className="rounded-xl ring-1 ring-border p-5 bg-background/40">
-                  <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-2">{t.math.legacyLabel}</p>
-                  <p className="text-3xl font-medium">{t.math.legacyAmount}</p>
-                  <p className="text-sm text-muted-foreground mt-2">{t.math.legacyNote}</p>
-                </div>
-                <div className="rounded-xl ring-1 ring-accent/40 p-5 bg-background/40">
-                  <p className="text-xs uppercase tracking-[0.18em] text-accent mb-2">{t.math.yunoLabel}</p>
-                  <p className="text-3xl font-medium text-accent">{t.math.yunoAmount}</p>
-                  <p className="text-sm text-muted-foreground mt-2">{t.math.yunoNote}</p>
-                </div>
-              </div>
-              <p className="text-base text-foreground">
-                {t.math.conclusionPrefix}<span className="text-accent font-medium">{t.math.conclusionHighlight}</span>{t.math.conclusionSuffix}
-              </p>
-              <p className="mt-4 text-xs text-muted-foreground italic">{t.math.disclaimer}</p>
-            </article>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="px-6 pb-24">
-        <div className="mx-auto max-w-6xl space-y-6">
-          {t.blocks.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.05}>
-              <article className="grid md:grid-cols-[180px_1fr] gap-8 p-8 md:p-10 rounded-2xl bg-surface ring-1 ring-border">
-                <div>
-                  <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-accent border border-accent/40 rounded-full px-2 py-0.5">
-                    {s.tag}
-                  </span>
-                </div>
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-medium tracking-tight mb-4 text-balance">{s.title}</h2>
-                  <p className="text-base text-muted-foreground max-w-[60ch] mb-6 text-pretty">{s.body}</p>
-                  <ul className="grid sm:grid-cols-2 gap-2">
-                    {s.bullets.map((b) => (
-                      <li key={b} className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="size-4 mt-0.5 text-accent shrink-0" strokeWidth={1.75} />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="px-6 pb-24">
-        <div className="mx-auto max-w-5xl">
-          <Reveal>
-            <article className="relative overflow-hidden rounded-3xl bg-surface ring-1 ring-accent/40 p-10 md:p-14">
-              <div className="absolute -inset-x-20 -top-32 h-64 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--accent)_18%,transparent),transparent_70%)] pointer-events-none" />
-              <div className="relative z-10">
-                <span className="inline-block text-[10px] font-medium uppercase tracking-[0.18em] text-accent border border-accent/40 rounded-full px-2 py-0.5 mb-5">
-                  {t.collab.badge}
-                </span>
-                <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-balance max-w-[24ch] mb-4">
-                  {t.collab.title}
-                </h2>
-                <p className="text-base text-muted-foreground max-w-[62ch] text-pretty">
-                  {t.collab.body}
-                </p>
-              </div>
-            </article>
-          </Reveal>
-        </div>
-      </section>
-    </>
-  );
+  return <RoleLanding content={t} images={images} />;
 }

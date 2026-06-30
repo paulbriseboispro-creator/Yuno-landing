@@ -1,33 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { homeContent } from "@/content/home";
+import { selectContent } from "@/content/select";
 import { pageSeo } from "@/i18n/seo";
-import { Index } from "@/pages/index";
+import { RoleSelectPage } from "@/pages/role-select";
 
+// "/" is now the role-selection gate (Owner de club / Organisateur), replacing
+// the old overloaded home. The old home component (pages/index.tsx) is kept in
+// the repo but no longer routed.
 export const Route = createFileRoute("/")({
   head: ({ match }) => {
-    const c = homeContent[match.context.locale];
-    const m = c.meta;
-    return {
-      ...pageSeo("/", match.context.locale, {
-        title: m.title,
-        description: m.description,
-        ogDescription: m.ogDescription,
-      }),
-      scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: c.faq.items.map((item) => ({
-              "@type": "Question",
-              name: item.title,
-              acceptedAnswer: { "@type": "Answer", text: item.content },
-            })),
-          }),
-        },
-      ],
-    };
+    const m = selectContent[match.context.locale].meta;
+    return pageSeo("/", match.context.locale, {
+      title: m.title,
+      description: m.description,
+      ogDescription: m.ogDescription,
+    });
   },
-  component: Index,
+  component: RoleSelectPage,
 });

@@ -1,113 +1,101 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
-import { Reveal } from "@/components/site/Reveal";
-import { clubsContent, useClubs } from "@/content/clubs";
-import { pageSeo } from "@/i18n/seo";
+import { RoleLanding } from "@/components/site/RoleLanding";
+import { useClubs } from "@/content/clubs";
+import { useLocale } from "@/i18n/locale";
+import type { RoleImages } from "@/content/role-landing";
+
+// Owner de club screens — the full Yuno back-office, captured page by page. The
+// scroll-parallax hero and the 3D marquee at the bottom both run on these.
+// (Confirmed by Paul: les photos du scroll + l'élément du bas = celles du owner.)
+import dashDashboard from "@/assets/dashboards/owner/dashboard.png";
+import dashAnalytics from "@/assets/dashboards/owner/analytics.png";
+import dashEvents from "@/assets/dashboards/owner/events.png";
+import dashTicketing from "@/assets/dashboards/owner/ticketing.png";
+import dashGuestList from "@/assets/dashboards/owner/guest-list.png";
+import dashVipTables from "@/assets/dashboards/owner/vip-tables.png";
+import dashDjs from "@/assets/dashboards/owner/djs.png";
+import dashBookingDj from "@/assets/dashboards/owner/booking-dj.png";
+import dashCollaborations from "@/assets/dashboards/owner/collaborations.png";
+import dashPromoters from "@/assets/dashboards/owner/promoters.png";
+import dashCustomers from "@/assets/dashboards/owner/customers.png";
+import dashLoyalty from "@/assets/dashboards/owner/loyalty.png";
+import dashSms from "@/assets/dashboards/owner/sms.png";
+import dashOrders from "@/assets/dashboards/owner/orders.png";
+import dashInvoices from "@/assets/dashboards/owner/invoices.png";
+import dashAccounting from "@/assets/dashboards/owner/accounting.png";
+import dashStaff from "@/assets/dashboards/owner/staff.png";
+import dashDrinkMenu from "@/assets/dashboards/owner/drink-menu.png";
+import dashVipService from "@/assets/dashboards/owner/vip-service.png";
+import dashNotifications from "@/assets/dashboards/owner/notifications.png";
+// Phone showcase — a club's customer-facing event page.
+import eventFlyer from "@/assets/bde/event-flyer.png";
+
+// All 20 owner dashboards, in owner-sidebar order (Overview → Events →
+// Marketing/CRM → Operations). Index positions drive the sequences below.
+const DASHBOARDS = [
+  dashDashboard, //       0
+  dashAnalytics, //       1
+  dashEvents, //          2
+  dashTicketing, //       3
+  dashGuestList, //       4
+  dashVipTables, //       5
+  dashDjs, //             6
+  dashBookingDj, //       7
+  dashCollaborations, //  8
+  dashPromoters, //       9
+  dashCustomers, //      10
+  dashLoyalty, //        11
+  dashSms, //            12
+  dashOrders, //         13
+  dashInvoices, //       14
+  dashAccounting, //     15
+  dashStaff, //          16
+  dashDrinkMenu, //      17
+  dashVipService, //     18
+  dashNotifications, //  19
+];
+
+// Localized labels for the parallax cards (hover overlay + alt text), one per
+// DASHBOARDS index.
+const PARALLAX_TITLES: Record<"en" | "fr", string[]> = {
+  en: [
+    "Dashboard", "Analytics", "Events", "Ticketing", "Guest list",
+    "VIP Tables", "DJs", "Booking DJ", "Collaborations", "Promoters",
+    "Customers", "Loyalty", "SMS", "Orders", "Invoices",
+    "Accounting", "Staff", "Drink menu", "VIP Service", "Notifications",
+  ],
+  fr: [
+    "Tableau de bord", "Analytique", "Événements", "Billetterie", "Liste invités",
+    "Tables VIP", "DJs", "Booking DJ", "Collaborations", "Promoteurs",
+    "Clients", "Fidélité", "SMS", "Commandes", "Factures",
+    "Comptabilité", "Équipe", "Carte boissons", "Service VIP", "Notifications",
+  ],
+};
+
+// Hero parallax renders 15 cards (three rows of five) — a curated, visually rich
+// subset (bold numbers / charts / artwork read best as big tilted cards). The
+// marquee below shows all 20, so every screen still appears on the page.
+const PARALLAX_SEQUENCE = [
+  0, 1, 2, 5, 15, //   dashboard, analytics, events, vip-tables, accounting
+  10, 11, 13, 14, 9, // customers, loyalty, orders, invoices, promoters
+  6, 7, 8, 18, 3, //    djs, booking-dj, collaborations, vip-service, ticketing
+];
+
+// 3D marquee wall — every owner screen (4 columns of 5).
+const MARQUEE_SEQUENCE = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+  10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+];
 
 export function ClubsPage() {
   const t = useClubs();
-  return (
-    <>
-      <section className="pt-24 pb-16 px-6">
-        <div className="mx-auto max-w-7xl text-center">
-          <span className="inline-block text-xs font-medium uppercase tracking-[0.18em] text-accent border border-accent/40 rounded-full px-3 py-1 mb-6">
-            {t.hero.eyebrow}
-          </span>
-          <h1 className="text-5xl md:text-7xl font-medium tracking-tight text-balance max-w-[20ch] mx-auto leading-[1.05]">
-            {t.hero.titleLead}<span className="serif italic text-muted-foreground">{t.hero.titleEmphasis}</span>
-          </h1>
-          <p className="mt-6 text-lg text-muted-foreground max-w-[60ch] mx-auto text-pretty">
-            {t.hero.subtitle}
-          </p>
-          <div className="mt-10 flex justify-center gap-3">
-            <Link to="/contact" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">
-              {t.hero.bookDemo} <ArrowRight className="size-4" />
-            </Link>
-            <Link to="/pricing" className="inline-flex items-center text-sm font-medium px-6 py-3 rounded-full ring-1 ring-border hover:bg-surface transition-colors">
-              {t.hero.seePricing}
-            </Link>
-          </div>
-        </div>
-      </section>
+  const locale = useLocale();
+  const titles = PARALLAX_TITLES[locale];
 
-      {/* Early Adopters Offer */}
-      <section className="px-6 pb-10">
-        <div className="mx-auto max-w-5xl">
-          <Reveal>
-            <article className="relative overflow-hidden rounded-3xl bg-surface ring-1 ring-accent/40 p-8 md:p-12">
-              <div className="absolute -inset-x-20 -top-32 h-64 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--accent)_18%,transparent),transparent_70%)] pointer-events-none" />
-              <div className="relative z-10">
-                <div className="flex items-center gap-2 mb-4">
-                  <Sparkles className="size-4 text-accent" />
-                  <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-accent border border-accent/40 rounded-full px-2 py-0.5">
-                    {t.earlyAdopters.badge}
-                  </span>
-                </div>
-                <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-balance max-w-[24ch] mb-4">
-                  {t.earlyAdopters.title}
-                </h2>
-                <p className="text-base text-muted-foreground max-w-[62ch] text-pretty mb-6">
-                  {t.earlyAdopters.bodyLead}<span className="text-foreground font-medium">{t.earlyAdopters.bodyHighlight1}</span>{t.earlyAdopters.bodyMid}<span className="text-accent font-medium">{t.earlyAdopters.bodyHighlight2}</span>{t.earlyAdopters.bodyEnd}
-                </p>
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                  <Link to="/contact" className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-full text-sm font-semibold hover:brightness-110 transition-all">
-                    {t.earlyAdopters.cta} <ArrowRight className="size-4" />
-                  </Link>
-                  <span className="text-xs text-muted-foreground">
-                    {t.earlyAdopters.fineprint}
-                  </span>
-                </div>
-              </div>
-            </article>
-          </Reveal>
-        </div>
-      </section>
+  const images: RoleImages = {
+    parallax: PARALLAX_SEQUENCE.map((i) => ({ title: titles[i], thumbnail: DASHBOARDS[i] })),
+    marquee: MARQUEE_SEQUENCE.map((i) => DASHBOARDS[i]),
+    showcase: eventFlyer,
+  };
 
-      <section className="px-6 pb-10">
-        <div className="mx-auto max-w-4xl">
-          <Reveal>
-            <p className="text-lg md:text-xl text-foreground/90 text-pretty leading-relaxed text-center">
-              {t.intro.bodyLead}<span className="text-accent">{t.intro.bodyEmphasis}</span>
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="px-6 pb-24">
-        <div className="mx-auto max-w-6xl space-y-6">
-          {t.sections.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.05}>
-              <article className="grid md:grid-cols-[180px_1fr] gap-8 p-8 md:p-10 rounded-2xl bg-surface ring-1 ring-border">
-                <div>
-                  <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-accent border border-accent/40 rounded-full px-2 py-0.5">
-                    {s.tag}
-                  </span>
-                </div>
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-medium tracking-tight mb-4 text-balance">
-                    {s.title}
-                  </h2>
-                  <p className="text-base text-muted-foreground max-w-[60ch] mb-4 text-pretty">{s.body}</p>
-                  {s.meaning && (
-                    <p className="text-sm text-foreground/80 max-w-[60ch] mb-6 pl-3 border-l-2 border-accent/60 italic">
-                      <span className="not-italic font-medium text-accent mr-1">{t.whatThisMeans}</span>
-                      {s.meaning}
-                    </p>
-                  )}
-                  <ul className="grid sm:grid-cols-2 gap-2">
-                    {s.bullets.map((b) => (
-                      <li key={b} className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="size-4 mt-0.5 text-accent shrink-0" strokeWidth={1.75} />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-    </>
-  );
+  return <RoleLanding content={t} images={images} />;
 }

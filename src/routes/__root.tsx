@@ -15,13 +15,9 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { FoundingBanner } from "@/components/site/FoundingBanner";
 import { BdeHeader, BdeFooter } from "@/components/site/BdeChrome";
+import { RoleHeader, GateHeader, RoleFooter } from "@/components/site/RoleChrome";
 import { NotFoundPage } from "@/components/not-found";
-import {
-  LocaleProvider,
-  detectLocale,
-  getStandaloneLocale,
-  type Locale,
-} from "@/i18n/locale";
+import { LocaleProvider, detectLocale, getStandaloneLocale, type Locale } from "@/i18n/locale";
 import { localePath } from "@/i18n/seo";
 import { common } from "@/content/common";
 
@@ -37,7 +33,6 @@ const LOCALIZED_PATHS = new Set([
   "/privacy",
   "/terms",
 ]);
-
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
@@ -160,31 +155,65 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+// Which chrome a path gets. The role landings (/clubs, /organizers) and the
+// gate (/) get a stripped-down, role-focused header — no full-site nav — so a
+// visitor who picked a role stays in that clean funnel instead of facing the
+// "trop d'éléments" menu again. /bde keeps its own private chrome. Everything
+// else (pricing, contact, affiliates, legal) keeps the full site chrome.
+type Surface = "gate" | "club" | "orga" | "bde" | "main";
+
+function surfaceFor(pathname: string): Surface {
+  let path = pathname;
+  if (path === "/fr") path = "/";
+  else if (path.startsWith("/fr/")) path = path.slice(3); // "/fr/clubs" -> "/clubs"
+  if (path === "/bde" || path.startsWith("/bde/")) return "bde";
+  if (path === "/") return "gate";
+  if (path === "/clubs") return "club";
+  if (path === "/organizers") return "orga";
+  return "main";
+}
+
 function RootComponent() {
   const { queryClient, locale } = Route.useRouteContext();
-  // The /bde landing (and its /bde/contact page) get their own stripped-down
-  // chrome (no main nav, no founding banner) so a BDE handed the link stays
-  // focused and never crosses into the club/organizer funnel.
-  const isBde = useRouterState({
-    select: (s) => s.location.pathname === "/bde" || s.location.pathname.startsWith("/bde/"),
-  });
+  const surface = useRouterState({ select: (s) => surfaceFor(s.location.pathname) });
+
+  let header: ReactNode;
+  let footer: ReactNode;
+  switch (surface) {
+    case "bde":
+      header = <BdeHeader />;
+      footer = <BdeFooter />;
+      break;
+    case "gate":
+      header = <GateHeader />;
+      footer = <RoleFooter />;
+      break;
+    case "club":
+      header = <RoleHeader role="club" />;
+      footer = <RoleFooter />;
+      break;
+    case "orga":
+      header = <RoleHeader role="orga" />;
+      footer = <RoleFooter />;
+      break;
+    default:
+      header = (
+        <>
+          <FoundingBanner />
+          <SiteHeader />
+        </>
+      );
+      footer = <SiteFooter />;
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <LocaleProvider initialLocale={locale as Locale}>
-        {isBde ? (
-          <div className="sticky top-0 z-[70] w-full">
-            <BdeHeader />
-          </div>
-        ) : (
-          <div className="sticky top-0 z-[70] w-full">
-            <FoundingBanner />
-            <SiteHeader />
-          </div>
-        )}
+        <div className="sticky top-0 z-[70] w-full">{header}</div>
         <main className="min-h-[60vh]">
           <Outlet />
         </main>
-        {isBde ? <BdeFooter /> : <SiteFooter />}
+        {footer}
       </LocaleProvider>
     </QueryClientProvider>
   );
