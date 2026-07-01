@@ -246,6 +246,30 @@ const en: RoleLandingContent = {
       contactLabel: "The organizer Mission Control back-office",
     },
     {
+      id: "prix",
+      chipLabel: "Free for you",
+      hero: {
+        badge: "What it costs you",
+        titleLead: "Other platforms bill you. ",
+        titleEmphasis: "Yuno costs you nothing but Stripe",
+        titleRest: ".",
+        subtitle:
+          "Ticketing tools charge you a subscription or carve a margin out of every ticket. Yuno charges the organizer €0 — no subscription, no Yuno commission on your revenue. The only thing you pay is Stripe's processing fee.",
+      },
+      focus: {
+        tag: "Your cost: 0 €",
+        title: "Free for you. The 4% rides on the buyer, not your margin.",
+        body: "No subscription to start selling and no Yuno commission taken from your revenue. The 4% service fee (€0.99 min, 3% on drinks) is added at checkout and paid by the buyer, so it never touches your share. On a co-produced night the split and the fees are shown to the cent. The only cost that reaches you is Stripe's standard processing fee — the same one you'd pay on any platform.",
+        bullets: [
+          "No subscription, no Yuno commission on your revenue",
+          "The 4% (€0.99 min) is paid by the buyer, never deducted from you",
+          "Legacy platforms take 8–18% or bill a subscription; Yuno charges you €0",
+        ],
+        caveat: "Stripe's processing fee is billed directly by Stripe at its standard rate, not set by Yuno.",
+      },
+      contactLabel: "How Yuno stays free for organizers",
+    },
+    {
       id: "co-soiree",
       chipLabel: "Split with the venue",
       hero: {
@@ -646,6 +670,30 @@ const fr: RoleLandingContent = {
         caveat: "Le « net » s'appuie parfois sur une estimation quand les répartitions manquent ; les analyses de taux de conversion ne sont pas encore live.",
       },
       contactLabel: "Le back-office Mission Control de l'orga",
+    },
+    {
+      id: "prix",
+      chipLabel: "Gratuit pour vous",
+      hero: {
+        badge: "Ce que ça vous coûte",
+        titleLead: "Les autres plateformes vous facturent. ",
+        titleEmphasis: "Yuno ne vous coûte que Stripe",
+        titleRest: ".",
+        subtitle:
+          "Les outils de billetterie vous prennent un abonnement ou une marge sur chaque billet. Yuno ne facture rien à l'organisateur — aucun abonnement, aucune commission Yuno sur vos revenus. La seule chose que vous payez, ce sont les frais de traitement Stripe.",
+      },
+      focus: {
+        tag: "Votre coût : 0 €",
+        title: "Gratuit pour vous. Les 4 % sont sur l'acheteur, pas sur votre marge.",
+        body: "Aucun abonnement pour commencer à vendre et aucune commission Yuno prélevée sur vos revenus. Les 4 % de frais de service (min 0,99 €, 3 % sur les boissons) sont ajoutés au paiement et payés par l'acheteur : ils ne touchent jamais votre part. Sur une soirée co-produite, la répartition et les frais sont affichés au centime près. Le seul coût qui vous revient, ce sont les frais de traitement Stripe — les mêmes que sur n'importe quelle plateforme.",
+        bullets: [
+          "Aucun abonnement, aucune commission Yuno sur vos revenus",
+          "Les 4 % (min 0,99 €) sont payés par l'acheteur, jamais déduits de vous",
+          "Les plateformes classiques prennent 8 à 18 % ou un abonnement ; Yuno vous facture 0 €",
+        ],
+        caveat: "Les frais de traitement Stripe sont facturés directement par Stripe à son tarif standard, ils ne sont pas fixés par Yuno.",
+      },
+      contactLabel: "Comment Yuno reste gratuit pour les organisateurs",
     },
     {
       id: "co-soiree",

@@ -82,6 +82,7 @@ const MARQUEE_SEQUENCE = [0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 2, 4, 6, 8, 1, 3, 5, 7, 
 // Active-pain parallax lead (indices into DASHBOARDS above).
 const PAIN_LEAD: Record<string, number[]> = {
   orga: [0, 1, 8],
+  prix: [8, 1, 0],
   billetterie: [7, 3, 2],
   "co-soiree": [5, 2, 8],
   promo: [6, 3, 1],
@@ -94,6 +95,7 @@ const PAIN_LEAD: Record<string, number[]> = {
 // Focus-block proof image per pain.
 const PAIN_IMAGES: Record<string, string> = {
   orga: imgDashboard,
+  prix: imgAccounting,
   "co-soiree": imgCollaborations,
   promo: imgPromoters,
   billetterie: imgTicketing,
@@ -106,6 +108,7 @@ const PAIN_IMAGES: Record<string, string> = {
 // Optional 2nd image (inset on md+).
 const PAIN_IMAGES_ALT: Record<string, string> = {
   orga: imgAnalytics,
+  prix: imgInvoices,
   "co-soiree": imgEvents,
   billetterie: imgOrders,
   data: imgOrders,

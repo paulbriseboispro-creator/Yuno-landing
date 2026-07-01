@@ -15,6 +15,7 @@ const CLUB_PAINS = new Set([
 ]);
 const ORGA_PAINS = new Set([
   "orga",
+  "prix",
   "co-soiree",
   "promo",
   "billetterie",
