@@ -12,12 +12,14 @@ import {
 import { useLocale } from "@/i18n/locale";
 import type { RolePain } from "@/content/role-landing";
 
-const SESSION_KEY = "yuno-needs-prompted";
+const SESSION_KEY = "yuno-needs-answered";
 
 // A small, easily-closable popup that asks the visitor their one need and routes
-// to ?besoin= so the page collapses to just what's relevant. Auto-opens once per
-// session (skipped when the URL already carries a besoin, e.g. a deep link), and
-// closes on pick, X, Esc, backdrop, or "see the whole platform".
+// to ?besoin= so the page collapses to just what's relevant. Auto-opens on every
+// arrival at a role landing that has NO chosen need yet, and stops nagging only
+// once the visitor has actually picked one (the URL carries a besoin). Skipping
+// ("see the whole platform") is a soft dismiss: it closes for this view but the
+// prompt can return on the next visit. Closes on pick, X, Esc, or backdrop.
 export function NeedsModal({
   pains,
   basePath,
@@ -31,22 +33,27 @@ export function NeedsModal({
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (hasBesoin) return; // already deep-linked to a need
-    let seen = false;
-    try {
-      seen = sessionStorage.getItem(SESSION_KEY) === "1";
-    } catch {
-      /* sessionStorage unavailable — just show it */
-    }
-    if (seen) return;
-    const id = setTimeout(() => {
-      setOpen(true);
+    // The visitor picked a need (deep link or a prior pick): remember it and
+    // never prompt again this session.
+    if (hasBesoin) {
       try {
         sessionStorage.setItem(SESSION_KEY, "1");
       } catch {
         /* ignore */
       }
-    }, 600);
+      return;
+    }
+    // Already answered earlier this session — don't prompt again.
+    let answered = false;
+    try {
+      answered = sessionStorage.getItem(SESSION_KEY) === "1";
+    } catch {
+      /* sessionStorage unavailable — just show it */
+    }
+    if (answered) return;
+    // Fresh arrival with no chosen need — prompt. The flag is set on pick
+    // (via ?besoin=), not here, so it re-shows on each needless arrival.
+    const id = setTimeout(() => setOpen(true), 600);
     return () => clearTimeout(id);
   }, [hasBesoin]);
 
