@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { PricingGrid } from "@/components/site/PricingGrid";
+import { LaunchOfferCard } from "@/components/site/LaunchOfferCard";
 import { Reveal } from "@/components/site/Reveal";
 import { ServiceFeeCalculator } from "@/components/site/ServiceFeeCalculator";
 import { SavingsCalculator } from "@/components/site/SavingsCalculator";
@@ -48,7 +48,9 @@ export function PricingPage() {
               </p>
             </div>
           </Reveal>
-          <PricingGrid />
+          {/* Abonnement coupé pendant le lancement : la grille de formules payantes
+              (PricingGrid) est remplacée par l'offre unique gratuite. */}
+          <LaunchOfferCard />
 
           <Reveal className="mt-12">
             <div className="mx-auto max-w-3xl rounded-2xl bg-surface ring-1 ring-border p-6 md:p-8">

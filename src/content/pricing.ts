@@ -10,10 +10,10 @@ const en = {
   meta: {
     title: "Pricing — Yuno",
     description:
-      "Yuno plans: Core (free), Essential €49/mo, Pro €99/mo, Elite €199/mo. Plus 4% per ticket with €0.99 minimum on transactions.",
+      "Yuno is free for clubs during launch — every feature included, no subscription, no credit card. Customers pay a small service fee at checkout (4% tickets with €0.99 minimum, 3% drinks).",
     ogTitle: "Pricing — Yuno",
     ogDescription:
-      "Core, Essential €49, Pro €99, Elite €199 — plus low transactional fees.",
+      "Free for clubs during launch — every feature included. Low service fees paid by the customer, never by you.",
   },
   plans: [
     {
@@ -110,7 +110,7 @@ const en = {
       ],
     },
   ],
-  fees: "Plus 4% per ticket (€0.99 min) and 3% on drinks — service fees paid by the customer, never by you. Organizer and Affiliate accounts are free.",
+  fees: "4% per ticket (€0.99 min) and 3% on drinks — service fees paid by the customer, never by you. Club, organizer and affiliate accounts are all free during launch.",
   // Billing-cadence note shown under the plan grid.
   annualLine: "Prices shown are monthly. Pay for the year in one payment and 2 months are on us — same plan, lower yearly cost.",
   // PricingGrid sub-CTA under each plan card.
@@ -150,8 +150,8 @@ const en = {
     notAvailable: "n/a",
     rows: {
       yuno: {
-        sub: "0% commission — subscription only",
-        costLabel: "subscription only",
+        sub: "0% commission — free during launch",
+        costLabel: "free during launch",
       },
       shotgun: { sub: "10% commission — paid by you" },
       weezevent: { sub: "2.5% + €0.99 / ticket — paid by you" },
@@ -163,7 +163,7 @@ const en = {
     },
     howCalculatedLabel: "How it's calculated:",
     howCalculated:
-      " Shotgun 10% organizer commission · Weezevent 2.5% + €0.99/ticket organizer-side · Xceed Marketplace 15% organizer commission · Yuno: 0% organizer commission, subscription only. DICE adds fees on top of your price for buyers — not comparable on organizer cost. Estimate only; actual fees vary by payment method and event.",
+      " Shotgun 10% organizer commission · Weezevent 2.5% + €0.99/ticket organizer-side · Xceed Marketplace 15% organizer commission · Yuno: 0% organizer commission and €0 during launch (no subscription). DICE adds fees on top of your price for buyers — not comparable on organizer cost. Estimate only; actual fees vary by payment method and event.",
   },
 
   // ServiceFeeCalculator copy. Numbers/percentages stay exact.
@@ -189,56 +189,73 @@ const en = {
   // pricing.tsx inline sections.
   page: {
     eyebrow: "Pricing",
-    titleA: "A plan for every ",
-    titleEm: "scale of night",
-    sub: "Monthly SaaS plans for the back office, plus transparent transactional fees on what actually moves money.",
-    feeIntroA: "Yuno charges you a ",
-    feeIntroMonthly: "monthly subscription",
+    titleA: "Free for clubs during ",
+    titleEm: "launch",
+    sub: "Every feature included. No subscription, no credit card, no commitment. Yuno earns through small service fees your customers pay at checkout — you only ever pay Stripe's processing fee.",
+    feeIntroA: "During launch, Yuno costs you ",
+    feeIntroMonthly: "€0 — no subscription",
     feeIntroB:
       ". Ticket and drink fees are paid by your guests at checkout — ",
     feeIntroNotYou: "not by you",
     feeIntroC: ". The fee calculator below shows what your attendees pay per purchase.",
+    // Launch-offer card — replaces the paid plan grid while subscriptions are off.
+    launch: {
+      badge: "Launch offer",
+      title: "One plan: everything, free",
+      body: "Ticketing, drinks ordering, VIP tables, guest list, staff with PINs, live night, analytics, CRM, email campaigns, story builder — the full platform, with nothing gated behind a paid tier.",
+      included: [
+        "Events, ticketing & entry control (QR)",
+        "Drinks orders & menu management",
+        "VIP tables & VIP service",
+        "Guest list & staff with PINs",
+        "Live night & advanced analytics",
+        "Customer CRM, loyalty & email campaigns",
+        "DJ & organizer collaborations",
+        "CSV / PDF exports",
+      ],
+      note: "No setup fee · No subscription · No credit card · No commitment",
+      cta: "Create your club account",
+    },
     noCutBold: "Yuno doesn't take a cut from your revenue.",
     noCutBody:
       "The 4% service fee is paid by your customers at checkout — like a credit card processing fee. You keep 100% of your ticket price. Only standard Stripe processing fees apply.",
     noCutCompare: "Compare that to Shotgun's 10% taken directly from your payout.",
     organizerFree: {
       eyebrow: "Organizers & collectives",
-      title: "Organizing in a host venue? Yuno is free.",
-      body: "The plans above are for venues that run their own floor. If you organize events inside a host venue, you pay no subscription at all — only Stripe's processing fee. The 4% ticket fee is paid by your attendees, never by you. That's the edge over Shotgun, Weezevent and Xceed, who take 10–15% straight out of your pocket.",
+      title: "Organizing in a host venue? Yuno is free too.",
+      body: "If you organize events inside a host venue, you pay no subscription either — only Stripe's processing fee. The 4% ticket fee is paid by your attendees, never by you. That's the edge over Shotgun, Weezevent and Xceed, who take 10–15% straight out of your pocket.",
       cta: "See how it works for organizers",
     },
     savingsEyebrow: "vs. Shotgun · Weezevent · Xceed · DICE",
     savingsTitle: "The cheapest ticketing platform for nightlife — by a wide margin",
     savingsSub:
-      "Yuno is subscription only. No per-ticket commission. Compare what each platform actually costs you per year.",
+      "Yuno takes no per-ticket commission — and during launch, the software itself costs €0. Compare what each platform actually costs you per year.",
     serviceFeeEyebrow: "See it in numbers",
     serviceFeeTitle: "What your customers actually pay in fees",
     serviceFeeSub:
       "Drag the sliders. Every service fee is paid by the customer at checkout — never by you. You keep 100% of your menu and ticket prices. Standard Stripe processing fees still apply.",
     founding: {
-      badge: "Early Adopters — 15 spots only",
-      title: "Founding Club Offer",
-      introA: "We're onboarding our first ",
-      introVenues: "15 partner venues",
-      introB: " — and that's where it stops.",
-      bodyA: "Founding clubs get ",
-      bodyFree: "3 months completely free",
-      bodyB: ", no credit card, no commitment. Run real nights on Yuno, see what it does for your operations, and decide after.",
-      pathsLabel: "After your trial, two paths:",
-      pathMonthly: "Go monthly at the standard rate, any time.",
-      pathAnnualA: "Go annual and get ",
-      pathAnnualEm: "2 extra months free",
-      pathAnnualB:
-        " — plus a lifetime price lock. Your rate never increases, even as we add features and raise prices for everyone else.",
+      badge: "Launch period",
+      title: "Free for every club that joins during launch",
+      introA: "We're opening Yuno with the simplest deal possible: ",
+      introVenues: "every feature, €0",
+      introB: " — for every club that joins during the launch period.",
+      bodyA: "That means ",
+      bodyFree: "no subscription, no credit card, no commitment",
+      bodyB: ". Run real nights on Yuno, see what it does for your operations, and keep going — it stays free for the whole launch period.",
+      pathsLabel: "How Yuno makes money:",
+      pathMonthly: "Small service fees paid by your customers at checkout — 4% on tickets and tables (€0.99 min), 3% on drinks.",
+      pathAnnualA: "On your side, you only ever pay ",
+      pathAnnualEm: "Stripe's processing fee",
+      pathAnnualB: " (1.5% + €0.25 per transaction), deducted from payouts like on any platform.",
       checks: [
-        "3 months free — no card, no strings",
+        "Every feature included — nothing gated",
         "Direct onboarding with Paul, Yuno's founder",
-        "Annual plan = 2 months free + your rate locked forever",
+        "No trial countdown — free for the entire launch period",
       ],
-      deadline: "Open until September 2026 — or until all 15 spots are claimed.",
-      cta: "Claim your founding spot",
-      ctaMeta: "Free to join · No contract · Exclusive territory",
+      deadline: "Valid for every club joining during the launch period.",
+      cta: "Create your club account",
+      ctaMeta: "Free to join · No contract · Set up in minutes",
     },
     breakdownEyebrow: "Fee breakdown",
     breakdownTitle: "Service fees your customers pay at checkout",
@@ -269,10 +286,10 @@ const fr: PricingContent = {
   meta: {
     title: "Tarifs — Yuno",
     description:
-      "Les formules Yuno : Core (gratuit), Essential 49 €/mois, Pro 99 €/mois, Elite 199 €/mois. Plus 4 % par billet avec un minimum de 0,99 € sur les transactions.",
+      "Yuno est gratuit pour les clubs pendant le lancement — toutes les fonctionnalités incluses, sans abonnement, sans carte bancaire. Les clients paient un petit frais de service au paiement (4 % billets, min 0,99 € ; 3 % boissons).",
     ogTitle: "Tarifs — Yuno",
     ogDescription:
-      "Core, Essential 49 €, Pro 99 €, Elite 199 € — plus des frais de transaction réduits.",
+      "Gratuit pour les clubs pendant le lancement — toutes les fonctionnalités incluses. Des frais de service réduits, payés par le client, jamais par vous.",
   },
   plans: [
     {
@@ -369,7 +386,7 @@ const fr: PricingContent = {
       ],
     },
   ],
-  fees: "Plus 4 % par billet (0,99 € min) et 3 % sur les boissons — des frais de service réglés par le client, jamais par vous. Les comptes Organisateur et Affilié sont gratuits.",
+  fees: "4 % par billet (0,99 € min) et 3 % sur les boissons — des frais de service réglés par le client, jamais par vous. Les comptes Club, Organisateur et Affilié sont tous gratuits pendant le lancement.",
   annualLine: "Les tarifs affichés sont mensuels. Réglez l'année en un seul paiement et 2 mois vous sont offerts — la même formule, un coût annuel plus bas.",
   cardNote: "Sans frais d'installation · Annulation à tout moment · Sans engagement",
   mostPopular: "Le plus populaire",
@@ -405,8 +422,8 @@ const fr: PricingContent = {
     notAvailable: "n/d",
     rows: {
       yuno: {
-        sub: "0 % de commission — abonnement uniquement",
-        costLabel: "abonnement uniquement",
+        sub: "0 % de commission — gratuit pendant le lancement",
+        costLabel: "gratuit pendant le lancement",
       },
       shotgun: { sub: "10 % de commission — payés par vous" },
       weezevent: { sub: "2,5 % + 0,99 € / billet — payés par vous" },
@@ -418,7 +435,7 @@ const fr: PricingContent = {
     },
     howCalculatedLabel: "Mode de calcul :",
     howCalculated:
-      " Shotgun 10 % de commission organisateur · Weezevent 2,5 % + 0,99 €/billet côté organisateur · Xceed Marketplace 15 % de commission organisateur · Yuno : 0 % de commission organisateur, abonnement uniquement. DICE ajoute des frais au-dessus de votre prix pour les acheteurs — non comparable sur le coût organisateur. Estimation seulement ; les frais réels varient selon le mode de paiement et l'événement.",
+      " Shotgun 10 % de commission organisateur · Weezevent 2,5 % + 0,99 €/billet côté organisateur · Xceed Marketplace 15 % de commission organisateur · Yuno : 0 % de commission organisateur et 0 € pendant le lancement (sans abonnement). DICE ajoute des frais au-dessus de votre prix pour les acheteurs — non comparable sur le coût organisateur. Estimation seulement ; les frais réels varient selon le mode de paiement et l'événement.",
   },
 
   serviceFee: {
@@ -442,56 +459,73 @@ const fr: PricingContent = {
 
   page: {
     eyebrow: "Tarifs",
-    titleA: "Une formule pour chaque ",
-    titleEm: "envergure de soirée",
-    sub: "Des formules SaaS mensuelles pour la gestion, plus des frais de transaction transparents sur ce qui génère réellement de l'argent.",
-    feeIntroA: "Yuno vous facture un ",
-    feeIntroMonthly: "abonnement mensuel",
+    titleA: "Gratuit pour les clubs pendant ",
+    titleEm: "le lancement",
+    sub: "Toutes les fonctionnalités incluses. Sans abonnement, sans carte bancaire, sans engagement. Yuno se rémunère via de petits frais de service payés par vos clients au moment du paiement — vous ne payez que les frais de traitement Stripe.",
+    feeIntroA: "Pendant le lancement, Yuno vous coûte ",
+    feeIntroMonthly: "0 € — sans abonnement",
     feeIntroB:
       ". Les frais sur les billets et les boissons sont réglés par vos invités au moment du paiement — ",
     feeIntroNotYou: "pas par vous",
     feeIntroC: ". Le calculateur de frais ci-dessous montre ce que vos participants paient par achat.",
+    // Carte offre de lancement — remplace la grille de formules payantes tant que l'abonnement est coupé.
+    launch: {
+      badge: "Offre de lancement",
+      title: "Une seule formule : tout, gratuitement",
+      body: "Billetterie, commande de boissons, tables VIP, guest list, staff avec PIN, soirée en direct, analytics, CRM, campagnes email, story builder — toute la plateforme, sans aucune fonctionnalité verrouillée derrière un palier payant.",
+      included: [
+        "Événements, billetterie & contrôle d'accès (QR)",
+        "Commandes de boissons & gestion de la carte",
+        "Tables VIP & service VIP",
+        "Guest list & staff avec PIN",
+        "Soirée en direct & analytics avancées",
+        "CRM clients, fidélité & campagnes email",
+        "Collaborations DJ & organisateurs",
+        "Exports CSV / PDF",
+      ],
+      note: "Aucun frais d'installation · Sans abonnement · Sans carte bancaire · Sans engagement",
+      cta: "Créer mon compte club",
+    },
     noCutBold: "Yuno ne prend aucune part de vos revenus.",
     noCutBody:
       "Les 4 % de frais de service sont réglés par vos clients au moment du paiement — comme des frais de carte bancaire. Vous conservez 100 % du prix de votre billet. Seuls les frais de traitement Stripe habituels s'appliquent.",
     noCutCompare: "Comparez cela aux 10 % de Shotgun prélevés directement sur votre versement.",
     organizerFree: {
       eyebrow: "Organisateurs & collectifs",
-      title: "Vous organisez dans un établissement hôte ? Yuno est gratuit.",
-      body: "Les formules ci-dessus s'adressent aux établissements qui gèrent leur propre salle. Si vous organisez des événements dans un établissement hôte, vous ne payez aucun abonnement — seulement les frais de traitement Stripe. Les 4 % de frais de billet sont payés par vos participants, jamais par vous. C'est l'avantage face à Shotgun, Weezevent et Xceed, qui prélèvent 10 à 15 % directement dans votre poche.",
+      title: "Vous organisez dans un établissement hôte ? Yuno est gratuit aussi.",
+      body: "Si vous organisez des événements dans un établissement hôte, vous ne payez aucun abonnement non plus — seulement les frais de traitement Stripe. Les 4 % de frais de billet sont payés par vos participants, jamais par vous. C'est l'avantage face à Shotgun, Weezevent et Xceed, qui prélèvent 10 à 15 % directement dans votre poche.",
       cta: "Voir comment ça marche pour les organisateurs",
     },
     savingsEyebrow: "vs. Shotgun · Weezevent · Xceed · DICE",
     savingsTitle: "La plateforme de billetterie la moins chère pour la nuit — de loin",
     savingsSub:
-      "Yuno fonctionne uniquement par abonnement. Aucune commission par billet. Comparez ce que chaque plateforme vous coûte réellement par an.",
+      "Yuno ne prend aucune commission par billet — et pendant le lancement, le logiciel lui-même coûte 0 €. Comparez ce que chaque plateforme vous coûte réellement par an.",
     serviceFeeEyebrow: "Les chiffres en clair",
     serviceFeeTitle: "Ce que vos clients paient réellement en frais",
     serviceFeeSub:
       "Déplacez les curseurs. Chaque frais de service est réglé par le client au moment du paiement — jamais par vous. Vous conservez 100 % de vos prix de menu et de billet. Les frais de traitement Stripe habituels s'appliquent tout de même.",
     founding: {
-      badge: "Premiers adoptants — 15 places seulement",
-      title: "Offre Club Fondateur",
-      introA: "Nous intégrons nos 15 premiers ",
-      introVenues: "établissements partenaires",
-      introB: " — et cela s'arrête là.",
-      bodyA: "Les clubs fondateurs bénéficient de ",
-      bodyFree: "3 mois entièrement gratuits",
-      bodyB: ", sans carte bancaire, sans engagement. Organisez de vraies soirées sur Yuno, voyez ce que cela apporte à vos opérations, et décidez ensuite.",
-      pathsLabel: "Après votre essai, deux options :",
-      pathMonthly: "Passez au mensuel au tarif standard, à tout moment.",
-      pathAnnualA: "Passez à l'annuel et obtenez ",
-      pathAnnualEm: "2 mois supplémentaires gratuits",
-      pathAnnualB:
-        " — plus un tarif verrouillé à vie. Votre tarif n'augmente jamais, même lorsque nous ajoutons des fonctionnalités et augmentons les prix pour tous les autres.",
+      badge: "Période de lancement",
+      title: "Gratuit pour chaque club qui nous rejoint pendant le lancement",
+      introA: "Yuno s'ouvre avec l'offre la plus simple possible : ",
+      introVenues: "toutes les fonctionnalités, 0 €",
+      introB: " — pour chaque club qui nous rejoint pendant la période de lancement.",
+      bodyA: "Concrètement : ",
+      bodyFree: "sans abonnement, sans carte bancaire, sans engagement",
+      bodyB: ". Organisez de vraies soirées sur Yuno, voyez ce que cela apporte à vos opérations, et continuez — cela reste gratuit pendant toute la période de lancement.",
+      pathsLabel: "Comment Yuno se rémunère :",
+      pathMonthly: "De petits frais de service payés par vos clients au moment du paiement — 4 % sur les billets et tables (0,99 € min), 3 % sur les boissons.",
+      pathAnnualA: "De votre côté, vous ne payez que ",
+      pathAnnualEm: "les frais de traitement Stripe",
+      pathAnnualB: " (1,5 % + 0,25 € par transaction), déduits des versements comme sur n'importe quelle plateforme.",
       checks: [
-        "3 mois gratuits — sans carte, sans condition",
+        "Toutes les fonctionnalités incluses — rien de verrouillé",
         "Intégration directe avec Paul, le fondateur de Yuno",
-        "Formule annuelle = 2 mois gratuits + votre tarif verrouillé à vie",
+        "Pas de compte à rebours d'essai — gratuit pendant toute la période de lancement",
       ],
-      deadline: "Ouvert jusqu'en septembre 2026 — ou jusqu'à ce que les 15 places soient prises.",
-      cta: "Réserver ma place de fondateur",
-      ctaMeta: "Adhésion gratuite · Sans contrat · Territoire exclusif",
+      deadline: "Valable pour chaque club qui nous rejoint pendant la période de lancement.",
+      cta: "Créer mon compte club",
+      ctaMeta: "Adhésion gratuite · Sans contrat · Prêt en quelques minutes",
     },
     breakdownEyebrow: "Détail des frais",
     breakdownTitle: "Les frais de service que vos clients paient au moment du paiement",

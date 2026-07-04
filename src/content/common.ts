@@ -31,9 +31,9 @@ const en = {
       "The platform for clubs and organizers: VIP tables, live night control, customer data and loyalty, with co-hosted revenue splits handled automatically.",
   },
   banner: {
-    label: "Founding Club Offer",
-    rest: " — 15 founding spots open. 3 months free, no credit card.",
-    cta: "Claim your spot",
+    label: "Launch offer",
+    rest: " — Yuno is 100% free for clubs during launch. No subscription, no credit card.",
+    cta: "Create your club account",
   },
   footer: {
     tagline: "The infrastructure layer for the after-dark economy.",
@@ -62,7 +62,7 @@ const en = {
       { title: "CRM & SMS marketing", category: "Product", to: "/clubs", keywords: ["crm", "sms", "marketing", "campaign"] },
       { title: "Ticketing & Stripe Connect splits", category: "Product", to: "/organizers", keywords: ["tickets", "stripe", "split", "payout"] },
       { title: "Promoter attribution & leaderboard", category: "Product", to: "/affiliates", keywords: ["promoter", "affiliate", "attribution", "commission"] },
-      { title: "Pricing — Core, Essential, Pro, Elite", category: "Pricing", to: "/pricing", keywords: ["pricing", "plans", "cost", "free", "elite"] },
+      { title: "Pricing — free for clubs during launch", category: "Pricing", to: "/pricing", keywords: ["pricing", "plans", "cost", "free", "launch"] },
       { title: "For nightclubs", category: "Audience", to: "/clubs", keywords: ["club", "venue", "owner"] },
       { title: "For organizers", category: "Audience", to: "/organizers", keywords: ["organizer", "events"] },
       { title: "For promoters & agencies", category: "Audience", to: "/affiliates", keywords: ["promoter", "agency", "affiliate"] },
@@ -120,9 +120,9 @@ const fr: CommonContent = {
       "La plateforme pour les clubs et organisateurs : tables VIP, pilotage live de la soirée, données clients et fidélité, avec la répartition des soirées co-produites gérée automatiquement.",
   },
   banner: {
-    label: "Offre Club Fondateur",
-    rest: " — 15 places fondatrices ouvertes. 3 mois offerts, sans carte bancaire.",
-    cta: "Réserver ma place",
+    label: "Offre de lancement",
+    rest: " — Yuno est 100 % gratuit pour les clubs pendant le lancement. Sans abonnement, sans carte bancaire.",
+    cta: "Créer mon compte club",
   },
   footer: {
     tagline: "La couche d'infrastructure de l'économie de la nuit.",
@@ -151,7 +151,7 @@ const fr: CommonContent = {
       { title: "CRM & marketing SMS", category: "Product", to: "/clubs", keywords: ["crm", "sms", "marketing", "campagne"] },
       { title: "Billetterie & répartition Stripe Connect", category: "Product", to: "/organizers", keywords: ["billets", "stripe", "répartition", "versement"] },
       { title: "Attribution promoteurs & classement", category: "Product", to: "/affiliates", keywords: ["promoteur", "affilié", "attribution", "commission"] },
-      { title: "Tarifs — Core, Essential, Pro, Elite", category: "Pricing", to: "/pricing", keywords: ["tarifs", "plans", "coût", "gratuit", "elite"] },
+      { title: "Tarifs — gratuit pour les clubs pendant le lancement", category: "Pricing", to: "/pricing", keywords: ["tarifs", "plans", "coût", "gratuit", "lancement"] },
       { title: "Pour les clubs", category: "Audience", to: "/clubs", keywords: ["club", "établissement", "gérant"] },
       { title: "Pour les organisateurs", category: "Audience", to: "/organizers", keywords: ["organisateur", "événements"] },
       { title: "Pour les promoteurs & agences", category: "Audience", to: "/affiliates", keywords: ["promoteur", "agence", "affilié"] },

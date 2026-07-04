@@ -31,7 +31,7 @@ const en: RoleLandingContent = {
       "An €800 VIP table that no-shows is dead money. Yuno sells and cashes your tables up front, tracks every minimum spend live, and settles the night under the club's own name — no paper floor plan, no WhatsApp, no end-of-night cash count.",
     primaryCta: "Book a demo",
     secondaryCta: "See the offer",
-    note: "Core free · Flat 3% drinks / 4% tickets & tables (€0.99 min) · No commitment",
+    note: "100% free during launch · Flat 3% drinks / 4% tickets & tables (€0.99 min) · No commitment",
   },
   quickPoints: [
     {
@@ -51,17 +51,17 @@ const en: RoleLandingContent = {
     },
   ],
   free: {
-    tag: "Founding offer",
-    title: "3 months free. Then a price locked forever.",
-    body: "We're hand-picking our first 15 partner venues. Founding clubs get three months completely free — no credit card, no commitment. After that, choose monthly at full price or go annual for two months free and a lifetime price lock. Your rate never increases, even if our prices go up later.",
+    tag: "Launch offer",
+    title: "Free during launch. Every feature included.",
+    body: "Yuno is opening with the simplest deal possible: every club that joins during the launch period gets the full platform for €0 — no subscription, no credit card, no commitment. Yuno earns through small service fees paid by your customers at checkout; on your side, only Stripe's processing fee applies.",
     bullets: [
-      "3 months completely free — no credit card",
-      "Annual plan: 2 months free + a price locked for life",
-      "No setup fee, no commitment",
-      "Exclusive to the first 15 founding clubs",
+      "Every feature included — nothing gated",
+      "No subscription, no credit card, no commitment",
+      "No setup fee",
+      "You only ever pay Stripe's processing fee",
     ],
     caption:
-      "Founding terms apply while spots last. After the free period you choose the plan that fits.",
+      "Valid for every club joining during the launch period.",
   },
   audience: {
     tag: "Floor plan",
@@ -140,7 +140,7 @@ const en: RoleLandingContent = {
       { label: "Promoter tracking", a: "Spreadsheet", b: "Automatic attribution" },
       { label: "Customer data", a: false, b: true, highlight: true },
       { label: "Live view of the room", a: false, b: true, highlight: true },
-      { label: "Starting cost", a: "Several licences", b: "3 months free" },
+      { label: "Starting cost", a: "Several licences", b: "Free during launch" },
       { label: "Setup time", a: "Weeks", b: "One afternoon" },
     ],
     footer:
@@ -178,7 +178,7 @@ const en: RoleLandingContent = {
     items: [
       {
         q: "How much does it cost?",
-        a: "Founding venues get three months completely free — no credit card. After that you choose monthly at full price or annual for two months free plus a price locked for life. The founding offer is limited to the first 15 clubs.",
+        a: "Nothing during launch: every feature is included, with no subscription and no credit card. Yuno earns through small service fees paid by your customers at checkout (4% on tickets and tables with a €0.99 minimum, 3% on drinks). On your side, only Stripe's processing fee applies.",
       },
       {
         q: "Do we need to buy hardware?",
@@ -200,9 +200,9 @@ const en: RoleLandingContent = {
   },
   cta: {
     title: "Ready to run the night on your terms?",
-    body: "Book a demo and we'll set your venue up. Founding spots include three months free.",
+    body: "Book a demo and we'll set your venue up. Yuno is free for clubs during the whole launch period.",
     button: "Book my demo",
-    note: "3 months free · No commitment · 15 founding venues",
+    note: "Free during launch · No commitment · No credit card",
   },
   defaultPainId: "vip",
   pains: [
@@ -322,7 +322,7 @@ const en: RoleLandingContent = {
           "Order pipeline and per-staff activity in real time",
           "Severity alerts: backlog, rush, refund spike",
         ],
-        caveat: "The live-visitors panel is a Pro / Elite feature.",
+        caveat: "Included for every club during launch.",
       },
       contactLabel: "The Live Night real-time control room",
     },
@@ -444,17 +444,17 @@ const fr: RoleLandingContent = {
     },
   ],
   free: {
-    tag: "Offre fondateur",
-    title: "3 mois offerts. Puis un tarif verrouillé à vie.",
-    body: "Nous sélectionnons à la main nos 15 premiers établissements partenaires. Les clubs fondateurs bénéficient de trois mois entièrement gratuits — sans carte bancaire, sans engagement. Ensuite, choisissez le mensuel au tarif plein ou passez à l'annuel pour deux mois offerts et un tarif verrouillé à vie. Votre tarif n'augmente jamais, même si nos prix montent plus tard.",
+    tag: "Offre de lancement",
+    title: "Gratuit pendant le lancement. Toutes les fonctionnalités incluses.",
+    body: "Yuno s'ouvre avec l'offre la plus simple possible : chaque club qui nous rejoint pendant la période de lancement a toute la plateforme pour 0 € — sans abonnement, sans carte bancaire, sans engagement. Yuno se rémunère via de petits frais de service payés par vos clients au moment du paiement ; de votre côté, seuls les frais de traitement Stripe s'appliquent.",
     bullets: [
-      "3 mois entièrement gratuits — sans carte bancaire",
-      "Annuel : 2 mois offerts + un tarif verrouillé à vie",
-      "Aucuns frais d'installation, sans engagement",
-      "Réservé aux 15 premiers clubs fondateurs",
+      "Toutes les fonctionnalités incluses — rien de verrouillé",
+      "Sans abonnement, sans carte bancaire, sans engagement",
+      "Aucuns frais d'installation",
+      "Vous ne payez que les frais de traitement Stripe",
     ],
     caption:
-      "L'offre fondateur s'applique tant qu'il reste des places. Après la période gratuite, vous choisissez le plan adapté.",
+      "Valable pour chaque club qui nous rejoint pendant la période de lancement.",
   },
   audience: {
     tag: "Plan de salle",
@@ -533,7 +533,7 @@ const fr: RoleLandingContent = {
       { label: "Suivi des promoteurs", a: "Tableur", b: "Attribution automatique" },
       { label: "Données clients", a: false, b: true, highlight: true },
       { label: "Vue de la salle en direct", a: false, b: true, highlight: true },
-      { label: "Coût de départ", a: "Plusieurs licences", b: "3 mois offerts" },
+      { label: "Coût de départ", a: "Plusieurs licences", b: "Gratuit pendant le lancement" },
       { label: "Mise en place", a: "Des semaines", b: "Un après-midi" },
     ],
     footer:
@@ -571,7 +571,7 @@ const fr: RoleLandingContent = {
     items: [
       {
         q: "Combien ça coûte ?",
-        a: "Les établissements fondateurs bénéficient de trois mois entièrement gratuits — sans carte bancaire. Ensuite, vous choisissez le mensuel au tarif plein ou l'annuel pour deux mois offerts plus un tarif verrouillé à vie. L'offre fondateur est limitée aux 15 premiers clubs.",
+        a: "Rien pendant le lancement : toutes les fonctionnalités sont incluses, sans abonnement et sans carte bancaire. Yuno se rémunère via de petits frais de service payés par vos clients au moment du paiement (4 % sur billets et tables, min 0,99 € ; 3 % sur les boissons). De votre côté, seuls les frais de traitement Stripe s'appliquent.",
       },
       {
         q: "Faut-il acheter du matériel ?",
@@ -593,9 +593,9 @@ const fr: RoleLandingContent = {
   },
   cta: {
     title: "Prêt à piloter la nuit à vos conditions ?",
-    body: "Réservez une démo et on configure votre établissement. Les places fondatrices incluent trois mois offerts.",
+    body: "Réservez une démo et on configure votre établissement. Yuno est gratuit pour les clubs pendant toute la période de lancement.",
     button: "Réserver ma démo",
-    note: "3 mois offerts · Sans engagement · 15 établissements fondateurs",
+    note: "Gratuit pendant le lancement · Sans engagement · Sans carte bancaire",
   },
   defaultPainId: "vip",
   pains: [
@@ -715,7 +715,7 @@ const fr: RoleLandingContent = {
           "Pipeline de commandes et activité par staff en temps réel",
           "Alertes de sévérité : backlog, rush, pic de remboursements",
         ],
-        caveat: "Le panneau visiteurs en direct est une fonction Pro / Elite.",
+        caveat: "Inclus pour chaque club pendant le lancement.",
       },
       contactLabel: "La war-room temps réel Live Night",
     },

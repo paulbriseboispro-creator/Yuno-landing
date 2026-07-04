@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import { homeContent, useHome } from "@/content/home";
 import { SegmentSwitcher } from "@/components/site/SegmentSwitcher";
 import { SplitVisual } from "@/components/site/SplitVisual";
-import { PricingGrid } from "@/components/site/PricingGrid";
+import { LaunchOfferCard } from "@/components/site/LaunchOfferCard";
 import { SavingsCalculator } from "@/components/site/SavingsCalculator";
 import { Reveal } from "@/components/site/Reveal";
 import { FaqSection } from "@/components/site/FaqSection";
@@ -271,7 +271,8 @@ export function Index() {
               </p>
             </div>
           </Reveal>
-          <PricingGrid />
+          {/* Abonnement coupé pendant le lancement : offre unique gratuite. */}
+          <LaunchOfferCard />
           <div className="mt-10 text-center">
             <Link
               to="/pricing"

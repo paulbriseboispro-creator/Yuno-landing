@@ -3,13 +3,9 @@ import { Banknote } from "lucide-react";
 import { usePricing } from "@/content/pricing";
 import { useLocale, type Locale } from "@/i18n/locale";
 
-type PlanKey = "essential" | "pro" | "elite";
-
-const PLAN_MONTHLY: Record<PlanKey, number> = {
-  essential: 49,
-  pro: 99,
-  elite: 199,
-};
+// Abonnement coupé pendant le lancement : Yuno coûte 0 €/an au club.
+// (L'ancien sélecteur de formule Essential/Pro/Elite reviendra avec la facturation.)
+const YUNO_YEARLY_COST = 0;
 
 function fmt(n: number, locale: Locale) {
   const rounded = Math.round(n);
@@ -35,15 +31,8 @@ export function SavingsCalculator() {
   const locale = useLocale();
   const [ticketPrice, setTicketPrice] = useState(25);
   const [tickets, setTickets] = useState(5000);
-  const [plan, setPlan] = useState<PlanKey>("pro");
 
-  const planLabels: Record<PlanKey, string> = {
-    essential: s.plans.essential,
-    pro: s.plans.pro,
-    elite: s.plans.elite,
-  };
-
-  const yunoCost = PLAN_MONTHLY[plan] * 12;
+  const yunoCost = YUNO_YEARLY_COST;
   const gmv = ticketPrice * tickets;
 
   const rows = useMemo<Row[]>(() => {
@@ -118,7 +107,7 @@ export function SavingsCalculator() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         <Field label={s.fieldTicketPrice}>
           <div className="relative">
             <input
@@ -140,17 +129,6 @@ export function SavingsCalculator() {
             onChange={(e) => setTickets(Math.max(1, Number(e.target.value) || 0))}
             className="w-full bg-background ring-1 ring-border rounded-xl px-4 py-3 text-lg font-medium focus:outline-none focus:ring-accent/60"
           />
-        </Field>
-        <Field label={s.fieldPlan}>
-          <select
-            value={plan}
-            onChange={(e) => setPlan(e.target.value as PlanKey)}
-            className="w-full bg-background ring-1 ring-border rounded-xl px-4 py-3 text-lg font-medium focus:outline-none focus:ring-accent/60 appearance-none"
-          >
-            {(Object.keys(PLAN_MONTHLY) as PlanKey[]).map((k) => (
-              <option key={k} value={k}>{planLabels[k]}</option>
-            ))}
-          </select>
         </Field>
       </div>
 
