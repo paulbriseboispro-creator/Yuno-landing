@@ -11,6 +11,7 @@ export function SiteFooter() {
     { to: "/pricing", label: t.nav.pricing },
     { to: "/clubs", label: t.nav.clubs },
     { to: "/organizers", label: t.nav.organizers },
+    { to: "/clubs?besoin=pub", label: t.nav.ads },
     { to: "/affiliates", label: t.nav.affiliates },
     { to: "/contact", label: t.nav.contact },
     { to: "/privacy", label: t.nav.privacy },

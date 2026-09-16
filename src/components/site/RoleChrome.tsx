@@ -131,6 +131,19 @@ export function RoleFooter() {
           </Link>
         </div>
       </div>
+      {/* Publisher identity — the minimal chrome of the role gate still has to
+          identify the company: it is the first page a partner, a payment
+          provider or a platform reviewer lands on. */}
+      <p className="border-t border-border py-4 text-xs leading-relaxed text-muted-foreground">
+        {t.footer.legal}{" "}
+        <a
+          className="underline underline-offset-2 transition-colors hover:text-foreground"
+          href={t.footer.legalLinkHref}
+        >
+          {t.footer.legalLinkLabel}
+        </a>
+      </p>
+
       <div className="border-t border-border py-4 text-sm text-muted-foreground">
         <p>
           &copy; {new Date().getFullYear()} {t.footer.rights}
