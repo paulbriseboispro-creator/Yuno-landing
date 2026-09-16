@@ -12,7 +12,7 @@ const en = {
         "How Yuno collects, uses and protects personal data for clubs, organizers, promoters and their guests.",
     },
     heading: "Privacy Policy",
-    lastUpdated: "Last updated: June 9, 2026",
+    lastUpdated: "Last updated: September 16, 2026",
     badge: "Legal",
     summaryLabel: "Summary",
     notice:
@@ -59,7 +59,7 @@ const en = {
         "The terms governing use of the Yuno platform by clubs, organizers, promoters and their guests.",
     },
     heading: "Terms of Service",
-    lastUpdated: "Last updated: June 9, 2026",
+    lastUpdated: "Last updated: September 16, 2026",
     badge: "Legal",
     summaryLabel: "Summary",
     notice:
@@ -97,7 +97,7 @@ const fr: LegalContent = {
         "Comment Yuno collecte, utilise et protège les données personnelles des clubs, organisateurs, promoteurs et de leurs invités.",
     },
     heading: "Politique de confidentialité",
-    lastUpdated: "Dernière mise à jour : 9 juin 2026",
+    lastUpdated: "Dernière mise à jour : 16 septembre 2026",
     badge: "Mentions légales",
     summaryLabel: "Résumé",
     notice:
@@ -144,7 +144,7 @@ const fr: LegalContent = {
         "Les conditions régissant l'utilisation de la plateforme Yuno par les clubs, organisateurs, promoteurs et leurs invités.",
     },
     heading: "Conditions d'utilisation",
-    lastUpdated: "Dernière mise à jour : 9 juin 2026",
+    lastUpdated: "Dernière mise à jour : 16 septembre 2026",
     badge: "Mentions légales",
     summaryLabel: "Résumé",
     notice:
