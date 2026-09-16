@@ -72,6 +72,19 @@ export function SiteFooter() {
         </nav>
       </div>
 
+      {/* Publisher identity. Kept in the footer of every page, not only the legal
+          pages: partners, payment providers and Meta's business verification all
+          check the site against the registry record. */}
+      <p className="border-t border-border py-4 text-muted-foreground text-xs leading-relaxed">
+        {t.footer.legal}{" "}
+        <a
+          className="underline underline-offset-2 hover:text-foreground transition-colors"
+          href={t.footer.legalLinkHref}
+        >
+          {t.footer.legalLinkLabel}
+        </a>
+      </p>
+
       <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border py-4 text-muted-foreground text-sm">
         <p>&copy; {new Date().getFullYear()} {t.footer.rights}</p>
         <div className="flex items-center gap-2">

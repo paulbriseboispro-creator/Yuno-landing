@@ -14,9 +14,11 @@ const en = {
     heading: "Privacy Policy",
     lastUpdated: "Last updated: June 9, 2026",
     badge: "Legal",
-    placeholder: "This is a placeholder document.",
+    summaryLabel: "Summary",
     notice:
-      "The final, lawyer-reviewed Privacy Policy is on the way. In the meantime, for any question about how Yuno handles your data, write to",
+      "This page summarises how Yuno handles personal data. The full Privacy Policy, together with our Cookie Policy and our Article 28 Data Processing Agreement, is published on the platform:",
+    canonicalLabel: "Read the full Privacy Policy",
+    canonicalHref: "https://www.yunoapp.eu/legal/privacy",
     sections: [
       {
         title: "What we collect",
@@ -27,6 +29,11 @@ const en = {
         title: "How we use it",
         body:
           "To run the platform, process payments through Stripe Connect, send transactional notifications, and provide analytics dashboards to venue operators, organizers and promoters.",
+      },
+      {
+        title: "Advertising and measurement",
+        body:
+          "Venues and organizers can connect their own Meta business assets (dataset / pixel, ad account, Page, lead forms) to their Yuno account. When a guest has given advertising consent, Yuno sends that venue's own ticket, table and drink purchases to that venue's own Meta dataset so the venue can measure its own ads, and can build custom audiences in the venue's own ad account from contacts who agreed to receive its marketing. Each venue's data is used only for that venue. We never combine data between venues, never sell it, and never use it for Yuno's own advertising. Consent can be withdrawn at any time from the Cookies menu.",
       },
       {
         title: "Your rights",
@@ -44,9 +51,11 @@ const en = {
     heading: "Terms of Service",
     lastUpdated: "Last updated: June 9, 2026",
     badge: "Legal",
-    placeholder: "This is a placeholder document.",
+    summaryLabel: "Summary",
     notice:
-      "The final, lawyer-reviewed Terms of Service are on the way. For any question in the meantime, contact",
+      "This page summarises the terms of use. The full Terms of Service, the sales terms for venues and for guests, and the legal notice identifying the publisher, are published on the platform:",
+    canonicalLabel: "Read the full Terms of Service",
+    canonicalHref: "https://www.yunoapp.eu/legal/cgu",
     sections: [
       {
         title: "Using Yuno",
@@ -80,9 +89,11 @@ const fr: LegalContent = {
     heading: "Politique de confidentialité",
     lastUpdated: "Dernière mise à jour : 9 juin 2026",
     badge: "Mentions légales",
-    placeholder: "Ceci est un document provisoire.",
+    summaryLabel: "Résumé",
     notice:
-      "La version finale de la Politique de confidentialité, validée par nos avocats, arrive bientôt. En attendant, pour toute question sur la façon dont Yuno traite vos données, écrivez à",
+      "Cette page résume la façon dont Yuno traite les données personnelles. La Politique de confidentialité complète, la Politique cookies et l'accord de sous-traitance (article 28 du RGPD) sont publiés sur la plateforme :",
+    canonicalLabel: "Lire la Politique de confidentialité complète",
+    canonicalHref: "https://www.yunoapp.eu/legal/confidentialite",
     sections: [
       {
         title: "Ce que nous collectons",
@@ -93,6 +104,11 @@ const fr: LegalContent = {
         title: "Comment nous l'utilisons",
         body:
           "Pour faire fonctionner la plateforme, traiter les paiements via Stripe Connect, envoyer les notifications transactionnelles et fournir des tableaux de bord d'analyse aux exploitants d'établissements, organisateurs et promoteurs.",
+      },
+      {
+        title: "Publicité et mesure",
+        body:
+          "Les clubs et les organisateurs peuvent connecter à leur compte Yuno leurs propres actifs professionnels Meta (jeu de données / pixel, compte publicitaire, Page, formulaires de prospects). Lorsque le client a donné son consentement publicitaire, Yuno transmet les achats de billets, de tables et de consommations de ce lieu au jeu de données Meta de ce même lieu, afin qu'il mesure ses propres publicités, et peut créer dans son compte publicitaire des audiences personnalisées à partir des contacts qui ont accepté de recevoir ses communications. Les données d'un lieu ne servent qu'à ce lieu. Nous ne croisons jamais les données entre lieux, ne les vendons jamais et ne les utilisons jamais pour la publicité de Yuno. Le consentement est retirable à tout moment via le menu Cookies.",
       },
       {
         title: "Vos droits",
@@ -110,9 +126,11 @@ const fr: LegalContent = {
     heading: "Conditions d'utilisation",
     lastUpdated: "Dernière mise à jour : 9 juin 2026",
     badge: "Mentions légales",
-    placeholder: "Ceci est un document provisoire.",
+    summaryLabel: "Résumé",
     notice:
-      "La version finale des Conditions d'utilisation, validée par nos avocats, arrive bientôt. Pour toute question en attendant, contactez",
+      "Cette page résume les conditions d'utilisation. Les Conditions générales d'utilisation complètes, les CGV clubs et utilisateurs ainsi que les mentions légales identifiant l'éditeur sont publiées sur la plateforme :",
+    canonicalLabel: "Lire les Conditions d'utilisation complètes",
+    canonicalHref: "https://www.yunoapp.eu/legal/cgu",
     sections: [
       {
         title: "Utilisation de Yuno",

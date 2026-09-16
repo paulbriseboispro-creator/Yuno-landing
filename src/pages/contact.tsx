@@ -76,8 +76,8 @@ export function ContactPage() {
     {
       icon: <MailIcon />,
       label: t.contactInfo.emailLabel,
-      value: "paul.brisebois.pro@gmail.com",
-      href: "mailto:paul.brisebois.pro@gmail.com",
+      value: "contact@yunoapp.eu",
+      href: "mailto:contact@yunoapp.eu",
     },
     {
       icon: <PhoneIcon />,

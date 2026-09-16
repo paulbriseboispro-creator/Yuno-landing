@@ -21,12 +21,14 @@ export function TermsPage() {
 
         <div className="rounded-2xl bg-surface ring-1 ring-border p-6 md:p-8 mb-10">
           <p className="text-sm text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">{t.placeholder}</strong>{" "}
+            <strong className="text-foreground">{t.summaryLabel}</strong>{" "}
             {t.notice}{" "}
-            <a className="text-accent hover:underline" href="mailto:contact@yunoapp.eu">
+            <a className="text-accent hover:underline" href={t.canonicalHref}>
+              {t.canonicalLabel}
+            </a>
+            . <a className="text-accent hover:underline" href="mailto:contact@yunoapp.eu">
               contact@yunoapp.eu
             </a>
-            .
           </p>
         </div>
 

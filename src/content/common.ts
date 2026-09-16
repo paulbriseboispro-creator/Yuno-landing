@@ -37,9 +37,17 @@ const en = {
   },
   footer: {
     tagline: "The infrastructure layer for the after-dark economy.",
-    rights: "Yuno Technologies. All rights reserved.",
+    rights: "WOMBER. All rights reserved.",
     language: "Language",
     website: "Website",
+    // Publisher identity, verbatim from the platform's legal notice
+    // (yunoapp.eu/legal/mentions-legales). Partners, payment providers and
+    // Meta's business verification all check the site against the registry
+    // record, so the name, number and address must match it exactly.
+    legal:
+      "Yuno is published by WOMBER, sole proprietorship registered in France under SIRET 995 130 747 00018, 25 avenue Mercure, 31130 Quint-Fonsegrives, France. Publication director: Paul Brisebois. Contact: contact@yunoapp.eu.",
+    legalLinkLabel: "Legal notice",
+    legalLinkHref: "https://www.yunoapp.eu/legal/mentions-legales",
   },
   search: {
     label: "Search",
@@ -60,6 +68,7 @@ const en = {
       { title: "Live Night dashboard", category: "Product", to: "/clubs", keywords: ["live", "dashboard", "entries", "revenue"] },
       { title: "PIN-based staff login", category: "Product", to: "/clubs", keywords: ["staff", "pin", "login", "bouncer"] },
       { title: "CRM & SMS marketing", category: "Product", to: "/clubs", keywords: ["crm", "sms", "marketing", "campaign"] },
+      { title: "Meta ads: your pixel, your audiences", category: "Product", to: "/clubs?besoin=pub", keywords: ["ads", "meta", "facebook", "instagram", "pixel", "audience", "advertising"] },
       { title: "Ticketing & Stripe Connect splits", category: "Product", to: "/organizers", keywords: ["tickets", "stripe", "split", "payout"] },
       { title: "Promoter attribution & leaderboard", category: "Product", to: "/affiliates", keywords: ["promoter", "affiliate", "attribution", "commission"] },
       { title: "Pricing — free for clubs during launch", category: "Pricing", to: "/pricing", keywords: ["pricing", "plans", "cost", "free", "launch"] },
@@ -126,9 +135,13 @@ const fr: CommonContent = {
   },
   footer: {
     tagline: "La couche d'infrastructure de l'économie de la nuit.",
-    rights: "Yuno Technologies. Tous droits réservés.",
+    rights: "WOMBER. Tous droits réservés.",
     language: "Langue",
     website: "Site web",
+    legal:
+      "Yuno est éditée par WOMBER, entreprise individuelle immatriculée en France sous le SIRET 995 130 747 00018, 25 avenue Mercure, 31130 Quint-Fonsegrives, France. Directeur de la publication : Paul Brisebois. Contact : contact@yunoapp.eu.",
+    legalLinkLabel: "Mentions légales",
+    legalLinkHref: "https://www.yunoapp.eu/legal/mentions-legales",
   },
   search: {
     label: "Rechercher",
@@ -149,6 +162,7 @@ const fr: CommonContent = {
       { title: "Tableau de bord Live Night", category: "Product", to: "/clubs", keywords: ["live", "tableau", "entrées", "revenus"] },
       { title: "Connexion du staff par code PIN", category: "Product", to: "/clubs", keywords: ["staff", "pin", "connexion", "videur"] },
       { title: "CRM & marketing SMS", category: "Product", to: "/clubs", keywords: ["crm", "sms", "marketing", "campagne"] },
+      { title: "Publicité Meta : votre pixel, vos audiences", category: "Product", to: "/clubs?besoin=pub", keywords: ["pub", "publicité", "meta", "facebook", "instagram", "pixel", "audience"] },
       { title: "Billetterie & répartition Stripe Connect", category: "Product", to: "/organizers", keywords: ["billets", "stripe", "répartition", "versement"] },
       { title: "Attribution promoteurs & classement", category: "Product", to: "/affiliates", keywords: ["promoteur", "affilié", "attribution", "commission"] },
       { title: "Tarifs — gratuit pour les clubs pendant le lancement", category: "Pricing", to: "/pricing", keywords: ["tarifs", "plans", "coût", "gratuit", "lancement"] },
