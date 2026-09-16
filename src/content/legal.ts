@@ -36,6 +36,16 @@ const en = {
           "Venues and organizers can connect their own Meta business assets (dataset / pixel, ad account, Page, lead forms) to their Yuno account. When a guest has given advertising consent, Yuno sends that venue's own ticket, table and drink purchases to that venue's own Meta dataset so the venue can measure its own ads, and can build custom audiences in the venue's own ad account from contacts who agreed to receive its marketing. Each venue's data is used only for that venue. We never combine data between venues, never sell it, and never use it for Yuno's own advertising. Consent can be withdrawn at any time from the Cookies menu.",
       },
       {
+        title: "Who we share it with",
+        body:
+          "The venue or organizer you bought from, as the seller of record. Stripe, for payment processing. Supabase, for hosting inside the EU. Resend and Twilio, for the emails and text messages you agreed to receive. Meta, only for the venues and organizers who connected their own advertising account, and only for guests who gave advertising consent. We have no other recipients, and we sell personal data to no one.",
+      },
+      {
+        title: "How long we keep it, and how to have it deleted",
+        body:
+          "Account and order data is kept for as long as your account exists, then for the legal retention period that applies to sales records. You can delete your account at any time from the app, which erases your account and the personal data attached to it. A venue or organizer can disconnect its advertising account at any time, which stops any further sharing with Meta and deletes the stored access. To have data deleted without going through the app, write to contact@yunoapp.eu and we answer within one month, as the GDPR requires.",
+      },
+      {
         title: "Your rights",
         body:
           "Access, rectification, deletion, portability and objection rights under the GDPR. Email us to exercise any of them.",
@@ -109,6 +119,16 @@ const fr: LegalContent = {
         title: "Publicité et mesure",
         body:
           "Les clubs et les organisateurs peuvent connecter à leur compte Yuno leurs propres actifs professionnels Meta (jeu de données / pixel, compte publicitaire, Page, formulaires de prospects). Lorsque le client a donné son consentement publicitaire, Yuno transmet les achats de billets, de tables et de consommations de ce lieu au jeu de données Meta de ce même lieu, afin qu'il mesure ses propres publicités, et peut créer dans son compte publicitaire des audiences personnalisées à partir des contacts qui ont accepté de recevoir ses communications. Les données d'un lieu ne servent qu'à ce lieu. Nous ne croisons jamais les données entre lieux, ne les vendons jamais et ne les utilisons jamais pour la publicité de Yuno. Le consentement est retirable à tout moment via le menu Cookies.",
+      },
+      {
+        title: "Avec qui nous les partageons",
+        body:
+          "Le club ou l'organisateur auprès duquel vous avez acheté, en qualité de vendeur. Stripe, pour le traitement des paiements. Supabase, pour l'hébergement dans l'Union européenne. Resend et Twilio, pour les emails et SMS que vous avez acceptés. Meta, uniquement pour les clubs et organisateurs qui ont connecté leur propre compte publicitaire, et uniquement pour les clients ayant donné leur consentement publicitaire. Il n'y a aucun autre destinataire, et nous ne vendons de données personnelles à personne.",
+      },
+      {
+        title: "Combien de temps, et comment faire supprimer vos données",
+        body:
+          "Les données de compte et de commande sont conservées tant que votre compte existe, puis pendant la durée légale applicable aux pièces de vente. Vous pouvez supprimer votre compte à tout moment depuis l'application : le compte et les données personnelles qui s'y rattachent sont effacés. Un club ou un organisateur peut déconnecter son compte publicitaire à tout moment, ce qui arrête tout partage ultérieur avec Meta et efface l'accès conservé. Pour une suppression sans passer par l'application, écrivez à contact@yunoapp.eu : nous répondons sous un mois, comme l'exige le RGPD.",
       },
       {
         title: "Vos droits",
