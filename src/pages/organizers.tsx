@@ -90,6 +90,7 @@ const PAIN_LEAD: Record<string, number[]> = {
   fidelite: [4, 1, 0],
   porte: [2, 7, 0],
   compta: [8, 3, 1],
+  pub: [1, 4, 0],
 };
 
 // Focus-block proof image per pain.

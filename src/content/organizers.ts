@@ -433,6 +433,32 @@ const en: RoleLandingContent = {
       },
       contactLabel: "Accounting, VAT and your co-production share",
     },
+    {
+      id: "pub",
+      chipLabel: "Ads & marketing",
+      hero: {
+        badge: "Ads & marketing",
+        titleLead: "Know which ad sold the ticket, ",
+        titleEmphasis: "not just which one got likes",
+        titleRest: ".",
+        subtitle:
+          "You put money behind a post, the event fills, and nothing tells you whether the two are related. Yuno connects your own Meta account to your own ticket sales, so spend and sold sit on the same screen.",
+      },
+      focus: {
+        tag: "Ads & marketing",
+        title: "Your ads, your pixel, your audiences. Measured against real sales.",
+        body: "Connect your Facebook business account in one click and pick your own dataset, ad account and Page. Yuno then sends your ticket and table sales back to your own dataset, so Meta can tell you which ad produced which sale. Your spend and results appear in Yuno next to what you actually sold, campaigns for an event can be created straight from Yuno, and audiences are built only from contacts who agreed to hear from you. Nothing is shared between organizers, nothing is sold, and attributed sales are counted from Yuno's own tracked links rather than taken on trust.",
+        bullets: [
+          "One-click connection to your own dataset, ad account and Page",
+          "Ticket and table sales sent to your dataset, with buyer consent logged for every order",
+          "Campaigns created from Yuno for an event, always paused until you turn them on",
+          "Custom and lookalike audiences from consenting contacts only, hashed before they leave Yuno",
+          "Lead form entries land straight in your contact base",
+        ],
+        caveat: "The Meta connection is rolling out account by account — ask us to switch it on for yours.",
+      },
+      contactLabel: "Meta ads connected to my real ticket sales",
+    },
   ],
 };
 
@@ -858,6 +884,32 @@ const fr: RoleLandingContent = {
         caveat: "Le « net » peut utiliser une estimation de repli quand les répartitions manquent.",
       },
       contactLabel: "Comptabilité, TVA et votre part de co-production",
+    },
+    {
+      id: "pub",
+      chipLabel: "Publicité & marketing",
+      hero: {
+        badge: "Publicité & marketing",
+        titleLead: "Savoir quelle pub a vendu le billet, ",
+        titleEmphasis: "pas seulement laquelle a fait des likes",
+        titleRest: ".",
+        subtitle:
+          "Vous mettez de l'argent derrière une publication, la soirée se remplit, et rien ne vous dit si les deux sont liés. Yuno relie votre compte Meta à vos propres ventes de billets : la dépense et le vendu sont sur le même écran.",
+      },
+      focus: {
+        tag: "Publicité & marketing",
+        title: "Vos pubs, votre pixel, vos audiences. Mesurés sur des ventes réelles.",
+        body: "Connectez votre compte professionnel Facebook en un clic et choisissez votre jeu de données, votre compte publicitaire et votre Page. Yuno renvoie ensuite vos ventes de billets et de tables vers votre propre jeu de données : Meta peut vous dire quelle publicité a produit quelle vente. Votre dépense et vos résultats s'affichent dans Yuno à côté de ce que vous avez réellement vendu, les campagnes d'une soirée se créent depuis Yuno, et les audiences ne se construisent qu'à partir des contacts qui ont accepté de recevoir vos communications. Rien n'est partagé entre organisateurs, rien n'est vendu, et les ventes attribuées sont comptées depuis les liens suivis de Yuno plutôt que reprises sur parole.",
+        bullets: [
+          "Connexion en un clic à votre jeu de données, votre compte publicitaire et votre Page",
+          "Ventes de billets et de tables renvoyées vers votre jeu de données, avec le consentement de l'acheteur journalisé pour chaque commande",
+          "Campagnes créées depuis Yuno pour une soirée, toujours en pause tant que vous ne les activez pas",
+          "Audiences personnalisées et similaires à partir des seuls contacts consentants, hachées avant de quitter Yuno",
+          "Les prospects de vos formulaires arrivent directement dans votre base de contacts",
+        ],
+        caveat: "La connexion Meta est déployée compte par compte — demandez-nous de l'activer sur le vôtre.",
+      },
+      contactLabel: "Des pubs Meta reliées à mes ventes de billets",
     },
   ],
 };

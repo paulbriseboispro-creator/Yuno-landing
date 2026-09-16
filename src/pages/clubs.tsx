@@ -99,6 +99,7 @@ const PAIN_LEAD: Record<string, number[]> = {
   bar: [17, 13, 5],
   staff: [16, 4, 19],
   compta: [15, 14, 0],
+  pub: [1, 10, 12],
 };
 
 // Real screenshot proving each pain's focus block (keyed by RolePain.id).

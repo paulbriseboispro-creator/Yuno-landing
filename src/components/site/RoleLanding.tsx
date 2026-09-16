@@ -86,7 +86,14 @@ function PainFocus({
     <section id="besoin" className="scroll-mt-24 px-6 pt-6 pb-4">
       <div className="mx-auto max-w-6xl">
         <Reveal>
-          <article className="grid items-center gap-8 overflow-hidden rounded-3xl bg-surface p-6 ring-1 ring-accent/30 md:grid-cols-2 md:p-10">
+          {/* Two columns only when the pain ships a screenshot. A pain proved by
+              text alone keeps the full width instead of leaving a dead half-grid
+              on desktop. */}
+          <article
+            className={`grid items-center gap-8 overflow-hidden rounded-3xl bg-surface p-6 ring-1 ring-accent/30 md:p-10 ${
+              image ? "md:grid-cols-2" : ""
+            }`}
+          >
             <div>
               <span className="mb-4 inline-block rounded-full border border-accent/40 px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.18em] text-accent">
                 {pain.focus.tag}
