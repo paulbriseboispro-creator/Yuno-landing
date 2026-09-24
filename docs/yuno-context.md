@@ -34,7 +34,9 @@ Emailing: 15,000 emails/month included, then €10 per 10,000 (€24 per 25,000)
 
 ## Competitors (analyses in Paul's Drive, public pages checked June–Sept 2026)
 Only use the competitor facts from those docs — their Yuno columns are outdated. The landing
-matrix lives in `src/content/landing.ts` (`MARKS` + `compare`): Shotgun, Weezevent, Xceed, Fourvenues.
+matrix lives in `src/content/landing.ts` (`MARKS` + `compare`): Shotgun, Weezevent, Xceed.
+Fourvenues is deliberately left off (too close to Yuno in features — Paul, Sep 2026). Staff row pitch:
+each staff member has their own specialised account (bouncer, VIP waiter, bartender…), not "a PIN".
 - Shotgun: ticketing marketplace (5M+ app users). 10% base commission on the organizer's sales,
   contracts negotiable case by case (Paul, Sep 2026); buyer fees capped at €15; payout after the event;
   15% on resale / waiting list. Has CRM, newsletters, push, promoter tracking links (commissions by
