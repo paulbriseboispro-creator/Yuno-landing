@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { useLanding } from "./context";
 import { EASE, FounderCta, PrimaryCta } from "./ui";
+import amoris from "@/assets/clubs/mono/amoris.png";
 import copernico from "@/assets/clubs/mono/copernico.png";
 import fitz from "@/assets/clubs/mono/fitz.png";
 import flor from "@/assets/clubs/mono/flor.png";
@@ -30,6 +31,7 @@ import opium from "@/assets/clubs/mono/opium.png";
 import rubicon from "@/assets/clubs/mono/rubicon.png";
 import santos from "@/assets/clubs/mono/santos.png";
 import verbena from "@/assets/clubs/mono/verbena.png";
+import woh from "@/assets/clubs/mono/woh.png";
 
 // Feature icons floating on the concentric arcs around the headline — Yuno's
 // equivalent of the reference layout's integration logos. `x` is in px from the
@@ -342,17 +344,19 @@ function NotificationStack() {
   );
 }
 
-// Clubs already on Yuno. The logos are trimmed monochrome ink (generated from
+// Organizers and clubs already on Yuno. The logos are trimmed monochrome ink (generated from
 // the originals in src/assets/clubs) so the strip reads as one family; CSS
 // turns the ink white in dark mode. Heights follow 1/√aspect so a wide wordmark
 // and a round badge carry the same visual weight.
 const CLIENTS: { src: string; name: string; aspect: number }[] = [
+  { src: amoris, name: "Amoris", aspect: 3.88 },
   { src: kapital, name: "Teatro Kapital", aspect: 2.49 },
   { src: gabana, name: "Gabana", aspect: 1 },
   { src: opium, name: "Opium Madrid", aspect: 3.11 },
   { src: santos, name: "Santos Todos", aspect: 1.04 },
   { src: copernico, name: "Copérnico", aspect: 4.21 },
   { src: fitz, name: "Fitz", aspect: 1.87 },
+  { src: woh, name: "WOH", aspect: 2.02 },
   { src: verbena, name: "Verbena", aspect: 1.02 },
   { src: rubicon, name: "Rubicon", aspect: 5.31 },
   { src: losamantes, name: "Los Amantes", aspect: 1.92 },
