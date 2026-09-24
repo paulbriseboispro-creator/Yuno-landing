@@ -320,7 +320,7 @@ const en = {
   money: {
     eyebrow: "The money",
     title: "You stay the seller. Yuno stays the infrastructure.",
-    body: 'Payments run on Stripe Connect: the money lands directly in your account, under your name on the customer\'s statement. Yuno never holds your funds and never pays out "72 hours later".',
+    body: "Payments run on Stripe Connect: the money lands directly in your account, under your name on the customer's statement. Yuno never holds your funds: you're paid as you sell.",
     cta: "Create my free account",
     list: [
       {
@@ -337,15 +337,19 @@ const en = {
       },
     ],
     calc: {
-      title: "What you actually keep",
+      title: "What you keep, compared",
       price: "Ticket price",
-      qty: "Tickets sold",
-      customerPays: "Customer pays",
-      serviceFee: "Yuno service fee (paid by the customer)",
-      stripe: "Card processing (Stripe)",
-      youKeep: "You keep per ticket",
-      net: "Net for the night, in your account",
-      foot: "Service fee: 4% with a €0.99 minimum, added on top of your price. Stripe: 1.5% + €0.25 per payment.",
+      qty: "Tickets per night",
+      nights: "Nights per month",
+      perTicket: "per ticket",
+      perMonth: "/ month",
+      yunoRule: "Customer pays {customer} · 0% on your price",
+      competitors: [
+        { id: "shotgun", name: "Shotgun", rule: "10% commission on your sales" },
+        { id: "weezevent", name: "Weezevent", rule: "2.5% per ticket, min. €0.99" },
+      ],
+      saved: "Kept with Yuno over a year, up to",
+      foot: "Yuno: 4% service fee (min. €0.99) paid by the customer; you pay Stripe 1.5% + €0.25. Competitors: default commissions paid by the organizer, card fees included, before any negotiated terms.",
     },
   },
   compare: {
@@ -356,8 +360,6 @@ const en = {
     legend: { yes: "Included", partial: "Partly, or a paid add-on", no: "Not offered" },
     covered: "fully covered",
     costLabel: "What you pay",
-    strongLabel: "Where they're strong",
-    winLabel: "Where Yuno wins",
     features: [
       "Tickets & guest list",
       "VIP tables on a floor plan, with deposits",
@@ -398,8 +400,6 @@ const en = {
           "10% of your sales, negotiable",
         ]),
         cost: "10% commission on your sales by default, negotiable by contract, plus buyer fees.",
-        strong: "Its app audience can help fill a room from scratch.",
-        win: "Shotgun sells the ticket and stops at the door. Yuno also sells your tables and drinks, runs the night and splits the money — with 0% on your price instead of 10%, paid as you sell rather than after the event.",
       },
       {
         name: "Weezevent",
@@ -415,8 +415,6 @@ const en = {
           "2.5% per ticket",
         ]),
         cost: "2.5% per ticket (min. €0.99), payouts every 15 days, paid add-ons for cashless and staff.",
-        strong: "Cheap and simple for any event, from festivals to conferences.",
-        win: "Built for every kind of event, not for clubs: no VIP tables, no promoter tracking, and every extra is a paid module. Yuno is built for the night, all in one account at €0.",
       },
       {
         name: "Xceed",
@@ -432,14 +430,56 @@ const en = {
           "€29–59/month",
         ]),
         cost: "3% per ticket, 15% on marketplace sales, and €29–59/month.",
-        strong: "A clubbing marketplace with an audience in big European cities.",
-        win: "Its marketplace takes 15% of the sales it brings, on top of a monthly plan — and there's no bar, no CRM, no club × organizer split. Yuno includes all of it, at €0.",
       },
     ],
-    extra:
-      "None of them covers the whole night. With Yuno, tickets, VIP tables, the bar, the door, your promoters and the club × organizer split live in the same account, at a published price: €0.",
+    allInOne: {
+      title: "Yuno isn't just another ticketing tool. It's the whole system behind your night.",
+      sub: "One account runs every part of it — no stack of tools to glue together, no subscription.",
+      items: [
+        {
+          id: "sales",
+          title: "Sales",
+          body: "Tickets, guest list, VIP tables and drinks on one event page.",
+        },
+        {
+          id: "ops",
+          title: "Operations",
+          body: "Door, bar, VIP service and cloakroom: every staff member on their own account.",
+        },
+        {
+          id: "crm",
+          title: "CRM",
+          body: "Every buyer in one base, segmented on what they actually buy.",
+        },
+        {
+          id: "marketing",
+          title: "Marketing",
+          body: "15,000 emails a month, 9 automations, tracked promoter links.",
+        },
+        {
+          id: "finance",
+          title: "Finance",
+          body: "Stripe Connect in your name, paid as you sell, refunds from the dashboard.",
+        },
+        {
+          id: "accounting",
+          title: "Accounting",
+          body: "Invoices, night statements and accounting exports, ready to send.",
+        },
+        {
+          id: "collab",
+          title: "Collaborations",
+          body: "Club × organizer contracts, promoters and agencies, commissions computed.",
+        },
+        {
+          id: "insight",
+          title: "Steering",
+          body: "Live view, analytics by channel and by promoter, AI assistant.",
+        },
+      ],
+    },
     footnote:
-      "Based on each platform's public pages and help centers (Shotgun, Weezevent, Xceed), checked between June and September 2026. Shotgun takes a 10% base commission on the organizer's sales, negotiated contract by contract.",
+      "Based on each platform's public pages and help centers, checked between June and September 2026. Default commissions, before any negotiated terms.",
   },
   email: {
     eyebrow: "CRM & emailing",
@@ -1055,7 +1095,7 @@ const fr: LandingContent = {
   money: {
     eyebrow: "L'argent",
     title: "Vous restez le vendeur. Yuno reste l'infrastructure.",
-    body: "Les paiements passent par Stripe Connect : l'argent arrive directement sur votre compte, à votre nom sur le relevé du client. Yuno ne détient jamais vos fonds et ne verse rien « à J+72 ».",
+    body: "Les paiements passent par Stripe Connect : l'argent arrive directement sur votre compte, à votre nom sur le relevé du client. Yuno ne détient jamais vos fonds : vous êtes payé au fil des ventes.",
     cta: "Créer mon compte gratuit",
     list: [
       {
@@ -1072,15 +1112,19 @@ const fr: LandingContent = {
       },
     ],
     calc: {
-      title: "Ce que vous gardez vraiment",
+      title: "Ce que vous gardez, comparé",
       price: "Prix du billet",
-      qty: "Billets vendus",
-      customerPays: "Le client paie",
-      serviceFee: "Frais de service Yuno (payés par le client)",
-      stripe: "Traitement bancaire (Stripe)",
-      youKeep: "Vous gardez par billet",
-      net: "Net de la soirée, sur votre compte",
-      foot: "Frais de service : 4 % avec un minimum de 0,99 €, ajoutés à votre prix. Stripe : 1,5 % + 0,25 € par paiement.",
+      qty: "Billets par soirée",
+      nights: "Soirées par mois",
+      perTicket: "par billet",
+      perMonth: "/ mois",
+      yunoRule: "Le client paie {customer} · 0 % sur votre prix",
+      competitors: [
+        { id: "shotgun", name: "Shotgun", rule: "10 % de commission sur vos ventes" },
+        { id: "weezevent", name: "Weezevent", rule: "2,5 % par billet, min. 0,99 €" },
+      ],
+      saved: "Gardé en plus avec Yuno sur un an, jusqu'à",
+      foot: "Yuno : 4 % de frais de service (min. 0,99 €) payés par le client ; vous payez Stripe 1,5 % + 0,25 €. Concurrents : commissions par défaut à la charge de l'organisateur, frais bancaires inclus, hors conditions négociées.",
     },
   },
   compare: {
@@ -1091,8 +1135,6 @@ const fr: LandingContent = {
     legend: { yes: "Inclus", partial: "En partie, ou module payant", no: "Absent" },
     covered: "entièrement couverts",
     costLabel: "Ce que vous payez",
-    strongLabel: "Leur point fort",
-    winLabel: "Là où Yuno gagne",
     features: [
       "Billetterie & guest list",
       "Tables VIP sur plan de salle, avec acompte",
@@ -1133,8 +1175,6 @@ const fr: LandingContent = {
           "10 % de vos ventes, négociable",
         ]),
         cost: "10 % de commission sur vos ventes par défaut, négociable par contrat, plus des frais acheteur.",
-        strong: "L'audience de son app aide à remplir une salle en partant de zéro.",
-        win: "Shotgun vend le billet et s'arrête à la porte. Yuno vend aussi vos tables et vos boissons, fait tourner la soirée et répartit l'argent — avec 0 % sur votre prix au lieu de 10 %, versé au fil des ventes plutôt qu'après la soirée.",
       },
       {
         name: "Weezevent",
@@ -1150,8 +1190,6 @@ const fr: LandingContent = {
           "2,5 % par billet",
         ]),
         cost: "2,5 % par billet (min. 0,99 €), virements tous les 15 jours, modules cashless et staff payants.",
-        strong: "Simple et peu chère pour tout type d'événement, du festival au séminaire.",
-        win: "Pensée pour tous les événements, pas pour les clubs : pas de tables VIP, pas de suivi promoteurs, et chaque extra est un module payant. Yuno est fait pour la nuit, tout dans un seul compte à 0 €.",
       },
       {
         name: "Xceed",
@@ -1167,14 +1205,56 @@ const fr: LandingContent = {
           "29–59 €/mois",
         ]),
         cost: "3 % par billet, 15 % sur les ventes marketplace, et 29 à 59 €/mois.",
-        strong: "Une marketplace clubbing avec une audience dans les grandes villes européennes.",
-        win: "Sa marketplace prend 15 % des ventes qu'elle apporte, en plus d'un abonnement — et il n'y a ni bar, ni CRM, ni répartition club × organisateur. Yuno inclut tout ça, à 0 €.",
       },
     ],
-    extra:
-      "Aucune ne couvre toute la soirée. Chez Yuno, billets, tables VIP, bar, porte, promoteurs et répartition club × organisateur vivent dans le même compte, à un prix public : 0 €.",
+    allInOne: {
+      title: "Yuno n'est pas une billetterie de plus. C'est tout le système de votre soirée.",
+      sub: "Un seul compte fait tourner chaque partie — pas d'outils à empiler, pas d'abonnement.",
+      items: [
+        {
+          id: "sales",
+          title: "Vente",
+          body: "Billets, guest list, tables VIP et boissons sur une seule page de soirée.",
+        },
+        {
+          id: "ops",
+          title: "Opérations",
+          body: "Porte, bar, service VIP et vestiaire : chaque membre du staff sur son propre compte.",
+        },
+        {
+          id: "crm",
+          title: "CRM",
+          body: "Chaque acheteur dans une seule base, segmentée sur ce qu'il achète vraiment.",
+        },
+        {
+          id: "marketing",
+          title: "Marketing",
+          body: "15 000 emails par mois, 9 automatisations, liens promoteurs suivis.",
+        },
+        {
+          id: "finance",
+          title: "Finance",
+          body: "Stripe Connect à votre nom, versé au fil des ventes, remboursements depuis le dashboard.",
+        },
+        {
+          id: "accounting",
+          title: "Comptabilité",
+          body: "Factures, décomptes de soirée et exports comptables, prêts à envoyer.",
+        },
+        {
+          id: "collab",
+          title: "Collaborations",
+          body: "Contrats club × organisateur, promoteurs et agences, commissions calculées.",
+        },
+        {
+          id: "insight",
+          title: "Pilotage",
+          body: "Vue en direct, analytics par canal et par promoteur, assistant IA.",
+        },
+      ],
+    },
     footnote:
-      "D'après les pages publiques et centres d'aide de chaque plateforme (Shotgun, Weezevent, Xceed), relevés entre juin et septembre 2026. Shotgun prend 10 % de commission de base sur les ventes de l'organisateur, négociée contrat par contrat.",
+      "D'après les pages publiques et centres d'aide de chaque plateforme, relevés entre juin et septembre 2026. Commissions par défaut, hors conditions négociées.",
   },
   email: {
     eyebrow: "CRM & emailing",
@@ -1793,7 +1873,7 @@ const es: LandingContent = {
   money: {
     eyebrow: "El dinero",
     title: "Tú sigues siendo el vendedor. Yuno es la infraestructura.",
-    body: "Los pagos pasan por Stripe Connect: el dinero llega directamente a tu cuenta, a tu nombre en el extracto del cliente. Yuno nunca retiene tus fondos ni paga «72 horas después».",
+    body: "Los pagos pasan por Stripe Connect: el dinero llega directamente a tu cuenta, a tu nombre en el extracto del cliente. Yuno nunca retiene tus fondos: cobras a medida que vendes.",
     cta: "Crear mi cuenta gratis",
     list: [
       {
@@ -1810,15 +1890,19 @@ const es: LandingContent = {
       },
     ],
     calc: {
-      title: "Lo que de verdad te quedas",
+      title: "Lo que te quedas, comparado",
       price: "Precio de la entrada",
-      qty: "Entradas vendidas",
-      customerPays: "El cliente paga",
-      serviceFee: "Tarifa de servicio Yuno (la paga el cliente)",
-      stripe: "Procesamiento de pago (Stripe)",
-      youKeep: "Te quedas por entrada",
-      net: "Neto de la noche, en tu cuenta",
-      foot: "Tarifa de servicio: 4 % con un mínimo de 0,99 €, sumada a tu precio. Stripe: 1,5 % + 0,25 € por pago.",
+      qty: "Entradas por noche",
+      nights: "Noches al mes",
+      perTicket: "por entrada",
+      perMonth: "/ mes",
+      yunoRule: "El cliente paga {customer} · 0 % sobre tu precio",
+      competitors: [
+        { id: "shotgun", name: "Shotgun", rule: "10 % de comisión sobre tus ventas" },
+        { id: "weezevent", name: "Weezevent", rule: "2,5 % por entrada, mín. 0,99 €" },
+      ],
+      saved: "Lo que te quedas de más con Yuno en un año, hasta",
+      foot: "Yuno: tarifa de servicio del 4 % (mín. 0,99 €) pagada por el cliente; tú pagas Stripe 1,5 % + 0,25 €. Competidores: comisiones por defecto a cargo del organizador, gastos bancarios incluidos, sin condiciones negociadas.",
     },
   },
   compare: {
@@ -1829,8 +1913,6 @@ const es: LandingContent = {
     legend: { yes: "Incluido", partial: "En parte, o módulo de pago", no: "No disponible" },
     covered: "cubiertos por completo",
     costLabel: "Lo que pagas",
-    strongLabel: "Su punto fuerte",
-    winLabel: "Donde gana Yuno",
     features: [
       "Entradas y lista de invitados",
       "Mesas VIP en plano de sala, con señal",
@@ -1871,8 +1953,6 @@ const es: LandingContent = {
           "10 % de tus ventas, negociable",
         ]),
         cost: "10 % de comisión sobre tus ventas por defecto, negociable por contrato, más gastos al comprador.",
-        strong: "La audiencia de su app ayuda a llenar una sala desde cero.",
-        win: "Shotgun vende la entrada y se queda en la puerta. Yuno también vende tus mesas y bebidas, gestiona la noche y reparte el dinero — con 0 % sobre tu precio en lugar de un 10 %, cobrando a medida que vendes, no después del evento.",
       },
       {
         name: "Weezevent",
@@ -1888,8 +1968,6 @@ const es: LandingContent = {
           "2,5 % por entrada",
         ]),
         cost: "2,5 % por entrada (mín. 0,99 €), pagos cada 15 días, módulos de cashless y staff de pago.",
-        strong: "Sencilla y barata para cualquier evento, del festival al congreso.",
-        win: "Pensada para todo tipo de eventos, no para discotecas: sin mesas VIP, sin seguimiento de promotores, y cada extra es un módulo de pago. Yuno está hecho para la noche, todo en una cuenta a 0 €.",
       },
       {
         name: "Xceed",
@@ -1905,14 +1983,56 @@ const es: LandingContent = {
           "29–59 €/mes",
         ]),
         cost: "3 % por entrada, 15 % en ventas del marketplace y 29–59 €/mes.",
-        strong: "Un marketplace de clubbing con audiencia en las grandes ciudades europeas.",
-        win: "Su marketplace se lleva un 15 % de las ventas que trae, además de una suscripción — y no hay barra, ni CRM, ni reparto discoteca × organizador. Yuno lo incluye todo, a 0 €.",
       },
     ],
-    extra:
-      "Ninguna cubre toda la noche. Con Yuno, entradas, mesas VIP, barra, puerta, promotores y reparto discoteca × organizador viven en la misma cuenta, a un precio público: 0 €.",
+    allInOne: {
+      title: "Yuno no es una ticketera más. Es todo el sistema de tu noche.",
+      sub: "Una sola cuenta gestiona cada parte — sin herramientas que apilar, sin suscripción.",
+      items: [
+        {
+          id: "sales",
+          title: "Venta",
+          body: "Entradas, lista de invitados, mesas VIP y bebidas en una sola página de evento.",
+        },
+        {
+          id: "ops",
+          title: "Operaciones",
+          body: "Puerta, barra, servicio VIP y guardarropa: cada miembro del staff con su propia cuenta.",
+        },
+        {
+          id: "crm",
+          title: "CRM",
+          body: "Cada comprador en una sola base, segmentada por lo que compra de verdad.",
+        },
+        {
+          id: "marketing",
+          title: "Marketing",
+          body: "15.000 emails al mes, 9 automatizaciones, enlaces de promotor con seguimiento.",
+        },
+        {
+          id: "finance",
+          title: "Finanzas",
+          body: "Stripe Connect a tu nombre, cobras a medida que vendes, reembolsos desde el panel.",
+        },
+        {
+          id: "accounting",
+          title: "Contabilidad",
+          body: "Facturas, cierres de noche y exportaciones contables, listos para enviar.",
+        },
+        {
+          id: "collab",
+          title: "Colaboraciones",
+          body: "Contratos discoteca × organizador, promotores y agencias, comisiones calculadas.",
+        },
+        {
+          id: "insight",
+          title: "Control",
+          body: "Vista en directo, analítica por canal y por promotor, asistente de IA.",
+        },
+      ],
+    },
     footnote:
-      "Según las páginas públicas y centros de ayuda de cada plataforma (Shotgun, Weezevent, Xceed), consultados entre junio y septiembre de 2026. Shotgun cobra un 10 % de comisión base sobre las ventas del organizador, negociada contrato a contrato.",
+      "Según las páginas públicas y centros de ayuda de cada plataforma, consultados entre junio y septiembre de 2026. Comisiones por defecto, sin condiciones negociadas.",
   },
   email: {
     eyebrow: "CRM y email marketing",

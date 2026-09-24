@@ -37,6 +37,10 @@ Only use the competitor facts from those docs — their Yuno columns are outdate
 matrix lives in `src/content/landing.ts` (`MARKS` + `compare`): Shotgun, Weezevent, Xceed.
 Fourvenues is deliberately left off (too close to Yuno in features — Paul, Sep 2026). Staff row pitch:
 each staff member has their own specialised account (bouncer, VIP waiter, bartender…), not "a PIN".
+Savings calculator (Money section, `COMPETITOR_KEEP` in `Money.tsx`): Yuno vs Shotgun (10% of sales)
+and Weezevent (2.5%, min €0.99), competitor fees counted as paid by the organizer, card fees included.
+Xceed left out: its 3% is close to Yuno's card fees on tickets alone. Don't allude to Shotgun's "J+72"
+payout, and keep the verdict under the matrix generic (Yuno = the whole system of the night).
 - Shotgun: ticketing marketplace (5M+ app users). 10% base commission on the organizer's sales,
   contracts negotiable case by case (Paul, Sep 2026); buyer fees capped at €15; payout after the event;
   15% on resale / waiting list. Has CRM, newsletters, push, promoter tracking links (commissions by

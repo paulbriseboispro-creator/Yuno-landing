@@ -1,12 +1,36 @@
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { Check, ShieldCheck, Trophy, X } from "lucide-react";
+import { motion } from "motion/react";
+import {
+  BarChart3,
+  Check,
+  Handshake,
+  Landmark,
+  Megaphone,
+  Receipt,
+  ScanLine,
+  Ticket,
+  Users,
+  X,
+  type LucideIcon,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Mark } from "@/content/landing";
 import { useLanding } from "./context";
-import { EASE, FadeIn, PrimaryCta, SectionHeader } from "./ui";
+import { FadeIn, PrimaryCta, SectionHeader } from "./ui";
 
 type Cell = { mark: Mark; note: string };
+
+// One icon per area of the night in the all-in-one block (`compare.allInOne`).
+const AREA_ICONS: Record<string, LucideIcon> = {
+  sales: Ticket,
+  ops: ScanLine,
+  crm: Users,
+  marketing: Megaphone,
+  finance: Landmark,
+  accounting: Receipt,
+  collab: Handshake,
+  insight: BarChart3,
+};
 
 // Yuno's column keeps a faint red wash in both themes.
 const YUNO_TINT = "bg-[rgba(232,25,44,0.06)]";
@@ -67,7 +91,7 @@ export function Compare() {
 
       <FadeIn className="mx-auto mt-12 max-w-6xl">
         {/* Competitor picker — drives the highlighted column, the mobile
-            head-to-head and the verdict cards below. */}
+            head-to-head. */}
         <div className="flex flex-col items-center gap-3">
           <span className="text-[12px] font-semibold uppercase tracking-[0.12em] text-zinc-400">
             {c.pick}
@@ -235,50 +259,35 @@ export function Compare() {
           ))}
         </div>
 
-        {/* Verdict: a fair word on the picked platform, then Yuno's edge. */}
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={them.name}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.35, ease: EASE }}
-            className="mt-8 grid gap-4 md:grid-cols-[1fr_1.6fr]"
-          >
-            <div className="yl-card p-6">
-              <div className="text-[12px] font-semibold uppercase tracking-[0.12em] text-zinc-400">
-                {c.strongLabel} · {them.name}
-              </div>
-              <p className="mt-3 text-pretty text-[15px] leading-relaxed text-zinc-600">
-                {them.strong}
+        {/* Not one more ticketing tool: every part of the night in one account. */}
+        <div className="yl-keep yl-edge mt-10 rounded-[1.5rem] bg-zinc-950 p-6 text-white md:p-10">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <h3 className="text-balance text-[22px] font-semibold leading-tight tracking-tight md:text-[28px]">
+                {c.allInOne.title}
+              </h3>
+              <p className="mt-3 text-pretty text-[15px] leading-relaxed text-zinc-400">
+                {c.allInOne.sub}
               </p>
             </div>
-            <div className="yl-card relative overflow-hidden p-6">
-              <span
-                aria-hidden
-                className="absolute inset-y-0 left-0 w-[3px] bg-[var(--yuno-red)]"
-              />
-              <div className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--yuno-red)]">
-                <Trophy className="size-3.5" />
-                {c.winLabel}
-              </div>
-              <p className="mt-3 text-pretty text-[15px] font-medium leading-relaxed text-zinc-900">
-                {them.win}
-              </p>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-
-        <div className="yl-keep yl-edge mt-6 flex flex-col items-start gap-5 rounded-2xl bg-zinc-950 p-6 text-white md:flex-row md:items-center md:justify-between md:p-8">
-          <div className="flex gap-4">
-            <ShieldCheck className="mt-0.5 size-6 shrink-0 text-[var(--yuno-red)]" />
-            <p className="max-w-2xl text-pretty text-[15px] leading-relaxed text-zinc-300">
-              {c.extra}
-            </p>
+            <PrimaryCta className="shrink-0 self-start bg-white text-zinc-950 hover:bg-zinc-100 md:self-auto">
+              {t.hero.primary}
+            </PrimaryCta>
           </div>
-          <PrimaryCta className="shrink-0 bg-white text-zinc-950 hover:bg-zinc-100">
-            {t.hero.primary}
-          </PrimaryCta>
+          <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-white/10 lg:grid-cols-4">
+            {c.allInOne.items.map((item) => {
+              const Icon = AREA_ICONS[item.id] ?? Check;
+              return (
+                <div key={item.id} className="bg-zinc-950 p-4 sm:p-5">
+                  <span className="flex size-9 items-center justify-center rounded-xl bg-[rgba(232,25,44,0.16)]">
+                    <Icon className="size-[18px] text-[var(--yuno-red)]" />
+                  </span>
+                  <div className="mt-4 text-[15px] font-semibold tracking-tight">{item.title}</div>
+                  <p className="mt-1 text-[13px] leading-relaxed text-zinc-400">{item.body}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
         <p className="mt-4 text-[12px] leading-relaxed text-zinc-400">{c.footnote}</p>
       </FadeIn>
