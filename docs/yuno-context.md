@@ -33,8 +33,9 @@ Emailing: 15,000 emails/month included, then €10 per 10,000 (€24 per 25,000)
 - Weezevent: 2.5% min €0.99 incl. VAT per ticket, can be passed to buyer. Buyers stay with you.
 - Eventbrite: 3.5% + €0.49 (Essentials) to 5.5% + €0.99 (Pro) per ticket. Marketplace keeps buyers, recommends other events.
 - Xceed: 3% + 15% marketplace marketing commission, and €29–59/month subscription. Marketplace.
-- Shotgun: organizer commission negotiated, not published. Buyer fees capped at €15. Marketplace.
-- DICE: on quote, not published. Marketplace.
+- Shotgun: 10% base commission on the organizer's sales, contracts negotiable case by case (Paul, Sep 2026). Buyer fees capped at €15. Marketplace.
+- DICE: on quote, not published. Marketplace. Not shown on the landing (no public info to compare).
+- Landing rule: do not compare Weezevent with Yuno on "who keeps your buyers" (shown as a neutral dash).
 - None of them sells VIP tables, runs table service, or computes promoter commissions.
 - Emailing vs Brevo Standard (€79/mo) and Mailchimp Standard (€117.76/mo) for 50k emails; Yuno €34.
 

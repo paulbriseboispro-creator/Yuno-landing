@@ -31,7 +31,7 @@ export function BrowserFrame({
         </div>
         <div className="w-10" />
       </div>
-      <div className="bg-zinc-950">{children}</div>
+      <div className="yl-keep bg-zinc-950">{children}</div>
     </div>
   );
 }

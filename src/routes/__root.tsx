@@ -163,11 +163,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+const LANDING_THEME_SCRIPT = `try{if(localStorage.getItem("yl-theme")==="dark")document.documentElement.setAttribute("data-yl-theme","dark")}catch(e){}`;
+
 function RootShell({ children }: { children: ReactNode }) {
   const { lang, landing } = Route.useRouteContext();
   return (
-    <html lang={lang} className={landing ? "yl-page" : "dark"}>
+    <html lang={lang} className={landing ? "yl-page" : "dark"} suppressHydrationWarning>
       <head>
+        {landing && (
+          // Applies the visitor's saved landing theme before first paint (no flash).
+          <script dangerouslySetInnerHTML={{ __html: LANDING_THEME_SCRIPT }} />
+        )}
         <HeadContent />
       </head>
       <body>
