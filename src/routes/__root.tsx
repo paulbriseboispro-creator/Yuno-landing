@@ -18,7 +18,7 @@ import { BdeHeader, BdeFooter } from "@/components/site/BdeChrome";
 import { RoleHeader, RoleFooter } from "@/components/site/RoleChrome";
 import { NotFoundPage } from "@/components/not-found";
 import { LocaleProvider, detectLocale, getStandaloneLocale, type Locale } from "@/i18n/locale";
-import { localePath } from "@/i18n/seo";
+import { BING_SITE_VERIFICATION, GOOGLE_SITE_VERIFICATION, localePath } from "@/i18n/seo";
 import { ogImageMeta } from "@/i18n/og";
 import {
   LANDING_PATHS,
@@ -136,6 +136,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { title: m.title },
         { name: "description", content: m.description },
         { name: "author", content: "Yuno" },
+        ...(GOOGLE_SITE_VERIFICATION
+          ? [{ name: "google-site-verification", content: GOOGLE_SITE_VERIFICATION }]
+          : []),
+        ...(BING_SITE_VERIFICATION
+          ? [{ name: "msvalidate.01", content: BING_SITE_VERIFICATION }]
+          : []),
         { property: "og:type", content: "website" },
         { property: "og:site_name", content: "Yuno" },
         { property: "og:locale", content: locale === "fr" ? "fr_FR" : "en_GB" },

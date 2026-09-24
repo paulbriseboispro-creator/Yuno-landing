@@ -64,3 +64,9 @@ export function pageSeo(
     ],
   };
 }
+
+// Search-engine ownership codes (not secrets: they are public meta tags).
+// Paste the `content` value Google Search Console / Bing Webmaster Tools give
+// for the "HTML tag" verification method; empty = tag not emitted.
+export const GOOGLE_SITE_VERIFICATION = "";
+export const BING_SITE_VERIFICATION = "";
