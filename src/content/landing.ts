@@ -1,0 +1,1667 @@
+// Copy for the main landing ("/", "/fr", "/es"). Every fact here comes from the
+// September 2026 brochures — see docs/yuno-context.md. French and Spanish are
+// checked against the English shape at compile time (LandingContent = typeof en).
+// Never mention student unions (BDE) on this page.
+import type { LandingLang } from "@/i18n/landing-lang";
+
+const en = {
+  meta: {
+    title: "Yuno — Ticketing, VIP tables & bar for clubs and organizers",
+    description:
+      "One platform sells your tickets, VIP tables and drinks, runs the door and the bar, and splits the money. €0 subscription, 0% commission on your price. Your customers stay yours.",
+  },
+  nav: {
+    links: [
+      { label: "Product", href: "#product" },
+      { label: "Solutions", href: "#solutions" },
+      { label: "Pricing", href: "#pricing" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    login: "Log in",
+    cta: "Get started",
+    menu: "Menu",
+    close: "Close",
+  },
+  hero: {
+    chips: ["Live in Madrid & Paris", "€0 subscription"],
+    titleA: "Sell your nights.",
+    titleB: "Keep your customers.",
+    sub: "Tickets, VIP tables, drinks, the door and the money split — one platform for clubs, organizers and promoters. Your ticketing keeps your buyers. Yuno gives them back.",
+    primary: "Create my free account",
+    secondary: "Talk to the founder",
+    note: ["No subscription", "0% commission on your price", "No app to install"],
+    notifications: [
+      { icon: "crown", title: "Table Gold booked", meta: "€800 deposit paid · just now" },
+      { icon: "ticket", title: "48 tickets sold tonight", meta: "Early Bird sold out · 21:04" },
+      { icon: "scan", title: "Lucas M. checked in", meta: "Guest list · via Inès's link" },
+      { icon: "mail", title: "Campaign: 12 sales", meta: "€264 net revenue attributed" },
+      {
+        icon: "wallet",
+        title: "Night statement approved",
+        meta: "Club & organizer paid, in their own accounts",
+      },
+    ],
+  },
+  strip: {
+    label: "Payments, passes and sharing your crowd already uses",
+  },
+  stats: {
+    eyebrow: "Why Yuno",
+    title: "Everything the night needs. Nothing out of your pocket.",
+    sub: "Yuno only earns when your night does: a small service fee paid by the customer at checkout. The price you display is yours in full.",
+    items: [
+      {
+        value: "€0",
+        label: "Subscription",
+        body: "No plan, no commitment, no annual contract. Everything is included from your first night.",
+      },
+      {
+        value: "0%",
+        label: "Commission on your price",
+        body: "Service fees are added on top and paid by the customer. You keep your full ticket price.",
+      },
+      {
+        value: "3",
+        label: "Sales pillars",
+        body: "Tickets, VIP tables and drinks on one page — plus the door, the bar and the split.",
+      },
+      {
+        value: "30s",
+        label: "To buy a ticket",
+        body: "Card or Apple Pay, no account, no app. The QR arrives by email and in Apple Wallet.",
+      },
+    ],
+  },
+  problem: {
+    eyebrow: "The problem",
+    title: "Nightlife still runs on fifteen-year-old tools.",
+    sub: "A ticketing site, tables booked by DM, a paper list at the door, cash split at 6 a.m. Every player holds one piece of the puzzle — and the club pays the difference.",
+    today: "Today",
+    withYuno: "With Yuno",
+    rows: [
+      {
+        subject: "Tickets",
+        today: "A commission on every sale, and the buyer stays with the ticketing company.",
+        yuno: "The price you display is yours in full. The buyer lands in your customer base.",
+      },
+      {
+        subject: "VIP tables",
+        today: "Booked by DM, no deposit: an empty table costs the customer nothing.",
+        yuno: "Interactive floor plan, deposit or pay on site, service tracked table by table.",
+      },
+      {
+        subject: "The door",
+        today: "Paper list, a scanner from another app, duplicates and gatecrashers.",
+        yuno: "One scan for tickets, guest list and tables, name search, duplicate control.",
+      },
+      {
+        subject: "The money",
+        today: "Counted in cash at 6 a.m. between club, organizer and promoters.",
+        yuno: "Split under the signed contract, with a closing statement both sides approve.",
+      },
+      {
+        subject: "The data",
+        today: "At the ticketing company and on Instagram — never with you.",
+        yuno: "A living customer base, segments on real purchases, emails from the dashboard.",
+      },
+    ],
+  },
+  pillars: {
+    eyebrow: "The product",
+    title: "Your whole night, in one workspace.",
+    sub: "Three sales pillars on one event page, and every screen your team needs to run the night. Switch each pillar on or off per event — start with the guest list alone if you like.",
+    items: [
+      {
+        id: "tickets",
+        title: "Tickets & guest list",
+        body: "Price tiers, presales, promo codes, free guest list before a set time, Apple Wallet passes.",
+      },
+      {
+        id: "tables",
+        title: "VIP tables & bottle service",
+        body: "Customers pick a table on the floor plan, pay the deposit and pre-order bottles.",
+      },
+      {
+        id: "bar",
+        title: "Drink ordering",
+        body: "Order and pay at the bar's QR code. The bartender sees the queue on screen.",
+      },
+      {
+        id: "door",
+        title: "Door & staff",
+        body: "One scanner for everything. Staff sign in with a PIN — no account, no training.",
+      },
+      {
+        id: "crm",
+        title: "CRM & emailing",
+        body: "Every buyer joins your base. Segments on real purchases, 9 automations that sell.",
+      },
+      {
+        id: "money",
+        title: "Payouts & splits",
+        body: "Stripe Connect under your name. Club × organizer contracts, statements, invoices.",
+      },
+    ],
+    mini: {
+      earlyBird: "Early Bird",
+      regular: "Regular",
+      guestList: "Guest list",
+      freeBefore: "Free before 1 a.m.",
+      soldOut: "Sold out",
+      left: "left",
+      booked: "Booked",
+      available: "Available",
+      minSpend: "min. spend",
+      pending: "Pending",
+      prepping: "Prepping",
+      ready: "Ready",
+      valid: "Valid entry",
+      entries: "entries tonight",
+      segments: ["Takes tables", "High basket", "Seen < 60 days", "Regulars slipping"],
+      club: "Club",
+      organizer: "Organizer",
+      approved: "Statement approved by both sides",
+    },
+  },
+  solutions: {
+    eyebrow: "Solutions",
+    title: "Built for everyone who makes the night.",
+    sub: "A club, an organizer, promoters: each gets their own interface in the same system — and each brings in the others.",
+    tabs: [
+      {
+        id: "club",
+        label: "Clubs",
+        title: "Run the room, the bar and the door from one screen.",
+        body: "Sell tables before the doors open, take drink orders by QR, scan every entry and watch the night live. You stay the seller: the money lands in your account, under your name.",
+        bullets: [
+          "Living floor plan, minimum spend tracked per table",
+          "Bartender, bouncer, VIP host, cloakroom: a screen each, PIN login",
+          "Dashboard with net sales, conversion and 3 AI actions of the day",
+        ],
+        cta: "Create my club account",
+        card: { title: "Table Gold · 72% of minimum", meta: "€576 of €800 · suggest 1 bottle" },
+      },
+      {
+        id: "organizer",
+        label: "Organizers",
+        title: "In a club or on your own. Your crowd stays yours.",
+        body: "Tickets, guest list, your own VIP tables, your team (admin, editor, scanner). Hosting in a club? The contract is signed in Yuno and the closing statement is approved by both sides — no more cash at 6 a.m.",
+        bullets: [
+          "Co-branded event page, live in ten minutes",
+          "Your buyers join your base — not a marketplace's",
+          "Club contract pillar by pillar, or a tiered revenue share",
+        ],
+        cta: "Create my organizer account",
+        card: { title: "Contract signed with the club", meta: "Tickets 70/30 · Tables 50/50" },
+      },
+      {
+        id: "promoter",
+        label: "Promoters & agencies",
+        title: "Every sale counted. Every commission computed.",
+        body: "A personal link per night: each sale and each entry you bring is counted live and your commission computes itself. Agencies get a collective page with one link per promoter and consolidated sales per night.",
+        bullets: [
+          "Tracked links, live leaderboard",
+          "Settlement in three tracked, timestamped steps",
+          "Yuno never touches the funds",
+        ],
+        cta: "Create my promoter account",
+        card: { title: "Inès — 64 sales tonight", meta: "Commission €128 · #1 on the leaderboard" },
+      },
+    ],
+  },
+  timeline: {
+    eyebrow: "How it works",
+    title: "Picture your next night, equipped end to end.",
+    sub: "Here is what changes, day by day, when everything runs through the same platform.",
+    steps: [
+      {
+        when: "D-15",
+        label: "Publishing",
+        title: "The night is online in ten minutes",
+        body: "Poster, line-up, price tiers, free guest list, table packages. One page to share on Instagram and TikTok, one tracked link per promoter.",
+      },
+      {
+        when: "D-7",
+        label: "Filling up",
+        title: "You write to the people who actually come",
+        body: "One email per segment, composed on the real spots left. Early bird about to close? Those who looked without buying get a last word, automatically.",
+      },
+      {
+        when: "D-1",
+        label: "Preparation",
+        title: "You already know what the night will look like",
+        body: "Tables booked and paid, bottle pre-orders, door list ready, staff PIN codes. The live view shows who is on your page right now.",
+      },
+      {
+        when: "11 p.m.",
+        label: "The door",
+        title: "One scan, no arguments",
+        body: "Tickets, guests and tables on the same screen. A name in two letters, duplicates explained, every entry credited to the right promoter.",
+      },
+      {
+        when: "1 a.m.",
+        label: "The room",
+        title: "The tables work for you",
+        body: "The VIP host seats arrivals, tracks each table's minimum and serves bottles ordered from the table. One more bottle sells without looking for a waiter.",
+      },
+      {
+        when: "Next day",
+        label: "The wrap-up",
+        title: "The money is split, your base has grown",
+        body: "Each party has its share in its own account. You know who came, through which channel, and they'll be the first to hear about your next date.",
+      },
+    ],
+  },
+  money: {
+    eyebrow: "The money",
+    title: "You stay the seller. Yuno stays the infrastructure.",
+    body: 'Payments run on Stripe Connect: the money lands directly in your account, under your name on the customer\'s statement. Yuno never holds your funds and never pays out "72 hours later".',
+    cta: "Create my free account",
+    list: [
+      {
+        title: "Your own Stripe account",
+        body: "Paid as you sell. Refunds, invoices and accounting exports from the dashboard.",
+      },
+      {
+        title: "Club × organizer contracts",
+        body: "Signed in Yuno, pillar by pillar or as a tiered share. Nothing moves without both sides agreeing.",
+      },
+      {
+        title: "Promoter commissions",
+        body: "Computed automatically from tracked links, settled in three timestamped steps.",
+      },
+    ],
+    calc: {
+      title: "What you actually keep",
+      price: "Ticket price",
+      qty: "Tickets sold",
+      customerPays: "Customer pays",
+      serviceFee: "Yuno service fee (paid by the customer)",
+      stripe: "Card processing (Stripe)",
+      youKeep: "You keep per ticket",
+      net: "Net for the night, in your account",
+      foot: "Service fee: 4% with a €0.99 minimum, added on top of your price. Stripe: 1.5% + €0.25 per payment.",
+    },
+  },
+  compare: {
+    eyebrow: "Compare",
+    title: "Compare with what you pay today.",
+    sub: "And who keeps your buyers once the night is over.",
+    colPlatform: "Platform",
+    colPays: "What the organizer pays",
+    colKeeps: "Who keeps your buyers",
+    rows: [
+      {
+        name: "Yuno",
+        pays: "€0 subscription, 0% on your price. Emailing, CRM, tables and door included.",
+        keeps: "You.",
+      },
+      {
+        name: "Weezevent",
+        pays: "2.5% (min. €0.99 incl. VAT) per ticket, can be passed on to the buyer.",
+        keeps: "You.",
+      },
+      {
+        name: "Eventbrite",
+        pays: "3.5% + €0.49 (Essentials) to 5.5% + €0.99 (Pro) per ticket.",
+        keeps: "The marketplace, which recommends other events to your crowd.",
+      },
+      {
+        name: "Xceed",
+        pays: "3% + 15% marketplace marketing commission, and €29–59/month subscription.",
+        keeps: "The marketplace.",
+      },
+      {
+        name: "Shotgun",
+        pays: "Organizer commission negotiated, not published. Buyer fees capped at €15.",
+        keeps: "The marketplace.",
+      },
+      {
+        name: "DICE",
+        pays: "On quote, not published.",
+        keeps: "The marketplace.",
+      },
+    ],
+    extra:
+      "And none of them sells your VIP tables, runs your table service or computes your promoters' commissions. With Yuno it's the same account and the same price: zero.",
+    footnote:
+      "Public prices checked on 21 September 2026 (publishers' pricing pages, Eventbrite help, Shotgun T&Cs, dice.fm/partners). Shotgun and DICE don't publish their organizer commission.",
+  },
+  email: {
+    eyebrow: "CRM & emailing",
+    title: "Your emailing tool doesn't know there are 21 tables left. Yuno does.",
+    body: "Yuno sells your tickets, tables and guest list — so when it writes to your base, it reads the night at the second it sends: open tier price, tables still free, spots left. And every campaign shows the sales it produced, not just the opens.",
+    stats: [
+      { value: "7,228", label: "emails in the first Paris send" },
+      { value: "95.3%", label: "delivered" },
+      { value: "0.015%", label: "spam complaints" },
+      { value: "7/10", label: "re-clicked the automatic follow-up" },
+    ],
+    proof:
+      "September 2026, a Parisian organizer: a ticketing history never used for email, imported, deduplicated and sent from Yuno.",
+    included:
+      "15,000 emails a month included. Then €10 per 10,000. No emailing subscription on the side.",
+    mock: {
+      from: "Yuno Electronic Body",
+      subject: "21 tables left for Saturday",
+      tier: "Regular ticket",
+      tables: "VIP tables available",
+      cta: "Book my table",
+      sales: "sales from this campaign",
+    },
+    automationsTitle: "Nine automations, one switch each",
+    automations: [
+      "New night",
+      "Abandoned cart",
+      "Price going up",
+      "Last call",
+      "Upgrade to a table",
+      "Thanks for coming",
+      "We missed you",
+      "Welcome",
+      "Win-back",
+    ],
+  },
+  showcase: {
+    eyebrow: "The back-office",
+    title: "What the owner sees.",
+    sub: "Net sales, conversion, the room live, every night's analytics by channel and by promoter — and an AI assistant that answers on your numbers.",
+    tabs: [
+      { id: "dashboard", label: "Dashboard" },
+      { id: "live", label: "Live night" },
+      { id: "analytics", label: "Analytics" },
+      { id: "tables", label: "VIP tables" },
+      { id: "ticketing", label: "Ticketing" },
+    ],
+    primary: "Create my free account",
+    secondary: "Talk to the founder",
+  },
+  pricing: {
+    eyebrow: "Pricing",
+    title: "Free for pros. Paid by the night.",
+    sub: "No subscription, no commitment, no annual contract. Yuno earns a service fee added to your displayed price and paid by the customer — so Yuno only makes money when your night does.",
+    colItem: "Item",
+    colWho: "Who pays",
+    colAmount: "Amount",
+    rows: [
+      { item: "Subscription & commission", who: "—", amount: "€0 · 0%", highlight: true },
+      {
+        item: "Service fee, tickets",
+        who: "The customer, on top of the price",
+        amount: "4% · min. €0.99",
+        highlight: false,
+      },
+      {
+        item: "Service fee, VIP tables",
+        who: "The customer, on the amount charged",
+        amount: "4% · min. €0.99 · max. €25",
+        highlight: false,
+      },
+      {
+        item: "Service fee, drinks",
+        who: "The customer, on top of the price",
+        amount: "3%",
+        highlight: false,
+      },
+      {
+        item: "Card processing (Stripe)",
+        who: "You, on what you collect",
+        amount: "1.5% + €0.25",
+        highlight: false,
+      },
+    ],
+    example:
+      "€5,832 net on 300 tickets at €20. The customer pays €20.99; you keep €19.44 per ticket after €0.56 of card fees — in your account, without waiting.",
+    cardTitle: "Everything included",
+    cardSub: "One service level, from a 200-capacity club to an organizer starting out.",
+    price: "€0",
+    priceSuffix: "/ month, forever",
+    included: [
+      "Ticketing, presales, promo codes, Apple Wallet",
+      "Guest list with quotas and named QR codes",
+      "VIP tables, floor plan, deposits & table service",
+      "Bar ordering by QR, bartender screen",
+      "Door scanner, staff PINs, manager access",
+      "Stripe Connect, contracts, statements, invoices",
+      "Promoter links & automatic commissions",
+      "CRM, 15,000 emails/month, 9 automations",
+      "Analytics, live view, exports, AI assistant",
+      "Three languages, iOS app for your customers",
+    ],
+    cta: "Create my free account",
+    ctaNote: "No card required",
+  },
+  traction: {
+    eyebrow: "Where Yuno stands",
+    items: [
+      { value: "Madrid", label: "Launch with Amoris and 22 partner clubs listed" },
+      { value: "Paris", label: "Guest list and door scan proven on a real night" },
+      { value: "iOS", label: "Yuno app live on the App Store" },
+      { value: "EN · FR · ES", label: "For your customers and your staff" },
+    ],
+  },
+  faq: {
+    eyebrow: "FAQ",
+    title: "Questions pros ask us.",
+    items: [
+      {
+        q: "Is it really free for me?",
+        a: "Yes. €0 subscription and 0% commission on your price. Yuno's service fee (4% on tickets and tables with a €0.99 minimum, 3% on drinks) is added at checkout and paid by the customer. You only pay Stripe's card processing: 1.5% + €0.25.",
+      },
+      {
+        q: "When do I get my money?",
+        a: "Payments run on Stripe Connect, so the money lands directly in your own account, under your name on the customer's statement. Yuno never holds your funds.",
+      },
+      {
+        q: "Do my customers need to download an app?",
+        a: "No. Buying takes thirty seconds on the web, by card or Apple Pay, with no account. The QR arrives by email and in Apple Wallet. The Yuno iOS app is there for those who want it.",
+      },
+      {
+        q: "Do I have to switch everything at once?",
+        a: "No. Each night has one switch per pillar. Start with the guest list alone, tables alone or full ticketing, and keep the rest of your setup as it is.",
+      },
+      {
+        q: "How does a club and an organizer split a night?",
+        a: "The contract is signed inside Yuno, pillar by pillar (tickets, tables, guest list) or as a tiered share of the night's revenue. At closing the club declares bar and door takings, the organizer accepts or disputes, and nothing moves without both sides agreeing.",
+      },
+      {
+        q: "Who owns my customer data?",
+        a: "You do. Every buyer, table and guest-list sign-up joins your customer base. Your existing file can be imported on top, deduplicated, with attested consent.",
+      },
+      {
+        q: "How long does it take to get started?",
+        a: "Create your account in two minutes. Setting up your venue or first event — floor plan, prices, staff, payment account — takes about an hour, and we can do it with you.",
+      },
+    ],
+  },
+  final: {
+    title: "Your next night deserves better tools.",
+    sub: "Create your pro account in two minutes. €0 subscription, 0% commission, and your customers stay yours.",
+    placeholder: "Your work email",
+    primary: "Create my free account",
+    secondary: "Talk to the founder",
+    note: "No card required · Set up with you if you want · EN · FR · ES",
+  },
+  footer: {
+    tagline: "The platform for the night. Tickets, tables, bar, door and payouts — in one place.",
+    cols: [
+      {
+        title: "Product",
+        links: [
+          { label: "Ticketing & guest list", href: "#product" },
+          { label: "VIP tables", href: "#product" },
+          { label: "CRM & emailing", href: "#email" },
+          { label: "Pricing", href: "#pricing" },
+        ],
+      },
+      {
+        title: "Solutions",
+        links: [
+          { label: "Clubs", href: "#solutions" },
+          { label: "Organizers", href: "#solutions" },
+          { label: "Promoters & agencies", href: "#solutions" },
+        ],
+      },
+      {
+        title: "Company",
+        links: [
+          { label: "Contact", href: "/contact" },
+          { label: "Privacy", href: "/privacy" },
+          { label: "Terms", href: "/terms" },
+        ],
+      },
+    ],
+    rights: "All rights reserved.",
+    made: "Made in Paris & Madrid",
+  },
+  mobileCta: "Create my free account",
+  whatsappMessage: "Hi Paul 👋 I run a venue / events and I'd like to know more about Yuno.",
+  signup: {
+    stepOf: "Step {n} of 2",
+    roleTitle: "What do you run?",
+    roleSub: "We'll set up your pro space for it.",
+    roles: [
+      { id: "club", label: "A club or venue", hint: "Tables, bar, door, events" },
+      { id: "organizer", label: "Events & nights", hint: "Organizer or collective" },
+      { id: "promoter", label: "A promoter team", hint: "Promoter or agency" },
+      { id: "other", label: "Something else", hint: "Bar, festival, DJ…" },
+    ],
+    detailsTitle: "Create your pro account",
+    detailsSub: "€0 subscription · 0% commission · No card required",
+    name: "Full name",
+    namePh: "Alex Martin",
+    email: "Work email",
+    emailPh: "alex@yourclub.com",
+    company: "Venue or organization",
+    companyPh: "Neon Room",
+    phone: "Phone (optional)",
+    phonePh: "+33 6 …",
+    back: "Back",
+    submit: "Create my account",
+    submitting: "Creating…",
+    consent: "By continuing you agree to our Terms and Privacy policy. We never share your data.",
+    doneTitle: "You're in.",
+    doneBody:
+      "We're opening your pro space. You'll get your access by email within one business day — with a setup session if you want one.",
+    doneCta: "Speed it up on WhatsApp",
+    close: "Close",
+    error: "Something went wrong. Try again, or message us on WhatsApp.",
+  },
+  lang: "Language",
+};
+
+export type LandingContent = typeof en;
+
+const fr: LandingContent = {
+  meta: {
+    title: "Yuno — Billetterie, tables VIP & bar pour clubs et organisateurs",
+    description:
+      "Une seule plateforme vend vos billets, vos tables VIP et vos boissons, tient la porte et le bar, et répartit l'argent. 0 € d'abonnement, 0 % de commission sur votre prix. Vos clients restent les vôtres.",
+  },
+  nav: {
+    links: [
+      { label: "Produit", href: "#product" },
+      { label: "Solutions", href: "#solutions" },
+      { label: "Tarifs", href: "#pricing" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    login: "Connexion",
+    cta: "Commencer",
+    menu: "Menu",
+    close: "Fermer",
+  },
+  hero: {
+    chips: ["En service à Madrid & Paris", "0 € d'abonnement"],
+    titleA: "Vendez vos soirées.",
+    titleB: "Gardez vos clients.",
+    sub: "Billets, tables VIP, boissons, la porte et la répartition de l'argent — une seule plateforme pour les clubs, les organisateurs et les promoteurs. Votre billetterie garde vos clients. Yuno vous les rend.",
+    primary: "Créer mon compte gratuit",
+    secondary: "Parler au fondateur",
+    note: ["Sans abonnement", "0 % de commission sur votre prix", "Aucune app à installer"],
+    notifications: [
+      { icon: "crown", title: "Table Gold réservée", meta: "Acompte de 800 € payé · à l'instant" },
+      { icon: "ticket", title: "48 billets vendus ce soir", meta: "Early Bird complet · 21:04" },
+      { icon: "scan", title: "Lucas M. est entré", meta: "Guest list · via le lien d'Inès" },
+      { icon: "mail", title: "Campagne : 12 ventes", meta: "264 € de CA net attribué" },
+      {
+        icon: "wallet",
+        title: "Décompte de soirée validé",
+        meta: "Club et organisateur payés, chacun sur son compte",
+      },
+    ],
+  },
+  strip: {
+    label: "Les paiements, pass et réseaux que votre public utilise déjà",
+  },
+  stats: {
+    eyebrow: "Pourquoi Yuno",
+    title: "Tout ce qu'il faut à la soirée. Rien qui sorte de votre poche.",
+    sub: "Yuno ne gagne que quand votre soirée gagne : de petits frais de service payés par le client à l'achat. Le prix que vous affichez vous revient en entier.",
+    items: [
+      {
+        value: "0 €",
+        label: "D'abonnement",
+        body: "Pas de formule, pas d'engagement, pas de contrat annuel. Tout est compris dès la première soirée.",
+      },
+      {
+        value: "0 %",
+        label: "De commission sur votre prix",
+        body: "Les frais de service s'ajoutent au prix et sont payés par le client. Votre prix vous revient en entier.",
+      },
+      {
+        value: "3",
+        label: "Piliers de vente",
+        body: "Billets, tables VIP et boissons sur une seule page — plus la porte, le bar et la répartition.",
+      },
+      {
+        value: "30 s",
+        label: "Pour acheter un billet",
+        body: "Carte ou Apple Pay, sans compte ni app. Le QR arrive par email et dans Apple Wallet.",
+      },
+    ],
+  },
+  problem: {
+    eyebrow: "Le constat",
+    title: "La nuit tourne encore avec des outils d'il y a quinze ans.",
+    sub: "Une billetterie, des tables réservées par DM, une liste papier à l'entrée, une répartition en cash à 6 h du matin. Chacun tient un bout du puzzle — et c'est le club qui paie la différence.",
+    today: "Aujourd'hui",
+    withYuno: "Avec Yuno",
+    rows: [
+      {
+        subject: "Les billets",
+        today: "Une commission sur chaque vente, et l'acheteur reste chez la billetterie.",
+        yuno: "Le prix affiché vous revient en entier. L'acheteur entre dans votre base clients.",
+      },
+      {
+        subject: "Les tables VIP",
+        today: "Réservées par DM, sans acompte : la table vide ne coûte rien au client.",
+        yuno: "Plan de salle interactif, acompte ou règlement sur place, service suivi table par table.",
+      },
+      {
+        subject: "La porte",
+        today: "Liste papier, scanner d'une autre app, doublons et resquille.",
+        yuno: "Un seul scan pour billets, guest list et tables, recherche par nom, contrôle des doublons.",
+      },
+      {
+        subject: "L'argent",
+        today: "Compté en cash à 6 h du matin, entre club, organisateur et promoteurs.",
+        yuno: "Réparti selon le contrat signé, avec un décompte que les deux parties valident.",
+      },
+      {
+        subject: "La donnée",
+        today: "Chez la billetterie et sur Instagram — jamais chez vous.",
+        yuno: "Base clients vivante, segments sur les achats réels, emails depuis le dashboard.",
+      },
+    ],
+  },
+  pillars: {
+    eyebrow: "Le produit",
+    title: "Toute votre soirée, dans un seul espace.",
+    sub: "Trois piliers de vente sur une seule page d'événement, et tous les écrans dont votre équipe a besoin. Chaque pilier s'active ou se coupe par soirée — commencez par la guest list seule si vous voulez.",
+    items: [
+      {
+        id: "tickets",
+        title: "Billetterie & guest list",
+        body: "Paliers de prix, préventes, codes promo, guest list gratuite avant une heure, pass Apple Wallet.",
+      },
+      {
+        id: "tables",
+        title: "Tables VIP & bottle service",
+        body: "Le client choisit sa table sur le plan, paie l'acompte et précommande ses bouteilles.",
+      },
+      {
+        id: "bar",
+        title: "Commande de boissons",
+        body: "Commande et paiement au QR du bar. Le barman voit la file sur son écran.",
+      },
+      {
+        id: "door",
+        title: "Porte & staff",
+        body: "Un seul scanner pour tout. Le staff se connecte par code PIN, sans compte ni formation.",
+      },
+      {
+        id: "crm",
+        title: "CRM & emailing",
+        body: "Chaque acheteur entre dans votre base. Segments sur les achats réels, 9 automatisations qui vendent.",
+      },
+      {
+        id: "money",
+        title: "Paiements & répartition",
+        body: "Stripe Connect à votre nom. Contrats club × organisateur, décomptes, factures.",
+      },
+    ],
+    mini: {
+      earlyBird: "Early Bird",
+      regular: "Regular",
+      guestList: "Guest list",
+      freeBefore: "Gratuit avant 1 h",
+      soldOut: "Complet",
+      left: "restantes",
+      booked: "Réservée",
+      available: "Libre",
+      minSpend: "minimum",
+      pending: "En attente",
+      prepping: "En préparation",
+      ready: "Prête",
+      valid: "Entrée valide",
+      entries: "entrées ce soir",
+      segments: ["Prend des tables", "Panier élevé", "Vus < 60 jours", "Habitués qui décrochent"],
+      club: "Club",
+      organizer: "Organisateur",
+      approved: "Décompte validé par les deux parties",
+    },
+  },
+  solutions: {
+    eyebrow: "Solutions",
+    title: "Pensé pour tous ceux qui font la nuit.",
+    sub: "Un club, un organisateur, des promoteurs : chacun a son interface dans le même système — et chacun y amène les autres.",
+    tabs: [
+      {
+        id: "club",
+        label: "Clubs",
+        title: "La salle, le bar et la porte depuis un seul écran.",
+        body: "Vendez vos tables avant l'ouverture, prenez les commandes au QR, scannez chaque entrée et suivez la soirée en direct. Vous restez le vendeur : l'argent arrive sur votre compte, à votre nom.",
+        bullets: [
+          "Plan de salle vivant, minimum de dépense suivi par table",
+          "Barman, videur, hôte VIP, vestiaire : chacun son écran, connexion par PIN",
+          "Dashboard : ventes nettes, conversion et 3 actions du jour proposées par l'IA",
+        ],
+        cta: "Créer mon compte club",
+        card: {
+          title: "Table Gold · 72 % du minimum",
+          meta: "576 € sur 800 € · proposer 1 bouteille",
+        },
+      },
+      {
+        id: "organizer",
+        label: "Organisateurs",
+        title: "En club ou sans club. Votre public reste le vôtre.",
+        body: "Billets, guest list, vos propres tables VIP, votre équipe (admin, éditeur, scanner). Vous jouez dans un club ? Le contrat se signe dans Yuno et le décompte de fin de soirée est validé par les deux parties — fini le cash à 6 h du matin.",
+        bullets: [
+          "Page de soirée co-brandée, en ligne en dix minutes",
+          "Vos acheteurs entrent dans votre base — pas dans celle d'une marketplace",
+          "Contrat avec le club pilier par pilier, ou au barème sur le CA",
+        ],
+        cta: "Créer mon compte organisateur",
+        card: { title: "Contrat signé avec le club", meta: "Billets 70/30 · Tables 50/50" },
+      },
+      {
+        id: "promoter",
+        label: "Promoteurs & agences",
+        title: "Chaque vente comptée. Chaque commission calculée.",
+        body: "Un lien personnel par soirée : chaque vente et chaque entrée que vous générez est comptée en direct, et votre commission se calcule toute seule. Les agences ont une page collective, un lien par promoteur et la vue consolidée des ventes.",
+        bullets: [
+          "Liens suivis, classement en direct",
+          "Règlement en trois temps, tracé et horodaté",
+          "Yuno ne touche jamais les fonds",
+        ],
+        cta: "Créer mon compte promoteur",
+        card: { title: "Inès — 64 ventes ce soir", meta: "Commission 128 € · n°1 du classement" },
+      },
+    ],
+  },
+  timeline: {
+    eyebrow: "Comment ça marche",
+    title: "Imaginez votre prochaine soirée, outillée de bout en bout.",
+    sub: "Voici ce qui change, jour après jour, quand tout passe par la même plateforme.",
+    steps: [
+      {
+        when: "J-15",
+        label: "Publication",
+        title: "La soirée est en ligne en dix minutes",
+        body: "Affiche, line-up, paliers de prix, guest list gratuite, formules de tables. Une seule page à partager sur Instagram et TikTok, un lien suivi par promoteur.",
+      },
+      {
+        when: "J-7",
+        label: "Remplissage",
+        title: "Vous écrivez à ceux qui viennent vraiment",
+        body: "Un email par segment, composé sur les vraies places restantes. L'early bird se termine ? Ceux qui ont regardé sans acheter reçoivent un dernier mot, automatiquement.",
+      },
+      {
+        when: "J-1",
+        label: "Préparation",
+        title: "Vous savez déjà à quoi ressemblera la nuit",
+        body: "Tables réservées et payées, précommandes de bouteilles, liste de porte prête, codes PIN du staff. La vue en direct montre qui regarde votre page.",
+      },
+      {
+        when: "23 h",
+        label: "La porte",
+        title: "Un seul scan, zéro discussion",
+        body: "Billets, invités et tables sur le même écran. Un nom en deux lettres, les doublons expliqués, chaque entrée créditée au bon promoteur.",
+      },
+      {
+        when: "1 h",
+        label: "La salle",
+        title: "Les tables travaillent pour vous",
+        body: "L'hôte VIP place les arrivées, suit le minimum de chaque carré et sert les bouteilles commandées depuis la table. Une bouteille de plus se vend sans chercher un serveur.",
+      },
+      {
+        when: "Lendemain",
+        label: "Le bilan",
+        title: "L'argent est réparti, votre base a grandi",
+        body: "Chaque partie a sa part sur son compte. Vous savez qui est venu, par quel canal — et ils seront les premiers informés de la prochaine date.",
+      },
+    ],
+  },
+  money: {
+    eyebrow: "L'argent",
+    title: "Vous restez le vendeur. Yuno reste l'infrastructure.",
+    body: "Les paiements passent par Stripe Connect : l'argent arrive directement sur votre compte, à votre nom sur le relevé du client. Yuno ne détient jamais vos fonds et ne verse rien « à J+72 ».",
+    cta: "Créer mon compte gratuit",
+    list: [
+      {
+        title: "Votre propre compte Stripe",
+        body: "Payé au fil des ventes. Remboursements, factures et exports comptables depuis le dashboard.",
+      },
+      {
+        title: "Contrats club × organisateur",
+        body: "Signés dans Yuno, pilier par pilier ou au barème. Rien ne part sans l'accord des deux parties.",
+      },
+      {
+        title: "Commissions des promoteurs",
+        body: "Calculées automatiquement depuis les liens suivis, réglées en trois temps horodatés.",
+      },
+    ],
+    calc: {
+      title: "Ce que vous gardez vraiment",
+      price: "Prix du billet",
+      qty: "Billets vendus",
+      customerPays: "Le client paie",
+      serviceFee: "Frais de service Yuno (payés par le client)",
+      stripe: "Traitement bancaire (Stripe)",
+      youKeep: "Vous gardez par billet",
+      net: "Net de la soirée, sur votre compte",
+      foot: "Frais de service : 4 % avec un minimum de 0,99 €, ajoutés à votre prix. Stripe : 1,5 % + 0,25 € par paiement.",
+    },
+  },
+  compare: {
+    eyebrow: "Comparatif",
+    title: "Comparez avec ce que vous payez aujourd'hui.",
+    sub: "Et qui garde vos acheteurs une fois la soirée terminée.",
+    colPlatform: "Plateforme",
+    colPays: "Ce que l'organisateur paie",
+    colKeeps: "Qui garde vos acheteurs",
+    rows: [
+      {
+        name: "Yuno",
+        pays: "0 € d'abonnement, 0 % sur votre prix. Emailing, CRM, tables et porte compris.",
+        keeps: "Vous.",
+      },
+      {
+        name: "Weezevent",
+        pays: "2,5 % (min. 0,99 € TTC) par billet, répercutables sur l'acheteur.",
+        keeps: "Vous.",
+      },
+      {
+        name: "Eventbrite",
+        pays: "3,5 % + 0,49 € (Essentials) à 5,5 % + 0,99 € (Pro) par billet.",
+        keeps: "La marketplace, qui recommande d'autres soirées à votre public.",
+      },
+      {
+        name: "Xceed",
+        pays: "3 % + 15 % de commission marketing marketplace, et 29 à 59 €/mois d'abonnement.",
+        keeps: "La marketplace.",
+      },
+      {
+        name: "Shotgun",
+        pays: "Commission organisateur négociée, non publiée. Frais acheteur plafonnés à 15 €.",
+        keeps: "La marketplace.",
+      },
+      {
+        name: "DICE",
+        pays: "Sur devis, non publié.",
+        keeps: "La marketplace.",
+      },
+    ],
+    extra:
+      "Et aucune de ces plateformes ne vend vos tables VIP, ne tient votre service en salle, ni ne calcule les commissions de vos promoteurs. Chez Yuno, c'est le même compte et le même prix : zéro.",
+    footnote:
+      "Tarifs publics relevés le 21 septembre 2026 (pages Tarifs des éditeurs, aide Eventbrite France, CGU Shotgun, dice.fm/partners). Shotgun et DICE ne publient pas leur commission organisateur.",
+  },
+  email: {
+    eyebrow: "CRM & emailing",
+    title: "Votre outil d'emailing ne sait pas qu'il reste 21 tables. Yuno, si.",
+    body: "Yuno vend vos billets, vos tables et votre guest list — donc quand il écrit à votre base, il lit la soirée à la seconde de l'envoi : tarif du palier ouvert, tables encore libres, places restantes. Et chaque campagne affiche les ventes qu'elle a produites, pas seulement les ouvertures.",
+    stats: [
+      { value: "7 228", label: "emails lors du premier envoi parisien" },
+      { value: "95,3 %", label: "délivrés" },
+      { value: "0,015 %", label: "de plaintes spam" },
+      { value: "7/10", label: "ont recliqué sur la relance automatique" },
+    ],
+    proof:
+      "Septembre 2026, un organisateur parisien : un historique de billetterie jamais utilisé pour l'email, importé, dédoublonné et envoyé depuis Yuno.",
+    included:
+      "15 000 emails par mois inclus. Puis 10 € les 10 000. Pas d'abonnement emailing à côté.",
+    mock: {
+      from: "Yuno Electronic Body",
+      subject: "Plus que 21 tables pour samedi",
+      tier: "Billet Regular",
+      tables: "Tables VIP disponibles",
+      cta: "Réserver ma table",
+      sales: "ventes grâce à cette campagne",
+    },
+    automationsTitle: "Neuf automatisations, un interrupteur chacune",
+    automations: [
+      "Nouvelle soirée",
+      "Panier abandonné",
+      "Le tarif monte",
+      "Dernier appel",
+      "Passe en table",
+      "Merci d'être venu",
+      "On t'a manqué",
+      "Bienvenue",
+      "Reconquête",
+    ],
+  },
+  showcase: {
+    eyebrow: "Le back-office",
+    title: "Ce que le patron voit.",
+    sub: "Ventes nettes, conversion, la salle en direct, l'analyse de chaque soirée par canal et par promoteur — et un assistant IA qui répond sur vos chiffres.",
+    tabs: [
+      { id: "dashboard", label: "Dashboard" },
+      { id: "live", label: "Soirée en direct" },
+      { id: "analytics", label: "Analytics" },
+      { id: "tables", label: "Tables VIP" },
+      { id: "ticketing", label: "Billetterie" },
+    ],
+    primary: "Créer mon compte gratuit",
+    secondary: "Parler au fondateur",
+  },
+  pricing: {
+    eyebrow: "Tarifs",
+    title: "Gratuit pour les pros. Payé par la soirée.",
+    sub: "Pas d'abonnement, pas d'engagement, pas de contrat annuel. Yuno se rémunère par des frais de service ajoutés au prix affiché et payés par le client — Yuno ne gagne de l'argent que quand votre soirée en gagne.",
+    colItem: "Poste",
+    colWho: "Qui paie",
+    colAmount: "Montant",
+    rows: [
+      { item: "Abonnement & commission", who: "—", amount: "0 € · 0 %", highlight: true },
+      {
+        item: "Frais de service, billets",
+        who: "Le client, en plus du prix",
+        amount: "4 % · min. 0,99 €",
+        highlight: false,
+      },
+      {
+        item: "Frais de service, tables VIP",
+        who: "Le client, sur le montant débité",
+        amount: "4 % · min. 0,99 € · max. 25 €",
+        highlight: false,
+      },
+      {
+        item: "Frais de service, boissons",
+        who: "Le client, en plus du prix",
+        amount: "3 %",
+        highlight: false,
+      },
+      {
+        item: "Traitement bancaire (Stripe)",
+        who: "Vous, sur l'encaissement",
+        amount: "1,5 % + 0,25 €",
+        highlight: false,
+      },
+    ],
+    example:
+      "5 832 € nets sur 300 billets à 20 €. Le client paie 20,99 € ; vous gardez 19,44 € par billet après 0,56 € de frais bancaires — sur votre compte, sans attendre.",
+    cardTitle: "Tout est compris",
+    cardSub: "Un seul niveau de service, du club de 200 places à l'organisateur qui débute.",
+    price: "0 €",
+    priceSuffix: "/ mois, pour toujours",
+    included: [
+      "Billetterie, préventes, codes promo, Apple Wallet",
+      "Guest list avec quotas et QR nominatifs",
+      "Tables VIP, plan de salle, acomptes & service",
+      "Commande au bar par QR, écran barman",
+      "Scanner de porte, codes PIN, accès manager",
+      "Stripe Connect, contrats, décomptes, factures",
+      "Liens promoteurs & commissions automatiques",
+      "CRM, 15 000 emails/mois, 9 automatisations",
+      "Analytics, vue en direct, exports, assistant IA",
+      "Trois langues, app iOS pour vos clients",
+    ],
+    cta: "Créer mon compte gratuit",
+    ctaNote: "Sans carte bancaire",
+  },
+  traction: {
+    eyebrow: "Où en est Yuno",
+    items: [
+      { value: "Madrid", label: "Lancement avec Amoris et 22 clubs partenaires référencés" },
+      { value: "Paris", label: "Guest list et scan à la porte vérifiés en soirée réelle" },
+      { value: "iOS", label: "App Yuno disponible sur l'App Store" },
+      { value: "EN · FR · ES", label: "Pour vos clients et votre staff" },
+    ],
+  },
+  faq: {
+    eyebrow: "FAQ",
+    title: "Les questions que les pros nous posent.",
+    items: [
+      {
+        q: "C'est vraiment gratuit pour moi ?",
+        a: "Oui. 0 € d'abonnement et 0 % de commission sur votre prix. Les frais de service Yuno (4 % sur les billets et tables avec un minimum de 0,99 €, 3 % sur les boissons) sont ajoutés à l'achat et payés par le client. Vous ne payez que le traitement bancaire Stripe : 1,5 % + 0,25 €.",
+      },
+      {
+        q: "Quand est-ce que je touche mon argent ?",
+        a: "Les paiements passent par Stripe Connect : l'argent arrive directement sur votre propre compte, à votre nom sur le relevé du client. Yuno ne détient jamais vos fonds.",
+      },
+      {
+        q: "Mes clients doivent-ils télécharger une app ?",
+        a: "Non. L'achat prend trente secondes sur le web, par carte ou Apple Pay, sans compte. Le QR arrive par email et dans Apple Wallet. L'app iOS Yuno est là pour ceux qui la veulent.",
+      },
+      {
+        q: "Dois-je tout changer d'un coup ?",
+        a: "Non. Chaque soirée porte un interrupteur par pilier. Commencez par la guest list seule, les tables seules ou la billetterie complète, et gardez le reste de vos outils.",
+      },
+      {
+        q: "Comment un club et un organisateur se répartissent une soirée ?",
+        a: "Le contrat se signe dans Yuno, pilier par pilier (billets, tables, guest list) ou au barème sur le chiffre d'affaires. À la fermeture, le club déclare le bar et les entrées, l'organisateur accepte ou conteste, et rien ne part sans l'accord des deux parties.",
+      },
+      {
+        q: "À qui appartiennent mes données clients ?",
+        a: "À vous. Chaque acheteur, chaque table, chaque inscrit en guest list rejoint votre base clients. Votre fichier existant s'importe par-dessus, dédoublonné, avec son consentement attesté.",
+      },
+      {
+        q: "Combien de temps pour démarrer ?",
+        a: "Deux minutes pour créer votre compte. Configurer votre salle ou votre première soirée — plan, tarifs, staff, compte de paiement — prend environ une heure, et on peut le faire avec vous.",
+      },
+    ],
+  },
+  final: {
+    title: "Votre prochaine soirée mérite de meilleurs outils.",
+    sub: "Créez votre compte pro en deux minutes. 0 € d'abonnement, 0 % de commission, et vos clients restent les vôtres.",
+    placeholder: "Votre email pro",
+    primary: "Créer mon compte gratuit",
+    secondary: "Parler au fondateur",
+    note: "Sans carte bancaire · Configuration avec vous si besoin · EN · FR · ES",
+  },
+  footer: {
+    tagline:
+      "La plateforme de la soirée. Billets, tables, bar, porte et paiements — au même endroit.",
+    cols: [
+      {
+        title: "Produit",
+        links: [
+          { label: "Billetterie & guest list", href: "#product" },
+          { label: "Tables VIP", href: "#product" },
+          { label: "CRM & emailing", href: "#email" },
+          { label: "Tarifs", href: "#pricing" },
+        ],
+      },
+      {
+        title: "Solutions",
+        links: [
+          { label: "Clubs", href: "#solutions" },
+          { label: "Organisateurs", href: "#solutions" },
+          { label: "Promoteurs & agences", href: "#solutions" },
+        ],
+      },
+      {
+        title: "Entreprise",
+        links: [
+          { label: "Contact", href: "/fr/contact" },
+          { label: "Confidentialité", href: "/fr/privacy" },
+          { label: "CGU", href: "/fr/terms" },
+        ],
+      },
+    ],
+    rights: "Tous droits réservés.",
+    made: "Conçu à Paris & Madrid",
+  },
+  mobileCta: "Créer mon compte gratuit",
+  whatsappMessage:
+    "Bonjour Paul 👋 Je gère un établissement / des soirées et j'aimerais en savoir plus sur Yuno.",
+  signup: {
+    stepOf: "Étape {n} sur 2",
+    roleTitle: "Que gérez-vous ?",
+    roleSub: "On prépare votre espace pro en fonction.",
+    roles: [
+      { id: "club", label: "Un club ou une salle", hint: "Tables, bar, porte, soirées" },
+      { id: "organizer", label: "Des soirées", hint: "Organisateur ou collectif" },
+      { id: "promoter", label: "Une équipe de promo", hint: "Promoteur ou agence" },
+      { id: "other", label: "Autre chose", hint: "Bar, festival, DJ…" },
+    ],
+    detailsTitle: "Créez votre compte pro",
+    detailsSub: "0 € d'abonnement · 0 % de commission · Sans carte bancaire",
+    name: "Nom complet",
+    namePh: "Alex Martin",
+    email: "Email pro",
+    emailPh: "alex@votreclub.fr",
+    company: "Établissement ou organisation",
+    companyPh: "Neon Room",
+    phone: "Téléphone (optionnel)",
+    phonePh: "+33 6 …",
+    back: "Retour",
+    submit: "Créer mon compte",
+    submitting: "Création…",
+    consent:
+      "En continuant, vous acceptez nos CGU et notre politique de confidentialité. Nous ne partageons jamais vos données.",
+    doneTitle: "C'est parti.",
+    doneBody:
+      "On ouvre votre espace pro. Vous recevrez vos accès par email sous un jour ouvré — avec une session de configuration si vous le souhaitez.",
+    doneCta: "Accélérer sur WhatsApp",
+    close: "Fermer",
+    error: "Un problème est survenu. Réessayez, ou écrivez-nous sur WhatsApp.",
+  },
+  lang: "Langue",
+};
+
+const es: LandingContent = {
+  meta: {
+    title: "Yuno — Venta de entradas, mesas VIP y barra para discotecas y promotores",
+    description:
+      "Una sola plataforma vende tus entradas, mesas VIP y bebidas, gestiona la puerta y la barra, y reparte el dinero. 0 € de suscripción, 0 % de comisión sobre tu precio. Tus clientes siguen siendo tuyos.",
+  },
+  nav: {
+    links: [
+      { label: "Producto", href: "#product" },
+      { label: "Soluciones", href: "#solutions" },
+      { label: "Precios", href: "#pricing" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    login: "Iniciar sesión",
+    cta: "Empezar",
+    menu: "Menú",
+    close: "Cerrar",
+  },
+  hero: {
+    chips: ["Operativo en Madrid y París", "0 € de suscripción"],
+    titleA: "Vende tus noches.",
+    titleB: "Quédate con tus clientes.",
+    sub: "Entradas, mesas VIP, bebidas, la puerta y el reparto del dinero — una sola plataforma para discotecas, organizadores y promotores. Tu ticketera se queda con tus clientes. Yuno te los devuelve.",
+    primary: "Crear mi cuenta gratis",
+    secondary: "Hablar con el fundador",
+    note: ["Sin suscripción", "0 % de comisión sobre tu precio", "Sin app que instalar"],
+    notifications: [
+      { icon: "crown", title: "Mesa Gold reservada", meta: "Señal de 800 € pagada · ahora mismo" },
+      { icon: "ticket", title: "48 entradas vendidas hoy", meta: "Early Bird agotada · 21:04" },
+      {
+        icon: "scan",
+        title: "Lucas M. ha entrado",
+        meta: "Lista de invitados · vía el enlace de Inés",
+      },
+      { icon: "mail", title: "Campaña: 12 ventas", meta: "264 € de ingresos netos atribuidos" },
+      {
+        icon: "wallet",
+        title: "Cierre de noche aprobado",
+        meta: "Discoteca y organizador cobran, cada uno en su cuenta",
+      },
+    ],
+  },
+  strip: {
+    label: "Los pagos, pases y redes que tu público ya usa",
+  },
+  stats: {
+    eyebrow: "Por qué Yuno",
+    title: "Todo lo que la noche necesita. Nada sale de tu bolsillo.",
+    sub: "Yuno solo gana cuando tu noche gana: una pequeña tarifa de servicio que paga el cliente al comprar. El precio que anuncias es íntegramente tuyo.",
+    items: [
+      {
+        value: "0 €",
+        label: "De suscripción",
+        body: "Sin planes, sin permanencia, sin contrato anual. Todo incluido desde tu primera noche.",
+      },
+      {
+        value: "0 %",
+        label: "De comisión sobre tu precio",
+        body: "Las tarifas de servicio se suman al precio y las paga el cliente. Tu precio es íntegramente tuyo.",
+      },
+      {
+        value: "3",
+        label: "Pilares de venta",
+        body: "Entradas, mesas VIP y bebidas en una sola página — además de la puerta, la barra y el reparto.",
+      },
+      {
+        value: "30 s",
+        label: "Para comprar una entrada",
+        body: "Tarjeta o Apple Pay, sin cuenta ni app. El QR llega por email y a Apple Wallet.",
+      },
+    ],
+  },
+  problem: {
+    eyebrow: "El problema",
+    title: "La noche sigue funcionando con herramientas de hace quince años.",
+    sub: "Una ticketera, mesas reservadas por DM, una lista en papel en la puerta, el reparto en efectivo a las 6 de la mañana. Cada uno tiene una pieza del puzzle — y la discoteca paga la diferencia.",
+    today: "Hoy",
+    withYuno: "Con Yuno",
+    rows: [
+      {
+        subject: "Las entradas",
+        today: "Una comisión en cada venta, y el comprador se queda en la ticketera.",
+        yuno: "El precio anunciado es íntegramente tuyo. El comprador entra en tu base de clientes.",
+      },
+      {
+        subject: "Las mesas VIP",
+        today: "Reservadas por DM, sin señal: una mesa vacía no le cuesta nada al cliente.",
+        yuno: "Plano de sala interactivo, señal o pago en el local, servicio seguido mesa a mesa.",
+      },
+      {
+        subject: "La puerta",
+        today: "Lista en papel, el escáner de otra app, duplicados y colados.",
+        yuno: "Un solo escaneo para entradas, lista de invitados y mesas, búsqueda por nombre, control de duplicados.",
+      },
+      {
+        subject: "El dinero",
+        today:
+          "Contado en efectivo a las 6 de la mañana entre discoteca, organizador y promotores.",
+        yuno: "Repartido según el contrato firmado, con un cierre que ambas partes aprueban.",
+      },
+      {
+        subject: "Los datos",
+        today: "En la ticketera y en Instagram — nunca contigo.",
+        yuno: "Una base de clientes viva, segmentos por compras reales, emails desde el panel.",
+      },
+    ],
+  },
+  pillars: {
+    eyebrow: "El producto",
+    title: "Toda tu noche, en un solo espacio.",
+    sub: "Tres pilares de venta en una sola página de evento, y todas las pantallas que tu equipo necesita. Activa o desactiva cada pilar por evento — empieza solo con la lista de invitados si quieres.",
+    items: [
+      {
+        id: "tickets",
+        title: "Entradas y lista de invitados",
+        body: "Tramos de precio, preventas, códigos promo, lista gratis hasta una hora, pases de Apple Wallet.",
+      },
+      {
+        id: "tables",
+        title: "Mesas VIP y servicio de botellas",
+        body: "El cliente elige su mesa en el plano, paga la señal y reserva sus botellas.",
+      },
+      {
+        id: "bar",
+        title: "Pedidos de bebidas",
+        body: "Pide y paga en el QR de la barra. El camarero ve la cola en su pantalla.",
+      },
+      {
+        id: "door",
+        title: "Puerta y staff",
+        body: "Un solo escáner para todo. El staff entra con un PIN, sin cuenta ni formación.",
+      },
+      {
+        id: "crm",
+        title: "CRM y email marketing",
+        body: "Cada comprador entra en tu base. Segmentos por compras reales, 9 automatizaciones que venden.",
+      },
+      {
+        id: "money",
+        title: "Cobros y repartos",
+        body: "Stripe Connect a tu nombre. Contratos discoteca × organizador, cierres, facturas.",
+      },
+    ],
+    mini: {
+      earlyBird: "Early Bird",
+      regular: "General",
+      guestList: "Lista",
+      freeBefore: "Gratis antes de la 1",
+      soldOut: "Agotada",
+      left: "libres",
+      booked: "Reservada",
+      available: "Libre",
+      minSpend: "mínimo",
+      pending: "Pendiente",
+      prepping: "Preparando",
+      ready: "Lista",
+      valid: "Entrada válida",
+      entries: "entradas esta noche",
+      segments: ["Reserva mesas", "Ticket alto", "Vistos < 60 días", "Habituales que se alejan"],
+      club: "Discoteca",
+      organizer: "Organizador",
+      approved: "Cierre aprobado por ambas partes",
+    },
+  },
+  solutions: {
+    eyebrow: "Soluciones",
+    title: "Pensado para todos los que hacen la noche.",
+    sub: "Una discoteca, un organizador, promotores: cada uno tiene su interfaz en el mismo sistema — y cada uno trae a los demás.",
+    tabs: [
+      {
+        id: "club",
+        label: "Discotecas",
+        title: "La sala, la barra y la puerta desde una sola pantalla.",
+        body: "Vende tus mesas antes de abrir, recibe pedidos por QR, escanea cada entrada y sigue la noche en directo. Tú sigues siendo el vendedor: el dinero llega a tu cuenta, a tu nombre.",
+        bullets: [
+          "Plano de sala vivo, consumo mínimo seguido por mesa",
+          "Camarero, portero, host VIP, guardarropa: cada uno su pantalla, acceso con PIN",
+          "Panel con ventas netas, conversión y 3 acciones del día sugeridas por la IA",
+        ],
+        cta: "Crear mi cuenta de discoteca",
+        card: { title: "Mesa Gold · 72 % del mínimo", meta: "576 € de 800 € · sugerir 1 botella" },
+      },
+      {
+        id: "organizer",
+        label: "Organizadores",
+        title: "En una discoteca o por tu cuenta. Tu público sigue siendo tuyo.",
+        body: "Entradas, lista de invitados, tus propias mesas VIP, tu equipo (admin, editor, escáner). ¿Organizas en una discoteca? El contrato se firma en Yuno y el cierre de la noche lo aprueban ambas partes — se acabó el efectivo a las 6 de la mañana.",
+        bullets: [
+          "Página de evento co-branded, online en diez minutos",
+          "Tus compradores entran en tu base — no en la de un marketplace",
+          "Contrato con la discoteca por pilar, o por tramos sobre la facturación",
+        ],
+        cta: "Crear mi cuenta de organizador",
+        card: { title: "Contrato firmado con la discoteca", meta: "Entradas 70/30 · Mesas 50/50" },
+      },
+      {
+        id: "promoter",
+        label: "Promotores y agencias",
+        title: "Cada venta contada. Cada comisión calculada.",
+        body: "Un enlace personal por noche: cada venta y cada entrada que generas se cuenta en directo y tu comisión se calcula sola. Las agencias tienen una página colectiva, un enlace por promotor y las ventas consolidadas por noche.",
+        bullets: [
+          "Enlaces con seguimiento, ranking en directo",
+          "Liquidación en tres pasos, trazada y con fecha y hora",
+          "Yuno nunca toca los fondos",
+        ],
+        cta: "Crear mi cuenta de promotor",
+        card: { title: "Inés — 64 ventas esta noche", meta: "Comisión 128 € · n.º 1 del ranking" },
+      },
+    ],
+  },
+  timeline: {
+    eyebrow: "Cómo funciona",
+    title: "Imagina tu próxima noche, equipada de principio a fin.",
+    sub: "Esto es lo que cambia, día a día, cuando todo pasa por la misma plataforma.",
+    steps: [
+      {
+        when: "D-15",
+        label: "Publicación",
+        title: "La noche está online en diez minutos",
+        body: "Cartel, line-up, tramos de precio, lista gratis, packs de mesa. Una sola página para compartir en Instagram y TikTok, un enlace con seguimiento por promotor.",
+      },
+      {
+        when: "D-7",
+        label: "Llenado",
+        title: "Escribes a quienes de verdad vienen",
+        body: "Un email por segmento, redactado sobre las plazas reales que quedan. ¿Se acaba el early bird? Quienes miraron sin comprar reciben un último aviso, automáticamente.",
+      },
+      {
+        when: "D-1",
+        label: "Preparación",
+        title: "Ya sabes cómo será la noche",
+        body: "Mesas reservadas y pagadas, botellas pre-pedidas, lista de puerta lista, PIN del staff. La vista en directo muestra quién mira tu página ahora mismo.",
+      },
+      {
+        when: "23 h",
+        label: "La puerta",
+        title: "Un escaneo, cero discusiones",
+        body: "Entradas, invitados y mesas en la misma pantalla. Un nombre en dos letras, duplicados explicados, cada entrada atribuida al promotor correcto.",
+      },
+      {
+        when: "1 h",
+        label: "La sala",
+        title: "Las mesas trabajan para ti",
+        body: "El host VIP sienta a los que llegan, sigue el mínimo de cada mesa y sirve las botellas pedidas desde la mesa. Una botella más se vende sin buscar camarero.",
+      },
+      {
+        when: "Día siguiente",
+        label: "El balance",
+        title: "El dinero está repartido, tu base ha crecido",
+        body: "Cada parte tiene lo suyo en su cuenta. Sabes quién vino y por qué canal — y serán los primeros en enterarse de tu próxima fecha.",
+      },
+    ],
+  },
+  money: {
+    eyebrow: "El dinero",
+    title: "Tú sigues siendo el vendedor. Yuno es la infraestructura.",
+    body: "Los pagos pasan por Stripe Connect: el dinero llega directamente a tu cuenta, a tu nombre en el extracto del cliente. Yuno nunca retiene tus fondos ni paga «72 horas después».",
+    cta: "Crear mi cuenta gratis",
+    list: [
+      {
+        title: "Tu propia cuenta de Stripe",
+        body: "Cobras a medida que vendes. Reembolsos, facturas y exportaciones contables desde el panel.",
+      },
+      {
+        title: "Contratos discoteca × organizador",
+        body: "Firmados en Yuno, por pilar o por tramos. Nada se mueve sin el acuerdo de ambas partes.",
+      },
+      {
+        title: "Comisiones de promotores",
+        body: "Calculadas automáticamente desde los enlaces, liquidadas en tres pasos con fecha y hora.",
+      },
+    ],
+    calc: {
+      title: "Lo que de verdad te quedas",
+      price: "Precio de la entrada",
+      qty: "Entradas vendidas",
+      customerPays: "El cliente paga",
+      serviceFee: "Tarifa de servicio Yuno (la paga el cliente)",
+      stripe: "Procesamiento de pago (Stripe)",
+      youKeep: "Te quedas por entrada",
+      net: "Neto de la noche, en tu cuenta",
+      foot: "Tarifa de servicio: 4 % con un mínimo de 0,99 €, sumada a tu precio. Stripe: 1,5 % + 0,25 € por pago.",
+    },
+  },
+  compare: {
+    eyebrow: "Comparativa",
+    title: "Compara con lo que pagas hoy.",
+    sub: "Y quién se queda con tus compradores cuando termina la noche.",
+    colPlatform: "Plataforma",
+    colPays: "Lo que paga el organizador",
+    colKeeps: "Quién se queda con tus compradores",
+    rows: [
+      {
+        name: "Yuno",
+        pays: "0 € de suscripción, 0 % sobre tu precio. Email marketing, CRM, mesas y puerta incluidos.",
+        keeps: "Tú.",
+      },
+      {
+        name: "Weezevent",
+        pays: "2,5 % (mín. 0,99 € IVA incl.) por entrada, repercutible al comprador.",
+        keeps: "Tú.",
+      },
+      {
+        name: "Eventbrite",
+        pays: "3,5 % + 0,49 € (Essentials) a 5,5 % + 0,99 € (Pro) por entrada.",
+        keeps: "El marketplace, que recomienda otros eventos a tu público.",
+      },
+      {
+        name: "Xceed",
+        pays: "3 % + 15 % de comisión de marketing del marketplace, y 29–59 €/mes de suscripción.",
+        keeps: "El marketplace.",
+      },
+      {
+        name: "Shotgun",
+        pays: "Comisión de organizador negociada, no publicada. Gastos del comprador con tope de 15 €.",
+        keeps: "El marketplace.",
+      },
+      {
+        name: "DICE",
+        pays: "Bajo presupuesto, no publicado.",
+        keeps: "El marketplace.",
+      },
+    ],
+    extra:
+      "Y ninguna de estas plataformas vende tus mesas VIP, gestiona tu servicio en sala ni calcula las comisiones de tus promotores. Con Yuno es la misma cuenta y el mismo precio: cero.",
+    footnote:
+      "Precios públicos consultados el 21 de septiembre de 2026 (páginas de precios de cada plataforma, ayuda de Eventbrite, condiciones de Shotgun, dice.fm/partners). Shotgun y DICE no publican su comisión de organizador.",
+  },
+  email: {
+    eyebrow: "CRM y email marketing",
+    title: "Tu herramienta de email no sabe que quedan 21 mesas. Yuno sí.",
+    body: "Yuno vende tus entradas, tus mesas y tu lista de invitados — así que cuando escribe a tu base, lee la noche en el segundo del envío: precio del tramo abierto, mesas libres, plazas restantes. Y cada campaña muestra las ventas que ha generado, no solo las aperturas.",
+    stats: [
+      { value: "7.228", label: "emails en el primer envío en París" },
+      { value: "95,3 %", label: "entregados" },
+      { value: "0,015 %", label: "de quejas de spam" },
+      { value: "7/10", label: "volvieron a hacer clic en el recordatorio automático" },
+    ],
+    proof:
+      "Septiembre de 2026, un organizador de París: un histórico de ventas nunca usado para email, importado, deduplicado y enviado desde Yuno.",
+    included:
+      "15.000 emails al mes incluidos. Después, 10 € cada 10.000. Sin suscripción de email aparte.",
+    mock: {
+      from: "Yuno Electronic Body",
+      subject: "Quedan 21 mesas para el sábado",
+      tier: "Entrada general",
+      tables: "Mesas VIP disponibles",
+      cta: "Reservar mi mesa",
+      sales: "ventas gracias a esta campaña",
+    },
+    automationsTitle: "Nueve automatizaciones, un interruptor cada una",
+    automations: [
+      "Nueva noche",
+      "Carrito abandonado",
+      "El precio sube",
+      "Última llamada",
+      "Pásate a mesa",
+      "Gracias por venir",
+      "Te echamos de menos",
+      "Bienvenida",
+      "Reconquista",
+    ],
+  },
+  showcase: {
+    eyebrow: "El back-office",
+    title: "Lo que ve el dueño.",
+    sub: "Ventas netas, conversión, la sala en directo, el análisis de cada noche por canal y por promotor — y un asistente de IA que responde sobre tus cifras.",
+    tabs: [
+      { id: "dashboard", label: "Panel" },
+      { id: "live", label: "Noche en directo" },
+      { id: "analytics", label: "Analítica" },
+      { id: "tables", label: "Mesas VIP" },
+      { id: "ticketing", label: "Entradas" },
+    ],
+    primary: "Crear mi cuenta gratis",
+    secondary: "Hablar con el fundador",
+  },
+  pricing: {
+    eyebrow: "Precios",
+    title: "Gratis para los profesionales. Lo paga la noche.",
+    sub: "Sin suscripción, sin permanencia, sin contrato anual. Yuno cobra una tarifa de servicio que se suma a tu precio y paga el cliente — Yuno solo gana dinero cuando tu noche lo gana.",
+    colItem: "Concepto",
+    colWho: "Quién paga",
+    colAmount: "Importe",
+    rows: [
+      { item: "Suscripción y comisión", who: "—", amount: "0 € · 0 %", highlight: true },
+      {
+        item: "Tarifa de servicio, entradas",
+        who: "El cliente, además del precio",
+        amount: "4 % · mín. 0,99 €",
+        highlight: false,
+      },
+      {
+        item: "Tarifa de servicio, mesas VIP",
+        who: "El cliente, sobre el importe cobrado",
+        amount: "4 % · mín. 0,99 € · máx. 25 €",
+        highlight: false,
+      },
+      {
+        item: "Tarifa de servicio, bebidas",
+        who: "El cliente, además del precio",
+        amount: "3 %",
+        highlight: false,
+      },
+      {
+        item: "Procesamiento de pago (Stripe)",
+        who: "Tú, sobre lo cobrado",
+        amount: "1,5 % + 0,25 €",
+        highlight: false,
+      },
+    ],
+    example:
+      "5.832 € netos con 300 entradas a 20 €. El cliente paga 20,99 €; te quedas 19,44 € por entrada tras 0,56 € de gastos bancarios — en tu cuenta, sin esperar.",
+    cardTitle: "Todo incluido",
+    cardSub:
+      "Un único nivel de servicio, de la discoteca de 200 personas al organizador que empieza.",
+    price: "0 €",
+    priceSuffix: "/ mes, para siempre",
+    included: [
+      "Venta de entradas, preventas, códigos promo, Apple Wallet",
+      "Lista de invitados con cupos y QR nominativos",
+      "Mesas VIP, plano de sala, señales y servicio",
+      "Pedidos en barra por QR, pantalla de camarero",
+      "Escáner de puerta, PIN de staff, acceso de mánager",
+      "Stripe Connect, contratos, cierres, facturas",
+      "Enlaces de promotor y comisiones automáticas",
+      "CRM, 15.000 emails/mes, 9 automatizaciones",
+      "Analítica, vista en directo, exportaciones, asistente IA",
+      "Tres idiomas, app iOS para tus clientes",
+    ],
+    cta: "Crear mi cuenta gratis",
+    ctaNote: "Sin tarjeta",
+  },
+  traction: {
+    eyebrow: "Dónde está Yuno",
+    items: [
+      {
+        value: "Madrid",
+        label: "Lanzamiento con Amoris y 22 discotecas asociadas en la plataforma",
+      },
+      {
+        value: "París",
+        label: "Lista de invitados y escaneo en puerta probados en una noche real",
+      },
+      { value: "iOS", label: "App de Yuno disponible en la App Store" },
+      { value: "EN · FR · ES", label: "Para tus clientes y tu staff" },
+    ],
+  },
+  faq: {
+    eyebrow: "FAQ",
+    title: "Lo que nos preguntan los profesionales.",
+    items: [
+      {
+        q: "¿De verdad es gratis para mí?",
+        a: "Sí. 0 € de suscripción y 0 % de comisión sobre tu precio. La tarifa de servicio de Yuno (4 % en entradas y mesas con un mínimo de 0,99 €, 3 % en bebidas) se suma al comprar y la paga el cliente. Tú solo pagas el procesamiento de Stripe: 1,5 % + 0,25 €.",
+      },
+      {
+        q: "¿Cuándo recibo mi dinero?",
+        a: "Los pagos pasan por Stripe Connect: el dinero llega directamente a tu propia cuenta, a tu nombre en el extracto del cliente. Yuno nunca retiene tus fondos.",
+      },
+      {
+        q: "¿Mis clientes tienen que descargar una app?",
+        a: "No. Comprar lleva treinta segundos en la web, con tarjeta o Apple Pay, sin cuenta. El QR llega por email y a Apple Wallet. La app de Yuno para iOS está para quien la quiera.",
+      },
+      {
+        q: "¿Tengo que cambiarlo todo de golpe?",
+        a: "No. Cada noche tiene un interruptor por pilar. Empieza solo con la lista de invitados, solo con las mesas o con la venta completa, y mantén el resto de tus herramientas.",
+      },
+      {
+        q: "¿Cómo se reparten una noche la discoteca y el organizador?",
+        a: "El contrato se firma en Yuno, por pilar (entradas, mesas, lista) o por tramos sobre la facturación. Al cierre, la discoteca declara la barra y la puerta, el organizador acepta o impugna, y nada se mueve sin el acuerdo de ambas partes.",
+      },
+      {
+        q: "¿De quién son los datos de mis clientes?",
+        a: "Tuyos. Cada comprador, cada mesa y cada inscrito en la lista entra en tu base de clientes. Tu fichero actual se puede importar encima, deduplicado y con consentimiento acreditado.",
+      },
+      {
+        q: "¿Cuánto se tarda en empezar?",
+        a: "Dos minutos para crear tu cuenta. Configurar tu local o tu primer evento — plano, precios, staff, cuenta de cobro — lleva cerca de una hora, y podemos hacerlo contigo.",
+      },
+    ],
+  },
+  final: {
+    title: "Tu próxima noche merece mejores herramientas.",
+    sub: "Crea tu cuenta profesional en dos minutos. 0 € de suscripción, 0 % de comisión, y tus clientes siguen siendo tuyos.",
+    placeholder: "Tu email profesional",
+    primary: "Crear mi cuenta gratis",
+    secondary: "Hablar con el fundador",
+    note: "Sin tarjeta · Configuración contigo si quieres · EN · FR · ES",
+  },
+  footer: {
+    tagline:
+      "La plataforma de la noche. Entradas, mesas, barra, puerta y cobros — en un solo lugar.",
+    cols: [
+      {
+        title: "Producto",
+        links: [
+          { label: "Entradas y lista de invitados", href: "#product" },
+          { label: "Mesas VIP", href: "#product" },
+          { label: "CRM y email marketing", href: "#email" },
+          { label: "Precios", href: "#pricing" },
+        ],
+      },
+      {
+        title: "Soluciones",
+        links: [
+          { label: "Discotecas", href: "#solutions" },
+          { label: "Organizadores", href: "#solutions" },
+          { label: "Promotores y agencias", href: "#solutions" },
+        ],
+      },
+      {
+        title: "Empresa",
+        links: [
+          { label: "Contacto", href: "/contact" },
+          { label: "Privacidad", href: "/privacy" },
+          { label: "Términos", href: "/terms" },
+        ],
+      },
+    ],
+    rights: "Todos los derechos reservados.",
+    made: "Hecho en París y Madrid",
+  },
+  mobileCta: "Crear mi cuenta gratis",
+  whatsappMessage: "Hola Paul 👋 Gestiono un local / eventos y me gustaría saber más sobre Yuno.",
+  signup: {
+    stepOf: "Paso {n} de 2",
+    roleTitle: "¿Qué gestionas?",
+    roleSub: "Preparamos tu espacio profesional en función de ello.",
+    roles: [
+      { id: "club", label: "Una discoteca o sala", hint: "Mesas, barra, puerta, eventos" },
+      { id: "organizer", label: "Eventos y noches", hint: "Organizador o colectivo" },
+      { id: "promoter", label: "Un equipo de promo", hint: "Promotor o agencia" },
+      { id: "other", label: "Otra cosa", hint: "Bar, festival, DJ…" },
+    ],
+    detailsTitle: "Crea tu cuenta profesional",
+    detailsSub: "0 € de suscripción · 0 % de comisión · Sin tarjeta",
+    name: "Nombre completo",
+    namePh: "Alex Martín",
+    email: "Email profesional",
+    emailPh: "alex@tudiscoteca.es",
+    company: "Local u organización",
+    companyPh: "Neon Room",
+    phone: "Teléfono (opcional)",
+    phonePh: "+34 6 …",
+    back: "Atrás",
+    submit: "Crear mi cuenta",
+    submitting: "Creando…",
+    consent:
+      "Al continuar aceptas nuestros Términos y la Política de privacidad. Nunca compartimos tus datos.",
+    doneTitle: "¡Ya estás dentro!",
+    doneBody:
+      "Estamos abriendo tu espacio profesional. Recibirás tus accesos por email en un día laborable — con una sesión de configuración si la quieres.",
+    doneCta: "Acelerarlo por WhatsApp",
+    close: "Cerrar",
+    error: "Algo ha fallado. Inténtalo de nuevo o escríbenos por WhatsApp.",
+  },
+  lang: "Idioma",
+};
+
+export const landingContent: Record<LandingLang, LandingContent> = { en, fr, es };

@@ -20,6 +20,7 @@ import { Route as BdeRouteImport } from './routes/bde'
 import { Route as AffiliatesRouteImport } from './routes/affiliates'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FrIndexRouteImport } from './routes/fr/index'
+import { Route as EsIndexRouteImport } from './routes/es/index'
 import { Route as FrTermsRouteImport } from './routes/fr/terms'
 import { Route as FrPrivacyRouteImport } from './routes/fr/privacy'
 import { Route as FrPricingRouteImport } from './routes/fr/pricing'
@@ -84,6 +85,11 @@ const FrIndexRoute = FrIndexRouteImport.update({
   path: '/fr/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EsIndexRoute = EsIndexRouteImport.update({
+  id: '/es/',
+  path: '/es/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FrTermsRoute = FrTermsRouteImport.update({
   id: '/fr/terms',
   path: '/fr/terms',
@@ -144,6 +150,7 @@ export interface FileRoutesByFullPath {
   '/fr/pricing': typeof FrPricingRoute
   '/fr/privacy': typeof FrPrivacyRoute
   '/fr/terms': typeof FrTermsRoute
+  '/es/': typeof EsIndexRoute
   '/fr/': typeof FrIndexRoute
 }
 export interface FileRoutesByTo {
@@ -165,6 +172,7 @@ export interface FileRoutesByTo {
   '/fr/pricing': typeof FrPricingRoute
   '/fr/privacy': typeof FrPrivacyRoute
   '/fr/terms': typeof FrTermsRoute
+  '/es': typeof EsIndexRoute
   '/fr': typeof FrIndexRoute
 }
 export interface FileRoutesById {
@@ -187,6 +195,7 @@ export interface FileRoutesById {
   '/fr/pricing': typeof FrPricingRoute
   '/fr/privacy': typeof FrPrivacyRoute
   '/fr/terms': typeof FrTermsRoute
+  '/es/': typeof EsIndexRoute
   '/fr/': typeof FrIndexRoute
 }
 export interface FileRouteTypes {
@@ -210,6 +219,7 @@ export interface FileRouteTypes {
     | '/fr/pricing'
     | '/fr/privacy'
     | '/fr/terms'
+    | '/es/'
     | '/fr/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -231,6 +241,7 @@ export interface FileRouteTypes {
     | '/fr/pricing'
     | '/fr/privacy'
     | '/fr/terms'
+    | '/es'
     | '/fr'
   id:
     | '__root__'
@@ -252,6 +263,7 @@ export interface FileRouteTypes {
     | '/fr/pricing'
     | '/fr/privacy'
     | '/fr/terms'
+    | '/es/'
     | '/fr/'
   fileRoutesById: FileRoutesById
 }
@@ -274,6 +286,7 @@ export interface RootRouteChildren {
   FrPricingRoute: typeof FrPricingRoute
   FrPrivacyRoute: typeof FrPrivacyRoute
   FrTermsRoute: typeof FrTermsRoute
+  EsIndexRoute: typeof EsIndexRoute
   FrIndexRoute: typeof FrIndexRoute
 }
 
@@ -356,6 +369,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/es/': {
+      id: '/es/'
+      path: '/es'
+      fullPath: '/es/'
+      preLoaderRoute: typeof EsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/fr/terms': {
       id: '/fr/terms'
       path: '/fr/terms'
@@ -434,6 +454,7 @@ const rootRouteChildren: RootRouteChildren = {
   FrPricingRoute: FrPricingRoute,
   FrPrivacyRoute: FrPrivacyRoute,
   FrTermsRoute: FrTermsRoute,
+  EsIndexRoute: EsIndexRoute,
   FrIndexRoute: FrIndexRoute,
 }
 export const routeTree = rootRouteImport

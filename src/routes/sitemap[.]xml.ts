@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { localeUrl } from "@/i18n/seo";
+import { landingUrl } from "@/i18n/landing-lang";
 
 interface SitemapEntry {
   path: string;
@@ -29,8 +30,12 @@ export const Route = createFileRoute("/sitemap.xml")({
           [
             `    <xhtml:link rel="alternate" hreflang="en" href="${localeUrl(path, "en")}"/>`,
             `    <xhtml:link rel="alternate" hreflang="fr" href="${localeUrl(path, "fr")}"/>`,
+            // The landing ("/") also exists in Spanish.
+            path === "/" ? `    <xhtml:link rel="alternate" hreflang="es" href="${landingUrl("es")}"/>` : null,
             `    <xhtml:link rel="alternate" hreflang="x-default" href="${localeUrl(path, "en")}"/>`,
-          ].join("\n");
+          ]
+            .filter(Boolean)
+            .join("\n");
 
         const urlBlock = (loc: string, e: SitemapEntry) =>
           [
@@ -47,6 +52,7 @@ export const Route = createFileRoute("/sitemap.xml")({
         const urls = entries.flatMap((e) => [
           urlBlock(localeUrl(e.path, "en"), e),
           urlBlock(localeUrl(e.path, "fr"), e),
+          ...(e.path === "/" ? [urlBlock(landingUrl("es"), e)] : []),
         ]);
 
         const xml = [

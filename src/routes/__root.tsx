@@ -15,10 +15,16 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { FoundingBanner } from "@/components/site/FoundingBanner";
 import { BdeHeader, BdeFooter } from "@/components/site/BdeChrome";
-import { RoleHeader, GateHeader, RoleFooter } from "@/components/site/RoleChrome";
+import { RoleHeader, RoleFooter } from "@/components/site/RoleChrome";
 import { NotFoundPage } from "@/components/not-found";
 import { LocaleProvider, detectLocale, getStandaloneLocale, type Locale } from "@/i18n/locale";
 import { localePath } from "@/i18n/seo";
+import {
+  LANDING_PATHS,
+  detectLandingLang,
+  isLandingPath,
+  type LandingLang,
+} from "@/i18n/landing-lang";
 import { common } from "@/content/common";
 
 // Pages that exist in both languages. Only these get the French redirect, so
@@ -71,16 +77,33 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   beforeLoad: ({ location }) => {
     const path = location.pathname;
+    // `lang` drives <html lang>; it only differs from `locale` on the Spanish
+    // landing (the rest of the site, and its shared chrome, is EN/FR only).
+    // `landing` switches the shell to the light, chrome-less landing surface.
+    const landing = isLandingPath(path);
+    // Spanish exists only for the landing ("/es").
+    if (path === "/es" || path.startsWith("/es/")) {
+      return { locale: "en" as Locale, lang: "es" as LandingLang, landing };
+    }
     // French is served under /fr/* — there the URL is the source of truth.
     if (path === "/fr" || path.startsWith("/fr/")) {
-      return { locale: "fr" as Locale };
+      return { locale: "fr" as Locale, lang: "fr" as LandingLang, landing };
     }
     // /bde is the standalone French-only BDE landing (no /fr prefix, not in the
     // bilingual set), and /bde/contact is its dedicated contact page. Force French
     // so the page, its minimal chrome and <html lang> all render in French
     // regardless of cookie.
     if (path === "/bde" || path.startsWith("/bde/")) {
-      return { locale: "fr" as Locale };
+      return { locale: "fr" as Locale, lang: "fr" as LandingLang, landing };
+    }
+    // The landing is trilingual: send a visitor who prefers French or Spanish
+    // (cookie, else Accept-Language) from "/" to their language's URL.
+    if (path === "/") {
+      const pref = detectLandingLang();
+      if (pref !== "en") {
+        throw redirect({ href: LANDING_PATHS[pref] + (location.searchStr ?? "") });
+      }
+      return { locale: "en" as Locale, lang: "en" as LandingLang, landing };
     }
     // On an English (root) page, send a French-preferring visitor (cookie or
     // browser Accept-Language) to the /fr twin so the priority market lands in
@@ -89,7 +112,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     if (LOCALIZED_PATHS.has(path) && detectLocale() === "fr") {
       throw redirect({ href: localePath(path, "fr") + (location.searchStr ?? "") });
     }
-    return { locale: "en" as Locale };
+    return { locale: "en" as Locale, lang: "en" as LandingLang, landing };
   },
   head: ({ match }) => {
     const locale = match.context.locale;
@@ -141,9 +164,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
-  const { locale } = Route.useRouteContext();
+  const { lang, landing } = Route.useRouteContext();
   return (
-    <html lang={locale} className="dark">
+    <html lang={lang} className={landing ? "yl-page" : "dark"}>
       <head>
         <HeadContent />
       </head>
@@ -160,14 +183,14 @@ function RootShell({ children }: { children: ReactNode }) {
 // visitor who picked a role stays in that clean funnel instead of facing the
 // "trop d'éléments" menu again. /bde keeps its own private chrome. Everything
 // else (pricing, contact, affiliates, legal) keeps the full site chrome.
-type Surface = "gate" | "club" | "orga" | "bde" | "main";
+type Surface = "landing" | "club" | "orga" | "bde" | "main";
 
 function surfaceFor(pathname: string): Surface {
   let path = pathname;
   if (path === "/fr") path = "/";
   else if (path.startsWith("/fr/")) path = path.slice(3); // "/fr/clubs" -> "/clubs"
   if (path === "/bde" || path.startsWith("/bde/")) return "bde";
-  if (path === "/") return "gate";
+  if (isLandingPath(pathname)) return "landing";
   if (path === "/clubs") return "club";
   if (path === "/organizers") return "orga";
   return "main";
@@ -184,10 +207,15 @@ function RootComponent() {
       header = <BdeHeader />;
       footer = <BdeFooter />;
       break;
-    case "gate":
-      header = <GateHeader />;
-      footer = <RoleFooter />;
-      break;
+    case "landing":
+      // The landing brings its own nav and footer (light surface).
+      return (
+        <QueryClientProvider client={queryClient}>
+          <LocaleProvider initialLocale={locale as Locale}>
+            <Outlet />
+          </LocaleProvider>
+        </QueryClientProvider>
+      );
     case "club":
       header = <RoleHeader role="club" />;
       footer = <RoleFooter />;
