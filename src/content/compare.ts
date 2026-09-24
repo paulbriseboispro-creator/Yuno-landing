@@ -36,7 +36,7 @@ const shotgunFr: ComparePageContent = {
       "Commission organisateur : 0 % chez Yuno ; chez Shotgun, 10 % des ventes par défaut, négociable au contrat (taux non affiché sur son site).",
       "Frais acheteur : Shotgun est moins cher pour l'acheteur (2,75 %, min. 0,30 €) que Yuno (4 %, min. 0,99 €).",
       "Au-delà du billet : Yuno vend les tables VIP avec acompte, prend les commandes au bar par QR code et répartit la soirée entre club, organisateur et promoteurs. Nous n'avons pas trouvé ces fonctions dans l'aide publique de Shotgun.",
-      "Audience : l'app Shotgun fait découvrir vos soirées à plus de 5 millions d'utilisateurs par mois (selon Shotgun). Yuno ne vend que vos soirées, à vos clients.",
+      "Audience : l'app Shotgun fait découvrir vos soirées à plus de 5 millions d'utilisateurs par mois (selon Shotgun). Yuno a aussi sa marketplace, sur l'App Store et en web app, et chaque acheteur rejoint votre base.",
     ],
   },
   table: {
@@ -116,10 +116,10 @@ const shotgunFr: ComparePageContent = {
       },
       {
         criterion: "Découverte par le public",
-        yuno: "Pas de marketplace : votre page de soirée, vos canaux, vos promoteurs.",
+        yuno: "Marketplace Yuno sur l'App Store (iOS) et en web app : le public y découvre vos soirées, et chaque acheteur rejoint votre base.",
         other:
           "App grand public (5M+ utilisateurs actifs/mois selon Shotgun) qui recommande des soirées selon les goûts musicaux.",
-        verdict: "other",
+        verdict: "tie",
       },
       {
         criterion: "Revente & liste d'attente",
@@ -300,7 +300,7 @@ const shotgunEn: ComparePageContent = {
       "Organizer commission: 0% with Yuno; with Shotgun, 10% of sales by default, negotiable by contract (rate not shown on its site).",
       "Buyer fees: Shotgun is cheaper for the buyer (2.75%, min. €0.30) than Yuno (4%, min. €0.99).",
       "Beyond tickets: Yuno sells VIP tables with deposits, takes QR orders at the bar and splits the night between club, organizer and promoters. We found none of these in Shotgun's public help centre.",
-      "Audience: the Shotgun app shows your events to 5M+ monthly users (Shotgun's figure). Yuno only sells your nights, to your customers.",
+      "Audience: the Shotgun app shows your events to 5M+ monthly users (Shotgun's figure). Yuno has its own marketplace too, on the App Store and as a web app, and every buyer joins your base.",
     ],
   },
   table: {
@@ -378,10 +378,10 @@ const shotgunEn: ComparePageContent = {
       },
       {
         criterion: "Audience discovery",
-        yuno: "No marketplace: your event page, your channels, your promoters.",
+        yuno: "Yuno marketplace on the App Store (iOS) and as a web app: the public discovers your nights there, and every buyer joins your base.",
         other:
           "Consumer app (5M+ monthly active users per Shotgun) recommending events by music taste.",
-        verdict: "other",
+        verdict: "tie",
       },
       {
         criterion: "Resale & waiting list",

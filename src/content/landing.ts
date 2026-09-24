@@ -701,7 +701,7 @@ const en = {
       },
       {
         q: "Is Yuno an alternative to Shotgun, DICE, Eventbrite or Weezevent?",
-        a: "Yes, for club nights. Yuno sells tickets online like they do, but your buyers join your own customer base and are never shown other events. It also covers what ticketing platforms don't combine: VIP table booking with deposits, QR bar ordering, promoter commissions and the club × organizer split — with no subscription and 0% commission on your price.",
+        a: "Yes, for club nights. Yuno sells tickets online like they do, and every buyer — from your page or from the Yuno marketplace (App Store and web app) — joins your own customer base. It also covers what ticketing platforms don't combine: VIP table booking with deposits, QR bar ordering, promoter commissions and the club × organizer split — with no subscription and 0% commission on your price.",
       },
       {
         q: "When do I get my money?",
@@ -1635,7 +1635,7 @@ const fr: LandingContent = {
       },
       {
         q: "Yuno est-il une alternative à Shotgun, Weezevent, Eventbrite ou DICE ?",
-        a: "Oui, pour les soirées en club. Yuno vend vos billets en ligne comme eux, mais vos acheteurs entrent dans votre propre base clients et ne se voient jamais proposer d'autres soirées. Yuno réunit aussi ce que les billetteries ne combinent pas : réservation de tables VIP avec acompte, commande au bar par QR code, commissions des promoteurs et répartition club × organisateur — sans abonnement et avec 0 % de commission sur votre prix.",
+        a: "Oui, pour les soirées en club. Yuno vend vos billets en ligne comme eux, et chaque acheteur — venu de votre page ou de la marketplace Yuno (App Store et web app) — entre dans votre propre base clients. Yuno réunit aussi ce que les billetteries ne combinent pas : réservation de tables VIP avec acompte, commande au bar par QR code, commissions des promoteurs et répartition club × organisateur — sans abonnement et avec 0 % de commission sur votre prix.",
       },
       {
         q: "Quand est-ce que je touche mon argent ?",
@@ -2582,7 +2582,7 @@ const es: LandingContent = {
       },
       {
         q: "¿Es Yuno una alternativa a Xceed, Shotgun, Eventbrite o DICE?",
-        a: "Sí, para las noches de discoteca. Yuno vende tus entradas online como ellas, pero tus compradores entran en tu propia base de clientes y nunca ven otros eventos. Además reúne lo que las ticketeras no combinan: reservados con señal, pedidos de copas con QR, comisiones de RRPP y el reparto discoteca × organizador — sin suscripción y con 0 % de comisión sobre tu precio.",
+        a: "Sí, para las noches de discoteca. Yuno vende tus entradas online como ellas, y cada comprador — desde tu página o desde el marketplace de Yuno (App Store y web app) — entra en tu propia base de clientes. Además reúne lo que las ticketeras no combinan: reservados con señal, pedidos de copas con QR, comisiones de RRPP y el reparto discoteca × organizador — sin suscripción y con 0 % de comisión sobre tu precio.",
       },
       {
         q: "¿Cuándo recibo mi dinero?",

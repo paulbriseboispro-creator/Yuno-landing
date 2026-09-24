@@ -109,7 +109,8 @@ night by channel and promoter, live view (who is on your page now, what just sol
 - Madrid: launch with Amoris (event organizer) and 22 partner clubs listed on the platform.
 - Paris: first real night with a Parisian organizer — Yuno guest list, online sign-ups, verified door scan.
 - First Paris send: 7,228 emails, 95.3% delivered, 23.9% opens, 0.015% complaints, 7/10 re-clicked the automatic follow-up.
-- Yuno app on the iOS App Store (retention); web remains a full purchase path.
+- Yuno marketplace: iOS app on the App Store + web app, where the public discovers nights; every
+  buyer still joins the organizer's own customer base. Web remains a full purchase path.
 
 ## Getting started (self-serve since 24 Sep 2026)
 Clubs and organizers create their account alone in ~2 minutes: every "Create my free account"
