@@ -69,11 +69,11 @@ const ORBIT: {
 ];
 
 const NOTIF_ICONS: Record<string, { Icon: LucideIcon; bg: string; fg: string }> = {
-  crown: { Icon: Crown, bg: "#B453091F", fg: "#B45309" },
-  ticket: { Icon: Ticket, bg: "#E8192C1F", fg: "#E8192C" },
-  scan: { Icon: ScanLine, bg: "#0478571F", fg: "#047857" },
-  mail: { Icon: Mail, bg: "#0369A11F", fg: "#0369A1" },
-  wallet: { Icon: Wallet, bg: "#6D28D91F", fg: "#6D28D9" },
+  crown: { Icon: Crown, bg: "#D9770626", fg: "#D97706" },
+  ticket: { Icon: Ticket, bg: "#E8192C26", fg: "#E8192C" },
+  scan: { Icon: ScanLine, bg: "#05966926", fg: "#059669" },
+  mail: { Icon: Mail, bg: "#0284C726", fg: "#0284C7" },
+  wallet: { Icon: Wallet, bg: "#7C3AED26", fg: "#7C3AED" },
 };
 
 const RINGS = [520, 800, 1080, 1360];

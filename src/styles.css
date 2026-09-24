@@ -44,10 +44,10 @@
   --radius: 0.75rem;
 
   /* Premium Dark Editorial — locked tokens */
-  --background: #09090b;            /* zinc-950 */
-  --foreground: #e4e4e7;            /* zinc-200 */
-  --surface: #18181b;               /* zinc-900 */
-  --surface-2: #27272a;             /* zinc-800 */
+  --background: #09090b; /* zinc-950 */
+  --foreground: #e4e4e7; /* zinc-200 */
+  --surface: #18181b; /* zinc-900 */
+  --surface-2: #27272a; /* zinc-800 */
   --hairline: rgba(255, 255, 255, 0.06);
 
   --card: #18181b;
@@ -60,20 +60,19 @@
   --secondary: #27272a;
   --secondary-foreground: #e4e4e7;
   --muted: #18181b;
-  --muted-foreground: #a1a1aa;      /* zinc-400 */
-  --accent: #E8192C;                /* Yuno red */
+  --muted-foreground: #a1a1aa; /* zinc-400 */
+  --accent: #e8192c; /* Yuno red */
   --accent-foreground: #ffffff;
-  --accent-hover: #FF2438;          /* Yuno red hover */
+  --accent-hover: #ff2438; /* Yuno red hover */
   --destructive: #ef4444;
   --destructive-foreground: #fafafa;
 
-  --yuno-red: #E8192C;
-  --yuno-red-hover: #FF2438;
+  --yuno-red: #e8192c;
+  --yuno-red-hover: #ff2438;
 
   --border: #27272a;
   --input: #27272a;
-  --ring: #E8192C;
-
+  --ring: #e8192c;
 }
 
 .dark {
@@ -415,67 +414,79 @@ html.yl-page ::selection {
    of classes. `.yl-keep` restores the light palette for a subtree that must look
    the same in both themes (dark app mockups, the black CTA cards). */
 html[data-yl-theme="dark"] .yl {
-  --color-white: #0f0f11;
-  --color-zinc-50: #0c0c0e;
-  --color-zinc-100: #19191c;
-  --color-zinc-200: #26262b;
-  --color-zinc-300: #3a3a41;
-  --color-zinc-400: #6f6f79;
-  --color-zinc-500: #a0a0aa;
-  --color-zinc-600: #babac2;
-  --color-zinc-700: #d2d2d8;
-  --color-zinc-800: #e3e3e7;
-  --color-zinc-900: #f1f1f3;
+  /* Three surface levels, each clearly apart: page < alt section < card < chip. */
+  --color-white: #17171c; /* cards, inputs, floating chips */
+  --color-zinc-50: #111115; /* alternate section background */
+  --color-zinc-100: #24242b; /* chips, tracks, inner hairlines */
+  --color-zinc-200: #33333c; /* borders */
+  --color-zinc-300: #4a4a55;
+  --color-zinc-400: #9696a2; /* secondary labels — AA on cards */
+  --color-zinc-500: #b1b1bc; /* body copy */
+  --color-zinc-600: #c9c9d2;
+  --color-zinc-700: #dcdce2;
+  --color-zinc-800: #eaeaee;
+  --color-zinc-900: #f4f4f6;
   --color-zinc-950: #fafafa;
 
-  --color-emerald-50: rgb(16 185 129 / 0.1);
-  --color-emerald-100: rgb(16 185 129 / 0.16);
-  --color-emerald-200: rgb(16 185 129 / 0.28);
+  --color-emerald-50: rgb(16 185 129 / 0.12);
+  --color-emerald-100: rgb(16 185 129 / 0.2);
+  --color-emerald-200: rgb(16 185 129 / 0.35);
+  --color-emerald-300: rgb(16 185 129 / 0.5);
+  --color-emerald-600: #34d399;
   --color-emerald-700: #6ee7b7;
   --color-emerald-800: #a7f3d0;
   --color-emerald-900: #d1fae5;
-  --color-amber-50: rgb(245 158 11 / 0.1);
-  --color-amber-100: rgb(245 158 11 / 0.16);
-  --color-amber-200: rgb(245 158 11 / 0.28);
+  --color-amber-50: rgb(245 158 11 / 0.12);
+  --color-amber-100: rgb(245 158 11 / 0.2);
+  --color-amber-200: rgb(245 158 11 / 0.35);
+  --color-amber-300: rgb(245 158 11 / 0.55);
   --color-amber-600: #fbbf24;
   --color-amber-700: #fcd34d;
   --color-amber-800: #fde68a;
   --color-amber-900: #fef3c7;
-  --color-sky-50: rgb(14 165 233 / 0.1);
-  --color-sky-100: rgb(14 165 233 / 0.16);
+  --color-sky-50: rgb(14 165 233 / 0.12);
+  --color-sky-100: rgb(14 165 233 / 0.2);
   --color-sky-700: #7dd3fc;
-  --color-violet-50: rgb(139 92 246 / 0.12);
-  --color-violet-100: rgb(139 92 246 / 0.18);
-  --color-violet-600: #a78bfa;
+  --color-violet-50: rgb(139 92 246 / 0.16);
+  --color-violet-100: rgb(139 92 246 / 0.22);
+  --color-violet-600: #b69cff;
   --color-violet-700: #c4b5fd;
-  --color-red-50: rgb(239 68 68 / 0.12);
-  --color-red-100: rgb(239 68 68 / 0.18);
+  --color-red-50: rgb(239 68 68 / 0.14);
+  --color-red-100: rgb(239 68 68 / 0.2);
   --color-red-700: #fca5a5;
 
   --yl-ink: #fafafa;
-  --yl-muted: #a0a0aa;
-  --yl-line: #1f1f23;
-  --yl-soft: #111113;
+  --yl-muted: #b1b1bc;
+  --yl-line: #2b2b33;
+  --yl-soft: #111115;
   --yl-bg: #09090b;
-  --yl-float-bg: rgba(20, 20, 23, 0.9);
-  --yl-float-line: rgba(255, 255, 255, 0.08);
-  --yl-grid: rgba(255, 255, 255, 0.05);
+  --yl-float-bg: rgba(33, 33, 40, 0.94);
+  --yl-float-line: rgba(255, 255, 255, 0.11);
+  --yl-grid: rgba(255, 255, 255, 0.055);
   --yl-btn-hover: #e4e4e7;
 }
 html[data-yl-theme="dark"] .yl .yl-card {
+  border-color: rgba(255, 255, 255, 0.09);
   box-shadow:
-    0 1px 0 0 rgba(255, 255, 255, 0.03) inset,
-    0 8px 24px -12px rgba(0, 0, 0, 0.6);
+    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+    0 12px 32px -14px rgba(0, 0, 0, 0.8);
 }
 html[data-yl-theme="dark"] .yl .yl-float-card {
   box-shadow:
-    0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
-    0 18px 40px -16px rgba(0, 0, 0, 0.7);
+    0 1px 0 0 rgba(255, 255, 255, 0.07) inset,
+    0 18px 40px -16px rgba(0, 0, 0, 0.85);
 }
 html[data-yl-theme="dark"] .yl .yl-btn-primary {
   box-shadow:
     0 1px 0 0 rgba(255, 255, 255, 0.5) inset,
-    0 6px 18px -8px rgba(255, 255, 255, 0.25);
+    0 8px 24px -8px rgba(255, 255, 255, 0.22);
+}
+html[data-yl-theme="dark"] .yl .yl-btn-secondary {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+html[data-yl-theme="dark"] .yl .yl-btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: #1e1e24;
 }
 /* Light palette restored (same values Tailwind ships). */
 html[data-yl-theme="dark"] .yl .yl-keep {
@@ -495,9 +506,9 @@ html[data-yl-theme="dark"] .yl .yl-keep {
 }
 /* Black feature cards stay black in dark mode; lift them off the page. */
 html[data-yl-theme="dark"] .yl .yl-edge {
-  --color-zinc-950: #121215;
+  --color-zinc-950: #16161b;
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.12),
     0 30px 60px -24px rgba(0, 0, 0, 0.7);
 }
 /* Monochrome client logos: black ink in light, white ink in dark. */
@@ -510,7 +521,7 @@ html[data-yl-theme="dark"] .yl .yl-edge {
 }
 html[data-yl-theme="dark"] .yl .yl-logo {
   filter: invert(1);
-  opacity: 0.6;
+  opacity: 0.72;
 }
 html[data-yl-theme="dark"] .yl .yl-logo:hover {
   opacity: 1;
@@ -544,14 +555,14 @@ html[data-yl-theme="dark"] .yl .yl-logo:hover {
 }
 @media (prefers-reduced-motion: reduce) {
   @keyframes yl-flash {
-  from {
-    color: var(--yuno-red);
+    from {
+      color: var(--yuno-red);
+    }
   }
-}
-.yl-flash {
-  animation: yl-flash 0.6s ease-out;
-}
-.yl-eq {
+  .yl-flash {
+    animation: yl-flash 0.6s ease-out;
+  }
+  .yl-eq {
     animation: none !important;
   }
 }

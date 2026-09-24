@@ -6,9 +6,9 @@ import { useLanding } from "./context";
 import { Eyebrow, FadeIn, PrimaryCta } from "./ui";
 
 const LIST_ICONS: { Icon: LucideIcon; bg: string; fg: string }[] = [
-  { Icon: Landmark, bg: "#635BFF1A", fg: "#635BFF" },
-  { Icon: Handshake, bg: "#EA580C1A", fg: "#EA580C" },
-  { Icon: Link2, bg: "#E8192C1A", fg: "#E8192C" },
+  { Icon: Landmark, bg: "#635BFF26", fg: "#635BFF" },
+  { Icon: Handshake, bg: "#F9731626", fg: "#F97316" },
+  { Icon: Link2, bg: "#E8192C26", fg: "#E8192C" },
 ];
 
 const round2 = (v: number) => Math.round(v * 100) / 100;
