@@ -10,8 +10,8 @@ import type { LandingLang } from "@/i18n/landing-lang";
 export type Mark = "yes" | "partial" | "no";
 const MARKS: Record<string, Mark[]> = {
   yuno: ["yes", "yes", "yes", "yes", "yes", "yes", "yes", "yes"],
-  shotgun: ["yes", "no", "no", "partial", "partial", "no", "yes", "partial"],
-  weezevent: ["yes", "no", "partial", "partial", "no", "no", "yes", "yes"],
+  shotgun: ["yes", "no", "no", "partial", "partial", "no", "partial", "partial"],
+  weezevent: ["yes", "no", "partial", "partial", "no", "no", "partial", "yes"],
   xceed: ["yes", "partial", "no", "partial", "partial", "no", "no", "partial"],
 };
 const cells = (marks: Mark[], notes: string[]) =>
@@ -367,7 +367,7 @@ const en = {
       "A dedicated account per staff role — door, bar, VIP service",
       "Promoter links, commissions computed for you",
       "Club × organizer contract & night statement",
-      "CRM & emailing included",
+      "CRM & marketing: email, SMS, push, Meta Ads",
       "Public price, no subscription, no commitment",
     ],
     yuno: {
@@ -380,7 +380,7 @@ const en = {
         "Bouncer, VIP waiter, bartender: each their own account",
         "Live leaderboard",
         "Approved by both sides",
-        "15,000 emails/month",
+        "All four, from one customer base",
         "€0 · 0% on your price",
       ]),
       cost: "€0 subscription, 0% on your price. The customer pays a 4% service fee (min. €0.99).",
@@ -396,7 +396,7 @@ const en = {
           "Door scan only",
           "Tracking; commissions by hand",
           "",
-          "Newsletters & push",
+          "Newsletters & push only",
           "10% of your sales, negotiable",
         ]),
         cost: "10% commission on your sales by default, negotiable by contract, plus buyer fees.",
@@ -411,7 +411,7 @@ const en = {
           "Staff add-on from €1,000",
           "",
           "",
-          "WeezTarget",
+          "Email & SMS (WeezTarget)",
           "2.5% per ticket",
         ]),
         cost: "2.5% per ticket (min. €0.99), payouts every 15 days, paid add-ons for cashless and staff.",
@@ -454,7 +454,7 @@ const en = {
         {
           id: "marketing",
           title: "Marketing",
-          body: "15,000 emails a month, 9 automations, tracked promoter links.",
+          body: "Email, SMS, push notifications and Meta Ads from one base — 9 automations, tracked promoter links.",
         },
         {
           id: "finance",
@@ -1142,7 +1142,7 @@ const fr: LandingContent = {
       "Un compte dédié par rôle staff — porte, bar, service VIP",
       "Liens promoteurs, commissions calculées pour vous",
       "Contrat club × organisateur & décompte de soirée",
-      "CRM & emailing inclus",
+      "CRM & marketing : email, SMS, push, Meta Ads",
       "Prix public, sans abonnement ni engagement",
     ],
     yuno: {
@@ -1155,7 +1155,7 @@ const fr: LandingContent = {
         "Videur, serveur VIP, barman : chacun son compte",
         "Classement en direct",
         "Validé par les deux parties",
-        "15 000 emails/mois",
+        "Les quatre, depuis une seule base clients",
         "0 € · 0 % sur votre prix",
       ]),
       cost: "0 € d'abonnement, 0 % sur votre prix. Le client paie 4 % de frais de service (min. 0,99 €).",
@@ -1171,7 +1171,7 @@ const fr: LandingContent = {
           "Scan à l'entrée uniquement",
           "Suivi ; commissions à la main",
           "",
-          "Newsletters & push",
+          "Newsletters & push uniquement",
           "10 % de vos ventes, négociable",
         ]),
         cost: "10 % de commission sur vos ventes par défaut, négociable par contrat, plus des frais acheteur.",
@@ -1186,7 +1186,7 @@ const fr: LandingContent = {
           "Module staff dès 1 000 €",
           "",
           "",
-          "WeezTarget",
+          "Email & SMS (WeezTarget)",
           "2,5 % par billet",
         ]),
         cost: "2,5 % par billet (min. 0,99 €), virements tous les 15 jours, modules cashless et staff payants.",
@@ -1229,7 +1229,7 @@ const fr: LandingContent = {
         {
           id: "marketing",
           title: "Marketing",
-          body: "15 000 emails par mois, 9 automatisations, liens promoteurs suivis.",
+          body: "Email, SMS, notifications push et Meta Ads depuis une seule base — 9 automatisations, liens promoteurs suivis.",
         },
         {
           id: "finance",
@@ -1920,7 +1920,7 @@ const es: LandingContent = {
       "Una cuenta dedicada por rol — puerta, barra, servicio VIP",
       "Enlaces de promotor, comisiones calculadas por ti",
       "Contrato discoteca × organizador y cierre de la noche",
-      "CRM y email marketing incluidos",
+      "CRM y marketing: email, SMS, push, Meta Ads",
       "Precio público, sin suscripción ni permanencia",
     ],
     yuno: {
@@ -1933,7 +1933,7 @@ const es: LandingContent = {
         "Portero, camarero VIP, barman: cada uno su cuenta",
         "Ranking en directo",
         "Aprobado por ambas partes",
-        "15.000 emails/mes",
+        "Los cuatro, desde una sola base de clientes",
         "0 € · 0 % sobre tu precio",
       ]),
       cost: "0 € de suscripción, 0 % sobre tu precio. El cliente paga una tarifa de servicio del 4 % (mín. 0,99 €).",
@@ -1949,7 +1949,7 @@ const es: LandingContent = {
           "Solo escaneo en puerta",
           "Seguimiento; comisiones a mano",
           "",
-          "Newsletters y push",
+          "Solo newsletters y push",
           "10 % de tus ventas, negociable",
         ]),
         cost: "10 % de comisión sobre tus ventas por defecto, negociable por contrato, más gastos al comprador.",
@@ -1964,7 +1964,7 @@ const es: LandingContent = {
           "Módulo de staff desde 1.000 €",
           "",
           "",
-          "WeezTarget",
+          "Email y SMS (WeezTarget)",
           "2,5 % por entrada",
         ]),
         cost: "2,5 % por entrada (mín. 0,99 €), pagos cada 15 días, módulos de cashless y staff de pago.",
@@ -2007,7 +2007,7 @@ const es: LandingContent = {
         {
           id: "marketing",
           title: "Marketing",
-          body: "15.000 emails al mes, 9 automatizaciones, enlaces de promotor con seguimiento.",
+          body: "Email, SMS, notificaciones push y Meta Ads desde una sola base — 9 automatizaciones, enlaces de promotor con seguimiento.",
         },
         {
           id: "finance",

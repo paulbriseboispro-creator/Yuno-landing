@@ -85,6 +85,8 @@ without both sides agreeing. Promoters: personal link per night, sales and entri
 commission computed automatically, settlement in three tracked, timestamped steps.
 
 ## Data, CRM & emailing
+Marketing channels to present (Paul, Sep 2026 — assume them even if SMS and Meta Ads are still
+shipping): email, SMS, push notifications (Yuno app) and Meta Ads, all from the same customer base.
 Every buyer (ticket, table, drink, guest list) joins YOUR customer base. Import existing file,
 deduplicated, with attested consent. Segments on real purchases: takes tables, high basket,
 seen < 60 days, regulars slipping away. Email editor reads the night at send time (open tier
