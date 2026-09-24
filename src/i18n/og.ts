@@ -7,12 +7,12 @@ import { SITE_ORIGIN } from "@/i18n/seo";
 
 // Bump after re-rendering the images: WhatsApp, LinkedIn and Facebook cache
 // previews per image URL, so a new query string forces a refetch.
-const OG_VERSION = "2";
+const OG_VERSION = "3";
 
 const OG_IMAGE_ALT: Record<LandingLang, string> = {
-  en: "Yuno — Sell your nights. Keep your customers. The Yuno club dashboard.",
-  fr: "Yuno — Vendez vos soirées. Gardez vos clients. Le tableau de bord club de Yuno.",
-  es: "Yuno — Vende tus noches. Quédate con tus clientes. El panel de discoteca de Yuno.",
+  en: "Yuno — Sell your nights. Run them end to end. The Yuno club dashboard.",
+  fr: "Yuno — Vendez vos soirées. Pilotez-les de A à Z. Le tableau de bord club de Yuno.",
+  es: "Yuno — Vende tus noches. Gestiónalas de la A a la Z. El panel de discoteca de Yuno.",
 };
 
 export function ogImageUrl(lang: LandingLang): string {

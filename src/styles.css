@@ -44,10 +44,10 @@
   --radius: 0.75rem;
 
   /* Premium Dark Editorial — locked tokens */
-  --background: #09090b;            /* zinc-950 */
-  --foreground: #e4e4e7;            /* zinc-200 */
-  --surface: #18181b;               /* zinc-900 */
-  --surface-2: #27272a;             /* zinc-800 */
+  --background: #09090b; /* zinc-950 */
+  --foreground: #e4e4e7; /* zinc-200 */
+  --surface: #18181b; /* zinc-900 */
+  --surface-2: #27272a; /* zinc-800 */
   --hairline: rgba(255, 255, 255, 0.06);
 
   --card: #18181b;
@@ -60,20 +60,19 @@
   --secondary: #27272a;
   --secondary-foreground: #e4e4e7;
   --muted: #18181b;
-  --muted-foreground: #a1a1aa;      /* zinc-400 */
-  --accent: #E8192C;                /* Yuno red */
+  --muted-foreground: #a1a1aa; /* zinc-400 */
+  --accent: #e8192c; /* Yuno red */
   --accent-foreground: #ffffff;
-  --accent-hover: #FF2438;          /* Yuno red hover */
+  --accent-hover: #ff2438; /* Yuno red hover */
   --destructive: #ef4444;
   --destructive-foreground: #fafafa;
 
-  --yuno-red: #E8192C;
-  --yuno-red-hover: #FF2438;
+  --yuno-red: #e8192c;
+  --yuno-red-hover: #ff2438;
 
   --border: #27272a;
   --input: #27272a;
-  --ring: #E8192C;
-
+  --ring: #e8192c;
 }
 
 .dark {
@@ -166,6 +165,14 @@ html.yl-page body {
   background: #ffffff;
   color: #0a0a0b;
 }
+html.yl-page[data-yl-theme="dark"] {
+  color-scheme: dark;
+  background: #09090b;
+}
+html.yl-page[data-yl-theme="dark"] body {
+  background: #09090b;
+  color: #fafafa;
+}
 html.yl-page ::selection {
   background: color-mix(in oklab, var(--yuno-red) 18%, transparent);
   color: #0a0a0b;
@@ -177,8 +184,13 @@ html.yl-page ::selection {
     --yl-muted: #71717a;
     --yl-line: #ececef;
     --yl-soft: #f7f7f8;
+    --yl-bg: #ffffff;
+    --yl-float-bg: rgba(255, 255, 255, 0.92);
+    --yl-float-line: rgba(10, 10, 11, 0.06);
+    --yl-grid: rgba(10, 10, 11, 0.045);
+    --yl-btn-hover: #1f1f23;
     color: var(--yl-ink);
-    background: #ffffff;
+    background: var(--yl-bg);
     font-feature-settings: "cv11", "ss01";
   }
   .yl-h1 {
@@ -204,8 +216,8 @@ html.yl-page ::selection {
     justify-content: center;
     gap: 0.5rem;
     border-radius: 9999px;
-    background: #0a0a0b;
-    color: #fff;
+    background: var(--color-zinc-950);
+    color: var(--color-white);
     font-weight: 500;
     white-space: nowrap;
     box-shadow:
@@ -218,7 +230,7 @@ html.yl-page ::selection {
       box-shadow 0.2s ease;
   }
   .yl-btn-primary:hover {
-    background: #1f1f23;
+    background: var(--yl-btn-hover);
     transform: translateY(-1px);
     box-shadow:
       0 1px 0 0 rgba(255, 255, 255, 0.18) inset,
@@ -234,11 +246,11 @@ html.yl-page ::selection {
     justify-content: center;
     gap: 0.5rem;
     border-radius: 9999px;
-    background: #fff;
-    color: #0a0a0b;
+    background: var(--color-white);
+    color: var(--color-zinc-950);
     font-weight: 500;
     white-space: nowrap;
-    border: 1px solid #e4e4e7;
+    border: 1px solid var(--color-zinc-200);
     box-shadow: 0 1px 2px rgba(10, 10, 11, 0.05);
     transition:
       transform 0.2s ease,
@@ -246,13 +258,13 @@ html.yl-page ::selection {
       background-color 0.2s ease;
   }
   .yl-btn-secondary:hover {
-    border-color: #d4d4d8;
-    background: #fafafa;
+    border-color: var(--color-zinc-300);
+    background: var(--color-zinc-50);
     transform: translateY(-1px);
   }
   .yl-card {
     border-radius: 1.25rem;
-    background: #fff;
+    background: var(--color-white);
     border: 1px solid var(--yl-line);
     box-shadow:
       0 1px 2px rgba(10, 10, 11, 0.04),
@@ -260,8 +272,8 @@ html.yl-page ::selection {
   }
   .yl-float-card {
     border-radius: 0.9rem;
-    background: rgba(255, 255, 255, 0.92);
-    border: 1px solid rgba(10, 10, 11, 0.06);
+    background: var(--yl-float-bg);
+    border: 1px solid var(--yl-float-line);
     backdrop-filter: blur(10px);
     box-shadow:
       0 1px 2px rgba(10, 10, 11, 0.06),
@@ -269,8 +281,8 @@ html.yl-page ::selection {
   }
   .yl-grid-bg {
     background-image:
-      linear-gradient(to right, rgba(10, 10, 11, 0.045) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(10, 10, 11, 0.045) 1px, transparent 1px);
+      linear-gradient(to right, var(--yl-grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--yl-grid) 1px, transparent 1px);
     background-size: 44px 44px;
   }
   .yl-range {
@@ -281,10 +293,10 @@ html.yl-page ::selection {
     border-radius: 9999px;
     background: linear-gradient(
       to right,
-      #0a0a0b 0%,
-      #0a0a0b var(--pct, 0%),
-      #e4e4e7 var(--pct, 0%),
-      #e4e4e7 100%
+      var(--color-zinc-950) 0%,
+      var(--color-zinc-950) var(--pct, 0%),
+      var(--color-zinc-200) var(--pct, 0%),
+      var(--color-zinc-200) 100%
     );
     outline: none;
     cursor: pointer;
@@ -295,8 +307,8 @@ html.yl-page ::selection {
     width: 22px;
     height: 22px;
     border-radius: 9999px;
-    background: #fff;
-    border: 1px solid #d4d4d8;
+    background: var(--color-white);
+    border: 1px solid var(--color-zinc-300);
     box-shadow: 0 2px 8px rgba(10, 10, 11, 0.18);
     transition: transform 0.15s ease;
   }
@@ -307,8 +319,8 @@ html.yl-page ::selection {
     width: 22px;
     height: 22px;
     border-radius: 9999px;
-    background: #fff;
-    border: 1px solid #d4d4d8;
+    background: var(--color-white);
+    border: 1px solid var(--color-zinc-300);
     box-shadow: 0 2px 8px rgba(10, 10, 11, 0.18);
     cursor: pointer;
   }
@@ -392,5 +404,165 @@ html.yl-page ::selection {
   .yl *::before,
   .yl *::after {
     border-color: var(--yl-line);
+  }
+}
+
+/* ───────────── Landing dark theme ─────────────
+   The landing is authored in light Tailwind zinc/white utilities. Dark mode
+   remaps those palette variables on the landing root, so every
+   `bg-white` / `text-zinc-500` / `border-zinc-200` flips without a second set
+   of classes. `.yl-keep` restores the light palette for a subtree that must look
+   the same in both themes (dark app mockups, the black CTA cards). */
+html[data-yl-theme="dark"] .yl {
+  /* Three surface levels, each clearly apart: page < alt section < card < chip. */
+  --color-white: #17171c; /* cards, inputs, floating chips */
+  --color-zinc-50: #111115; /* alternate section background */
+  --color-zinc-100: #24242b; /* chips, tracks, inner hairlines */
+  --color-zinc-200: #33333c; /* borders */
+  --color-zinc-300: #4a4a55;
+  --color-zinc-400: #9696a2; /* secondary labels — AA on cards */
+  --color-zinc-500: #b1b1bc; /* body copy */
+  --color-zinc-600: #c9c9d2;
+  --color-zinc-700: #dcdce2;
+  --color-zinc-800: #eaeaee;
+  --color-zinc-900: #f4f4f6;
+  --color-zinc-950: #fafafa;
+
+  --color-emerald-50: rgb(16 185 129 / 0.12);
+  --color-emerald-100: rgb(16 185 129 / 0.2);
+  --color-emerald-200: rgb(16 185 129 / 0.35);
+  --color-emerald-300: rgb(16 185 129 / 0.5);
+  --color-emerald-600: #34d399;
+  --color-emerald-700: #6ee7b7;
+  --color-emerald-800: #a7f3d0;
+  --color-emerald-900: #d1fae5;
+  --color-amber-50: rgb(245 158 11 / 0.12);
+  --color-amber-100: rgb(245 158 11 / 0.2);
+  --color-amber-200: rgb(245 158 11 / 0.35);
+  --color-amber-300: rgb(245 158 11 / 0.55);
+  --color-amber-600: #fbbf24;
+  --color-amber-700: #fcd34d;
+  --color-amber-800: #fde68a;
+  --color-amber-900: #fef3c7;
+  --color-sky-50: rgb(14 165 233 / 0.12);
+  --color-sky-100: rgb(14 165 233 / 0.2);
+  --color-sky-700: #7dd3fc;
+  --color-violet-50: rgb(139 92 246 / 0.16);
+  --color-violet-100: rgb(139 92 246 / 0.22);
+  --color-violet-600: #b69cff;
+  --color-violet-700: #c4b5fd;
+  --color-red-50: rgb(239 68 68 / 0.14);
+  --color-red-100: rgb(239 68 68 / 0.2);
+  --color-red-700: #fca5a5;
+
+  --yl-ink: #fafafa;
+  --yl-muted: #b1b1bc;
+  --yl-line: #2b2b33;
+  --yl-soft: #111115;
+  --yl-bg: #09090b;
+  --yl-float-bg: rgba(33, 33, 40, 0.94);
+  --yl-float-line: rgba(255, 255, 255, 0.11);
+  --yl-grid: rgba(255, 255, 255, 0.055);
+  --yl-btn-hover: #e4e4e7;
+}
+html[data-yl-theme="dark"] .yl .yl-card {
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+    0 12px 32px -14px rgba(0, 0, 0, 0.8);
+}
+html[data-yl-theme="dark"] .yl .yl-float-card {
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.07) inset,
+    0 18px 40px -16px rgba(0, 0, 0, 0.85);
+}
+html[data-yl-theme="dark"] .yl .yl-btn-primary {
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.5) inset,
+    0 8px 24px -8px rgba(255, 255, 255, 0.22);
+}
+html[data-yl-theme="dark"] .yl .yl-btn-secondary {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+html[data-yl-theme="dark"] .yl .yl-btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: #1e1e24;
+}
+/* Light palette restored (same values Tailwind ships). */
+html[data-yl-theme="dark"] .yl .yl-keep {
+  --color-white: #fff;
+  --color-zinc-50: oklch(98.5% 0 0);
+  --color-zinc-100: oklch(96.7% 0.001 286.375);
+  --color-zinc-200: oklch(92% 0.004 286.32);
+  --color-zinc-300: oklch(87.1% 0.006 286.286);
+  --color-zinc-400: oklch(70.5% 0.015 286.067);
+  --color-zinc-500: oklch(55.2% 0.016 285.938);
+  --color-zinc-600: oklch(44.2% 0.017 285.786);
+  --color-zinc-700: oklch(37% 0.013 285.805);
+  --color-zinc-800: oklch(27.4% 0.006 286.033);
+  --color-zinc-900: oklch(21% 0.006 285.885);
+  --color-zinc-950: oklch(14.1% 0.005 285.823);
+  --yl-btn-hover: #1f1f23;
+}
+/* Black feature cards stay black in dark mode; lift them off the page. */
+html[data-yl-theme="dark"] .yl .yl-edge {
+  --color-zinc-950: #16161b;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 30px 60px -24px rgba(0, 0, 0, 0.7);
+}
+/* Monochrome client logos: black ink in light, white ink in dark. */
+.yl-logo {
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+.yl-logo:hover {
+  opacity: 0.95;
+}
+html[data-yl-theme="dark"] .yl .yl-logo {
+  filter: invert(1);
+  opacity: 0.72;
+}
+html[data-yl-theme="dark"] .yl .yl-logo:hover {
+  opacity: 1;
+}
+/* Theme switch: circular reveal from the toggle (View Transitions API). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+@keyframes yl-eq {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+@keyframes yl-flash {
+  from {
+    color: var(--yuno-red);
+  }
+}
+.yl-flash {
+  animation: yl-flash 0.6s ease-out;
+}
+.yl-eq {
+  transform-origin: bottom;
+  animation: yl-eq var(--dur, 0.9s) ease-in-out var(--delay, 0s) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  @keyframes yl-flash {
+    from {
+      color: var(--yuno-red);
+    }
+  }
+  .yl-flash {
+    animation: yl-flash 0.6s ease-out;
+  }
+  .yl-eq {
+    animation: none !important;
   }
 }
