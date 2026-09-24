@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { Check, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanding } from "./context";
@@ -124,9 +124,22 @@ function Traction() {
   );
 }
 
-export function Faq() {
+// The landing FAQ by default; the comparison pages pass their own questions.
+export function Faq({
+  eyebrow,
+  title,
+  items,
+}: {
+  eyebrow?: string;
+  title?: string;
+  items?: { q: string; a: string }[];
+} = {}) {
   const { t } = useLanding();
-  const f = t.faq;
+  const f = {
+    eyebrow: eyebrow ?? t.faq.eyebrow,
+    title: title ?? t.faq.title,
+    items: items ?? t.faq.items,
+  };
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section id="faq" className="relative scroll-mt-20 px-4 py-24 sm:px-6 md:py-32">
@@ -144,40 +157,48 @@ export function Faq() {
                     "shadow-[0_1px_2px_rgba(10,10,11,0.04),0_16px_36px_-18px_rgba(10,10,11,0.18)]",
                 )}
               >
-                <button
-                  type="button"
-                  aria-expanded={on}
-                  onClick={() => setOpen(on ? null : i)}
-                  className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left md:px-6"
-                >
-                  <span className="text-[15.5px] font-semibold tracking-tight text-zinc-950">
-                    {it.q}
-                  </span>
-                  <span
-                    className={cn(
-                      "flex size-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300",
-                      on
-                        ? "rotate-45 border-zinc-950 bg-zinc-950 text-white"
-                        : "border-zinc-200 text-zinc-500",
-                    )}
+                <h3>
+                  <button
+                    type="button"
+                    id={`faq-q-${i}`}
+                    aria-expanded={on}
+                    aria-controls={`faq-a-${i}`}
+                    onClick={() => setOpen(on ? null : i)}
+                    className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left md:px-6"
                   >
-                    <Plus className="size-3.5" strokeWidth={2.5} />
-                  </span>
-                </button>
-                <AnimatePresence initial={false}>
-                  {on && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: EASE }}
+                    <span className="text-[15.5px] font-semibold tracking-tight text-zinc-950">
+                      {it.q}
+                    </span>
+                    <span
+                      className={cn(
+                        "flex size-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300",
+                        on
+                          ? "rotate-45 border-zinc-950 bg-zinc-950 text-white"
+                          : "border-zinc-200 text-zinc-500",
+                      )}
                     >
-                      <p className="px-5 pb-5 text-pretty text-[14.5px] leading-relaxed text-zinc-500 md:px-6 md:pb-6">
-                        {it.a}
-                      </p>
-                    </motion.div>
+                      <Plus className="size-3.5" strokeWidth={2.5} />
+                    </span>
+                  </button>
+                </h3>
+                {/* Every answer stays in the DOM (collapsed with grid rows, not
+                    unmounted) so crawlers and AI engines read the whole FAQ from
+                    the server HTML, matching the FAQPage structured data. */}
+                <div
+                  id={`faq-a-${i}`}
+                  role="region"
+                  aria-labelledby={`faq-q-${i}`}
+                  className={cn(
+                    "grid transition-[grid-template-rows,opacity] duration-300 ease-out",
+                    on ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
                   )}
-                </AnimatePresence>
+                >
+                  <div className="overflow-hidden" inert={!on}>
+                    <p className="px-5 pb-5 text-pretty text-[14.5px] leading-relaxed text-zinc-500 md:px-6 md:pb-6">
+                      {it.a}
+                    </p>
+                  </div>
+                </div>
               </li>
             );
           })}

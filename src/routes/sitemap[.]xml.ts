@@ -1,12 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { SITE_ORIGIN, localeUrl } from "@/i18n/seo";
+import { COMPARE_PAGES } from "@/content/compare";
 import { landingUrl } from "@/i18n/landing-lang";
+import { LANDING_UPDATED } from "@/i18n/landing-seo";
 
 interface SitemapEntry {
   path: string;
   changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
   priority?: string;
+  lastmod?: string;
 }
 
 export const Route = createFileRoute("/sitemap.xml")({
@@ -14,7 +17,7 @@ export const Route = createFileRoute("/sitemap.xml")({
     handlers: {
       GET: async () => {
         const entries: SitemapEntry[] = [
-          { path: "/", changefreq: "weekly", priority: "1.0" },
+          { path: "/", changefreq: "weekly", priority: "1.0", lastmod: LANDING_UPDATED },
           // Direct path to a pro account (EN / FR / ES).
           { path: "/start", changefreq: "monthly", priority: "0.9" },
           { path: "/clubs", changefreq: "monthly", priority: "0.9" },
@@ -49,6 +52,7 @@ export const Route = createFileRoute("/sitemap.xml")({
             `  <url>`,
             `    <loc>${loc}</loc>`,
             alternates(e.path),
+            e.lastmod ? `    <lastmod>${e.lastmod}</lastmod>` : null,
             e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
             e.priority ? `    <priority>${e.priority}</priority>` : null,
             `  </url>`,
@@ -63,10 +67,30 @@ export const Route = createFileRoute("/sitemap.xml")({
           ...(e.path === "/start" ? [urlBlock(`${SITE_ORIGIN}/es/start`, e)] : []),
         ]);
 
+        // Comparison pages exist in their own set of languages.
+        const compareUrls = COMPARE_PAGES.map((page) => {
+          const twins = Object.entries(page.twins) as [string, string][];
+          const xDefault = page.twins.en ?? page.path;
+          return [
+            `  <url>`,
+            `    <loc>${SITE_ORIGIN + page.path}</loc>`,
+            ...twins.map(
+              ([l, path]) =>
+                `    <xhtml:link rel="alternate" hreflang="${l}" href="${SITE_ORIGIN + path}"/>`,
+            ),
+            `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN + xDefault}"/>`,
+            `    <lastmod>${page.updated}</lastmod>`,
+            `    <changefreq>monthly</changefreq>`,
+            `    <priority>0.8</priority>`,
+            `  </url>`,
+          ].join("\n");
+        });
+
         const xml = [
           `<?xml version="1.0" encoding="UTF-8"?>`,
           `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">`,
           ...urls,
+          ...compareUrls,
           `</urlset>`,
         ].join("\n");
 

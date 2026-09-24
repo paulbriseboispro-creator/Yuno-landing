@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { landingContent, type LandingContent } from "@/content/landing";
-import type { LandingLang } from "@/i18n/landing-lang";
+import { LANDING_PATHS, type LandingLang } from "@/i18n/landing-lang";
 
 export type SignupRole = "club" | "organizer" | "promoter" | "other";
 
@@ -22,6 +22,13 @@ type LandingCtx = {
   /** Switches theme; `origin` (viewport px) centres the circular reveal. */
   toggleTheme: (origin?: { x: number; y: number }) => void;
   t: LandingContent;
+  // Where each language switcher entry points. The landing uses the landing
+  // paths; a page that exists in fewer languages (the comparison pages) maps
+  // its own twins and falls back to the landing for the rest.
+  langHref: (l: LandingLang) => string;
+  // Resolves an in-page anchor ("#pricing") from the landing's nav/footer copy
+  // to a link that works on any page using this chrome.
+  anchor: (href: string) => string;
   signup: SignupState;
   openSignup: (opts?: { role?: SignupRole; email?: string }) => void;
   closeSignup: () => void;
@@ -35,7 +42,16 @@ export const APP_URL = "https://yunoapp.eu";
 // "Log in" goes to the app's login screen, not its consumer home.
 export const LOGIN_URL = `${APP_URL}/auth`;
 
-export function LandingProvider({ lang, children }: { lang: LandingLang; children: ReactNode }) {
+export function LandingProvider({
+  lang,
+  langHrefs,
+  children,
+}: {
+  lang: LandingLang;
+  // Set on pages other than the landing itself.
+  langHrefs?: Partial<Record<LandingLang, string>>;
+  children: ReactNode;
+}) {
   const [signup, setSignup] = useState<SignupState>({ open: false });
   const openSignup = useCallback(
     (opts?: { role?: SignupRole; email?: string }) => setSignup({ open: true, ...opts }),
@@ -93,11 +109,14 @@ export function LandingProvider({ lang, children }: { lang: LandingLang; childre
       t: landingContent[lang],
       theme,
       toggleTheme,
+      langHref: (l: LandingLang) => langHrefs?.[l] ?? LANDING_PATHS[l],
+      anchor: (href: string) =>
+        langHrefs && href.startsWith("#") ? LANDING_PATHS[lang] + href : href,
       signup,
       openSignup,
       closeSignup,
     }),
-    [lang, theme, toggleTheme, signup, openSignup, closeSignup],
+    [lang, theme, toggleTheme, langHrefs, signup, openSignup, closeSignup],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

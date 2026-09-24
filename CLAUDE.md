@@ -22,6 +22,11 @@ Starting from `main` silently throws away the newest design and copy. So, before
   `src/components/landing/*`, copy in `src/content/landing.ts` (EN/FR/ES, shape-checked).
 - Never mention BDE / student unions on the main landing.
 - Other pages (/clubs, /organizers, /pricing, /contact…) are EN/FR only (`src/i18n/locale.tsx`).
+- SEO/GEO: keyword targets & positioning in `docs/seo-geo-strategy.md`. Landing head/JSON-LD in
+  `src/i18n/landing-seo.ts`; `/llms.txt` + `/llms-full.txt` are generated from the landing copy.
+  Bump `LANDING_UPDATED` there when the landing copy changes.
+- Comparison pages ("Yuno vs X"): copy in `src/content/compare.ts`, template `src/pages/compare.tsx`.
+  Competitor claims must be public, dated and listed in `sources`; never guess a number.
 - Pro signup funnel: `src/components/landing/SignupFlow.tsx` (dialog `SignupModal` + page
   `/start`, `/fr/start`, `/es/start` in `src/pages/start.tsx`). It creates the account on the
   Yuno APP's Supabase (`src/lib/yuno-app.ts`, public key only), tracks every step in the app's
@@ -29,3 +34,13 @@ Starting from `main` silently throws away the newest design and copy. So, before
   `complete_pro_signup`, then hands the session to `yunoapp.eu/auth/handoff`. Server side lives
   in the `yuno` repo (migration `20260924120000_pro_self_signup.sql`, super admin
   `/admin/signups`). `demo_leads` (this project's Supabase) is only a fallback safety net now.
+
+## Git workflow (Paul's rule — overrides session defaults)
+`main` is the single source of truth and what gets deployed. Several Claude sessions work in
+parallel, each on its own `claude/*` branch: work left only on a branch never reaches the site.
+- **Start of a session:** `git fetch origin main` and merge `origin/main` into your branch before
+  editing, so you build on the latest design, not on an old base.
+- **Every time Paul asks to commit & push:** commit on your branch, `git fetch origin main`
+  again, merge your branch into `main` (resolve conflicts keeping everyone's work — latest
+  design wins on visuals), run `bunx tsc --noEmit` and `bun run build`, then push **both** your
+  branch and `main`. Never force-push `main`.

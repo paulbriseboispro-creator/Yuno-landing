@@ -52,7 +52,7 @@ function useActiveSection(ids: string[]) {
 }
 
 export function LandingNav() {
-  const { t, lang } = useLanding();
+  const { t, lang, anchor, langHref } = useLanding();
   const scrolled = useScrolled(24);
   const [open, setOpen] = useState(false);
   const active = useActiveSection(t.nav.links.map((l) => l.href.slice(1)));
@@ -103,7 +103,7 @@ export function LandingNav() {
                 return (
                   <a
                     key={l.href}
-                    href={l.href}
+                    href={anchor(l.href)}
                     aria-current={on ? "true" : undefined}
                     className={cn(
                       "relative block rounded-full px-3.5 py-2 text-[13.5px] font-medium transition-colors",
@@ -196,7 +196,7 @@ export function LandingNav() {
                     transition={{ delay: 0.04 + i * 0.04, duration: 0.35, ease: EASE }}
                   >
                     <a
-                      href={l.href}
+                      href={anchor(l.href)}
                       onClick={() => setOpen(false)}
                       className="flex items-center justify-between rounded-2xl px-3 py-3.5 text-[17px] font-medium tracking-tight text-zinc-900 transition-colors active:bg-zinc-100"
                     >
@@ -219,7 +219,7 @@ export function LandingNav() {
                 {LANDING_LANGS.map((l) => (
                   <a
                     key={l}
-                    href={LANDING_PATHS[l]}
+                    href={langHref(l)}
                     onClick={() => rememberLandingLang(l)}
                     className={cn(
                       "flex-1 rounded-full border py-2.5 text-center text-sm font-medium",
@@ -281,7 +281,7 @@ function ThemeToggle({ className }: { className?: string }) {
 }
 
 function LangSwitcher({ className }: { className?: string }) {
-  const { lang, t } = useLanding();
+  const { lang, t, langHref } = useLanding();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -328,7 +328,7 @@ function LangSwitcher({ className }: { className?: string }) {
             {LANDING_LANGS.map((l) => (
               <li key={l} role="option" aria-selected={l === lang}>
                 <a
-                  href={LANDING_PATHS[l]}
+                  href={langHref(l)}
                   onClick={() => rememberLandingLang(l)}
                   className="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
                 >

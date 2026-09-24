@@ -59,6 +59,11 @@ payout, and keep the verdict under the matrix generic (Yuno = the whole system o
 - Yuno's real edges: whole night in one account (tables + bar + door + staff screens), club × organizer
   contract and statement (nobody else), promoter commissions computed, €0 / 0% at a published price
   (vs 10% at Shotgun, quote-only Fourvenues), money on your own Stripe account as you sell.
+- Don't claim "cheapest": the 4% (min €0.99) buyer fee is above Weezevent's per ticket once the
+  price passes ~€25. Claim "€0 subscription, 0% commission for the organizer" instead.
+- SEO/GEO keyword targets and positioning: `docs/seo-geo-strategy.md`. Comparison pages
+  (`/fr/alternative-shotgun`, `/alternative-shotgun`, `/es/alternativa-fourvenues`) only state
+  what the competitor publishes, with dated sources (`src/content/compare.ts`).
 - Emailing vs Brevo Standard (€79/mo) and Mailchimp Standard (€117.76/mo) for 50k emails; Yuno €34.
 
 ## Three sales pillars
