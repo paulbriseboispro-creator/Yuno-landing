@@ -14,3 +14,10 @@ Package manager: bun (`bun run build`, `bunx tsc --noEmit`, `bun run lint`).
   Bump `LANDING_UPDATED` there when the landing copy changes.
 - Comparison pages ("Yuno vs X"): copy in `src/content/compare.ts`, template `src/pages/compare.tsx`.
   Competitor claims must be public, dated and listed in `sources`; never guess a number.
+- Pro signup funnel: `src/components/landing/SignupFlow.tsx` (dialog `SignupModal` + page
+  `/start`, `/fr/start`, `/es/start` in `src/pages/start.tsx`). It creates the account on the
+  Yuno APP's Supabase (`src/lib/yuno-app.ts`, public key only), tracks every step in the app's
+  `pro_signups` (RPC `track_pro_signup`), opens the club / organizer space with
+  `complete_pro_signup`, then hands the session to `yunoapp.eu/auth/handoff`. Server side lives
+  in the `yuno` repo (migration `20260924120000_pro_self_signup.sql`, super admin
+  `/admin/signups`). `demo_leads` (this project's Supabase) is only a fallback safety net now.

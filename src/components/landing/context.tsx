@@ -26,6 +26,8 @@ const Ctx = createContext<LandingCtx | null>(null);
 // WhatsApp is the "talk to the founder" channel: instant, no form.
 export const WHATSAPP_NUMBER = "33644216689";
 export const APP_URL = "https://yunoapp.eu";
+// "Log in" goes to the app's login screen, not its consumer home.
+export const LOGIN_URL = `${APP_URL}/auth`;
 
 export function LandingProvider({
   lang,

@@ -8,7 +8,7 @@ import {
   LANDING_PATHS,
   rememberLandingLang,
 } from "@/i18n/landing-lang";
-import { APP_URL, useLanding } from "./context";
+import { LOGIN_URL, useLanding } from "./context";
 import { EASE, PrimaryCta, YunoLogo } from "./ui";
 
 export function LandingNav() {
@@ -60,7 +60,7 @@ export function LandingNav() {
         <div className="flex items-center gap-1.5 sm:gap-2">
           <LangSwitcher className="hidden sm:block" />
           <a
-            href={APP_URL}
+            href={LOGIN_URL}
             className="hidden rounded-full px-3.5 py-2 text-[13.5px] font-medium text-zinc-700 transition-colors hover:bg-zinc-100 md:inline-flex"
           >
             {t.nav.login}
@@ -109,7 +109,7 @@ export function LandingNav() {
                 ))}
                 <li>
                   <a
-                    href={APP_URL}
+                    href={LOGIN_URL}
                     className="flex items-center justify-between border-b border-zinc-100 py-4 text-lg font-medium tracking-tight text-zinc-900"
                   >
                     {t.nav.login}

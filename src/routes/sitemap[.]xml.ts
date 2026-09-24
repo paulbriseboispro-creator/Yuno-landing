@@ -18,6 +18,8 @@ export const Route = createFileRoute("/sitemap.xml")({
       GET: async () => {
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0", lastmod: LANDING_UPDATED },
+          // Direct path to a pro account (EN / FR / ES).
+          { path: "/start", changefreq: "monthly", priority: "0.9" },
           { path: "/clubs", changefreq: "monthly", priority: "0.9" },
           { path: "/organizers", changefreq: "monthly", priority: "0.9" },
           { path: "/affiliates", changefreq: "monthly", priority: "0.9" },
@@ -36,6 +38,9 @@ export const Route = createFileRoute("/sitemap.xml")({
             // The landing ("/") also exists in Spanish.
             path === "/"
               ? `    <xhtml:link rel="alternate" hreflang="es" href="${landingUrl("es")}"/>`
+              : null,
+            path === "/start"
+              ? `    <xhtml:link rel="alternate" hreflang="es" href="${SITE_ORIGIN}/es/start"/>`
               : null,
             `    <xhtml:link rel="alternate" hreflang="x-default" href="${localeUrl(path, "en")}"/>`,
           ]
@@ -59,6 +64,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           urlBlock(localeUrl(e.path, "en"), e),
           urlBlock(localeUrl(e.path, "fr"), e),
           ...(e.path === "/" ? [urlBlock(landingUrl("es"), e)] : []),
+          ...(e.path === "/start" ? [urlBlock(`${SITE_ORIGIN}/es/start`, e)] : []),
         ]);
 
         // Comparison pages exist in their own set of languages.

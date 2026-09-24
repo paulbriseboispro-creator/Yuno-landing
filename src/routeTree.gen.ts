@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as StartRouteImport } from './routes/start'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
@@ -25,6 +26,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as FrIndexRouteImport } from './routes/fr/index'
 import { Route as EsIndexRouteImport } from './routes/es/index'
 import { Route as FrTermsRouteImport } from './routes/fr/terms'
+import { Route as FrStartRouteImport } from './routes/fr/start'
 import { Route as FrPrivacyRouteImport } from './routes/fr/privacy'
 import { Route as FrPricingRouteImport } from './routes/fr/pricing'
 import { Route as FrOrganizersRouteImport } from './routes/fr/organizers'
@@ -32,12 +34,18 @@ import { Route as FrContactRouteImport } from './routes/fr/contact'
 import { Route as FrClubsRouteImport } from './routes/fr/clubs'
 import { Route as FrAlternativeShotgunRouteImport } from './routes/fr/alternative-shotgun'
 import { Route as FrAffiliatesRouteImport } from './routes/fr/affiliates'
+import { Route as EsStartRouteImport } from './routes/es/start'
 import { Route as EsAlternativaFourvenuesRouteImport } from './routes/es/alternativa-fourvenues'
 import { Route as BdeContactRouteImport } from './routes/bde_.contact'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StartRoute = StartRouteImport.update({
+  id: '/start',
+  path: '/start',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -115,6 +123,11 @@ const FrTermsRoute = FrTermsRouteImport.update({
   path: '/fr/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FrStartRoute = FrStartRouteImport.update({
+  id: '/fr/start',
+  path: '/fr/start',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FrPrivacyRoute = FrPrivacyRouteImport.update({
   id: '/fr/privacy',
   path: '/fr/privacy',
@@ -150,6 +163,11 @@ const FrAffiliatesRoute = FrAffiliatesRouteImport.update({
   path: '/fr/affiliates',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EsStartRoute = EsStartRouteImport.update({
+  id: '/es/start',
+  path: '/es/start',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EsAlternativaFourvenuesRoute = EsAlternativaFourvenuesRouteImport.update({
   id: '/es/alternativa-fourvenues',
   path: '/es/alternativa-fourvenues',
@@ -174,9 +192,11 @@ export interface FileRoutesByFullPath {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/start': typeof StartRoute
   '/terms': typeof TermsRoute
   '/bde/contact': typeof BdeContactRoute
   '/es/alternativa-fourvenues': typeof EsAlternativaFourvenuesRoute
+  '/es/start': typeof EsStartRoute
   '/fr/affiliates': typeof FrAffiliatesRoute
   '/fr/alternative-shotgun': typeof FrAlternativeShotgunRoute
   '/fr/clubs': typeof FrClubsRoute
@@ -184,6 +204,7 @@ export interface FileRoutesByFullPath {
   '/fr/organizers': typeof FrOrganizersRoute
   '/fr/pricing': typeof FrPricingRoute
   '/fr/privacy': typeof FrPrivacyRoute
+  '/fr/start': typeof FrStartRoute
   '/fr/terms': typeof FrTermsRoute
   '/es/': typeof EsIndexRoute
   '/fr/': typeof FrIndexRoute
@@ -201,9 +222,11 @@ export interface FileRoutesByTo {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/start': typeof StartRoute
   '/terms': typeof TermsRoute
   '/bde/contact': typeof BdeContactRoute
   '/es/alternativa-fourvenues': typeof EsAlternativaFourvenuesRoute
+  '/es/start': typeof EsStartRoute
   '/fr/affiliates': typeof FrAffiliatesRoute
   '/fr/alternative-shotgun': typeof FrAlternativeShotgunRoute
   '/fr/clubs': typeof FrClubsRoute
@@ -211,6 +234,7 @@ export interface FileRoutesByTo {
   '/fr/organizers': typeof FrOrganizersRoute
   '/fr/pricing': typeof FrPricingRoute
   '/fr/privacy': typeof FrPrivacyRoute
+  '/fr/start': typeof FrStartRoute
   '/fr/terms': typeof FrTermsRoute
   '/es': typeof EsIndexRoute
   '/fr': typeof FrIndexRoute
@@ -229,9 +253,11 @@ export interface FileRoutesById {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/start': typeof StartRoute
   '/terms': typeof TermsRoute
   '/bde_/contact': typeof BdeContactRoute
   '/es/alternativa-fourvenues': typeof EsAlternativaFourvenuesRoute
+  '/es/start': typeof EsStartRoute
   '/fr/affiliates': typeof FrAffiliatesRoute
   '/fr/alternative-shotgun': typeof FrAlternativeShotgunRoute
   '/fr/clubs': typeof FrClubsRoute
@@ -239,6 +265,7 @@ export interface FileRoutesById {
   '/fr/organizers': typeof FrOrganizersRoute
   '/fr/pricing': typeof FrPricingRoute
   '/fr/privacy': typeof FrPrivacyRoute
+  '/fr/start': typeof FrStartRoute
   '/fr/terms': typeof FrTermsRoute
   '/es/': typeof EsIndexRoute
   '/fr/': typeof FrIndexRoute
@@ -258,9 +285,11 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/sitemap.xml'
+    | '/start'
     | '/terms'
     | '/bde/contact'
     | '/es/alternativa-fourvenues'
+    | '/es/start'
     | '/fr/affiliates'
     | '/fr/alternative-shotgun'
     | '/fr/clubs'
@@ -268,6 +297,7 @@ export interface FileRouteTypes {
     | '/fr/organizers'
     | '/fr/pricing'
     | '/fr/privacy'
+    | '/fr/start'
     | '/fr/terms'
     | '/es/'
     | '/fr/'
@@ -285,9 +315,11 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/sitemap.xml'
+    | '/start'
     | '/terms'
     | '/bde/contact'
     | '/es/alternativa-fourvenues'
+    | '/es/start'
     | '/fr/affiliates'
     | '/fr/alternative-shotgun'
     | '/fr/clubs'
@@ -295,6 +327,7 @@ export interface FileRouteTypes {
     | '/fr/organizers'
     | '/fr/pricing'
     | '/fr/privacy'
+    | '/fr/start'
     | '/fr/terms'
     | '/es'
     | '/fr'
@@ -312,9 +345,11 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/sitemap.xml'
+    | '/start'
     | '/terms'
     | '/bde_/contact'
     | '/es/alternativa-fourvenues'
+    | '/es/start'
     | '/fr/affiliates'
     | '/fr/alternative-shotgun'
     | '/fr/clubs'
@@ -322,6 +357,7 @@ export interface FileRouteTypes {
     | '/fr/organizers'
     | '/fr/pricing'
     | '/fr/privacy'
+    | '/fr/start'
     | '/fr/terms'
     | '/es/'
     | '/fr/'
@@ -340,9 +376,11 @@ export interface RootRouteChildren {
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  StartRoute: typeof StartRoute
   TermsRoute: typeof TermsRoute
   BdeContactRoute: typeof BdeContactRoute
   EsAlternativaFourvenuesRoute: typeof EsAlternativaFourvenuesRoute
+  EsStartRoute: typeof EsStartRoute
   FrAffiliatesRoute: typeof FrAffiliatesRoute
   FrAlternativeShotgunRoute: typeof FrAlternativeShotgunRoute
   FrClubsRoute: typeof FrClubsRoute
@@ -350,6 +388,7 @@ export interface RootRouteChildren {
   FrOrganizersRoute: typeof FrOrganizersRoute
   FrPricingRoute: typeof FrPricingRoute
   FrPrivacyRoute: typeof FrPrivacyRoute
+  FrStartRoute: typeof FrStartRoute
   FrTermsRoute: typeof FrTermsRoute
   EsIndexRoute: typeof EsIndexRoute
   FrIndexRoute: typeof FrIndexRoute
@@ -362,6 +401,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/start': {
+      id: '/start'
+      path: '/start'
+      fullPath: '/start'
+      preLoaderRoute: typeof StartRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -469,6 +515,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrTermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fr/start': {
+      id: '/fr/start'
+      path: '/fr/start'
+      fullPath: '/fr/start'
+      preLoaderRoute: typeof FrStartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/fr/privacy': {
       id: '/fr/privacy'
       path: '/fr/privacy'
@@ -518,6 +571,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrAffiliatesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/es/start': {
+      id: '/es/start'
+      path: '/es/start'
+      fullPath: '/es/start'
+      preLoaderRoute: typeof EsStartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/es/alternativa-fourvenues': {
       id: '/es/alternativa-fourvenues'
       path: '/es/alternativa-fourvenues'
@@ -548,9 +608,11 @@ const rootRouteChildren: RootRouteChildren = {
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  StartRoute: StartRoute,
   TermsRoute: TermsRoute,
   BdeContactRoute: BdeContactRoute,
   EsAlternativaFourvenuesRoute: EsAlternativaFourvenuesRoute,
+  EsStartRoute: EsStartRoute,
   FrAffiliatesRoute: FrAffiliatesRoute,
   FrAlternativeShotgunRoute: FrAlternativeShotgunRoute,
   FrClubsRoute: FrClubsRoute,
@@ -558,6 +620,7 @@ const rootRouteChildren: RootRouteChildren = {
   FrOrganizersRoute: FrOrganizersRoute,
   FrPricingRoute: FrPricingRoute,
   FrPrivacyRoute: FrPrivacyRoute,
+  FrStartRoute: FrStartRoute,
   FrTermsRoute: FrTermsRoute,
   EsIndexRoute: EsIndexRoute,
   FrIndexRoute: FrIndexRoute,
