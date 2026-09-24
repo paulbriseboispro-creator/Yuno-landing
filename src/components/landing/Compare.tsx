@@ -1,4 +1,4 @@
-import { Check, Minus, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check, Minus, ShieldCheck } from "lucide-react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { useLanding } from "./context";
@@ -119,6 +119,19 @@ export function Compare() {
           </PrimaryCta>
         </div>
         <p className="mt-4 text-[12px] leading-relaxed text-zinc-400">{c.footnote}</p>
+        <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+          {c.more.map((l) => (
+            <li key={l.href}>
+              <a
+                href={l.href}
+                className="group inline-flex items-center gap-1.5 text-[13.5px] font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900"
+              >
+                {l.label}
+                <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+              </a>
+            </li>
+          ))}
+        </ul>
       </FadeIn>
     </section>
   );

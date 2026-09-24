@@ -296,3 +296,44 @@ modificateur B2B (logiciel, software, app pour…).
 - **GEO** : études de citations Averi et Profound (2026).
 - **Méthode** : skills SearchFit SEO (ai-visibility, schema-markup, technical-seo, on-page-seo,
   keyword-clustering) et Anthropic marketing/seo-audit.
+
+---
+
+## 8. Pages comparatives (en ligne depuis le 24/09/2026)
+
+| URL | Requêtes visées |
+|---|---|
+| `/fr/alternative-shotgun` | shotgun pro, shotgun billetterie, alternative (à) shotgun, shotgun frais, shotgun commission organisateur, shotgun avis organisateur |
+| `/alternative-shotgun` | shotgun alternative, shotgun pro fees, shotgun vs |
+| `/es/alternativa-fourvenues` | alternativa a fourvenues, fourvenues precio, fourvenues comisión, fourvenues opiniones, discocil |
+
+**Structure de chaque page** (réponse d'abord, pensée pour Google et les IA) :
+1. « En bref »
+2. Tableau sourcé point par point, avec les avantages réels du concurrent
+3. « C'est quoi Shotgun Pro / Fourvenues »
+4. Lequel choisir
+5. Comment migrer
+6. FAQ (qui reprend les questions « Les gens demandent aussi »)
+7. Sources datées et mention légale
+
+**Réalisme sur les requêtes de marque.** Sur « shotgun pro » ou « fourvenues », les pages
+officielles occuperont presque toujours les premières places, qu'il y ait des Google Ads ou
+non : c'est de la navigation vers la marque. L'objectif réaliste est la **première page juste
+sous leurs propres pages**, puis la 1ʳᵉ place sur les requêtes de choix : alternative, frais,
+commission, avis, vs.
+- Sur « alternative à shotgun », les résultats parlent surtout d'Autodesk ShotGrid (l'ancien
+  logiciel « Shotgun »).
+- Sur « alternativa a fourvenues », aucune page ne cible la nuit.
+
+Ces deux requêtes sont donc réellement ouvertes. Enchérir en Google Ads sur ces noms de
+marque est aussi possible et peu cher quand la marque n'enchérit pas elle-même. En revanche,
+la marque ne doit pas figurer dans le texte de l'annonce.
+
+**Maintenance** :
+- Revérifier chaque fait tous les 3 mois, depuis un navigateur normal, en gardant des captures
+  d'écran datées. Mettre à jour `updated` et les libellés « relevé le » dans
+  `src/content/compare.ts`.
+- Corriger sous 48 h toute erreur signalée par un concurrent.
+
+**Prochaines pages** : « Yuno vs Xceed » (ES/FR), « Alternative à Weezevent » (FR),
+« DICE alternative » (EN), « Fourvenues alternative » (EN).

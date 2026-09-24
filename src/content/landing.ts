@@ -317,8 +317,9 @@ const en = {
       },
       {
         name: "Shotgun",
-        pays: "Organizer commission negotiated, not published. Buyer fees capped at €15.",
-        keeps: "The marketplace.",
+        pays: "Organizer commission negotiated, not published. Buyer fee 2.75% (min. €0.30).",
+        keeps:
+          "Shared: you email the contacts who opted in; the Shotgun app also recommends other events to your crowd.",
       },
       {
         name: "DICE",
@@ -330,6 +331,10 @@ const en = {
       "And none of them puts tickets, VIP tables with table service, the bar, promoter commissions and the club × organizer split in the same account. With Yuno it's one account and one price: zero.",
     footnote:
       "Public prices checked on 21 September 2026 (publishers' pricing pages, Eventbrite help, Shotgun T&Cs, dice.fm/partners). Shotgun and DICE don't publish their organizer commission.",
+    more: [
+      { label: "Yuno vs Shotgun: the detailed comparison", href: "/alternative-shotgun" },
+      { label: "Alternativa a Fourvenues (ES)", href: "/es/alternativa-fourvenues" },
+    ],
   },
   email: {
     eyebrow: "CRM & emailing",
@@ -524,6 +529,14 @@ const en = {
           { label: "Clubs", href: "#solutions" },
           { label: "Organizers", href: "#solutions" },
           { label: "Promoters & agencies", href: "#solutions" },
+        ],
+      },
+      {
+        title: "Compare",
+        links: [
+          { label: "Shotgun alternative", href: "/alternative-shotgun" },
+          { label: "Fourvenues alternative (ES)", href: "/es/alternativa-fourvenues" },
+          { label: "Yuno vs the rest", href: "#compare" },
         ],
       },
       {
@@ -893,8 +906,9 @@ const fr: LandingContent = {
       },
       {
         name: "Shotgun",
-        pays: "Commission organisateur négociée, non publiée. Frais acheteur plafonnés à 15 €.",
-        keeps: "La marketplace.",
+        pays: "Commission organisateur négociée, non publiée. Frais acheteur 2,75 % (min. 0,30 €).",
+        keeps:
+          "Partagés : vous écrivez aux contacts qui ont accepté ; l'app Shotgun recommande aussi d'autres soirées à votre public.",
       },
       {
         name: "DICE",
@@ -906,6 +920,10 @@ const fr: LandingContent = {
       "Et aucune ne réunit billets, tables VIP avec service en salle, bar, commissions des promoteurs et répartition club × organisateur dans le même compte. Chez Yuno, c'est un seul compte et un seul prix : zéro.",
     footnote:
       "Tarifs publics relevés le 21 septembre 2026 (pages Tarifs des éditeurs, aide Eventbrite France, CGU Shotgun, dice.fm/partners). Shotgun et DICE ne publient pas leur commission organisateur.",
+    more: [
+      { label: "Yuno vs Shotgun : le comparatif détaillé", href: "/fr/alternative-shotgun" },
+      { label: "Alternative à Fourvenues (ES)", href: "/es/alternativa-fourvenues" },
+    ],
   },
   email: {
     eyebrow: "CRM & emailing",
@@ -1101,6 +1119,14 @@ const fr: LandingContent = {
           { label: "Clubs", href: "#solutions" },
           { label: "Organisateurs", href: "#solutions" },
           { label: "Promoteurs & agences", href: "#solutions" },
+        ],
+      },
+      {
+        title: "Comparatifs",
+        links: [
+          { label: "Alternative à Shotgun", href: "/fr/alternative-shotgun" },
+          { label: "Alternative à Fourvenues (ES)", href: "/es/alternativa-fourvenues" },
+          { label: "Yuno face aux autres", href: "#compare" },
         ],
       },
       {
@@ -1471,8 +1497,9 @@ const es: LandingContent = {
       },
       {
         name: "Shotgun",
-        pays: "Comisión de organizador negociada, no publicada. Gastos del comprador con tope de 15 €.",
-        keeps: "El marketplace.",
+        pays: "Comisión de organizador negociada, no publicada. Gastos del comprador 2,75 % (mín. 0,30 €).",
+        keeps:
+          "Compartidos: escribes a los contactos que aceptan; la app de Shotgun también recomienda otros eventos a tu público.",
       },
       {
         name: "DICE",
@@ -1484,6 +1511,13 @@ const es: LandingContent = {
       "Y ninguna reúne entradas, reservados con servicio en sala, barra, comisiones de RRPP y el reparto discoteca × organizador en la misma cuenta. Con Yuno es una sola cuenta y un solo precio: cero.",
     footnote:
       "Precios públicos consultados el 21 de septiembre de 2026 (páginas de precios de cada plataforma, ayuda de Eventbrite, condiciones de Shotgun, dice.fm/partners). Shotgun y DICE no publican su comisión de organizador.",
+    more: [
+      {
+        label: "Alternativa a Fourvenues: la comparativa detallada",
+        href: "/es/alternativa-fourvenues",
+      },
+      { label: "Alternativa a Shotgun (EN)", href: "/alternative-shotgun" },
+    ],
   },
   email: {
     eyebrow: "CRM y email marketing",
@@ -1686,6 +1720,14 @@ const es: LandingContent = {
           { label: "Discotecas", href: "#solutions" },
           { label: "Organizadores", href: "#solutions" },
           { label: "RRPP y agencias", href: "#solutions" },
+        ],
+      },
+      {
+        title: "Comparativas",
+        links: [
+          { label: "Alternativa a Fourvenues", href: "/es/alternativa-fourvenues" },
+          { label: "Alternativa a Shotgun (EN)", href: "/alternative-shotgun" },
+          { label: "Yuno frente al resto", href: "#compare" },
         ],
       },
       {

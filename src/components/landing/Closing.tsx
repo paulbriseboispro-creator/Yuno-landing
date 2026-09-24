@@ -77,12 +77,12 @@ export function FinalCta() {
 }
 
 export function LandingFooter() {
-  const { t, lang } = useLanding();
+  const { t, lang, anchor, langHref } = useLanding();
   const f = t.footer;
   return (
     <footer className="border-t border-zinc-100 px-4 pb-28 pt-16 sm:px-6 md:pb-12">
-      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
-        <div>
+      <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
+        <div className="sm:col-span-2 md:col-span-4 lg:col-span-1">
           <a
             href={LANDING_PATHS[lang]}
             aria-label="Yuno"
@@ -95,7 +95,7 @@ export function LandingFooter() {
             {LANDING_LANGS.map((l) => (
               <a
                 key={l}
-                href={LANDING_PATHS[l]}
+                href={langHref(l)}
                 onClick={() => rememberLandingLang(l)}
                 className={cn(
                   "rounded-full px-3 py-1 text-[12px] font-semibold transition-colors",
@@ -116,7 +116,7 @@ export function LandingFooter() {
               {c.links.map((l) => (
                 <li key={l.label}>
                   <a
-                    href={l.href}
+                    href={anchor(l.href)}
                     className="text-[13.5px] text-zinc-500 transition-colors hover:text-zinc-950"
                   >
                     {l.label}

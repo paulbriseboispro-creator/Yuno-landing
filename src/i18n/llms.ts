@@ -9,6 +9,8 @@ import {
   type LandingLang,
 } from "@/i18n/landing-lang";
 import { LANDING_UPDATED } from "@/i18n/landing-seo";
+import { COMPARE_PAGES } from "@/content/compare";
+import { compareMarkdown } from "@/i18n/compare-seo";
 import { SITE_ORIGIN } from "@/i18n/seo";
 
 const HEADINGS: Record<
@@ -161,6 +163,12 @@ export function llmsIndex(): string {
     `- [Pricing](${SITE_ORIGIN}/#pricing): ${t.pricing.rows.map((r) => `${r.item} ${r.amount}`).join("; ")}.`,
     `- [Comparison with Shotgun, DICE, Eventbrite, Weezevent, Xceed](${SITE_ORIGIN}/#compare)`,
     `- [FAQ](${SITE_ORIGIN}/#faq)`,
+    "",
+    "## Comparisons",
+    "",
+    ...COMPARE_PAGES.map(
+      (p) => `- [${p.meta.title}](${SITE_ORIGIN + p.path}): ${p.meta.description}`,
+    ),
     `- [Contact](${SITE_ORIGIN}/contact): ${FOUNDER}`,
     "",
     "## Optional",
@@ -181,5 +189,9 @@ export function llmsFull(): string {
     "",
     `Last updated: ${LANDING_UPDATED}. Source of every fact below: ${LANDING_LANGS.map(landingUrl).join(", ")}.`,
   ].join("\n");
-  return [header, ...LANDING_LANGS.map(landingMarkdown)].join("\n\n---\n\n");
+  return [
+    header,
+    ...LANDING_LANGS.map(landingMarkdown),
+    ...COMPARE_PAGES.map(compareMarkdown),
+  ].join("\n\n---\n\n");
 }

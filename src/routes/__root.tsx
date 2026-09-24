@@ -26,6 +26,7 @@ import {
   type LandingLang,
 } from "@/i18n/landing-lang";
 import { common } from "@/content/common";
+import { COMPARE_PATHS } from "@/content/compare";
 import { ogImageUrl, organizationLd } from "@/i18n/landing-seo";
 
 // Pages that exist in both languages. Only these get the French redirect, so
@@ -39,6 +40,7 @@ const LOCALIZED_PATHS = new Set([
   "/contact",
   "/privacy",
   "/terms",
+  "/alternative-shotgun",
 ]);
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
@@ -81,7 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     // `lang` drives <html lang>; it only differs from `locale` on the Spanish
     // landing (the rest of the site, and its shared chrome, is EN/FR only).
     // `landing` switches the shell to the light, chrome-less landing surface.
-    const landing = isLandingPath(path);
+    const landing = isLandingPath(path) || COMPARE_PATHS.has(path);
     // Spanish exists only for the landing ("/es").
     if (path === "/es" || path.startsWith("/es/")) {
       return { locale: "en" as Locale, lang: "es" as LandingLang, landing };
@@ -193,7 +195,7 @@ function surfaceFor(pathname: string): Surface {
   if (path === "/fr") path = "/";
   else if (path.startsWith("/fr/")) path = path.slice(3); // "/fr/clubs" -> "/clubs"
   if (path === "/bde" || path.startsWith("/bde/")) return "bde";
-  if (isLandingPath(pathname)) return "landing";
+  if (isLandingPath(pathname) || COMPARE_PATHS.has(pathname)) return "landing";
   if (path === "/clubs") return "club";
   if (path === "/organizers") return "orga";
   return "main";

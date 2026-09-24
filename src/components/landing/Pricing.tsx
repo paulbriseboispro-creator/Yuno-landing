@@ -127,9 +127,22 @@ function Traction() {
   );
 }
 
-export function Faq() {
+// The landing FAQ by default; the comparison pages pass their own questions.
+export function Faq({
+  eyebrow,
+  title,
+  items,
+}: {
+  eyebrow?: string;
+  title?: string;
+  items?: { q: string; a: string }[];
+} = {}) {
   const { t } = useLanding();
-  const f = t.faq;
+  const f = {
+    eyebrow: eyebrow ?? t.faq.eyebrow,
+    title: title ?? t.faq.title,
+    items: items ?? t.faq.items,
+  };
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section id="faq" className="relative scroll-mt-20 px-4 py-24 sm:px-6 md:py-32">

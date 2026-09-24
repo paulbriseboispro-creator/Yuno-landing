@@ -12,7 +12,7 @@ import { APP_URL, useLanding } from "./context";
 import { EASE, PrimaryCta, YunoLogo } from "./ui";
 
 export function LandingNav() {
-  const { t, lang } = useLanding();
+  const { t, lang, anchor, langHref } = useLanding();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -48,7 +48,7 @@ export function LandingNav() {
           {t.nav.links.map((l) => (
             <li key={l.href}>
               <a
-                href={l.href}
+                href={anchor(l.href)}
                 className="rounded-full px-3.5 py-2 text-[13.5px] font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
               >
                 {l.label}
@@ -99,7 +99,7 @@ export function LandingNav() {
                     transition={{ delay: 0.05 + i * 0.04, duration: 0.4, ease: EASE }}
                   >
                     <a
-                      href={l.href}
+                      href={anchor(l.href)}
                       onClick={() => setOpen(false)}
                       className="flex items-center justify-between border-b border-zinc-100 py-4 text-lg font-medium tracking-tight text-zinc-900"
                     >
@@ -120,7 +120,7 @@ export function LandingNav() {
                 {LANDING_LANGS.map((l) => (
                   <a
                     key={l}
-                    href={LANDING_PATHS[l]}
+                    href={langHref(l)}
                     onClick={() => rememberLandingLang(l)}
                     className={cn(
                       "flex-1 rounded-full border py-2.5 text-center text-sm font-medium",
@@ -147,7 +147,7 @@ export function LandingNav() {
 }
 
 function LangSwitcher({ className }: { className?: string }) {
-  const { lang, t } = useLanding();
+  const { lang, t, langHref } = useLanding();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -194,7 +194,7 @@ function LangSwitcher({ className }: { className?: string }) {
             {LANDING_LANGS.map((l) => (
               <li key={l} role="option" aria-selected={l === lang}>
                 <a
-                  href={LANDING_PATHS[l]}
+                  href={langHref(l)}
                   onClick={() => rememberLandingLang(l)}
                   className="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
                 >

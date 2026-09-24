@@ -12,3 +12,5 @@ Package manager: bun (`bun run build`, `bunx tsc --noEmit`, `bun run lint`).
 - SEO/GEO: keyword targets & positioning in `docs/seo-geo-strategy.md`. Landing head/JSON-LD in
   `src/i18n/landing-seo.ts`; `/llms.txt` + `/llms-full.txt` are generated from the landing copy.
   Bump `LANDING_UPDATED` there when the landing copy changes.
+- Comparison pages ("Yuno vs X"): copy in `src/content/compare.ts`, template `src/pages/compare.tsx`.
+  Competitor claims must be public, dated and listed in `sources`; never guess a number.
