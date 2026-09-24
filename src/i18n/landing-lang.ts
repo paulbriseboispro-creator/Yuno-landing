@@ -66,7 +66,11 @@ export function rememberLandingLang(lang: LandingLang) {
   document.cookie = `${LOCALE_COOKIE}=${lang}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
 }
 
+// The landing surface: light, chrome-less (it brings its own nav and footer).
+// Includes the pro signup pages ("/start", "/fr/start", "/es/start").
 export function isLandingPath(pathname: string): boolean {
+  const p = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
+  if (p === "/start" || p === "/fr/start" || p === "/es/start") return true;
   return (
     pathname === "/" ||
     pathname === "/fr" ||

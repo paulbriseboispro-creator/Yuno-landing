@@ -81,8 +81,13 @@ night by channel and promoter, live view (who is on your page now, what just sol
 - First Paris send: 7,228 emails, 95.3% delivered, 23.9% opens, 0.015% complaints, 7/10 re-clicked the automatic follow-up.
 - Yuno app on the iOS App Store (retention); web remains a full purchase path.
 
-## Getting started (current, call-based — being replaced by self-serve signup)
-1. 30-minute call. 2. Set up together (~1 hour, founder present). 3. First night accompanied.
+## Getting started (self-serve since 24 Sep 2026)
+Clubs and organizers create their account alone in ~2 minutes: every "Create my free account"
+CTA opens the signup dialog, and `/start` (`/fr/start`, `/es/start`, `?role=club|organizer`) is
+the direct link for bios, DMs and decks. Four questions (profile → venue / nights → what you
+sell, current ticketing, next night → account), then the person lands logged in on
+yunoapp.eu/get-started with a plan built from their answers. Promoters and "other" leave a lead
+(no self-serve account). A setup call with the founder stays on offer (WhatsApp), never required.
 Founder: Paul Brisebois · +33 6 44 21 66 89 · yunoapp.eu
 
 ## Brand

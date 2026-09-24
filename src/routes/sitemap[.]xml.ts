@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { localeUrl } from "@/i18n/seo";
+import { SITE_ORIGIN, localeUrl } from "@/i18n/seo";
 import { landingUrl } from "@/i18n/landing-lang";
 
 interface SitemapEntry {
@@ -15,6 +15,8 @@ export const Route = createFileRoute("/sitemap.xml")({
       GET: async () => {
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
+          // Direct path to a pro account (EN / FR / ES).
+          { path: "/start", changefreq: "monthly", priority: "0.9" },
           { path: "/clubs", changefreq: "monthly", priority: "0.9" },
           { path: "/organizers", changefreq: "monthly", priority: "0.9" },
           { path: "/affiliates", changefreq: "monthly", priority: "0.9" },
@@ -31,7 +33,12 @@ export const Route = createFileRoute("/sitemap.xml")({
             `    <xhtml:link rel="alternate" hreflang="en" href="${localeUrl(path, "en")}"/>`,
             `    <xhtml:link rel="alternate" hreflang="fr" href="${localeUrl(path, "fr")}"/>`,
             // The landing ("/") also exists in Spanish.
-            path === "/" ? `    <xhtml:link rel="alternate" hreflang="es" href="${landingUrl("es")}"/>` : null,
+            path === "/"
+              ? `    <xhtml:link rel="alternate" hreflang="es" href="${landingUrl("es")}"/>`
+              : null,
+            path === "/start"
+              ? `    <xhtml:link rel="alternate" hreflang="es" href="${SITE_ORIGIN}/es/start"/>`
+              : null,
             `    <xhtml:link rel="alternate" hreflang="x-default" href="${localeUrl(path, "en")}"/>`,
           ]
             .filter(Boolean)
@@ -53,6 +60,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           urlBlock(localeUrl(e.path, "en"), e),
           urlBlock(localeUrl(e.path, "fr"), e),
           ...(e.path === "/" ? [urlBlock(landingUrl("es"), e)] : []),
+          ...(e.path === "/start" ? [urlBlock(`${SITE_ORIGIN}/es/start`, e)] : []),
         ]);
 
         const xml = [

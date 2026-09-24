@@ -105,6 +105,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       }
       return { locale: "en" as Locale, lang: "en" as LandingLang, landing };
     }
+    // The pro signup page is trilingual like the landing: same language pick.
+    if (path === "/start" || path === "/start/") {
+      const pref = detectLandingLang();
+      if (pref !== "en") {
+        throw redirect({ href: `/${pref}/start` + (location.searchStr ?? "") });
+      }
+      return { locale: "en" as Locale, lang: "en" as LandingLang, landing };
+    }
     // On an English (root) page, send a French-preferring visitor (cookie or
     // browser Accept-Language) to the /fr twin so the priority market lands in
     // its language at a real, crawlable URL. The URL still decides the language,
