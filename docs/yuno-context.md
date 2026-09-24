@@ -35,7 +35,13 @@ Emailing: 15,000 emails/month included, then €10 per 10,000 (€24 per 25,000)
 - Xceed: 3% + 15% marketplace marketing commission, and €29–59/month subscription. Marketplace.
 - Shotgun: organizer commission negotiated, not published. Buyer fees capped at €15. Marketplace.
 - DICE: on quote, not published. Marketplace.
-- None of them sells VIP tables, runs table service, or computes promoter commissions.
+- None of them combines tickets, VIP tables with table service, the bar, promoter commissions
+  and the club × organizer split in one account. Don't claim more than the combination: Xceed
+  advertises bottle/VIP table sales, Shotgun has a sales-partner (promoter) portal, and
+  Fourvenues (ES, on quote) bundles tickets, lists, VIP map and RRPP commissions.
+- Don't claim "cheapest": the 4% (min €0.99) buyer fee is above Weezevent's per ticket once the
+  price passes ~€25. Claim "€0 subscription, 0% commission for the organizer" instead.
+- SEO/GEO keyword targets and positioning: see `docs/seo-geo-strategy.md`.
 - Emailing vs Brevo Standard (€79/mo) and Mailchimp Standard (€117.76/mo) for 50k emails; Yuno €34.
 
 ## Three sales pillars

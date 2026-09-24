@@ -14,6 +14,8 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as OrganizersRouteImport } from './routes/organizers'
+import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
+import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ClubsRouteImport } from './routes/clubs'
 import { Route as BdeRouteImport } from './routes/bde'
@@ -53,6 +55,16 @@ const PricingRoute = PricingRouteImport.update({
 const OrganizersRoute = OrganizersRouteImport.update({
   id: '/organizers',
   path: '/organizers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
+  id: '/llms.txt',
+  path: '/llms.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
+  id: '/llms-full.txt',
+  path: '/llms-full.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -137,6 +149,8 @@ export interface FileRoutesByFullPath {
   '/bde': typeof BdeRoute
   '/clubs': typeof ClubsRoute
   '/contact': typeof ContactRoute
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/organizers': typeof OrganizersRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -159,6 +173,8 @@ export interface FileRoutesByTo {
   '/bde': typeof BdeRoute
   '/clubs': typeof ClubsRoute
   '/contact': typeof ContactRoute
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/organizers': typeof OrganizersRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -182,6 +198,8 @@ export interface FileRoutesById {
   '/bde': typeof BdeRoute
   '/clubs': typeof ClubsRoute
   '/contact': typeof ContactRoute
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/organizers': typeof OrganizersRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -206,6 +224,8 @@ export interface FileRouteTypes {
     | '/bde'
     | '/clubs'
     | '/contact'
+    | '/llms-full.txt'
+    | '/llms.txt'
     | '/organizers'
     | '/pricing'
     | '/privacy'
@@ -228,6 +248,8 @@ export interface FileRouteTypes {
     | '/bde'
     | '/clubs'
     | '/contact'
+    | '/llms-full.txt'
+    | '/llms.txt'
     | '/organizers'
     | '/pricing'
     | '/privacy'
@@ -250,6 +272,8 @@ export interface FileRouteTypes {
     | '/bde'
     | '/clubs'
     | '/contact'
+    | '/llms-full.txt'
+    | '/llms.txt'
     | '/organizers'
     | '/pricing'
     | '/privacy'
@@ -273,6 +297,8 @@ export interface RootRouteChildren {
   BdeRoute: typeof BdeRoute
   ClubsRoute: typeof ClubsRoute
   ContactRoute: typeof ContactRoute
+  LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
+  LlmsDottxtRoute: typeof LlmsDottxtRoute
   OrganizersRoute: typeof OrganizersRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -325,6 +351,20 @@ declare module '@tanstack/react-router' {
       path: '/organizers'
       fullPath: '/organizers'
       preLoaderRoute: typeof OrganizersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms.txt': {
+      id: '/llms.txt'
+      path: '/llms.txt'
+      fullPath: '/llms.txt'
+      preLoaderRoute: typeof LlmsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms-full.txt': {
+      id: '/llms-full.txt'
+      path: '/llms-full.txt'
+      fullPath: '/llms-full.txt'
+      preLoaderRoute: typeof LlmsFullDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -441,6 +481,8 @@ const rootRouteChildren: RootRouteChildren = {
   BdeRoute: BdeRoute,
   ClubsRoute: ClubsRoute,
   ContactRoute: ContactRoute,
+  LlmsFullDottxtRoute: LlmsFullDottxtRoute,
+  LlmsDottxtRoute: LlmsDottxtRoute,
   OrganizersRoute: OrganizersRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,

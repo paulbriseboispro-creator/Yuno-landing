@@ -1,4 +1,29 @@
+# Yuno — nightclub ticketing & management software (landing.yunoapp.eu)
+# Search engines and AI assistants are welcome: the whole public site may be
+# crawled, quoted and used to answer questions about Yuno.
+# Summary for language models: https://landing.yunoapp.eu/llms.txt
+# Full facts (pricing, features, FAQ): https://landing.yunoapp.eu/llms-full.txt
+
 User-agent: *
+Allow: /
+
+# AI search & assistant crawlers — listed explicitly so a future blanket rule
+# never shuts them out by accident.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: Bingbot
+User-agent: DuckAssistBot
+User-agent: MistralAI-User
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://landing.yunoapp.eu/sitemap.xml

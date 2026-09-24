@@ -26,9 +26,10 @@ import {
   type LandingLang,
 } from "@/i18n/landing-lang";
 import { common } from "@/content/common";
+import { ogImageUrl, organizationLd } from "@/i18n/landing-seo";
 
 // Pages that exist in both languages. Only these get the French redirect, so
-// asset/server routes (sitemap.xml, og-image.png) are never rewritten to /fr.
+// asset/server routes (sitemap.xml, llms.txt, og images) are never rewritten to /fr.
 const LOCALIZED_PATHS = new Set([
   "/",
   "/clubs",
@@ -132,8 +133,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: m.title },
         { name: "twitter:description", content: m.description },
-        { property: "og:image", content: "https://landing.yunoapp.eu/og-image.png" },
-        { name: "twitter:image", content: "https://landing.yunoapp.eu/og-image.png" },
+        { property: "og:image", content: ogImageUrl(locale) },
+        { name: "twitter:image", content: ogImageUrl(locale) },
       ],
       links: [
         { rel: "stylesheet", href: appCss },
@@ -144,17 +145,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap",
         },
       ],
-      scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "Yuno",
-            description: m.description,
-          }),
-        },
-      ],
+      // The landing routes emit the full @graph (Organization included) from
+      // landingHead(); every other page gets the same Organization entity here.
+      scripts: match.context.landing
+        ? []
+        : [
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                ...organizationLd(locale),
+              }),
+            },
+          ],
     };
   },
   shellComponent: RootShell,

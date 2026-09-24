@@ -6,9 +6,12 @@ import type { LandingLang } from "@/i18n/landing-lang";
 
 const en = {
   meta: {
-    title: "Yuno — Ticketing, VIP tables & bar for clubs and organizers",
+    title: "Nightclub ticketing, VIP tables & guest list software | Yuno",
     description:
-      "One platform sells your tickets, VIP tables and drinks, runs the door and the bar, and splits the money. €0 subscription, 0% commission on your price. Your customers stay yours.",
+      "Sell tickets, VIP tables and drinks, run the guest list and the door, and pay promoters automatically. €0 subscription, 0% commission. Your customers stay yours.",
+    ogAlt: "Yuno — nightclub ticketing and management software for clubs, organizers and promoters",
+    entity:
+      "Yuno is a nightclub ticketing and management platform for clubs, event organizers and promoters. One account sells tickets, guest-list spots, VIP tables and drinks, runs the door and table service, emails your customer base and splits the money between club, organizer and promoters — with a €0 subscription and 0% commission on your price.",
   },
   nav: {
     links: [
@@ -24,6 +27,7 @@ const en = {
   },
   hero: {
     chips: ["Live in Madrid & Paris", "€0 subscription"],
+    kicker: "Nightclub ticketing & management software for clubs, organizers and promoters",
     titleA: "Sell your nights.",
     titleB: "Keep your customers.",
     sub: "Tickets, VIP tables, drinks, the door and the money split — one platform for clubs, organizers and promoters. Your ticketing keeps your buyers. Yuno gives them back.",
@@ -108,7 +112,7 @@ const en = {
   },
   pillars: {
     eyebrow: "The product",
-    title: "Your whole night, in one workspace.",
+    title: "Ticketing, VIP tables, bar and door — your whole night in one workspace.",
     sub: "Three sales pillars on one event page, and every screen your team needs to run the night. Switch each pillar on or off per event — start with the guest list alone if you like.",
     items: [
       {
@@ -118,17 +122,17 @@ const en = {
       },
       {
         id: "tables",
-        title: "VIP tables & bottle service",
+        title: "VIP table booking & bottle service",
         body: "Customers pick a table on the floor plan, pay the deposit and pre-order bottles.",
       },
       {
         id: "bar",
-        title: "Drink ordering",
+        title: "QR drink ordering at the bar",
         body: "Order and pay at the bar's QR code. The bartender sees the queue on screen.",
       },
       {
         id: "door",
-        title: "Door & staff",
+        title: "Door scanner & staff",
         body: "One scanner for everything. Staff sign in with a PIN — no account, no training.",
       },
       {
@@ -138,7 +142,7 @@ const en = {
       },
       {
         id: "money",
-        title: "Payouts & splits",
+        title: "Payouts & revenue splits",
         body: "Stripe Connect under your name. Club × organizer contracts, statements, invoices.",
       },
     ],
@@ -165,7 +169,7 @@ const en = {
   },
   solutions: {
     eyebrow: "Solutions",
-    title: "Built for everyone who makes the night.",
+    title: "Built for nightclubs, organizers and promoters.",
     sub: "A club, an organizer, promoters: each gets their own interface in the same system — and each brings in the others.",
     tabs: [
       {
@@ -285,8 +289,8 @@ const en = {
   },
   compare: {
     eyebrow: "Compare",
-    title: "Compare with what you pay today.",
-    sub: "And who keeps your buyers once the night is over.",
+    title: "Yuno vs Shotgun, DICE, Eventbrite, Weezevent and Xceed.",
+    sub: "What you pay today — and who keeps your buyers once the night is over.",
     colPlatform: "Platform",
     colPays: "What the organizer pays",
     colKeeps: "Who keeps your buyers",
@@ -323,7 +327,7 @@ const en = {
       },
     ],
     extra:
-      "And none of them sells your VIP tables, runs your table service or computes your promoters' commissions. With Yuno it's the same account and the same price: zero.",
+      "And none of them puts tickets, VIP tables with table service, the bar, promoter commissions and the club × organizer split in the same account. With Yuno it's one account and one price: zero.",
     footnote:
       "Public prices checked on 21 September 2026 (publishers' pricing pages, Eventbrite help, Shotgun T&Cs, dice.fm/partners). Shotgun and DICE don't publish their organizer commission.",
   },
@@ -379,7 +383,7 @@ const en = {
   pricing: {
     eyebrow: "Pricing",
     title: "Free for pros. Paid by the night.",
-    sub: "No subscription, no commitment, no annual contract. Yuno earns a service fee added to your displayed price and paid by the customer — so Yuno only makes money when your night does.",
+    sub: "Ticketing with no subscription, no commission and no annual contract. Yuno earns a service fee added to your displayed price and paid by the customer — so Yuno only makes money when your night does.",
     colItem: "Item",
     colWho: "Who pays",
     colAmount: "Amount",
@@ -445,8 +449,16 @@ const en = {
     title: "Questions pros ask us.",
     items: [
       {
+        q: "What is Yuno?",
+        a: "Yuno is a nightclub ticketing and management platform for clubs, event organizers and promoters. One account sells tickets, guest-list spots, VIP tables and drinks, runs the door scanner and table service, emails your customer base and splits the money between club, organizer and promoters. €0 subscription, 0% commission on your price.",
+      },
+      {
         q: "Is it really free for me?",
         a: "Yes. €0 subscription and 0% commission on your price. Yuno's service fee (4% on tickets and tables with a €0.99 minimum, 3% on drinks) is added at checkout and paid by the customer. You only pay Stripe's card processing: 1.5% + €0.25.",
+      },
+      {
+        q: "Is Yuno an alternative to Shotgun, DICE, Eventbrite or Weezevent?",
+        a: "Yes, for club nights. Yuno sells tickets online like they do, but your buyers join your own customer base and are never shown other events. It also covers what ticketing platforms don't combine: VIP table booking with deposits, QR bar ordering, promoter commissions and the club × organizer split — with no subscription and 0% commission on your price.",
       },
       {
         q: "When do I get my money?",
@@ -461,6 +473,14 @@ const en = {
         a: "No. Each night has one switch per pillar. Start with the guest list alone, tables alone or full ticketing, and keep the rest of your setup as it is.",
       },
       {
+        q: "How do VIP table bookings and deposits work?",
+        a: "Customers pick a table on your interactive floor plan, choose a package, pay a deposit online or pay on site (your choice) and can pre-order bottles. On the night, the VIP host sees every table live, seats walk-ins and tracks each table's minimum spend. The service fee on tables is 4%, capped at €25, paid by the customer.",
+      },
+      {
+        q: "How are promoters tracked and paid?",
+        a: "Each promoter gets a personal link per night. Every ticket, table and guest-list entry they bring is attributed live, and their commission is computed automatically. Settlement runs in three tracked, timestamped steps. Agencies get a collective page with one link per promoter and consolidated sales. Yuno never holds the funds.",
+      },
+      {
         q: "How does a club and an organizer split a night?",
         a: "The contract is signed inside Yuno, pillar by pillar (tickets, tables, guest list) or as a tiered share of the night's revenue. At closing the club declares bar and door takings, the organizer accepts or disputes, and nothing moves without both sides agreeing.",
       },
@@ -471,6 +491,10 @@ const en = {
       {
         q: "How long does it take to get started?",
         a: "Create your account in two minutes. Setting up your venue or first event — floor plan, prices, staff, payment account — takes about an hour, and we can do it with you.",
+      },
+      {
+        q: "Where is Yuno available?",
+        a: "Yuno is live in Madrid, where it launched with the organizer Amoris and 22 partner clubs listed on the platform, and in Paris, where its guest list and door scanning have run on a real night. It works in English, French and Spanish, on the web with no app to install, plus an iOS app for customers.",
       },
     ],
   },
@@ -554,9 +578,13 @@ export type LandingContent = typeof en;
 
 const fr: LandingContent = {
   meta: {
-    title: "Yuno — Billetterie, tables VIP & bar pour clubs et organisateurs",
+    title: "Billetterie soirée, tables VIP & logiciel boîte de nuit | Yuno",
     description:
-      "Une seule plateforme vend vos billets, vos tables VIP et vos boissons, tient la porte et le bar, et répartit l'argent. 0 € d'abonnement, 0 % de commission sur votre prix. Vos clients restent les vôtres.",
+      "Billetterie sans commission pour clubs et organisateurs : billets, guest list, réservation de tables VIP, commande au bar et scan à l'entrée. 0 € d'abonnement.",
+    ogAlt:
+      "Yuno — billetterie et logiciel de gestion pour boîtes de nuit, organisateurs et promoteurs",
+    entity:
+      "Yuno est une billetterie et un logiciel de gestion pour boîtes de nuit, organisateurs de soirées et promoteurs. Un seul compte vend les billets, la guest list, les tables VIP et les boissons, tient la porte et le service en salle, écrit à votre base clients et répartit l'argent entre club, organisateur et promoteurs — avec 0 € d'abonnement et 0 % de commission sur votre prix.",
   },
   nav: {
     links: [
@@ -572,6 +600,7 @@ const fr: LandingContent = {
   },
   hero: {
     chips: ["En service à Madrid & Paris", "0 € d'abonnement"],
+    kicker: "Billetterie & logiciel de gestion pour boîtes de nuit, organisateurs et promoteurs",
     titleA: "Vendez vos soirées.",
     titleB: "Gardez vos clients.",
     sub: "Billets, tables VIP, boissons, la porte et la répartition de l'argent — une seule plateforme pour les clubs, les organisateurs et les promoteurs. Votre billetterie garde vos clients. Yuno vous les rend.",
@@ -656,7 +685,7 @@ const fr: LandingContent = {
   },
   pillars: {
     eyebrow: "Le produit",
-    title: "Toute votre soirée, dans un seul espace.",
+    title: "Billetterie, tables VIP, bar et porte : toute votre soirée dans un seul espace.",
     sub: "Trois piliers de vente sur une seule page d'événement, et tous les écrans dont votre équipe a besoin. Chaque pilier s'active ou se coupe par soirée — commencez par la guest list seule si vous voulez.",
     items: [
       {
@@ -666,17 +695,17 @@ const fr: LandingContent = {
       },
       {
         id: "tables",
-        title: "Tables VIP & bottle service",
+        title: "Réservation de tables VIP & bottle service",
         body: "Le client choisit sa table sur le plan, paie l'acompte et précommande ses bouteilles.",
       },
       {
         id: "bar",
-        title: "Commande de boissons",
+        title: "Commande au bar par QR code",
         body: "Commande et paiement au QR du bar. Le barman voit la file sur son écran.",
       },
       {
         id: "door",
-        title: "Porte & staff",
+        title: "Contrôle d'accès & staff",
         body: "Un seul scanner pour tout. Le staff se connecte par code PIN, sans compte ni formation.",
       },
       {
@@ -686,7 +715,7 @@ const fr: LandingContent = {
       },
       {
         id: "money",
-        title: "Paiements & répartition",
+        title: "Paiements & répartition des recettes",
         body: "Stripe Connect à votre nom. Contrats club × organisateur, décomptes, factures.",
       },
     ],
@@ -713,7 +742,7 @@ const fr: LandingContent = {
   },
   solutions: {
     eyebrow: "Solutions",
-    title: "Pensé pour tous ceux qui font la nuit.",
+    title: "Pour les boîtes de nuit, les organisateurs et les promoteurs.",
     sub: "Un club, un organisateur, des promoteurs : chacun a son interface dans le même système — et chacun y amène les autres.",
     tabs: [
       {
@@ -836,8 +865,8 @@ const fr: LandingContent = {
   },
   compare: {
     eyebrow: "Comparatif",
-    title: "Comparez avec ce que vous payez aujourd'hui.",
-    sub: "Et qui garde vos acheteurs une fois la soirée terminée.",
+    title: "Yuno face à Shotgun, Weezevent, Eventbrite, Xceed et DICE.",
+    sub: "Ce que vous payez aujourd'hui — et qui garde vos acheteurs une fois la soirée terminée.",
     colPlatform: "Plateforme",
     colPays: "Ce que l'organisateur paie",
     colKeeps: "Qui garde vos acheteurs",
@@ -874,7 +903,7 @@ const fr: LandingContent = {
       },
     ],
     extra:
-      "Et aucune de ces plateformes ne vend vos tables VIP, ne tient votre service en salle, ni ne calcule les commissions de vos promoteurs. Chez Yuno, c'est le même compte et le même prix : zéro.",
+      "Et aucune ne réunit billets, tables VIP avec service en salle, bar, commissions des promoteurs et répartition club × organisateur dans le même compte. Chez Yuno, c'est un seul compte et un seul prix : zéro.",
     footnote:
       "Tarifs publics relevés le 21 septembre 2026 (pages Tarifs des éditeurs, aide Eventbrite France, CGU Shotgun, dice.fm/partners). Shotgun et DICE ne publient pas leur commission organisateur.",
   },
@@ -930,7 +959,7 @@ const fr: LandingContent = {
   pricing: {
     eyebrow: "Tarifs",
     title: "Gratuit pour les pros. Payé par la soirée.",
-    sub: "Pas d'abonnement, pas d'engagement, pas de contrat annuel. Yuno se rémunère par des frais de service ajoutés au prix affiché et payés par le client — Yuno ne gagne de l'argent que quand votre soirée en gagne.",
+    sub: "Une billetterie sans abonnement, sans commission et sans engagement. Yuno se rémunère par des frais de service ajoutés au prix affiché et payés par le client — Yuno ne gagne de l'argent que quand votre soirée en gagne.",
     colItem: "Poste",
     colWho: "Qui paie",
     colAmount: "Montant",
@@ -996,8 +1025,16 @@ const fr: LandingContent = {
     title: "Les questions que les pros nous posent.",
     items: [
       {
+        q: "Qu'est-ce que Yuno ?",
+        a: "Yuno est une billetterie et un logiciel de gestion pour boîtes de nuit, organisateurs de soirées et promoteurs. Un seul compte vend les billets, la guest list, les tables VIP et les boissons, tient la porte et le service en salle, écrit à votre base clients et répartit l'argent entre club, organisateur et promoteurs. 0 € d'abonnement, 0 % de commission sur votre prix.",
+      },
+      {
         q: "C'est vraiment gratuit pour moi ?",
         a: "Oui. 0 € d'abonnement et 0 % de commission sur votre prix. Les frais de service Yuno (4 % sur les billets et tables avec un minimum de 0,99 €, 3 % sur les boissons) sont ajoutés à l'achat et payés par le client. Vous ne payez que le traitement bancaire Stripe : 1,5 % + 0,25 €.",
+      },
+      {
+        q: "Yuno est-il une alternative à Shotgun, Weezevent, Eventbrite ou DICE ?",
+        a: "Oui, pour les soirées en club. Yuno vend vos billets en ligne comme eux, mais vos acheteurs entrent dans votre propre base clients et ne se voient jamais proposer d'autres soirées. Yuno réunit aussi ce que les billetteries ne combinent pas : réservation de tables VIP avec acompte, commande au bar par QR code, commissions des promoteurs et répartition club × organisateur — sans abonnement et avec 0 % de commission sur votre prix.",
       },
       {
         q: "Quand est-ce que je touche mon argent ?",
@@ -1012,6 +1049,14 @@ const fr: LandingContent = {
         a: "Non. Chaque soirée porte un interrupteur par pilier. Commencez par la guest list seule, les tables seules ou la billetterie complète, et gardez le reste de vos outils.",
       },
       {
+        q: "Comment fonctionne la réservation de tables VIP avec acompte ?",
+        a: "Le client choisit sa table sur votre plan de salle interactif, prend une formule, paie un acompte en ligne ou règle sur place (au choix) et peut précommander ses bouteilles. Le soir même, l'hôte VIP voit chaque table en direct, place les arrivées sans réservation et suit le minimum de dépense de chaque carré. Les frais de service sur les tables sont de 4 %, plafonnés à 25 €, payés par le client.",
+      },
+      {
+        q: "Comment suivre et rémunérer ses promoteurs ?",
+        a: "Chaque promoteur reçoit un lien personnel par soirée. Chaque billet, table ou entrée en guest list qu'il apporte lui est attribué en direct, et sa commission se calcule automatiquement. Le règlement se fait en trois temps, tracés et horodatés. Les agences ont une page collective, un lien par promoteur et la vue consolidée des ventes. Yuno ne touche jamais les fonds.",
+      },
+      {
         q: "Comment un club et un organisateur se répartissent une soirée ?",
         a: "Le contrat se signe dans Yuno, pilier par pilier (billets, tables, guest list) ou au barème sur le chiffre d'affaires. À la fermeture, le club déclare le bar et les entrées, l'organisateur accepte ou conteste, et rien ne part sans l'accord des deux parties.",
       },
@@ -1022,6 +1067,10 @@ const fr: LandingContent = {
       {
         q: "Combien de temps pour démarrer ?",
         a: "Deux minutes pour créer votre compte. Configurer votre salle ou votre première soirée — plan, tarifs, staff, compte de paiement — prend environ une heure, et on peut le faire avec vous.",
+      },
+      {
+        q: "Où Yuno est-il disponible ?",
+        a: "Yuno est en service à Madrid, où il a été lancé avec l'organisateur Amoris et 22 clubs partenaires référencés sur la plateforme, et à Paris, où sa guest list et son scan à la porte ont tourné en soirée réelle. Il fonctionne en français, en anglais et en espagnol, sur le web sans app à installer, avec une app iOS pour vos clients.",
       },
     ],
   },
@@ -1106,9 +1155,12 @@ const fr: LandingContent = {
 
 const es: LandingContent = {
   meta: {
-    title: "Yuno — Venta de entradas, mesas VIP y barra para discotecas y promotores",
+    title: "Software para discotecas: entradas, reservados y RRPP | Yuno",
     description:
-      "Una sola plataforma vende tus entradas, mesas VIP y bebidas, gestiona la puerta y la barra, y reparte el dinero. 0 € de suscripción, 0 % de comisión sobre tu precio. Tus clientes siguen siendo tuyos.",
+      "Venta de entradas sin comisiones, listas, reservados y mesas VIP, copas con QR y comisiones de RRPP automáticas. 0 € de suscripción. Tus clientes siguen siendo tuyos.",
+    ogAlt: "Yuno — software para discotecas, organizadores y RRPP",
+    entity:
+      "Yuno es un software para discotecas, organizadores de eventos y RRPP. Una sola cuenta vende entradas, listas, reservados y copas, gestiona la puerta y el servicio en sala, escribe a tu base de clientes y reparte el dinero entre discoteca, organizador y RRPP — con 0 € de suscripción y 0 % de comisión sobre tu precio.",
   },
   nav: {
     links: [
@@ -1124,6 +1176,7 @@ const es: LandingContent = {
   },
   hero: {
     chips: ["Operativo en Madrid y París", "0 € de suscripción"],
+    kicker: "Software para discotecas, organizadores y RRPP: venta de entradas sin comisiones",
     titleA: "Vende tus noches.",
     titleB: "Quédate con tus clientes.",
     sub: "Entradas, mesas VIP, bebidas, la puerta y el reparto del dinero — una sola plataforma para discotecas, organizadores y promotores. Tu ticketera se queda con tus clientes. Yuno te los devuelve.",
@@ -1213,27 +1266,27 @@ const es: LandingContent = {
   },
   pillars: {
     eyebrow: "El producto",
-    title: "Toda tu noche, en un solo espacio.",
+    title: "Entradas, reservados, barra y puerta: toda tu noche en un solo espacio.",
     sub: "Tres pilares de venta en una sola página de evento, y todas las pantallas que tu equipo necesita. Activa o desactiva cada pilar por evento — empieza solo con la lista de invitados si quieres.",
     items: [
       {
         id: "tickets",
-        title: "Entradas y lista de invitados",
+        title: "Entradas y listas de invitados",
         body: "Tramos de precio, preventas, códigos promo, lista gratis hasta una hora, pases de Apple Wallet.",
       },
       {
         id: "tables",
-        title: "Mesas VIP y servicio de botellas",
+        title: "Reservados, mesas VIP y botellas",
         body: "El cliente elige su mesa en el plano, paga la señal y reserva sus botellas.",
       },
       {
         id: "bar",
-        title: "Pedidos de bebidas",
+        title: "Pedidos de copas con QR",
         body: "Pide y paga en el QR de la barra. El camarero ve la cola en su pantalla.",
       },
       {
         id: "door",
-        title: "Puerta y staff",
+        title: "Control de acceso y staff",
         body: "Un solo escáner para todo. El staff entra con un PIN, sin cuenta ni formación.",
       },
       {
@@ -1243,7 +1296,7 @@ const es: LandingContent = {
       },
       {
         id: "money",
-        title: "Cobros y repartos",
+        title: "Cobros y reparto de ingresos",
         body: "Stripe Connect a tu nombre. Contratos discoteca × organizador, cierres, facturas.",
       },
     ],
@@ -1270,8 +1323,8 @@ const es: LandingContent = {
   },
   solutions: {
     eyebrow: "Soluciones",
-    title: "Pensado para todos los que hacen la noche.",
-    sub: "Una discoteca, un organizador, promotores: cada uno tiene su interfaz en el mismo sistema — y cada uno trae a los demás.",
+    title: "Para discotecas, organizadores y RRPP.",
+    sub: "Una discoteca, un organizador, RRPP: cada uno tiene su interfaz en el mismo sistema — y cada uno trae a los demás.",
     tabs: [
       {
         id: "club",
@@ -1301,7 +1354,7 @@ const es: LandingContent = {
       },
       {
         id: "promoter",
-        label: "Promotores y agencias",
+        label: "RRPP y agencias",
         title: "Cada venta contada. Cada comisión calculada.",
         body: "Un enlace personal por noche: cada venta y cada entrada que generas se cuenta en directo y tu comisión se calcula sola. Las agencias tienen una página colectiva, un enlace por promotor y las ventas consolidadas por noche.",
         bullets: [
@@ -1390,8 +1443,8 @@ const es: LandingContent = {
   },
   compare: {
     eyebrow: "Comparativa",
-    title: "Compara con lo que pagas hoy.",
-    sub: "Y quién se queda con tus compradores cuando termina la noche.",
+    title: "Yuno frente a Xceed, Shotgun, Eventbrite, Weezevent y DICE.",
+    sub: "Lo que pagas hoy — y quién se queda con tus compradores cuando termina la noche.",
     colPlatform: "Plataforma",
     colPays: "Lo que paga el organizador",
     colKeeps: "Quién se queda con tus compradores",
@@ -1428,7 +1481,7 @@ const es: LandingContent = {
       },
     ],
     extra:
-      "Y ninguna de estas plataformas vende tus mesas VIP, gestiona tu servicio en sala ni calcula las comisiones de tus promotores. Con Yuno es la misma cuenta y el mismo precio: cero.",
+      "Y ninguna reúne entradas, reservados con servicio en sala, barra, comisiones de RRPP y el reparto discoteca × organizador en la misma cuenta. Con Yuno es una sola cuenta y un solo precio: cero.",
     footnote:
       "Precios públicos consultados el 21 de septiembre de 2026 (páginas de precios de cada plataforma, ayuda de Eventbrite, condiciones de Shotgun, dice.fm/partners). Shotgun y DICE no publican su comisión de organizador.",
   },
@@ -1484,7 +1537,7 @@ const es: LandingContent = {
   pricing: {
     eyebrow: "Precios",
     title: "Gratis para los profesionales. Lo paga la noche.",
-    sub: "Sin suscripción, sin permanencia, sin contrato anual. Yuno cobra una tarifa de servicio que se suma a tu precio y paga el cliente — Yuno solo gana dinero cuando tu noche lo gana.",
+    sub: "Venta de entradas sin suscripción, sin comisiones y sin permanencia. Yuno cobra una tarifa de servicio que se suma a tu precio y paga el cliente — Yuno solo gana dinero cuando tu noche lo gana.",
     colItem: "Concepto",
     colWho: "Quién paga",
     colAmount: "Importe",
@@ -1557,8 +1610,16 @@ const es: LandingContent = {
     title: "Lo que nos preguntan los profesionales.",
     items: [
       {
+        q: "¿Qué es Yuno?",
+        a: "Yuno es un software para discotecas, organizadores de eventos y RRPP. Una sola cuenta vende entradas, listas, reservados y copas, gestiona la puerta y el servicio en sala, escribe a tu base de clientes y reparte el dinero entre discoteca, organizador y RRPP. 0 € de suscripción, 0 % de comisión sobre tu precio.",
+      },
+      {
         q: "¿De verdad es gratis para mí?",
         a: "Sí. 0 € de suscripción y 0 % de comisión sobre tu precio. La tarifa de servicio de Yuno (4 % en entradas y mesas con un mínimo de 0,99 €, 3 % en bebidas) se suma al comprar y la paga el cliente. Tú solo pagas el procesamiento de Stripe: 1,5 % + 0,25 €.",
+      },
+      {
+        q: "¿Es Yuno una alternativa a Xceed, Shotgun, Eventbrite o DICE?",
+        a: "Sí, para las noches de discoteca. Yuno vende tus entradas online como ellas, pero tus compradores entran en tu propia base de clientes y nunca ven otros eventos. Además reúne lo que las ticketeras no combinan: reservados con señal, pedidos de copas con QR, comisiones de RRPP y el reparto discoteca × organizador — sin suscripción y con 0 % de comisión sobre tu precio.",
       },
       {
         q: "¿Cuándo recibo mi dinero?",
@@ -1573,6 +1634,14 @@ const es: LandingContent = {
         a: "No. Cada noche tiene un interruptor por pilar. Empieza solo con la lista de invitados, solo con las mesas o con la venta completa, y mantén el resto de tus herramientas.",
       },
       {
+        q: "¿Cómo funcionan los reservados y las mesas VIP con señal?",
+        a: "El cliente elige su mesa en tu plano interactivo, escoge un pack, paga la señal online o paga en el local (tú decides) y puede pre-pedir sus botellas. Esa noche, el anfitrión VIP ve cada mesa en directo, sienta a quien llega sin reserva y sigue el consumo mínimo de cada reservado. La tarifa de servicio en mesas es del 4 %, con un máximo de 25 €, y la paga el cliente.",
+      },
+      {
+        q: "¿Cómo se controlan y pagan las comisiones de los RRPP?",
+        a: "Cada RRPP recibe un enlace personal por noche. Cada entrada, mesa o inscrito en lista que trae se le atribuye en directo, y su comisión se calcula sola. La liquidación se hace en tres pasos registrados y con fecha y hora. Las agencias tienen una página colectiva, un enlace por RRPP y las ventas consolidadas. Yuno nunca toca los fondos.",
+      },
+      {
         q: "¿Cómo se reparten una noche la discoteca y el organizador?",
         a: "El contrato se firma en Yuno, por pilar (entradas, mesas, lista) o por tramos sobre la facturación. Al cierre, la discoteca declara la barra y la puerta, el organizador acepta o impugna, y nada se mueve sin el acuerdo de ambas partes.",
       },
@@ -1583,6 +1652,10 @@ const es: LandingContent = {
       {
         q: "¿Cuánto se tarda en empezar?",
         a: "Dos minutos para crear tu cuenta. Configurar tu local o tu primer evento — plano, precios, staff, cuenta de cobro — lleva cerca de una hora, y podemos hacerlo contigo.",
+      },
+      {
+        q: "¿Dónde está disponible Yuno?",
+        a: "Yuno funciona en Madrid, donde se lanzó con el organizador Amoris y 22 discotecas asociadas en la plataforma, y en París, donde su lista de invitados y el escaneo en puerta ya han funcionado en una noche real. Está en español, inglés y francés, en la web sin app que instalar, y con una app para iOS para tus clientes.",
       },
     ],
   },
@@ -1612,7 +1685,7 @@ const es: LandingContent = {
         links: [
           { label: "Discotecas", href: "#solutions" },
           { label: "Organizadores", href: "#solutions" },
-          { label: "Promotores y agencias", href: "#solutions" },
+          { label: "RRPP y agencias", href: "#solutions" },
         ],
       },
       {

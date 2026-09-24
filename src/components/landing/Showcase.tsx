@@ -28,6 +28,7 @@ export function Showcase() {
   const rotateX = useTransform(scrollYProgress, [0, 1], [reduce ? 0 : 16, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [reduce ? 1 : 0.94, 1]);
   const shot = SHOTS[active] ?? SHOTS.dashboard;
+  const shotLabel = s.tabs.find((x) => x.id === active)?.label ?? s.tabs[0].label;
 
   return (
     <section className="relative overflow-hidden px-4 pb-24 pt-24 sm:px-6 md:pb-32 md:pt-32">
@@ -82,7 +83,7 @@ export function Showcase() {
                   <motion.img
                     key={active}
                     src={shot.src}
-                    alt=""
+                    alt={`Yuno — ${s.eyebrow}: ${shotLabel}`}
                     loading="lazy"
                     decoding="async"
                     initial={{ opacity: 0, scale: 1.02 }}

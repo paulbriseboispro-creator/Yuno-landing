@@ -190,7 +190,17 @@ export function Hero() {
           </span>
         </motion.div>
 
+        {/* The H1 opens with a small, visible category line so the page's main
+            heading carries its search terms; the punchline stays the display. */}
         <h1 className="yl-h1 mx-auto mt-6 max-w-4xl text-balance text-zinc-950">
+          <motion.span
+            className="mx-auto mb-4 block max-w-[34rem] text-balance text-[13.5px] font-medium leading-snug tracking-normal text-zinc-500 md:mb-5 md:text-[15px]"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.04, ease: EASE }}
+          >
+            {t.hero.kicker}
+          </motion.span>
           <motion.span
             className="block"
             initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}

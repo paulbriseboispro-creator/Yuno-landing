@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import {
   Building2,
   Check,
@@ -48,8 +48,6 @@ export function Solutions() {
   const { t } = useLanding();
   const s = t.solutions;
   const [active, setActive] = useState(s.tabs[0].id);
-  const tab = s.tabs.find((x) => x.id === active) ?? s.tabs[0];
-  const meta = TAB_META[tab.id];
 
   return (
     <section
@@ -75,6 +73,7 @@ export function Solutions() {
                 key={x.id}
                 role="tab"
                 aria-selected={on}
+                aria-controls={`solution-${x.id}`}
                 onClick={() => setActive(x.id)}
                 className={cn(
                   "relative inline-flex shrink-0 items-center gap-2 rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors sm:px-4",
@@ -97,79 +96,87 @@ export function Solutions() {
       </FadeIn>
 
       <div className="relative mx-auto mt-12 max-w-6xl">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={tab.id}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.45, ease: EASE }}
-            className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14"
-          >
-            <div>
-              <h3 className="yl-h3 text-balance text-[26px] text-zinc-950 md:text-[32px]">
-                {tab.title}
-              </h3>
-              <p className="mt-4 text-pretty text-[15px] leading-relaxed text-zinc-500">
-                {tab.body}
-              </p>
-              <ul className="mt-6 space-y-3">
-                {tab.bullets.map((b, i) => (
-                  <motion.li
-                    key={b}
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.15 + i * 0.07, duration: 0.4, ease: EASE }}
-                    className="flex items-start gap-3 text-[14.5px] text-zinc-800"
-                  >
-                    <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-zinc-950">
-                      <Check className="size-3 text-white" strokeWidth={3} />
-                    </span>
-                    {b}
-                  </motion.li>
-                ))}
-              </ul>
-              <div className="mt-8">
-                <PrimaryCta role={tab.id as SignupRole}>{tab.cta}</PrimaryCta>
-              </div>
-            </div>
-
-            <div className="relative">
-              <BrowserFrame url={meta.url}>
-                <img
-                  src={meta.img}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  className="block aspect-[1800/1022] w-full object-cover object-top"
-                />
-              </BrowserFrame>
-              <motion.div
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 0.3, duration: 0.6, ease: EASE }}
-                className="absolute -bottom-6 left-4 right-4 sm:-left-6 sm:right-auto sm:w-[300px]"
-              >
-                <div className="yl-float-card yl-float flex items-center gap-3 p-3.5">
-                  <span
-                    className="flex size-10 shrink-0 items-center justify-center rounded-xl"
-                    style={{ background: `${meta.cardTint}1A` }}
-                  >
-                    <meta.CardIcon className="size-[18px]" style={{ color: meta.cardTint }} />
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block truncate text-[13.5px] font-semibold tracking-tight text-zinc-900">
-                      {tab.card.title}
-                    </span>
-                    <span className="block truncate text-[12px] text-zinc-500">
-                      {tab.card.meta}
-                    </span>
-                  </span>
+        {/* All three panels are rendered (inactive ones `hidden`) so the club,
+            organizer and promoter copy is in the server HTML for crawlers. */}
+        {s.tabs.map((tab) => {
+          const meta = TAB_META[tab.id];
+          const on = tab.id === active;
+          return (
+            <motion.div
+              key={tab.id}
+              id={`solution-${tab.id}`}
+              role="tabpanel"
+              hidden={!on}
+              initial={false}
+              animate={on ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+              transition={{ duration: 0.45, ease: EASE }}
+              className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14"
+            >
+              <div>
+                <h3 className="yl-h3 text-balance text-[26px] text-zinc-950 md:text-[32px]">
+                  {tab.title}
+                </h3>
+                <p className="mt-4 text-pretty text-[15px] leading-relaxed text-zinc-500">
+                  {tab.body}
+                </p>
+                <ul className="mt-6 space-y-3">
+                  {tab.bullets.map((b, i) => (
+                    <motion.li
+                      key={b}
+                      initial={false}
+                      animate={on ? { opacity: 1, x: 0 } : { opacity: 0, x: -8 }}
+                      transition={{ delay: 0.15 + i * 0.07, duration: 0.4, ease: EASE }}
+                      className="flex items-start gap-3 text-[14.5px] text-zinc-800"
+                    >
+                      <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-zinc-950">
+                        <Check className="size-3 text-white" strokeWidth={3} />
+                      </span>
+                      {b}
+                    </motion.li>
+                  ))}
+                </ul>
+                <div className="mt-8">
+                  <PrimaryCta role={tab.id as SignupRole}>{tab.cta}</PrimaryCta>
                 </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+              </div>
+
+              <div className="relative">
+                <BrowserFrame url={meta.url}>
+                  <img
+                    src={meta.img}
+                    alt={`Yuno — ${tab.label}: ${tab.title}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="block aspect-[1800/1022] w-full object-cover object-top"
+                  />
+                </BrowserFrame>
+                <motion.div
+                  initial={false}
+                  animate={on ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.95 }}
+                  transition={{ delay: 0.3, duration: 0.6, ease: EASE }}
+                  className="absolute -bottom-6 left-4 right-4 sm:-left-6 sm:right-auto sm:w-[300px]"
+                >
+                  <div className="yl-float-card yl-float flex items-center gap-3 p-3.5">
+                    <span
+                      className="flex size-10 shrink-0 items-center justify-center rounded-xl"
+                      style={{ background: `${meta.cardTint}1A` }}
+                    >
+                      <meta.CardIcon className="size-[18px]" style={{ color: meta.cardTint }} />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block truncate text-[13.5px] font-semibold tracking-tight text-zinc-900">
+                        {tab.card.title}
+                      </span>
+                      <span className="block truncate text-[12px] text-zinc-500">
+                        {tab.card.meta}
+                      </span>
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );
