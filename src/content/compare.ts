@@ -197,6 +197,10 @@ const shotgunFr: ComparePageContent = {
         a: "Shotgun Pro est l'espace organisateurs de Shotgun, une billetterie née à Paris en 2014 sur la scène électronique. Collectifs, clubs et festivals y créent leurs événements, vendent leurs billets, suivent leurs contacts et scannent les entrées avec l'app Shotgun Scan.",
       },
       {
+        q: "Comment fonctionne la billetterie Shotgun pour un organisateur ?",
+        a: "Sur Shotgun Pro, l'organisateur crée son événement et ses tarifs, vend ses billets sur l'app et le site Shotgun, suit ses contacts et scanne les entrées avec l'app Shotgun Scan. L'acheteur paie 2,75 % de frais de service (min. 0,30 €) et le solde est viré 24 h après l'événement. Avec Yuno, la même soirée vend aussi les tables VIP et les boissons, paie les promoteurs et verse l'argent sur votre propre compte au fil des ventes.",
+      },
+      {
         q: "Quels sont les frais de Shotgun ?",
         a: "Selon le centre d'aide de Shotgun, l'acheteur paie des frais de service de 2,75 % du montant de la transaction, avec un minimum de 0,30 €. La commission prélevée à l'organisateur n'est pas affichée sur son site : 10 % des ventes par défaut, négociable au contrat. Chez Yuno, la commission organisateur est de 0 % et l'acheteur paie 4 % (minimum 0,99 €).",
       },
@@ -456,6 +460,10 @@ const shotgunEn: ComparePageContent = {
       {
         q: "What is Shotgun Pro?",
         a: "Shotgun Pro is the organizer workspace of Shotgun, a ticketing platform founded in Paris in 2014 on the electronic music scene. Collectives, clubs and festivals use it to create events, sell tickets, follow their contacts and scan entries with the Shotgun Scan app.",
+      },
+      {
+        q: "How does Shotgun ticketing work for organizers?",
+        a: "On Shotgun Pro, organizers create the event and its prices, sell tickets on the Shotgun app and website, follow their contacts and scan entries with the Shotgun Scan app. Buyers pay a 2.75% service fee (min. €0.30) and the balance is paid out 24 hours after the event. With Yuno, the same night also sells VIP tables and drinks, pays promoters and puts the money in your own account as you sell.",
       },
       {
         q: "What are Shotgun's fees?",
