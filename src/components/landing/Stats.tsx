@@ -6,10 +6,10 @@ import { useLanding } from "./context";
 import { FadeIn, SectionHeader } from "./ui";
 
 const STAT_ICONS: { Icon: LucideIcon; bg: string; fg: string }[] = [
-  { Icon: Wallet, bg: "#EEF2FF", fg: "#4F46E5" },
-  { Icon: Check, bg: "#ECFDF5", fg: "#059669" },
-  { Icon: Layers, bg: "#FFF1F2", fg: "#E8192C" },
-  { Icon: Timer, bg: "#FFF7ED", fg: "#EA580C" },
+  { Icon: Wallet, bg: "#6366F126", fg: "#6366F1" },
+  { Icon: Check, bg: "#10B98126", fg: "#10B981" },
+  { Icon: Layers, bg: "#E8192C26", fg: "#E8192C" },
+  { Icon: Timer, bg: "#F9731626", fg: "#F97316" },
 ];
 
 // Counts the numeric part of a value like "€0", "30s", "95.3%" or "7 228" up
@@ -133,7 +133,7 @@ export function Problem() {
             </div>
             <div className="flex items-center gap-2 border-l border-zinc-100 px-6 py-3.5 text-zinc-900">
               <span className="flex size-4 items-center justify-center rounded-full bg-[var(--yuno-red)]">
-                <Check className="size-2.5 text-white" strokeWidth={3} />
+                <Check className="size-2.5 text-[#fff]" strokeWidth={3} />
               </span>
               {p.withYuno}
             </div>

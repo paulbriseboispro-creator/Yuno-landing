@@ -11,7 +11,8 @@
     "deploy": "bun run build && wrangler deploy",
     "cf:dev": "bun run build && wrangler dev",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "og": "bun scripts/og/render.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -83,6 +84,7 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^15.15.0",
     "nitro": "3.0.260603-beta",
+    "playwright-core": "1.56.1",
     "prettier": "^3.7.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",

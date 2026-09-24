@@ -18,7 +18,7 @@ export function FinalCta() {
 
   return (
     <section className="px-4 pb-24 sm:px-6 md:pb-32">
-      <FadeIn className="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-zinc-950 px-6 py-16 text-center text-white md:px-12 md:py-24">
+      <FadeIn className="yl-keep yl-edge relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-zinc-950 px-6 py-16 text-center text-white md:px-12 md:py-24">
         {/* concentric arcs echoing the hero */}
         <div aria-hidden className="pointer-events-none absolute left-1/2 top-full">
           {[360, 560, 760, 960, 1160].map((d) => (

@@ -20,6 +20,18 @@ import {
 } from "lucide-react";
 import { useLanding } from "./context";
 import { EASE, FounderCta, PrimaryCta } from "./ui";
+import amoris from "@/assets/clubs/mono/amoris.png";
+import copernico from "@/assets/clubs/mono/copernico.png";
+import fitz from "@/assets/clubs/mono/fitz.png";
+import flor from "@/assets/clubs/mono/flor.png";
+import gabana from "@/assets/clubs/mono/gabana.png";
+import kapital from "@/assets/clubs/mono/kapital.png";
+import losamantes from "@/assets/clubs/mono/losamantes.png";
+import opium from "@/assets/clubs/mono/opium.png";
+import rubicon from "@/assets/clubs/mono/rubicon.png";
+import santos from "@/assets/clubs/mono/santos.png";
+import verbena from "@/assets/clubs/mono/verbena.png";
+import woh from "@/assets/clubs/mono/woh.png";
 
 // Feature icons floating on the concentric arcs around the headline — Yuno's
 // equivalent of the reference layout's integration logos. `x` is in px from the
@@ -47,7 +59,7 @@ const ORBIT: {
   { Icon: Martini, color: "#8B5CF6", x: -420, y: 190, d: 1.1, tier: "md" },
   { Icon: Users, color: "#EC4899", x: -330, y: 420, d: 0.8, tier: "md", size: 46 },
   { Icon: Music2, color: "#D946EF", x: -660, y: -230, d: 1.2, tier: "wide", size: 44 },
-  { Icon: QrCode, color: "#18181B", x: -650, y: 300, d: 1.6, tier: "wide" },
+  { Icon: QrCode, color: "var(--color-zinc-900)", x: -650, y: 300, d: 1.6, tier: "wide" },
   { Icon: CreditCard, color: "#635BFF", x: 470, y: -110, d: 1.0, tier: "xl" },
   { Icon: BarChart3, color: "#F97316", x: 600, y: 30, d: 1.3, tier: "lg", size: 58 },
   { Icon: ScanLine, color: "#10B981", x: 420, y: 190, d: 1.1, tier: "md" },
@@ -57,11 +69,11 @@ const ORBIT: {
 ];
 
 const NOTIF_ICONS: Record<string, { Icon: LucideIcon; bg: string; fg: string }> = {
-  crown: { Icon: Crown, bg: "#FEF3C7", fg: "#B45309" },
-  ticket: { Icon: Ticket, bg: "#FEE2E2", fg: "#E8192C" },
-  scan: { Icon: ScanLine, bg: "#D1FAE5", fg: "#047857" },
-  mail: { Icon: Mail, bg: "#E0F2FE", fg: "#0369A1" },
-  wallet: { Icon: Wallet, bg: "#EDE9FE", fg: "#6D28D9" },
+  crown: { Icon: Crown, bg: "#D9770626", fg: "#D97706" },
+  ticket: { Icon: Ticket, bg: "#E8192C26", fg: "#E8192C" },
+  scan: { Icon: ScanLine, bg: "#05966926", fg: "#059669" },
+  mail: { Icon: Mail, bg: "#0284C726", fg: "#0284C7" },
+  wallet: { Icon: Wallet, bg: "#7C3AED26", fg: "#7C3AED" },
 };
 
 const RINGS = [520, 800, 1080, 1360];
@@ -100,7 +112,7 @@ export function Hero() {
       {/* Soft top wash, like the reference */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[720px] bg-[radial-gradient(60%_60%_at_50%_0%,#f4f4f6_0%,rgba(255,255,255,0)_70%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[720px] bg-[radial-gradient(60%_60%_at_50%_0%,var(--color-zinc-100)_0%,transparent_70%)]"
       />
 
       {/* Concentric arcs + orbit icons, centred on the headline */}
@@ -256,7 +268,7 @@ export function Hero() {
         </motion.div>
       </div>
 
-      <BrandStrip />
+      <ClientLogos />
     </section>
   );
 }
@@ -332,42 +344,62 @@ function NotificationStack() {
   );
 }
 
-// Wordmarks of the payment, pass and sharing rails Yuno runs on. Plain text
-// wordmarks in the reference's muted grey — these are rails, not customers.
-const BRANDS: { name: string; className: string }[] = [
-  { name: "stripe", className: "font-bold tracking-tight text-[22px] lowercase" },
-  { name: "Apple Pay", className: "font-semibold tracking-tight text-[19px]" },
-  { name: "Apple Wallet", className: "font-medium tracking-tight text-[18px]" },
-  { name: "VISA", className: "font-black italic tracking-tight text-[21px]" },
-  { name: "mastercard", className: "font-semibold tracking-tight text-[18px]" },
-  {
-    name: "Instagram",
-    className: "font-semibold italic tracking-tight text-[20px] [font-family:Georgia,serif]",
-  },
-  { name: "TikTok", className: "font-bold tracking-tight text-[19px]" },
-  { name: "WhatsApp", className: "font-semibold tracking-tight text-[18px]" },
-  { name: "App Store", className: "font-medium tracking-tight text-[18px]" },
+// Organizers and clubs already on Yuno. The logos are trimmed monochrome ink (generated from
+// the originals in src/assets/clubs) so the strip reads as one family; CSS
+// turns the ink white in dark mode. Heights follow 1/√aspect so a wide wordmark
+// and a round badge carry the same visual weight.
+const CLIENTS: { src: string; name: string; aspect: number }[] = [
+  { src: amoris, name: "Amoris", aspect: 3.88 },
+  { src: kapital, name: "Teatro Kapital", aspect: 2.49 },
+  { src: gabana, name: "Gabana", aspect: 1 },
+  { src: opium, name: "Opium Madrid", aspect: 3.11 },
+  { src: santos, name: "Santos Todos", aspect: 1.04 },
+  { src: copernico, name: "Copérnico", aspect: 4.21 },
+  { src: fitz, name: "Fitz", aspect: 1.87 },
+  { src: woh, name: "WOH", aspect: 2.02 },
+  { src: verbena, name: "Verbena", aspect: 1.02 },
+  { src: rubicon, name: "Rubicon", aspect: 5.31 },
+  { src: losamantes, name: "Los Amantes", aspect: 1.92 },
+  { src: flor, name: "La Flor", aspect: 0.75 },
 ];
 
-function BrandStrip() {
+function ClientLogos() {
   const { t } = useLanding();
   return (
     <div className="relative mx-auto mt-20 max-w-5xl px-4 sm:px-6 md:mt-24">
-      <p className="text-center text-[12.5px] text-zinc-400">{t.strip.label}</p>
-      <div className="relative mt-6 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+      <p className="flex items-center justify-center gap-2 text-center text-[12.5px] text-zinc-400">
+        <span className="relative flex size-1.5">
+          <span className="yl-pulse-ring absolute inset-0 rounded-full bg-[var(--yuno-red)]" />
+          <span className="relative size-1.5 rounded-full bg-[var(--yuno-red)]" />
+        </span>
+        {t.clients.label}
+      </p>
+      <div className="group relative mt-7 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
         <div
-          className="yl-marquee flex w-max items-center"
-          style={{ "--dur": "40s" } as CSSProperties}
+          className="yl-marquee flex w-max items-center group-hover:[animation-play-state:paused]"
+          style={{ "--dur": "48s" } as CSSProperties}
         >
-          {[...BRANDS, ...BRANDS].map((b, i) => (
-            <span
-              key={i}
-              aria-hidden={i >= BRANDS.length}
-              className={`mx-7 whitespace-nowrap text-zinc-400 transition-colors hover:text-zinc-700 md:mx-10 ${b.className}`}
-            >
-              {b.name}
-            </span>
-          ))}
+          {[...CLIENTS, ...CLIENTS].map((c, i) => {
+            const h = Math.min(46, Math.round(54 / Math.sqrt(c.aspect)));
+            return (
+              <div
+                key={i}
+                aria-hidden={i >= CLIENTS.length}
+                className="mx-6 flex h-14 shrink-0 items-center md:mx-9"
+              >
+                <img
+                  src={c.src}
+                  alt={i >= CLIENTS.length ? "" : c.name}
+                  title={c.name}
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                  className="yl-logo w-auto select-none"
+                  style={{ height: h }}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
