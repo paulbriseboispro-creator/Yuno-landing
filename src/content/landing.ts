@@ -454,7 +454,7 @@ const en = {
         {
           id: "marketing",
           title: "Marketing",
-          body: "Email, SMS, push notifications and Meta Ads from one base — 9 automations, tracked promoter links.",
+          body: "Email, SMS, tracked promoters, push notifications and Meta Ads from one base.",
         },
         {
           id: "finance",
@@ -1229,7 +1229,7 @@ const fr: LandingContent = {
         {
           id: "marketing",
           title: "Marketing",
-          body: "Email, SMS, notifications push et Meta Ads depuis une seule base — 9 automatisations, liens promoteurs suivis.",
+          body: "Email, SMS, promoteurs trackés, notifications push et Meta Ads depuis une seule base.",
         },
         {
           id: "finance",
@@ -2007,7 +2007,7 @@ const es: LandingContent = {
         {
           id: "marketing",
           title: "Marketing",
-          body: "Email, SMS, notificaciones push y Meta Ads desde una sola base — 9 automatizaciones, enlaces de promotor con seguimiento.",
+          body: "Email, SMS, promotores con seguimiento, notificaciones push y Meta Ads desde una sola base.",
         },
         {
           id: "finance",
