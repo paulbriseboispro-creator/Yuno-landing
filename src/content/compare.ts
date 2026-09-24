@@ -540,16 +540,16 @@ const fourvenuesEs: ComparePageContent = {
   competitor: "Fourvenues",
   updated: UPDATED,
   meta: {
-    title: "Alternativa a Fourvenues: precios públicos y 0 % de comisión | Yuno",
+    title: "Alternativa a Fourvenues con marketplace y 0 % de comisión | Yuno",
     description:
-      "¿Buscas una alternativa a Fourvenues? Compara precios, comisiones, reservados, RRPP y el reparto discoteca × promotora. Yuno: 0 € de suscripción y precios públicos.",
-    ogAlt: "Yuno vs Fourvenues — alternativa para discotecas, promotoras y RRPP",
+      "¿Buscas una alternativa a Fourvenues? Yuno gestiona tu noche y además te trae público: marketplace en App Store y web, comunidad en Instagram. 0 € de suscripción.",
+    ogAlt: "Yuno vs Fourvenues — software para discotecas con marketplace y comunidad de público",
   },
   breadcrumb: { home: "Yuno", current: "Alternativa a Fourvenues" },
   hero: {
     kicker: "Yuno vs Fourvenues — software para discotecas, promotoras y RRPP",
-    title: "La alternativa a Fourvenues con precios públicos y 0 % de comisión.",
-    sub: "Fourvenues es un software muy completo para discotecas. Yuno cubre la noche entera — entradas, listas, reservados, copas con QR, puerta y comisiones de RRPP — con una diferencia: todos sus precios están publicados, no hay cuota y el dinero llega directo a tu cuenta.",
+    title: "La alternativa a Fourvenues que, además de gestionar tu noche, te trae público.",
+    sub: "Fourvenues es un software muy completo para que el equipo de una discoteca venda y gestione sus noches. Yuno hace lo mismo — entradas, listas, reservados, puerta, RRPP — y además construye una comunidad de público alrededor de tus noches: un marketplace en la App Store y en web app, un Instagram que publica con regularidad y cada comprador en tu propia base. Con precios públicos y 0 € de cuota.",
     primary: "Crear mi cuenta gratis",
     secondary: "Hablar con el fundador",
     updatedLabel: "Información pública revisada el 24 de septiembre de 2026",
@@ -557,20 +557,54 @@ const fourvenuesEs: ComparePageContent = {
   tldr: {
     title: "En resumen",
     items: [
-      "Precio: Fourvenues no publica sus tarifas en su web (hay que pedir una demo). Yuno sí: 0 € de suscripción, 0 % de comisión sobre tu precio y una tarifa de servicio que paga el cliente.",
-      "Las dos plataformas cubren entradas, listas, reservados y RRPP. Fourvenues añade un TPV propio; Yuno añade el pedido de copas desde el móvil.",
-      "Discoteca × promotora: en Yuno el contrato se firma en la plataforma y el cierre lo aprueban las dos partes. No hemos encontrado esta función en las páginas públicas de Fourvenues.",
-      "Cobros: con Yuno el dinero llega por Stripe Connect a tu propia cuenta, a tu nombre. Fourvenues no publica cómo ni cuándo cobra la discoteca.",
+      "Público: Yuno tiene un marketplace para el público (app en la App Store y web app) y una comunidad en Instagram que da visibilidad a las noches de la plataforma. Fourvenues es un software para el equipo del local: sus apps (Pro, Access y POS) son para el staff, y el público compra por los enlaces del local o de sus RRPP.",
+      "Compra: con Yuno, el cliente compra en 30 segundos, sin cuenta, con tarjeta o Apple Pay, recibe su QR en Apple Wallet, y vuelve a encontrar tus noches en el marketplace de Yuno.",
+      "Gestión: las dos plataformas cubren entradas, listas, reservados y RRPP. Fourvenues añade un TPV propio; Yuno añade el pedido de copas desde el móvil y el reparto discoteca × promotora firmado en la plataforma.",
+      "Precio: Fourvenues no publica sus tarifas (se contratan tras una demo). Yuno sí: 0 € de suscripción, 0 % de comisión sobre tu precio y una tarifa de servicio que paga el cliente.",
     ],
   },
   table: {
     eyebrow: "Comparativa",
     title: "Yuno vs Fourvenues, punto por punto.",
-    sub: "Lo que cada uno publica — sin inventar lo que no.",
+    sub: "Primero lo que vive el público, después lo que gestiona tu equipo. Solo lo que cada uno publica.",
     colCriterion: "Criterio",
     colYuno: "Yuno",
     colOther: "Fourvenues",
     rows: [
+      {
+        criterion: "App para el público",
+        yuno: "App Yuno en la App Store (iOS) y web app: el público descubre las noches y compra sus entradas.",
+        other:
+          "No encontramos app para el público en las tiendas: sus apps (Pro, Access y POS) son para el equipo del local.",
+        verdict: "yuno",
+      },
+      {
+        criterion: "Descubrimiento de tus noches",
+        yuno: "Marketplace Yuno (Madrid: 22 discotecas asociadas en la plataforma) además de tu página, tus RRPP y tus redes.",
+        other:
+          "Webs por local y páginas por ciudad en web.fourvenues.com (p. ej. «Discotecas Madrid»), además de los enlaces de venta del local y de sus RRPP.",
+        verdict: "yuno",
+      },
+      {
+        criterion: "Comunidad",
+        yuno: "Instagram de Yuno que publica con regularidad las noches de la plataforma para el público.",
+        other:
+          "Comunicación centrada en el software para profesionales («Nightlife Operating System»).",
+        verdict: "yuno",
+      },
+      {
+        criterion: "Cómo compra el cliente",
+        yuno: "Desde tu página, el enlace de un RRPP o el marketplace: 30 s, sin cuenta, tarjeta o Apple Pay, QR por email y en Apple Wallet.",
+        other:
+          "Por el enlace de venta del local o del RRPP (también enviado por WhatsApp o SMS) y la web de cada local.",
+        verdict: "tie",
+      },
+      {
+        criterion: "Que el cliente vuelva",
+        yuno: "Cada comprador entra en tu base; 9 automatizaciones (nueva noche, carrito abandonado, «te echamos de menos»…), 15.000 emails/mes incluidos.",
+        other: "CRM con envíos de email y SMS y segmentación por gasto y asistencia, según su web.",
+        verdict: "tie",
+      },
       {
         criterion: "Precios publicados",
         yuno: "Sí: todos, en la web.",
@@ -596,16 +630,10 @@ const fourvenuesEs: ComparePageContent = {
         verdict: "yuno",
       },
       {
-        criterion: "Entradas y listas",
-        yuno: "Tramos de precio, preventas, códigos promo, lista gratis hasta una hora, cupos, QR nominativos, Apple Wallet.",
+        criterion: "Entradas, listas y reservados",
+        yuno: "Tramos de precio, lista gratis hasta una hora, QR nominativos; plano interactivo con señal, botellas pre-pedidas y consumo mínimo en directo.",
         other:
-          "Venta de entradas con precios dinámicos y extras; listas de invitados unificadas en una app.",
-        verdict: "tie",
-      },
-      {
-        criterion: "Reservados y mesas VIP",
-        yuno: "Plano interactivo, packs, señal o pago en el local, botellas pre-pedidas, consumo mínimo en directo.",
-        other: "Mapa interactivo que centraliza las reservas de RRPP y canales, con fianzas.",
+          "Venta con precios dinámicos y extras; listas unificadas; mapa interactivo de reservados con fianzas.",
         verdict: "tie",
       },
       {
@@ -628,18 +656,6 @@ const fourvenuesEs: ComparePageContent = {
         verdict: "tie",
       },
       {
-        criterion: "CRM y marketing",
-        yuno: "Cada comprador entra en tu base; 9 automatizaciones, 15.000 emails/mes incluidos, ventas atribuidas a cada campaña.",
-        other: "CRM con envíos de email y SMS y segmentación por gasto y asistencia, según su web.",
-        verdict: "tie",
-      },
-      {
-        criterion: "Empezar",
-        yuno: "Cuenta en dos minutos; activa un pilar por noche (por ejemplo, solo la lista).",
-        other: "Demo personalizada con el equipo comercial.",
-        verdict: "yuno",
-      },
-      {
         criterion: "Trayectoria",
         yuno: "Lanzado en 2026 en Madrid (Amoris y 22 discotecas asociadas) y en París.",
         other:
@@ -648,35 +664,36 @@ const fourvenuesEs: ComparePageContent = {
       },
     ],
     footnote:
-      "Fuentes: páginas públicas de Fourvenues (web y centro de ayuda), su nota de prensa de octubre de 2025 y prensa económica, revisadas el 24 de septiembre de 2026. Las condiciones que Fourvenues ofrece a cada cliente pueden variar.",
+      "Fuentes: páginas públicas de Fourvenues (web, webs de venta y centro de ayuda), sus apps en las tiendas, su nota de prensa de octubre de 2025 y prensa económica, revisadas el 24 de septiembre de 2026. Las condiciones que Fourvenues ofrece a cada cliente pueden variar.",
   },
   about: {
-    eyebrow: "Fourvenues",
-    title: "¿Qué es Fourvenues?",
+    eyebrow: "Dos enfoques",
+    title: "Fourvenues gestiona la noche. Yuno también te trae a la gente.",
     paragraphs: [
-      "Fourvenues es un software valenciano para discotecas, festivales, promotoras y beach clubs, antes conocido como Discocil. Se presenta como una plataforma todo en uno que centraliza venta de entradas, TPV, taquilla y reservas con datos en tiempo real, con apps para el equipo (Pro, Access y POS).",
-      "Es un actor consolidado: levantó 6,5 millones de euros en 2023 con Base10 y los Angels de Juan Roig y anunció su llegada a Estados Unidos en octubre de 2025. Sus precios no se publican: se contratan tras una demo.",
-      "Yuno parte de la misma noche con otra lógica: precios públicos, 0 € fijos, el dinero directamente en la cuenta de cada uno por Stripe Connect y un contrato discoteca × promotora firmado dentro de la plataforma.",
+      "Fourvenues es un software valenciano para discotecas, festivales, promotoras y beach clubs, antes conocido como Discocil. Se presenta como una plataforma todo en uno para el equipo: venta de entradas, TPV, taquilla y reservas con datos en tiempo real, con apps para el staff (Pro, Access y POS). Es un actor consolidado, que levantó 6,5 millones de euros en 2023 y llegó a Estados Unidos en 2025.",
+      "Con Fourvenues, el público llega a tus noches por tus propios canales: el enlace de tu local, los de tus RRPP y las webs de venta. Es una herramienta pensada para que el club venda y gestione.",
+      "Yuno cubre la misma gestión, pero parte de otra idea: una noche se llena con una comunidad. Por eso Yuno tiene su propio marketplace para el público — una app en la App Store y una web app — y un Instagram que publica con regularidad las noches de la plataforma. El cliente descubre tus noches, compra en 30 segundos y entra en tu base, desde donde le vuelves a escribir para la siguiente.",
     ],
   },
   choose: {
     eyebrow: "Cuál elegir",
-    title: "Fourvenues o Yuno: depende de tu noche.",
+    title: "Fourvenues o Yuno: depende de lo que necesitas.",
     other: {
       title: "Fourvenues encaja si…",
       items: [
-        "Necesitas también un TPV de barra y taquilla del mismo proveedor.",
+        "Buscas sobre todo una herramienta de gestión interna, con TPV de barra y taquilla del mismo proveedor.",
+        "Tu público ya llega solo por tus RRPP y tus enlaces, y no necesitas más visibilidad.",
         "Gestionas un grupo de locales grande y prefieres un contrato a medida tras una demo.",
       ],
     },
     yuno: {
       title: "Yuno encaja si…",
       items: [
-        "Quieres saber lo que pagas antes de hablar con nadie: precios públicos, 0 € de cuota.",
+        "Quieres que el público descubra tus noches también fuera de tus canales: marketplace en App Store y web, comunidad en Instagram.",
+        "Quieres una compra rápida para tu cliente — sin cuenta, Apple Pay, QR en Apple Wallet — y un marketplace donde vuelve a encontrarte.",
+        "Quieres que cada comprador vuelva: base de clientes propia y emails automáticos que leen la noche en directo.",
         "Eres una promotora que trabaja con discotecas y quieres el reparto firmado y aprobado por las dos partes.",
-        "Quieres el dinero directamente en tu cuenta, a tu nombre.",
-        "Quieres empezar con un solo pilar — la lista, los reservados o la venta — sin cambiarlo todo.",
-        "Quieres vender también en París, con la plataforma en español, francés e inglés.",
+        "Quieres saber lo que pagas antes de hablar con nadie: precios públicos, 0 € de cuota, el dinero directamente en tu cuenta.",
       ],
     },
   },
@@ -704,6 +721,14 @@ const fourvenuesEs: ComparePageContent = {
     title: "Preguntas frecuentes sobre Fourvenues y Yuno",
     items: [
       {
+        q: "¿Qué diferencia a Yuno de Fourvenues?",
+        a: "Las dos plataformas gestionan la noche de una discoteca: entradas, listas, reservados, puerta y RRPP. La diferencia es el público: Yuno tiene su propio marketplace (app en la App Store y web app) y una comunidad en Instagram que da visibilidad a tus noches, mientras que Fourvenues es un software para el equipo del local, cuyo público compra por los enlaces del club y de sus RRPP. Yuno publica además sus precios: 0 € de suscripción y 0 % de comisión.",
+      },
+      {
+        q: "¿Fourvenues tiene app para el público?",
+        a: "En las tiendas de apps, las aplicaciones de Fourvenues (Fourvenues Pro, Access y POS) están pensadas para el equipo del local. El público compra a través de los enlaces de venta del local o de sus RRPP y de las webs de venta en web.fourvenues.com. Yuno tiene una app para el público en la App Store y una web app donde se descubren y se compran las noches.",
+      },
+      {
         q: "¿Cuánto cuesta Fourvenues?",
         a: "Fourvenues no publica sus precios en su web (consultado el 24 de septiembre de 2026): hay que solicitar una demo al equipo comercial. Yuno publica los suyos: 0 € de suscripción, 0 % de comisión sobre tu precio y una tarifa de servicio que paga el cliente (4 % en entradas, mínimo 0,99 €).",
       },
@@ -717,25 +742,21 @@ const fourvenuesEs: ComparePageContent = {
       },
       {
         q: "¿Cuál es la mejor alternativa a Fourvenues para una promotora?",
-        a: "Una promotora que trabaja con varias discotecas necesita vender entradas, listas y reservados, pagar a sus RRPP y repartir la noche con cada club. Yuno lo hace en una sola cuenta, con el contrato discoteca × promotora firmado en la plataforma, 0 € de suscripción y precios públicos.",
-      },
-      {
-        q: "¿Cómo se pagan las comisiones de los RRPP en Yuno?",
-        a: "Cada RRPP recibe un enlace personal por noche. Cada entrada, mesa o inscrito en lista que trae se le atribuye en directo, su comisión se calcula sola y se liquida en tres pasos registrados con fecha y hora. Yuno nunca toca los fondos.",
+        a: "Una promotora que trabaja con varias discotecas necesita público, además de herramientas: vender entradas, listas y reservados, pagar a sus RRPP, repartir la noche con cada club y darse a conocer. Yuno lo hace en una sola cuenta, con un marketplace para el público, el contrato discoteca × promotora firmado en la plataforma, 0 € de suscripción y precios públicos.",
       },
       {
         q: "¿Puedo usar Yuno y Fourvenues a la vez?",
-        a: "Sí. Cada noche de Yuno se activa por pilares: puedes empezar solo con la lista o solo con los reservados y mantener el resto de tus herramientas hasta que decidas cambiar.",
+        a: "Sí. Cada noche de Yuno se activa por pilares: puedes empezar solo con la lista o solo con los reservados, publicar tus noches en el marketplace de Yuno y mantener el resto de tus herramientas hasta que decidas cambiar.",
       },
     ],
   },
   related: {
     title: "Sigue leyendo",
     links: [
-      { label: "Yuno frente a Xceed, Shotgun, Eventbrite, Weezevent y DICE", href: "/es#compare" },
+      { label: "El marketplace de Yuno (web app)", href: "https://yunoapp.eu" },
+      { label: "Yuno en Instagram", href: "https://www.instagram.com/yunoapp.eu/" },
       { label: "Precios de Yuno: 0 € de suscripción, 0 % de comisión", href: "/es#pricing" },
       { label: "Alternativa a Shotgun (EN)", href: "/alternative-shotgun" },
-      { label: "Alternative à Shotgun (FR)", href: "/fr/alternative-shotgun" },
     ],
   },
   sources: {
@@ -760,6 +781,10 @@ const fourvenuesEs: ComparePageContent = {
       {
         label: "Fourvenues — Free CRM software",
         url: "https://www.fourvenues.com/en/free-crm-software",
+      },
+      {
+        label: "Fourvenues — Web de venta «Discotecas Madrid»",
+        url: "https://web.fourvenues.com/en/discotecas-madrid/events",
       },
       {
         label: "Fourvenues — Nota de prensa, llegada a EE. UU. (oct. 2025)",

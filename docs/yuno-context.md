@@ -111,6 +111,10 @@ night by channel and promoter, live view (who is on your page now, what just sol
 - First Paris send: 7,228 emails, 95.3% delivered, 23.9% opens, 0.015% complaints, 7/10 re-clicked the automatic follow-up.
 - Yuno marketplace: iOS app on the App Store + web app, where the public discovers nights; every
   buyer still joins the organizer's own customer base. Web remains a full purchase path.
+- Vs Fourvenues (closest in features), lead on community / the public side: Yuno marketplace (App
+  Store + web app) and an Instagram that posts the platform's nights regularly, vs Fourvenues as a
+  tool for the venue team (staff apps Pro/Access/POS, sales via venue/RRPP links and venue/city web
+  pages). State it factually; never call their customer experience bad (comparative-ad rules).
 
 ## Getting started (self-serve since 24 Sep 2026)
 Clubs and organizers create their account alone in ~2 minutes: every "Create my free account"
