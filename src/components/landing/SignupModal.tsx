@@ -144,10 +144,7 @@ export function SignupModal() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <div
-            className="absolute inset-0 bg-zinc-950/40 backdrop-blur-[6px]"
-            onClick={closeSignup}
-          />
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-[6px]" onClick={closeSignup} />
           <motion.div
             ref={dialogRef}
             role="dialog"
@@ -221,7 +218,7 @@ export function SignupModal() {
                               : "border-zinc-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-[0_10px_24px_-14px_rgba(10,10,11,0.25)]",
                           )}
                         >
-                          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-zinc-100 text-zinc-800 transition-colors group-hover:bg-[var(--yuno-red)] group-hover:text-white">
+                          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-zinc-100 text-zinc-800 transition-colors group-hover:bg-[var(--yuno-red)] group-hover:text-[#fff]">
                             <Icon className="size-[18px]" />
                           </span>
                           <span>
@@ -335,7 +332,7 @@ export function SignupModal() {
                     transition={{ type: "spring", bounce: 0.5, duration: 0.6, delay: 0.1 }}
                     className="mx-auto flex size-16 items-center justify-center rounded-full bg-emerald-500 shadow-[0_0_0_8px_rgba(16,185,129,0.12)]"
                   >
-                    <Check className="size-8 text-white" strokeWidth={3} />
+                    <Check className="size-8 text-[#fff]" strokeWidth={3} />
                   </motion.span>
                   <h2 id="signup-title" className="yl-h3 mt-6 text-[26px] text-zinc-950">
                     {s.doneTitle}

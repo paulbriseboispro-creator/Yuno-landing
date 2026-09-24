@@ -34,25 +34,25 @@ Emailing: 15,000 emails/month included, then €10 per 10,000 (€24 per 25,000)
 
 ## Competitors (analyses in Paul's Drive, public pages checked June–Sept 2026)
 Only use the competitor facts from those docs — their Yuno columns are outdated. The landing
-matrix lives in `src/content/landing.ts` (`MARKS` + `compare`).
-- Shotgun: ticketing marketplace (5M+ app users). Buyer fee 2.75% min €0.30; organizer commission
-  negotiated, not published; payout after the event; 15% on resale / waiting list. Has CRM,
-  newsletters, push, promoter tracking links (commissions by hand), offline scan, door sales.
-  No VIP tables / floor plan, no bar, no staff roles, no club × organizer split.
+matrix lives in `src/content/landing.ts` (`MARKS` + `compare`): Shotgun, Weezevent, Xceed, Fourvenues.
+- Shotgun: ticketing marketplace (5M+ app users). 10% base commission on the organizer's sales,
+  contracts negotiable case by case (Paul, Sep 2026); buyer fees capped at €15; payout after the event;
+  15% on resale / waiting list. Has CRM, newsletters, push, promoter tracking links (commissions by
+  hand), offline scan, door sales. No VIP tables / floor plan, no bar, no staff roles, no club × organizer split.
 - Weezevent: generalist ticketing, 2.5% min €0.99 per ticket (can be passed to buyer), payouts every
   15 days. Paid add-ons: cashless WeezPay €1.20/transaction, staff WeezCrew from €1,000. CRM
   WeezTarget free. Seat numbering but no club floor plan, no promoter management, no splits.
 - Xceed: clubbing marketplace (5M+ users). 3% per ticket, 15% on marketplace sales, €29–59/month
   (lowest on annual). Floor plan + promoter accounting on Pro plan only. No bar, no CRM, no splits.
-- DICE (Fever since 2025): live-music ticket app, anti-scalping, fees baked into the price, organizer
-  pricing on quote. No guest list, tables, bar, staff tools, promoters or CRM.
 - Fourvenues: closest competitor (Pacha, BCM…), full club suite (tables, POS, promoters, CRM, live
   analytics, API, passes, channel manager). Subscription on quote after a demo. No club × organizer split.
+- DICE (Fever since 2025): live-music ticket app, organizer pricing on quote. Not shown on the landing
+  (no public info to compare).
 - NCLUB / NCLOUD (Spain): guest-list app + promoter CRM, €450/month or €999/month + VAT; no ticket sales.
 - Eventbrite: 3.5% + €0.49 (Essentials) to 5.5% + €0.99 (Pro) per ticket; generalist.
 - Yuno's real edges: whole night in one account (tables + bar + door + staff screens), club × organizer
   contract and statement (nobody else), promoter commissions computed, €0 / 0% at a published price
-  (vs quote-only Fourvenues/DICE/Shotgun), money on your own Stripe account as you sell.
+  (vs 10% at Shotgun, quote-only Fourvenues), money on your own Stripe account as you sell.
 - Emailing vs Brevo Standard (€79/mo) and Mailchimp Standard (€117.76/mo) for 50k emails; Yuno €34.
 
 ## Three sales pillars

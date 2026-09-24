@@ -10,10 +10,7 @@ export function Pricing() {
   const { t } = useLanding();
   const p = t.pricing;
   return (
-    <section
-      id="pricing"
-      className="relative scroll-mt-20 bg-[#fafafa] px-4 py-24 sm:px-6 md:py-32"
-    >
+    <section id="pricing" className="relative scroll-mt-20 bg-zinc-50 px-4 py-24 sm:px-6 md:py-32">
       <SectionHeader eyebrow={p.eyebrow} title={p.title} sub={p.sub} className="max-w-3xl" />
       <div className="mx-auto mt-14 grid max-w-6xl items-start gap-6 lg:grid-cols-[1.25fr_1fr]">
         <FadeIn>
@@ -58,7 +55,7 @@ export function Pricing() {
         </FadeIn>
 
         <FadeIn delay={0.1}>
-          <div className="relative overflow-hidden rounded-[1.5rem] bg-zinc-950 p-7 text-white shadow-[0_30px_60px_-24px_rgba(10,10,11,0.5)] md:p-8">
+          <div className="yl-keep yl-edge relative overflow-hidden rounded-[1.5rem] bg-zinc-950 p-7 text-white shadow-[0_30px_60px_-24px_rgba(10,10,11,0.5)] md:p-8">
             <div
               aria-hidden
               className="absolute -right-24 -top-24 size-72 rounded-full bg-[radial-gradient(closest-side,rgba(232,25,44,0.45),transparent)]"

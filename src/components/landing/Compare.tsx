@@ -8,6 +8,9 @@ import { EASE, FadeIn, PrimaryCta, SectionHeader } from "./ui";
 
 type Cell = { mark: Mark; note: string };
 
+// Yuno's column keeps a faint red wash in both themes.
+const YUNO_TINT = "bg-[rgba(232,25,44,0.06)]";
+
 function MarkIcon({ mark }: { mark: Mark }) {
   if (mark === "yes")
     return (
@@ -18,7 +21,7 @@ function MarkIcon({ mark }: { mark: Mark }) {
   if (mark === "partial")
     return (
       <span className="grid size-5 shrink-0 place-items-center rounded-full bg-amber-50">
-        <span className="size-2.5 rounded-full border-2 border-amber-500 bg-[linear-gradient(90deg,#f59e0b_50%,transparent_50%)]" />
+        <span className="size-2.5 rounded-full border-2 border-[#f59e0b] bg-[linear-gradient(90deg,#f59e0b_50%,transparent_50%)]" />
       </span>
     );
   return (
@@ -54,47 +57,58 @@ export function Compare() {
   const [sel, setSel] = useState(0);
   const them = c.competitors[sel];
   const total = c.features.length;
+  const cols = {
+    gridTemplateColumns: `minmax(220px,1.35fr) repeat(${c.competitors.length + 1}, minmax(0,1fr))`,
+  };
 
   return (
-    <section
-      id="compare"
-      className="relative scroll-mt-20 bg-[#fafafa] px-4 py-24 sm:px-6 md:py-32"
-    >
+    <section id="compare" className="relative scroll-mt-20 bg-zinc-50 px-4 py-24 sm:px-6 md:py-32">
       <SectionHeader eyebrow={c.eyebrow} title={c.title} sub={c.sub} />
 
       <FadeIn className="mx-auto mt-12 max-w-6xl">
         {/* Competitor picker — drives the highlighted column, the mobile
-            head-to-head and the verdict card below. */}
+            head-to-head and the verdict cards below. */}
         <div className="flex flex-col items-center gap-3">
           <span className="text-[12px] font-semibold uppercase tracking-[0.12em] text-zinc-400">
             {c.pick}
           </span>
-          <div className="flex flex-wrap justify-center gap-2" role="tablist">
-            {c.competitors.map((comp, i) => (
-              <button
-                key={comp.name}
-                type="button"
-                role="tab"
-                aria-selected={i === sel}
-                onClick={() => setSel(i)}
-                className={cn(
-                  "rounded-full border px-4 py-1.5 text-[13px] font-medium transition-colors",
-                  i === sel
-                    ? "border-zinc-950 bg-zinc-950 text-white"
-                    : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-300 hover:text-zinc-900",
-                )}
-              >
-                {comp.name}
-              </button>
-            ))}
+          <div
+            role="tablist"
+            className="inline-flex max-w-full gap-1 overflow-x-auto rounded-full border border-zinc-200 bg-white p-1 shadow-[0_1px_2px_rgba(10,10,11,0.04)]"
+          >
+            {c.competitors.map((comp, i) => {
+              const on = i === sel;
+              return (
+                <button
+                  key={comp.name}
+                  type="button"
+                  role="tab"
+                  aria-selected={on}
+                  onClick={() => setSel(i)}
+                  className={cn(
+                    "relative shrink-0 rounded-full px-3 py-2 text-[13px] font-medium transition-colors sm:px-4",
+                    on ? "text-white" : "text-zinc-600 hover:text-zinc-950",
+                  )}
+                >
+                  {on && (
+                    <motion.span
+                      layoutId="compare-pill"
+                      className="absolute inset-0 rounded-full bg-zinc-950"
+                      transition={{ type: "spring", bounce: 0.18, duration: 0.5 }}
+                    />
+                  )}
+                  <span className="relative">{comp.name}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
         {/* Desktop: the whole market at a glance. */}
         <div className="yl-card mt-8 hidden overflow-hidden lg:block">
-          <div className="grid grid-cols-[minmax(220px,1.35fr)_repeat(6,minmax(0,1fr))]">
+          <div className="grid" style={cols}>
             <div className="border-b border-zinc-100" />
-            <div className="relative border-b border-zinc-100 bg-[rgba(232,25,44,0.05)] px-4 py-5">
+            <div className={cn("relative border-b border-zinc-100 px-4 py-5", YUNO_TINT)}>
               <span aria-hidden className="absolute inset-x-0 top-0 h-[3px] bg-[var(--yuno-red)]" />
               <div className="text-[15px] font-semibold tracking-tight text-[var(--yuno-red)]">
                 {c.yuno.name}
@@ -129,7 +143,7 @@ export function Compare() {
                 <div className="border-b border-zinc-100 px-6 py-4 text-[14px] font-medium leading-snug text-zinc-900">
                   {feature}
                 </div>
-                <div className="border-b border-zinc-100 bg-[rgba(232,25,44,0.05)] px-4 py-4">
+                <div className={cn("border-b border-zinc-100 px-4 py-4", YUNO_TINT)}>
                   <MarkCell cell={c.yuno.cells[r]} strong />
                 </div>
                 {c.competitors.map((comp, i) => (
@@ -149,7 +163,12 @@ export function Compare() {
             <div className="px-6 py-5 text-[12px] font-semibold uppercase tracking-[0.12em] text-zinc-400">
               {c.costLabel}
             </div>
-            <div className="bg-[rgba(232,25,44,0.05)] px-4 py-5 text-[12px] font-medium leading-snug text-zinc-900">
+            <div
+              className={cn(
+                "px-4 py-5 text-[12px] font-medium leading-snug text-zinc-900",
+                YUNO_TINT,
+              )}
+            >
               {c.yuno.cost}
             </div>
             {c.competitors.map((comp, i) => (
@@ -169,7 +188,7 @@ export function Compare() {
         {/* Mobile & tablet: Yuno head-to-head with the picked platform. */}
         <div className="yl-card mt-8 overflow-hidden lg:hidden">
           <div className="grid grid-cols-2 border-b border-zinc-100">
-            <div className="relative bg-[rgba(232,25,44,0.05)] px-4 py-4">
+            <div className={cn("relative px-4 py-4", YUNO_TINT)}>
               <span aria-hidden className="absolute inset-x-0 top-0 h-[3px] bg-[var(--yuno-red)]" />
               <div className="text-[15px] font-semibold text-[var(--yuno-red)]">{c.yuno.name}</div>
               <div className="mt-1 text-[11px] font-semibold text-zinc-900">
@@ -184,7 +203,7 @@ export function Compare() {
             </div>
           </div>
           {c.features.map((feature, r) => (
-            <div key={feature} className="border-b border-zinc-100 last:border-b-0">
+            <div key={feature} className="border-b border-zinc-100">
               <div className="px-4 pt-4 text-[13px] font-medium text-zinc-900">{feature}</div>
               <div className="grid grid-cols-2">
                 <div className="px-4 pb-4 pt-2">
@@ -196,7 +215,7 @@ export function Compare() {
               </div>
             </div>
           ))}
-          <div className="border-t border-zinc-100 px-4 pt-4 text-[11px] font-semibold uppercase tracking-[0.12em] text-zinc-400">
+          <div className="px-4 pt-4 text-[11px] font-semibold uppercase tracking-[0.12em] text-zinc-400">
             {c.costLabel}
           </div>
           <div className="grid grid-cols-2">
@@ -250,7 +269,7 @@ export function Compare() {
           </motion.div>
         </AnimatePresence>
 
-        <div className="mt-6 flex flex-col items-start gap-5 rounded-2xl bg-zinc-950 p-6 text-white md:flex-row md:items-center md:justify-between md:p-8">
+        <div className="yl-keep yl-edge mt-6 flex flex-col items-start gap-5 rounded-2xl bg-zinc-950 p-6 text-white md:flex-row md:items-center md:justify-between md:p-8">
           <div className="flex gap-4">
             <ShieldCheck className="mt-0.5 size-6 shrink-0 text-[var(--yuno-red)]" />
             <p className="max-w-2xl text-pretty text-[15px] leading-relaxed text-zinc-300">

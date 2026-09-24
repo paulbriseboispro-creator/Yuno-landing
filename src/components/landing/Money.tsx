@@ -6,9 +6,9 @@ import { useLanding } from "./context";
 import { Eyebrow, FadeIn, PrimaryCta } from "./ui";
 
 const LIST_ICONS: { Icon: LucideIcon; bg: string; fg: string }[] = [
-  { Icon: Landmark, bg: "#EEF2FF", fg: "#635BFF" },
-  { Icon: Handshake, bg: "#FFF7ED", fg: "#EA580C" },
-  { Icon: Link2, bg: "#FFF1F2", fg: "#E8192C" },
+  { Icon: Landmark, bg: "#635BFF26", fg: "#635BFF" },
+  { Icon: Handshake, bg: "#F9731626", fg: "#F97316" },
+  { Icon: Link2, bg: "#E8192C26", fg: "#E8192C" },
 ];
 
 const round2 = (v: number) => Math.round(v * 100) / 100;
@@ -165,7 +165,7 @@ export function Money() {
               <Row label={m.calc.youKeep} value={eur2(r.keep)} strong />
             </dl>
 
-            <div className="mt-6 flex items-end justify-between gap-4 rounded-2xl bg-zinc-950 p-5 text-white">
+            <div className="yl-keep yl-edge mt-6 flex items-end justify-between gap-4 rounded-2xl bg-zinc-950 p-5 text-white">
               <span className="max-w-[10rem] text-[13px] leading-snug text-zinc-400">
                 {m.calc.net}
               </span>
