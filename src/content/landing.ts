@@ -4,11 +4,26 @@
 // Never mention student unions (BDE) on this page.
 import type { LandingLang } from "@/i18n/landing-lang";
 
+// Comparison matrix — one mark per feature row (see `compare.features`), taken
+// from the competitor analyses in Paul's Drive (public pages & help centers,
+// June–Sept 2026). Facts live here once; each language only translates notes.
+export type Mark = "yes" | "partial" | "no";
+const MARKS: Record<string, Mark[]> = {
+  yuno: ["yes", "yes", "yes", "yes", "yes", "yes", "yes", "yes"],
+  shotgun: ["yes", "no", "no", "partial", "partial", "no", "yes", "partial"],
+  weezevent: ["yes", "no", "partial", "partial", "no", "no", "yes", "yes"],
+  xceed: ["yes", "partial", "no", "partial", "partial", "no", "no", "partial"],
+  dice: ["partial", "no", "no", "partial", "no", "no", "no", "no"],
+  fourvenues: ["yes", "yes", "yes", "yes", "yes", "no", "yes", "no"],
+};
+const cells = (marks: Mark[], notes: string[]) =>
+  marks.map((mark, i) => ({ mark, note: notes[i] ?? "" }));
+
 const en = {
   meta: {
     title: "Yuno — Ticketing, VIP tables & bar for clubs and organizers",
     description:
-      "One platform sells your tickets, VIP tables and drinks, runs the door and the bar, and splits the money. €0 subscription, 0% commission on your price. Your customers stay yours.",
+      "One platform sells your tickets, VIP tables and drinks, runs the door and the bar, and splits the money. €0 subscription, 0% commission on your price, paid straight into your own account.",
   },
   nav: {
     links: [
@@ -25,8 +40,8 @@ const en = {
   hero: {
     chips: ["Live in Madrid & Paris", "€0 subscription"],
     titleA: "Sell your nights.",
-    titleB: "Keep your customers.",
-    sub: "Tickets, VIP tables, drinks, the door and the money split — one platform for clubs, organizers and promoters. Your ticketing keeps your buyers. Yuno gives them back.",
+    titleB: "Run them end to end.",
+    sub: "Tickets, VIP tables and drinks on one page — then the door, the bar and the money split between club, organizer and promoters. Where other platforms stop at the ticket, Yuno runs the whole night.",
     primary: "Create my free account",
     secondary: "Talk to the founder",
     note: ["No subscription", "0% commission on your price", "No app to install"],
@@ -81,8 +96,9 @@ const en = {
     rows: [
       {
         subject: "Tickets",
-        today: "A commission on every sale, and the buyer stays with the ticketing company.",
-        yuno: "The price you display is yours in full. The buyer lands in your customer base.",
+        today:
+          "A commission on every sale, a payout after the event, and the tool stops at the door.",
+        yuno: "The price you display is yours in full, paid into your own account as you sell.",
       },
       {
         subject: "VIP tables",
@@ -101,8 +117,8 @@ const en = {
       },
       {
         subject: "The data",
-        today: "At the ticketing company and on Instagram — never with you.",
-        yuno: "A living customer base, segments on real purchases, emails from the dashboard.",
+        today: "Scattered between the ticketing export, table DMs and a separate emailing tool.",
+        yuno: "Tickets, tables, drinks and guest list in one base — and emails that know what's left to sell.",
       },
     ],
   },
@@ -184,11 +200,11 @@ const en = {
       {
         id: "organizer",
         label: "Organizers",
-        title: "In a club or on your own. Your crowd stays yours.",
+        title: "In a club or on your own. Every split agreed in advance.",
         body: "Tickets, guest list, your own VIP tables, your team (admin, editor, scanner). Hosting in a club? The contract is signed in Yuno and the closing statement is approved by both sides — no more cash at 6 a.m.",
         bullets: [
           "Co-branded event page, live in ten minutes",
-          "Your buyers join your base — not a marketplace's",
+          "One customer base across tickets, tables and guest list",
           "Club contract pillar by pillar, or a tiered revenue share",
         ],
         cta: "Create my organizer account",
@@ -285,47 +301,121 @@ const en = {
   },
   compare: {
     eyebrow: "Compare",
-    title: "Compare with what you pay today.",
-    sub: "And who keeps your buyers once the night is over.",
-    colPlatform: "Platform",
-    colPays: "What the organizer pays",
-    colKeeps: "Who keeps your buyers",
-    rows: [
+    title: "Other platforms sell the ticket. Yuno runs the whole night.",
+    sub: "Selling tickets is the part everyone does. Here's what each platform covers once the doors open — and what it costs you.",
+    pick: "Compare Yuno with",
+    legend: { yes: "Included", partial: "Partly, or a paid add-on", no: "Not offered" },
+    covered: "fully covered",
+    costLabel: "What you pay",
+    strongLabel: "Where they're strong",
+    winLabel: "Where Yuno wins",
+    features: [
+      "Tickets & guest list",
+      "VIP tables on a floor plan, with deposits",
+      "Drink ordering at the bar",
+      "A screen per staff role — door, bar, VIP host",
+      "Promoter links, commissions computed for you",
+      "Club × organizer contract & night statement",
+      "CRM & emailing included",
+      "Public price, no subscription, no commitment",
+    ],
+    yuno: {
+      name: "Yuno",
+      kind: "The platform for the night",
+      cells: cells(MARKS.yuno, [
+        "Presales, promo codes, Apple Wallet",
+        "Deposit or pay on site",
+        "Order & pay by QR",
+        "PIN login, no training",
+        "Live leaderboard",
+        "Approved by both sides",
+        "15,000 emails/month",
+        "€0 · 0% on your price",
+      ]),
+      cost: "€0 subscription, 0% on your price. The customer pays a 4% service fee (min. €0.99).",
+    },
+    competitors: [
       {
-        name: "Yuno",
-        pays: "€0 subscription, 0% on your price. Emailing, CRM, tables and door included.",
-        keeps: "You.",
+        name: "Shotgun",
+        kind: "Ticketing marketplace",
+        cells: cells(MARKS.shotgun, [
+          "",
+          "",
+          "",
+          "Door scan only",
+          "Tracking; commissions by hand",
+          "",
+          "Newsletters & push",
+          "Organizer commission negotiated",
+        ]),
+        cost: "Organizer commission negotiated, not published.",
+        strong: "Its app audience can help fill a room from scratch.",
+        win: "Shotgun sells the ticket and stops at the door. Yuno also sells your tables and drinks, runs the night and splits the money — without a cut of your price, and paid as you sell rather than after the event.",
       },
       {
         name: "Weezevent",
-        pays: "2.5% (min. €0.99 incl. VAT) per ticket, can be passed on to the buyer.",
-        keeps: "You.",
-      },
-      {
-        name: "Eventbrite",
-        pays: "3.5% + €0.49 (Essentials) to 5.5% + €0.99 (Pro) per ticket.",
-        keeps: "The marketplace, which recommends other events to your crowd.",
+        kind: "General-purpose ticketing",
+        cells: cells(MARKS.weezevent, [
+          "",
+          "Seat numbering, not club tables",
+          "Cashless add-on, €1.20/transaction",
+          "Staff add-on from €1,000",
+          "",
+          "",
+          "WeezTarget",
+          "2.5% per ticket",
+        ]),
+        cost: "2.5% per ticket (min. €0.99), payouts every 15 days, paid add-ons for cashless and staff.",
+        strong: "Cheap and simple for any event, from festivals to conferences.",
+        win: "Built for every kind of event, not for clubs: no VIP tables, no promoter tracking, and every extra is a paid module. Yuno is built for the night, all in one account at €0.",
       },
       {
         name: "Xceed",
-        pays: "3% + 15% marketplace marketing commission, and €29–59/month subscription.",
-        keeps: "The marketplace.",
-      },
-      {
-        name: "Shotgun",
-        pays: "Organizer commission negotiated, not published. Buyer fees capped at €15.",
-        keeps: "The marketplace.",
+        kind: "Clubbing marketplace",
+        cells: cells(MARKS.xceed, [
+          "",
+          "Pro plan",
+          "",
+          "Multi-device scan",
+          "Pro plan",
+          "",
+          "",
+          "€29–59/month; best price on annual",
+        ]),
+        cost: "3% per ticket, 15% on marketplace sales, and €29–59/month.",
+        strong: "A clubbing marketplace with an audience in big European cities.",
+        win: "Its marketplace takes 15% of the sales it brings, on top of a monthly plan — and there's no bar, no CRM, no club × organizer split. Yuno includes all of it, at €0.",
       },
       {
         name: "DICE",
-        pays: "On quote, not published.",
-        keeps: "The marketplace.",
+        kind: "Live-music ticket app",
+        cells: cells(MARKS.dice, [
+          "Tickets, no guest list",
+          "",
+          "",
+          "Door scan only",
+          "",
+          "",
+          "",
+          "On quote",
+        ]),
+        cost: "On quote, not published.",
+        strong: "A fan app for live music, with anti-scalping built in.",
+        win: "A ticket app, not a tool to run a venue: no guest list, no tables, no bar, no staff screens. Yuno covers the whole night, with a price you can read before signing.",
+      },
+      {
+        name: "Fourvenues",
+        kind: "Enterprise club software",
+        cells: cells(MARKS.fourvenues, ["", "", "POS", "", "", "", "", "On quote, after a demo"]),
+        cost: "Subscription on quote, after a demo.",
+        strong: "A complete club suite, used by some of the biggest venues in the world.",
+        win: "The closest to Yuno in scope — but priced on quote after a sales demo, and with no club × organizer split. Yuno publishes its price (€0) and your account is open in two minutes.",
       },
     ],
     extra:
-      "And none of them sells your VIP tables, runs your table service or computes your promoters' commissions. With Yuno it's the same account and the same price: zero.",
+      "Only Fourvenues covers as much of the night — on quote, after a demo. With Yuno, tickets, tables, bar, door, promoters and the split live in the same account, at a published price: €0.",
     footnote:
-      "Public prices checked on 21 September 2026 (publishers' pricing pages, Eventbrite help, Shotgun T&Cs, dice.fm/partners). Shotgun and DICE don't publish their organizer commission.",
+      "Based on each platform's public pages and help centers (Shotgun, Weezevent, Xceed, DICE, Fourvenues), checked between June and September 2026. Shotgun, DICE and Fourvenues don't publish their organizer pricing.",
   },
   email: {
     eyebrow: "CRM & emailing",
@@ -476,7 +566,7 @@ const en = {
   },
   final: {
     title: "Your next night deserves better tools.",
-    sub: "Create your pro account in two minutes. €0 subscription, 0% commission, and your customers stay yours.",
+    sub: "Create your pro account in two minutes. €0 subscription, 0% commission, and the money in your own account.",
     placeholder: "Your work email",
     primary: "Create my free account",
     secondary: "Talk to the founder",
@@ -556,7 +646,7 @@ const fr: LandingContent = {
   meta: {
     title: "Yuno — Billetterie, tables VIP & bar pour clubs et organisateurs",
     description:
-      "Une seule plateforme vend vos billets, vos tables VIP et vos boissons, tient la porte et le bar, et répartit l'argent. 0 € d'abonnement, 0 % de commission sur votre prix. Vos clients restent les vôtres.",
+      "Une seule plateforme vend vos billets, vos tables VIP et vos boissons, tient la porte et le bar, et répartit l'argent. 0 € d'abonnement, 0 % de commission sur votre prix, versé directement sur votre compte.",
   },
   nav: {
     links: [
@@ -573,8 +663,8 @@ const fr: LandingContent = {
   hero: {
     chips: ["En service à Madrid & Paris", "0 € d'abonnement"],
     titleA: "Vendez vos soirées.",
-    titleB: "Gardez vos clients.",
-    sub: "Billets, tables VIP, boissons, la porte et la répartition de l'argent — une seule plateforme pour les clubs, les organisateurs et les promoteurs. Votre billetterie garde vos clients. Yuno vous les rend.",
+    titleB: "Pilotez-les de A à Z.",
+    sub: "Billets, tables VIP et boissons sur une seule page — puis la porte, le bar et la répartition de l'argent entre club, organisateur et promoteurs. Là où les billetteries s'arrêtent au billet, Yuno fait tourner toute la soirée.",
     primary: "Créer mon compte gratuit",
     secondary: "Parler au fondateur",
     note: ["Sans abonnement", "0 % de commission sur votre prix", "Aucune app à installer"],
@@ -629,8 +719,9 @@ const fr: LandingContent = {
     rows: [
       {
         subject: "Les billets",
-        today: "Une commission sur chaque vente, et l'acheteur reste chez la billetterie.",
-        yuno: "Le prix affiché vous revient en entier. L'acheteur entre dans votre base clients.",
+        today:
+          "Une commission sur chaque vente, un virement après la soirée, et l'outil s'arrête à la porte.",
+        yuno: "Le prix affiché vous revient en entier, versé sur votre compte au fil des ventes.",
       },
       {
         subject: "Les tables VIP",
@@ -649,8 +740,9 @@ const fr: LandingContent = {
       },
       {
         subject: "La donnée",
-        today: "Chez la billetterie et sur Instagram — jamais chez vous.",
-        yuno: "Base clients vivante, segments sur les achats réels, emails depuis le dashboard.",
+        today:
+          "Éparpillée entre l'export de la billetterie, les DM des tables et un outil d'emailing à part.",
+        yuno: "Billets, tables, boissons et guest list dans une seule base — et des emails qui savent ce qu'il reste à vendre.",
       },
     ],
   },
@@ -735,11 +827,11 @@ const fr: LandingContent = {
       {
         id: "organizer",
         label: "Organisateurs",
-        title: "En club ou sans club. Votre public reste le vôtre.",
+        title: "En club ou sans club. Chaque partage signé d'avance.",
         body: "Billets, guest list, vos propres tables VIP, votre équipe (admin, éditeur, scanner). Vous jouez dans un club ? Le contrat se signe dans Yuno et le décompte de fin de soirée est validé par les deux parties — fini le cash à 6 h du matin.",
         bullets: [
           "Page de soirée co-brandée, en ligne en dix minutes",
-          "Vos acheteurs entrent dans votre base — pas dans celle d'une marketplace",
+          "Une seule base clients pour billets, tables et guest list",
           "Contrat avec le club pilier par pilier, ou au barème sur le CA",
         ],
         cta: "Créer mon compte organisateur",
@@ -836,47 +928,130 @@ const fr: LandingContent = {
   },
   compare: {
     eyebrow: "Comparatif",
-    title: "Comparez avec ce que vous payez aujourd'hui.",
-    sub: "Et qui garde vos acheteurs une fois la soirée terminée.",
-    colPlatform: "Plateforme",
-    colPays: "Ce que l'organisateur paie",
-    colKeeps: "Qui garde vos acheteurs",
-    rows: [
+    title: "Les autres vendent le billet. Yuno fait tourner toute la soirée.",
+    sub: "Vendre des billets, tout le monde sait faire. Voici ce que chaque plateforme couvre une fois les portes ouvertes — et ce qu'elle vous coûte.",
+    pick: "Comparer Yuno avec",
+    legend: { yes: "Inclus", partial: "En partie, ou module payant", no: "Absent" },
+    covered: "entièrement couverts",
+    costLabel: "Ce que vous payez",
+    strongLabel: "Leur point fort",
+    winLabel: "Là où Yuno gagne",
+    features: [
+      "Billetterie & guest list",
+      "Tables VIP sur plan de salle, avec acompte",
+      "Commande de boissons au bar",
+      "Un écran par rôle staff — porte, bar, hôte VIP",
+      "Liens promoteurs, commissions calculées pour vous",
+      "Contrat club × organisateur & décompte de soirée",
+      "CRM & emailing inclus",
+      "Prix public, sans abonnement ni engagement",
+    ],
+    yuno: {
+      name: "Yuno",
+      kind: "La plateforme de la nuit",
+      cells: cells(MARKS.yuno, [
+        "Préventes, codes promo, Apple Wallet",
+        "Acompte ou règlement sur place",
+        "Commande et paiement par QR",
+        "Connexion par PIN, sans formation",
+        "Classement en direct",
+        "Validé par les deux parties",
+        "15 000 emails/mois",
+        "0 € · 0 % sur votre prix",
+      ]),
+      cost: "0 € d'abonnement, 0 % sur votre prix. Le client paie 4 % de frais de service (min. 0,99 €).",
+    },
+    competitors: [
       {
-        name: "Yuno",
-        pays: "0 € d'abonnement, 0 % sur votre prix. Emailing, CRM, tables et porte compris.",
-        keeps: "Vous.",
+        name: "Shotgun",
+        kind: "Billetterie marketplace",
+        cells: cells(MARKS.shotgun, [
+          "",
+          "",
+          "",
+          "Scan à l'entrée uniquement",
+          "Suivi ; commissions à la main",
+          "",
+          "Newsletters & push",
+          "Commission organisateur négociée",
+        ]),
+        cost: "Commission organisateur négociée, non publiée.",
+        strong: "L'audience de son app aide à remplir une salle en partant de zéro.",
+        win: "Shotgun vend le billet et s'arrête à la porte. Yuno vend aussi vos tables et vos boissons, fait tourner la soirée et répartit l'argent — sans commission sur votre prix, et versé au fil des ventes plutôt qu'après la soirée.",
       },
       {
         name: "Weezevent",
-        pays: "2,5 % (min. 0,99 € TTC) par billet, répercutables sur l'acheteur.",
-        keeps: "Vous.",
-      },
-      {
-        name: "Eventbrite",
-        pays: "3,5 % + 0,49 € (Essentials) à 5,5 % + 0,99 € (Pro) par billet.",
-        keeps: "La marketplace, qui recommande d'autres soirées à votre public.",
+        kind: "Billetterie généraliste",
+        cells: cells(MARKS.weezevent, [
+          "",
+          "Places numérotées, pas de tables de club",
+          "Module cashless, 1,20 €/transaction",
+          "Module staff dès 1 000 €",
+          "",
+          "",
+          "WeezTarget",
+          "2,5 % par billet",
+        ]),
+        cost: "2,5 % par billet (min. 0,99 €), virements tous les 15 jours, modules cashless et staff payants.",
+        strong: "Simple et peu chère pour tout type d'événement, du festival au séminaire.",
+        win: "Pensée pour tous les événements, pas pour les clubs : pas de tables VIP, pas de suivi promoteurs, et chaque extra est un module payant. Yuno est fait pour la nuit, tout dans un seul compte à 0 €.",
       },
       {
         name: "Xceed",
-        pays: "3 % + 15 % de commission marketing marketplace, et 29 à 59 €/mois d'abonnement.",
-        keeps: "La marketplace.",
-      },
-      {
-        name: "Shotgun",
-        pays: "Commission organisateur négociée, non publiée. Frais acheteur plafonnés à 15 €.",
-        keeps: "La marketplace.",
+        kind: "Marketplace clubbing",
+        cells: cells(MARKS.xceed, [
+          "",
+          "Formule Pro",
+          "",
+          "Scan multi-appareils",
+          "Formule Pro",
+          "",
+          "",
+          "29–59 €/mois ; meilleur prix à l'année",
+        ]),
+        cost: "3 % par billet, 15 % sur les ventes marketplace, et 29 à 59 €/mois.",
+        strong: "Une marketplace clubbing avec une audience dans les grandes villes européennes.",
+        win: "Sa marketplace prend 15 % des ventes qu'elle apporte, en plus d'un abonnement — et il n'y a ni bar, ni CRM, ni répartition club × organisateur. Yuno inclut tout ça, à 0 €.",
       },
       {
         name: "DICE",
-        pays: "Sur devis, non publié.",
-        keeps: "La marketplace.",
+        kind: "App billetterie musique live",
+        cells: cells(MARKS.dice, [
+          "Billets, pas de guest list",
+          "",
+          "",
+          "Scan à l'entrée uniquement",
+          "",
+          "",
+          "",
+          "Sur devis",
+        ]),
+        cost: "Sur devis, non publié.",
+        strong: "Une app de fans pour la musique live, avec l'anti-revente intégré.",
+        win: "Une app de billets, pas un outil pour exploiter un lieu : ni guest list, ni tables, ni bar, ni écrans staff. Yuno couvre toute la soirée, avec un prix lisible avant de signer.",
+      },
+      {
+        name: "Fourvenues",
+        kind: "Logiciel club haut de gamme",
+        cells: cells(MARKS.fourvenues, [
+          "",
+          "",
+          "Caisse (POS)",
+          "",
+          "",
+          "",
+          "",
+          "Sur devis, après une démo",
+        ]),
+        cost: "Abonnement sur devis, après une démo.",
+        strong: "Une suite club complète, utilisée par certains des plus grands clubs du monde.",
+        win: "Le plus proche de Yuno en périmètre — mais tarifé sur devis après une démo commerciale, et sans répartition club × organisateur. Yuno publie son prix (0 €) et votre compte est ouvert en deux minutes.",
       },
     ],
     extra:
-      "Et aucune de ces plateformes ne vend vos tables VIP, ne tient votre service en salle, ni ne calcule les commissions de vos promoteurs. Chez Yuno, c'est le même compte et le même prix : zéro.",
+      "Seul Fourvenues couvre autant de la soirée — sur devis, après une démo. Chez Yuno, billets, tables, bar, porte, promoteurs et répartition vivent dans le même compte, à un prix public : 0 €.",
     footnote:
-      "Tarifs publics relevés le 21 septembre 2026 (pages Tarifs des éditeurs, aide Eventbrite France, CGU Shotgun, dice.fm/partners). Shotgun et DICE ne publient pas leur commission organisateur.",
+      "D'après les pages publiques et centres d'aide de chaque plateforme (Shotgun, Weezevent, Xceed, DICE, Fourvenues), relevés entre juin et septembre 2026. Shotgun, DICE et Fourvenues ne publient pas leurs tarifs organisateur.",
   },
   email: {
     eyebrow: "CRM & emailing",
@@ -1027,7 +1202,7 @@ const fr: LandingContent = {
   },
   final: {
     title: "Votre prochaine soirée mérite de meilleurs outils.",
-    sub: "Créez votre compte pro en deux minutes. 0 € d'abonnement, 0 % de commission, et vos clients restent les vôtres.",
+    sub: "Créez votre compte pro en deux minutes. 0 € d'abonnement, 0 % de commission, et l'argent sur votre propre compte.",
     placeholder: "Votre email pro",
     primary: "Créer mon compte gratuit",
     secondary: "Parler au fondateur",
@@ -1108,7 +1283,7 @@ const es: LandingContent = {
   meta: {
     title: "Yuno — Venta de entradas, mesas VIP y barra para discotecas y promotores",
     description:
-      "Una sola plataforma vende tus entradas, mesas VIP y bebidas, gestiona la puerta y la barra, y reparte el dinero. 0 € de suscripción, 0 % de comisión sobre tu precio. Tus clientes siguen siendo tuyos.",
+      "Una sola plataforma vende tus entradas, mesas VIP y bebidas, gestiona la puerta y la barra, y reparte el dinero. 0 € de suscripción, 0 % de comisión sobre tu precio, directo a tu propia cuenta.",
   },
   nav: {
     links: [
@@ -1125,8 +1300,8 @@ const es: LandingContent = {
   hero: {
     chips: ["Operativo en Madrid y París", "0 € de suscripción"],
     titleA: "Vende tus noches.",
-    titleB: "Quédate con tus clientes.",
-    sub: "Entradas, mesas VIP, bebidas, la puerta y el reparto del dinero — una sola plataforma para discotecas, organizadores y promotores. Tu ticketera se queda con tus clientes. Yuno te los devuelve.",
+    titleB: "Gestiónalas de la A a la Z.",
+    sub: "Entradas, mesas VIP y bebidas en una sola página — y después la puerta, la barra y el reparto del dinero entre discoteca, organizador y promotores. Donde las ticketeras se quedan en la entrada, Yuno gestiona toda la noche.",
     primary: "Crear mi cuenta gratis",
     secondary: "Hablar con el fundador",
     note: ["Sin suscripción", "0 % de comisión sobre tu precio", "Sin app que instalar"],
@@ -1185,8 +1360,9 @@ const es: LandingContent = {
     rows: [
       {
         subject: "Las entradas",
-        today: "Una comisión en cada venta, y el comprador se queda en la ticketera.",
-        yuno: "El precio anunciado es íntegramente tuyo. El comprador entra en tu base de clientes.",
+        today:
+          "Una comisión en cada venta, el cobro después del evento, y la herramienta se queda en la puerta.",
+        yuno: "El precio anunciado es íntegramente tuyo, en tu propia cuenta a medida que vendes.",
       },
       {
         subject: "Las mesas VIP",
@@ -1206,8 +1382,9 @@ const es: LandingContent = {
       },
       {
         subject: "Los datos",
-        today: "En la ticketera y en Instagram — nunca contigo.",
-        yuno: "Una base de clientes viva, segmentos por compras reales, emails desde el panel.",
+        today:
+          "Repartidos entre el export de la ticketera, los DM de las mesas y una herramienta de email aparte.",
+        yuno: "Entradas, mesas, bebidas y lista de invitados en una sola base — y emails que saben lo que queda por vender.",
       },
     ],
   },
@@ -1289,11 +1466,11 @@ const es: LandingContent = {
       {
         id: "organizer",
         label: "Organizadores",
-        title: "En una discoteca o por tu cuenta. Tu público sigue siendo tuyo.",
+        title: "En una discoteca o por tu cuenta. Cada reparto, firmado de antemano.",
         body: "Entradas, lista de invitados, tus propias mesas VIP, tu equipo (admin, editor, escáner). ¿Organizas en una discoteca? El contrato se firma en Yuno y el cierre de la noche lo aprueban ambas partes — se acabó el efectivo a las 6 de la mañana.",
         bullets: [
           "Página de evento co-branded, online en diez minutos",
-          "Tus compradores entran en tu base — no en la de un marketplace",
+          "Una sola base de clientes para entradas, mesas y lista de invitados",
           "Contrato con la discoteca por pilar, o por tramos sobre la facturación",
         ],
         cta: "Crear mi cuenta de organizador",
@@ -1390,47 +1567,131 @@ const es: LandingContent = {
   },
   compare: {
     eyebrow: "Comparativa",
-    title: "Compara con lo que pagas hoy.",
-    sub: "Y quién se queda con tus compradores cuando termina la noche.",
-    colPlatform: "Plataforma",
-    colPays: "Lo que paga el organizador",
-    colKeeps: "Quién se queda con tus compradores",
-    rows: [
+    title: "Las demás venden la entrada. Yuno gestiona toda la noche.",
+    sub: "Vender entradas lo hace cualquiera. Esto es lo que cubre cada plataforma una vez abiertas las puertas — y lo que te cuesta.",
+    pick: "Comparar Yuno con",
+    legend: { yes: "Incluido", partial: "En parte, o módulo de pago", no: "No disponible" },
+    covered: "cubiertos por completo",
+    costLabel: "Lo que pagas",
+    strongLabel: "Su punto fuerte",
+    winLabel: "Donde gana Yuno",
+    features: [
+      "Entradas y lista de invitados",
+      "Mesas VIP en plano de sala, con señal",
+      "Pedidos de bebidas en la barra",
+      "Una pantalla por rol — puerta, barra, host VIP",
+      "Enlaces de promotor, comisiones calculadas por ti",
+      "Contrato discoteca × organizador y cierre de la noche",
+      "CRM y email marketing incluidos",
+      "Precio público, sin suscripción ni permanencia",
+    ],
+    yuno: {
+      name: "Yuno",
+      kind: "La plataforma de la noche",
+      cells: cells(MARKS.yuno, [
+        "Preventas, códigos promo, Apple Wallet",
+        "Señal o pago en el local",
+        "Pide y paga por QR",
+        "Acceso por PIN, sin formación",
+        "Ranking en directo",
+        "Aprobado por ambas partes",
+        "15.000 emails/mes",
+        "0 € · 0 % sobre tu precio",
+      ]),
+      cost: "0 € de suscripción, 0 % sobre tu precio. El cliente paga una tarifa de servicio del 4 % (mín. 0,99 €).",
+    },
+    competitors: [
       {
-        name: "Yuno",
-        pays: "0 € de suscripción, 0 % sobre tu precio. Email marketing, CRM, mesas y puerta incluidos.",
-        keeps: "Tú.",
+        name: "Shotgun",
+        kind: "Ticketera marketplace",
+        cells: cells(MARKS.shotgun, [
+          "",
+          "",
+          "",
+          "Solo escaneo en puerta",
+          "Seguimiento; comisiones a mano",
+          "",
+          "Newsletters y push",
+          "Comisión de organizador negociada",
+        ]),
+        cost: "Comisión de organizador negociada, no publicada.",
+        strong: "La audiencia de su app ayuda a llenar una sala desde cero.",
+        win: "Shotgun vende la entrada y se queda en la puerta. Yuno también vende tus mesas y bebidas, gestiona la noche y reparte el dinero — sin comisión sobre tu precio, y cobrando a medida que vendes, no después del evento.",
       },
       {
         name: "Weezevent",
-        pays: "2,5 % (mín. 0,99 € IVA incl.) por entrada, repercutible al comprador.",
-        keeps: "Tú.",
-      },
-      {
-        name: "Eventbrite",
-        pays: "3,5 % + 0,49 € (Essentials) a 5,5 % + 0,99 € (Pro) por entrada.",
-        keeps: "El marketplace, que recomienda otros eventos a tu público.",
+        kind: "Ticketera generalista",
+        cells: cells(MARKS.weezevent, [
+          "",
+          "Butacas numeradas, no mesas de club",
+          "Módulo cashless, 1,20 €/transacción",
+          "Módulo de staff desde 1.000 €",
+          "",
+          "",
+          "WeezTarget",
+          "2,5 % por entrada",
+        ]),
+        cost: "2,5 % por entrada (mín. 0,99 €), pagos cada 15 días, módulos de cashless y staff de pago.",
+        strong: "Sencilla y barata para cualquier evento, del festival al congreso.",
+        win: "Pensada para todo tipo de eventos, no para discotecas: sin mesas VIP, sin seguimiento de promotores, y cada extra es un módulo de pago. Yuno está hecho para la noche, todo en una cuenta a 0 €.",
       },
       {
         name: "Xceed",
-        pays: "3 % + 15 % de comisión de marketing del marketplace, y 29–59 €/mes de suscripción.",
-        keeps: "El marketplace.",
-      },
-      {
-        name: "Shotgun",
-        pays: "Comisión de organizador negociada, no publicada. Gastos del comprador con tope de 15 €.",
-        keeps: "El marketplace.",
+        kind: "Marketplace de ocio nocturno",
+        cells: cells(MARKS.xceed, [
+          "",
+          "Plan Pro",
+          "",
+          "Escaneo multidispositivo",
+          "Plan Pro",
+          "",
+          "",
+          "29–59 €/mes; mejor precio anual",
+        ]),
+        cost: "3 % por entrada, 15 % en ventas del marketplace y 29–59 €/mes.",
+        strong: "Un marketplace de clubbing con audiencia en las grandes ciudades europeas.",
+        win: "Su marketplace se lleva un 15 % de las ventas que trae, además de una suscripción — y no hay barra, ni CRM, ni reparto discoteca × organizador. Yuno lo incluye todo, a 0 €.",
       },
       {
         name: "DICE",
-        pays: "Bajo presupuesto, no publicado.",
-        keeps: "El marketplace.",
+        kind: "App de entradas de música en vivo",
+        cells: cells(MARKS.dice, [
+          "Entradas, sin lista de invitados",
+          "",
+          "",
+          "Solo escaneo en puerta",
+          "",
+          "",
+          "",
+          "Bajo presupuesto",
+        ]),
+        cost: "Bajo presupuesto, no publicado.",
+        strong: "Una app de fans para música en vivo, con antirreventa integrada.",
+        win: "Una app de entradas, no una herramienta para gestionar un local: sin lista de invitados, sin mesas, sin barra, sin pantallas de staff. Yuno cubre toda la noche, con un precio que puedes leer antes de firmar.",
+      },
+      {
+        name: "Fourvenues",
+        kind: "Software de discoteca enterprise",
+        cells: cells(MARKS.fourvenues, [
+          "",
+          "",
+          "TPV",
+          "",
+          "",
+          "",
+          "",
+          "Bajo presupuesto, tras una demo",
+        ]),
+        cost: "Suscripción bajo presupuesto, tras una demo.",
+        strong:
+          "Una suite completa para discotecas, usada por algunos de los locales más grandes del mundo.",
+        win: "Lo más parecido a Yuno en alcance — pero con precio bajo presupuesto tras una demo comercial, y sin reparto discoteca × organizador. Yuno publica su precio (0 €) y tu cuenta está abierta en dos minutos.",
       },
     ],
     extra:
-      "Y ninguna de estas plataformas vende tus mesas VIP, gestiona tu servicio en sala ni calcula las comisiones de tus promotores. Con Yuno es la misma cuenta y el mismo precio: cero.",
+      "Solo Fourvenues cubre tanto de la noche — bajo presupuesto, tras una demo. Con Yuno, entradas, mesas, barra, puerta, promotores y reparto viven en la misma cuenta, a un precio público: 0 €.",
     footnote:
-      "Precios públicos consultados el 21 de septiembre de 2026 (páginas de precios de cada plataforma, ayuda de Eventbrite, condiciones de Shotgun, dice.fm/partners). Shotgun y DICE no publican su comisión de organizador.",
+      "Según las páginas públicas y centros de ayuda de cada plataforma (Shotgun, Weezevent, Xceed, DICE, Fourvenues), consultados entre junio y septiembre de 2026. Shotgun, DICE y Fourvenues no publican sus precios para organizadores.",
   },
   email: {
     eyebrow: "CRM y email marketing",
@@ -1588,7 +1849,7 @@ const es: LandingContent = {
   },
   final: {
     title: "Tu próxima noche merece mejores herramientas.",
-    sub: "Crea tu cuenta profesional en dos minutos. 0 € de suscripción, 0 % de comisión, y tus clientes siguen siendo tuyos.",
+    sub: "Crea tu cuenta profesional en dos minutos. 0 € de suscripción, 0 % de comisión, y el dinero en tu propia cuenta.",
     placeholder: "Tu email profesional",
     primary: "Crear mi cuenta gratis",
     secondary: "Hablar con el fundador",

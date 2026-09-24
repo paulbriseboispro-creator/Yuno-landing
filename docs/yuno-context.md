@@ -5,8 +5,11 @@ brochure, emailing brochure). These supersede older copy in `src/content/*` wher
 disagree — notably pricing: **there are no paid plans any more** (no Core/Essential/Pro/Elite).
 
 ## One-liner
-"Your ticketing platform keeps your customers. Yuno gives them back." / « Votre billetterie
-garde vos clients. Yuno vous les rend. »
+Landing positioning (Sept 2026, Paul): "Sell your nights. Run them end to end." — other platforms
+stop at the ticket; Yuno also sells tables and drinks, runs the door and the bar, and splits the
+money. The brochure line "Your ticketing platform keeps your customers. Yuno gives them back." is
+**retired as a headline**: most ticketing tools let organizers export buyers (Weezevent, Shotgun CRM),
+so buyer ownership is not Yuno's strongest edge. Don't lead with it or compare on it.
 
 Yuno is the platform for the night: one platform sells tickets, VIP tables and drinks, runs
 the door, the bar and table service, then splits the money between the club, the organizer
@@ -29,13 +32,27 @@ Stripe fees → **€5,832 net**, on your own account, no waiting ("pas J+72").
 Everything included, one service level, no options or tiers.
 Emailing: 15,000 emails/month included, then €10 per 10,000 (€24 per 25,000). No subscription.
 
-## Competitors (public prices checked 21 Sep 2026)
-- Weezevent: 2.5% min €0.99 incl. VAT per ticket, can be passed to buyer. Buyers stay with you.
-- Eventbrite: 3.5% + €0.49 (Essentials) to 5.5% + €0.99 (Pro) per ticket. Marketplace keeps buyers, recommends other events.
-- Xceed: 3% + 15% marketplace marketing commission, and €29–59/month subscription. Marketplace.
-- Shotgun: organizer commission negotiated, not published. Buyer fees capped at €15. Marketplace.
-- DICE: on quote, not published. Marketplace.
-- None of them sells VIP tables, runs table service, or computes promoter commissions.
+## Competitors (analyses in Paul's Drive, public pages checked June–Sept 2026)
+Only use the competitor facts from those docs — their Yuno columns are outdated. The landing
+matrix lives in `src/content/landing.ts` (`MARKS` + `compare`).
+- Shotgun: ticketing marketplace (5M+ app users). Buyer fee 2.75% min €0.30; organizer commission
+  negotiated, not published; payout after the event; 15% on resale / waiting list. Has CRM,
+  newsletters, push, promoter tracking links (commissions by hand), offline scan, door sales.
+  No VIP tables / floor plan, no bar, no staff roles, no club × organizer split.
+- Weezevent: generalist ticketing, 2.5% min €0.99 per ticket (can be passed to buyer), payouts every
+  15 days. Paid add-ons: cashless WeezPay €1.20/transaction, staff WeezCrew from €1,000. CRM
+  WeezTarget free. Seat numbering but no club floor plan, no promoter management, no splits.
+- Xceed: clubbing marketplace (5M+ users). 3% per ticket, 15% on marketplace sales, €29–59/month
+  (lowest on annual). Floor plan + promoter accounting on Pro plan only. No bar, no CRM, no splits.
+- DICE (Fever since 2025): live-music ticket app, anti-scalping, fees baked into the price, organizer
+  pricing on quote. No guest list, tables, bar, staff tools, promoters or CRM.
+- Fourvenues: closest competitor (Pacha, BCM…), full club suite (tables, POS, promoters, CRM, live
+  analytics, API, passes, channel manager). Subscription on quote after a demo. No club × organizer split.
+- NCLUB / NCLOUD (Spain): guest-list app + promoter CRM, €450/month or €999/month + VAT; no ticket sales.
+- Eventbrite: 3.5% + €0.49 (Essentials) to 5.5% + €0.99 (Pro) per ticket; generalist.
+- Yuno's real edges: whole night in one account (tables + bar + door + staff screens), club × organizer
+  contract and statement (nobody else), promoter commissions computed, €0 / 0% at a published price
+  (vs quote-only Fourvenues/DICE/Shotgun), money on your own Stripe account as you sell.
 - Emailing vs Brevo Standard (€79/mo) and Mailchimp Standard (€117.76/mo) for 50k emails; Yuno €34.
 
 ## Three sales pillars
