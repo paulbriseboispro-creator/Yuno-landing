@@ -1,0 +1,20 @@
+# Tells Bing (which feeds ChatGPT Search and Copilot), Yandex, Seznam and
+# Naver about every page of the live sitemap after each push to main, so new
+# and updated pages get crawled within hours. Google has no equivalent API:
+# it relies on Search Console (sitemap) and links.
+name: IndexNow
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      # Give Cloudflare time to build and deploy the new version first.
+      - run: sleep 300
+      - run: bun scripts/indexnow.ts
