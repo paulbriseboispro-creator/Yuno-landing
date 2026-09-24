@@ -16,7 +16,7 @@ const shotgunFr: ComparePageContent = {
   competitor: "Shotgun",
   updated: UPDATED,
   meta: {
-    title: "Alternative à Shotgun Pro : frais, commission et comparatif | Yuno",
+    title: "Alternative à Shotgun Pro : billetterie, frais et commission | Yuno",
     description:
       "Shotgun Pro ou Yuno ? Frais, commission organisateur, paiements, tables VIP, bar, promoteurs : le comparatif sourcé pour choisir votre billetterie de soirée.",
     ogAlt: "Yuno vs Shotgun Pro — comparatif billetterie pour clubs et organisateurs",
