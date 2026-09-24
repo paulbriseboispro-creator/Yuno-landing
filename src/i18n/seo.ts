@@ -53,6 +53,8 @@ export function pageSeo(
       { property: "og:title", content: m.ogTitle ?? m.title },
       { property: "og:description", content: m.ogDescription ?? m.description },
       { property: "og:url", content: self },
+      { name: "twitter:title", content: m.ogTitle ?? m.title },
+      { name: "twitter:description", content: m.ogDescription ?? m.description },
     ],
     links: [
       { rel: "canonical", href: self },

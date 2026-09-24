@@ -19,6 +19,7 @@ import { RoleHeader, RoleFooter } from "@/components/site/RoleChrome";
 import { NotFoundPage } from "@/components/not-found";
 import { LocaleProvider, detectLocale, getStandaloneLocale, type Locale } from "@/i18n/locale";
 import { localePath } from "@/i18n/seo";
+import { ogImageMeta } from "@/i18n/og";
 import {
   LANDING_PATHS,
   detectLandingLang,
@@ -28,7 +29,7 @@ import {
 import { common } from "@/content/common";
 
 // Pages that exist in both languages. Only these get the French redirect, so
-// asset/server routes (sitemap.xml, og-image.png) are never rewritten to /fr.
+// asset/server routes (sitemap.xml, og/*.png) are never rewritten to /fr.
 const LOCALIZED_PATHS = new Set([
   "/",
   "/clubs",
@@ -115,7 +116,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     return { locale: "en" as Locale, lang: "en" as LandingLang, landing };
   },
   head: ({ match }) => {
-    const locale = match.context.locale;
+    const { locale, lang } = match.context;
     const m = common[locale].meta;
     return {
       meta: [
@@ -129,13 +130,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { property: "og:locale", content: locale === "fr" ? "fr_FR" : "en_GB" },
         { property: "og:title", content: m.title },
         { property: "og:description", content: m.description },
-        { name: "twitter:card", content: "summary_large_image" },
+        ...ogImageMeta(lang),
         { name: "twitter:title", content: m.title },
         { name: "twitter:description", content: m.description },
-        { property: "og:image", content: "https://landing.yunoapp.eu/og-image.png" },
-        { name: "twitter:image", content: "https://landing.yunoapp.eu/og-image.png" },
       ],
       links: [
+        { rel: "icon", href: "/favicon.ico", sizes: "any" },
+        { rel: "icon", type: "image/png", sizes: "192x192", href: "/icon-192.png" },
+        { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
         { rel: "stylesheet", href: appCss },
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },

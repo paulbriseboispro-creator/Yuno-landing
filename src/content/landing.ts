@@ -9,6 +9,10 @@ const en = {
     title: "Yuno — Ticketing, VIP tables & bar for clubs and organizers",
     description:
       "One platform sells your tickets, VIP tables and drinks, runs the door and the bar, and splits the money. €0 subscription, 0% commission on your price. Your customers stay yours.",
+    // Link previews (WhatsApp, iMessage, LinkedIn…): short enough not to be cut.
+    shareTitle: "Yuno — Sell your nights. Keep your customers.",
+    shareDescription:
+      "Tickets, VIP tables, drinks and the door on one platform for clubs and organizers. €0 subscription, 0% commission.",
   },
   nav: {
     links: [
@@ -557,6 +561,9 @@ const fr: LandingContent = {
     title: "Yuno — Billetterie, tables VIP & bar pour clubs et organisateurs",
     description:
       "Une seule plateforme vend vos billets, vos tables VIP et vos boissons, tient la porte et le bar, et répartit l'argent. 0 € d'abonnement, 0 % de commission sur votre prix. Vos clients restent les vôtres.",
+    shareTitle: "Yuno — Vendez vos soirées. Gardez vos clients.",
+    shareDescription:
+      "Billets, tables VIP, boissons et porte sur une seule plateforme pour clubs et organisateurs. 0 € d'abonnement, 0 % de commission.",
   },
   nav: {
     links: [
@@ -1109,6 +1116,9 @@ const es: LandingContent = {
     title: "Yuno — Venta de entradas, mesas VIP y barra para discotecas y promotores",
     description:
       "Una sola plataforma vende tus entradas, mesas VIP y bebidas, gestiona la puerta y la barra, y reparte el dinero. 0 € de suscripción, 0 % de comisión sobre tu precio. Tus clientes siguen siendo tuyos.",
+    shareTitle: "Yuno — Vende tus noches. Quédate con tus clientes.",
+    shareDescription:
+      "Entradas, mesas VIP, bebidas y puerta en una sola plataforma para discotecas y organizadores. 0 € de suscripción, 0 % de comisión.",
   },
   nav: {
     links: [

@@ -1,9 +1,11 @@
 import { landingContent } from "@/content/landing";
 import { LANDING_LANGS, landingUrl, type LandingLang } from "@/i18n/landing-lang";
+import { ogImageMeta } from "@/i18n/og";
 
 const OG_LOCALE: Record<LandingLang, string> = { en: "en_GB", fr: "fr_FR", es: "es_ES" };
 
-// head() for the landing routes: title/description/OG, a self canonical and
+// head() for the landing routes: title/description, the link-preview tags
+// (shorter share title + per-language preview image), a self canonical and
 // hreflang alternates for all three languages, plus FAQPage structured data.
 export function landingHead(lang: LandingLang) {
   const t = landingContent[lang];
@@ -12,12 +14,13 @@ export function landingHead(lang: LandingLang) {
     meta: [
       { title: t.meta.title },
       { name: "description", content: t.meta.description },
-      { property: "og:title", content: t.meta.title },
-      { property: "og:description", content: t.meta.description },
+      { property: "og:title", content: t.meta.shareTitle },
+      { property: "og:description", content: t.meta.shareDescription },
       { property: "og:url", content: self },
       { property: "og:locale", content: OG_LOCALE[lang] },
-      { name: "twitter:title", content: t.meta.title },
-      { name: "twitter:description", content: t.meta.description },
+      ...ogImageMeta(lang),
+      { name: "twitter:title", content: t.meta.shareTitle },
+      { name: "twitter:description", content: t.meta.shareDescription },
       { name: "theme-color", content: "#ffffff" },
     ],
     links: [
