@@ -19,7 +19,16 @@
 //    a language switch and on $pageview too).
 import type { PostHog } from "posthog-js";
 
-const KEY = (import.meta.env.VITE_POSTHOG_KEY as string | undefined)?.trim() || "";
+// Public PROJECT key (`phc_`) of the EUROPEAN PostHog project (eu.posthog.com,
+// project 284316), the same one the Yuno app writes to. It lives in code so a
+// production build never depends on a Cloudflare build variable: the previous
+// key belonged to a project created by mistake on the US cloud and was rejected
+// by the EU host — nothing ever arrived with it — so it is ignored if an env
+// var still carries it. In dev, nothing without an explicit variable.
+const EU_PROJECT_KEY = "phc_xsbSXWwUKTxjYaceQyofygm5e5cXrcWWMZZQaPhbcYY8";
+const DEAD_KEYS = new Set(["phc_xHVSBA8DU6pW6gHAFHG9gmjbHM3ipfCDgb7KBtCTxaPD"]);
+const ENV_KEY = (import.meta.env.VITE_POSTHOG_KEY as string | undefined)?.trim() || "";
+const KEY = ENV_KEY && !DEAD_KEYS.has(ENV_KEY) ? ENV_KEY : import.meta.env.PROD ? EU_PROJECT_KEY : "";
 const HOST =
   (import.meta.env.VITE_POSTHOG_HOST as string | undefined)?.trim() || "https://eu.i.posthog.com";
 

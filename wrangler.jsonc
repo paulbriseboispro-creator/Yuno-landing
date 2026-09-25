@@ -28,7 +28,7 @@
     // deploy doesn't wipe it. NOTE: src/lib/posthog.ts reads it through
     // import.meta.env at BUILD time — for tracking to actually load it must
     // also be set as a Cloudflare *Build* variable.
-    "VITE_POSTHOG_KEY": "phc_xHVSBA8DU6pW6gHAFHG9gmjbHM3ipfCDgb7KBtCTxaPD"
+    "VITE_POSTHOG_KEY": "phc_xsbSXWwUKTxjYaceQyofygm5e5cXrcWWMZZQaPhbcYY8"
   }
   // SECRET (never committed): the contact form's server fn uses the service-role
   // client to insert into demo_leads (RLS denies anon). Set it once with:
