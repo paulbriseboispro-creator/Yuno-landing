@@ -29,11 +29,7 @@ export function SiteMobileNav() {
         size="icon"
         variant="outline"
       >
-        {open ? (
-          <XIcon className="size-4" />
-        ) : (
-          <MenuIcon className="size-4" />
-        )}
+        {open ? <XIcon className="size-4" /> : <MenuIcon className="size-4" />}
       </Button>
       {open && (
         <Portal className="top-14" id="mobile-menu">
@@ -41,7 +37,7 @@ export function SiteMobileNav() {
           <div
             className={cn(
               "data-[slot=open]:zoom-in-97 ease-out data-[slot=open]:animate-in",
-              "size-full p-4"
+              "size-full p-4",
             )}
             data-slot={open ? "open" : "closed"}
           >

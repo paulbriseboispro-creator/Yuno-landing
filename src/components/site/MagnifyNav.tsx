@@ -1,11 +1,5 @@
 import React, { useRef } from "react";
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-  type MotionValue,
-} from "motion/react";
+import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from "motion/react";
 
 type Props = {
   children: React.ReactNode;
@@ -67,11 +61,7 @@ function MagnifyItem({
   const paddingRight = useSpring(padT, SPRING);
 
   return (
-    <motion.div
-      ref={ref}
-      style={{ paddingLeft, paddingRight }}
-      className="flex items-center"
-    >
+    <motion.div ref={ref} style={{ paddingLeft, paddingRight }} className="flex items-center">
       <motion.div style={{ scale, y }} className="origin-bottom">
         {children}
       </motion.div>

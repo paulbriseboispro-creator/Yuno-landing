@@ -54,7 +54,6 @@ export function Index() {
       {/* 3 things no one else does */}
       <DifferentiatorsSection />
 
-
       {/* Segment Switcher */}
       <section className="py-16 px-6 border-t border-border">
         <div className="mx-auto max-w-7xl">
@@ -198,7 +197,6 @@ export function Index() {
       {/* Yuno Collab — for organizers */}
       <YunoCollabSection />
 
-
       {/* Onboarding — live in one afternoon */}
       <section className="py-16 px-6 border-t border-border">
         <div className="mx-auto max-w-6xl">
@@ -238,7 +236,9 @@ export function Index() {
               {t.savings.eyebrow}
             </span>
             <h2 className="mt-4 text-3xl md:text-5xl font-medium tracking-tight text-balance max-w-[24ch] mx-auto">
-              {t.savings.titleA} <span className="serif italic text-muted-foreground">{t.savings.titleEm}</span> {t.savings.titleB}
+              {t.savings.titleA}{" "}
+              <span className="serif italic text-muted-foreground">{t.savings.titleEm}</span>{" "}
+              {t.savings.titleB}
             </h2>
             <p className="mt-4 text-base text-muted-foreground max-w-[58ch] mx-auto text-pretty">
               {t.savings.body}
@@ -297,7 +297,13 @@ export function Index() {
                 {t.founding.title}
               </h2>
               <p className="text-base text-muted-foreground max-w-[62ch] text-pretty mb-8">
-                {t.founding.bodyA}<span className="text-foreground font-medium">{t.founding.bodyVenues}</span>{t.founding.bodyB}<span className="text-accent">{t.founding.bodyMonths}</span>{t.founding.bodyC}<span className="text-accent">{t.founding.bodyAnnual}</span>{t.founding.bodyD}
+                {t.founding.bodyA}
+                <span className="text-foreground font-medium">{t.founding.bodyVenues}</span>
+                {t.founding.bodyB}
+                <span className="text-accent">{t.founding.bodyMonths}</span>
+                {t.founding.bodyC}
+                <span className="text-accent">{t.founding.bodyAnnual}</span>
+                {t.founding.bodyD}
               </p>
               <ul className="space-y-2 mb-8">
                 {t.founding.bullets.map((b) => (
@@ -324,11 +330,7 @@ export function Index() {
 
       {/* FAQ */}
       <section className="py-16 px-6 border-t border-border">
-        <FaqSection
-          eyebrow={t.faq.eyebrow}
-          title={t.faq.title}
-          items={t.faq.items}
-        />
+        <FaqSection eyebrow={t.faq.eyebrow} title={t.faq.title} items={t.faq.items} />
       </section>
 
       {/* 3D Marquee */}

@@ -42,10 +42,26 @@ const QUICK_ICONS: Record<string, LucideIcon> = {
 // screens that lead the hero. Distributed so all six show across the four
 // columns rather than the same one or two on repeat.
 const DASHBOARD_SCREENS = [
-  dashDashboard, dashAnalytics, dashEvents, dashOrders, dashClients,
-  dashProfile, dashDashboard, dashOrders, dashAnalytics, dashEvents,
-  dashClients, dashProfile, dashDashboard, dashAnalytics, dashOrders,
-  dashEvents, dashClients, dashProfile, dashAnalytics, dashDashboard,
+  dashDashboard,
+  dashAnalytics,
+  dashEvents,
+  dashOrders,
+  dashClients,
+  dashProfile,
+  dashDashboard,
+  dashOrders,
+  dashAnalytics,
+  dashEvents,
+  dashClients,
+  dashProfile,
+  dashDashboard,
+  dashAnalytics,
+  dashOrders,
+  dashEvents,
+  dashClients,
+  dashProfile,
+  dashAnalytics,
+  dashDashboard,
 ];
 
 // A single comparison cell: yes/no check or a piece of text. `accent` styles the
@@ -119,7 +135,10 @@ export function BdePage() {
               <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                 {t.free.bullets.map((b) => (
                   <li key={b} className="flex items-start gap-2 text-sm">
-                    <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-accent" strokeWidth={1.75} />
+                    <CheckCircle2
+                      className="mt-0.5 size-4 shrink-0 text-accent"
+                      strokeWidth={1.75}
+                    />
                     {b}
                   </li>
                 ))}
@@ -256,7 +275,9 @@ export function BdePage() {
                 <h2 className="max-w-[24ch] text-balance text-2xl font-medium tracking-tight md:text-4xl">
                   {t.payout.title}
                 </h2>
-                <p className="mt-4 max-w-[60ch] text-pretty text-muted-foreground">{t.payout.body}</p>
+                <p className="mt-4 max-w-[60ch] text-pretty text-muted-foreground">
+                  {t.payout.body}
+                </p>
               </div>
             </article>
           </Reveal>
@@ -315,7 +336,9 @@ export function BdePage() {
                 </div>
                 {t.comparison.rows.map((r) => (
                   <div key={r.label} className="contents">
-                    <div className={`border-t border-border p-5 ${r.highlight ? "font-medium" : "text-muted-foreground"}`}>
+                    <div
+                      className={`border-t border-border p-5 ${r.highlight ? "font-medium" : "text-muted-foreground"}`}
+                    >
                       {r.label}
                     </div>
                     <div className="border-t border-l border-border p-5 text-center">
@@ -333,7 +356,9 @@ export function BdePage() {
             <div className="divide-y divide-border overflow-hidden rounded-3xl bg-surface ring-1 ring-border md:hidden">
               {t.comparison.rows.map((r) => (
                 <div key={r.label} className="p-4">
-                  <div className={`mb-3 text-sm ${r.highlight ? "font-medium" : "text-muted-foreground"}`}>
+                  <div
+                    className={`mb-3 text-sm ${r.highlight ? "font-medium" : "text-muted-foreground"}`}
+                  >
                     {r.label}
                   </div>
                   <div className="grid grid-cols-2 gap-2.5 text-sm">
@@ -448,7 +473,9 @@ export function BdePage() {
                 <h2 className="mx-auto max-w-[22ch] text-balance text-3xl font-medium tracking-tight md:text-4xl">
                   {t.cta.title}
                 </h2>
-                <p className="mx-auto mt-4 max-w-[48ch] text-pretty text-muted-foreground">{t.cta.body}</p>
+                <p className="mx-auto mt-4 max-w-[48ch] text-pretty text-muted-foreground">
+                  {t.cta.body}
+                </p>
                 <div className="mt-8 flex justify-center">
                   <Link
                     to="/bde/contact"

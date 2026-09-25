@@ -16,13 +16,25 @@ export interface FaqItem {
   content: string;
 }
 
-export function FaqSection({ items, eyebrow, title }: { items: FaqItem[]; eyebrow: string; title: string }) {
+export function FaqSection({
+  items,
+  eyebrow,
+  title,
+}: {
+  items: FaqItem[];
+  eyebrow: string;
+  title: string;
+}) {
   const t = useHome();
   const [activeCategory, setActiveCategory] = React.useState("all");
 
   const categories = [
     { icon: <LayoutGridIcon className="size-4" />, id: "all", label: t.faq.categories.all },
-    { icon: <PowerIcon className="size-4" />, id: "getting-started", label: t.faq.categories["getting-started"] },
+    {
+      icon: <PowerIcon className="size-4" />,
+      id: "getting-started",
+      label: t.faq.categories["getting-started"],
+    },
     { icon: <FeatherIcon className="size-4" />, id: "features", label: t.faq.categories.features },
     { icon: <CreditCardIcon className="size-4" />, id: "billing", label: t.faq.categories.billing },
     { icon: <LifeBuoyIcon className="size-4" />, id: "support", label: t.faq.categories.support },
@@ -33,10 +45,7 @@ export function FaqSection({ items, eyebrow, title }: { items: FaqItem[]; eyebro
     return items.filter((faq) => faq.category === activeCategory);
   }, [activeCategory, items]);
 
-  const currentCategory = React.useMemo(
-    () => categories.find((cat) => cat.id === activeCategory),
-    [activeCategory, categories]
-  );
+  const currentCategory = categories.find((cat) => cat.id === activeCategory);
 
   return (
     <section className="mx-auto w-full max-w-5xl">
@@ -44,9 +53,7 @@ export function FaqSection({ items, eyebrow, title }: { items: FaqItem[]; eyebro
         <span className="inline-block text-xs font-medium uppercase tracking-[0.18em] text-accent border border-accent/40 rounded-full px-3 py-1">
           {eyebrow}
         </span>
-        <h2 className="text-balance text-4xl md:text-5xl font-medium tracking-tight">
-          {title}
-        </h2>
+        <h2 className="text-balance text-4xl md:text-5xl font-medium tracking-tight">{title}</h2>
       </div>
       <div className="relative grid min-h-full grid-cols-1 py-12 md:grid-cols-3">
         {/* Category tabs */}
@@ -60,7 +67,7 @@ export function FaqSection({ items, eyebrow, title }: { items: FaqItem[]; eyebro
                   "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors",
                   activeCategory === cat.id
                     ? "bg-surface-2 text-foreground ring-1 ring-border"
-                    : "text-muted-foreground hover:text-foreground"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 {cat.icon}
@@ -80,11 +87,7 @@ export function FaqSection({ items, eyebrow, title }: { items: FaqItem[]; eyebro
           )}
           <Accordion className="space-y-2" collapsible type="single">
             {filtered.map((item) => (
-              <AccordionItem
-                className="border-0"
-                key={item.id}
-                value={item.id}
-              >
+              <AccordionItem className="border-0" key={item.id} value={item.id}>
                 <AccordionTrigger className="rounded-xl bg-surface px-5 py-4 text-sm font-medium hover:no-underline hover:bg-surface-2 transition-colors text-left">
                   {item.title}
                 </AccordionTrigger>

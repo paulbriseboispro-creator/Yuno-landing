@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  useState,
-  useRef,
-  useEffect,
-  useId,
-  useMemo,
-  useCallback,
-  type ChangeEvent,
-} from "react";
+import { useState, useRef, useEffect, useId, useMemo, useCallback, type ChangeEvent } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -60,7 +52,6 @@ const transition = {
   type: "spring" as const,
   bounce: 0.25,
 };
-
 
 export interface GooeyInputClassNames {
   root?: string;
@@ -179,8 +170,7 @@ export function GooeyInput({
     if (!searchText) setExpanded(false);
   }, [searchText, setExpanded]);
 
-  const surfaceClass =
-    "bg-foreground text-background shadow-sm ring-1 ring-border/60";
+  const surfaceClass = "bg-foreground text-background shadow-sm ring-1 ring-border/60";
 
   return (
     <div className={cn("relative inline-flex items-center", className, classNames?.root)}>
@@ -190,12 +180,7 @@ export function GooeyInput({
         className={cn("relative", classNames?.filterWrap)}
         style={{ filter: `url(#${filterId})` }}
       >
-        <div
-          className={cn(
-            "flex items-center gap-2",
-            classNames?.buttonRow,
-          )}
-        >
+        <div className={cn("flex items-center gap-2", classNames?.buttonRow)}>
           {/* Icon bubble */}
           <motion.div
             layoutId={iconLayoutId}

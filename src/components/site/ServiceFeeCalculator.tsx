@@ -4,9 +4,7 @@ import { usePricing } from "@/content/pricing";
 import { useLocale, type Locale } from "@/i18n/locale";
 
 function formatEur(value: number, locale: Locale) {
-  return locale === "fr"
-    ? `${value.toFixed(2).replace(".", ",")} €`
-    : `${value.toFixed(2)}€`;
+  return locale === "fr" ? `${value.toFixed(2).replace(".", ",")} €` : `${value.toFixed(2)}€`;
 }
 
 function FeeSlider({
@@ -61,7 +59,8 @@ function FeeSlider({
 
       <div className="mt-4 flex items-center justify-between text-sm">
         <span className="text-muted-foreground">
-          {itemPriceLabel} <span className="text-foreground font-medium">{formatEur(value, locale)}</span>
+          {itemPriceLabel}{" "}
+          <span className="text-foreground font-medium">{formatEur(value, locale)}</span>
         </span>
         <span className="text-muted-foreground">
           {serviceFeeLabel}{" "}
@@ -89,8 +88,7 @@ export function ServiceFeeCalculator() {
         <p className="text-base md:text-lg font-medium tracking-tight">
           {sf.summaryDrinksLabel} <span className="text-accent">{sf.summaryDrinksValue}</span>
           <span className="mx-2 text-muted-foreground">·</span>
-          {sf.summaryTicketsLabel}{" "}
-          <span className="text-accent">{sf.summaryTicketsValue}</span>
+          {sf.summaryTicketsLabel} <span className="text-accent">{sf.summaryTicketsValue}</span>
         </p>
         <p className="mt-1.5 text-xs uppercase tracking-[0.18em] text-muted-foreground">
           {sf.summaryNote}

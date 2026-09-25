@@ -35,8 +35,17 @@ const en = {
     colYunoLabel: "Yuno",
     colYunoName: "Subscription only",
     rows: [
-      { label: "Ticket commission", shotgun: "10% — paid by you", yuno: "0% — paid by the customer" },
-      { label: "200 tickets at €20", shotgun: "You lose €400", yuno: "You receive €4,000", highlight: true },
+      {
+        label: "Ticket commission",
+        shotgun: "10% — paid by you",
+        yuno: "0% — paid by the customer",
+      },
+      {
+        label: "200 tickets at €20",
+        shotgun: "You lose €400",
+        yuno: "You receive €4,000",
+        highlight: true,
+      },
       { label: "Bank transfer fees", shotgun: "+3%", yuno: "Included" },
       { label: "Funds recovery", shotgun: "72h after the event", yuno: "2 days after, fee-free" },
       { label: "Bar, floor plan, CRM", shotgun: false, yuno: true },
@@ -65,7 +74,7 @@ const en = {
       {
         icon: "Tag",
         title: "Transparent pricing — you see it before you sign",
-        body: "No sales call. No annual contract. No \"contact us for pricing.\" Core starts at €0. Pro at €99/month. You decide.",
+        body: 'No sales call. No annual contract. No "contact us for pricing." Core starts at €0. Pro at €99/month. You decide.',
         tag: "Fourvenues will send you a quote. We'll send you a link.",
       },
     ] as DifferentiatorItem[],
@@ -203,7 +212,12 @@ const en = {
     steps: [
       { step: "01", title: "Setup your events, tickets, floor plan & staff", time: "30 min" },
       { step: "02", title: "Connect Stripe & configure your bar", time: "20 min" },
-      { step: "03", title: "Invite your promoters & go live. Send each their unique link — they start selling, you see every sale in real time.", time: "10 min" },
+      {
+        step: "03",
+        title:
+          "Invite your promoters & go live. Send each their unique link — they start selling, you see every sale in real time.",
+        time: "10 min",
+      },
     ],
   },
   savings: {
@@ -230,7 +244,8 @@ const en = {
     bodyVenues: "15 partner venues",
     bodyB: ". Founding clubs get ",
     bodyMonths: "3 months free",
-    bodyC: " — no credit card, no commitment. After that, go monthly at full price or choose annual and get ",
+    bodyC:
+      " — no credit card, no commitment. After that, go monthly at full price or choose annual and get ",
     bodyAnnual: "2 months free + a lifetime price lock",
     bodyD: ". Your rate never increases, even if our prices go up.",
     bullets: [
@@ -269,55 +284,64 @@ const en = {
         id: "setup-time",
         category: "getting-started",
         title: "How long does it take to set up a club?",
-        content: "Most venues are live in under a week. We migrate your guest list, build your floor plan with you, and your staff is trained on the PIN flow in an afternoon.",
+        content:
+          "Most venues are live in under a week. We migrate your guest list, build your floor plan with you, and your staff is trained on the PIN flow in an afternoon.",
       },
       {
         id: "onboarding",
         category: "getting-started",
         title: "Do you offer training or onboarding?",
-        content: "We provide video tutorials, documentation, and live webinars. Pro and Elite plans include personalized onboarding sessions with our support team.",
+        content:
+          "We provide video tutorials, documentation, and live webinars. Pro and Elite plans include personalized onboarding sessions with our support team.",
       },
       {
         id: "pos-integration",
         category: "features",
         title: "Can I keep my existing ticketing or POS?",
-        content: "Yuno can run alongside an external ticketing provider for an event, but you'll get full operational value (bar, VIP, CRM, payouts) only when ticketing runs through Yuno.",
+        content:
+          "Yuno can run alongside an external ticketing provider for an event, but you'll get full operational value (bar, VIP, CRM, payouts) only when ticketing runs through Yuno.",
       },
       {
         id: "floor-plan",
         category: "features",
         title: "How does the VIP floor plan editor work?",
-        content: "Drag-and-drop tables, zones and minimum spend directly in the app. VIP hosts log bottles from their own phone — the system flags shortfalls automatically and updates availability in real time. No extra hardware required.",
+        content:
+          "Drag-and-drop tables, zones and minimum spend directly in the app. VIP hosts log bottles from their own phone — the system flags shortfalls automatically and updates availability in real time. No extra hardware required.",
       },
       {
         id: "bar-flow",
         category: "features",
         title: "How does the Click & Collect bar reduce queues?",
-        content: "Guests pre-order drinks from their phone. Barmen see a live queue — pending, preparing, ready — and push a notification when the round is ready for pickup.",
+        content:
+          "Guests pre-order drinks from their phone. Barmen see a live queue — pending, preparing, ready — and push a notification when the round is ready for pickup.",
       },
       {
         id: "revenue-split",
         category: "billing",
         title: "How does the revenue split with a host venue work?",
-        content: "When you onboard, both parties connect their Stripe Connect Standard accounts and agree on a split (e.g. 70/30). Funds settle two days after the event, fee-free — the short delay leaves room to handle any refund or dispute before the money moves.",
+        content:
+          "When you onboard, both parties connect their Stripe Connect Standard accounts and agree on a split (e.g. 70/30). Funds settle two days after the event, fee-free — the short delay leaves room to handle any refund or dispute before the money moves.",
       },
       {
         id: "plan-change",
         category: "billing",
         title: "Can I change my plan anytime?",
-        content: "Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate your billing accordingly.",
+        content:
+          "Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate your billing accordingly.",
       },
       {
         id: "markets",
         category: "support",
         title: "Which markets do you operate in?",
-        content: "Europe-first. Yuno is built for venues and organizers across France, Spain, Belgium, Switzerland and the UK, and we settle payouts in EUR and GBP.",
+        content:
+          "Europe-first. Yuno is built for venues and organizers across France, Spain, Belgium, Switzerland and the UK, and we settle payouts in EUR and GBP.",
       },
       {
         id: "bug-report",
         category: "support",
         title: "How do I report a bug or request a feature?",
-        content: "Use the in-app feedback button or email support@yunoapp.eu with details. Our team typically responds within 24 hours on business days.",
+        content:
+          "Use the in-app feedback button or email support@yunoapp.eu with details. Our team typically responds within 24 hours on business days.",
       },
     ],
   },
@@ -367,7 +391,8 @@ const fr: HomeContent = {
     sub: "Chaque nuit se termine par un tableur. Paiements des promoteurs, répartition du bar, réconciliation de la liste d'invités — des heures de travail après une nuit déjà menée à l'adrénaline. Yuno boucle la boucle automatiquement, pour que votre matin commence par un virement, pas par une calculatrice.",
     ctaPrimary: "Commencer gratuitement",
     ctaSecondary: "Voir la démo produit",
-    fineprint: "Vous gardez l'intégralité du prix de votre billet. Seuls les frais de traitement Stripe habituels s'appliquent.",
+    fineprint:
+      "Vous gardez l'intégralité du prix de votre billet. Seuls les frais de traitement Stripe habituels s'appliquent.",
   },
   logoCloud: {
     label: "En partenariat avec des établissements comme",
@@ -381,10 +406,23 @@ const fr: HomeContent = {
     colYunoLabel: "Yuno",
     colYunoName: "Abonnement uniquement",
     rows: [
-      { label: "Commission par billet", shotgun: "10 % — payés par vous", yuno: "0 % — payés par le client" },
-      { label: "200 billets à 20 €", shotgun: "Vous perdez 400 €", yuno: "Vous recevez 4 000 €", highlight: true },
+      {
+        label: "Commission par billet",
+        shotgun: "10 % — payés par vous",
+        yuno: "0 % — payés par le client",
+      },
+      {
+        label: "200 billets à 20 €",
+        shotgun: "Vous perdez 400 €",
+        yuno: "Vous recevez 4 000 €",
+        highlight: true,
+      },
       { label: "Frais de virement", shotgun: "+3 %", yuno: "Inclus" },
-      { label: "Récupération des fonds", shotgun: "72 h après l'événement", yuno: "2 jours après, sans frais" },
+      {
+        label: "Récupération des fonds",
+        shotgun: "72 h après l'événement",
+        yuno: "2 jours après, sans frais",
+      },
       { label: "Bar, plan de salle, CRM", shotgun: false, yuno: true },
     ],
     footerA: "Sur une saison de 20 soirées :",
@@ -547,9 +585,18 @@ const fr: HomeContent = {
     title: "Vous êtes opérationnel en une après-midi",
     stepLabel: "Étape",
     steps: [
-      { step: "01", title: "Configurez vos événements, billets, plan de salle & staff", time: "30 min" },
+      {
+        step: "01",
+        title: "Configurez vos événements, billets, plan de salle & staff",
+        time: "30 min",
+      },
       { step: "02", title: "Connectez Stripe & configurez votre bar", time: "20 min" },
-      { step: "03", title: "Invitez vos promoteurs & lancez-vous. Envoyez à chacun son lien unique — ils commencent à vendre, vous voyez chaque vente en temps réel.", time: "10 min" },
+      {
+        step: "03",
+        title:
+          "Invitez vos promoteurs & lancez-vous. Envoyez à chacun son lien unique — ils commencent à vendre, vous voyez chaque vente en temps réel.",
+        time: "10 min",
+      },
     ],
   },
   savings: {
@@ -576,7 +623,8 @@ const fr: HomeContent = {
     bodyVenues: "15 premiers établissements partenaires",
     bodyB: ". Les clubs fondateurs bénéficient de ",
     bodyMonths: "3 mois offerts",
-    bodyC: " — sans carte bancaire, sans engagement. Ensuite, passez au mensuel au tarif plein ou choisissez l'annuel et obtenez ",
+    bodyC:
+      " — sans carte bancaire, sans engagement. Ensuite, passez au mensuel au tarif plein ou choisissez l'annuel et obtenez ",
     bodyAnnual: "2 mois offerts + un prix bloqué à vie",
     bodyD: ". Votre tarif n'augmente jamais, même si nos prix montent.",
     bullets: [
@@ -595,7 +643,8 @@ const fr: HomeContent = {
     statValue: "4h+",
     statBodyA: "Un club passe en moyenne ",
     statBodyHighlight: "plus de 4 heures par événement",
-    statBodyB: " sur la réconciliation post-soirée — versements aux promoteurs, répartition du bar, liste d'invités, remboursements.",
+    statBodyB:
+      " sur la réconciliation post-soirée — versements aux promoteurs, répartition du bar, liste d'invités, remboursements.",
     statResultA: "Yuno réduit ça à ",
     statResultHighlight: "zéro",
     statResultB: ".",
@@ -615,55 +664,64 @@ const fr: HomeContent = {
         id: "setup-time",
         category: "getting-started",
         title: "Combien de temps faut-il pour configurer un club ?",
-        content: "La plupart des établissements sont opérationnels en moins d'une semaine. Nous migrons votre liste d'invités, construisons votre plan de salle avec vous, et votre staff est formé au flux PIN en une après-midi.",
+        content:
+          "La plupart des établissements sont opérationnels en moins d'une semaine. Nous migrons votre liste d'invités, construisons votre plan de salle avec vous, et votre staff est formé au flux PIN en une après-midi.",
       },
       {
         id: "onboarding",
         category: "getting-started",
         title: "Proposez-vous de la formation ou de l'onboarding ?",
-        content: "Nous proposons des tutoriels vidéo, de la documentation et des webinaires en direct. Les formules Pro et Elite incluent des sessions d'onboarding personnalisées avec notre équipe support.",
+        content:
+          "Nous proposons des tutoriels vidéo, de la documentation et des webinaires en direct. Les formules Pro et Elite incluent des sessions d'onboarding personnalisées avec notre équipe support.",
       },
       {
         id: "pos-integration",
         category: "features",
         title: "Puis-je garder ma billetterie ou mon POS actuel ?",
-        content: "Yuno peut fonctionner aux côtés d'un prestataire de billetterie externe pour un événement, mais vous n'obtiendrez toute la valeur opérationnelle (bar, VIP, CRM, versements) que lorsque la billetterie passe par Yuno.",
+        content:
+          "Yuno peut fonctionner aux côtés d'un prestataire de billetterie externe pour un événement, mais vous n'obtiendrez toute la valeur opérationnelle (bar, VIP, CRM, versements) que lorsque la billetterie passe par Yuno.",
       },
       {
         id: "floor-plan",
         category: "features",
         title: "Comment fonctionne l'éditeur de plan de salle VIP ?",
-        content: "Glissez-déposez tables, zones et minimum de consommation directement dans l'application. Les hôtes VIP enregistrent les bouteilles depuis leur propre téléphone — le système signale automatiquement les manques et met à jour la disponibilité en temps réel. Aucun matériel supplémentaire requis.",
+        content:
+          "Glissez-déposez tables, zones et minimum de consommation directement dans l'application. Les hôtes VIP enregistrent les bouteilles depuis leur propre téléphone — le système signale automatiquement les manques et met à jour la disponibilité en temps réel. Aucun matériel supplémentaire requis.",
       },
       {
         id: "bar-flow",
         category: "features",
         title: "Comment le bar Click & Collect réduit-il les files d'attente ?",
-        content: "Les clients commandent leurs boissons à l'avance depuis leur téléphone. Les barmen voient une file en direct — en attente, en préparation, prêt — et envoient une notification dès que la tournée est prête à être récupérée.",
+        content:
+          "Les clients commandent leurs boissons à l'avance depuis leur téléphone. Les barmen voient une file en direct — en attente, en préparation, prêt — et envoient une notification dès que la tournée est prête à être récupérée.",
       },
       {
         id: "revenue-split",
         category: "billing",
         title: "Comment fonctionne la répartition des revenus avec un établissement hôte ?",
-        content: "À l'onboarding, les deux parties connectent leurs comptes Stripe Connect Standard et conviennent d'une répartition (ex. 70/30). Les fonds sont réglés deux jours après l'événement, sans frais — ce court délai laisse le temps de gérer un éventuel remboursement ou litige avant que l'argent ne parte.",
+        content:
+          "À l'onboarding, les deux parties connectent leurs comptes Stripe Connect Standard et conviennent d'une répartition (ex. 70/30). Les fonds sont réglés deux jours après l'événement, sans frais — ce court délai laisse le temps de gérer un éventuel remboursement ou litige avant que l'argent ne parte.",
       },
       {
         id: "plan-change",
         category: "billing",
         title: "Puis-je changer de formule à tout moment ?",
-        content: "Oui, vous pouvez passer à une formule supérieure ou inférieure à tout moment. Les changements prennent effet immédiatement, et nous calculons votre facturation au prorata.",
+        content:
+          "Oui, vous pouvez passer à une formule supérieure ou inférieure à tout moment. Les changements prennent effet immédiatement, et nous calculons votre facturation au prorata.",
       },
       {
         id: "markets",
         category: "support",
         title: "Dans quels marchés opérez-vous ?",
-        content: "L'Europe d'abord. Yuno est conçu pour les établissements et organisateurs en France, Espagne, Belgique, Suisse et au Royaume-Uni, et nous réglons les versements en EUR et GBP.",
+        content:
+          "L'Europe d'abord. Yuno est conçu pour les établissements et organisateurs en France, Espagne, Belgique, Suisse et au Royaume-Uni, et nous réglons les versements en EUR et GBP.",
       },
       {
         id: "bug-report",
         category: "support",
         title: "Comment signaler un bug ou demander une fonctionnalité ?",
-        content: "Utilisez le bouton de feedback dans l'application ou écrivez à support@yunoapp.eu avec les détails. Notre équipe répond généralement sous 24 heures les jours ouvrés.",
+        content:
+          "Utilisez le bouton de feedback dans l'application ou écrivez à support@yunoapp.eu avec les détails. Notre équipe répond généralement sous 24 heures les jours ouvrés.",
       },
     ],
   },

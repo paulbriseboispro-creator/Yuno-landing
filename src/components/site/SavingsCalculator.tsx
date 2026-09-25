@@ -97,10 +97,7 @@ export function SavingsCalculator() {
     ];
   }, [ticketPrice, tickets, yunoCost, gmv, s]);
 
-  const maxCost = Math.max(
-    ...rows.map((r) => r.cost ?? 0),
-    yunoCost
-  );
+  const maxCost = Math.max(...rows.map((r) => r.cost ?? 0), yunoCost);
 
   return (
     <div className="rounded-3xl bg-surface ring-1 ring-border p-6 md:p-8">
@@ -109,12 +106,8 @@ export function SavingsCalculator() {
           <Banknote className="size-5 text-accent" strokeWidth={1.75} />
         </div>
         <div>
-          <h3 className="text-xl md:text-2xl font-medium tracking-tight">
-            {s.heading}
-          </h3>
-          <p className="text-sm text-muted-foreground">
-            {s.subheading}
-          </p>
+          <h3 className="text-xl md:text-2xl font-medium tracking-tight">{s.heading}</h3>
+          <p className="text-sm text-muted-foreground">{s.subheading}</p>
         </div>
       </div>
 
@@ -128,7 +121,9 @@ export function SavingsCalculator() {
               onChange={(e) => setTicketPrice(Math.max(1, Number(e.target.value) || 0))}
               className="w-full bg-background ring-1 ring-border rounded-xl px-4 py-3 text-lg font-medium focus:outline-none focus:ring-accent/60"
             />
-            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">€</span>
+            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">
+              €
+            </span>
           </div>
         </Field>
         <Field label={s.fieldTicketsPerYear}>
@@ -148,7 +143,9 @@ export function SavingsCalculator() {
             className="w-full bg-background ring-1 ring-border rounded-xl px-4 py-3 text-lg font-medium focus:outline-none focus:ring-accent/60 appearance-none"
           >
             {(Object.keys(PLAN_MONTHLY) as PlanKey[]).map((k) => (
-              <option key={k} value={k}>{planLabels[k]}</option>
+              <option key={k} value={k}>
+                {planLabels[k]}
+              </option>
             ))}
           </select>
         </Field>
@@ -170,9 +167,7 @@ export function SavingsCalculator() {
               <div
                 key={r.key}
                 className={`grid grid-cols-12 items-center gap-3 rounded-2xl px-4 py-4 ${
-                  isYuno
-                    ? "ring-1 ring-accent/50 bg-accent/[0.06]"
-                    : "ring-1 ring-border/60"
+                  isYuno ? "ring-1 ring-accent/50 bg-accent/[0.06]" : "ring-1 ring-border/60"
                 }`}
               >
                 <div className="col-span-6 min-w-0">
@@ -187,10 +182,7 @@ export function SavingsCalculator() {
                   </div>
                   <p className="text-xs text-muted-foreground mt-1 ml-4">{r.sub}</p>
                   <div className="mt-2 ml-4 h-1 rounded-full bg-border/60 overflow-hidden">
-                    <div
-                      className={`h-full ${r.dotColor}`}
-                      style={{ width: `${pct}%` }}
-                    />
+                    <div className={`h-full ${r.dotColor}`} style={{ width: `${pct}%` }} />
                   </div>
                 </div>
                 <div className="col-span-4 text-right">
@@ -212,13 +204,17 @@ export function SavingsCalculator() {
                 </div>
                 <div className="col-span-2 text-right">
                   {isYuno ? (
-                    <span className="text-[11px] text-muted-foreground bg-surface-2 rounded-full px-2.5 py-1">{s.baseline}</span>
+                    <span className="text-[11px] text-muted-foreground bg-surface-2 rounded-full px-2.5 py-1">
+                      {s.baseline}
+                    </span>
                   ) : savings != null && savings > 0 ? (
                     <span className="inline-block text-sm font-semibold text-emerald-400 bg-emerald-500/10 rounded-full px-2.5 py-1">
                       +{fmt(savings, locale)}
                     </span>
                   ) : (
-                    <span className="text-[11px] text-muted-foreground bg-surface-2 rounded-full px-2.5 py-1">{r.note ?? s.notAvailable}</span>
+                    <span className="text-[11px] text-muted-foreground bg-surface-2 rounded-full px-2.5 py-1">
+                      {r.note ?? s.notAvailable}
+                    </span>
                   )}
                 </div>
               </div>

@@ -99,7 +99,9 @@ export function AffiliatesPage() {
           {t.pillars.map((p) => (
             <div key={p.label} className="px-6 md:px-10 py-6 md:py-2 text-center md:text-left">
               <p className="text-3xl md:text-4xl font-medium tracking-tight">{p.value}</p>
-              <p className="mt-2 text-sm text-muted-foreground max-w-[28ch] mx-auto md:mx-0">{p.label}</p>
+              <p className="mt-2 text-sm text-muted-foreground max-w-[28ch] mx-auto md:mx-0">
+                {p.label}
+              </p>
             </div>
           ))}
         </div>
@@ -119,19 +121,22 @@ export function AffiliatesPage() {
           </Reveal>
 
           <div className="mx-auto max-w-[56ch] text-center mb-14">
-            <p className="text-base text-muted-foreground text-pretty">
-              {t.branded.body}
-            </p>
+            <p className="text-base text-muted-foreground text-pretty">{t.branded.body}</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 items-start max-w-5xl mx-auto">
             {/* Before — generic Linktree */}
             <Reveal>
               <div className="rounded-3xl bg-surface ring-1 ring-border p-6 relative">
-                <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground mb-5">{t.branded.beforeLabel}</p>
+                <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground mb-5">
+                  {t.branded.beforeLabel}
+                </p>
                 <div className="space-y-2.5">
                   {t.branded.before.map((l) => (
-                    <div key={l.label} className="flex items-center gap-3 rounded-xl bg-background/60 ring-1 ring-border/60 px-4 py-3">
+                    <div
+                      key={l.label}
+                      className="flex items-center gap-3 rounded-xl bg-background/60 ring-1 ring-border/60 px-4 py-3"
+                    >
                       <ExternalLink className="size-3.5 text-muted-foreground shrink-0" />
                       <span className="text-sm text-muted-foreground">{l.label}</span>
                     </div>
@@ -143,7 +148,9 @@ export function AffiliatesPage() {
             {/* After — Yuno collective page */}
             <Reveal delay={0.1}>
               <div className="rounded-3xl bg-surface ring-1 ring-border p-6 relative">
-                <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground mb-5">{t.branded.afterLabel}</p>
+                <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground mb-5">
+                  {t.branded.afterLabel}
+                </p>
                 <div className="flex items-center gap-3 mb-5">
                   <div className="size-10 rounded-xl bg-gradient-to-br from-accent to-accent/40 flex items-center justify-center text-accent-foreground font-semibold">
                     C
@@ -155,11 +162,15 @@ export function AffiliatesPage() {
                 </div>
                 <div className="space-y-2">
                   {t.branded.after.events.map((e) => (
-                    <div key={e.name} className="flex items-center justify-between rounded-xl bg-background/40 ring-1 ring-border/60 px-4 py-3">
+                    <div
+                      key={e.name}
+                      className="flex items-center justify-between rounded-xl bg-background/40 ring-1 ring-border/60 px-4 py-3"
+                    >
                       <div>
                         <p className="text-sm font-medium">{e.name}</p>
-                        <p className="text-[11px] text-muted-foreground">{e.date} · {e.venue}</p>
-
+                        <p className="text-[11px] text-muted-foreground">
+                          {e.date} · {e.venue}
+                        </p>
                       </div>
                       <span className="text-[10px] font-medium uppercase tracking-[0.16em] text-accent border border-accent/40 rounded-full px-2 py-0.5">
                         {t.branded.after.ticketsLabel}
@@ -205,7 +216,8 @@ export function AffiliatesPage() {
                         <div className="min-w-0">
                           <p className="text-sm truncate">{p.name}</p>
                           <p className="text-[11px] text-muted-foreground flex items-center gap-1">
-                            <Link2 className="size-3" /> yuno.app/p/{p.name.split(" ")[0].toLowerCase()}
+                            <Link2 className="size-3" /> yuno.app/p/
+                            {p.name.split(" ")[0].toLowerCase()}
                             {i === 0 && (
                               <span className="ml-2 text-accent">{t.team.mockup.topSeller}</span>
                             )}
@@ -251,7 +263,9 @@ export function AffiliatesPage() {
             </span>
             <h2 className="mt-3 text-3xl md:text-5xl font-medium tracking-tight text-balance leading-[1.05]">
               {t.exclusivity.titleStart}{" "}
-              <span className="serif italic text-muted-foreground">{t.exclusivity.titleEmphasis}</span>
+              <span className="serif italic text-muted-foreground">
+                {t.exclusivity.titleEmphasis}
+              </span>
             </h2>
             <p className="mt-6 text-base text-muted-foreground text-pretty">
               {t.exclusivity.body1}
@@ -353,9 +367,7 @@ export function AffiliatesPage() {
                 {t.finalCta.cta}
                 <ArrowRight className="size-4" />
               </Link>
-              <p className="mt-5 text-xs text-muted-foreground">
-                {t.finalCta.footnote}
-              </p>
+              <p className="mt-5 text-xs text-muted-foreground">{t.finalCta.footnote}</p>
             </div>
           </div>
         </Reveal>

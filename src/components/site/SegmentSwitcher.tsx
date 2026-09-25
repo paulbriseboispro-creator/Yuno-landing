@@ -32,7 +32,12 @@ export function SegmentSwitcher() {
                 transition={{ type: "spring", stiffness: 380, damping: 32 }}
               />
             )}
-            <span className={["relative z-10", active === k ? "text-foreground" : "text-muted-foreground"].join(" ")}>
+            <span
+              className={[
+                "relative z-10",
+                active === k ? "text-foreground" : "text-muted-foreground",
+              ].join(" ")}
+            >
               {t.segments[k]}
             </span>
           </button>

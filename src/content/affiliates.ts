@@ -76,8 +76,9 @@ const en = {
     titleStart: "Your promoters.",
     titleEmphasis: "Each with their own link.",
     titleEnd: "No spreadsheet needed.",
-    body1: "Add every promoter in your roster to Yuno. Each one gets their own personal page for every event — they share it on their socials, and your brand stays consistent across the team.",
-    body2: "No more \"send me the link again\". No more ten different versions of the same flyer.",
+    body1:
+      "Add every promoter in your roster to Yuno. Each one gets their own personal page for every event — they share it on their socials, and your brand stays consistent across the team.",
+    body2: 'No more "send me the link again". No more ten different versions of the same flyer.',
   },
   promoters: [
     { name: "Lucas M.", initials: "LM" },
@@ -90,7 +91,8 @@ const en = {
     eyebrow: "Exclusive access",
     titleStart: "First in your city.",
     titleEmphasis: "The only one.",
-    body1: "Yuno partners with one affiliate collective per city. When you're in, your territory is yours — no competitor collective running events alongside you on the same platform.",
+    body1:
+      "Yuno partners with one affiliate collective per city. When you're in, your territory is yours — no competitor collective running events alongside you on the same platform.",
     body2: "We're opening cities progressively. First to apply, first to get it.",
     cta: "Apply for your city",
   },
@@ -208,7 +210,8 @@ const fr: AffiliatesContent = {
     titleStart: "Vos promoteurs.",
     titleEmphasis: "Chacun avec son propre lien.",
     titleEnd: "Aucun tableur nécessaire.",
-    body1: "Ajoutez chaque promoteur de votre équipe à Yuno. Chacun obtient sa propre page personnelle pour chaque événement — il la partage sur ses réseaux, et votre marque reste cohérente dans toute l'équipe.",
+    body1:
+      "Ajoutez chaque promoteur de votre équipe à Yuno. Chacun obtient sa propre page personnelle pour chaque événement — il la partage sur ses réseaux, et votre marque reste cohérente dans toute l'équipe.",
     body2: "Fini les « renvoie-moi le lien ». Fini les dix versions différentes du même flyer.",
   },
   promoters: [
@@ -222,7 +225,8 @@ const fr: AffiliatesContent = {
     eyebrow: "Accès exclusif",
     titleStart: "Premier dans votre ville.",
     titleEmphasis: "Le seul.",
-    body1: "Yuno s'associe à un seul collectif affilié par ville. Une fois admis, votre territoire est à vous — aucun collectif concurrent n'organise d'événements à vos côtés sur la même plateforme.",
+    body1:
+      "Yuno s'associe à un seul collectif affilié par ville. Une fois admis, votre territoire est à vous — aucun collectif concurrent n'organise d'événements à vos côtés sur la même plateforme.",
     body2: "Nous ouvrons les villes progressivement. Premier à candidater, premier servi.",
     cta: "Candidater pour votre ville",
   },

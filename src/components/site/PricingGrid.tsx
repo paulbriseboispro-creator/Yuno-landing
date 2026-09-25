@@ -12,10 +12,7 @@ export function PricingGrid({ showFees = true }: { showFees?: boolean }) {
         {t.plans.map((p) => (
           <PricingCard.Card
             key={p.name}
-            className={cn(
-              "w-full max-w-full",
-              p.popular && "md:scale-[1.03] z-10"
-            )}
+            className={cn("w-full max-w-full", p.popular && "md:scale-[1.03] z-10")}
           >
             <PricingCard.Header isPopular={p.popular}>
               <PricingCard.Plan>
@@ -34,15 +31,11 @@ export function PricingGrid({ showFees = true }: { showFees?: boolean }) {
                 )}
               </PricingCard.Plan>
               <PricingCard.Price>
-                <PricingCard.MainPrice className="font-medium">
-                  {p.price}
-                </PricingCard.MainPrice>
+                <PricingCard.MainPrice className="font-medium">{p.price}</PricingCard.MainPrice>
                 <PricingCard.Period>{p.suffix}</PricingCard.Period>
               </PricingCard.Price>
               {p.annual && !p.comingSoon && (
-                <p className="mb-3 text-[11px] font-medium text-accent">
-                  {p.annual}
-                </p>
+                <p className="mb-3 text-[11px] font-medium text-accent">{p.annual}</p>
               )}
               {p.comingSoon ? (
                 <div
@@ -58,15 +51,13 @@ export function PricingGrid({ showFees = true }: { showFees?: boolean }) {
                     "inline-flex h-9 w-full items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-colors",
                     p.popular
                       ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                      : "bg-surface-2 text-foreground hover:bg-surface-2/70"
+                      : "bg-surface-2 text-foreground hover:bg-surface-2/70",
                   )}
                 >
                   {p.cta}
                 </Link>
               )}
-              <p className="mt-2 text-[11px] text-muted-foreground text-center">
-                {t.cardNote}
-              </p>
+              <p className="mt-2 text-[11px] text-muted-foreground text-center">{t.cardNote}</p>
             </PricingCard.Header>
 
             <PricingCard.Body>
@@ -79,7 +70,10 @@ export function PricingGrid({ showFees = true }: { showFees?: boolean }) {
                     <PricingCard.List>
                       {group.items.map((f) => (
                         <PricingCard.ListItem className="text-xs" key={f}>
-                          <CheckCircle2 aria-hidden="true" className="size-4 text-accent shrink-0" />
+                          <CheckCircle2
+                            aria-hidden="true"
+                            className="size-4 text-accent shrink-0"
+                          />
                           <span>{f}</span>
                         </PricingCard.ListItem>
                       ))}

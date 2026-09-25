@@ -24,7 +24,8 @@ export function YunoCollabSection() {
                   {t.collab.body}
                 </p>
                 <p className="text-base text-foreground mb-8">
-                  {t.collab.costLabel} <span className="text-accent font-medium">{t.collab.costValue}</span>
+                  {t.collab.costLabel}{" "}
+                  <span className="text-accent font-medium">{t.collab.costValue}</span>
                 </p>
                 <p className="text-sm serif italic text-muted-foreground mb-8 max-w-[50ch]">
                   {t.collab.note}

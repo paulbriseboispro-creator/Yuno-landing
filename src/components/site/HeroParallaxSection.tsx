@@ -33,7 +33,6 @@ const products: ParallaxProduct[] = [
   { title: "Live Night", link: "#product", thumbnail: liveNight },
 ];
 
-
 function ParallaxHeader() {
   const t = useHome();
   return (
@@ -43,8 +42,7 @@ function ParallaxHeader() {
         {t.hero.eyebrow}
       </span>
       <h1 className="text-5xl md:text-7xl font-medium tracking-tight text-balance max-w-[22ch] leading-[1.05]">
-        {t.hero.titleA}{" "}
-        <span className="serif italic text-muted-foreground">{t.hero.titleEm}</span>{" "}
+        {t.hero.titleA} <span className="serif italic text-muted-foreground">{t.hero.titleEm}</span>{" "}
         {t.hero.titleB}
       </h1>
       <p className="max-w-2xl text-base md:text-lg mt-4 md:mt-8 text-muted-foreground text-pretty">

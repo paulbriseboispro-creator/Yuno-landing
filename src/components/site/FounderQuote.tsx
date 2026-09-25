@@ -16,17 +16,24 @@ export function FounderQuote() {
             <span className="serif italic text-muted-foreground">"</span>
           </blockquote>
           <p className="mt-6 text-sm text-muted-foreground">
-            <span className="text-foreground font-medium">{t.founderQuote.name}</span> · {t.founderQuote.title}
+            <span className="text-foreground font-medium">{t.founderQuote.name}</span> ·{" "}
+            {t.founderQuote.title}
           </p>
         </Reveal>
         <Reveal delay={0.1}>
           <div className="rounded-3xl bg-surface ring-1 ring-border p-10">
-            <div className="text-6xl md:text-7xl font-medium tracking-tight text-accent leading-none">{t.founderQuote.statValue}</div>
+            <div className="text-6xl md:text-7xl font-medium tracking-tight text-accent leading-none">
+              {t.founderQuote.statValue}
+            </div>
             <p className="mt-4 text-base text-muted-foreground text-pretty">
-              {t.founderQuote.statBodyA}<span className="text-foreground">{t.founderQuote.statBodyHighlight}</span>{t.founderQuote.statBodyB}
+              {t.founderQuote.statBodyA}
+              <span className="text-foreground">{t.founderQuote.statBodyHighlight}</span>
+              {t.founderQuote.statBodyB}
             </p>
             <p className="mt-3 text-base text-foreground">
-              {t.founderQuote.statResultA}<span className="text-accent font-medium">{t.founderQuote.statResultHighlight}</span>{t.founderQuote.statResultB}
+              {t.founderQuote.statResultA}
+              <span className="text-accent font-medium">{t.founderQuote.statResultHighlight}</span>
+              {t.founderQuote.statResultB}
             </p>
           </div>
         </Reveal>

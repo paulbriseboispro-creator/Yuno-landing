@@ -14,14 +14,11 @@ export function PrivacyPage() {
         <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-balance mb-4">
           {t.heading}
         </h1>
-        <p className="text-sm text-muted-foreground mb-10">
-          {t.lastUpdated}
-        </p>
+        <p className="text-sm text-muted-foreground mb-10">{t.lastUpdated}</p>
 
         <div className="rounded-2xl bg-surface ring-1 ring-border p-6 md:p-8 mb-10">
           <p className="text-sm text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">{t.placeholder}</strong>{" "}
-            {t.notice}{" "}
+            <strong className="text-foreground">{t.placeholder}</strong> {t.notice}{" "}
             <a className="text-accent hover:underline" href="mailto:contact@yunoapp.eu">
               contact@yunoapp.eu
             </a>

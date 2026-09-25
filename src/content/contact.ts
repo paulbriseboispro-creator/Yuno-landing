@@ -56,8 +56,7 @@ const en = {
     title: "You're on the list.",
     body: "We'll be in touch within one business day.",
   },
-  consent:
-    "By submitting you agree to be contacted about Yuno. We never share your data.",
+  consent: "By submitting you agree to be contacted about Yuno. We never share your data.",
   // Human-readable label for each ?besoin= pain, used to pre-fill the message so
   // Paul opens the call on the visitor's actual problem.
   prefillPrefix: "I'd like to talk about",
@@ -122,7 +121,8 @@ const fr: ContactContent = {
     phoneLabel: "Téléphone (optionnel)",
     phonePlaceholder: "+33 6 ...",
     messageLabel: "Que souhaitez-vous résoudre en priorité ?",
-    messagePlaceholder: "Tables VIP qui ne viennent pas, aveugle pendant la soirée, données clients, répartition co-soirée...",
+    messagePlaceholder:
+      "Tables VIP qui ne viennent pas, aveugle pendant la soirée, données clients, répartition co-soirée...",
     submit: "Réserver ma démo",
     submitting: "Envoi…",
     errorMessage: "Impossible d'enregistrer votre demande. Réessayez.",

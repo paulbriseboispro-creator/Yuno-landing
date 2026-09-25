@@ -12,13 +12,41 @@ import subscription from "@/assets/dashboards/subscription.png";
 // 32 images distributed across 4 columns of 8. Revenue weighted heaviest.
 const images = [
   // Col 1
-  revenue, liveNight, customers, revenue, orders, recap, revenue, menu,
+  revenue,
+  liveNight,
+  customers,
+  revenue,
+  orders,
+  recap,
+  revenue,
+  menu,
   // Col 2
-  liveNight, revenue, invoices, customers, revenue, subscription, orders, revenue,
+  liveNight,
+  revenue,
+  invoices,
+  customers,
+  revenue,
+  subscription,
+  orders,
+  revenue,
   // Col 3
-  recap, customers, revenue, liveNight, menu, revenue, invoices, recap,
+  recap,
+  customers,
+  revenue,
+  liveNight,
+  menu,
+  revenue,
+  invoices,
+  recap,
   // Col 4
-  revenue, orders, subscription, revenue, customers, liveNight, revenue, menu,
+  revenue,
+  orders,
+  subscription,
+  revenue,
+  customers,
+  liveNight,
+  revenue,
+  menu,
 ];
 
 export function MarqueeSection() {

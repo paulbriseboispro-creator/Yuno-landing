@@ -52,17 +52,23 @@ export function ShotgunComparison() {
             <div className="grid grid-cols-[1.2fr_1fr_1fr] text-sm">
               <div className="p-5 border-b border-border" />
               <div className="p-5 border-b border-l border-border text-center">
-                <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-1">{t.comparison.colStandardLabel}</div>
+                <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-1">
+                  {t.comparison.colStandardLabel}
+                </div>
                 <div className="text-lg font-medium">{t.comparison.colStandardName}</div>
               </div>
               <div className="p-5 border-b border-l border-border text-center bg-accent/5">
-                <div className="text-[10px] uppercase tracking-[0.18em] text-accent mb-1">{t.comparison.colYunoLabel}</div>
+                <div className="text-[10px] uppercase tracking-[0.18em] text-accent mb-1">
+                  {t.comparison.colYunoLabel}
+                </div>
                 <div className="text-lg font-medium">{t.comparison.colYunoName}</div>
               </div>
 
               {rows.map((r) => (
                 <div key={r.label} className="contents">
-                  <div className={`p-5 border-t border-border ${r.highlight ? "font-medium" : "text-muted-foreground"}`}>
+                  <div
+                    className={`p-5 border-t border-border ${r.highlight ? "font-medium" : "text-muted-foreground"}`}
+                  >
                     {r.label}
                   </div>
                   <div className="p-5 border-t border-l border-border text-center">
@@ -80,16 +86,22 @@ export function ShotgunComparison() {
           <div className="md:hidden divide-y divide-border rounded-3xl bg-surface ring-1 ring-border overflow-hidden">
             {rows.map((r) => (
               <div key={r.label} className="p-4">
-                <div className={`text-sm mb-3 ${r.highlight ? "font-medium" : "text-muted-foreground"}`}>
+                <div
+                  className={`text-sm mb-3 ${r.highlight ? "font-medium" : "text-muted-foreground"}`}
+                >
                   {r.label}
                 </div>
                 <div className="grid grid-cols-2 gap-2.5 text-sm">
                   <div className="rounded-xl ring-1 ring-border/70 p-3 text-center">
-                    <div className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground mb-1.5">{t.comparison.colStandardName}</div>
+                    <div className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground mb-1.5">
+                      {t.comparison.colStandardName}
+                    </div>
                     <CompareValue value={r.shotgun} accent={false} highlight={r.highlight} />
                   </div>
                   <div className="rounded-xl ring-1 ring-accent/40 bg-accent/5 p-3 text-center">
-                    <div className="text-[10px] uppercase tracking-[0.16em] text-accent mb-1.5">{t.comparison.colYunoName}</div>
+                    <div className="text-[10px] uppercase tracking-[0.16em] text-accent mb-1.5">
+                      {t.comparison.colYunoName}
+                    </div>
                     <CompareValue value={r.yuno} accent highlight={r.highlight} />
                   </div>
                 </div>
@@ -100,7 +112,9 @@ export function ShotgunComparison() {
 
         <Reveal delay={0.1}>
           <p className="mt-8 text-center text-base md:text-lg text-muted-foreground max-w-[60ch] mx-auto text-pretty">
-            {t.comparison.footerA} <span className="text-foreground font-medium">{t.comparison.footerShotgun}</span>{t.comparison.footerShotgunRest}{" "}
+            {t.comparison.footerA}{" "}
+            <span className="text-foreground font-medium">{t.comparison.footerShotgun}</span>
+            {t.comparison.footerShotgunRest}{" "}
             <span className="text-foreground">{t.comparison.footerYuno}</span>
           </p>
         </Reveal>

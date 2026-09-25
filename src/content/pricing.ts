@@ -12,8 +12,7 @@ const en = {
     description:
       "Yuno plans: Core (free), Essential €49/mo, Pro €99/mo, Elite €199/mo. Plus 4% per ticket with €0.99 minimum on transactions.",
     ogTitle: "Pricing — Yuno",
-    ogDescription:
-      "Core, Essential €49, Pro €99, Elite €199 — plus low transactional fees.",
+    ogDescription: "Core, Essential €49, Pro €99, Elite €199 — plus low transactional fees.",
   },
   plans: [
     {
@@ -112,7 +111,8 @@ const en = {
   ],
   fees: "Plus 4% per ticket (€0.99 min) and 3% on drinks — service fees paid by the customer, never by you. Organizer and Affiliate accounts are free.",
   // Billing-cadence note shown under the plan grid.
-  annualLine: "Prices shown are monthly. Pay for the year in one payment and 2 months are on us — same plan, lower yearly cost.",
+  annualLine:
+    "Prices shown are monthly. Pay for the year in one payment and 2 months are on us — same plan, lower yearly cost.",
   // PricingGrid sub-CTA under each plan card.
   cardNote: "No setup fee · Cancel anytime · No commitment",
   mostPopular: "Most popular",
@@ -179,11 +179,7 @@ const en = {
     ticketsFootnote: "From 0.99€, up to 4% of order value",
     itemPrice: "Item price:",
     serviceFeeLabel: "Service fee:",
-    checks: [
-      "No setup cost",
-      "No hidden fees",
-      "Money goes directly to your Stripe",
-    ],
+    checks: ["No setup cost", "No hidden fees", "Money goes directly to your Stripe"],
   },
 
   // pricing.tsx inline sections.
@@ -194,8 +190,7 @@ const en = {
     sub: "Monthly SaaS plans for the back office, plus transparent transactional fees on what actually moves money.",
     feeIntroA: "Yuno charges you a ",
     feeIntroMonthly: "monthly subscription",
-    feeIntroB:
-      ". Ticket and drink fees are paid by your guests at checkout — ",
+    feeIntroB: ". Ticket and drink fees are paid by your guests at checkout — ",
     feeIntroNotYou: "not by you",
     feeIntroC: ". The fee calculator below shows what your attendees pay per purchase.",
     noCutBold: "Yuno doesn't take a cut from your revenue.",
@@ -224,7 +219,8 @@ const en = {
       introB: " — and that's where it stops.",
       bodyA: "Founding clubs get ",
       bodyFree: "3 months completely free",
-      bodyB: ", no credit card, no commitment. Run real nights on Yuno, see what it does for your operations, and decide after.",
+      bodyB:
+        ", no credit card, no commitment. Run real nights on Yuno, see what it does for your operations, and decide after.",
       pathsLabel: "After your trial, two paths:",
       pathMonthly: "Go monthly at the standard rate, any time.",
       pathAnnualA: "Go annual and get ",
@@ -370,7 +366,8 @@ const fr: PricingContent = {
     },
   ],
   fees: "Plus 4 % par billet (0,99 € min) et 3 % sur les boissons — des frais de service réglés par le client, jamais par vous. Les comptes Organisateur et Affilié sont gratuits.",
-  annualLine: "Les tarifs affichés sont mensuels. Réglez l'année en un seul paiement et 2 mois vous sont offerts — la même formule, un coût annuel plus bas.",
+  annualLine:
+    "Les tarifs affichés sont mensuels. Réglez l'année en un seul paiement et 2 mois vous sont offerts — la même formule, un coût annuel plus bas.",
   cardNote: "Sans frais d'installation · Annulation à tout moment · Sans engagement",
   mostPopular: "Le plus populaire",
   comingSoonLabel: "Bientôt disponible",
@@ -450,7 +447,8 @@ const fr: PricingContent = {
     feeIntroB:
       ". Les frais sur les billets et les boissons sont réglés par vos invités au moment du paiement — ",
     feeIntroNotYou: "pas par vous",
-    feeIntroC: ". Le calculateur de frais ci-dessous montre ce que vos participants paient par achat.",
+    feeIntroC:
+      ". Le calculateur de frais ci-dessous montre ce que vos participants paient par achat.",
     noCutBold: "Yuno ne prend aucune part de vos revenus.",
     noCutBody:
       "Les 4 % de frais de service sont réglés par vos clients au moment du paiement — comme des frais de carte bancaire. Vous conservez 100 % du prix de votre billet. Seuls les frais de traitement Stripe habituels s'appliquent.",
@@ -477,7 +475,8 @@ const fr: PricingContent = {
       introB: " — et cela s'arrête là.",
       bodyA: "Les clubs fondateurs bénéficient de ",
       bodyFree: "3 mois entièrement gratuits",
-      bodyB: ", sans carte bancaire, sans engagement. Organisez de vraies soirées sur Yuno, voyez ce que cela apporte à vos opérations, et décidez ensuite.",
+      bodyB:
+        ", sans carte bancaire, sans engagement. Organisez de vraies soirées sur Yuno, voyez ce que cela apporte à vos opérations, et décidez ensuite.",
       pathsLabel: "Après votre essai, deux options :",
       pathMonthly: "Passez au mensuel au tarif standard, à tout moment.",
       pathAnnualA: "Passez à l'annuel et obtenez ",

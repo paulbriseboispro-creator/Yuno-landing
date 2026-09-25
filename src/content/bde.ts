@@ -161,15 +161,33 @@ export const bde = {
     colB: "Yuno",
     rows: [
       { label: "Coût pour le BDE", a: "0 € (frais Stripe absorbés)", b: "0 € + frais Stripe" },
-      { label: "Pensé pour les soirées", a: "Plateforme associative", b: "Fait pour la nuit", highlight: true },
-      { label: "Page de soirée à votre image", a: "Formulaire standard", b: "Page premium", highlight: true },
+      {
+        label: "Pensé pour les soirées",
+        a: "Plateforme associative",
+        b: "Fait pour la nuit",
+        highlight: true,
+      },
+      {
+        label: "Page de soirée à votre image",
+        a: "Formulaire standard",
+        b: "Page premium",
+        highlight: true,
+      },
       { label: "Soirées privées par défaut", a: false, b: true, highlight: true },
       { label: "Billets à paliers (Early Bird)", a: "Limité", b: true },
       { label: "Tables VIP & carrés", a: false, b: true },
-      { label: "Contrôle d'accès à l'entrée", a: "QR basique", b: "App multi-scanneurs, PIN, live" },
+      {
+        label: "Contrôle d'accès à l'entrée",
+        a: "QR basique",
+        b: "App multi-scanneurs, PIN, live",
+      },
       { label: "Statistiques en direct", a: false, b: true },
       { label: "Versement", a: "Virement", b: "Automatique, à chaque vente" },
-      { label: "Frais côté client", a: "Contribution « volontaire »", b: "4 % transparent, dès 0,49 €" },
+      {
+        label: "Frais côté client",
+        a: "Contribution « volontaire »",
+        b: "4 % transparent, dès 0,49 €",
+      },
     ] as { label: string; a: string | boolean; b: string | boolean; highlight?: boolean }[],
     footer:
       "Vous utilisez déjà HelloAsso ? Pour quelques centimes de frais Stripe par billet, gagnez une vraie billetterie de soirée et le contrôle de votre public.",

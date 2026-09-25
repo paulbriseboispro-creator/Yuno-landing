@@ -21,10 +21,10 @@ export function RdvButtons({
   const waHref = `https://wa.me/${rdv.whatsappNumber}?text=${waText}`;
 
   return (
-    <div
-      className={`flex flex-col items-${align === "center" ? "center" : "start"} gap-3`}
-    >
-      <div className={`flex flex-col gap-3 sm:flex-row ${align === "center" ? "justify-center" : ""}`}>
+    <div className={`flex flex-col items-${align === "center" ? "center" : "start"} gap-3`}>
+      <div
+        className={`flex flex-col gap-3 sm:flex-row ${align === "center" ? "justify-center" : ""}`}
+      >
         <Link
           to="/contact"
           search={{ segment, besoin }}

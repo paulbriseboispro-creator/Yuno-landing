@@ -298,7 +298,8 @@ const en: RoleLandingContent = {
           "Customer origins map, average basket, CSV export",
           "Loyalty: points, four tiers, QR rewards, post-visit CRM message",
         ],
-        caveat: "Client-side loyalty (points / QR) is live; the owner predictive engine is on the roadmap, not shipped.",
+        caveat:
+          "Client-side loyalty (points / QR) is live; the owner predictive engine is on the roadmap, not shipped.",
       },
       contactLabel: "Customer CRM and a loyalty program",
     },
@@ -691,7 +692,8 @@ const fr: RoleLandingContent = {
           "Carte des pays d'origine, panier moyen, export CSV",
           "Fidélité : points, quatre paliers, récompenses QR, message CRM post-visite",
         ],
-        caveat: "La fidélité côté client (points / QR) est live ; le moteur prédictif côté owner est au roadmap, pas encore livré.",
+        caveat:
+          "La fidélité côté client (points / QR) est live ; le moteur prédictif côté owner est au roadmap, pas encore livré.",
       },
       contactLabel: "CRM clients et programme de fidélité",
     },

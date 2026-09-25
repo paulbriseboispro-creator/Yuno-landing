@@ -38,7 +38,11 @@ export function FoundingBanner() {
         <button
           aria-label="Dismiss"
           onClick={() => {
-            try { localStorage.setItem(STORAGE_KEY, "1"); } catch { /* noop */ }
+            try {
+              localStorage.setItem(STORAGE_KEY, "1");
+            } catch {
+              /* noop */
+            }
             setVisible(false);
           }}
           className="ml-2 opacity-70 hover:opacity-100"

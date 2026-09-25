@@ -1,13 +1,7 @@
 import { Globe } from "lucide-react";
 import { useNavigate, useRouterState } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
-import {
-  LOCALES,
-  LOCALE_LABELS,
-  useLocale,
-  useSetLocale,
-  type Locale,
-} from "@/i18n/locale";
+import { LOCALES, LOCALE_LABELS, useLocale, useSetLocale, type Locale } from "@/i18n/locale";
 import { localePath } from "@/i18n/seo";
 
 // Segmented EN/FR toggle. `compact` is the header pill; the default carries a

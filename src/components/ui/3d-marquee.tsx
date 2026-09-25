@@ -25,10 +25,7 @@ export const ThreeDMarquee = ({
   });
   return (
     <div
-      className={cn(
-        "mx-auto block h-[600px] overflow-hidden rounded-2xl max-sm:h-100",
-        className,
-      )}
+      className={cn("mx-auto block h-[600px] overflow-hidden rounded-2xl max-sm:h-100", className)}
     >
       <div className="flex size-full items-center justify-center">
         <div className="size-[1720px] shrink-0 scale-[0.6] sm:scale-[0.85] lg:scale-[1.15]">
@@ -78,13 +75,7 @@ export const ThreeDMarquee = ({
   );
 };
 
-const GridLineHorizontal = ({
-  className,
-  offset,
-}: {
-  className?: string;
-  offset?: string;
-}) => {
+const GridLineHorizontal = ({ className, offset }: { className?: string; offset?: string }) => {
   return (
     <div
       style={
@@ -112,13 +103,7 @@ const GridLineHorizontal = ({
   );
 };
 
-const GridLineVertical = ({
-  className,
-  offset,
-}: {
-  className?: string;
-  offset?: string;
-}) => {
+const GridLineVertical = ({ className, offset }: { className?: string; offset?: string }) => {
   return (
     <div
       style={

@@ -66,12 +66,26 @@ const DASHBOARDS = [
 
 const PARALLAX_TITLES: Record<"en" | "fr", string[]> = {
   en: [
-    "Dashboard", "Analytics", "Events", "Orders", "Customers",
-    "Collaborations", "Promoters", "Ticketing", "Accounting",
+    "Dashboard",
+    "Analytics",
+    "Events",
+    "Orders",
+    "Customers",
+    "Collaborations",
+    "Promoters",
+    "Ticketing",
+    "Accounting",
   ],
   fr: [
-    "Tableau de bord", "Analytique", "Événements", "Commandes", "Clients",
-    "Collaborations", "Promoteurs", "Billetterie", "Comptabilité",
+    "Tableau de bord",
+    "Analytique",
+    "Événements",
+    "Commandes",
+    "Clients",
+    "Collaborations",
+    "Promoteurs",
+    "Billetterie",
+    "Comptabilité",
   ],
 };
 

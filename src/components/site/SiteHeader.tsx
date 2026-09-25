@@ -10,7 +10,6 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useCommon } from "@/content/common";
 import yunoLogo from "@/assets/yuno-logo.png";
 
-
 export function SiteHeader() {
   const scrolled = useScroll(10);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -34,7 +33,7 @@ export function SiteHeader() {
           // the label lengths of the active language (EN vs FR) instead of a
           // fixed width that crops or leaves the bar feeling cramped.
           "md:w-fit": scrolled && !searchOpen,
-        }
+        },
       )}
     >
       <nav
@@ -42,7 +41,7 @@ export function SiteHeader() {
           "flex h-14 w-full items-center justify-between px-4 md:h-12 md:gap-6 md:transition-all md:ease-out",
           {
             "md:px-2": scrolled,
-          }
+          },
         )}
       >
         <Link
@@ -66,7 +65,6 @@ export function SiteHeader() {
           <SmartSearch compact onOpenChange={setSearchOpen} />
           <LanguageSwitcher compact className="ml-2" />
           <Button asChild size="sm" className="ml-2">
-
             <Link to="/contact">{t.nav.startFree}</Link>
           </Button>
         </div>

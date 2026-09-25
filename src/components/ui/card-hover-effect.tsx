@@ -17,12 +17,7 @@ export const HoverEffect = ({
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div
-      className={cn(
-        "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
-        className
-      )}
-    >
+    <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4", className)}>
       {items.map((item, idx) => (
         <div
           key={idx}
@@ -73,7 +68,7 @@ export const Card = ({
     <div
       className={cn(
         "rounded-2xl h-full w-full p-8 overflow-hidden bg-surface ring-1 ring-border group-hover:ring-accent/40 relative z-20 transition-all",
-        className
+        className,
       )}
     >
       <div className="relative z-50">{children}</div>
@@ -88,11 +83,7 @@ export const CardTitle = ({
   className?: string;
   children: React.ReactNode;
 }) => {
-  return (
-    <h4 className={cn("text-xl font-medium mb-3 tracking-tight", className)}>
-      {children}
-    </h4>
-  );
+  return <h4 className={cn("text-xl font-medium mb-3 tracking-tight", className)}>{children}</h4>;
 };
 
 export const CardDescription = ({
@@ -103,13 +94,6 @@ export const CardDescription = ({
   children: React.ReactNode;
 }) => {
   return (
-    <p
-      className={cn(
-        "text-sm text-muted-foreground leading-relaxed",
-        className
-      )}
-    >
-      {children}
-    </p>
+    <p className={cn("text-sm text-muted-foreground leading-relaxed", className)}>{children}</p>
   );
 };

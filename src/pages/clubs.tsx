@@ -61,32 +61,73 @@ const DASHBOARDS = [
 // DASHBOARDS index.
 const PARALLAX_TITLES: Record<"en" | "fr", string[]> = {
   en: [
-    "Dashboard", "Analytics", "Events", "Ticketing", "Guest list",
-    "VIP Tables", "DJs", "Booking DJ", "Collaborations", "Promoters",
-    "Customers", "Loyalty", "SMS", "Orders", "Invoices",
-    "Accounting", "Staff", "Drink menu", "VIP Service", "Notifications",
+    "Dashboard",
+    "Analytics",
+    "Events",
+    "Ticketing",
+    "Guest list",
+    "VIP Tables",
+    "DJs",
+    "Booking DJ",
+    "Collaborations",
+    "Promoters",
+    "Customers",
+    "Loyalty",
+    "SMS",
+    "Orders",
+    "Invoices",
+    "Accounting",
+    "Staff",
+    "Drink menu",
+    "VIP Service",
+    "Notifications",
   ],
   fr: [
-    "Tableau de bord", "Analytique", "Événements", "Billetterie", "Liste invités",
-    "Tables VIP", "DJs", "Booking DJ", "Collaborations", "Promoteurs",
-    "Clients", "Fidélité", "SMS", "Commandes", "Factures",
-    "Comptabilité", "Équipe", "Carte boissons", "Service VIP", "Notifications",
+    "Tableau de bord",
+    "Analytique",
+    "Événements",
+    "Billetterie",
+    "Liste invités",
+    "Tables VIP",
+    "DJs",
+    "Booking DJ",
+    "Collaborations",
+    "Promoteurs",
+    "Clients",
+    "Fidélité",
+    "SMS",
+    "Commandes",
+    "Factures",
+    "Comptabilité",
+    "Équipe",
+    "Carte boissons",
+    "Service VIP",
+    "Notifications",
   ],
 };
 
 // Hero parallax renders 15 cards (three rows of five) — a curated, visually rich
 // subset. The marquee below shows all 20, so every screen still appears.
 const BASE_PARALLAX = [
-  0, 1, 2, 5, 15, //   dashboard, analytics, events, vip-tables, accounting
-  10, 11, 13, 14, 9, // customers, loyalty, orders, invoices, promoters
-  6, 7, 8, 18, 3, //    djs, booking-dj, collaborations, vip-service, ticketing
+  0,
+  1,
+  2,
+  5,
+  15, //   dashboard, analytics, events, vip-tables, accounting
+  10,
+  11,
+  13,
+  14,
+  9, // customers, loyalty, orders, invoices, promoters
+  6,
+  7,
+  8,
+  18,
+  3, //    djs, booking-dj, collaborations, vip-service, ticketing
 ];
 
 // 3D marquee wall — every owner screen (4 columns of 5).
-const MARQUEE_SEQUENCE = [
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
-  10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-];
+const MARQUEE_SEQUENCE = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 
 // When a pain is active, these DASHBOARDS indices lead the parallax hero so the
 // pain's own screens show first. (Index map: see DASHBOARDS comments above.)

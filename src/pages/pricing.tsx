@@ -18,7 +18,8 @@ export function PricingPage() {
             {p.eyebrow}
           </span>
           <h1 className="text-5xl md:text-6xl font-medium tracking-tight text-balance max-w-[24ch] mx-auto leading-[1.05]">
-            {p.titleA}<span className="serif italic text-muted-foreground">{p.titleEm}</span>
+            {p.titleA}
+            <span className="serif italic text-muted-foreground">{p.titleEm}</span>
           </h1>
           <p className="mt-6 text-base text-muted-foreground max-w-[58ch] mx-auto text-pretty">
             {p.sub}
@@ -30,12 +31,15 @@ export function PricingPage() {
         <div className="mx-auto max-w-3xl">
           <Reveal>
             <p className="text-center text-base text-muted-foreground text-pretty">
-              {p.feeIntroA}<span className="text-foreground">{p.feeIntroMonthly}</span>{p.feeIntroB}<span className="text-foreground">{p.feeIntroNotYou}</span>{p.feeIntroC}
+              {p.feeIntroA}
+              <span className="text-foreground">{p.feeIntroMonthly}</span>
+              {p.feeIntroB}
+              <span className="text-foreground">{p.feeIntroNotYou}</span>
+              {p.feeIntroC}
             </p>
           </Reveal>
         </div>
       </section>
-
 
       <section className="px-6 pb-24">
         <div className="mx-auto max-w-7xl">
@@ -128,13 +132,19 @@ export function PricingPage() {
                   {p.founding.title}
                 </h2>
                 <p className="text-base text-muted-foreground max-w-[62ch] text-pretty mb-4">
-                  {p.founding.introA}<span className="text-foreground font-medium">{p.founding.introVenues}</span>{p.founding.introB}
+                  {p.founding.introA}
+                  <span className="text-foreground font-medium">{p.founding.introVenues}</span>
+                  {p.founding.introB}
                 </p>
                 <p className="text-base text-muted-foreground max-w-[62ch] text-pretty mb-6">
-                  {p.founding.bodyA}<span className="text-foreground font-medium">{p.founding.bodyFree}</span>{p.founding.bodyB}
+                  {p.founding.bodyA}
+                  <span className="text-foreground font-medium">{p.founding.bodyFree}</span>
+                  {p.founding.bodyB}
                 </p>
                 <div className="mb-6">
-                  <p className="text-sm font-medium text-foreground mb-2">{p.founding.pathsLabel}</p>
+                  <p className="text-sm font-medium text-foreground mb-2">
+                    {p.founding.pathsLabel}
+                  </p>
                   <ul className="space-y-1.5 text-sm text-muted-foreground">
                     <li className="flex items-start gap-2">
                       <span className="size-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
@@ -142,7 +152,13 @@ export function PricingPage() {
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="size-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-                      <span>{p.founding.pathAnnualA}<span className="text-foreground font-medium">{p.founding.pathAnnualEm}</span>{p.founding.pathAnnualB}</span>
+                      <span>
+                        {p.founding.pathAnnualA}
+                        <span className="text-foreground font-medium">
+                          {p.founding.pathAnnualEm}
+                        </span>
+                        {p.founding.pathAnnualB}
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -154,16 +170,15 @@ export function PricingPage() {
                     </li>
                   ))}
                 </ul>
-                <p className="text-xs text-muted-foreground mb-6">
-                  {p.founding.deadline}
-                </p>
+                <p className="text-xs text-muted-foreground mb-6">{p.founding.deadline}</p>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                  <Link to="/contact" className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-full text-sm font-semibold hover:brightness-110 transition-all">
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-full text-sm font-semibold hover:brightness-110 transition-all"
+                  >
                     {p.founding.cta} <ArrowRight className="size-4" />
                   </Link>
-                  <span className="text-xs text-muted-foreground">
-                    {p.founding.ctaMeta}
-                  </span>
+                  <span className="text-xs text-muted-foreground">{p.founding.ctaMeta}</span>
                 </div>
               </div>
             </article>

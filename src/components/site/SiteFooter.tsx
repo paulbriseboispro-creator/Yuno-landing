@@ -73,7 +73,9 @@ export function SiteFooter() {
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border py-4 text-muted-foreground text-sm">
-        <p>&copy; {new Date().getFullYear()} {t.footer.rights}</p>
+        <p>
+          &copy; {new Date().getFullYear()} {t.footer.rights}
+        </p>
         <div className="flex items-center gap-2">
           <span className="text-xs">{t.footer.language}</span>
           <LanguageSwitcher />

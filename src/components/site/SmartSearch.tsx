@@ -16,14 +16,18 @@ function score(entry: Entry, q: string) {
   const needle = q.toLowerCase().trim();
   if (!needle) return 0;
   const hay = (entry.title + " " + entry.keywords.join(" ") + " " + entry.category).toLowerCase();
-  if (hay.includes(needle)) return needle.length / hay.length + (entry.title.toLowerCase().startsWith(needle) ? 1 : 0);
+  if (hay.includes(needle))
+    return needle.length / hay.length + (entry.title.toLowerCase().startsWith(needle) ? 1 : 0);
   // token-prefix match
   const tokens = needle.split(/\s+/);
   const hits = tokens.filter((t) => hay.includes(t)).length;
   return hits ? hits / tokens.length : 0;
 }
 
-export function SmartSearch({ compact = false, onOpenChange }: { compact?: boolean; onOpenChange?: (open: boolean) => void } = {}) {
+export function SmartSearch({
+  compact = false,
+  onOpenChange,
+}: { compact?: boolean; onOpenChange?: (open: boolean) => void } = {}) {
   const t = useCommon();
   const index = t.search.index;
   const [query, setQuery] = useState("");
@@ -33,12 +37,12 @@ export function SmartSearch({ compact = false, onOpenChange }: { compact?: boole
     onOpenChange?.(v);
   };
 
-
   const results = useMemo(() => {
     if (!query.trim()) {
       return index.slice(0, 5).map((e) => ({ entry: e, score: 1 }));
     }
-    return index.map((entry) => ({ entry, score: score(entry, query) }))
+    return index
+      .map((entry) => ({ entry, score: score(entry, query) }))
       .filter((r) => r.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, 6);
@@ -60,7 +64,6 @@ export function SmartSearch({ compact = false, onOpenChange }: { compact?: boole
         onValueChange={setQuery}
         onOpenChange={setOpen}
       />
-
 
       <AnimatePresence>
         {showDropdown && (
@@ -93,7 +96,9 @@ export function SmartSearch({ compact = false, onOpenChange }: { compact?: boole
                       >
                         <div className="min-w-0">
                           <p className="truncate text-sm font-medium">{entry.title}</p>
-                          <p className="text-[11px] text-muted-foreground">{t.search.categories[entry.category]}</p>
+                          <p className="text-[11px] text-muted-foreground">
+                            {t.search.categories[entry.category]}
+                          </p>
                         </div>
                         <ArrowUpRight className="size-4 text-muted-foreground group-hover:text-accent transition-colors shrink-0" />
                       </Link>

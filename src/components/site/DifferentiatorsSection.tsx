@@ -22,16 +22,18 @@ export function DifferentiatorsSection() {
           {items.map((item, i) => {
             const Icon = icons[item.icon as keyof typeof icons];
             return (
-            <Reveal key={item.title} delay={i * 0.08}>
-              <article className="h-full p-8 rounded-2xl bg-surface ring-1 ring-border hover:ring-accent/40 transition-all">
-                <div className="size-10 rounded-full bg-accent/10 ring-1 ring-accent/40 flex items-center justify-center mb-6">
-                  <Icon className="size-5 text-accent" />
-                </div>
-                <h3 className="text-xl font-medium mb-3 tracking-tight text-balance">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{item.body}</p>
-                <p className="text-sm serif italic text-accent">{item.tag}</p>
-              </article>
-            </Reveal>
+              <Reveal key={item.title} delay={i * 0.08}>
+                <article className="h-full p-8 rounded-2xl bg-surface ring-1 ring-border hover:ring-accent/40 transition-all">
+                  <div className="size-10 rounded-full bg-accent/10 ring-1 ring-accent/40 flex items-center justify-center mb-6">
+                    <Icon className="size-5 text-accent" />
+                  </div>
+                  <h3 className="text-xl font-medium mb-3 tracking-tight text-balance">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{item.body}</p>
+                  <p className="text-sm serif italic text-accent">{item.tag}</p>
+                </article>
+              </Reveal>
             );
           })}
         </div>

@@ -85,7 +85,8 @@ const en: RoleLandingContent = {
     title: "The ticket page your guests actually see.",
     body: "Not a clunky checkout: an event page built to make people want in. Tiered tickets and the guest list on one screen, VIP tables and the floor plan on the next.",
     demo: { label: "See a live event", href: DEMO_EVENT },
-    imageAlt: "Two real Yuno event screens on a phone: tiered tickets with the guest list, and VIP tables with the floor plan.",
+    imageAlt:
+      "Two real Yuno event screens on a phone: tiered tickets with the guest list, and VIP tables with the floor plan.",
     features: [
       {
         title: "Tiered tickets with quotas",
@@ -241,7 +242,8 @@ const en: RoleLandingContent = {
           "30-day KPIs, revenue graph, top events",
           "Your own Stripe Connect — Yuno never holds your funds",
         ],
-        caveat: "'Net' falls back to an estimate when distributions are missing; conversion-rate analytics are not live yet.",
+        caveat:
+          "'Net' falls back to an estimate when distributions are missing; conversion-rate analytics are not live yet.",
       },
       contactLabel: "The organizer Mission Control back-office",
     },
@@ -265,7 +267,8 @@ const en: RoleLandingContent = {
           "The 4% (€0.99 min) is paid by the buyer, never deducted from you",
           "Legacy platforms take 8–18% or bill a subscription; Yuno charges you €0",
         ],
-        caveat: "Stripe's processing fee is billed directly by Stripe at its standard rate, not set by Yuno.",
+        caveat:
+          "Stripe's processing fee is billed directly by Stripe at its standard rate, not set by Yuno.",
       },
       contactLabel: "How Yuno stays free for organizers",
     },
@@ -312,7 +315,8 @@ const en: RoleLandingContent = {
           "Promoter ROI and a live leaderboard",
           "One-click settle: pending → approved → paid to IBAN",
         ],
-        caveat: "Promoter payout is a club-managed settlement to IBAN, not a per-sale Stripe split. Promoters are not affiliates.",
+        caveat:
+          "Promoter payout is a club-managed settlement to IBAN, not a per-sale Stripe split. Promoters are not affiliates.",
       },
       contactLabel: "Promoter attribution and one-click settlement",
     },
@@ -382,7 +386,8 @@ const en: RoleLandingContent = {
           "Email campaigns with open and click tracking",
           "CSV export of your whole audience",
         ],
-        caveat: "Client-side loyalty (points / QR) is live; the predictive engine is on the roadmap.",
+        caveat:
+          "Client-side loyalty (points / QR) is live; the predictive engine is on the roadmap.",
       },
       contactLabel: "Cross-event CRM and email campaigns",
     },
@@ -667,7 +672,8 @@ const fr: RoleLandingContent = {
           "KPIs 30 jours, graphe de revenus, meilleurs événements",
           "Votre propre Stripe Connect — Yuno ne détient jamais vos fonds",
         ],
-        caveat: "Le « net » s'appuie parfois sur une estimation quand les répartitions manquent ; les analyses de taux de conversion ne sont pas encore live.",
+        caveat:
+          "Le « net » s'appuie parfois sur une estimation quand les répartitions manquent ; les analyses de taux de conversion ne sont pas encore live.",
       },
       contactLabel: "Le back-office Mission Control de l'orga",
     },
@@ -691,7 +697,8 @@ const fr: RoleLandingContent = {
           "Les 4 % (min 0,99 €) sont payés par l'acheteur, jamais déduits de vous",
           "Les plateformes classiques prennent 8 à 18 % ou un abonnement ; Yuno vous facture 0 €",
         ],
-        caveat: "Les frais de traitement Stripe sont facturés directement par Stripe à son tarif standard, ils ne sont pas fixés par Yuno.",
+        caveat:
+          "Les frais de traitement Stripe sont facturés directement par Stripe à son tarif standard, ils ne sont pas fixés par Yuno.",
       },
       contactLabel: "Comment Yuno reste gratuit pour les organisateurs",
     },
@@ -738,7 +745,8 @@ const fr: RoleLandingContent = {
           "ROI promoteur et classement en direct",
           "Règlement en un clic : en attente → approuvé → payé vers l'IBAN",
         ],
-        caveat: "Le paiement promoteur est un règlement géré par le club vers l'IBAN, pas un split Stripe par vente. Les promoteurs ne sont pas les affiliés.",
+        caveat:
+          "Le paiement promoteur est un règlement géré par le club vers l'IBAN, pas un split Stripe par vente. Les promoteurs ne sont pas les affiliés.",
       },
       contactLabel: "Attribution promoteurs et règlement en un clic",
     },
@@ -808,7 +816,8 @@ const fr: RoleLandingContent = {
           "Campagnes email avec suivi des ouvertures et clics",
           "Export CSV de toute votre audience",
         ],
-        caveat: "La fidélité côté client (points / QR) est live ; le moteur prédictif est au roadmap.",
+        caveat:
+          "La fidélité côté client (points / QR) est live ; le moteur prédictif est au roadmap.",
       },
       contactLabel: "CRM multi-événements et campagnes email",
     },

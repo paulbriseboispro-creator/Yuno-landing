@@ -6,14 +6,7 @@
 // language — no flash, no hydration mismatch. Switching language updates the
 // cookie + React state instantly and invalidates the router so each route's
 // head()/meta is recomputed for the new locale.
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-  type ReactNode,
-} from "react";
+import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
 import { createIsomorphicFn } from "@tanstack/react-start";
 import { getCookie, getRequestHeader } from "@tanstack/react-start/server";
 

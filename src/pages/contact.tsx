@@ -133,9 +133,7 @@ export function ContactPage() {
                 <CheckCircle2 className="size-6 text-accent" />
               </div>
               <h2 className="text-2xl font-medium tracking-tight mb-2">{t.success.title}</h2>
-              <p className="text-sm text-muted-foreground max-w-[42ch] mx-auto">
-                {t.success.body}
-              </p>
+              <p className="text-sm text-muted-foreground max-w-[42ch] mx-auto">{t.success.body}</p>
             </motion.div>
           ) : (
             <form onSubmit={onSubmit} className="w-full">
@@ -163,22 +161,49 @@ export function ContactPage() {
 
                 <Field>
                   <FieldLabel htmlFor="name">{t.form.nameLabel}</FieldLabel>
-                  <Input id="name" name="name" required maxLength={120} placeholder={t.form.namePlaceholder} autoComplete="name" />
+                  <Input
+                    id="name"
+                    name="name"
+                    required
+                    maxLength={120}
+                    placeholder={t.form.namePlaceholder}
+                    autoComplete="name"
+                  />
                 </Field>
 
                 <Field>
                   <FieldLabel htmlFor="email">{t.form.emailLabel}</FieldLabel>
-                  <Input id="email" name="email" type="email" required maxLength={255} placeholder={t.form.emailPlaceholder} autoComplete="email" />
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    maxLength={255}
+                    placeholder={t.form.emailPlaceholder}
+                    autoComplete="email"
+                  />
                 </Field>
 
                 <Field>
                   <FieldLabel htmlFor="company">{t.form.companyLabel}</FieldLabel>
-                  <Input id="company" name="company" maxLength={160} placeholder={t.form.companyPlaceholder} />
+                  <Input
+                    id="company"
+                    name="company"
+                    maxLength={160}
+                    placeholder={t.form.companyPlaceholder}
+                  />
                 </Field>
 
                 <Field>
                   <FieldLabel htmlFor="phone">{t.form.phoneLabel}</FieldLabel>
-                  <Input id="phone" name="phone" type="tel" maxLength={40} placeholder={t.form.phonePlaceholder} autoComplete="tel" />
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    maxLength={40}
+                    placeholder={t.form.phonePlaceholder}
+                    autoComplete="tel"
+                  />
                 </Field>
 
                 <Field>
@@ -195,9 +220,7 @@ export function ContactPage() {
                 </Field>
               </FieldGroup>
 
-              {status === "error" && (
-                <p className="text-xs text-destructive mt-4">{error}</p>
-              )}
+              {status === "error" && <p className="text-xs text-destructive mt-4">{error}</p>}
 
               <Button type="submit" disabled={status === "loading"} className="mt-8 w-full">
                 {status === "loading" ? (
@@ -227,9 +250,7 @@ export function ContactPage() {
                 <MessageCircle className="size-4" /> {c.rdv.whatsappCta}
               </a>
 
-              <p className="text-[11px] text-muted-foreground mt-4 text-center">
-                {t.consent}
-              </p>
+              <p className="text-[11px] text-muted-foreground mt-4 text-center">{t.consent}</p>
             </form>
           )}
         </div>

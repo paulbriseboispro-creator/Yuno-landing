@@ -36,19 +36,19 @@ export function HeroMockup() {
         <div className="grid grid-cols-12 gap-px bg-border">
           {/* Sidebar */}
           <aside className="col-span-2 bg-surface p-3 space-y-1.5 hidden md:block">
-            {["Live Night", "Floor plan", "Bar queue", "Tickets", "Promoters", "CRM"].map((label, i) => (
-              <div
-                key={label}
-                className={[
-                  "px-2 py-1.5 rounded text-[11px] font-medium",
-                  i === 0
-                    ? "bg-surface-2 text-foreground"
-                    : "text-muted-foreground",
-                ].join(" ")}
-              >
-                {label}
-              </div>
-            ))}
+            {["Live Night", "Floor plan", "Bar queue", "Tickets", "Promoters", "CRM"].map(
+              (label, i) => (
+                <div
+                  key={label}
+                  className={[
+                    "px-2 py-1.5 rounded text-[11px] font-medium",
+                    i === 0 ? "bg-surface-2 text-foreground" : "text-muted-foreground",
+                  ].join(" ")}
+                >
+                  {label}
+                </div>
+              ),
+            )}
           </aside>
 
           {/* Main */}
@@ -61,7 +61,9 @@ export function HeroMockup() {
                 { k: "VIP spend", v: "€14,780", d: "+11%" },
               ].map((kpi) => (
                 <div key={kpi.k} className="rounded-lg ring-1 ring-border bg-surface p-3">
-                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{kpi.k}</div>
+                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                    {kpi.k}
+                  </div>
                   <div className="mt-1 text-lg font-medium">{kpi.v}</div>
                   <div className="text-[10px] text-accent">{kpi.d}</div>
                 </div>
@@ -71,7 +73,9 @@ export function HeroMockup() {
             {/* Floor plan */}
             <div className="rounded-lg ring-1 ring-border bg-surface p-4 relative overflow-hidden">
               <div className="flex items-center justify-between mb-3">
-                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Main room — VIP plan</div>
+                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                  Main room — VIP plan
+                </div>
                 <div className="text-[10px] text-muted-foreground">8/12 booked</div>
               </div>
               <div className="relative aspect-[16/7]">
@@ -98,7 +102,11 @@ export function HeroMockup() {
                           : "bg-transparent ring-border",
                     ].join(" ")}
                     style={{ left: t.x, top: t.y }}
-                    animate={t.hot ? { boxShadow: ["0 0 0 0 #E8192C66", "0 0 0 8px #E8192C00"] } : undefined}
+                    animate={
+                      t.hot
+                        ? { boxShadow: ["0 0 0 0 #E8192C66", "0 0 0 8px #E8192C00"] }
+                        : undefined
+                    }
                     transition={{ duration: 1.6, repeat: Infinity }}
                   />
                 ))}
@@ -108,7 +116,9 @@ export function HeroMockup() {
 
           {/* Right panel — bar queue */}
           <div className="col-span-12 md:col-span-3 bg-surface p-4 space-y-2">
-            <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Bar queue</div>
+            <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+              Bar queue
+            </div>
             {[
               { id: "#A214", item: "2× Mojito", status: "ready", color: "accent" },
               { id: "#A215", item: "Bottle Belvedere", status: "prep", color: "muted-foreground" },
