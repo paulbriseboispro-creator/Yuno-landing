@@ -29,6 +29,7 @@ import {
 import { common } from "@/content/common";
 import { COMPARE_PATHS } from "@/content/compare";
 import { organizationLd } from "@/i18n/landing-seo";
+import { initPosthog } from "@/lib/posthog";
 
 // Pages that exist in both languages. Only these get the French redirect, so
 // asset/server routes (sitemap.xml, og/*.png) are never rewritten to /fr.
@@ -226,6 +227,10 @@ function surfaceFor(pathname: string): Surface {
 function RootComponent() {
   const { queryClient, locale } = Route.useRouteContext();
   const surface = useRouterState({ select: (s) => surfaceFor(s.location.pathname) });
+  // PostHog, browser only and cookieless (see src/lib/posthog.ts).
+  useEffect(() => {
+    initPosthog();
+  }, []);
 
   let header: ReactNode;
   let footer: ReactNode;

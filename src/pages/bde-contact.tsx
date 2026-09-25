@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight, CheckCircle2, Loader2, MailIcon, PhoneIcon, MapPinIcon } from "lucide-react";
 import { submitLead } from "@/lib/leads.functions";
+import { capture } from "@/lib/posthog";
 import { Button } from "@/components/ui/button";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
@@ -37,6 +38,7 @@ export function BdeContactPage() {
           source: "bde-contact",
         },
       });
+      capture("contact_form_submitted", { segment: "organizer", source: "bde-contact" });
       setStatus("done");
     } catch (err) {
       console.error(err);

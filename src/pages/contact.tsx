@@ -12,6 +12,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { submitLead } from "@/lib/leads.functions";
+import { capture } from "@/lib/posthog";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
@@ -56,6 +57,10 @@ export function ContactPage() {
           message: String(fd.get("message") || ""),
           source: besoin ? `landing-contact:${besoin}` : "landing-contact",
         },
+      });
+      capture("contact_form_submitted", {
+        segment: segment,
+        source: besoin ? `landing-contact:${besoin}` : "landing-contact",
       });
       setStatus("done");
     } catch (err) {

@@ -27,6 +27,10 @@ const en = {
         body: "To run the platform, process payments through Stripe Connect, send transactional notifications, and provide analytics dashboards to venue operators, organizers and promoters.",
       },
       {
+        title: "Audience measurement",
+        body: "This site uses PostHog (EU-hosted) to understand how it is used: pages viewed, clicks and the steps of the sign-up form. Nothing is stored on your device — no cookie, no local storage — and no email, phone number or name is sent. If you create a Yuno account here, this visit is linked to your account's internal identifier.",
+      },
+      {
         title: "Your rights",
         body: "Access, rectification, deletion, portability and objection rights under the GDPR. Email us to exercise any of them.",
       },
@@ -85,6 +89,10 @@ const fr: LegalContent = {
       {
         title: "Comment nous l'utilisons",
         body: "Pour faire fonctionner la plateforme, traiter les paiements via Stripe Connect, envoyer les notifications transactionnelles et fournir des tableaux de bord d'analyse aux exploitants d'établissements, organisateurs et promoteurs.",
+      },
+      {
+        title: "Mesure d'audience",
+        body: "Ce site utilise PostHog (hébergé dans l'UE) pour comprendre comment il est utilisé : pages vues, clics et étapes du formulaire d'inscription. Rien n'est stocké sur votre appareil — ni cookie, ni stockage local — et aucun email, téléphone ni nom n'est transmis. Si vous créez un compte Yuno ici, cette visite est reliée à l'identifiant interne de votre compte.",
       },
       {
         title: "Vos droits",

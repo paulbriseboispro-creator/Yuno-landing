@@ -28,6 +28,7 @@ import {
 } from "@/lib/yuno-app";
 import { useLanding, whatsappHref, type SignupRole } from "./context";
 import { EASE } from "./ui";
+import { capture, identifyAccount } from "@/lib/posthog";
 
 // The pro signup funnel: a club or an organizer creates their Yuno account
 // end to end, then lands logged in on yunoapp.eu/get-started with a plan built
@@ -187,6 +188,12 @@ export function SignupFlow({
   // Journey opened (+ role when the CTA already picked one).
   useEffect(() => {
     void trackSignup(key, "opened", { lang, ...attribution(source) });
+    capture("pro_signup_opened", {
+      lang,
+      variant,
+      role: initialRole ?? null,
+      ...attribution(source),
+    });
     if (initialRole) void trackSignup(key, "role", { kind: initialRole, lang });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -223,6 +230,7 @@ export function SignupFlow({
     }));
     setError(null);
     void trackSignup(key, "role", { kind: role, lang });
+    capture("pro_signup_step_completed", { step: "role", role, lang, source });
     setStep(stepsFor(role)[1]);
   }
 
@@ -242,6 +250,15 @@ export function SignupFlow({
       size_band: form.size_band,
       frequency: form.frequency,
     });
+    capture("pro_signup_step_completed", {
+      step: "structure",
+      role: form.role,
+      lang,
+      source,
+      city: form.city,
+      size_band: form.size_band,
+      frequency: form.frequency,
+    });
     setStep("needs");
   }
 
@@ -249,6 +266,15 @@ export function SignupFlow({
     e.preventDefault();
     if (!form.pillars.length) return;
     void trackSignup(key, "structure", {
+      pillars: form.pillars,
+      current_tool: form.current_tool,
+      next_night: form.next_night,
+    });
+    capture("pro_signup_step_completed", {
+      step: "needs",
+      role: form.role,
+      lang,
+      source,
       pillars: form.pillars,
       current_tool: form.current_tool,
       next_night: form.next_night,
@@ -334,9 +360,16 @@ export function SignupFlow({
         msg.includes("already registered") ||
         msg.includes("already been registered")
       ) {
+        capture("pro_signup_existing_account", { role: form.role, lang, source });
         setPhase("exists");
         return;
       }
+      capture("pro_signup_failed", {
+        role: form.role,
+        lang,
+        source,
+        code: code || String(signErr.status ?? ""),
+      });
       setPhase("form");
       if (
         signErr.status === 429 ||
@@ -353,17 +386,31 @@ export function SignupFlow({
     // Email-enumeration protection: an existing address comes back as a user
     // without identities and without a session.
     if (data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
+      capture("pro_signup_existing_account", { role: form.role, lang, source });
       setPhase("exists");
       return;
     }
 
+    // Same PostHog person as in the app: the Console identifies this user id too.
+    if (data.user) identifyAccount(data.user.id, form.role);
     if (!data.session) {
+      capture(
+        "pro_signup_email_confirmation_required",
+        { role: form.role, lang, source, pillars: form.pillars },
+        true,
+      );
       await minDelay();
       setPhase("confirm");
       return;
     }
 
     const { error: cErr } = await sb.rpc("complete_pro_signup", { p_key: key });
+    // Sent instantly: the handoff below is a full-page navigation to yunoapp.eu.
+    capture(
+      "pro_signup_account_created",
+      { role: form.role, lang, source, pillars: form.pillars, space_opened: !cErr },
+      true,
+    );
     if (cErr) {
       console.error("[signup] complete_pro_signup", cErr);
       await fallbackLead("Account created, pro space NOT opened (complete_pro_signup failed)");
@@ -421,6 +468,7 @@ export function SignupFlow({
       setError(s.error);
       return;
     }
+    capture("pro_signup_lead_submitted", { role: form.role, lang, source });
     try {
       sessionStorage.removeItem(STORE_KEY);
     } catch {
