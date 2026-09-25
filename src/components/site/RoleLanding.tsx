@@ -119,7 +119,7 @@ function PainFocus({
                 {altImage && (
                   <img
                     src={altImage}
-                    alt=""
+                    alt={pain.focus.title}
                     aria-hidden="true"
                     loading="lazy"
                     className="absolute -bottom-1 -right-1 hidden w-2/5 rounded-xl object-cover object-top ring-1 ring-border shadow-2xl shadow-black/60 md:block"

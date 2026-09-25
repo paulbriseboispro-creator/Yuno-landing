@@ -399,7 +399,7 @@ function ClientLogos() {
               >
                 <img
                   src={c.src}
-                  alt={i >= CLIENTS.length ? "" : c.name}
+                  alt={`${c.name} logo`}
                   title={c.name}
                   loading="lazy"
                   decoding="async"
