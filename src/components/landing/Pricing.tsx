@@ -10,7 +10,11 @@ export function Pricing() {
   const { t } = useLanding();
   const p = t.pricing;
   return (
-    <section id="pricing" className="relative scroll-mt-20 bg-zinc-50 px-4 py-24 sm:px-6 md:py-32">
+    <section
+      data-ph-section="pricing"
+      id="pricing"
+      className="relative scroll-mt-20 bg-zinc-50 px-4 py-24 sm:px-6 md:py-32"
+    >
       <SectionHeader eyebrow={p.eyebrow} title={p.title} sub={p.sub} className="max-w-3xl" />
       <div className="mx-auto mt-14 grid max-w-6xl items-start gap-6 lg:grid-cols-[1.25fr_1fr]">
         <FadeIn>
@@ -142,7 +146,11 @@ export function Faq({
   };
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="relative scroll-mt-20 px-4 py-24 sm:px-6 md:py-32">
+    <section
+      data-ph-section="faq"
+      id="faq"
+      className="relative scroll-mt-20 px-4 py-24 sm:px-6 md:py-32"
+    >
       <SectionHeader eyebrow={f.eyebrow} title={f.title} />
       <FadeIn className="mx-auto mt-12 max-w-3xl">
         <ul className="space-y-3">

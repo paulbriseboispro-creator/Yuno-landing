@@ -6,9 +6,14 @@ import { SavingsCalculator } from "@/components/site/SavingsCalculator";
 import { pricingContent, usePricing } from "@/content/pricing";
 import { pageSeo } from "@/i18n/seo";
 import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import { useEffect } from "react";
+import { capture, pageFromPath } from "@/lib/posthog";
 
 export function PricingPage() {
   const t = usePricing();
+  useEffect(() => {
+    capture("pricing_page_viewed", { page: pageFromPath(window.location.pathname) });
+  }, []);
   const p = t.page;
   return (
     <>

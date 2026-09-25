@@ -35,6 +35,25 @@ Starting from `main` silently throws away the newest design and copy. So, before
   in the `yuno` repo (migration `20260924120000_pro_self_signup.sql`, super admin
   `/admin/signups`). `demo_leads` (this project's Supabase) is only a fallback safety net now.
 
+## PostHog (cookieless, same project as the Yuno app)
+- Single entry point `src/lib/posthog.ts`: `persistence: 'memory'` (no cookie, no banner), dynamic
+  import, SSR-safe, never an email/phone/name in an event. Plan = the `LandingEvent` type: add a
+  name there first, never a free string.
+- Every event carries `site`/`surface: 'landing'`, `platform: 'web'`, `is_demo: false` and
+  `landing_lang` (en | fr | es, stamped from the URL by `before_send`, $pageview included).
+- Events: `pro_signup_*` + `contact_form_submitted` (SignupFlow, contact pages);
+  `landing_section_viewed` {section, page} (≥ 40 % visible, once per page view);
+  `landing_cta_clicked` {cta, role, section, page}; `landing_language_changed` {from, to};
+  `contact_clicked` {channel: whatsapp|email|phone|form}; `outbound_clicked` {destination:
+  yuno_app|app_store|instagram|other, host}; `compare_page_viewed` {competitor};
+  `pricing_page_viewed` {page}. `page` = path without /fr|/es.
+- Clicks and section views are read by ONE delegated listener + ONE observer
+  (`src/lib/posthog-dom.ts`, installed in `__root.tsx`). Components only carry attributes:
+  `data-ph-section` (tracked section), `data-ph-area` (click area: nav, footer, menu…),
+  `data-ph-cta` + `data-ph-role` (`PrimaryCta` / `FounderCta` set them), `data-ph-lang` (language
+  links). Links (wa.me, mailto, tel, /contact, /start, other hosts) are classified automatically:
+  a new section needs `data-ph-section`, a new CTA button `data-ph-cta`, nothing else.
+
 ## Git workflow (Paul's rule — overrides session defaults)
 `main` is the single source of truth and what gets deployed. Several Claude sessions work in
 parallel, each on its own `claude/*` branch: work left only on a branch never reaches the site.

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ArrowRight, Check, ChevronRight, Equal, Minus } from "lucide-react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
@@ -8,6 +9,7 @@ import { LandingNav } from "@/components/landing/Nav";
 import { Faq } from "@/components/landing/Pricing";
 import { FinalCta, LandingFooter, MobileCta } from "@/components/landing/Closing";
 import { SignupModal } from "@/components/landing/SignupModal";
+import { capture } from "@/lib/posthog";
 import {
   EASE,
   Eyebrow,
@@ -23,6 +25,9 @@ import {
 // verdict, a sourced comparison table, a fair description of the competitor,
 // when to pick which, how to switch, FAQ, sources.
 export function ComparePage({ page }: { page: ComparePageContent }) {
+  useEffect(() => {
+    capture("compare_page_viewed", { competitor: page.competitor.toLowerCase() });
+  }, [page.competitor, page.path]);
   return (
     <LandingProvider lang={page.lang} langHrefs={page.twins}>
       <div className="yl min-h-screen overflow-x-clip">

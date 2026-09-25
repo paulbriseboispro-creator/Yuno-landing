@@ -51,6 +51,7 @@ function StartBody({ role }: { role?: SignupRole }) {
               key={l}
               href={START_PATHS[l] + (role ? `?role=${role}` : "")}
               onClick={() => rememberLandingLang(l)}
+              data-ph-lang={l}
               className={cn(
                 "rounded-full px-2.5 py-1 text-[12px] font-semibold transition-colors",
                 l === lang

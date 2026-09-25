@@ -112,6 +112,7 @@ export function Hero() {
 
   return (
     <section
+      data-ph-section="hero"
       ref={ref}
       className="relative isolate overflow-hidden pb-10 pt-10 [--mx:0] [--my:0] [--s:0.74] md:pt-16 lg:[--s:0.8] xl:[--s:1]"
     >

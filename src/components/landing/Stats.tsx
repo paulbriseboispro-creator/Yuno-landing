@@ -60,7 +60,7 @@ export function CountUp({ value, className }: { value: string; className?: strin
 export function Stats() {
   const { t } = useLanding();
   return (
-    <section className="relative px-4 py-24 sm:px-6 md:py-32">
+    <section data-ph-section="stats" className="relative px-4 py-24 sm:px-6 md:py-32">
       <SectionHeader eyebrow={t.stats.eyebrow} title={t.stats.title} sub={t.stats.sub} />
       <FadeIn className="mx-auto mt-14 max-w-4xl">
         <div className="relative grid grid-cols-1 sm:grid-cols-2">
@@ -114,7 +114,7 @@ export function Problem() {
   const { t } = useLanding();
   const p = t.problem;
   return (
-    <section className="relative px-4 py-24 sm:px-6 md:py-32">
+    <section data-ph-section="problem" className="relative px-4 py-24 sm:px-6 md:py-32">
       <div
         aria-hidden
         className="yl-grid-bg pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(60%_50%_at_50%_40%,black,transparent)]"

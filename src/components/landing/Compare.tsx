@@ -87,7 +87,11 @@ export function Compare() {
   };
 
   return (
-    <section id="compare" className="relative scroll-mt-20 bg-zinc-50 px-4 py-24 sm:px-6 md:py-32">
+    <section
+      data-ph-section="compare"
+      id="compare"
+      className="relative scroll-mt-20 bg-zinc-50 px-4 py-24 sm:px-6 md:py-32"
+    >
       <SectionHeader eyebrow={c.eyebrow} title={c.title} sub={c.sub} />
 
       <FadeIn className="mx-auto mt-12 max-w-6xl">
@@ -296,6 +300,7 @@ export function Compare() {
             <li key={l.href}>
               <a
                 href={l.href}
+                data-ph-cta="compare_page"
                 className="group inline-flex items-center gap-1.5 text-[13.5px] font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900"
               >
                 {l.label}

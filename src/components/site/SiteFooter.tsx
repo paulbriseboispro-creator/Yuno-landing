@@ -31,7 +31,10 @@ export function SiteFooter() {
   ];
 
   return (
-    <footer className="mx-auto max-w-5xl px-4 md:px-6 border-t border-border mt-24">
+    <footer
+      data-ph-area="footer"
+      className="mx-auto max-w-5xl px-4 md:px-6 border-t border-border mt-24"
+    >
       <div className="flex flex-col gap-6 py-6">
         <div className="flex items-center justify-between">
           <Link to="/" aria-label="Yuno" className="inline-flex items-center">

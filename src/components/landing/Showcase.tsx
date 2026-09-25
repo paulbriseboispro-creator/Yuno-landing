@@ -31,7 +31,10 @@ export function Showcase() {
   const shotLabel = s.tabs.find((x) => x.id === active)?.label ?? s.tabs[0].label;
 
   return (
-    <section className="relative overflow-hidden px-4 pb-24 pt-24 sm:px-6 md:pb-32 md:pt-32">
+    <section
+      data-ph-section="showcase"
+      className="relative overflow-hidden px-4 pb-24 pt-24 sm:px-6 md:pb-32 md:pt-32"
+    >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%] bg-[radial-gradient(50%_60%_at_50%_60%,rgba(232,25,44,0.08),transparent)]"

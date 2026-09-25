@@ -74,7 +74,10 @@ export function LandingNav() {
 
   return (
     <>
-      <header className="pointer-events-none sticky top-0 z-50 w-full px-3 pt-2 sm:px-4 md:pt-3">
+      <header
+        data-ph-area="nav"
+        className="pointer-events-none sticky top-0 z-50 w-full px-3 pt-2 sm:px-4 md:pt-3"
+      >
         <motion.nav
           layout
           transition={PILL_SPRING}
@@ -133,6 +136,7 @@ export function LandingNav() {
             <ThemeToggle className="hidden sm:inline-flex" />
             <a
               href={LOGIN_URL}
+              data-ph-cta="login"
               className={cn(
                 "rounded-full px-3.5 py-2 text-[13.5px] font-medium text-zinc-700 transition-colors hover:bg-zinc-100",
                 pill ? "hidden" : "hidden lg:inline-flex",
@@ -180,6 +184,7 @@ export function LandingNav() {
             />
             <motion.div
               key="sheet"
+              data-ph-area="menu"
               initial={{ opacity: 0, y: -12, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -12, scale: 0.97 }}
@@ -208,6 +213,7 @@ export function LandingNav() {
                 <li>
                   <a
                     href={LOGIN_URL}
+                    data-ph-cta="login"
                     className="flex items-center justify-between rounded-2xl px-3 py-3.5 text-[17px] font-medium tracking-tight text-zinc-900 active:bg-zinc-100"
                   >
                     {t.nav.login}
@@ -221,6 +227,7 @@ export function LandingNav() {
                     key={l}
                     href={langHref(l)}
                     onClick={() => rememberLandingLang(l)}
+                    data-ph-lang={l}
                     className={cn(
                       "flex-1 rounded-full border py-2.5 text-center text-sm font-medium",
                       l === lang
@@ -330,6 +337,7 @@ function LangSwitcher({ className }: { className?: string }) {
                 <a
                   href={langHref(l)}
                   onClick={() => rememberLandingLang(l)}
+                  data-ph-lang={l}
                   className="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
                 >
                   <span>

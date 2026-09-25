@@ -71,6 +71,7 @@ export function Email() {
 
   return (
     <section
+      data-ph-section="email"
       id="email"
       className="relative scroll-mt-20 overflow-hidden px-4 py-24 sm:px-6 md:py-32"
     >

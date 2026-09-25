@@ -24,6 +24,7 @@ export function SiteHeader() {
 
   return (
     <header
+      data-ph-area="nav"
       className={cn(
         "relative z-[70] mx-auto w-full max-w-4xl border-transparent border-b md:rounded-md md:border md:transition-all md:ease-out",
         {
@@ -65,7 +66,9 @@ export function SiteHeader() {
           <SmartSearch compact onOpenChange={setSearchOpen} />
           <LanguageSwitcher compact className="ml-2" />
           <Button asChild size="sm" className="ml-2">
-            <Link to="/contact">{t.nav.startFree}</Link>
+            <Link to="/contact" data-ph-cta="start_free">
+              {t.nav.startFree}
+            </Link>
           </Button>
         </div>
 

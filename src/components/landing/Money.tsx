@@ -132,7 +132,11 @@ export function Money() {
   const savedYear = Math.max(0, ...rows.slice(1).map((row) => (yunoMonth - row.month) * 12));
 
   return (
-    <section id="money" className="relative scroll-mt-20 px-4 py-24 sm:px-6 md:py-32">
+    <section
+      data-ph-section="money"
+      id="money"
+      className="relative scroll-mt-20 px-4 py-24 sm:px-6 md:py-32"
+    >
       <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
         <FadeIn>
           <Eyebrow>{m.eyebrow}</Eyebrow>

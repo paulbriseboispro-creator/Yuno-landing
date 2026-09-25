@@ -13,6 +13,10 @@
 //    returning visitors are not recognised — the price of no banner.
 //  - Never an email, phone or name in an event. Identity = the account id
 //    created at signup, nothing else.
+//  - Every event carries `site: 'landing'`, `surface: 'landing'`,
+//    `platform: 'web'`, `is_demo: false` and `landing_lang` (en | fr | es,
+//    read from the URL at send time by `before_send`, so it stays right after
+//    a language switch and on $pageview too).
 import type { PostHog } from "posthog-js";
 
 const KEY = (import.meta.env.VITE_POSTHOG_KEY as string | undefined)?.trim() || "";
@@ -31,7 +35,37 @@ export type LandingEvent =
   | "pro_signup_existing_account"
   | "pro_signup_failed"
   | "pro_signup_lead_submitted"
-  | "contact_form_submitted";
+  | "contact_form_submitted"
+  // Page-level engagement (clicks are read by the delegated listener in
+  // src/lib/posthog-dom.ts — `data-ph-*` attributes, never a handler per link).
+  | "landing_section_viewed" // { section, page } — once per section per page view, ≥ 40 % visible
+  | "landing_cta_clicked" // { cta, role, section, page }
+  | "landing_language_changed" // { from, to }
+  | "compare_page_viewed" // { competitor }
+  | "pricing_page_viewed" // { page }
+  | "contact_clicked" // { channel: whatsapp | email | phone | form, section, page }
+  | "outbound_clicked"; // { destination: yuno_app | app_store | instagram | other, host, section, page }
+
+export type LandingLang = "en" | "fr" | "es";
+
+/** Language of the page at `pathname`: the URL is the source of truth. */
+export function landingLangFromPath(pathname: string): LandingLang {
+  if (pathname === "/fr" || pathname.startsWith("/fr/")) return "fr";
+  if (pathname === "/es" || pathname.startsWith("/es/")) return "es";
+  // /bde is the French-only BDE landing (no /fr prefix).
+  if (pathname === "/bde" || pathname.startsWith("/bde/")) return "fr";
+  return "en";
+}
+
+/** Page id without the language prefix: "/fr/pricing" → "/pricing", "/es" → "/". */
+export function pageFromPath(pathname: string): string {
+  const bare = pathname.replace(/^\/(fr|es)(?=\/|$)/, "").replace(/\/+$/, "");
+  return bare || "/";
+}
+
+export function posthogEnabled(): boolean {
+  return !!KEY && typeof window !== "undefined";
+}
 
 let client: PostHog | null = null;
 let loading: Promise<PostHog | null> | null = null;
@@ -49,8 +83,25 @@ function load(): Promise<PostHog | null> {
         capture_pageview: "history_change",
         capture_pageleave: true,
         session_recording: { maskAllInputs: true },
+        // Language and surface are stamped at send time from the live URL, so
+        // every event — $pageview included — carries the page's real language.
+        before_send: (event) => {
+          if (!event) return null;
+          event.properties = {
+            ...event.properties,
+            surface: "landing",
+            landing_lang: landingLangFromPath(window.location.pathname),
+          };
+          return event;
+        },
       });
-      posthog.register({ site: "landing", platform: "web" });
+      posthog.register({
+        site: "landing",
+        surface: "landing",
+        platform: "web",
+        is_demo: false,
+        landing_lang: landingLangFromPath(window.location.pathname),
+      });
       client = posthog;
       for (const [event, props, now] of queue.splice(0)) {
         posthog.capture(event, props, now ? { send_instantly: true } : undefined);

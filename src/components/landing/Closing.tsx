@@ -17,7 +17,7 @@ export function FinalCta() {
   }
 
   return (
-    <section className="px-4 pb-24 sm:px-6 md:pb-32">
+    <section data-ph-section="closing" className="px-4 pb-24 sm:px-6 md:pb-32">
       <FadeIn className="yl-keep yl-edge relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-zinc-950 px-6 py-16 text-center text-white md:px-12 md:py-24">
         {/* concentric arcs echoing the hero */}
         <div aria-hidden className="pointer-events-none absolute left-1/2 top-full">
@@ -55,6 +55,7 @@ export function FinalCta() {
             />
             <button
               type="submit"
+              data-ph-cta="signup"
               className="yl-btn-primary group h-12 bg-white px-5 text-[14px] text-zinc-950 hover:bg-zinc-100 sm:h-11"
             >
               {f.primary}
@@ -80,7 +81,10 @@ export function LandingFooter() {
   const { t, lang, anchor, langHref } = useLanding();
   const f = t.footer;
   return (
-    <footer className="border-t border-zinc-100 px-4 pb-28 pt-16 sm:px-6 md:pb-12">
+    <footer
+      data-ph-area="footer"
+      className="border-t border-zinc-100 px-4 pb-28 pt-16 sm:px-6 md:pb-12"
+    >
       <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
         <div className="sm:col-span-2 md:col-span-4 lg:col-span-1">
           <a
@@ -97,6 +101,7 @@ export function LandingFooter() {
                 key={l}
                 href={langHref(l)}
                 onClick={() => rememberLandingLang(l)}
+                data-ph-lang={l}
                 className={cn(
                   "rounded-full px-3 py-1 text-[12px] font-semibold transition-colors",
                   l === lang
@@ -158,12 +163,14 @@ export function MobileCta() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 90, opacity: 0 }}
           transition={{ duration: 0.4, ease: EASE }}
+          data-ph-area="mobile_bar"
           className="fixed inset-x-3 bottom-3 z-40 md:hidden"
           style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
         >
           <button
             type="button"
             onClick={() => openSignup()}
+            data-ph-cta="signup"
             className="yl-btn-primary h-13 w-full py-3.5 text-[15px] shadow-[0_18px_40px_-12px_rgba(10,10,11,0.55)]"
           >
             {t.mobileCta}

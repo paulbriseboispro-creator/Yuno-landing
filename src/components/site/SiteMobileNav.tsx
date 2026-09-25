@@ -56,10 +56,14 @@ export function SiteMobileNav() {
             </div>
             <div className="mt-12 flex flex-col gap-2">
               <Button asChild className="w-full" variant="outline" onClick={() => setOpen(false)}>
-                <Link to="/contact">{t.nav.bookDemo}</Link>
+                <Link to="/contact" data-ph-cta="demo">
+                  {t.nav.bookDemo}
+                </Link>
               </Button>
               <Button asChild className="w-full" onClick={() => setOpen(false)}>
-                <Link to="/contact">{t.nav.startFree}</Link>
+                <Link to="/contact" data-ph-cta="start_free">
+                  {t.nav.startFree}
+                </Link>
               </Button>
               <div className="mt-2 flex justify-center">
                 <LanguageSwitcher />

@@ -45,6 +45,7 @@ export function LanguageSwitcher({
             key={l}
             type="button"
             onClick={() => switchTo(l)}
+            data-ph-lang={l}
             aria-pressed={active}
             aria-label={LOCALE_LABELS[l]}
             className={cn(

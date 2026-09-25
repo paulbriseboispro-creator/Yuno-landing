@@ -24,6 +24,7 @@ export function BdeHeader() {
 
   return (
     <header
+      data-ph-area="nav"
       className={cn(
         "relative z-[70] mx-auto w-full max-w-4xl border-transparent border-b md:rounded-md md:border md:transition-all md:ease-out",
         {
@@ -73,7 +74,10 @@ export function BdeHeader() {
 
 export function BdeFooter() {
   return (
-    <footer className="mx-auto mt-24 max-w-5xl border-t border-border px-4 md:px-6">
+    <footer
+      data-ph-area="footer"
+      className="mx-auto mt-24 max-w-5xl border-t border-border px-4 md:px-6"
+    >
       <div className="flex flex-col gap-6 py-8 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
           <img src={yunoLogo} alt="Yuno" className="h-[20px] w-auto" />

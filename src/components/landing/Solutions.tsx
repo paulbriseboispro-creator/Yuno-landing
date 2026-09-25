@@ -51,6 +51,7 @@ export function Solutions() {
 
   return (
     <section
+      data-ph-section="solutions"
       id="solutions"
       className="relative scroll-mt-20 overflow-hidden bg-zinc-50 px-4 py-24 sm:px-6 md:py-32"
     >

@@ -69,15 +69,19 @@ export function SectionHeader({
   );
 }
 
+// `cta` is the tracking id read by the delegated listener (src/lib/posthog-dom.ts);
+// the section comes from the closest `data-ph-section` / `data-ph-area`.
 export function PrimaryCta({
   children,
   role,
   email,
+  cta = "signup",
   size = "md",
   className,
 }: {
   children: ReactNode;
   role?: SignupRole;
+  cta?: string;
   email?: string;
   size?: "sm" | "md" | "lg";
   className?: string;
@@ -87,6 +91,8 @@ export function PrimaryCta({
     <button
       type="button"
       onClick={() => openSignup({ role, email })}
+      data-ph-cta={cta}
+      data-ph-role={role}
       className={cn(
         "yl-btn-primary group",
         size === "sm" && "h-9 px-4 text-[13px]",
@@ -103,10 +109,12 @@ export function PrimaryCta({
 
 export function FounderCta({
   children,
+  cta = "whatsapp",
   size = "md",
   className,
 }: {
   children: ReactNode;
+  cta?: string;
   size?: "sm" | "md" | "lg";
   className?: string;
 }) {
@@ -116,6 +124,7 @@ export function FounderCta({
       href={whatsappHref(t.whatsappMessage)}
       target="_blank"
       rel="noopener noreferrer"
+      data-ph-cta={cta}
       className={cn(
         "yl-btn-secondary",
         size === "sm" && "h-9 px-4 text-[13px]",

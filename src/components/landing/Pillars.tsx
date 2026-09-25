@@ -20,7 +20,11 @@ export function Pillars() {
   };
 
   return (
-    <section id="product" className="relative scroll-mt-20 px-4 py-24 sm:px-6 md:py-32">
+    <section
+      data-ph-section="pillars"
+      id="product"
+      className="relative scroll-mt-20 px-4 py-24 sm:px-6 md:py-32"
+    >
       <SectionHeader eyebrow={p.eyebrow} title={p.title} sub={p.sub} className="max-w-3xl" />
       <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {p.items.map((it, i) => (
