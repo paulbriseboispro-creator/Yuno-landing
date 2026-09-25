@@ -4,6 +4,8 @@ import {
   BadgeCheck,
   BarChart3,
   Check,
+  ClipboardList,
+  Contact,
   CreditCard,
   Crown,
   Mail,
@@ -13,6 +15,7 @@ import {
   QrCode,
   ScanLine,
   Smartphone,
+  Target,
   Ticket,
   Users,
   Wallet,
@@ -71,7 +74,10 @@ const ORBIT: {
 const NOTIF_ICONS: Record<string, { Icon: LucideIcon; bg: string; fg: string }> = {
   crown: { Icon: Crown, bg: "#D9770626", fg: "#D97706" },
   ticket: { Icon: Ticket, bg: "#E8192C26", fg: "#E8192C" },
+  crm: { Icon: Contact, bg: "#DB277726", fg: "#DB2777" },
+  guests: { Icon: ClipboardList, bg: "#4F46E526", fg: "#4F46E5" },
   scan: { Icon: ScanLine, bg: "#05966926", fg: "#059669" },
+  segment: { Icon: Target, bg: "#EA580C26", fg: "#EA580C" },
   mail: { Icon: Mail, bg: "#0284C726", fg: "#0284C7" },
   wallet: { Icon: Wallet, bg: "#7C3AED26", fg: "#7C3AED" },
 };

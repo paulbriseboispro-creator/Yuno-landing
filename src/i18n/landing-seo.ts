@@ -6,7 +6,7 @@ import { APP_URL, WHATSAPP_NUMBER } from "@/components/landing/context";
 
 // Last meaningful copy update of the landing: sitemap <lastmod>, WebPage
 // dateModified and the llms.txt stamp. Bump it when the landing copy changes.
-export const LANDING_UPDATED = "2026-09-24";
+export const LANDING_UPDATED = "2026-09-25";
 
 const OG_LOCALE: Record<LandingLang, string> = { en: "en_GB", fr: "fr_FR", es: "es_ES" };
 
