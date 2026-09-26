@@ -322,7 +322,7 @@ const fr = {
           "HelloAsso est idéal pour les cotisations et les dons. Pour les soirées, Yuno ajoute ce qu'un formulaire ne fait pas.",
         points: [
           "Une page de soirée qui donne envie, avec paliers, guest list et tables",
-          "L'argent au fil des ventes, là où HelloAsso verse les fonds une fois par mois par défaut",
+          "L'argent au fil des ventes, là où HelloAsso verse les fonds chaque mois, ou sur demande 7 jours ouvrés après le paiement",
           "Le scan à l'entrée et le deal avec le club au même endroit",
         ],
         honest:
@@ -804,7 +804,7 @@ const en: AssoContent = {
           "HelloAsso is ideal for membership fees and donations. For nights out, Yuno adds what a form can't do.",
         points: [
           "An event page people want to buy from, with tiers, guest list and tables",
-          "Money as you sell, where HelloAsso pays out once a month by default",
+          "Money as you sell, where HelloAsso pays out monthly, or on request 7 business days after payment",
           "Door scanning and the club deal in the same place",
         ],
         honest:
