@@ -35,6 +35,21 @@ Starting from `main` silently throws away the newest design and copy. So, before
   in the `yuno` repo (migration `20260924120000_pro_self_signup.sql`, super admin
   `/admin/signups`). `demo_leads` (this project's Supabase) is only a fallback safety net now.
 
+## Student-association landing (`/fr/associations`, `/associations`, `/es/asociaciones`)
+- Separate audience (BDE, BDS, BDA, ESN…), separate story: page `src/pages/asso.tsx`, sections in
+  `src/components/asso/*`, copy in `src/content/asso.ts` (EN/FR/ES, shape-checked), head/JSON-LD in
+  `src/i18n/asso.ts` (bump `ASSO_UPDATED` on copy changes), previews `public/og/asso-*.png`
+  (`bun run og asso`). Reuses the landing chrome via `LandingProvider home=… whatsappMessage=…`.
+- Never linked from the main landing (no student unions there). `/bde` and `/bde/contact` 301 to it.
+- Real model (yuno repo): an asso = an organizer account flagged `bde_verified` by a super admin →
+  buyer fee minimum €0.49 instead of €0.99 (4 % and the €25 table cap unchanged), nights private by
+  default (going public = admin-approved request). Stripe 1.5 % + €0.25 stays on the asso.
+- Self-serve signup: `SignupFlow audience="asso"` (no role step, organizer account, own
+  sessionStorage journey, `source` = `asso`) — the admin alert reads "via asso" so Paul verifies it
+  and sets the flag. Copy says the rate is switched on after verification, never instantly.
+- Competitors here are HelloAsso, Shotgun, Lydia/Bizum + forms (sources dated in `switch.sources`).
+  Never claim "cheapest" (HelloAsso and Billetweb can cost the asso less).
+
 ## PostHog (cookieless, same project as the Yuno app)
 - Single entry point `src/lib/posthog.ts`: `persistence: 'memory'` (no cookie, no banner), dynamic
   import, SSR-safe, never an email/phone/name in an event. Plan = the `LandingEvent` type: add a

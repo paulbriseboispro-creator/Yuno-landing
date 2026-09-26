@@ -1,14 +1,20 @@
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
+import type { AssoContent } from "@/content/asso";
 import { useLanding } from "./context";
 import { SignupFlow } from "./SignupFlow";
 import { EASE } from "./ui";
 
 // The landing's conversion dialog: every "Create my free account" CTA opens it.
 // The funnel itself (role → club / nights → what you sell → account) lives in
-// SignupFlow, shared with the full-page /start route.
-export function SignupModal() {
+// SignupFlow, shared with the full-page /start route. The student-association
+// landing mounts it with `audience="asso"`.
+export function SignupModal({
+  audience = "pro",
+  source = "landing",
+  assoCopy,
+}: { audience?: "pro" | "asso"; source?: string; assoCopy?: AssoContent["signup"] } = {}) {
   const { t, signup, closeSignup } = useLanding();
   const s = t.signup;
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -79,9 +85,12 @@ export function SignupModal() {
               <X className="size-4" />
             </button>
             <SignupFlow
-              source="landing"
+              source={source}
+              audience={audience}
+              assoCopy={assoCopy}
               initialRole={signup.role}
               initialEmail={signup.email}
+              initialOrgName={signup.orgName}
               onClose={closeSignup}
             />
           </motion.div>

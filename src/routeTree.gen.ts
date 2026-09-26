@@ -20,6 +20,7 @@ import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ClubsRouteImport } from './routes/clubs'
 import { Route as BdeRouteImport } from './routes/bde'
+import { Route as AssociationsRouteImport } from './routes/associations'
 import { Route as AlternativeShotgunRouteImport } from './routes/alternative-shotgun'
 import { Route as AffiliatesRouteImport } from './routes/affiliates'
 import { Route as IndexRouteImport } from './routes/index'
@@ -32,9 +33,11 @@ import { Route as FrPricingRouteImport } from './routes/fr/pricing'
 import { Route as FrOrganizersRouteImport } from './routes/fr/organizers'
 import { Route as FrContactRouteImport } from './routes/fr/contact'
 import { Route as FrClubsRouteImport } from './routes/fr/clubs'
+import { Route as FrAssociationsRouteImport } from './routes/fr/associations'
 import { Route as FrAlternativeShotgunRouteImport } from './routes/fr/alternative-shotgun'
 import { Route as FrAffiliatesRouteImport } from './routes/fr/affiliates'
 import { Route as EsStartRouteImport } from './routes/es/start'
+import { Route as EsAsociacionesRouteImport } from './routes/es/asociaciones'
 import { Route as EsAlternativaFourvenuesRouteImport } from './routes/es/alternativa-fourvenues'
 import { Route as BdeContactRouteImport } from './routes/bde_.contact'
 
@@ -91,6 +94,11 @@ const ClubsRoute = ClubsRouteImport.update({
 const BdeRoute = BdeRouteImport.update({
   id: '/bde',
   path: '/bde',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssociationsRoute = AssociationsRouteImport.update({
+  id: '/associations',
+  path: '/associations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AlternativeShotgunRoute = AlternativeShotgunRouteImport.update({
@@ -153,6 +161,11 @@ const FrClubsRoute = FrClubsRouteImport.update({
   path: '/fr/clubs',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FrAssociationsRoute = FrAssociationsRouteImport.update({
+  id: '/fr/associations',
+  path: '/fr/associations',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FrAlternativeShotgunRoute = FrAlternativeShotgunRouteImport.update({
   id: '/fr/alternative-shotgun',
   path: '/fr/alternative-shotgun',
@@ -166,6 +179,11 @@ const FrAffiliatesRoute = FrAffiliatesRouteImport.update({
 const EsStartRoute = EsStartRouteImport.update({
   id: '/es/start',
   path: '/es/start',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsAsociacionesRoute = EsAsociacionesRouteImport.update({
+  id: '/es/asociaciones',
+  path: '/es/asociaciones',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EsAlternativaFourvenuesRoute = EsAlternativaFourvenuesRouteImport.update({
@@ -183,6 +201,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/affiliates': typeof AffiliatesRoute
   '/alternative-shotgun': typeof AlternativeShotgunRoute
+  '/associations': typeof AssociationsRoute
   '/bde': typeof BdeRoute
   '/clubs': typeof ClubsRoute
   '/contact': typeof ContactRoute
@@ -196,9 +215,11 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/bde/contact': typeof BdeContactRoute
   '/es/alternativa-fourvenues': typeof EsAlternativaFourvenuesRoute
+  '/es/asociaciones': typeof EsAsociacionesRoute
   '/es/start': typeof EsStartRoute
   '/fr/affiliates': typeof FrAffiliatesRoute
   '/fr/alternative-shotgun': typeof FrAlternativeShotgunRoute
+  '/fr/associations': typeof FrAssociationsRoute
   '/fr/clubs': typeof FrClubsRoute
   '/fr/contact': typeof FrContactRoute
   '/fr/organizers': typeof FrOrganizersRoute
@@ -213,6 +234,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/affiliates': typeof AffiliatesRoute
   '/alternative-shotgun': typeof AlternativeShotgunRoute
+  '/associations': typeof AssociationsRoute
   '/bde': typeof BdeRoute
   '/clubs': typeof ClubsRoute
   '/contact': typeof ContactRoute
@@ -226,9 +248,11 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/bde/contact': typeof BdeContactRoute
   '/es/alternativa-fourvenues': typeof EsAlternativaFourvenuesRoute
+  '/es/asociaciones': typeof EsAsociacionesRoute
   '/es/start': typeof EsStartRoute
   '/fr/affiliates': typeof FrAffiliatesRoute
   '/fr/alternative-shotgun': typeof FrAlternativeShotgunRoute
+  '/fr/associations': typeof FrAssociationsRoute
   '/fr/clubs': typeof FrClubsRoute
   '/fr/contact': typeof FrContactRoute
   '/fr/organizers': typeof FrOrganizersRoute
@@ -244,6 +268,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/affiliates': typeof AffiliatesRoute
   '/alternative-shotgun': typeof AlternativeShotgunRoute
+  '/associations': typeof AssociationsRoute
   '/bde': typeof BdeRoute
   '/clubs': typeof ClubsRoute
   '/contact': typeof ContactRoute
@@ -257,9 +282,11 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/bde_/contact': typeof BdeContactRoute
   '/es/alternativa-fourvenues': typeof EsAlternativaFourvenuesRoute
+  '/es/asociaciones': typeof EsAsociacionesRoute
   '/es/start': typeof EsStartRoute
   '/fr/affiliates': typeof FrAffiliatesRoute
   '/fr/alternative-shotgun': typeof FrAlternativeShotgunRoute
+  '/fr/associations': typeof FrAssociationsRoute
   '/fr/clubs': typeof FrClubsRoute
   '/fr/contact': typeof FrContactRoute
   '/fr/organizers': typeof FrOrganizersRoute
@@ -276,6 +303,7 @@ export interface FileRouteTypes {
     | '/'
     | '/affiliates'
     | '/alternative-shotgun'
+    | '/associations'
     | '/bde'
     | '/clubs'
     | '/contact'
@@ -289,9 +317,11 @@ export interface FileRouteTypes {
     | '/terms'
     | '/bde/contact'
     | '/es/alternativa-fourvenues'
+    | '/es/asociaciones'
     | '/es/start'
     | '/fr/affiliates'
     | '/fr/alternative-shotgun'
+    | '/fr/associations'
     | '/fr/clubs'
     | '/fr/contact'
     | '/fr/organizers'
@@ -306,6 +336,7 @@ export interface FileRouteTypes {
     | '/'
     | '/affiliates'
     | '/alternative-shotgun'
+    | '/associations'
     | '/bde'
     | '/clubs'
     | '/contact'
@@ -319,9 +350,11 @@ export interface FileRouteTypes {
     | '/terms'
     | '/bde/contact'
     | '/es/alternativa-fourvenues'
+    | '/es/asociaciones'
     | '/es/start'
     | '/fr/affiliates'
     | '/fr/alternative-shotgun'
+    | '/fr/associations'
     | '/fr/clubs'
     | '/fr/contact'
     | '/fr/organizers'
@@ -336,6 +369,7 @@ export interface FileRouteTypes {
     | '/'
     | '/affiliates'
     | '/alternative-shotgun'
+    | '/associations'
     | '/bde'
     | '/clubs'
     | '/contact'
@@ -349,9 +383,11 @@ export interface FileRouteTypes {
     | '/terms'
     | '/bde_/contact'
     | '/es/alternativa-fourvenues'
+    | '/es/asociaciones'
     | '/es/start'
     | '/fr/affiliates'
     | '/fr/alternative-shotgun'
+    | '/fr/associations'
     | '/fr/clubs'
     | '/fr/contact'
     | '/fr/organizers'
@@ -367,6 +403,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AffiliatesRoute: typeof AffiliatesRoute
   AlternativeShotgunRoute: typeof AlternativeShotgunRoute
+  AssociationsRoute: typeof AssociationsRoute
   BdeRoute: typeof BdeRoute
   ClubsRoute: typeof ClubsRoute
   ContactRoute: typeof ContactRoute
@@ -380,9 +417,11 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   BdeContactRoute: typeof BdeContactRoute
   EsAlternativaFourvenuesRoute: typeof EsAlternativaFourvenuesRoute
+  EsAsociacionesRoute: typeof EsAsociacionesRoute
   EsStartRoute: typeof EsStartRoute
   FrAffiliatesRoute: typeof FrAffiliatesRoute
   FrAlternativeShotgunRoute: typeof FrAlternativeShotgunRoute
+  FrAssociationsRoute: typeof FrAssociationsRoute
   FrClubsRoute: typeof FrClubsRoute
   FrContactRoute: typeof FrContactRoute
   FrOrganizersRoute: typeof FrOrganizersRoute
@@ -473,6 +512,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BdeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/associations': {
+      id: '/associations'
+      path: '/associations'
+      fullPath: '/associations'
+      preLoaderRoute: typeof AssociationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/alternative-shotgun': {
       id: '/alternative-shotgun'
       path: '/alternative-shotgun'
@@ -557,6 +603,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrClubsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fr/associations': {
+      id: '/fr/associations'
+      path: '/fr/associations'
+      fullPath: '/fr/associations'
+      preLoaderRoute: typeof FrAssociationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/fr/alternative-shotgun': {
       id: '/fr/alternative-shotgun'
       path: '/fr/alternative-shotgun'
@@ -576,6 +629,13 @@ declare module '@tanstack/react-router' {
       path: '/es/start'
       fullPath: '/es/start'
       preLoaderRoute: typeof EsStartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/asociaciones': {
+      id: '/es/asociaciones'
+      path: '/es/asociaciones'
+      fullPath: '/es/asociaciones'
+      preLoaderRoute: typeof EsAsociacionesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/es/alternativa-fourvenues': {
@@ -599,6 +659,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AffiliatesRoute: AffiliatesRoute,
   AlternativeShotgunRoute: AlternativeShotgunRoute,
+  AssociationsRoute: AssociationsRoute,
   BdeRoute: BdeRoute,
   ClubsRoute: ClubsRoute,
   ContactRoute: ContactRoute,
@@ -612,9 +673,11 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   BdeContactRoute: BdeContactRoute,
   EsAlternativaFourvenuesRoute: EsAlternativaFourvenuesRoute,
+  EsAsociacionesRoute: EsAsociacionesRoute,
   EsStartRoute: EsStartRoute,
   FrAffiliatesRoute: FrAffiliatesRoute,
   FrAlternativeShotgunRoute: FrAlternativeShotgunRoute,
+  FrAssociationsRoute: FrAssociationsRoute,
   FrClubsRoute: FrClubsRoute,
   FrContactRoute: FrContactRoute,
   FrOrganizersRoute: FrOrganizersRoute,

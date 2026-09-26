@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { animate, useInView, useReducedMotion } from "motion/react";
 import { Check, Layers, Timer, Wallet, X, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { LandingContent } from "@/content/landing";
 import { useLanding } from "./context";
 import { FadeIn, SectionHeader } from "./ui";
 
@@ -114,9 +115,11 @@ export function Stats() {
   );
 }
 
-export function Problem() {
+// The landing's "today / with Yuno" table; the student-association page passes
+// its own rows.
+export function Problem({ content }: { content?: LandingContent["problem"] } = {}) {
   const { t } = useLanding();
-  const p = t.problem;
+  const p = content ?? t.problem;
   return (
     <section data-ph-section="problem" className="relative px-4 py-16 sm:px-6 sm:py-24 md:py-32">
       <div

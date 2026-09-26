@@ -2,8 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { SITE_ORIGIN, localeUrl } from "@/i18n/seo";
 import { COMPARE_PAGES } from "@/content/compare";
-import { landingUrl } from "@/i18n/landing-lang";
+import { LANDING_LANGS, landingUrl } from "@/i18n/landing-lang";
 import { LANDING_UPDATED } from "@/i18n/landing-seo";
+import { ASSO_UPDATED, assoUrl } from "@/i18n/asso";
 
 interface SitemapEntry {
   path: string;
@@ -86,11 +87,28 @@ export const Route = createFileRoute("/sitemap.xml")({
           ].join("\n");
         });
 
+        // Student-association landing: one page per language, each its own slug.
+        const assoUrls = LANDING_LANGS.map((lang) =>
+          [
+            `  <url>`,
+            `    <loc>${assoUrl(lang)}</loc>`,
+            ...LANDING_LANGS.map(
+              (l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${assoUrl(l)}"/>`,
+            ),
+            `    <xhtml:link rel="alternate" hreflang="x-default" href="${assoUrl("en")}"/>`,
+            `    <lastmod>${ASSO_UPDATED}</lastmod>`,
+            `    <changefreq>monthly</changefreq>`,
+            `    <priority>0.8</priority>`,
+            `  </url>`,
+          ].join("\n"),
+        );
+
         const xml = [
           `<?xml version="1.0" encoding="UTF-8"?>`,
           `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">`,
           ...urls,
           ...compareUrls,
+          ...assoUrls,
           `</urlset>`,
         ].join("\n");
 

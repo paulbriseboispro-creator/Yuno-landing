@@ -15,16 +15,17 @@ const round2 = (v: number) => Math.round(v * 100) / 100;
 
 // Yuno's real fee model (see docs/yuno-context.md): the service fee is added on
 // top of the ticket price and paid by the buyer; Stripe's processing fee is
-// charged on the amount collected and is the only cost to the seller.
-export function computeTicket(price: number) {
-  const fee = round2(Math.max(0.04 * price, 0.99));
+// charged on the amount collected and is the only cost to the seller. A verified
+// student association pays the same 4% with a €0.49 minimum instead of €0.99.
+export function computeTicket(price: number, minFee = 0.99) {
+  const fee = round2(Math.max(0.04 * price, minFee));
   const customer = round2(price + fee);
   const stripe = round2(0.015 * customer + 0.25);
   const keep = round2(price - stripe);
   return { fee, customer, stripe, keep };
 }
 
-function AnimatedMoney({ value, fmt }: { value: number; fmt: (v: number) => string }) {
+export function AnimatedMoney({ value, fmt }: { value: number; fmt: (v: number) => string }) {
   const reduce = useReducedMotion();
   const spring = useSpring(value, { stiffness: 140, damping: 22, mass: 0.4 });
   const [text, setText] = useState(fmt(value));
@@ -47,7 +48,7 @@ const COMPETITOR_KEEP: Record<string, (price: number) => number> = {
   weezevent: (p) => round2(p - Math.max(0.025 * p, 0.99)),
 };
 
-function Slider({
+export function Slider({
   label,
   display,
   value,

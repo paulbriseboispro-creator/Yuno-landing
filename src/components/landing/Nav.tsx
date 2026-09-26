@@ -4,12 +4,7 @@ import { ArrowUpRight, Check, ChevronDown, Globe, Menu, Moon, Sun, X } from "luc
 import { MagnifyNav } from "@/components/site/MagnifyNav";
 import { useScroll as useScrolled } from "@/hooks/use-scroll";
 import { cn } from "@/lib/utils";
-import {
-  LANDING_LANGS,
-  LANDING_LANG_LABELS,
-  LANDING_PATHS,
-  rememberLandingLang,
-} from "@/i18n/landing-lang";
+import { LANDING_LANGS, LANDING_LANG_LABELS, rememberLandingLang } from "@/i18n/landing-lang";
 import { LOGIN_URL, useLanding } from "./context";
 import { EASE, PrimaryCta, YunoLogo } from "./ui";
 
@@ -51,11 +46,17 @@ function useActiveSection(ids: string[]) {
   return active;
 }
 
-export function LandingNav() {
-  const { t, lang, anchor, langHref } = useLanding();
+// A standalone landing (student associations) passes its own section links and
+// CTA label; the logo follows the provider's `home`.
+export function LandingNav({
+  links: linksProp,
+  cta,
+}: { links?: { label: string; href: string }[]; cta?: string } = {}) {
+  const { t, lang, anchor, langHref, home } = useLanding();
+  const links = linksProp ?? t.nav.links;
   const scrolled = useScrolled(24);
   const [open, setOpen] = useState(false);
-  const active = useActiveSection(t.nav.links.map((l) => l.href.slice(1)));
+  const active = useActiveSection(links.map((l) => l.href.slice(1)));
   const pill = scrolled || open;
 
   useEffect(() => {
@@ -92,7 +93,7 @@ export function LandingNav() {
           <motion.a
             layout="position"
             transition={PILL_SPRING}
-            href={LANDING_PATHS[lang]}
+            href={home}
             aria-label="Yuno"
             className="flex shrink-0 items-center"
           >
@@ -101,7 +102,7 @@ export function LandingNav() {
 
           <motion.div layout="position" transition={PILL_SPRING} className="hidden md:block">
             <MagnifyNav className="flex items-center">
-              {t.nav.links.map((l) => {
+              {links.map((l) => {
                 const on = active === l.href.slice(1);
                 return (
                   <a
@@ -145,7 +146,7 @@ export function LandingNav() {
               {t.nav.login}
             </a>
             <PrimaryCta size="sm" className="hidden sm:inline-flex">
-              {t.nav.cta}
+              {cta ?? t.nav.cta}
             </PrimaryCta>
             <button
               type="button"
@@ -193,7 +194,7 @@ export function LandingNav() {
               style={{ maxHeight: "calc(100dvh - 90px)" }}
             >
               <ul className="flex flex-col">
-                {t.nav.links.map((l, i) => (
+                {links.map((l, i) => (
                   <motion.li
                     key={l.href}
                     initial={{ opacity: 0, y: 8 }}
@@ -242,7 +243,7 @@ export function LandingNav() {
               </div>
               <div className="mt-4" onClick={() => setOpen(false)}>
                 <PrimaryCta size="lg" className="w-full">
-                  {t.hero.primary}
+                  {cta ?? t.hero.primary}
                 </PrimaryCta>
               </div>
             </motion.div>

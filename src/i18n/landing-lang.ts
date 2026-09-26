@@ -66,11 +66,20 @@ export function rememberLandingLang(lang: LandingLang) {
   document.cookie = `${LOCALE_COOKIE}=${lang}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
 }
 
+// The student-association landing (src/pages/asso.tsx), one path per language.
+export const ASSO_PATHS: Record<LandingLang, string> = {
+  en: "/associations",
+  fr: "/fr/associations",
+  es: "/es/asociaciones",
+};
+
 // The landing surface: light, chrome-less (it brings its own nav and footer).
-// Includes the pro signup pages ("/start", "/fr/start", "/es/start").
+// Includes the pro signup pages ("/start", "/fr/start", "/es/start") and the
+// student-association landing.
 export function isLandingPath(pathname: string): boolean {
   const p = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
   if (p === "/start" || p === "/fr/start" || p === "/es/start") return true;
+  if (LANDING_LANGS.some((l) => ASSO_PATHS[l] === p)) return true;
   return (
     pathname === "/" ||
     pathname === "/fr" ||
