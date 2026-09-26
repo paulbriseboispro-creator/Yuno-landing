@@ -32,7 +32,7 @@ function roleOf(el: HTMLElement | null): Role | null {
 
 function isContactPath(path: string): boolean {
   const p = pageFromPath(path);
-  return p === "/contact" || p === "/bde/contact";
+  return p === "/contact";
 }
 
 function isStartPath(path: string): boolean {

@@ -14,13 +14,13 @@ import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { FoundingBanner } from "@/components/site/FoundingBanner";
-import { BdeHeader, BdeFooter } from "@/components/site/BdeChrome";
 import { RoleHeader, RoleFooter } from "@/components/site/RoleChrome";
 import { NotFoundPage } from "@/components/not-found";
 import { LocaleProvider, detectLocale, getStandaloneLocale, type Locale } from "@/i18n/locale";
 import { BING_SITE_VERIFICATION, GOOGLE_SITE_VERIFICATION, localePath } from "@/i18n/seo";
 import { ogImageMeta } from "@/i18n/og";
 import {
+  ASSO_PATHS,
   LANDING_PATHS,
   detectLandingLang,
   isLandingPath,
@@ -95,13 +95,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     if (path === "/fr" || path.startsWith("/fr/")) {
       return { locale: "fr" as Locale, lang: "fr" as LandingLang, landing };
     }
-    // /bde is the standalone French-only BDE landing (no /fr prefix, not in the
-    // bilingual set), and /bde/contact is its dedicated contact page. Force French
-    // so the page, its minimal chrome and <html lang> all render in French
-    // regardless of cookie.
-    if (path === "/bde" || path.startsWith("/bde/")) {
-      return { locale: "fr" as Locale, lang: "fr" as LandingLang, landing };
-    }
     // The landing is trilingual: send a visitor who prefers French or Spanish
     // (cookie, else Accept-Language) from "/" to their language's URL.
     if (path === "/") {
@@ -116,6 +109,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       const pref = detectLandingLang();
       if (pref !== "en") {
         throw redirect({ href: `/${pref}/start` + (location.searchStr ?? "") });
+      }
+      return { locale: "en" as Locale, lang: "en" as LandingLang, landing };
+    }
+    // Same for the student-association landing (French first: BDE).
+    if (path === ASSO_PATHS.en || path === ASSO_PATHS.en + "/") {
+      const pref = detectLandingLang();
+      if (pref !== "en") {
+        throw redirect({ href: ASSO_PATHS[pref] + (location.searchStr ?? "") });
       }
       return { locale: "en" as Locale, lang: "en" as LandingLang, landing };
     }
@@ -210,15 +211,14 @@ function RootShell({ children }: { children: ReactNode }) {
 // Which chrome a path gets. The role landings (/clubs, /organizers) and the
 // gate (/) get a stripped-down, role-focused header — no full-site nav — so a
 // visitor who picked a role stays in that clean funnel instead of facing the
-// "trop d'éléments" menu again. /bde keeps its own private chrome. Everything
+// "trop d'éléments" menu again. Everything
 // else (pricing, contact, affiliates, legal) keeps the full site chrome.
-type Surface = "landing" | "club" | "orga" | "bde" | "main";
+type Surface = "landing" | "club" | "orga" | "main";
 
 function surfaceFor(pathname: string): Surface {
   let path = pathname;
   if (path === "/fr") path = "/";
   else if (path.startsWith("/fr/")) path = path.slice(3); // "/fr/clubs" -> "/clubs"
-  if (path === "/bde" || path.startsWith("/bde/")) return "bde";
   if (isLandingPath(pathname) || COMPARE_PATHS.has(pathname)) return "landing";
   if (path === "/clubs") return "club";
   if (path === "/organizers") return "orga";
@@ -241,10 +241,6 @@ function RootComponent() {
   let header: ReactNode;
   let footer: ReactNode;
   switch (surface) {
-    case "bde":
-      header = <BdeHeader />;
-      footer = <BdeFooter />;
-      break;
     case "landing":
       // The landing brings its own nav and footer (light surface).
       return (

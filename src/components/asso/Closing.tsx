@@ -1,25 +1,25 @@
-import { useEffect, useState, type FormEvent } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { useState, type FormEvent } from "react";
 import { ArrowRight } from "lucide-react";
-import { LANDING_LANGS, LANDING_PATHS, rememberLandingLang } from "@/i18n/landing-lang";
+import { LANDING_LANGS, rememberLandingLang } from "@/i18n/landing-lang";
 import { cn } from "@/lib/utils";
-import { useLanding } from "./context";
-import { EASE, FadeIn, FounderCta, YunoLogo } from "./ui";
+import { useLanding } from "@/components/landing/context";
+import { FadeIn, FounderCta, YunoLogo } from "@/components/landing/ui";
+import { useAsso } from "./content";
 
-export function FinalCta() {
-  const { t, openSignup } = useLanding();
-  const f = t.final;
-  const [email, setEmail] = useState("");
+// Last call: the association's name opens the signup on the next question.
+export function AssoFinal() {
+  const f = useAsso().final;
+  const { openSignup } = useLanding();
+  const [name, setName] = useState("");
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
-    openSignup({ email: email.trim() || undefined });
+    openSignup({ orgName: name.trim() || undefined });
   }
 
   return (
     <section data-ph-section="closing" className="px-4 pb-16 sm:px-6 sm:pb-24 md:pb-32">
       <FadeIn className="yl-keep yl-edge relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-zinc-950 px-5 py-14 text-center text-white sm:px-6 sm:py-16 md:px-12 md:py-24">
-        {/* concentric arcs echoing the hero */}
         <div aria-hidden className="pointer-events-none absolute left-1/2 top-full">
           {[360, 560, 760, 960, 1160].map((d) => (
             <div
@@ -45,12 +45,12 @@ export function FinalCta() {
             className="mx-auto mt-9 flex max-w-lg flex-col gap-2 rounded-full sm:flex-row sm:bg-white/10 sm:p-1.5 sm:ring-1 sm:ring-white/15 sm:backdrop-blur"
           >
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder={f.placeholder}
               aria-label={f.placeholder}
-              autoComplete="email"
+              autoComplete="organization"
+              maxLength={120}
               className="h-12 w-full min-w-0 rounded-full bg-white/10 px-5 text-[16px] text-white placeholder:text-zinc-500 outline-none ring-1 ring-white/15 focus:ring-white/40 sm:h-11 sm:flex-1 sm:bg-transparent sm:text-[15px] sm:ring-0"
             />
             <button
@@ -77,21 +77,19 @@ export function FinalCta() {
   );
 }
 
-export function LandingFooter() {
-  const { t, lang, anchor, langHref } = useLanding();
-  const f = t.footer;
+// A footer that keeps associations on their page: its own sections, the legal
+// pages and the language switch, no link into the club / organizer site.
+export function AssoFooter() {
+  const f = useAsso().footer;
+  const { lang, anchor, langHref, home } = useLanding();
   return (
     <footer
       data-ph-area="footer"
       className="border-t border-zinc-100 px-4 pb-28 pt-16 sm:px-6 md:pb-12"
     >
-      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-9 sm:gap-10 md:grid-cols-4 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
-        <div className="col-span-2 md:col-span-4 lg:col-span-1">
-          <a
-            href={LANDING_PATHS[lang]}
-            aria-label="Yuno"
-            className="inline-flex text-[var(--yuno-red)]"
-          >
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-9 sm:gap-10 md:grid-cols-[1.6fr_1fr_1fr]">
+        <div className="col-span-2 md:col-span-1">
+          <a href={home} aria-label="Yuno" className="inline-flex text-[var(--yuno-red)]">
             <YunoLogo className="h-6" />
           </a>
           <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-zinc-500">{f.tagline}</p>
@@ -132,52 +130,12 @@ export function LandingFooter() {
           </div>
         ))}
       </div>
-      <div className="mx-auto mt-10 flex max-w-6xl flex-col gap-2 border-t sm:mt-14 border-zinc-100 pt-6 text-[12.5px] text-zinc-400 sm:flex-row sm:justify-between">
+      <div className="mx-auto mt-10 flex max-w-6xl flex-col gap-2 border-t border-zinc-100 pt-6 text-[12.5px] text-zinc-400 sm:mt-14 sm:flex-row sm:justify-between">
         <span>
           © {new Date().getFullYear()} Yuno. {f.rights}
         </span>
         <span>{f.made}</span>
       </div>
     </footer>
-  );
-}
-
-// Mobile-only sticky CTA, shown once the hero's own buttons have scrolled away.
-export function MobileCta({ label }: { label?: string } = {}) {
-  const { t, openSignup, signup } = useLanding();
-  const [show, setShow] = useState(false);
-  useEffect(() => {
-    const onScroll = () => {
-      const nearBottom = window.innerHeight + window.scrollY > document.body.scrollHeight - 700;
-      setShow(window.scrollY > 640 && !nearBottom);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-  return (
-    <AnimatePresence>
-      {show && !signup.open && (
-        <motion.div
-          initial={{ y: 90, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 90, opacity: 0 }}
-          transition={{ duration: 0.4, ease: EASE }}
-          data-ph-area="mobile_bar"
-          className="fixed inset-x-3 bottom-3 z-40 md:hidden"
-          style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
-        >
-          <button
-            type="button"
-            onClick={() => openSignup()}
-            data-ph-cta="signup"
-            className="yl-btn-primary h-13 w-full py-3.5 text-[15px] shadow-[0_18px_40px_-12px_rgba(10,10,11,0.55)]"
-          >
-            {label ?? t.mobileCta}
-            <ArrowRight className="size-4" />
-          </button>
-        </motion.div>
-      )}
-    </AnimatePresence>
   );
 }

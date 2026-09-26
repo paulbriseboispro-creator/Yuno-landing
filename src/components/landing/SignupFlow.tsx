@@ -26,6 +26,7 @@ import {
   trackSignup,
   yunoApp,
 } from "@/lib/yuno-app";
+import type { AssoContent } from "@/content/asso";
 import { useLanding, whatsappHref, type SignupRole } from "./context";
 import { EASE } from "./ui";
 import { capture, identifyAccount } from "@/lib/posthog";
@@ -40,6 +41,13 @@ import { capture, identifyAccount } from "@/lib/posthog";
 // is created on the Yuno app's Supabase (auth.signUp), then
 // complete_pro_signup() opens the club / organizer space — see
 // supabase/migrations/20260924120000_pro_self_signup.sql in the yuno repo.
+//
+// `audience="asso"` is the student-association variant (src/pages/asso.tsx):
+// no role question (an association is an organizer account), its own copy
+// (`assoCopy`, passed in so the main landing never loads it) and
+// its own journey in sessionStorage, and a `source` starting with "asso" so the
+// super admin knows to verify the association and switch on its reduced fee
+// (organizer_profiles.bde_verified, set by hand in /admin/organizers).
 
 const ROLE_ICONS: Record<SignupRole, LucideIcon> = {
   club: Building2,
@@ -90,6 +98,7 @@ const EMPTY: Form = {
 };
 
 const STORE_KEY = "yuno_pro_signup";
+const ASSO_STORE_KEY = "yuno_asso_signup";
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 // What each profile sells first — preselected, the person can untick.
@@ -99,15 +108,16 @@ function defaultPillars(role: SignupRole | null): string[] {
   return [];
 }
 
-function stepsFor(role: SignupRole | null): Step[] {
+function stepsFor(role: SignupRole | null, asso = false): Step[] {
+  if (asso) return ["structure", "needs", "account"];
   return role === "promoter" || role === "other"
     ? ["role", "lead"]
     : ["role", "structure", "needs", "account"];
 }
 
-function loadStored(): { key: string; form: Form } | null {
+function loadStored(storeKey: string): { key: string; form: Form } | null {
   try {
-    const raw = sessionStorage.getItem(STORE_KEY);
+    const raw = sessionStorage.getItem(storeKey);
     if (!raw) return null;
     const v = JSON.parse(raw) as { key?: string; form?: Partial<Form> };
     if (!v.key || !/^[A-Za-z0-9_-]{16,64}$/.test(v.key)) return null;
@@ -138,22 +148,36 @@ function attribution(source: string) {
 
 export function SignupFlow({
   source,
-  initialRole,
+  initialRole: initialRoleProp,
   initialEmail,
+  initialOrgName,
   onClose,
   variant = "modal",
+  audience = "pro",
+  assoCopy,
 }: {
   source: string;
   initialRole?: SignupRole;
   initialEmail?: string;
+  initialOrgName?: string;
   onClose?: () => void;
   variant?: "modal" | "page";
+  audience?: "pro" | "asso";
+  assoCopy?: AssoContent["signup"];
 }) {
-  const { t, lang } = useLanding();
-  const s = t.signup;
+  const { t, lang, whatsappMessage } = useLanding();
+  const asso = audience === "asso";
+  const s = asso && assoCopy ? { ...t.signup, ...assoCopy } : t.signup;
+  const emailHint = asso ? assoCopy?.emailHint : undefined;
+  const storeKey = asso ? ASSO_STORE_KEY : STORE_KEY;
+  // An association is an organizer account: no role question.
+  const initialRole: SignupRole | undefined = asso ? "organizer" : initialRoleProp;
   const sendLead = useServerFn(submitLead);
 
-  const stored = useMemo(() => (typeof window === "undefined" ? null : loadStored()), []);
+  const stored = useMemo(
+    () => (typeof window === "undefined" ? null : loadStored(storeKey)),
+    [storeKey],
+  );
   const [key] = useState(() => stored?.key ?? newSignupKey());
   const [form, setForm] = useState<Form>(() => {
     const base = stored?.form ?? EMPTY;
@@ -163,9 +187,12 @@ export function SignupFlow({
       role,
       pillars: base.pillars.length ? base.pillars : defaultPillars(role),
       email: initialEmail || base.email,
+      org_name: initialOrgName?.trim() || base.org_name,
     };
   });
-  const [step, setStep] = useState<Step>(() => (initialRole ? stepsFor(initialRole)[1] : "role"));
+  const [step, setStep] = useState<Step>(() =>
+    initialRole ? stepsFor(initialRole, asso)[asso ? 0 : 1] : "role",
+  );
   const [phase, setPhase] = useState<Phase>("form");
   const [error, setError] = useState<string | null>(null);
   const [password, setPassword] = useState("");
@@ -179,16 +206,17 @@ export function SignupFlow({
   // resumes where the person stopped, on the same pro_signups row.
   useEffect(() => {
     try {
-      sessionStorage.setItem(STORE_KEY, JSON.stringify({ key, form }));
+      sessionStorage.setItem(storeKey, JSON.stringify({ key, form }));
     } catch {
       /* ignore */
     }
-  }, [key, form]);
+  }, [key, form, storeKey]);
 
   // Journey opened (+ role when the CTA already picked one).
   useEffect(() => {
     void trackSignup(key, "opened", { lang, ...attribution(source) });
     capture("pro_signup_opened", {
+      audience,
       lang,
       variant,
       role: initialRole ?? null,
@@ -217,7 +245,7 @@ export function SignupFlow({
     return () => window.clearInterval(id);
   }, [phase]);
 
-  const steps = stepsFor(form.role);
+  const steps = stepsFor(form.role, asso);
   const stepIndex = Math.max(1, steps.indexOf(step) + 1);
   const isClub = form.role === "club";
   const set = <K extends keyof Form>(k: K, v: Form[K]) => setForm((f) => ({ ...f, [k]: v }));
@@ -230,8 +258,8 @@ export function SignupFlow({
     }));
     setError(null);
     void trackSignup(key, "role", { kind: role, lang });
-    capture("pro_signup_step_completed", { step: "role", role, lang, source });
-    setStep(stepsFor(role)[1]);
+    capture("pro_signup_step_completed", { audience, step: "role", role, lang, source });
+    setStep(stepsFor(role, asso)[1]);
   }
 
   function goBack() {
@@ -251,6 +279,7 @@ export function SignupFlow({
       frequency: form.frequency,
     });
     capture("pro_signup_step_completed", {
+      audience,
       step: "structure",
       role: form.role,
       lang,
@@ -271,6 +300,7 @@ export function SignupFlow({
       next_night: form.next_night,
     });
     capture("pro_signup_step_completed", {
+      audience,
       step: "needs",
       role: form.role,
       lang,
@@ -303,7 +333,7 @@ export function SignupFlow({
           company: form.org_name,
           role: form.role ?? "",
           phone: form.phone,
-          message: `${note} — ${form.city} · ${form.pillars.join(", ")} · ${form.current_tool} · ${form.next_night}`,
+          message: `${asso ? "[ASSO] " : ""}${note} — ${form.city} · ${form.pillars.join(", ")} · ${form.current_tool} · ${form.next_night}`,
           source: `landing-signup:${lang}`,
         },
       });
@@ -360,11 +390,12 @@ export function SignupFlow({
         msg.includes("already registered") ||
         msg.includes("already been registered")
       ) {
-        capture("pro_signup_existing_account", { role: form.role, lang, source });
+        capture("pro_signup_existing_account", { audience, role: form.role, lang, source });
         setPhase("exists");
         return;
       }
       capture("pro_signup_failed", {
+        audience,
         role: form.role,
         lang,
         source,
@@ -386,7 +417,7 @@ export function SignupFlow({
     // Email-enumeration protection: an existing address comes back as a user
     // without identities and without a session.
     if (data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
-      capture("pro_signup_existing_account", { role: form.role, lang, source });
+      capture("pro_signup_existing_account", { audience, role: form.role, lang, source });
       setPhase("exists");
       return;
     }
@@ -396,7 +427,7 @@ export function SignupFlow({
     if (!data.session) {
       capture(
         "pro_signup_email_confirmation_required",
-        { role: form.role, lang, source, pillars: form.pillars },
+        { audience, role: form.role, lang, source, pillars: form.pillars },
         true,
       );
       await minDelay();
@@ -408,7 +439,7 @@ export function SignupFlow({
     // Sent instantly: the handoff below is a full-page navigation to yunoapp.eu.
     capture(
       "pro_signup_account_created",
-      { role: form.role, lang, source, pillars: form.pillars, space_opened: !cErr },
+      { audience, role: form.role, lang, source, pillars: form.pillars, space_opened: !cErr },
       true,
     );
     if (cErr) {
@@ -417,7 +448,7 @@ export function SignupFlow({
     }
     await minDelay();
     try {
-      sessionStorage.removeItem(STORE_KEY);
+      sessionStorage.removeItem(storeKey);
     } catch {
       /* ignore */
     }
@@ -468,9 +499,9 @@ export function SignupFlow({
       setError(s.error);
       return;
     }
-    capture("pro_signup_lead_submitted", { role: form.role, lang, source });
+    capture("pro_signup_lead_submitted", { audience, role: form.role, lang, source });
     try {
-      sessionStorage.removeItem(STORE_KEY);
+      sessionStorage.removeItem(storeKey);
     } catch {
       /* ignore */
     }
@@ -540,7 +571,7 @@ export function SignupFlow({
             </a>
           ) : null}
           <a
-            href={whatsappHref(t.whatsappMessage)}
+            href={whatsappHref(whatsappMessage)}
             target="_blank"
             rel="noopener noreferrer"
             className="yl-btn-secondary h-12 text-[14px]"
@@ -583,7 +614,7 @@ export function SignupFlow({
         </p>
         <div className="mt-7 flex flex-col gap-2">
           <a
-            href={whatsappHref(t.whatsappMessage)}
+            href={whatsappHref(whatsappMessage)}
             target="_blank"
             rel="noopener noreferrer"
             data-autofocus
@@ -710,7 +741,7 @@ export function SignupFlow({
                 />
               )}
             </div>
-            <Actions onBack={goBack} backLabel={s.back}>
+            <Actions onBack={steps.indexOf(step) > 0 ? goBack : undefined} backLabel={s.back}>
               <button
                 type="submit"
                 disabled={form.org_name.trim().length < 2 || !form.city.trim()}
@@ -720,6 +751,7 @@ export function SignupFlow({
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
               </button>
             </Actions>
+            {asso && <LoginHint />}
           </Pane>
         )}
 
@@ -837,6 +869,7 @@ export function SignupFlow({
                 onBlur={saveIdentity}
                 placeholder={s.emailPh}
                 autoComplete="email"
+                hint={emailHint}
                 required
                 maxLength={254}
               />
@@ -1110,19 +1143,22 @@ function Actions({
   backLabel,
 }: {
   children: ReactNode;
-  onBack: () => void;
+  // Absent on the first step of a journey that has no role question.
+  onBack?: () => void;
   backLabel: string;
 }) {
   return (
     <div className="mt-6 flex gap-2">
-      <button
-        type="button"
-        onClick={onBack}
-        className="yl-btn-secondary h-12 px-4 text-[14px]"
-        aria-label={backLabel}
-      >
-        <ArrowLeft className="size-4" />
-      </button>
+      {onBack && (
+        <button
+          type="button"
+          onClick={onBack}
+          className="yl-btn-secondary h-12 px-4 text-[14px]"
+          aria-label={backLabel}
+        >
+          <ArrowLeft className="size-4" />
+        </button>
+      )}
       {children}
     </div>
   );

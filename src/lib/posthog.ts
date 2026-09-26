@@ -28,7 +28,8 @@ import type { PostHog } from "posthog-js";
 const EU_PROJECT_KEY = "phc_xsbSXWwUKTxjYaceQyofygm5e5cXrcWWMZZQaPhbcYY8";
 const DEAD_KEYS = new Set(["phc_xHVSBA8DU6pW6gHAFHG9gmjbHM3ipfCDgb7KBtCTxaPD"]);
 const ENV_KEY = (import.meta.env.VITE_POSTHOG_KEY as string | undefined)?.trim() || "";
-const KEY = ENV_KEY && !DEAD_KEYS.has(ENV_KEY) ? ENV_KEY : import.meta.env.PROD ? EU_PROJECT_KEY : "";
+const KEY =
+  ENV_KEY && !DEAD_KEYS.has(ENV_KEY) ? ENV_KEY : import.meta.env.PROD ? EU_PROJECT_KEY : "";
 const HOST =
   (import.meta.env.VITE_POSTHOG_HOST as string | undefined)?.trim() || "https://eu.i.posthog.com";
 
@@ -61,8 +62,6 @@ export type LandingLang = "en" | "fr" | "es";
 export function landingLangFromPath(pathname: string): LandingLang {
   if (pathname === "/fr" || pathname.startsWith("/fr/")) return "fr";
   if (pathname === "/es" || pathname.startsWith("/es/")) return "es";
-  // /bde is the French-only BDE landing (no /fr prefix).
-  if (pathname === "/bde" || pathname.startsWith("/bde/")) return "fr";
   return "en";
 }
 

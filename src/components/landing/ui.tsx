@@ -118,10 +118,10 @@ export function FounderCta({
   size?: "sm" | "md" | "lg";
   className?: string;
 }) {
-  const { t } = useLanding();
+  const { whatsappMessage } = useLanding();
   return (
     <a
-      href={whatsappHref(t.whatsappMessage)}
+      href={whatsappHref(whatsappMessage)}
       target="_blank"
       rel="noopener noreferrer"
       data-ph-cta={cta}
