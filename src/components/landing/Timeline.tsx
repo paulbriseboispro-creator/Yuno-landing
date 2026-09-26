@@ -31,8 +31,8 @@ export function Timeline() {
   const current = tl.steps[active];
 
   return (
-    <section data-ph-section="timeline" className="relative px-4 py-24 sm:px-6 md:py-32">
-      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+    <section data-ph-section="timeline" className="relative px-4 py-16 sm:px-6 sm:py-24 md:py-32">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <FadeIn>
             <Eyebrow>{tl.eyebrow}</Eyebrow>

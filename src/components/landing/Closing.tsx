@@ -17,8 +17,8 @@ export function FinalCta() {
   }
 
   return (
-    <section data-ph-section="closing" className="px-4 pb-24 sm:px-6 md:pb-32">
-      <FadeIn className="yl-keep yl-edge relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-zinc-950 px-6 py-16 text-center text-white md:px-12 md:py-24">
+    <section data-ph-section="closing" className="px-4 pb-16 sm:px-6 sm:pb-24 md:pb-32">
+      <FadeIn className="yl-keep yl-edge relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-zinc-950 px-5 py-14 text-center text-white sm:px-6 sm:py-16 md:px-12 md:py-24">
         {/* concentric arcs echoing the hero */}
         <div aria-hidden className="pointer-events-none absolute left-1/2 top-full">
           {[360, 560, 760, 960, 1160].map((d) => (
@@ -51,7 +51,7 @@ export function FinalCta() {
               placeholder={f.placeholder}
               aria-label={f.placeholder}
               autoComplete="email"
-              className="h-12 min-w-0 flex-1 rounded-full bg-white/10 px-5 text-[15px] text-white placeholder:text-zinc-500 outline-none ring-1 ring-white/15 focus:ring-white/40 sm:h-11 sm:bg-transparent sm:ring-0"
+              className="h-12 w-full min-w-0 rounded-full bg-white/10 px-5 text-[16px] text-white placeholder:text-zinc-500 outline-none ring-1 ring-white/15 focus:ring-white/40 sm:h-11 sm:flex-1 sm:bg-transparent sm:text-[15px] sm:ring-0"
             />
             <button
               type="submit"
@@ -85,8 +85,8 @@ export function LandingFooter() {
       data-ph-area="footer"
       className="border-t border-zinc-100 px-4 pb-28 pt-16 sm:px-6 md:pb-12"
     >
-      <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
-        <div className="sm:col-span-2 md:col-span-4 lg:col-span-1">
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-9 sm:gap-10 md:grid-cols-4 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
+        <div className="col-span-2 md:col-span-4 lg:col-span-1">
           <a
             href={LANDING_PATHS[lang]}
             aria-label="Yuno"
@@ -103,7 +103,7 @@ export function LandingFooter() {
                 onClick={() => rememberLandingLang(l)}
                 data-ph-lang={l}
                 className={cn(
-                  "rounded-full px-3 py-1 text-[12px] font-semibold transition-colors",
+                  "rounded-full px-3.5 py-1.5 text-[12px] font-semibold transition-colors",
                   l === lang
                     ? "bg-zinc-950 text-white"
                     : "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900",
@@ -117,12 +117,12 @@ export function LandingFooter() {
         {f.cols.map((c) => (
           <div key={c.title}>
             <p className="text-[13px] font-semibold text-zinc-950">{c.title}</p>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-3 space-y-1 sm:mt-4 sm:space-y-2.5">
               {c.links.map((l) => (
                 <li key={l.label}>
                   <a
                     href={anchor(l.href)}
-                    className="text-[13.5px] text-zinc-500 transition-colors hover:text-zinc-950"
+                    className="inline-block py-1 text-[13.5px] text-zinc-500 transition-colors hover:text-zinc-950 sm:py-0"
                   >
                     {l.label}
                   </a>
@@ -132,7 +132,7 @@ export function LandingFooter() {
           </div>
         ))}
       </div>
-      <div className="mx-auto mt-14 flex max-w-6xl flex-col gap-2 border-t border-zinc-100 pt-6 text-[12.5px] text-zinc-400 sm:flex-row sm:justify-between">
+      <div className="mx-auto mt-10 flex max-w-6xl flex-col gap-2 border-t sm:mt-14 border-zinc-100 pt-6 text-[12.5px] text-zinc-400 sm:flex-row sm:justify-between">
         <span>
           © {new Date().getFullYear()} Yuno. {f.rights}
         </span>

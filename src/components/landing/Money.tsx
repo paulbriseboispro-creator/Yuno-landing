@@ -135,7 +135,7 @@ export function Money() {
     <section
       data-ph-section="money"
       id="money"
-      className="relative scroll-mt-20 px-4 py-24 sm:px-6 md:py-32"
+      className="relative scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24 md:py-32"
     >
       <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
         <FadeIn>

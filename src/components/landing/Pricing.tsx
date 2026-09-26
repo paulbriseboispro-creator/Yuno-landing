@@ -13,27 +13,27 @@ export function Pricing() {
     <section
       data-ph-section="pricing"
       id="pricing"
-      className="relative scroll-mt-20 bg-zinc-50 px-4 py-24 sm:px-6 md:py-32"
+      className="relative scroll-mt-20 bg-zinc-50 px-4 py-16 sm:px-6 sm:py-24 md:py-32"
     >
       <SectionHeader eyebrow={p.eyebrow} title={p.title} sub={p.sub} className="max-w-3xl" />
-      <div className="mx-auto mt-14 grid max-w-6xl items-start gap-6 lg:grid-cols-[1.25fr_1fr]">
+      <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 items-start gap-6 sm:mt-14 lg:grid-cols-[1.25fr_1fr]">
         <FadeIn>
           <div className="yl-card overflow-hidden">
-            <div className="grid grid-cols-[1.2fr_1fr] border-b border-zinc-100 text-[12px] font-semibold uppercase tracking-[0.12em] text-zinc-400 sm:grid-cols-[1.2fr_1.2fr_1fr]">
-              <div className="px-5 py-4">{p.colItem}</div>
+            <div className="grid grid-cols-2 border-b border-zinc-100 text-[12px] font-semibold uppercase tracking-[0.12em] text-zinc-400 sm:grid-cols-[1.2fr_1.2fr_1fr]">
+              <div className="px-4 py-3.5 sm:px-5 sm:py-4">{p.colItem}</div>
               <div className="hidden px-5 py-4 sm:block">{p.colWho}</div>
-              <div className="px-5 py-4 text-right">{p.colAmount}</div>
+              <div className="px-4 py-3.5 text-right sm:px-5 sm:py-4">{p.colAmount}</div>
             </div>
             {p.rows.map((r, i) => (
               <div
                 key={r.item}
                 className={cn(
-                  "grid grid-cols-[1.2fr_1fr] items-center sm:grid-cols-[1.2fr_1.2fr_1fr]",
+                  "grid grid-cols-2 items-center sm:grid-cols-[1.2fr_1.2fr_1fr]",
                   i > 0 && "border-t border-zinc-100",
                   r.highlight && "bg-[linear-gradient(90deg,rgba(232,25,44,0.06),transparent)]",
                 )}
               >
-                <div className="px-5 py-4">
+                <div className="py-3.5 pl-4 pr-2 sm:px-5 sm:py-4">
                   <span className="block text-[14px] font-semibold tracking-tight text-zinc-950">
                     {r.item}
                   </span>
@@ -44,7 +44,7 @@ export function Pricing() {
                 <div className="hidden px-5 py-4 text-[13.5px] text-zinc-500 sm:block">{r.who}</div>
                 <div
                   className={cn(
-                    "px-5 py-4 text-right text-[14px] font-semibold tabular-nums",
+                    "text-balance py-3.5 pl-2 pr-4 text-right text-[14px] font-semibold tabular-nums sm:px-5 sm:py-4",
                     r.highlight ? "text-[var(--yuno-red)]" : "text-zinc-900",
                   )}
                 >
@@ -59,7 +59,7 @@ export function Pricing() {
         </FadeIn>
 
         <FadeIn delay={0.1}>
-          <div className="yl-keep yl-edge relative overflow-hidden rounded-[1.5rem] bg-zinc-950 p-7 text-white shadow-[0_30px_60px_-24px_rgba(10,10,11,0.5)] md:p-8">
+          <div className="yl-keep yl-edge relative overflow-hidden rounded-[1.5rem] bg-zinc-950 p-6 text-white sm:p-7 shadow-[0_30px_60px_-24px_rgba(10,10,11,0.5)] md:p-8">
             <div
               aria-hidden
               className="absolute -right-24 -top-24 size-72 rounded-full bg-[radial-gradient(closest-side,rgba(232,25,44,0.45),transparent)]"
@@ -110,13 +110,13 @@ function Traction() {
   const { t } = useLanding();
   const tr = t.traction;
   return (
-    <FadeIn className="mx-auto mt-20 max-w-6xl">
+    <FadeIn className="mx-auto mt-14 max-w-6xl sm:mt-20">
       <p className="text-center text-[12px] font-semibold uppercase tracking-[0.16em] text-zinc-400">
         {tr.eyebrow}
       </p>
       <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-zinc-200/70 bg-zinc-200/70 lg:grid-cols-4">
         {tr.items.map((it) => (
-          <div key={it.value} className="bg-white p-5 md:p-6">
+          <div key={it.value} className="bg-white p-4 sm:p-5 md:p-6">
             <span className="block text-[20px] font-semibold tracking-tight text-zinc-950 md:text-[22px]">
               {it.value}
             </span>
@@ -149,7 +149,7 @@ export function Faq({
     <section
       data-ph-section="faq"
       id="faq"
-      className="relative scroll-mt-20 px-4 py-24 sm:px-6 md:py-32"
+      className="relative scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24 md:py-32"
     >
       <SectionHeader eyebrow={f.eyebrow} title={f.title} />
       <FadeIn className="mx-auto mt-12 max-w-3xl">
@@ -172,7 +172,7 @@ export function Faq({
                     aria-expanded={on}
                     aria-controls={`faq-a-${i}`}
                     onClick={() => setOpen(on ? null : i)}
-                    className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left md:px-6"
+                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left sm:py-5 md:px-6"
                   >
                     <span className="text-[15.5px] font-semibold tracking-tight text-zinc-950">
                       {it.q}

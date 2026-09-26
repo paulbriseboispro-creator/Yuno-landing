@@ -23,10 +23,10 @@ export function Pillars() {
     <section
       data-ph-section="pillars"
       id="product"
-      className="relative scroll-mt-20 px-4 py-24 sm:px-6 md:py-32"
+      className="relative scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24 md:py-32"
     >
       <SectionHeader eyebrow={p.eyebrow} title={p.title} sub={p.sub} className="max-w-3xl" />
-      <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-4 sm:mt-14 md:grid-cols-2 lg:grid-cols-3">
         {p.items.map((it, i) => (
           <FadeIn key={it.id} delay={(i % 3) * 0.08}>
             <article className="yl-card group h-full overflow-hidden transition-[transform,box-shadow] duration-500 hover:-translate-y-1 hover:shadow-[0_1px_2px_rgba(10,10,11,0.04),0_24px_48px_-20px_rgba(10,10,11,0.18)]">

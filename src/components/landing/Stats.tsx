@@ -60,9 +60,9 @@ export function CountUp({ value, className }: { value: string; className?: strin
 export function Stats() {
   const { t } = useLanding();
   return (
-    <section data-ph-section="stats" className="relative px-4 py-24 sm:px-6 md:py-32">
+    <section data-ph-section="stats" className="relative px-4 py-16 sm:px-6 sm:py-24 md:py-32">
       <SectionHeader eyebrow={t.stats.eyebrow} title={t.stats.title} sub={t.stats.sub} />
-      <FadeIn className="mx-auto mt-14 max-w-4xl">
+      <FadeIn className="mx-auto mt-10 max-w-4xl sm:mt-14">
         <div className="relative grid grid-cols-1 sm:grid-cols-2">
           {/* cross hairlines like the reference grid */}
           <div
@@ -79,28 +79,32 @@ export function Stats() {
               <div
                 key={it.label}
                 className={cn(
-                  "group flex flex-col items-center px-6 py-10 text-center sm:px-10 sm:py-12",
+                  // Phones: a compact row (icon beside the text) instead of four
+                  // tall centred blocks.
+                  "group flex items-start gap-4 px-1 py-6 text-left sm:flex-col sm:items-center sm:gap-0 sm:px-10 sm:py-12 sm:text-center",
                   i > 0 && "border-t border-zinc-100 sm:border-t-0",
                 )}
               >
                 <span
-                  className="flex size-9 items-center justify-center rounded-xl transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-105"
+                  className="mt-1 flex size-9 shrink-0 items-center justify-center rounded-xl transition-transform sm:mt-0 duration-300 group-hover:-translate-y-0.5 group-hover:scale-105"
                   style={{ background: ic.bg }}
                 >
                   <ic.Icon className="size-[18px]" style={{ color: ic.fg }} strokeWidth={2.2} />
                 </span>
-                <div className="mt-5 flex items-baseline gap-2">
-                  <CountUp
-                    value={it.value}
-                    className="yl-h3 text-3xl tabular-nums text-zinc-950 md:text-4xl"
-                  />
+                <div className="min-w-0 sm:flex sm:flex-col sm:items-center">
+                  <div className="flex items-baseline gap-2 sm:mt-5">
+                    <CountUp
+                      value={it.value}
+                      className="yl-h3 text-[26px] tabular-nums text-zinc-950 sm:text-3xl md:text-4xl"
+                    />
+                  </div>
+                  <p className="mt-0.5 text-[15px] font-semibold tracking-tight text-zinc-900 sm:mt-1">
+                    {it.label}
+                  </p>
+                  <p className="mt-1.5 max-w-[19rem] text-pretty text-[14px] leading-relaxed text-zinc-500 sm:mt-2">
+                    {it.body}
+                  </p>
                 </div>
-                <p className="mt-1 text-[15px] font-semibold tracking-tight text-zinc-900">
-                  {it.label}
-                </p>
-                <p className="mt-2 max-w-[19rem] text-pretty text-[14px] leading-relaxed text-zinc-500">
-                  {it.body}
-                </p>
               </div>
             );
           })}
@@ -114,14 +118,14 @@ export function Problem() {
   const { t } = useLanding();
   const p = t.problem;
   return (
-    <section data-ph-section="problem" className="relative px-4 py-24 sm:px-6 md:py-32">
+    <section data-ph-section="problem" className="relative px-4 py-16 sm:px-6 sm:py-24 md:py-32">
       <div
         aria-hidden
         className="yl-grid-bg pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(60%_50%_at_50%_40%,black,transparent)]"
       />
       <SectionHeader eyebrow={p.eyebrow} title={p.title} sub={p.sub} className="max-w-3xl" />
 
-      <FadeIn className="mx-auto mt-14 max-w-5xl">
+      <FadeIn className="mx-auto mt-10 max-w-5xl sm:mt-14">
         <div className="yl-card overflow-hidden">
           <div className="hidden grid-cols-[180px_1fr_1fr] border-b border-zinc-100 bg-zinc-50/70 text-[12px] font-semibold uppercase tracking-[0.12em] md:grid">
             <div className="px-6 py-3.5 text-zinc-400" />
@@ -155,7 +159,7 @@ export function Problem() {
                 <X className="mt-1 size-3.5 shrink-0 text-zinc-300" strokeWidth={3} />
                 <span>{r.today}</span>
               </div>
-              <div className="flex gap-3 px-5 pb-5 pt-2 text-[14px] leading-relaxed text-zinc-800 md:border-l md:border-zinc-100 md:bg-[linear-gradient(90deg,rgba(232,25,44,0.035),transparent)] md:px-6 md:py-6">
+              <div className="mx-3 mb-4 mt-1 flex gap-3 rounded-xl bg-[rgba(232,25,44,0.045)] px-3 py-2.5 text-[14px] leading-relaxed text-zinc-800 md:m-0 md:rounded-none md:border-l md:border-zinc-100 md:bg-[linear-gradient(90deg,rgba(232,25,44,0.035),transparent)] md:px-6 md:py-6">
                 <Check className="mt-1 size-3.5 shrink-0 text-[var(--yuno-red)]" strokeWidth={3} />
                 <span>{r.yuno}</span>
               </div>

@@ -53,7 +53,7 @@ export function Solutions() {
     <section
       data-ph-section="solutions"
       id="solutions"
-      className="relative scroll-mt-20 overflow-hidden bg-zinc-50 px-4 py-24 sm:px-6 md:py-32"
+      className="relative scroll-mt-20 overflow-hidden bg-zinc-50 px-4 py-16 sm:px-6 sm:py-24 md:py-32"
     >
       <div
         aria-hidden
@@ -64,7 +64,7 @@ export function Solutions() {
       <FadeIn className="relative mt-10 flex justify-center">
         <div
           role="tablist"
-          className="inline-flex max-w-full gap-1 overflow-x-auto rounded-full border border-zinc-200 bg-white p-1 shadow-[0_1px_2px_rgba(10,10,11,0.04)]"
+          className="grid w-full grid-cols-3 gap-1 rounded-2xl border border-zinc-200 bg-white p-1 shadow-[0_1px_2px_rgba(10,10,11,0.04)] sm:inline-flex sm:w-auto sm:max-w-full sm:rounded-full"
         >
           {s.tabs.map((x) => {
             const Icon = TAB_META[x.id].Icon;
@@ -77,14 +77,15 @@ export function Solutions() {
                 aria-controls={`solution-${x.id}`}
                 onClick={() => setActive(x.id)}
                 className={cn(
-                  "relative inline-flex shrink-0 items-center gap-2 rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors sm:px-4",
+                  // Phones: three equal cells, labels may wrap — never cut off.
+                  "relative flex min-h-11 items-center justify-center gap-2 rounded-xl px-2 py-2 text-center text-[13px] font-medium leading-tight transition-colors sm:inline-flex sm:min-h-0 sm:shrink-0 sm:rounded-full sm:px-4",
                   on ? "text-white" : "text-zinc-600 hover:text-zinc-950",
                 )}
               >
                 {on && (
                   <motion.span
                     layoutId="sol-pill"
-                    className="absolute inset-0 rounded-full bg-zinc-950"
+                    className="absolute inset-0 rounded-xl bg-zinc-950 sm:rounded-full"
                     transition={{ type: "spring", bounce: 0.18, duration: 0.5 }}
                   />
                 )}
@@ -96,7 +97,7 @@ export function Solutions() {
         </div>
       </FadeIn>
 
-      <div className="relative mx-auto mt-12 max-w-6xl">
+      <div className="relative mx-auto mt-10 max-w-6xl sm:mt-12">
         {/* All three panels are rendered (inactive ones `hidden`) so the club,
             organizer and promoter copy is in the server HTML for crawlers. */}
         {s.tabs.map((tab) => {
@@ -111,7 +112,7 @@ export function Solutions() {
               initial={false}
               animate={on ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
               transition={{ duration: 0.45, ease: EASE }}
-              className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14"
+              className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14"
             >
               <div>
                 <h3 className="yl-h3 text-balance text-[26px] text-zinc-950 md:text-[32px]">

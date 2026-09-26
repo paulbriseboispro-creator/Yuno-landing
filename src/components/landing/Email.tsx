@@ -73,9 +73,9 @@ export function Email() {
     <section
       data-ph-section="email"
       id="email"
-      className="relative scroll-mt-20 overflow-hidden px-4 py-24 sm:px-6 md:py-32"
+      className="relative scroll-mt-20 overflow-hidden px-4 py-16 sm:px-6 sm:py-24 md:py-32"
     >
-      <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
         <FadeIn>
           <Eyebrow>{e.eyebrow}</Eyebrow>
           <h2 className="yl-h2 mt-4 text-balance">{e.title}</h2>
@@ -83,9 +83,9 @@ export function Email() {
             {e.body}
           </p>
 
-          <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-zinc-100 bg-zinc-100">
+          <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-zinc-100 bg-zinc-100 sm:mt-10">
             {e.stats.map((s) => (
-              <div key={s.label} className="bg-white p-5">
+              <div key={s.label} className="bg-white p-4 sm:p-5">
                 <CountUp
                   value={s.value}
                   className="block text-[28px] font-semibold tabular-nums tracking-[-0.03em] text-zinc-950"
@@ -95,8 +95,9 @@ export function Email() {
             ))}
           </div>
           <p className="mt-4 text-[13px] leading-relaxed text-zinc-400">{e.proof}</p>
-          <p className="mt-6 inline-flex items-center gap-2 rounded-full bg-zinc-100 px-3.5 py-1.5 text-[13px] font-medium text-zinc-700">
-            <Mail className="size-3.5 text-[var(--yuno-red)]" /> {e.included}
+          <p className="mt-6 inline-flex items-start gap-2 rounded-2xl bg-zinc-100 px-3.5 py-2 text-[13px] font-medium leading-snug text-zinc-700 sm:items-center sm:rounded-full sm:py-1.5">
+            <Mail className="mt-0.5 size-3.5 shrink-0 text-[var(--yuno-red)] sm:mt-0" />{" "}
+            {e.included}
           </p>
         </FadeIn>
 
@@ -400,15 +401,15 @@ function Poster({ date, city }: { date: string; city: string }) {
           />
         ))}
       </div>
-      {!reduce && (
-        <motion.div
-          aria-hidden
-          className="absolute inset-y-0 w-24 -skew-x-12 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-          initial={{ left: "-30%" }}
-          animate={{ left: "130%" }}
-          transition={{ duration: 2.6, repeat: Infinity, repeatDelay: 2.2, ease: "easeInOut" }}
-        />
-      )}
+      {/* Always rendered (hidden by CSS for reduced motion) so the server and
+          client trees match. */}
+      <motion.div
+        aria-hidden
+        className="absolute inset-y-0 w-24 -skew-x-12 bg-gradient-to-r from-transparent via-white/10 to-transparent motion-reduce:hidden"
+        initial={{ left: "-30%" }}
+        animate={reduce ? { left: "-30%" } : { left: "130%" }}
+        transition={{ duration: 2.6, repeat: Infinity, repeatDelay: 2.2, ease: "easeInOut" }}
+      />
       <div
         aria-hidden
         className="absolute inset-0 opacity-[0.18] mix-blend-overlay"

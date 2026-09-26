@@ -991,7 +991,7 @@ export function SignupFlow({
 // ── Pieces ───────────────────────────────────────────────────────────────────
 
 const INPUT =
-  "h-11 w-full rounded-xl border border-zinc-200 bg-white px-3.5 text-[15px] text-zinc-950 outline-none transition-[border-color,box-shadow] placeholder:text-zinc-400 focus:border-zinc-950 focus:shadow-[0_0_0_4px_rgba(10,10,11,0.06)]";
+  "h-11 w-full rounded-xl border border-zinc-200 bg-white px-3.5 text-[16px] text-zinc-950 sm:text-[15px] outline-none transition-[border-color,box-shadow] placeholder:text-zinc-400 focus:border-zinc-950 focus:shadow-[0_0_0_4px_rgba(10,10,11,0.06)]";
 
 function Pane({
   children,

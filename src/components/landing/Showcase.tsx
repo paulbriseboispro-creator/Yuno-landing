@@ -33,7 +33,7 @@ export function Showcase() {
   return (
     <section
       data-ph-section="showcase"
-      className="relative overflow-hidden px-4 pb-24 pt-24 sm:px-6 md:pb-32 md:pt-32"
+      className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-24 md:py-32"
     >
       <div
         aria-hidden
@@ -45,11 +45,13 @@ export function Showcase() {
         <FounderCta>{s.secondary}</FounderCta>
       </FadeIn>
 
-      <div className="relative mx-auto mt-14 max-w-5xl">
+      <div className="relative mx-auto mt-10 max-w-5xl sm:mt-14">
         <div className="mb-5 flex justify-center">
           <div
             role="tablist"
-            className="inline-flex max-w-full gap-1 overflow-x-auto rounded-full border border-zinc-200 bg-white/90 p-1 backdrop-blur"
+            // Phones: wrapped chips (five tabs never fit one row); from `sm` the
+            // single segmented pill.
+            className="flex max-w-full flex-wrap justify-center gap-1.5 sm:inline-flex sm:flex-nowrap sm:gap-1 sm:rounded-full sm:border sm:border-zinc-200 sm:bg-white/90 sm:p-1 sm:backdrop-blur"
           >
             {s.tabs.map((tab) => {
               const on = tab.id === active;
@@ -60,7 +62,7 @@ export function Showcase() {
                   aria-selected={on}
                   onClick={() => setActive(tab.id)}
                   className={cn(
-                    "relative shrink-0 rounded-full px-3.5 py-1.5 text-[12.5px] font-medium transition-colors",
+                    "relative shrink-0 rounded-full border border-zinc-200 bg-white/90 px-3.5 py-2 text-[13px] font-medium transition-colors sm:border-0 sm:bg-transparent sm:py-1.5 sm:text-[12.5px]",
                     on ? "text-zinc-950" : "text-zinc-500 hover:text-zinc-900",
                   )}
                 >
