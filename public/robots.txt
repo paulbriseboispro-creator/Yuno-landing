@@ -27,3 +27,4 @@ User-agent: CCBot
 Allow: /
 
 Sitemap: https://landing.yunoapp.eu/sitemap.xml
+Sitemap: https://landing.yunoapp.eu/sitemap-pages.xml

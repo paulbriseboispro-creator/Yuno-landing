@@ -32,7 +32,12 @@ function staticSitemap(): Plugin {
         if (!res.ok || !xml.startsWith("<?xml") || !xml.includes("<urlset")) {
           throw new Error(`static sitemap: /sitemap.xml returned ${res.status}`);
         }
-        await writeFile(resolve(clientOut, "sitemap.xml"), xml);
+        // Same file under a second, never-failed name: Search Console kept
+        // /sitemap.xml stuck at "couldn't fetch" even once it was fixed, while
+        // a freshly named file was read at once. Submit sitemap-pages.xml there.
+        for (const name of ["sitemap.xml", "sitemap-pages.xml"]) {
+          await writeFile(resolve(clientOut, name), xml);
+        }
         builder.config.logger.info(`static sitemap: ${xml.match(/<url>/g)?.length ?? 0} URLs`);
       },
     },

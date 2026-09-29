@@ -10,7 +10,8 @@ import { ASSO_UPDATED, assoUrl } from "@/i18n/asso";
 // Console could not fetch the richer Worker-rendered version, while a static
 // one-URL file passed at once. Language alternates live in each page's <head>.
 // In production this route is never hit: the build (vite.config.ts,
-// staticSitemap) renders it to dist/client/sitemap.xml and Cloudflare serves
+// staticSitemap) renders it to dist/client/sitemap.xml (+ sitemap-pages.xml,
+// the name submitted in Search Console) and Cloudflare serves
 // that static file first. The route still answers in `vite dev`.
 
 interface SitemapEntry {
