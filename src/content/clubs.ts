@@ -2,17 +2,16 @@
 // RoleLandingContent shape (the same section skeleton as the /bde landing the
 // team liked) so the club owner gets one focused funnel instead of the old,
 // overloaded home. French is checked against the English shape at compile time.
-// Copy stays grounded in Yuno's real model and the pre-launch posture: the
-// founding offer (15 venues, 3 months free, lifetime price lock) is an offer,
-// not traction — no "trusted by N clubs" claims.
+// Copy stays grounded in Yuno's real model (docs/yuno-context.md: €0
+// subscription, 0% commission, no paid plans) — no "trusted by N clubs" claims.
 import { useLocale, type Locale } from "@/i18n/locale";
 import type { RoleLandingContent } from "@/content/role-landing";
 
 const en: RoleLandingContent = {
   meta: {
-    title: "Yuno for Clubs — Run the floor, not the spreadsheet",
+    title: "Nightclub management software for club owners | Yuno",
     description:
-      "Digitize your club: VIP floor plan, click-and-collect bar, PIN-based staff login, built-in CRM and SMS marketing — one operator-grade dashboard for high-volume nights.",
+      "Run your club from one account: VIP floor plan with deposits, bar ordering by QR code, door control, staff screens and CRM. €0 subscription, 0% commission.",
     ogTitle: "Yuno for Clubs",
     ogDescription: "VIP floor plan, click-and-collect bar, PIN staff login, CRM & SMS.",
   },
@@ -31,7 +30,7 @@ const en: RoleLandingContent = {
       "An €800 VIP table that no-shows is dead money. Yuno sells and cashes your tables up front, tracks every minimum spend live, and settles the night under the club's own name — no paper floor plan, no WhatsApp, no end-of-night cash count.",
     primaryCta: "Book a demo",
     secondaryCta: "See the offer",
-    note: "Core free · Flat 3% drinks / 4% tickets & tables (€0.99 min) · No commitment",
+    note: "€0 subscription · 0% commission · 4% tickets & tables (€0.99 min), 3% drinks, paid by the customer",
   },
   quickPoints: [
     {
@@ -51,17 +50,17 @@ const en: RoleLandingContent = {
     },
   ],
   free: {
-    tag: "Founding offer",
-    title: "3 months free. Then a price locked forever.",
-    body: "We're hand-picking our first 15 partner venues. Founding clubs get three months completely free — no credit card, no commitment. After that, choose monthly at full price or go annual for two months free and a lifetime price lock. Your rate never increases, even if our prices go up later.",
+    tag: "Pricing",
+    title: "€0 subscription. 0% commission on your price.",
+    body: "No subscription and no commission on your price, at one published service level. The buyer pays a service fee at checkout — 4% on tickets and tables (€0.99 minimum, capped at €25 on tables) and 3% on drinks — so it isn't taken out of your revenue. You only pay Stripe's card processing (1.5% + €0.25), and the money lands on your own account.",
     bullets: [
-      "3 months completely free — no credit card",
-      "Annual plan: 2 months free + a price locked for life",
+      "€0 subscription, 0% commission on your price",
+      "Buyer pays 4% on tickets & tables (€0.99 min, €25 max on tables), 3% on drinks",
       "No setup fee, no commitment",
-      "Exclusive to the first 15 founding clubs",
+      "Money straight to your own Stripe account",
     ],
     caption:
-      "Founding terms apply while spots last. After the free period you choose the plan that fits.",
+      "Fees are added at checkout and paid by the buyer. Card processing by Stripe (1.5% + €0.25) is paid by the venue.",
   },
   audience: {
     tag: "Floor plan",
@@ -140,7 +139,7 @@ const en: RoleLandingContent = {
       { label: "Promoter tracking", a: "Spreadsheet", b: "Automatic attribution" },
       { label: "Customer data", a: false, b: true, highlight: true },
       { label: "Live view of the room", a: false, b: true, highlight: true },
-      { label: "Starting cost", a: "Several licences", b: "3 months free" },
+      { label: "Starting cost", a: "Several licences", b: "€0 subscription" },
       { label: "Setup time", a: "Weeks", b: "One afternoon" },
     ],
     footer:
@@ -178,7 +177,7 @@ const en: RoleLandingContent = {
     items: [
       {
         q: "How much does it cost?",
-        a: "Founding venues get three months completely free — no credit card. After that you choose monthly at full price or annual for two months free plus a price locked for life. The founding offer is limited to the first 15 clubs.",
+        a: "€0 subscription and 0% commission on your price. The buyer pays a service fee at checkout (4% on tickets and tables, €0.99 minimum, capped at €25 on tables; 3% on drinks). You only pay Stripe's card processing (1.5% + €0.25), and the money goes straight to your own account.",
       },
       {
         q: "Do we need to buy hardware?",
@@ -200,9 +199,9 @@ const en: RoleLandingContent = {
   },
   cta: {
     title: "Ready to run the night on your terms?",
-    body: "Book a demo and we'll set your venue up. Founding spots include three months free.",
+    body: "Create your account in two minutes, or book a demo and we'll set your venue up with you.",
     button: "Book my demo",
-    note: "3 months free · No commitment · 15 founding venues",
+    note: "€0 subscription · 0% commission · No commitment",
   },
   defaultPainId: "vip",
   pains: [
@@ -323,7 +322,6 @@ const en: RoleLandingContent = {
           "Order pipeline and per-staff activity in real time",
           "Severity alerts: backlog, rush, refund spike",
         ],
-        caveat: "The live-visitors panel is a Pro / Elite feature.",
       },
       contactLabel: "The Live Night real-time control room",
     },
@@ -403,9 +401,9 @@ export type ClubsContent = RoleLandingContent;
 
 const fr: RoleLandingContent = {
   meta: {
-    title: "Yuno pour les clubs — Gérez la salle, pas le tableur",
+    title: "Logiciel de gestion de boîte de nuit pour discothèques | Yuno",
     description:
-      "Digitalisez votre établissement : plan de salle VIP, bar en click-and-collect, connexion du staff par code PIN, CRM et marketing SMS intégrés — un seul tableau de bord pour les nuits à fort volume.",
+      "Pilotez votre club dans un seul compte : plan de salle VIP avec acompte, bar au QR code, contrôle d'accès, écrans staff et CRM. 0 € d'abonnement.",
     ogTitle: "Yuno pour les clubs",
     ogDescription:
       "Plan de salle VIP, bar en click-and-collect, connexion du staff par PIN, CRM & SMS.",
@@ -425,7 +423,7 @@ const fr: RoleLandingContent = {
       "Une table VIP à 800 € qui ne vient pas, c'est mort sec. Yuno vend et encaisse vos tables à l'avance, suit chaque minimum de conso en direct, et règle la soirée au nom du club — sans plan papier, sans WhatsApp, sans comptage de caisse à la fermeture.",
     primaryCta: "Réserver une démo",
     secondaryCta: "Voir l'offre",
-    note: "Core gratuit · 3 % boissons / 4 % billets & tables (min 0,99 €) · Sans engagement",
+    note: "0 € d'abonnement · 0 % de commission · 4 % billets & tables (min 0,99 €), 3 % boissons, payés par le client",
   },
   quickPoints: [
     {
@@ -445,17 +443,17 @@ const fr: RoleLandingContent = {
     },
   ],
   free: {
-    tag: "Offre fondateur",
-    title: "3 mois offerts. Puis un tarif verrouillé à vie.",
-    body: "Nous sélectionnons à la main nos 15 premiers établissements partenaires. Les clubs fondateurs bénéficient de trois mois entièrement gratuits — sans carte bancaire, sans engagement. Ensuite, choisissez le mensuel au tarif plein ou passez à l'annuel pour deux mois offerts et un tarif verrouillé à vie. Votre tarif n'augmente jamais, même si nos prix montent plus tard.",
+    tag: "Le prix",
+    title: "0 € d'abonnement. 0 % de commission sur votre prix.",
+    body: "Pas d'abonnement et pas de commission sur votre prix, à un seul niveau de service publié. L'acheteur paie des frais de service au moment du paiement — 4 % sur les billets et les tables (0,99 € minimum, plafonnés à 25 € sur les tables) et 3 % sur les boissons — donc jamais déduits de vos revenus. Vous ne payez que le traitement de carte Stripe (1,5 % + 0,25 €), et l'argent arrive sur votre propre compte.",
     bullets: [
-      "3 mois entièrement gratuits — sans carte bancaire",
-      "Annuel : 2 mois offerts + un tarif verrouillé à vie",
+      "0 € d'abonnement, 0 % de commission sur votre prix",
+      "L'acheteur paie 4 % sur billets & tables (0,99 € min, 25 € max sur les tables), 3 % sur les boissons",
       "Aucuns frais d'installation, sans engagement",
-      "Réservé aux 15 premiers clubs fondateurs",
+      "L'argent directement sur votre compte Stripe",
     ],
     caption:
-      "L'offre fondateur s'applique tant qu'il reste des places. Après la période gratuite, vous choisissez le plan adapté.",
+      "Les frais sont ajoutés au paiement et payés par l'acheteur. Le traitement de carte Stripe (1,5 % + 0,25 €) est à la charge de l'établissement.",
   },
   audience: {
     tag: "Plan de salle",
@@ -534,7 +532,7 @@ const fr: RoleLandingContent = {
       { label: "Suivi des promoteurs", a: "Tableur", b: "Attribution automatique" },
       { label: "Données clients", a: false, b: true, highlight: true },
       { label: "Vue de la salle en direct", a: false, b: true, highlight: true },
-      { label: "Coût de départ", a: "Plusieurs licences", b: "3 mois offerts" },
+      { label: "Coût de départ", a: "Plusieurs licences", b: "0 € d'abonnement" },
       { label: "Mise en place", a: "Des semaines", b: "Un après-midi" },
     ],
     footer:
@@ -572,7 +570,7 @@ const fr: RoleLandingContent = {
     items: [
       {
         q: "Combien ça coûte ?",
-        a: "Les établissements fondateurs bénéficient de trois mois entièrement gratuits — sans carte bancaire. Ensuite, vous choisissez le mensuel au tarif plein ou l'annuel pour deux mois offerts plus un tarif verrouillé à vie. L'offre fondateur est limitée aux 15 premiers clubs.",
+        a: "0 € d'abonnement et 0 % de commission sur votre prix. L'acheteur paie des frais de service au moment du paiement (4 % sur les billets et les tables, 0,99 € minimum, plafonnés à 25 € sur les tables ; 3 % sur les boissons). Vous ne payez que le traitement de carte Stripe (1,5 % + 0,25 €), et l'argent va directement sur votre propre compte.",
       },
       {
         q: "Faut-il acheter du matériel ?",
@@ -594,9 +592,9 @@ const fr: RoleLandingContent = {
   },
   cta: {
     title: "Prêt à piloter la nuit à vos conditions ?",
-    body: "Réservez une démo et on configure votre établissement. Les places fondatrices incluent trois mois offerts.",
+    body: "Créez votre compte en deux minutes, ou réservez une démo et on configure votre établissement avec vous.",
     button: "Réserver ma démo",
-    note: "3 mois offerts · Sans engagement · 15 établissements fondateurs",
+    note: "0 € d'abonnement · 0 % de commission · Sans engagement",
   },
   defaultPainId: "vip",
   pains: [
@@ -717,7 +715,6 @@ const fr: RoleLandingContent = {
           "Pipeline de commandes et activité par staff en temps réel",
           "Alertes de sévérité : backlog, rush, pic de remboursements",
         ],
-        caveat: "Le panneau visiteurs en direct est une fonction Pro / Elite.",
       },
       contactLabel: "La war-room temps réel Live Night",
     },

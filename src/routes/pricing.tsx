@@ -1,17 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { pricingContent } from "@/content/pricing";
-import { pageSeo } from "@/i18n/seo";
-import { PricingPage } from "@/pages/pricing";
+import { topicPage } from "@/content/topics";
+import { topicHead } from "@/i18n/topic-seo";
+import { TopicPage } from "@/pages/topic";
+
+const page = topicPage("/pricing");
 
 export const Route = createFileRoute("/pricing")({
-  head: ({ match }) => {
-    const m = pricingContent[match.context.locale].meta;
-    return pageSeo("/pricing", match.context.locale, {
-      title: m.title,
-      description: m.description,
-      ogTitle: m.ogTitle,
-      ogDescription: m.ogDescription,
-    });
-  },
-  component: PricingPage,
+  head: () => topicHead(page),
+  component: () => <TopicPage page={page} />,
 });

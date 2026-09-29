@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { SITE_ORIGIN, localeUrl } from "@/i18n/seo";
 import { COMPARE_PAGES } from "@/content/compare";
+import { TOPIC_PAGES } from "@/content/topics";
 import { LANDING_LANGS, landingUrl } from "@/i18n/landing-lang";
 import { LANDING_UPDATED } from "@/i18n/landing-seo";
 import { ASSO_UPDATED, assoUrl } from "@/i18n/asso";
@@ -27,7 +28,6 @@ function sitemapEntries(): SitemapEntry[] {
     "/clubs",
     "/organizers",
     "/affiliates",
-    "/pricing",
     "/contact",
     "/privacy",
     "/terms",
@@ -44,6 +44,10 @@ function sitemapEntries(): SitemapEntry[] {
   });
   // Comparison pages, each in its own language.
   for (const page of COMPARE_PAGES) {
+    entries.push({ loc: SITE_ORIGIN + page.path, lastmod: page.updated });
+  }
+  // Topic pages (features, pricing, city), each in its own language.
+  for (const page of TOPIC_PAGES) {
     entries.push({ loc: SITE_ORIGIN + page.path, lastmod: page.updated });
   }
   // Student-association landing: one page per language.

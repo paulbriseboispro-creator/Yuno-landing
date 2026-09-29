@@ -6,7 +6,7 @@ import { APP_URL, WHATSAPP_NUMBER } from "@/components/landing/context";
 
 // Last meaningful copy update of the landing: sitemap <lastmod>, WebPage
 // dateModified and the llms.txt stamp. Bump it when the landing copy changes.
-export const LANDING_UPDATED = "2026-09-25";
+export const LANDING_UPDATED = "2026-09-29";
 
 const OG_LOCALE: Record<LandingLang, string> = { en: "en_GB", fr: "fr_FR", es: "es_ES" };
 
@@ -55,6 +55,42 @@ export function organizationLd(lang: LandingLang) {
   };
 }
 
+// The product node, shared by the landing and every topic page (same @id, so
+// search engines and AI assistants merge them into one product entity).
+export function softwareAppLd(lang: LandingLang, self: string = landingUrl(lang)) {
+  const t = landingContent[lang];
+  const image = ogImageUrl(lang);
+  return {
+    "@type": "SoftwareApplication",
+    "@id": APP_ID,
+    name: "Yuno",
+    url: SITE_ORIGIN + "/",
+    description: t.meta.entity,
+    applicationCategory: "BusinessApplication",
+    applicationSubCategory: "Nightclub ticketing and management software",
+    operatingSystem: "Web, iOS",
+    inLanguage: [...LANDING_LANGS],
+    image,
+    publisher: { "@id": ORG_ID },
+    featureList: t.pricing.included,
+    audience: {
+      "@type": "BusinessAudience",
+      audienceType: t.solutions.tabs.map((x) => x.label).join(", "),
+    },
+    offers: {
+      "@type": "Offer",
+      name: t.pricing.cardTitle,
+      price: "0",
+      priceCurrency: "EUR",
+      description: t.pricing.rows
+        .map((r) => `${r.item}: ${r.amount}${r.who === "—" ? "" : ` (${r.who})`}`)
+        .join(" · "),
+      availability: "https://schema.org/InStock",
+      url: `${self}#pricing`,
+    },
+  };
+}
+
 // head() for the landing routes: title/description, link-preview tags (share
 // title + per-language preview image from og.ts), a self canonical
 // and hreflang alternates for all three languages, plus one JSON-LD @graph
@@ -88,35 +124,7 @@ export function landingHead(lang: LandingLang) {
       publisher: { "@id": ORG_ID },
       primaryImageOfPage: { "@type": "ImageObject", url: image, width: 1200, height: 630 },
     },
-    {
-      "@type": "SoftwareApplication",
-      "@id": APP_ID,
-      name: "Yuno",
-      url: SITE_ORIGIN + "/",
-      description: t.meta.entity,
-      applicationCategory: "BusinessApplication",
-      applicationSubCategory: "Nightclub ticketing and management software",
-      operatingSystem: "Web, iOS",
-      inLanguage: [...LANDING_LANGS],
-      image,
-      publisher: { "@id": ORG_ID },
-      featureList: t.pricing.included,
-      audience: {
-        "@type": "BusinessAudience",
-        audienceType: t.solutions.tabs.map((x) => x.label).join(", "),
-      },
-      offers: {
-        "@type": "Offer",
-        name: t.pricing.cardTitle,
-        price: "0",
-        priceCurrency: "EUR",
-        description: t.pricing.rows
-          .map((r) => `${r.item}: ${r.amount}${r.who === "—" ? "" : ` (${r.who})`}`)
-          .join(" · "),
-        availability: "https://schema.org/InStock",
-        url: `${self}#pricing`,
-      },
-    },
+    softwareAppLd(lang, self),
     {
       "@type": "FAQPage",
       "@id": `${self}#faq`,

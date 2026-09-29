@@ -11,6 +11,8 @@ import {
 import { LANDING_UPDATED } from "@/i18n/landing-seo";
 import { COMPARE_PAGES } from "@/content/compare";
 import { compareMarkdown } from "@/i18n/compare-seo";
+import { TOPIC_PAGES } from "@/content/topics";
+import { topicMarkdown } from "@/i18n/topic-seo";
 import { SITE_ORIGIN } from "@/i18n/seo";
 
 const HEADINGS: Record<
@@ -179,6 +181,13 @@ export function llmsIndex(): string {
     ...COMPARE_PAGES.map(
       (p) => `- [${p.meta.title}](${SITE_ORIGIN + p.path}): ${p.meta.description}`,
     ),
+    "",
+    "## Guides and features",
+    "",
+    ...TOPIC_PAGES.map(
+      (p) => `- [${p.meta.title}](${SITE_ORIGIN + p.path}): ${p.meta.description}`,
+    ),
+    "",
     `- [Contact](${SITE_ORIGIN}/contact): ${FOUNDER}`,
     "",
     "## Optional",
@@ -203,5 +212,6 @@ export function llmsFull(): string {
     header,
     ...LANDING_LANGS.map(landingMarkdown),
     ...COMPARE_PAGES.map(compareMarkdown),
+    ...TOPIC_PAGES.map(topicMarkdown),
   ].join("\n\n---\n\n");
 }

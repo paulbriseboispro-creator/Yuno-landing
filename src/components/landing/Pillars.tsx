@@ -2,13 +2,33 @@ import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 
 import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/react";
 import { Check, Crown, Martini, MousePointer2, QrCode, Ticket, Wine, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { LandingLang } from "@/i18n/landing-lang";
 import { useLanding } from "./context";
 import { EASE, FadeIn, SectionHeader } from "./ui";
+
+// Pillars with a dedicated page (one search intent each): the card links to it.
+const PILLAR_LINKS: Record<LandingLang, Partial<Record<string, string>>> = {
+  en: {
+    tickets: "/nightclub-guest-list-software",
+    tables: "/vip-table-booking-software",
+    money: "/club-organizer-revenue-split",
+  },
+  fr: {
+    tickets: "/fr/guest-list-soiree-logiciel",
+    tables: "/fr/reservation-table-vip-discotheque",
+    money: "/fr/contrat-club-organisateur",
+  },
+  es: {
+    tickets: "/es/lista-invitados-discoteca-software",
+    tables: "/es/software-reservados-discoteca",
+    money: "/es/reparto-ingresos-discoteca-organizador",
+  },
+};
 
 type Mini = ReturnType<typeof useLanding>["t"]["pillars"]["mini"];
 
 export function Pillars() {
-  const { t } = useLanding();
+  const { t, lang } = useLanding();
   const p = t.pillars;
   const visuals: Record<string, (m: Mini) => ReactNode> = {
     tickets: (m) => <TicketsMini m={m} />,
@@ -44,6 +64,15 @@ export function Pillars() {
                 <p className="mt-2 text-pretty text-[14px] leading-relaxed text-zinc-500">
                   {it.body}
                 </p>
+                {PILLAR_LINKS[lang][it.id] && (
+                  <a
+                    href={PILLAR_LINKS[lang][it.id]}
+                    className="mt-3 inline-flex items-center gap-1 text-[13px] font-medium text-zinc-700 underline decoration-zinc-300 underline-offset-4 transition-colors hover:text-zinc-950"
+                  >
+                    {p.more}
+                    <span aria-hidden>→</span>
+                  </a>
+                )}
               </div>
             </article>
           </FadeIn>

@@ -16,9 +16,9 @@ const DEMO_EVENT =
 
 const en: RoleLandingContent = {
   meta: {
-    title: "Yuno for Organizers — Ticketing without the markup",
+    title: "Ticketing software for club-night organizers | Yuno",
     description:
-      "Run events with low ticketing fees and split revenue with your host venue automatically through Stripe Connect — settled two days after the event.",
+      "Sell tickets and tables with €0 subscription and 0% commission, sign the split with your host venue and pay promoters automatically.",
     ogTitle: "Yuno for Organizers",
     ogDescription: "Low-fee ticketing, automated revenue splits, and your own check-in app.",
   },
@@ -37,7 +37,7 @@ const en: RoleLandingContent = {
       "Without a fixed venue, no screen tells you whether tonight will fill or what you really keep after fees, and you still split with the host by hand. Yuno gives you a Mission Control back-office, your own Stripe payout, and an automatic split with the venue.",
     primaryCta: "Book a demo",
     secondaryCta: "See the price",
-    note: "Core free · 4% per ticket (€0.99 min), paid by the buyer · You only pay Stripe",
+    note: "€0 subscription · 0% commission · 4% per ticket (€0.99 min), paid by the buyer",
   },
   quickPoints: [
     {
@@ -58,10 +58,10 @@ const en: RoleLandingContent = {
   ],
   free: {
     tag: "Pricing",
-    title: "Core is free. 4% per ticket, paid by the buyer.",
+    title: "€0 subscription. 4% per ticket, paid by the buyer.",
     body: "No mandatory subscription to sell. Yuno's fee is a flat 4% per ticket and VIP table (€0.99 minimum), 3% on drinks, added at checkout and paid by the buyer, so it isn't taken out of your revenue. You only ever pay Stripe's processing fee.",
     bullets: [
-      "Core plan free — no subscription required to sell",
+      "€0 subscription and 0% commission on your price",
       "Flat 4% tickets & tables, 3% drinks (€0.99 min), paid by the buyer",
       "Early Bird / Regular / Late tiers with quotas",
       "Fees shown to the buyer before payment — no surprises",
@@ -218,7 +218,7 @@ const en: RoleLandingContent = {
     title: "Ready to run your next event on Yuno?",
     body: "Book a demo and we'll help you set up your back-office and agree the split with your venue.",
     button: "Book a demo",
-    note: "Core free · 4% per ticket (€0.99 min), paid by the buyer · No commitment",
+    note: "€0 subscription · 0% commission · 4% per ticket (€0.99 min), paid by the buyer",
   },
   defaultPainId: "orga",
   pains: [
@@ -445,9 +445,9 @@ export type OrganizersContent = RoleLandingContent;
 
 const fr: RoleLandingContent = {
   meta: {
-    title: "Yuno pour les organisateurs — La billetterie sans la commission",
+    title: "Billetterie pour organisateurs de soirées, sans commission | Yuno",
     description:
-      "Organisez vos événements avec des frais de billetterie réduits et répartissez automatiquement les revenus avec votre établissement hôte via Stripe Connect — réglés deux jours après l'événement.",
+      "Vendez billets et tables avec 0 € d'abonnement et 0 % de commission, signez la répartition avec le club et payez vos promoteurs automatiquement.",
     ogTitle: "Yuno pour les organisateurs",
     ogDescription:
       "Billetterie à frais réduits, répartition automatique des revenus et votre propre application de contrôle d'accès.",
@@ -467,7 +467,7 @@ const fr: RoleLandingContent = {
       "Sans salle fixe, aucun écran ne vous dit si ce soir va se remplir ni ce que vous gardez vraiment après frais, et vous partagez encore avec l'hôte à la main. Yuno vous donne un back-office Mission Control, votre propre payout Stripe, et une répartition automatique avec l'établissement.",
     primaryCta: "Réserver une démo",
     secondaryCta: "Voir le prix",
-    note: "Core gratuit · 4 % par billet (min 0,99 €), payés par l'acheteur · Vous ne payez que Stripe",
+    note: "0 € d'abonnement · 0 % de commission · 4 % par billet (min 0,99 €), payés par l'acheteur",
   },
   quickPoints: [
     {
@@ -488,10 +488,10 @@ const fr: RoleLandingContent = {
   ],
   free: {
     tag: "Le prix",
-    title: "Core est gratuit. 4 % par billet, payés par l'acheteur.",
+    title: "0 € d'abonnement. 4 % par billet, payés par l'acheteur.",
     body: "Aucun abonnement obligatoire pour vendre. Le frais Yuno est un taux plat de 4 % par billet et table VIP (0,99 € minimum), 3 % sur les boissons, ajouté au paiement et payé par l'acheteur, donc jamais déduit de vos revenus. Vous ne réglez que les frais de traitement Stripe.",
     bullets: [
-      "Formule Core gratuite — aucun abonnement requis pour vendre",
+      "0 € d'abonnement et 0 % de commission sur votre prix",
       "Taux plat 4 % billets & tables, 3 % boissons (min 0,99 €), payés par l'acheteur",
       "Paliers Early Bird / Regular / Late avec quotas",
       "Frais affichés à l'acheteur avant le paiement — aucune surprise",
@@ -648,7 +648,7 @@ const fr: RoleLandingContent = {
     title: "Prêt à faire tourner votre prochain événement sur Yuno ?",
     body: "Réservez une démo et on vous aide à configurer votre back-office et à convenir de la répartition avec votre établissement.",
     button: "Réserver une démo",
-    note: "Core gratuit · 4 % par billet (min 0,99 €), payés par l'acheteur · Sans engagement",
+    note: "0 € d'abonnement · 0 % de commission · 4 % par billet (min 0,99 €), payés par l'acheteur",
   },
   defaultPainId: "orga",
   pains: [

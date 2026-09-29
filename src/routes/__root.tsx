@@ -28,6 +28,7 @@ import {
 } from "@/i18n/landing-lang";
 import { common } from "@/content/common";
 import { COMPARE_PATHS } from "@/content/compare";
+import { TOPIC_PATHS } from "@/content/topics";
 import { organizationLd } from "@/i18n/landing-seo";
 import { initPosthog } from "@/lib/posthog";
 import { installClickTracking, trackSectionViews } from "@/lib/posthog-dom";
@@ -86,7 +87,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     // `lang` drives <html lang>; it only differs from `locale` on the Spanish
     // landing (the rest of the site, and its shared chrome, is EN/FR only).
     // `landing` switches the shell to the light, chrome-less landing surface.
-    const landing = isLandingPath(path) || COMPARE_PATHS.has(path);
+    const landing = isLandingPath(path) || COMPARE_PATHS.has(path) || TOPIC_PATHS.has(path);
     // Spanish exists only for the landing ("/es").
     if (path === "/es" || path.startsWith("/es/")) {
       return { locale: "en" as Locale, lang: "es" as LandingLang, landing };
@@ -219,7 +220,8 @@ function surfaceFor(pathname: string): Surface {
   let path = pathname;
   if (path === "/fr") path = "/";
   else if (path.startsWith("/fr/")) path = path.slice(3); // "/fr/clubs" -> "/clubs"
-  if (isLandingPath(pathname) || COMPARE_PATHS.has(pathname)) return "landing";
+  if (isLandingPath(pathname) || COMPARE_PATHS.has(pathname) || TOPIC_PATHS.has(pathname))
+    return "landing";
   if (path === "/clubs") return "club";
   if (path === "/organizers") return "orga";
   return "main";

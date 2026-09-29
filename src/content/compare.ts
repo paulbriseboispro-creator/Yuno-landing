@@ -4,6 +4,7 @@
 // is public, say "not published" when it isn't, give the competitor its real
 // strengths, never guess a number. Yuno facts: docs/yuno-context.md.
 import type { ComparePageContent } from "./compare-types";
+import { MORE_COMPARE_PAGES } from "./compare-more";
 
 const UPDATED = "2026-09-24";
 
@@ -812,7 +813,12 @@ const fourvenuesEs: ComparePageContent = {
     "Fourvenues es una marca de su propietario. Yuno no está afiliado a Fourvenues. Esta comparativa se basa únicamente en información pública, revisada en la fecha indicada; las condiciones que Fourvenues ofrece a cada cliente pueden variar. ¿Algún dato inexacto? Escríbenos y lo corregimos.",
 };
 
-export const COMPARE_PAGES: ComparePageContent[] = [shotgunEn, shotgunFr, fourvenuesEs];
+export const COMPARE_PAGES: ComparePageContent[] = [
+  shotgunEn,
+  shotgunFr,
+  fourvenuesEs,
+  ...MORE_COMPARE_PAGES,
+];
 
 export function comparePage(path: string): ComparePageContent {
   const page = COMPARE_PAGES.find((p) => p.path === path);

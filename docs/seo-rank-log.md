@@ -39,3 +39,24 @@ Légende : `—` = absent des ~10 premiers résultats.
 - À éviter : « yuno app madrid », dominée par la fintech y.uno (basée à Madrid).
 
 **Positions :** — partout.
+
+## 2026-09-29 — mise en ligne de 17 pages, relevé des SERP concurrentes
+
+Relevé avec WebSearch (index américain, à considérer comme tendance). Les positions de Yuno restent
+inconnues tant que Search Console n'a pas de données : **à remplir ici chaque semaine** avec la
+colonne « Performances ». Détail de la lecture des SERP : `docs/seo-geo-strategy.md` §10.
+
+| Requête | Page cible | Position GSC |
+|---|---|---|
+| logiciel boîte de nuit · billetterie soirée | /fr | — |
+| réservation table vip discothèque logiciel | /fr/reservation-table-vip-discotheque | — |
+| commission promoteur soirée · logiciel promoteurs | /fr/logiciel-promoteurs-soiree | — |
+| contrat discothèque organisateur · partage recettes | /fr/contrat-club-organisateur | — |
+| alternative weezevent | /fr/alternative-weezevent | — |
+| alternative shotgun | /fr/alternative-shotgun | — |
+| software discotecas madrid | /es/software-discotecas-madrid | — |
+| app rrpp discoteca · software rrpp | /es/software-rrpp-discoteca | — |
+| alternativa xceed · alternativa fourvenues | /es/alternativa-xceed · /es/alternativa-fourvenues | — |
+| dice alternative club nights | /dice-alternative | — |
+| vip table booking software | /vip-table-booking-software | — |
+| promoter tracking software | /promoter-tracking-software | — |

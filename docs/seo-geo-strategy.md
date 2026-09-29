@@ -1,4 +1,7 @@
-# Yuno — Stratégie SEO & GEO (septembre 2026)
+# Yuno — Stratégie SEO & GEO (septembre 2026, mise à jour du 29/09)
+
+> **Mise à jour du 29/09/2026** : Search Console est en place. Les §9 à §13 en bas décrivent la
+> stratégie « petit contre gros » et ce qui a été mis en ligne ce jour-là (17 pages en plus).
 
 Objectif : que les clubs, organisateurs et promoteurs qui cherchent une billetterie ou un outil
 pour gérer leur soirée tombent sur Yuno, sur Google comme dans les réponses de ChatGPT,
@@ -337,3 +340,145 @@ la marque ne doit pas figurer dans le texte de l'annonce.
 
 **Prochaines pages** : « Yuno vs Xceed » (ES/FR), « Alternative à Weezevent » (FR),
 « DICE alternative » (EN), « Fourvenues alternative » (EN).
+
+
+---
+
+## 9. Stratégie « petit contre gros » (29/09/2026)
+
+**Le constat.** Shotgun, Weezevent, Xceed, Fourvenues, DICE et Eventbrite ont des domaines
+énormes et des budgets. Yuno ne les battra pas sur « billetterie » ni « logiciel boîte de nuit »
+en quelques mois. Elle peut gagner ailleurs, par cinq leviers, dans cet ordre :
+
+| # | Levier | Pourquoi ça marche pour Yuno | Où |
+|---|---|---|---|
+| 1 | **Posséder des catégories sans concurrent** | Sur « commission promoteur », « contrat club organisateur », « app RRPP », la SERP est faite d'offres d'emploi, de forums et de blogs. Aucun logiciel n'y répond. Une bonne page peut être 1re en quelques semaines. | pages promoteurs, répartition club × organisateur |
+| 2 | **Les pages « alternative à X » et « X vs Yuno »** | L'intention est déjà « je cherche autre chose ». Le concurrent ne peut pas les occuper. Elles convertissent le mieux. | Shotgun, Weezevent, Xceed, DICE, Fourvenues |
+| 3 | **Un modificateur B2B sur chaque terme large** | « Tables VIP », « guest list », « RRPP » seuls attirent des fêtards. Avec « logiciel », « software », « app pour », on ne garde que les pros. | pages VIP, guest list |
+| 4 | **Le local, où Yuno a de vrais faits** | Madrid : Amoris + 22 clubs. Aucun gros ne fait de page locale sincère. | `/es/software-discotecas-madrid` |
+| 5 | **Être citée par les IA sans avoir l'autorité de domaine** | Les IA reprennent des tableaux datés, sourcés, honnêtes. Une page qui admet où le concurrent est meilleur est plus citée qu'une page de pub. | tous les tableaux, `/pricing`, `llms-full.txt` |
+
+**Ce qu'on ne fait pas** : viser « billetterie en ligne » (Weezevent, Eventbrite), acheter des
+liens, publier du contenu générique en volume, dire « la moins chère » ou « la seule ».
+
+## 10. Ce que la SERP du 29/09 apprend (recherches réelles, index US)
+
+Les volumes restent des estimations : aucun outil de mots-clés n'était accessible (Autocomplete et
+sites concurrents bloqués par le proxy). À confirmer dans Search Console d'ici 2 à 4 semaines.
+
+| Requête | Qui occupe la SERP | Lecture |
+|---|---|---|
+| logiciel gestion boîte de nuit billetterie tables VIP promoteurs (FR) | Fourvenues (pages EN), Ticketor, ResaFlow, Disco2app, Clubbable, TablelistPro | **Aucun éditeur franco-français complet.** ResaFlow = tables seulement. Ouvert. |
+| alternative Weezevent billetterie soirée (FR) | lafabriquedunet, Appvizer, codeur.com, AssoConnect, comparatif-billetterie.com, evenement.com, Oniva | **Les comparateurs dominent.** Il faut la page ET être listé chez eux (§12). |
+| réservation table VIP discothèque logiciel acompte (FR) | pages de clubs (B2C), Qamarero (caisse), Fourvenues (EN), Disco2app | SERP mélangée B2C/B2B, peu de vrais logiciels. Ouvert avec le modificateur « logiciel ». |
+| comment rémunérer les promoteurs de soirée (FR) | Cairn, Commentouvrir, Ventesactives, Clubbable | **Zéro éditeur.** Un guide répondant à la vraie question gagne. |
+| software para discotecas reservados RRPP Madrid (ES) | Fourvenues (x3), Cocotea, Eatkers, Intranyx, Premiumguest, Loomis | **Plus disputé que prévu** : au moins 5 petits éditeurs ES que le doc ne listait pas. |
+| alternativa Xceed / Fourvenues ticketera comisiones (ES) | dodmagazine, Nevent, Woutick, Soundtix, **Wave (« sin comisiones »)** | Wave tient déjà la promesse « sin comisiones » : Yuno ne peut pas s'en contenter, il faut y ajouter tout le reste de la nuit. |
+| promoter commission tracking software (EN) | TablelistPro, GuestlistOnline, GuestQueue, nightclub-technology.com | Marché US. Les blogs « best venue software » (GuestlistOnline) sont des cibles de listing. |
+| DICE alternative (EN) | Hi.Events, tickts, ticketingfees.co.uk, Outsavvy, FIXR, Fatsoma, Ticket Fairy | UK saturé de petits acteurs. Angle utile : **frais publiés + toute la nuit**. |
+
+**Concurrents à ajouter à la veille** (absents de la §3) : Cocotea, Intranyx, Premiumguest,
+Eatkers, Wave (ES) ; Disco2app, Clubbable, ResaFlow (FR/EU) ; GuestlistOnline, GuestQueue,
+Ticketor (EN).
+
+## 11. Ce qui a été mis en ligne le 29/09/2026
+
+**Un gabarit unique « page solution »** (`src/pages/topic.tsx`, contenu dans `src/content/topics/*`,
+JSON-LD dans `src/i18n/topic-seo.ts`) : réponse directe d'abord, grille de fonctions, tableau,
+étapes, chiffres réels, FAQ, liens associés, CTA d'inscription. Tout est dans le HTML serveur.
+Chaque page émet WebPage + BreadcrumbList + SoftwareApplication + FAQPage.
+
+| Sujet | EN | FR | ES |
+|---|---|---|---|
+| Tables VIP | `/vip-table-booking-software` | `/fr/reservation-table-vip-discotheque` | `/es/software-reservados-discoteca` |
+| Promoteurs / RRPP | `/promoter-tracking-software` | `/fr/logiciel-promoteurs-soiree` | `/es/software-rrpp-discoteca` |
+| Répartition club × organisateur | `/club-organizer-revenue-split` | `/fr/contrat-club-organisateur` | `/es/reparto-ingresos-discoteca-organizador` |
+| Guest list & accès | `/nightclub-guest-list-software` | `/fr/guest-list-soiree-logiciel` | `/es/lista-invitados-discoteca-software` |
+| Tarifs | `/pricing` | `/fr/pricing` | `/es/precios` |
+| Madrid | — | — | `/es/software-discotecas-madrid` |
+| Alternative à … | `/dice-alternative` | `/fr/alternative-weezevent` | `/es/alternativa-xceed` |
+
+Le site passe de 26 à 43 URLs dans le sitemap. Les pages sont reliées entre elles (bloc « pour aller
+plus loin »), depuis le pied de page de toutes les pages landing, et depuis les cartes « produit » de la landing.
+
+**Corrections de fond (elles comptaient plus que les nouvelles pages)**
+- `/pricing` et `/fr/pricing` affichaient encore les anciens plans (Core, Essential 49 €, Pro 99 €,
+  Elite 199 €). Ils sont remplacés par la vraie grille : 0 € d'abonnement, 0 % de commission,
+  frais acheteur, exemple chiffré. Une IA ne peut plus citer un faux prix.
+- `/clubs` et `/organizers` (EN/FR) vantaient une « offre fondateur : 3 mois offerts, tarif verrouillé à vie »
+  et un « plan Core ». Réécrits sur le modèle actuel ; titres et descriptions passent sur les mots-clés
+  (« logiciel de gestion de boîte de nuit », « billetterie pour organisateurs de soirées »).
+- Bandeau global « Offre Club Fondateur » remplacé.
+- `llms.txt` / `llms-full.txt` incluent maintenant toutes les nouvelles pages ; `LANDING_UPDATED` est au 29/09.
+
+**Limite à connaître** : les sites Weezevent, Xceed et DICE étaient bloqués depuis l'environnement.
+Les faits des trois nouvelles pages « alternative » viennent de `yuno-context.md` (relevés de Paul, juin à
+septembre) et de recoupements par recherche (tarifs Weezevent 2,5 % min 0,99 € et versements tous les 15
+jours ; Xceed 3 % sur ses propres canaux, 15 % marketplace, Pro 29–59 €/mois ; DICE : tarifs négociés, non
+publiés). **À revérifier depuis un navigateur normal avant la fin d'octobre**, avec captures datées.
+
+## 12. Actions hors site (là où se joue le GEO) — pour Paul
+
+Les IA citent surtout des comparateurs, des annuaires et des forums. Les pages ci-dessus n'y suffisent pas.
+
+**Cette semaine (moins de 30 min chacune)**
+1. **Search Console** : Inspection d'URL → « Demander une indexation » sur les URL neuves, dans cet
+   ordre : `/fr/pricing`, `/fr/reservation-table-vip-discotheque`, `/fr/logiciel-promoteurs-soiree`,
+   `/fr/contrat-club-organisateur`, `/fr/alternative-weezevent`, `/es/software-discotecas-madrid`,
+   `/es/software-rrpp-discoteca`, `/es/alternativa-xceed`, `/dice-alternative`, puis le reste. Ajouter
+   une annotation « 29/09 : 17 pages » pour lire l'effet ensuite.
+2. **Demander à Amoris et aux 22 clubs de Madrid de faire un lien** vers leur page Yuno (« Entradas vía Yuno »)
+   depuis leur site ou leur bio Instagram. Ce sont les seuls vrais backlinks qu'on peut obtenir vite, et
+   ils alimentent la page Madrid.
+3. **Bing Webmaster Tools** : `sitemap-pages.xml` (IndexNow part déjà à chaque `bun run deploy`).
+4. **Fiches d'entité** : LinkedIn (page entreprise), Crunchbase, Wikidata. Puis les ajouter à `SAME_AS`
+   dans `src/i18n/landing-seo.ts` (c'est ce qui sépare Yuno de la fintech y.uno pour les IA).
+5. **Cloudflare** : vérifier que « Block AI bots » est désactivé (sinon le GEO est annulé).
+
+**Sous 30 jours**
+6. **Comparateurs FR** qui classent « alternative Weezevent » : écrire à lafabriquedunet.fr,
+   Appvizer, comparatif-billetterie.com, evenement.com pour être ajouté avec un lien vers
+   `/fr/pricing`. Proposer les faits (0 €/0 %, prix publics) : ils reprennent volontiers.
+7. **Fiches d'avis** : Capterra (alimente GetApp et Software Advice), G2, AlternativeTo (en alternative à
+   Shotgun, Weezevent, Xceed, DICE, Fourvenues). Objectif : 10 avis d'organisateurs et de clubs.
+8. **Blogs « best venue / nightclub software »** (GuestlistOnline, nightclub-technology.com, Nevent, Woutick, Soundtix) :
+   demander l'ajout. Ce sont les pages que Perplexity et ChatGPT citent.
+9. **Google Business Profile** Paris et Madrid, **Product Hunt**, une **démo YouTube** de 2–3 minutes
+   (« Comment vendre des carrés VIP avec acompte »), reprise sur la page VIP (Google AI Overviews cite YouTube).
+10. **Instagram** : mettre `/fr/start` ou `/es/start` en lien de bio ; les pages solutions en story « à la une ».
+
+**Sous 90 jours** : « Baromètre de la nuit » (panier moyen par table, no-show avec ou sans acompte, part
+des ventes par promoteur), publié chaque trimestre. C'est la seule donnée originale que les IA
+peuvent citer et que personne d'autre n'a. Diffusion : Maddyness, Hosteltur, evenement.com.
+
+## 13. Boucle de pilotage (Search Console + GEO)
+
+**Chaque semaine, 20 minutes, dans Search Console :**
+1. *Performances → Requêtes*, filtre par page. Repérer les requêtes en positions 8–20 : ce sont les
+   pages à renforcer en premier (titre, H2, FAQ), pas de nouvelles pages.
+2. *Pages* : lister « Détectée, non indexée » et « Explorée, non indexée ». Sur une page neuve, cela signifie
+   souvent trop peu de liens internes : en ajouter depuis la landing et les pages voisines.
+3. Noter dans `docs/seo-rank-log.md` la position des 12 requêtes suivies.
+4. Quand une requête a des impressions mais un CTR < 2 %, réécrire le titre (verbe + bénéfice + mot-clé).
+
+**Chaque mois, mesure GEO** : poser ces 20 questions à ChatGPT, Perplexity, Gemini et Claude. Noter si
+Yuno est citée, à quelle place, et si les faits sont justes (surtout le prix).
+- FR : « meilleur logiciel de billetterie pour boîte de nuit » · « alternative à Weezevent pour organiser une soirée » ·
+  « comment rémunérer des promoteurs de soirée » · « logiciel de réservation de carrés VIP avec acompte » ·
+  « comment se partagent les recettes entre un club et un organisateur » · « Yuno billetterie soirée ».
+- ES : « mejor software para discotecas en Madrid » · « alternativa a Fourvenues » · « alternativa a Xceed » ·
+  « app para RRPP de discoteca » · « cómo se reparten los ingresos entre discoteca y organizador » · « Yuno software discotecas ».
+- EN : « best nightclub ticketing software » · « DICE alternative for club nights » · « VIP table booking software for nightclubs » ·
+  « promoter commission tracking software » · « how to split revenue between a club and an event organizer » · « Yuno nightlife platform ».
+- Marque : « qu'est-ce que Yuno ? » (FR, EN) · « Yuno est-il gratuit ? » : vérifier qu'aucune IA ne mélange avec y.uno et qu'aucune
+  ne cite les anciens plans à 49/99/199 €.
+
+**Objectifs réalistes (à confirmer avec les vraies données GSC)**
+- 30 jours : les 17 pages indexées ; Yuno 1re sur « alternative à Shotgun » (FR) ; premières impressions sur promoteurs et répartition.
+- 60 jours : 1re page sur 3 à 5 requêtes « promoteur / RRPP / contrat club » ; premières citations IA sur ces sujets ; 5 avis Capterra ou G2.
+- 90 jours : pages « alternative » sous les pages officielles des concurrents sur leurs requêtes de marque ; Baromètre publié.
+
+**Conversion** : chaque page a un bouton « Créer mon compte gratuit » (ouvre l'inscription) et « Parler
+au fondateur » (WhatsApp) ; PostHog classe déjà les clics (`landing_cta_clicked` avec la section
+`topic_hero`, `topic_features`, `topic_table`, `topic_steps`, `topic_proof`). Lire dans PostHog quelles pages
+apportent des inscriptions, pas seulement du trafic.

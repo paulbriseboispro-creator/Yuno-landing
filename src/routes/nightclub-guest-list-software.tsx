@@ -3,9 +3,9 @@ import { topicPage } from "@/content/topics";
 import { topicHead } from "@/i18n/topic-seo";
 import { TopicPage } from "@/pages/topic";
 
-const page = topicPage("/fr/pricing");
+const page = topicPage("/nightclub-guest-list-software");
 
-export const Route = createFileRoute("/fr/pricing")({
+export const Route = createFileRoute("/nightclub-guest-list-software")({
   head: () => topicHead(page),
   component: () => <TopicPage page={page} />,
 });

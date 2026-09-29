@@ -31,9 +31,9 @@ const en = {
       "The platform for clubs and organizers: VIP tables, live night control, customer data and loyalty, with co-hosted revenue splits handled automatically.",
   },
   banner: {
-    label: "Founding Club Offer",
-    rest: " — 15 founding spots open. 3 months free, no credit card.",
-    cta: "Claim your spot",
+    label: "€0 subscription, 0% commission",
+    rest: " — create your free account in two minutes, no credit card.",
+    cta: "Get started",
   },
   footer: {
     tagline: "The infrastructure layer for the after-dark economy.",
@@ -190,9 +190,9 @@ const fr: CommonContent = {
       "La plateforme pour les clubs et organisateurs : tables VIP, pilotage live de la soirée, données clients et fidélité, avec la répartition des soirées co-produites gérée automatiquement.",
   },
   banner: {
-    label: "Offre Club Fondateur",
-    rest: " — 15 places fondatrices ouvertes. 3 mois offerts, sans carte bancaire.",
-    cta: "Réserver ma place",
+    label: "0 € d'abonnement, 0 % de commission",
+    rest: " — créez votre compte gratuit en deux minutes, sans carte bancaire.",
+    cta: "Commencer",
   },
   footer: {
     tagline: "La couche d'infrastructure de l'économie de la nuit.",

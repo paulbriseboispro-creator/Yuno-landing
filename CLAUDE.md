@@ -31,6 +31,13 @@ Starting from `main` silently throws away the newest design and copy. So, before
   `/sitemap.xml` stayed stuck at "couldn't fetch" there. Keep it static and keep both names.
 - Comparison pages ("Yuno vs X"): copy in `src/content/compare.ts`, template `src/pages/compare.tsx`.
   Competitor claims must be public, dated and listed in `sources`; never guess a number.
+- Topic pages (one search intent = one page: VIP tables, promoters, club × organizer split, guest list,
+  pricing, Madrid — EN/FR/ES twins): copy in `src/content/topics/*.ts` (registry `topics/index.ts`, shape
+  `topic-types.ts`), template `src/pages/topic.tsx`, head/JSON-LD/markdown in `src/i18n/topic-seo.ts`. One
+  route file per path in `src/routes` (copy `vip-table-booking-software.tsx`); sitemap and `llms-full.txt`
+  pick them up automatically. `/pricing`, `/fr/pricing`, `/es/precios` are topic pages: the only place
+  where pricing is stated, keep it equal to `docs/yuno-context.md`. More "vs" pages: `compare-more.ts`,
+  images `bun scripts/og/vs.ts`. Strategy, SERP findings and the weekly GSC/GEO loop: `docs/seo-geo-strategy.md` §9–13.
 - Pro signup funnel: `src/components/landing/SignupFlow.tsx` (dialog `SignupModal` + page
   `/start`, `/fr/start`, `/es/start` in `src/pages/start.tsx`). It creates the account on the
   Yuno APP's Supabase (`src/lib/yuno-app.ts`, public key only), tracks every step in the app's

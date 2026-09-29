@@ -148,6 +148,7 @@ const en = {
     eyebrow: "The product",
     title: "Ticketing, VIP tables, bar and door — your whole night in one workspace.",
     sub: "Three sales pillars on one event page, and every screen your team needs to run the night. Switch each pillar on or off per event — start with the guest list alone if you like.",
+    more: "Learn more",
     items: [
       {
         id: "tickets",
@@ -504,6 +505,7 @@ const en = {
       "Based on each platform's public pages and help centers, checked between June and September 2026. Default commissions, before any negotiated terms.",
     more: [
       { label: "Yuno vs Shotgun: the detailed comparison", href: "/alternative-shotgun" },
+      { label: "Yuno vs DICE: fees and club nights", href: "/dice-alternative" },
       { label: "Alternativa a Fourvenues (ES)", href: "/es/alternativa-fourvenues" },
     ],
   },
@@ -770,10 +772,12 @@ const en = {
       {
         title: "Product",
         links: [
-          { label: "Ticketing & guest list", href: "#product" },
-          { label: "VIP tables", href: "#product" },
+          { label: "Ticketing & guest list", href: "/nightclub-guest-list-software" },
+          { label: "VIP tables", href: "/vip-table-booking-software" },
+          { label: "Promoter commissions", href: "/promoter-tracking-software" },
+          { label: "Club × organizer split", href: "/club-organizer-revenue-split" },
           { label: "CRM & emailing", href: "#email" },
-          { label: "Pricing", href: "#pricing" },
+          { label: "Pricing", href: "/pricing" },
         ],
       },
       {
@@ -788,6 +792,7 @@ const en = {
         title: "Compare",
         links: [
           { label: "Shotgun alternative", href: "/alternative-shotgun" },
+          { label: "DICE alternative", href: "/dice-alternative" },
           { label: "Fourvenues alternative (ES)", href: "/es/alternativa-fourvenues" },
           { label: "Yuno vs the rest", href: "#compare" },
         ],
@@ -1093,6 +1098,7 @@ const fr: LandingContent = {
     eyebrow: "Le produit",
     title: "Billetterie, tables VIP, bar et porte : toute votre soirée dans un seul espace.",
     sub: "Trois piliers de vente sur une seule page d'événement, et tous les écrans dont votre équipe a besoin. Chaque pilier s'active ou se coupe par soirée — commencez par la guest list seule si vous voulez.",
+    more: "En savoir plus",
     items: [
       {
         id: "tickets",
@@ -1452,6 +1458,7 @@ const fr: LandingContent = {
       "D'après les pages publiques et centres d'aide de chaque plateforme, relevés entre juin et septembre 2026. Commissions par défaut, hors conditions négociées.",
     more: [
       { label: "Yuno vs Shotgun : le comparatif détaillé", href: "/fr/alternative-shotgun" },
+      { label: "Yuno vs Weezevent : frais et versements", href: "/fr/alternative-weezevent" },
       { label: "Alternative à Fourvenues (ES)", href: "/es/alternativa-fourvenues" },
     ],
   },
@@ -1720,10 +1727,12 @@ const fr: LandingContent = {
       {
         title: "Produit",
         links: [
-          { label: "Billetterie & guest list", href: "#product" },
-          { label: "Tables VIP", href: "#product" },
+          { label: "Billetterie & guest list", href: "/fr/guest-list-soiree-logiciel" },
+          { label: "Tables VIP", href: "/fr/reservation-table-vip-discotheque" },
+          { label: "Commissions promoteurs", href: "/fr/logiciel-promoteurs-soiree" },
+          { label: "Répartition club × orga", href: "/fr/contrat-club-organisateur" },
           { label: "CRM & emailing", href: "#email" },
-          { label: "Tarifs", href: "#pricing" },
+          { label: "Tarifs", href: "/fr/pricing" },
         ],
       },
       {
@@ -1738,6 +1747,7 @@ const fr: LandingContent = {
         title: "Comparatifs",
         links: [
           { label: "Alternative à Shotgun", href: "/fr/alternative-shotgun" },
+          { label: "Alternative à Weezevent", href: "/fr/alternative-weezevent" },
           { label: "Alternative à Fourvenues (ES)", href: "/es/alternativa-fourvenues" },
           { label: "Yuno face aux autres", href: "#compare" },
         ],
@@ -1917,7 +1927,7 @@ const es: LandingContent = {
   meta: {
     title: "Software para discotecas: entradas, reservados y RRPP | Yuno",
     description:
-      "Venta de entradas sin comisiones, listas, reservados y mesas VIP, copas con QR y comisiones de RRPP automáticas. 0 € de suscripción. Tus clientes siguen siendo tuyos.",
+      "Venta de entradas sin comisiones, listas, reservados y mesas VIP, copas con QR y comisiones de RRPP automáticas. 0 € de suscripción.",
     shareTitle: "Yuno — Vende tus noches. Gestiónalas de la A a la Z.",
     shareDescription:
       "Entradas, mesas VIP, bebidas, puerta y reparto del dinero en una sola plataforma para discotecas y organizadores. 0 € de suscripción, 0 % de comisión.",
@@ -2048,6 +2058,7 @@ const es: LandingContent = {
     eyebrow: "El producto",
     title: "Entradas, reservados, barra y puerta: toda tu noche en un solo espacio.",
     sub: "Tres pilares de venta en una sola página de evento, y todas las pantallas que tu equipo necesita. Activa o desactiva cada pilar por evento — empieza solo con la lista de invitados si quieres.",
+    more: "Saber más",
     items: [
       {
         id: "tickets",
@@ -2407,6 +2418,7 @@ const es: LandingContent = {
         label: "Alternativa a Fourvenues: la comparativa detallada",
         href: "/es/alternativa-fourvenues",
       },
+      { label: "Alternativa a Xceed: comisiones y precios", href: "/es/alternativa-xceed" },
       { label: "Alternativa a Shotgun (EN)", href: "/alternative-shotgun" },
     ],
   },
@@ -2682,10 +2694,18 @@ const es: LandingContent = {
       {
         title: "Producto",
         links: [
-          { label: "Entradas y lista de invitados", href: "#product" },
-          { label: "Mesas VIP", href: "#product" },
+          {
+            label: "Entradas y lista de invitados",
+            href: "/es/lista-invitados-discoteca-software",
+          },
+          { label: "Reservados y mesas VIP", href: "/es/software-reservados-discoteca" },
+          { label: "Comisiones de RRPP", href: "/es/software-rrpp-discoteca" },
+          {
+            label: "Reparto discoteca × organizador",
+            href: "/es/reparto-ingresos-discoteca-organizador",
+          },
           { label: "CRM y email marketing", href: "#email" },
-          { label: "Precios", href: "#pricing" },
+          { label: "Precios", href: "/es/precios" },
         ],
       },
       {
@@ -2694,12 +2714,14 @@ const es: LandingContent = {
           { label: "Discotecas", href: "#solutions" },
           { label: "Organizadores", href: "#solutions" },
           { label: "RRPP y agencias", href: "#solutions" },
+          { label: "Software discotecas Madrid", href: "/es/software-discotecas-madrid" },
         ],
       },
       {
         title: "Comparativas",
         links: [
           { label: "Alternativa a Fourvenues", href: "/es/alternativa-fourvenues" },
+          { label: "Alternativa a Xceed", href: "/es/alternativa-xceed" },
           { label: "Alternativa a Shotgun (EN)", href: "/alternative-shotgun" },
           { label: "Yuno frente al resto", href: "#compare" },
         ],
