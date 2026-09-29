@@ -25,6 +25,10 @@ Starting from `main` silently throws away the newest design and copy. So, before
 - SEO/GEO: keyword targets & positioning in `docs/seo-geo-strategy.md`. Landing head/JSON-LD in
   `src/i18n/landing-seo.ts`; `/llms.txt` + `/llms-full.txt` are generated from the landing copy.
   Bump `LANDING_UPDATED` there when the landing copy changes.
+- Sitemap: content in `src/routes/sitemap[.]xml.ts` (plain `<loc>` + `<lastmod>`, no hreflang — pages
+  carry it in `<head>`). The build renders it to static `sitemap.xml` + `sitemap-pages.xml`
+  (`staticSitemap` in `vite.config.ts`); Search Console reads `sitemap-pages.xml` (26 pages, 29/09/2026),
+  `/sitemap.xml` stayed stuck at "couldn't fetch" there. Keep it static and keep both names.
 - Comparison pages ("Yuno vs X"): copy in `src/content/compare.ts`, template `src/pages/compare.tsx`.
   Competitor claims must be public, dated and listed in `sources`; never guess a number.
 - Pro signup funnel: `src/components/landing/SignupFlow.tsx` (dialog `SignupModal` + page
