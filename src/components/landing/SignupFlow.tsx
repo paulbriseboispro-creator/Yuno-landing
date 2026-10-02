@@ -27,6 +27,7 @@ import {
   yunoApp,
 } from "@/lib/yuno-app";
 import type { AssoContent } from "@/content/asso";
+import type { CrmContent } from "@/content/crm";
 import { useLanding, whatsappHref, type SignupRole } from "./context";
 import { EASE } from "./ui";
 import { capture, identifyAccount } from "@/lib/posthog";
@@ -48,6 +49,12 @@ import { capture, identifyAccount } from "@/lib/posthog";
 // its own journey in sessionStorage, and a `source` starting with "asso" so the
 // super admin knows to verify the association and switch on its reduced fee
 // (organizer_profiles.bde_verified, set by hand in /admin/organizers).
+//
+// `product="crm"` is the Yuno CRM signup (src/pages/crm.tsx): the person keeps
+// their ticketing, so there is no "what do you sell" step — the structure step
+// asks which ticketing they use (Shotgun preselected) and every tracked step
+// carries `product: "crm"`, which complete_pro_signup reads to open a CRM
+// Console (yuno repo, migration 20261002190000) with a 14-day Pro trial.
 
 const ROLE_ICONS: Record<SignupRole, LucideIcon> = {
   club: Building2,
@@ -99,6 +106,7 @@ const EMPTY: Form = {
 
 const STORE_KEY = "yuno_pro_signup";
 const ASSO_STORE_KEY = "yuno_asso_signup";
+const CRM_STORE_KEY = "yuno_crm_signup";
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 // What each profile sells first — preselected, the person can untick.
@@ -108,11 +116,11 @@ function defaultPillars(role: SignupRole | null): string[] {
   return [];
 }
 
-function stepsFor(role: SignupRole | null, asso = false): Step[] {
+function stepsFor(role: SignupRole | null, asso = false, crm = false): Step[] {
   if (asso) return ["structure", "needs", "account"];
-  return role === "promoter" || role === "other"
-    ? ["role", "lead"]
-    : ["role", "structure", "needs", "account"];
+  if (role === "promoter" || role === "other") return ["role", "lead"];
+  // Yuno CRM: nothing to sell on Yuno, the ticketing question moves to "structure".
+  return crm ? ["role", "structure", "account"] : ["role", "structure", "needs", "account"];
 }
 
 function loadStored(storeKey: string): { key: string; form: Form } | null {
@@ -155,6 +163,8 @@ export function SignupFlow({
   variant = "modal",
   audience = "pro",
   assoCopy,
+  product = "suite",
+  crmCopy,
 }: {
   source: string;
   initialRole?: SignupRole;
@@ -164,12 +174,22 @@ export function SignupFlow({
   variant?: "modal" | "page";
   audience?: "pro" | "asso";
   assoCopy?: AssoContent["signup"];
+  product?: "suite" | "crm";
+  crmCopy?: CrmContent["signup"];
 }) {
   const { t, lang, whatsappMessage } = useLanding();
   const asso = audience === "asso";
-  const s = asso && assoCopy ? { ...t.signup, ...assoCopy } : t.signup;
+  const crm = product === "crm" && !asso;
+  const s =
+    asso && assoCopy
+      ? { ...t.signup, ...assoCopy }
+      : crm && crmCopy
+        ? { ...t.signup, ...crmCopy }
+        : t.signup;
   const emailHint = asso ? assoCopy?.emailHint : undefined;
-  const storeKey = asso ? ASSO_STORE_KEY : STORE_KEY;
+  const storeKey = asso ? ASSO_STORE_KEY : crm ? CRM_STORE_KEY : STORE_KEY;
+  // Every tracked step of a Yuno CRM journey says so (pro_signups.product).
+  const productData = crm ? { product: "crm" as const } : {};
   // An association is an organizer account: no role question.
   const initialRole: SignupRole | undefined = asso ? "organizer" : initialRoleProp;
   const sendLead = useServerFn(submitLead);
@@ -185,13 +205,14 @@ export function SignupFlow({
     return {
       ...base,
       role,
-      pillars: base.pillars.length ? base.pillars : defaultPillars(role),
+      pillars: crm ? [] : base.pillars.length ? base.pillars : defaultPillars(role),
+      current_tool: crm ? base.current_tool || "shotgun" : base.current_tool,
       email: initialEmail || base.email,
       org_name: initialOrgName?.trim() || base.org_name,
     };
   });
   const [step, setStep] = useState<Step>(() =>
-    initialRole ? stepsFor(initialRole, asso)[asso ? 0 : 1] : "role",
+    initialRole ? stepsFor(initialRole, asso, crm)[asso ? 0 : 1] : "role",
   );
   const [phase, setPhase] = useState<Phase>("form");
   const [error, setError] = useState<string | null>(null);
@@ -214,15 +235,16 @@ export function SignupFlow({
 
   // Journey opened (+ role when the CTA already picked one).
   useEffect(() => {
-    void trackSignup(key, "opened", { lang, ...attribution(source) });
+    void trackSignup(key, "opened", { lang, ...productData, ...attribution(source) });
     capture("pro_signup_opened", {
       audience,
+      product,
       lang,
       variant,
       role: initialRole ?? null,
       ...attribution(source),
     });
-    if (initialRole) void trackSignup(key, "role", { kind: initialRole, lang });
+    if (initialRole) void trackSignup(key, "role", { kind: initialRole, lang, ...productData });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -245,7 +267,7 @@ export function SignupFlow({
     return () => window.clearInterval(id);
   }, [phase]);
 
-  const steps = stepsFor(form.role, asso);
+  const steps = stepsFor(form.role, asso, crm);
   const stepIndex = Math.max(1, steps.indexOf(step) + 1);
   const isClub = form.role === "club";
   const set = <K extends keyof Form>(k: K, v: Form[K]) => setForm((f) => ({ ...f, [k]: v }));
@@ -254,12 +276,12 @@ export function SignupFlow({
     setForm((f) => ({
       ...f,
       role,
-      pillars: f.role === role && f.pillars.length ? f.pillars : defaultPillars(role),
+      pillars: crm ? [] : f.role === role && f.pillars.length ? f.pillars : defaultPillars(role),
     }));
     setError(null);
-    void trackSignup(key, "role", { kind: role, lang });
-    capture("pro_signup_step_completed", { audience, step: "role", role, lang, source });
-    setStep(stepsFor(role, asso)[1]);
+    void trackSignup(key, "role", { kind: role, lang, ...productData });
+    capture("pro_signup_step_completed", { audience, product, step: "role", role, lang, source });
+    setStep(stepsFor(role, asso, crm)[1]);
   }
 
   function goBack() {
@@ -277,9 +299,11 @@ export function SignupFlow({
       city: form.city,
       size_band: form.size_band,
       frequency: form.frequency,
+      ...(crm ? { current_tool: form.current_tool, ...productData } : {}),
     });
     capture("pro_signup_step_completed", {
       audience,
+      product,
       step: "structure",
       role: form.role,
       lang,
@@ -288,7 +312,7 @@ export function SignupFlow({
       size_band: form.size_band,
       frequency: form.frequency,
     });
-    setStep("needs");
+    setStep(crm ? "account" : "needs");
   }
 
   function submitNeeds(e: FormEvent) {
@@ -333,7 +357,7 @@ export function SignupFlow({
           company: form.org_name,
           role: form.role ?? "",
           phone: form.phone,
-          message: `${asso ? "[ASSO] " : ""}${note} — ${form.city} · ${form.pillars.join(", ")} · ${form.current_tool} · ${form.next_night}`,
+          message: `${asso ? "[ASSO] " : crm ? "[CRM] " : ""}${note} — ${form.city} · ${form.pillars.join(", ")} · ${form.current_tool} · ${form.next_night}`,
           source: `landing-signup:${lang}`,
         },
       });
@@ -366,6 +390,7 @@ export function SignupFlow({
       email,
       phone: form.phone,
       pillars: form.pillars,
+      ...(crm ? { current_tool: form.current_tool, ...productData } : {}),
     });
 
     const sb = yunoApp();
@@ -427,7 +452,7 @@ export function SignupFlow({
     if (!data.session) {
       capture(
         "pro_signup_email_confirmation_required",
-        { audience, role: form.role, lang, source, pillars: form.pillars },
+        { audience, product, role: form.role, lang, source, pillars: form.pillars },
         true,
       );
       await minDelay();
@@ -439,7 +464,15 @@ export function SignupFlow({
     // Sent instantly: the handoff below is a full-page navigation to yunoapp.eu.
     capture(
       "pro_signup_account_created",
-      { audience, role: form.role, lang, source, pillars: form.pillars, space_opened: !cErr },
+      {
+        audience,
+        product,
+        role: form.role,
+        lang,
+        source,
+        pillars: form.pillars,
+        space_opened: !cErr,
+      },
       true,
     );
     if (cErr) {
@@ -738,6 +771,15 @@ export function SignupFlow({
                   options={s.frequencyOpts}
                   value={form.frequency}
                   onChange={(v) => set("frequency", v)}
+                />
+              )}
+              {crm && (
+                <Chips
+                  label={s.tool}
+                  hint={s.toolHint}
+                  options={s.toolOpts.filter((o) => o.id !== "none")}
+                  value={form.current_tool}
+                  onChange={(v) => set("current_tool", v)}
                 />
               )}
             </div>

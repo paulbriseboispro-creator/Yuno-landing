@@ -1,17 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { parseStartRole, startHead } from "@/i18n/start";
+import { parseStartProduct, parseStartRole, startHead } from "@/i18n/start";
 import { StartPage } from "@/pages/start";
 
 // Direct path to a Yuno pro account (fr). ?role=club|organizer skips the
-// first question. See src/pages/start.tsx.
+// first question; ?product=crm opens a Yuno CRM account. See src/pages/start.tsx.
 export const Route = createFileRoute("/fr/start")({
-  validateSearch: (search: Record<string, unknown>): { role?: "club" | "organizer" } => {
+  validateSearch: (
+    search: Record<string, unknown>,
+  ): { role?: "club" | "organizer"; product?: "crm" } => {
     const role = parseStartRole(search.role);
-    return role ? { role } : {};
+    const product = parseStartProduct(search.product);
+    return { ...(role ? { role } : {}), ...(product ? { product } : {}) };
   },
   head: () => startHead("fr"),
   component: function Start() {
-    const { role } = Route.useSearch();
-    return <StartPage lang="fr" role={role} />;
+    const { role, product } = Route.useSearch();
+    return <StartPage lang="fr" role={role} product={product} />;
   },
 });

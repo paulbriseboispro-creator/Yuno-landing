@@ -16,6 +16,7 @@ import {
   type SignupRole,
 } from "@/components/landing/context";
 import { SignupFlow } from "@/components/landing/SignupFlow";
+import { crmContent } from "@/content/crm";
 import { YunoLogo } from "@/components/landing/ui";
 
 // "/start", "/fr/start", "/es/start" — the direct path to a Yuno pro account:
@@ -23,17 +24,37 @@ import { YunoLogo } from "@/components/landing/ui";
 // or a sales deck. Same funnel as the landing's dialog (SignupFlow), on a page
 // of its own. `?role=club|organizer` skips the first question.
 
-export function StartPage({ lang, role }: { lang: LandingLang; role?: SignupRole }) {
+export function StartPage({
+  lang,
+  role,
+  product,
+}: {
+  lang: LandingLang;
+  role?: SignupRole;
+  product?: "crm";
+}) {
   return (
     <LandingProvider lang={lang}>
-      <StartBody role={role} />
+      <StartBody role={role} product={product} />
     </LandingProvider>
   );
 }
 
-function StartBody({ role }: { role?: SignupRole }) {
+function StartBody({ role, product }: { role?: SignupRole; product?: "crm" }) {
   const { t, lang } = useLanding();
-  const p = t.start;
+  const crm = product === "crm" ? crmContent[lang] : null;
+  // Yuno CRM: the left column tells the CRM story (the Suite copy says "no subscription").
+  const p = crm
+    ? {
+        ...t.start,
+        eyebrow: crm.hero.eyebrow,
+        heading: crm.hero.title,
+        sub: crm.hero.sub,
+        bullets: crm.hero.trust,
+        proof: "",
+      }
+    : t.start;
+  const query = [role ? `role=${role}` : "", crm ? "product=crm" : ""].filter(Boolean).join("&");
   // The funnel reads sessionStorage and draws a random journey key: render it
   // on the client only, so server HTML and first client render always match.
   const [mounted, setMounted] = useState(false);
@@ -49,7 +70,7 @@ function StartBody({ role }: { role?: SignupRole }) {
           {LANDING_LANGS.map((l) => (
             <a
               key={l}
-              href={START_PATHS[l] + (role ? `?role=${role}` : "")}
+              href={START_PATHS[l] + (query ? `?${query}` : "")}
               onClick={() => rememberLandingLang(l)}
               data-ph-lang={l}
               className={cn(
@@ -90,11 +111,15 @@ function StartBody({ role }: { role?: SignupRole }) {
               </li>
             ))}
           </ul>
-          <p className="mt-8 border-t border-zinc-200 pt-5 text-[13px] text-zinc-500">{p.proof}</p>
+          {p.proof && (
+            <p className="mt-8 border-t border-zinc-200 pt-5 text-[13px] text-zinc-500">
+              {p.proof}
+            </p>
+          )}
           <p className="mt-4 text-[13.5px] text-zinc-600">
             {p.help}{" "}
             <a
-              href={whatsappHref(t.whatsappMessage)}
+              href={whatsappHref(crm ? crm.whatsappMessage : t.whatsappMessage)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 font-medium text-zinc-950 underline-offset-2 hover:underline"
@@ -107,7 +132,13 @@ function StartBody({ role }: { role?: SignupRole }) {
         <section className="order-1 md:order-2">
           <div className="yl-card p-6 sm:p-8">
             {mounted ? (
-              <SignupFlow source="start" initialRole={role} variant="page" />
+              <SignupFlow
+                source={crm ? "start_crm" : "start"}
+                initialRole={role}
+                variant="page"
+                product={crm ? "crm" : "suite"}
+                crmCopy={crm?.signup}
+              />
             ) : (
               <div className="h-[420px] animate-pulse rounded-2xl bg-zinc-50" aria-hidden />
             )}

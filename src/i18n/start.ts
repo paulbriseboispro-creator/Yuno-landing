@@ -39,3 +39,8 @@ export function startHead(lang: LandingLang) {
 export function parseStartRole(v: unknown): "club" | "organizer" | undefined {
   return v === "club" || v === "organizer" ? v : undefined;
 }
+
+/** `?product=crm` : the Yuno CRM signup (the person keeps their ticketing). */
+export function parseStartProduct(v: unknown): "crm" | undefined {
+  return v === "crm" ? v : undefined;
+}
