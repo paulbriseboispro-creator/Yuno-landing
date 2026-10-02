@@ -73,6 +73,13 @@ export const ASSO_PATHS: Record<LandingLang, string> = {
   es: "/es/asociaciones",
 };
 
+// Yuno CRM page (src/pages/crm.tsx): its own nav and footer, like the asso page.
+export const CRM_PATHS: Record<LandingLang, string> = {
+  en: "/crm",
+  fr: "/fr/crm",
+  es: "/es/crm",
+};
+
 // The landing surface: light, chrome-less (it brings its own nav and footer).
 // Includes the pro signup pages ("/start", "/fr/start", "/es/start") and the
 // student-association landing.
@@ -80,6 +87,7 @@ export function isLandingPath(pathname: string): boolean {
   const p = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
   if (p === "/start" || p === "/fr/start" || p === "/es/start") return true;
   if (LANDING_LANGS.some((l) => ASSO_PATHS[l] === p)) return true;
+  if (LANDING_LANGS.some((l) => CRM_PATHS[l] === p)) return true;
   return (
     pathname === "/" ||
     pathname === "/fr" ||

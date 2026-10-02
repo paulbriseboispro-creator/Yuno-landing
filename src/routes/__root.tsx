@@ -21,6 +21,7 @@ import { BING_SITE_VERIFICATION, GOOGLE_SITE_VERIFICATION, localePath } from "@/
 import { ogImageMeta } from "@/i18n/og";
 import {
   ASSO_PATHS,
+  CRM_PATHS,
   LANDING_PATHS,
   detectLandingLang,
   isLandingPath,
@@ -118,6 +119,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       const pref = detectLandingLang();
       if (pref !== "en") {
         throw redirect({ href: ASSO_PATHS[pref] + (location.searchStr ?? "") });
+      }
+      return { locale: "en" as Locale, lang: "en" as LandingLang, landing };
+    }
+    // Same for the Yuno CRM page.
+    if (path === CRM_PATHS.en || path === CRM_PATHS.en + "/") {
+      const pref = detectLandingLang();
+      if (pref !== "en") {
+        throw redirect({ href: CRM_PATHS[pref] + (location.searchStr ?? "") });
       }
       return { locale: "en" as Locale, lang: "en" as LandingLang, landing };
     }

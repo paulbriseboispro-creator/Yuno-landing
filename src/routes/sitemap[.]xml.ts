@@ -6,6 +6,7 @@ import { TOPIC_PAGES } from "@/content/topics";
 import { LANDING_LANGS, landingUrl } from "@/i18n/landing-lang";
 import { LANDING_UPDATED } from "@/i18n/landing-seo";
 import { ASSO_UPDATED, assoUrl } from "@/i18n/asso";
+import { CRM_UPDATED, crmUrl } from "@/i18n/crm";
 
 // Kept deliberately plain (<loc> + <lastmod>, no hreflang namespace): Search
 // Console could not fetch the richer Worker-rendered version, while a static
@@ -53,6 +54,10 @@ function sitemapEntries(): SitemapEntry[] {
   // Student-association landing: one page per language.
   for (const lang of LANDING_LANGS) {
     entries.push({ loc: assoUrl(lang), lastmod: ASSO_UPDATED });
+  }
+  // Yuno CRM: one page per language.
+  for (const lang of LANDING_LANGS) {
+    entries.push({ loc: crmUrl(lang), lastmod: CRM_UPDATED });
   }
   return entries;
 }

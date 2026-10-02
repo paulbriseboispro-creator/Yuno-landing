@@ -21,6 +21,7 @@ import { Route as NightclubGuestListSoftwareRouteImport } from './routes/nightcl
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
 import { Route as DiceAlternativeRouteImport } from './routes/dice-alternative'
+import { Route as CrmRouteImport } from './routes/crm'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ClubsRouteImport } from './routes/clubs'
 import { Route as ClubOrganizerRevenueSplitRouteImport } from './routes/club-organizer-revenue-split'
@@ -39,6 +40,7 @@ import { Route as FrPricingRouteImport } from './routes/fr/pricing'
 import { Route as FrOrganizersRouteImport } from './routes/fr/organizers'
 import { Route as FrLogicielPromoteursSoireeRouteImport } from './routes/fr/logiciel-promoteurs-soiree'
 import { Route as FrGuestListSoireeLogicielRouteImport } from './routes/fr/guest-list-soiree-logiciel'
+import { Route as FrCrmRouteImport } from './routes/fr/crm'
 import { Route as FrContratClubOrganisateurRouteImport } from './routes/fr/contrat-club-organisateur'
 import { Route as FrContactRouteImport } from './routes/fr/contact'
 import { Route as FrClubsRouteImport } from './routes/fr/clubs'
@@ -53,6 +55,7 @@ import { Route as EsSoftwareDiscotecasMadridRouteImport } from './routes/es/soft
 import { Route as EsRepartoIngresosDiscotecaOrganizadorRouteImport } from './routes/es/reparto-ingresos-discoteca-organizador'
 import { Route as EsPreciosRouteImport } from './routes/es/precios'
 import { Route as EsListaInvitadosDiscotecaSoftwareRouteImport } from './routes/es/lista-invitados-discoteca-software'
+import { Route as EsCrmRouteImport } from './routes/es/crm'
 import { Route as EsAsociacionesRouteImport } from './routes/es/asociaciones'
 import { Route as EsAlternativaXceedRouteImport } from './routes/es/alternativa-xceed'
 import { Route as EsAlternativaFourvenuesRouteImport } from './routes/es/alternativa-fourvenues'
@@ -118,6 +121,11 @@ const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
 const DiceAlternativeRoute = DiceAlternativeRouteImport.update({
   id: '/dice-alternative',
   path: '/dice-alternative',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrmRoute = CrmRouteImport.update({
+  id: '/crm',
+  path: '/crm',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -214,6 +222,11 @@ const FrGuestListSoireeLogicielRoute =
     path: '/fr/guest-list-soiree-logiciel',
     getParentRoute: () => rootRouteImport,
   } as any)
+const FrCrmRoute = FrCrmRouteImport.update({
+  id: '/fr/crm',
+  path: '/fr/crm',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FrContratClubOrganisateurRoute =
   FrContratClubOrganisateurRouteImport.update({
     id: '/fr/contrat-club-organisateur',
@@ -289,6 +302,11 @@ const EsListaInvitadosDiscotecaSoftwareRoute =
     path: '/es/lista-invitados-discoteca-software',
     getParentRoute: () => rootRouteImport,
   } as any)
+const EsCrmRoute = EsCrmRouteImport.update({
+  id: '/es/crm',
+  path: '/es/crm',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EsAsociacionesRoute = EsAsociacionesRouteImport.update({
   id: '/es/asociaciones',
   path: '/es/asociaciones',
@@ -319,6 +337,7 @@ export interface FileRoutesByFullPath {
   '/club-organizer-revenue-split': typeof ClubOrganizerRevenueSplitRoute
   '/clubs': typeof ClubsRoute
   '/contact': typeof ContactRoute
+  '/crm': typeof CrmRoute
   '/dice-alternative': typeof DiceAlternativeRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
@@ -335,6 +354,7 @@ export interface FileRoutesByFullPath {
   '/es/alternativa-fourvenues': typeof EsAlternativaFourvenuesRoute
   '/es/alternativa-xceed': typeof EsAlternativaXceedRoute
   '/es/asociaciones': typeof EsAsociacionesRoute
+  '/es/crm': typeof EsCrmRoute
   '/es/lista-invitados-discoteca-software': typeof EsListaInvitadosDiscotecaSoftwareRoute
   '/es/precios': typeof EsPreciosRoute
   '/es/reparto-ingresos-discoteca-organizador': typeof EsRepartoIngresosDiscotecaOrganizadorRoute
@@ -349,6 +369,7 @@ export interface FileRoutesByFullPath {
   '/fr/clubs': typeof FrClubsRoute
   '/fr/contact': typeof FrContactRoute
   '/fr/contrat-club-organisateur': typeof FrContratClubOrganisateurRoute
+  '/fr/crm': typeof FrCrmRoute
   '/fr/guest-list-soiree-logiciel': typeof FrGuestListSoireeLogicielRoute
   '/fr/logiciel-promoteurs-soiree': typeof FrLogicielPromoteursSoireeRoute
   '/fr/organizers': typeof FrOrganizersRoute
@@ -369,6 +390,7 @@ export interface FileRoutesByTo {
   '/club-organizer-revenue-split': typeof ClubOrganizerRevenueSplitRoute
   '/clubs': typeof ClubsRoute
   '/contact': typeof ContactRoute
+  '/crm': typeof CrmRoute
   '/dice-alternative': typeof DiceAlternativeRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
@@ -385,6 +407,7 @@ export interface FileRoutesByTo {
   '/es/alternativa-fourvenues': typeof EsAlternativaFourvenuesRoute
   '/es/alternativa-xceed': typeof EsAlternativaXceedRoute
   '/es/asociaciones': typeof EsAsociacionesRoute
+  '/es/crm': typeof EsCrmRoute
   '/es/lista-invitados-discoteca-software': typeof EsListaInvitadosDiscotecaSoftwareRoute
   '/es/precios': typeof EsPreciosRoute
   '/es/reparto-ingresos-discoteca-organizador': typeof EsRepartoIngresosDiscotecaOrganizadorRoute
@@ -399,6 +422,7 @@ export interface FileRoutesByTo {
   '/fr/clubs': typeof FrClubsRoute
   '/fr/contact': typeof FrContactRoute
   '/fr/contrat-club-organisateur': typeof FrContratClubOrganisateurRoute
+  '/fr/crm': typeof FrCrmRoute
   '/fr/guest-list-soiree-logiciel': typeof FrGuestListSoireeLogicielRoute
   '/fr/logiciel-promoteurs-soiree': typeof FrLogicielPromoteursSoireeRoute
   '/fr/organizers': typeof FrOrganizersRoute
@@ -420,6 +444,7 @@ export interface FileRoutesById {
   '/club-organizer-revenue-split': typeof ClubOrganizerRevenueSplitRoute
   '/clubs': typeof ClubsRoute
   '/contact': typeof ContactRoute
+  '/crm': typeof CrmRoute
   '/dice-alternative': typeof DiceAlternativeRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
@@ -436,6 +461,7 @@ export interface FileRoutesById {
   '/es/alternativa-fourvenues': typeof EsAlternativaFourvenuesRoute
   '/es/alternativa-xceed': typeof EsAlternativaXceedRoute
   '/es/asociaciones': typeof EsAsociacionesRoute
+  '/es/crm': typeof EsCrmRoute
   '/es/lista-invitados-discoteca-software': typeof EsListaInvitadosDiscotecaSoftwareRoute
   '/es/precios': typeof EsPreciosRoute
   '/es/reparto-ingresos-discoteca-organizador': typeof EsRepartoIngresosDiscotecaOrganizadorRoute
@@ -450,6 +476,7 @@ export interface FileRoutesById {
   '/fr/clubs': typeof FrClubsRoute
   '/fr/contact': typeof FrContactRoute
   '/fr/contrat-club-organisateur': typeof FrContratClubOrganisateurRoute
+  '/fr/crm': typeof FrCrmRoute
   '/fr/guest-list-soiree-logiciel': typeof FrGuestListSoireeLogicielRoute
   '/fr/logiciel-promoteurs-soiree': typeof FrLogicielPromoteursSoireeRoute
   '/fr/organizers': typeof FrOrganizersRoute
@@ -472,6 +499,7 @@ export interface FileRouteTypes {
     | '/club-organizer-revenue-split'
     | '/clubs'
     | '/contact'
+    | '/crm'
     | '/dice-alternative'
     | '/llms-full.txt'
     | '/llms.txt'
@@ -488,6 +516,7 @@ export interface FileRouteTypes {
     | '/es/alternativa-fourvenues'
     | '/es/alternativa-xceed'
     | '/es/asociaciones'
+    | '/es/crm'
     | '/es/lista-invitados-discoteca-software'
     | '/es/precios'
     | '/es/reparto-ingresos-discoteca-organizador'
@@ -502,6 +531,7 @@ export interface FileRouteTypes {
     | '/fr/clubs'
     | '/fr/contact'
     | '/fr/contrat-club-organisateur'
+    | '/fr/crm'
     | '/fr/guest-list-soiree-logiciel'
     | '/fr/logiciel-promoteurs-soiree'
     | '/fr/organizers'
@@ -522,6 +552,7 @@ export interface FileRouteTypes {
     | '/club-organizer-revenue-split'
     | '/clubs'
     | '/contact'
+    | '/crm'
     | '/dice-alternative'
     | '/llms-full.txt'
     | '/llms.txt'
@@ -538,6 +569,7 @@ export interface FileRouteTypes {
     | '/es/alternativa-fourvenues'
     | '/es/alternativa-xceed'
     | '/es/asociaciones'
+    | '/es/crm'
     | '/es/lista-invitados-discoteca-software'
     | '/es/precios'
     | '/es/reparto-ingresos-discoteca-organizador'
@@ -552,6 +584,7 @@ export interface FileRouteTypes {
     | '/fr/clubs'
     | '/fr/contact'
     | '/fr/contrat-club-organisateur'
+    | '/fr/crm'
     | '/fr/guest-list-soiree-logiciel'
     | '/fr/logiciel-promoteurs-soiree'
     | '/fr/organizers'
@@ -572,6 +605,7 @@ export interface FileRouteTypes {
     | '/club-organizer-revenue-split'
     | '/clubs'
     | '/contact'
+    | '/crm'
     | '/dice-alternative'
     | '/llms-full.txt'
     | '/llms.txt'
@@ -588,6 +622,7 @@ export interface FileRouteTypes {
     | '/es/alternativa-fourvenues'
     | '/es/alternativa-xceed'
     | '/es/asociaciones'
+    | '/es/crm'
     | '/es/lista-invitados-discoteca-software'
     | '/es/precios'
     | '/es/reparto-ingresos-discoteca-organizador'
@@ -602,6 +637,7 @@ export interface FileRouteTypes {
     | '/fr/clubs'
     | '/fr/contact'
     | '/fr/contrat-club-organisateur'
+    | '/fr/crm'
     | '/fr/guest-list-soiree-logiciel'
     | '/fr/logiciel-promoteurs-soiree'
     | '/fr/organizers'
@@ -623,6 +659,7 @@ export interface RootRouteChildren {
   ClubOrganizerRevenueSplitRoute: typeof ClubOrganizerRevenueSplitRoute
   ClubsRoute: typeof ClubsRoute
   ContactRoute: typeof ContactRoute
+  CrmRoute: typeof CrmRoute
   DiceAlternativeRoute: typeof DiceAlternativeRoute
   LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
@@ -639,6 +676,7 @@ export interface RootRouteChildren {
   EsAlternativaFourvenuesRoute: typeof EsAlternativaFourvenuesRoute
   EsAlternativaXceedRoute: typeof EsAlternativaXceedRoute
   EsAsociacionesRoute: typeof EsAsociacionesRoute
+  EsCrmRoute: typeof EsCrmRoute
   EsListaInvitadosDiscotecaSoftwareRoute: typeof EsListaInvitadosDiscotecaSoftwareRoute
   EsPreciosRoute: typeof EsPreciosRoute
   EsRepartoIngresosDiscotecaOrganizadorRoute: typeof EsRepartoIngresosDiscotecaOrganizadorRoute
@@ -653,6 +691,7 @@ export interface RootRouteChildren {
   FrClubsRoute: typeof FrClubsRoute
   FrContactRoute: typeof FrContactRoute
   FrContratClubOrganisateurRoute: typeof FrContratClubOrganisateurRoute
+  FrCrmRoute: typeof FrCrmRoute
   FrGuestListSoireeLogicielRoute: typeof FrGuestListSoireeLogicielRoute
   FrLogicielPromoteursSoireeRoute: typeof FrLogicielPromoteursSoireeRoute
   FrOrganizersRoute: typeof FrOrganizersRoute
@@ -749,6 +788,13 @@ declare module '@tanstack/react-router' {
       path: '/dice-alternative'
       fullPath: '/dice-alternative'
       preLoaderRoute: typeof DiceAlternativeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crm': {
+      id: '/crm'
+      path: '/crm'
+      fullPath: '/crm'
+      preLoaderRoute: typeof CrmRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -877,6 +923,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrGuestListSoireeLogicielRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fr/crm': {
+      id: '/fr/crm'
+      path: '/fr/crm'
+      fullPath: '/fr/crm'
+      preLoaderRoute: typeof FrCrmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/fr/contrat-club-organisateur': {
       id: '/fr/contrat-club-organisateur'
       path: '/fr/contrat-club-organisateur'
@@ -975,6 +1028,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EsListaInvitadosDiscotecaSoftwareRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/es/crm': {
+      id: '/es/crm'
+      path: '/es/crm'
+      fullPath: '/es/crm'
+      preLoaderRoute: typeof EsCrmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/es/asociaciones': {
       id: '/es/asociaciones'
       path: '/es/asociaciones'
@@ -1015,6 +1075,7 @@ const rootRouteChildren: RootRouteChildren = {
   ClubOrganizerRevenueSplitRoute: ClubOrganizerRevenueSplitRoute,
   ClubsRoute: ClubsRoute,
   ContactRoute: ContactRoute,
+  CrmRoute: CrmRoute,
   DiceAlternativeRoute: DiceAlternativeRoute,
   LlmsFullDottxtRoute: LlmsFullDottxtRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
@@ -1031,6 +1092,7 @@ const rootRouteChildren: RootRouteChildren = {
   EsAlternativaFourvenuesRoute: EsAlternativaFourvenuesRoute,
   EsAlternativaXceedRoute: EsAlternativaXceedRoute,
   EsAsociacionesRoute: EsAsociacionesRoute,
+  EsCrmRoute: EsCrmRoute,
   EsListaInvitadosDiscotecaSoftwareRoute:
     EsListaInvitadosDiscotecaSoftwareRoute,
   EsPreciosRoute: EsPreciosRoute,
@@ -1047,6 +1109,7 @@ const rootRouteChildren: RootRouteChildren = {
   FrClubsRoute: FrClubsRoute,
   FrContactRoute: FrContactRoute,
   FrContratClubOrganisateurRoute: FrContratClubOrganisateurRoute,
+  FrCrmRoute: FrCrmRoute,
   FrGuestListSoireeLogicielRoute: FrGuestListSoireeLogicielRoute,
   FrLogicielPromoteursSoireeRoute: FrLogicielPromoteursSoireeRoute,
   FrOrganizersRoute: FrOrganizersRoute,
