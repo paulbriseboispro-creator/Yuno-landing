@@ -61,6 +61,20 @@ Starting from `main` silently throws away the newest design and copy. So, before
 - Competitors here are HelloAsso, Shotgun, Lydia/Bizum + forms (sources dated in `switch.sources`).
   Never claim "cheapest" (HelloAsso and Billetweb can cost the asso less).
 
+## Yuno CRM page (`/crm`, `/fr/crm`, `/es/crm`)
+- Second product: organizers and clubs who KEEP their ticketing (Shotgun first). Page
+  `src/pages/crm.tsx`, sections `src/components/crm/*`, copy `src/content/crm.ts` (EN/FR/ES,
+  shape-checked), head/JSON-LD `src/i18n/crm.ts` (bump `CRM_UPDATED`), paths `CRM_PATHS` in
+  `src/i18n/landing-lang.ts` (standalone surface, like the asso page; "/crm" sends FR/ES browsers on).
+- PAID pricing (unlike the Suite): grid in `docs/yuno-context.md` § Yuno CRM, mirror of the app's
+  `src/lib/crmPlans.ts`. Never show the Suite's "€0" banner or copy there.
+- Signup: `SignupFlow product="crm"` (modal on the page, `/start?product=crm`): no "what you sell"
+  step, the ticketing is asked in "structure" (Shotgun preselected), every tracked step carries
+  `product: "crm"` → `complete_pro_signup` opens a CRM Console with a 14-day Pro trial (yuno repo,
+  migrations `20261002190000` + `200000`). Own journey key (`yuno_crm_signup`).
+- `/start?product=crm` tracks the journey on load: never screenshot it against production without
+  deleting the `pro_signups` row it writes (anonymous, `source = 'start_crm'`).
+
 ## PostHog (cookieless, same project as the Yuno app)
 - Single entry point `src/lib/posthog.ts`: `persistence: 'memory'` (no cookie, no banner), dynamic
   import, SSR-safe, never an email/phone/name in an event. Plan = the `LandingEvent` type: add a

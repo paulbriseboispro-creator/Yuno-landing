@@ -127,3 +127,22 @@ Founder: Paul Brisebois · +33 6 44 21 66 89 · yunoapp.eu
 
 ## Brand
 Yuno red #E8192C. App UI is dark; the new landing (/, /fr, /es) is a light SaaS layout.
+
+## Yuno CRM — second product, for organizers who keep their ticketing (Oct 2026)
+A separate offer (page `/crm`, `/fr/crm`, `/es/crm`; signup `?product=crm`). It plugs into the
+ticketing the pro already uses (Shotgun by API token, read-only; other tools by file import) and sells
+nothing: no tickets, no door, no payments. It is the Yuno marketing engine on an external ticketing:
+living base, night reports compared with the previous night, segments, Email Studio, automations,
+Meta audiences (not live yet — say "soon"), team rights, consent and deliverability.
+**Unlike the ticketing Suite, it is PAID** — never reuse the Suite's "€0 subscription" lines on its page:
+| Plan | Price excl. VAT / month | Founder price (first 15 accounts, 12 months) | Emails / month | SMS / month | Sync | Automations | Users |
+|---|---|---|---|---|---|---|---|
+| Free | 0 € | — | 1,000 | — | daily | — | 1 |
+| Essential | 49 € | 35 € | 15,000 | 100 | hourly | 3 at once | 3 |
+| Pro (most chosen) | 129 € | 89 € | 50,000 | 250 | every 15 min | all + A/B + resend | 5 |
+| Business | 249 € | 175 € | 100,000 | 500 | every 15 min | all | unlimited |
+Yearly = 10 months. Every account starts with 14 days of Pro, no card; then Free with the base intact.
+SMS sending and Meta audiences open later ("soon"). Email top-ups at cost (10 € per 10,000). Source of
+truth for the grid: `src/lib/crmPlans.ts` in the yuno repo (mirror of `crm_plan_limits`).
+Positioning: "Keep your ticketing. Make your crowd come back." Don't claim Shotgun lacks a CRM
+(it has one): talk about what Yuno CRM does, not what others don't.
