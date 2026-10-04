@@ -84,11 +84,17 @@ Starting from `main` silently throws away the newest design and copy. So, before
 - Pricing (one subscription + Yunits): table in `docs/yuno-context.md` § Yuno CRM, mirrored in
   `components/crm/Pricing.tsx` (packs + cheapest-recharge solver of the design). Never show the
   Suite's "€0" banner or copy there, never "hosted in France" (EU).
-- Signup: `SignupFlow product="crm"` (modal on the page, `/start?product=crm`): no "what you sell"
-  step, the ticketing is asked in "structure" (Shotgun preselected), every tracked step carries
-  `product: "crm"` → `complete_pro_signup` opens a CRM Console with its 14-day trial (yuno repo,
-  migrations `20261002190000` + `200000`). Own journey key (`yuno_crm_signup`). On this page the
-  dialog wears the Yuno design system (overrides at the end of `crm.css`).
+- Signup: every CRM CTA is a plain link to the funnel `/start?product=crm` (`/fr/start`, `/es/start`;
+  `crmStartHref` in `src/i18n/start.ts`; `…/crm#signup` redirects there). The funnel is the Claude Design
+  "Inscription" screens: `src/components/crm/signup/CrmSignup.tsx` (email → password → activity → name →
+  crowd size → email code → done, live console preview on the side; copy EN/FR/ES in
+  `src/content/crm-signup.ts`, styles `.yc-su-*` at the end of `crm.css`). Same backend as the Suite flow:
+  every tracked step carries `product: "crm"` (`track_pro_signup`), `auth.signUp` on the app's Supabase,
+  `complete_pro_signup` opens a CRM Console with its 14-day trial, then handoff to yunoapp.eu. Own
+  journey key (`yuno_crm_signup_key`). Type → role: club/bar → club, collective/festival → organizer.
+  The 6-digit step uses `verifyOtp(type: "signup")`: the Supabase "Confirm signup" email template must
+  contain `{{ .Token }}` (the link keeps working as a fallback). The Google / Apple buttons are in the design but not wired yet (no-op).
+  The generic `SignupFlow`/`SignupModal` stay for the Suite landing, associations and `/start` without product.
 - Opening the signup (modal or `/start?product=crm`) writes a `pro_signups` row in production: never
   test it against production without blocking `track_pro_signup` or deleting the row it writes
   (anonymous, `source = 'crm'` / `'start_crm'`).
