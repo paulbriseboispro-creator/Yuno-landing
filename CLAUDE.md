@@ -71,7 +71,13 @@ Starting from `main` silently throws away the newest design and copy. So, before
   hreflang, og and JSON-LD of the CRM page and its signup point to crm.yunoapp.eu; its URLs
   live in `sitemap-crm.xml` (static, listed in `public/robots.txt`), not in the landing sitemap.
   A link from a CRM page to the landing (legal pages, the Suite) goes through `landingHref()`;
-  the CRM page's own links through `crmPagePaths()`. Never import app modules into
+  the CRM page's own links through `crmPagePaths()`.
+- Link previews: `public/og/crm-{en,fr,es}.png`, rendered by `bun scripts/og/crm.ts`
+  (`CHROMIUM_PATH` = Chrome): hero title + accent, Shotgun chip, the trial as a button, and the
+  real Console captured from the live page in each language (fonts in `scripts/og/*.woff2`).
+  Tags = `crmOgImageMeta()` (`src/i18n/og.ts`, bump `CRM_OG_VERSION` after a re-render), on the
+  CRM page AND its signup (`/start?product=crm`); always the full set, or the root route's
+  landing image leaks its `secure_url` and alt. Never import app modules into
   `src/server.ts`: their constants become exports of the Worker entry and the deploy is
   rejected ("Incorrect type for map entry"). Try it locally on `crm.localhost:<port>`.
 - Second product: organizers and clubs who KEEP their ticketing (Shotgun first). Page
