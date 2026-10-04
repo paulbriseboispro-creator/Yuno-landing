@@ -1,4 +1,4 @@
-import { useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -17,14 +17,42 @@ import { Accent, CtaButton, EASE, Reveal } from "./ui";
 // pixel head cut by a mask, straight on.
 function YunitFace() {
   const id = useId();
+  const [closed, setClosed] = useState(false);
+
+  // Blink every 2.6-5.2 s, eyes shut for 140 ms (as in the design file).
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let t1: ReturnType<typeof setTimeout>;
+    let t2: ReturnType<typeof setTimeout>;
+    const loop = () => {
+      t1 = setTimeout(
+        () => {
+          setClosed(true);
+          t2 = setTimeout(() => {
+            setClosed(false);
+            loop();
+          }, 140);
+        },
+        2600 + Math.random() * 2600,
+      );
+    };
+    loop();
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, []);
+
+  const eyeY = closed ? 518 : 458;
+  const eyeH = closed ? 16 : 136;
   return (
     <span className="absolute inset-[5%] block overflow-hidden rounded-full bg-[linear-gradient(65deg,#E3141B_8%,#FF6B35_96%)]">
       <svg viewBox="38 38 1175 1175" aria-hidden className="block size-full">
         <mask id={id} maskUnits="userSpaceOnUse" x="0" y="0" width="1250" height="1250">
           <rect width="1250" height="1250" fill="#fff" />
           <g fill="#000">
-            <rect x="451" y="458" width="110" height="136" rx="12" />
-            <rect x="692" y="458" width="111" height="136" rx="12" />
+            <rect x="451" y={eyeY} width="110" height={eyeH} rx="12" />
+            <rect x="692" y={eyeY} width="111" height={eyeH} rx="12" />
             <rect x="375" y="665" width="86" height="88" rx="12" />
             <rect x="787" y="665" width="90" height="88" rx="12" />
           </g>
