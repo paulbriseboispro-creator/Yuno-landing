@@ -14,7 +14,8 @@ import { compareMarkdown } from "@/i18n/compare-seo";
 import { TOPIC_PAGES } from "@/content/topics";
 import { topicMarkdown } from "@/i18n/topic-seo";
 import { SITE_ORIGIN } from "@/i18n/seo";
-import { crmMarkdown } from "@/i18n/crm";
+import { crmMarkdown, crmUrl } from "@/i18n/crm";
+import { crmContent } from "@/content/crm";
 
 const HEADINGS: Record<
   LandingLang,
@@ -176,6 +177,12 @@ export function llmsIndex(): string {
     `- [Pricing](${SITE_ORIGIN}/#pricing): ${t.pricing.rows.map((r) => `${r.item} ${r.amount}`).join("; ")}.`,
     `- [Comparison with Shotgun, DICE, Eventbrite, Weezevent, Xceed](${SITE_ORIGIN}/#compare)`,
     `- [FAQ](${SITE_ORIGIN}/#faq)`,
+    "",
+    "## Yuno CRM",
+    "",
+    ...LANDING_LANGS.map(
+      (l) => `- [${LANDING_LANG_LABELS[l]}](${crmUrl(l)}): ${crmContent[l].meta.description}`,
+    ),
     "",
     "## Comparisons",
     "",
