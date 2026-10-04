@@ -14,6 +14,7 @@ import { crmContent } from "@/content/crm";
 import { crmSignupContent, type CrmSignupCopy } from "@/content/crm-signup";
 import { LOGIN_URL } from "@/components/landing/context";
 import { CRM_PATHS, type LandingLang } from "@/i18n/landing-lang";
+import { START_PATHS } from "@/i18n/start";
 import { submitLead } from "@/lib/leads.functions";
 import { capture, identifyAccount } from "@/lib/posthog";
 import { YUNO_APP_ORIGIN, appHandoffUrl, newSignupKey, trackSignup, yunoApp } from "@/lib/yuno-app";
@@ -25,11 +26,18 @@ import { YUNO_APP_ORIGIN, appHandoffUrl, newSignupKey, trackSignup, yunoApp } fr
 // tracked in the app's `pro_signups` (RPC track_pro_signup, `product: "crm"`), the
 // account is created on the Yuno app's Supabase, `complete_pro_signup` opens a CRM
 // Console with its 14-day trial, then the session is handed to yunoapp.eu.
+// Google / Apple: `signInWithOAuth` (implicit flow) leaves for the provider and comes
+// back HERE with the session in the URL fragment; the funnel resumes on "type" and the
+// account is opened like any other (same `complete_pro_signup`, same handoff).
 
 type Step = "email" | "password" | "type" | "name" | "cap" | "code" | "done";
 type CodeState = "idle" | "checking" | "ok" | "error";
 
 const FLOW: Step[] = ["email", "password", "type", "name", "cap", "code", "done"];
+// Google / Apple: the provider vouches for the address, so no password and no code.
+// "email" stays as the (already done) first bar; the journey resumes on "type".
+const FLOW_OAUTH: Step[] = ["email", "type", "name", "cap", "done"];
+type Provider = "google" | "apple";
 const STORE_KEY = "yuno_crm_signup_key";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 // What complete_pro_signup knows: a club or an organizer space.
@@ -133,6 +141,35 @@ const pwChecks = (v: string) => [
   /[\d\W_]/.test(v),
 ];
 
+function ProviderMark({ provider }: { provider: Provider }) {
+  if (provider === "apple")
+    return (
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden fill="currentColor">
+        <path d="M16.37 1.43c0 1.14-.42 2.2-1.12 2.97-.76.83-2 1.47-3.02 1.39-.13-1.1.4-2.26 1.08-2.99.76-.82 2.07-1.42 3.06-1.37zM20.5 17.3c-.55 1.27-.82 1.84-1.53 2.96-.99 1.57-2.39 3.52-4.12 3.53-1.54.02-1.94-1-4.03-.99-2.09.01-2.53 1.01-4.07.99-1.73-.02-3.05-1.78-4.04-3.35C-.27 16.1-.56 10.9 1.15 8.27c1.21-1.87 3.12-2.97 4.92-2.97 1.83 0 2.98 1.01 4.49 1.01 1.47 0 2.36-1.01 4.48-1.01 1.6 0 3.3.87 4.51 2.38-3.96 2.17-3.32 7.82.95 9.62z" />
+      </svg>
+    );
+  return (
+    <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden>
+      <path
+        fill="#EA4335"
+        d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
+      />
+      <path
+        fill="#4285F4"
+        d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
+      />
+      <path
+        fill="#34A853"
+        d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
+      />
+    </svg>
+  );
+}
+
 export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEmail?: string }) {
   const t: CrmSignupCopy = crmSignupContent[lang];
   const contactEmail = crmContent[lang].faq.email;
@@ -180,6 +217,13 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
   const [submitError, setSubmitError] = useState("");
   const [handoff, setHandoff] = useState<{ at: string; rt: string; redirect: string } | null>(null);
   const [leaving, setLeaving] = useState(false);
+  // Google / Apple: a session is already there when the person comes back from the provider.
+  const [oauthSession, setOauthSession] = useState<Session | null>(null);
+  const [oauthBusy, setOauthBusy] = useState<Provider | null>(null);
+  const [oauthErr, setOauthErr] = useState("");
+  const [resuming, setResuming] = useState(() =>
+    /(^|[#&])(access_token|error)=/.test(window.location.hash),
+  );
 
   const emailRef = useRef<HTMLInputElement>(null);
   const emailWrap = useRef<HTMLDivElement>(null);
@@ -193,22 +237,82 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
 
   const typeItem = t.type.items.find((i) => i.id === type);
   const capItem = t.cap.items.find((i) => i.id === cap);
-  const stepIndex = FLOW.indexOf(step);
-  const total = FLOW.length - 1;
+  const flow = oauthSession ? FLOW_OAUTH : FLOW;
+  // With a provider session the first step is already behind the person: no way back to it.
+  const firstIndex = oauthSession ? 1 : 0;
+  const stepIndex = flow.indexOf(step);
+  const total = flow.length - 1;
   const done = step === "done";
 
-  // Journey opened.
+  // Journey opened — or resumed after Google / Apple (session in the URL fragment).
   useEffect(() => {
-    void trackSignup(key, "opened", { lang, product: "crm", ...attribution("start_crm") });
-    capture("pro_signup_opened", {
-      audience: "pro",
-      product: "crm",
-      lang,
-      variant: "page",
-      role: null,
-      ...attribution("start_crm"),
-    });
+    const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+    const accessToken = hash.get("access_token");
+    const refreshToken = hash.get("refresh_token");
+    const failed = hash.get("error") || new URLSearchParams(window.location.search).get("error");
+    if (!accessToken && !failed) {
+      void trackSignup(key, "opened", { lang, product: "crm", ...attribution("start_crm") });
+      capture("pro_signup_opened", {
+        audience: "pro",
+        product: "crm",
+        lang,
+        variant: "page",
+        role: null,
+        ...attribution("start_crm"),
+      });
+      return;
+    }
+    // Tokens must not stay in the address bar (history, shared screenshots).
+    window.history.replaceState(null, "", `${window.location.pathname}?product=crm`);
+    const fail = (reason: string) => {
+      capture("pro_signup_failed", {
+        audience: "pro",
+        product: "crm",
+        lang,
+        source: "start_crm",
+        method: "oauth",
+        code: reason,
+      });
+      setOauthErr(t.errors.oauth);
+      setResuming(false);
+    };
+    if (failed || !accessToken || !refreshToken) {
+      fail(failed || "no_session");
+      return;
+    }
+    void (async () => {
+      const sb = yunoApp();
+      const { data, error } = await sb.auth.setSession({
+        access_token: accessToken,
+        refresh_token: refreshToken,
+      });
+      const user = data.session?.user;
+      if (error || !data.session || !user?.email) {
+        fail(error ? "set_session" : "no_email");
+        return;
+      }
+      const method = (user.app_metadata?.provider as string | undefined) ?? "oauth";
+      capture("pro_signup_step_completed", {
+        audience: "pro",
+        product: "crm",
+        step: "email",
+        method,
+        lang,
+        source: "start_crm",
+      });
+      setEmail(user.email);
+      setOauthSession(data.session);
+      setResuming(false);
+      go("type");
+    })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Back from the provider's page with the browser's back button: unlock the buttons.
+  useEffect(() => {
+    const onShow = (e: PageTransitionEvent) => e.persisted && setOauthBusy(null);
+    window.addEventListener("pageshow", onShow);
+    return () => window.removeEventListener("pageshow", onShow);
   }, []);
 
   const go = useCallback((to: Step) => {
@@ -243,10 +347,10 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
   const back = useCallback(() => {
     window.clearTimeout(timer.current);
     setSubmitError("");
-    const i = FLOW.indexOf(step);
+    const i = flow.indexOf(step);
     if (step === "code") return go("email");
-    if (i > 0 && step !== "done") go(FLOW[i - 1]);
-  }, [step, go]);
+    if (i > firstIndex && step !== "done") go(flow[i - 1]);
+  }, [step, go, flow, firstIndex]);
 
   // 1-4 pick on the two choice steps, Esc goes back (never while typing).
   useEffect(() => {
@@ -256,7 +360,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       const n = parseInt(e.key, 10);
       if (step === "type" && n >= 1 && n <= 4) pickType(t.type.items[n - 1].id as TypeId);
       if (step === "cap" && n >= 1 && n <= 4) setCap(t.cap.items[n - 1].id);
-      if (e.key === "Escape" && stepIndex > 0 && !done) back();
+      if (e.key === "Escape" && stepIndex > firstIndex && !done) back();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -274,6 +378,47 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
           .trim()
       : "";
   const suggestion = dom && TYPOS[dom] ? email.slice(0, at) + "@" + TYPOS[dom] : "";
+
+  async function startOAuth(provider: Provider) {
+    if (oauthBusy) return;
+    setOauthErr("");
+    setOauthBusy(provider);
+    capture(
+      "pro_signup_step_completed",
+      {
+        audience: "pro",
+        product: "crm",
+        step: "email",
+        method: provider,
+        lang,
+        source: "start_crm",
+      },
+      true,
+    );
+    const { data, error } = await yunoApp().auth.signInWithOAuth({
+      provider,
+      options: {
+        // Back on this very funnel, in the page's language. The origin must be listed in the
+        // Supabase Auth redirect URLs (docs: "Yuno CRM — connexion Google / Apple").
+        redirectTo: `${window.location.origin}${START_PATHS[lang]}?product=crm`,
+        skipBrowserRedirect: true,
+      },
+    });
+    if (error || !data.url) {
+      setOauthBusy(null);
+      setOauthErr(t.errors.oauth);
+      capture("pro_signup_failed", {
+        audience: "pro",
+        product: "crm",
+        lang,
+        source: "start_crm",
+        method: provider,
+        code: error?.name ?? "no_url",
+      });
+      return;
+    }
+    window.location.assign(data.url);
+  }
 
   function submitEmail(e: FormEvent) {
     e.preventDefault();
@@ -371,6 +516,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
         source: "start_crm",
         pillars: [],
         space_opened: !cErr,
+        method: oauthSession ? (session.user.app_metadata?.provider ?? "oauth") : "password",
       },
       true,
     );
@@ -430,6 +576,14 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       current_tool: "shotgun",
       product: "crm",
     });
+
+    // Google / Apple: the account already exists, only the CRM space is left to open.
+    if (oauthSession) {
+      identifyAccount(oauthSession.user.id, role);
+      await openSpace(oauthSession);
+      setBusy(false);
+      return;
+    }
 
     const sb = yunoApp();
     const { data, error: signErr } = await sb.auth.signUp({
@@ -655,10 +809,10 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
                   onClick={back}
                   className="yc-su-back flex items-center gap-1 py-1 pr-2 text-[14px] font-medium"
                   style={{
-                    opacity: stepIndex > 0 && !done ? 1 : 0,
-                    pointerEvents: stepIndex > 0 && !done ? "auto" : "none",
+                    opacity: stepIndex > firstIndex && !done ? 1 : 0,
+                    pointerEvents: stepIndex > firstIndex && !done ? "auto" : "none",
                   }}
-                  tabIndex={stepIndex > 0 && !done ? 0 : -1}
+                  tabIndex={stepIndex > firstIndex && !done ? 0 : -1}
                 >
                   <svg
                     width="18"
@@ -704,7 +858,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
             </div>
 
             <div key={step} className="yc-su-in">
-              {step === "email" && (
+              {step === "email" && !resuming && (
                 <div className="flex flex-col gap-7">
                   <div className="flex flex-col gap-3.5">
                     <Title size="lg">
@@ -718,13 +872,36 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
                       {t.email.sub}
                     </p>
                   </div>
-                  {/* Google / Apple sign-in: design only for now, wired later. */}
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {[t.email.google, t.email.apple].map((label) => (
-                      <button key={label} type="button" className="yc-su-oauth">
-                        {label}
-                      </button>
-                    ))}
+                  <div className="flex flex-col gap-2.5">
+                    <div className="grid grid-cols-2 gap-2.5">
+                      {(
+                        [
+                          ["google", t.email.google],
+                          ["apple", t.email.apple],
+                        ] as const
+                      ).map(([provider, label]) => (
+                        <button
+                          key={provider}
+                          type="button"
+                          className="yc-su-oauth"
+                          disabled={oauthBusy !== null}
+                          aria-busy={oauthBusy === provider}
+                          onClick={() => void startOAuth(provider)}
+                        >
+                          <ProviderMark provider={provider} />
+                          {oauthBusy === provider ? t.email.busy : label}
+                        </button>
+                      ))}
+                    </div>
+                    {oauthErr && (
+                      <p
+                        className="m-0 text-[14px] font-medium"
+                        style={{ color: c("red-600") }}
+                        role="alert"
+                      >
+                        {oauthErr}
+                      </p>
+                    )}
                   </div>
                   <div
                     className="flex items-center gap-3.5 text-[12px] uppercase"

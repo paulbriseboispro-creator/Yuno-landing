@@ -93,7 +93,13 @@ Starting from `main` silently throws away the newest design and copy. So, before
   `complete_pro_signup` opens a CRM Console with its 14-day trial, then handoff to yunoapp.eu. Own
   journey key (`yuno_crm_signup_key`). Type → role: club/bar → club, collective/festival → organizer.
   The 6-digit step uses `verifyOtp(type: "signup")`: the Supabase "Confirm signup" email template must
-  contain `{{ .Token }}` (the link keeps working as a fallback). The Google / Apple buttons are in the design but not wired yet (no-op).
+  contain `{{ .Token }}` (the link keeps working as a fallback). Google / Apple (wired 4 Oct 2026): `signInWithOAuth` on the app's Supabase (implicit flow, `skipBrowserRedirect`),
+  `redirectTo` = this funnel in the page's language (`/fr/start?product=crm`); the session comes back in the URL fragment,
+  is read by `CrmSignup` (`setSession`, fragment wiped with `history.replaceState`) and the journey resumes on "type"
+  with a shorter flow (`FLOW_OAUTH`: no password, no code, no way back to the email step). Same `complete_pro_signup`
+  and handoff afterwards. **Prerequisite in the Yuno app's Supabase Auth → URL configuration: `https://landing.yunoapp.eu/**`
+  must be in the Redirect URLs allow-list**, otherwise Supabase falls back to yunoapp.eu and the funnel never resumes.
+  Google and Apple providers are already enabled there (Apple Services ID `eu.yunoapp.web`).
   The generic `SignupFlow`/`SignupModal` stay for the Suite landing, associations and `/start` without product.
 - Opening the signup (modal or `/start?product=crm`) writes a `pro_signups` row in production: never
   test it against production without blocking `track_pro_signup` or deleting the row it writes

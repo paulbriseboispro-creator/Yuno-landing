@@ -22,7 +22,14 @@ let client: SupabaseClient | null = null;
 export function yunoApp(): SupabaseClient {
   if (!client) {
     client = createClient(YUNO_SUPABASE_URL, YUNO_SUPABASE_KEY, {
-      auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+      // Implicit flow on purpose: Google / Apple sign-in leaves for the provider and comes back
+      // with the session in the URL fragment, read by the funnel itself (no PKCE verifier to keep).
+      auth: {
+        flowType: "implicit",
+        persistSession: false,
+        autoRefreshToken: false,
+        detectSessionInUrl: false,
+      },
     });
   }
   return client;

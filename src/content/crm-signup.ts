@@ -212,6 +212,7 @@ const fr = {
     email: "Cette adresse e-mail n’est pas valide.",
     password: "Ce mot de passe n’est pas accepté. Choisissez-en un plus long.",
     generic: "Impossible de créer le compte pour le moment. Réessayez ou écrivez-nous.",
+    oauth: "La connexion n’a pas abouti. Réessayez ou continuez avec votre e-mail.",
   },
 };
 
@@ -419,6 +420,7 @@ const en: CrmSignupCopy = {
     email: "This email address isn't valid.",
     password: "This password isn't accepted. Choose a longer one.",
     generic: "We can't create the account right now. Try again or write to us.",
+    oauth: "Sign-in didn't go through. Try again or continue with your email.",
   },
 };
 
@@ -625,6 +627,7 @@ const es: CrmSignupCopy = {
     email: "Esta dirección de e-mail no es válida.",
     password: "Esta contraseña no se acepta. Elige una más larga.",
     generic: "No podemos crear la cuenta ahora mismo. Inténtalo de nuevo o escríbenos.",
+    oauth: "No se pudo iniciar sesión. Inténtalo de nuevo o continúa con tu e-mail.",
   },
 };
 

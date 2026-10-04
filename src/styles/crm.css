@@ -780,6 +780,10 @@ html:has(.ycrm) {
 }
 
 .ycrm .yc-su-oauth {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   height: 50px;
   border-radius: 999px;
   border: 1.5px solid var(--color-yc-sand-200);
@@ -795,6 +799,11 @@ html:has(.ycrm) {
   background: var(--color-yc-sand-50);
   transform: translateY(-1px);
 }
-.ycrm .yc-su-oauth:active {
+.ycrm .yc-su-oauth:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+}
+.ycrm .yc-su-oauth:active:not(:disabled) {
   transform: scale(0.97);
 }
