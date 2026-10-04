@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -13,27 +13,36 @@ import { Accent, CtaButton, EASE, Reveal } from "./ui";
 // the card flips from sand (what ticketing gives) to night (what Yuno gives).
 // Flips with the scroll: the logo stays put, the card changes as it crosses the viewport.
 
-// Yunit seen straight on: flat red disc, white pixel face, no tilt, no gloss.
+// The official Yunit (claude.design "YunitFace", mood "content"): gradient disc,
+// pixel head cut by a mask, straight on.
 function YunitFace() {
+  const id = useId();
   return (
-    <svg viewBox="0 0 100 100" aria-hidden className="absolute inset-[5%] size-[90%]">
-      <defs>
-        <radialGradient id="yunit-face" cx="35%" cy="28%" r="85%">
-          <stop offset="0" stopColor="#ff5a3c" />
-          <stop offset="1" stopColor="#e8192c" />
-        </radialGradient>
-      </defs>
-      <circle cx="50" cy="50" r="50" fill="url(#yunit-face)" />
-      <g transform="translate(21 21) scale(.58)">
-        <path
-          fill="#fff"
-          d="M30 0h40v10h20v20h10v40H90v20H70v10H30V90H10V70H0V30h10V10h20z"
-        />
-        <rect x="27" y="32" width="15" height="17" fill="#ef2a2a" />
-        <rect x="58" y="32" width="15" height="17" fill="#ef2a2a" />
-        <path d="M22 60q28 22 56 0" fill="none" stroke="#ef2a2a" strokeWidth="7" />
-      </g>
-    </svg>
+    <span className="absolute inset-[5%] block overflow-hidden rounded-full bg-[linear-gradient(65deg,#E3141B_8%,#FF6B35_96%)]">
+      <svg viewBox="38 38 1175 1175" aria-hidden className="block size-full">
+        <mask id={id} maskUnits="userSpaceOnUse" x="0" y="0" width="1250" height="1250">
+          <rect width="1250" height="1250" fill="#fff" />
+          <g fill="#000">
+            <rect x="451" y="458" width="110" height="136" rx="12" />
+            <rect x="692" y="458" width="111" height="136" rx="12" />
+            <rect x="375" y="665" width="86" height="88" rx="12" />
+            <rect x="787" y="665" width="90" height="88" rx="12" />
+          </g>
+          <path d="M455 722C540 790 710 790 795 722" fill="none" stroke="#000" strokeWidth="32" />
+        </mask>
+        <g mask={`url(#${id})`} fill="#fff" stroke="#fff" strokeWidth="22" strokeLinejoin="round">
+          <rect x="471" y="273" width="313" height="78" />
+          <rect x="329" y="369" width="595" height="113" />
+          <rect x="211" y="499" width="831" height="246" />
+          <rect x="325" y="763" width="602" height="100" />
+          <rect x="466" y="879" width="320" height="74" />
+          <rect x="471" y="340" width="313" height="40" />
+          <rect x="329" y="470" width="595" height="40" />
+          <rect x="325" y="735" width="602" height="40" />
+          <rect x="466" y="851" width="320" height="40" />
+        </g>
+      </svg>
+    </span>
   );
 }
 
@@ -180,8 +189,8 @@ export function CrmCompare() {
                       </motion.li>
                     ))}
                   </ul>
-                  <div className="-mr-12 overflow-hidden rounded-tl-[18px] shadow-[var(--shadow-halo)] ring-1 ring-white/10 sm:-mr-12">
-                    <Scaled cw={1440} height={780}>
+                  <div className="-mr-12 self-start overflow-hidden rounded-tl-[18px] shadow-[var(--shadow-halo)] ring-1 ring-white/10 sm:-mr-12">
+                    <Scaled cw={1440} height={1300}>
                       <ConsoleHome start />
                     </Scaled>
                   </div>
