@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -7,7 +7,18 @@ import {
   useScroll,
   useTransform,
 } from "motion/react";
-import { Download, Search, Send } from "lucide-react";
+import {
+  ArrowDown,
+  CalendarDays,
+  CreditCard,
+  Download,
+  Eye,
+  MousePointerClick,
+  Repeat,
+  Search,
+  Send,
+  Sparkles,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCrm } from "./content";
 import { Accent, Avatar, CtaButton, Marquee, Reveal, StatusTag, useFmt } from "./ui";
@@ -19,6 +30,153 @@ import { Accent, Avatar, CtaButton, Marquee, Reveal, StatusTag, useFmt } from ".
 
 const DOTS = ["#E3141B", "#FF6B35", "#17A34A", "#E59A0B", "#FF948D", "#F7F2F1"];
 
+// The funnel above the customer file: where the club page visitors stop, then
+// who the customers are. Numbers are the demo club's (Le Bunker), not real data.
+const FUNNEL = {
+  counts: [11655, 6593, 1117, 406, 29],
+  pcts: [100, 57, 17, 36, 7],
+  drops: [43, 83, 64, 93],
+  worst: 1,
+  heights: [0.96, 0.86, 0.46, 0.38, 0.34],
+};
+const FUNNEL_ICONS = [Eye, CalendarDays, MousePointerClick, CreditCard, Repeat];
+
+function funnelPath() {
+  const W = 1000;
+  const H = 100;
+  const w = 46;
+  const half = FUNNEL.heights.map((h) => (h * H) / 2);
+  const cy = H / 2;
+  let top = `M0 ${cy - half[0]}`;
+  let bottom = `L${W} ${cy + half[4]}`;
+  for (let i = 0; i < 4; i++) {
+    const b = (W / 5) * (i + 1);
+    top += ` L${b - w} ${cy - half[i]} C${b} ${cy - half[i]} ${b} ${cy - half[i + 1]} ${b + w} ${cy - half[i + 1]}`;
+  }
+  top += ` L${W} ${cy - half[4]}`;
+  for (let i = 3; i >= 0; i--) {
+    const b = (W / 5) * (i + 1);
+    bottom += ` L${b + w} ${cy + half[i + 1]} C${b} ${cy + half[i + 1]} ${b} ${cy + half[i]} ${b - w} ${cy + half[i]}`;
+  }
+  return `${top} ${bottom} L0 ${cy + half[0]} Z`;
+}
+
+function Funnel() {
+  const f = useCrm().night.funnel;
+  const { num, pct } = useFmt();
+  const [sel, setSel] = useState(FUNNEL.worst);
+  const id = useId();
+  return (
+    <div className="p-6 sm:p-8">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <div className="font-yc-display text-[24px] font-semibold tracking-[-0.025em] text-yc-ink">
+            {f.title}
+          </div>
+          <div className="mt-0.5 text-[13.5px] text-yc-sand-500">{f.sub}</div>
+        </div>
+        <span className="hidden items-center gap-1.5 text-[13px] text-yc-sand-500 sm:flex">
+          <Sparkles className="size-3.5" />
+          {f.hint}
+        </span>
+      </div>
+      <div className="mt-5 flex items-center gap-3 rounded-[16px] bg-yc-red-50 px-4 py-3 text-[14px] font-medium text-yc-ink">
+        <span className="size-2 flex-none rounded-full bg-yc-red-500" />
+        {f.insight}
+      </div>
+      <div className="mt-6 overflow-x-auto">
+        <div className="relative min-w-[760px]">
+          <div
+            aria-hidden
+            className="absolute inset-y-0 w-1/5 rounded-[18px] border border-yc-red-200 bg-yc-red-50/70 transition-[left] duration-300"
+            style={{ left: `${sel * 20}%` }}
+          />
+          <svg
+            aria-hidden
+            viewBox="0 0 1000 100"
+            preserveAspectRatio="none"
+            className="pointer-events-none absolute inset-x-0 top-[72px] z-10 h-[190px] w-full"
+          >
+            <defs>
+              <linearGradient id={id} x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0" stopColor="#E3141B" />
+                <stop offset="0.79" stopColor="#FF3A30" />
+                <stop offset="0.8" stopColor="#FF9A8A" />
+                <stop offset="1" stopColor="#FF9A8A" />
+              </linearGradient>
+            </defs>
+            <path d={funnelPath()} fill={`url(#${id})`} />
+          </svg>
+          <div className="relative z-20 grid grid-cols-5">
+            {f.steps.map((st, i) => {
+              const Icon = FUNNEL_ICONS[i];
+              const on = sel === i;
+              return (
+                <button
+                  key={st.label}
+                  type="button"
+                  onClick={() => setSel(i)}
+                  aria-pressed={on}
+                  className="flex flex-col items-center px-2 pb-4 text-center"
+                >
+                  <span className="mt-4 flex h-[56px] flex-col items-center gap-1.5">
+                    <span
+                      className={cn(
+                        "flex size-[30px] items-center justify-center rounded-full transition-colors",
+                        on ? "bg-yc-ink text-white" : "bg-yc-sand-100 text-yc-ink",
+                      )}
+                    >
+                      <Icon className="size-4" />
+                    </span>
+                    <span className="text-[14px] font-semibold text-yc-ink">{st.label}</span>
+                  </span>
+                  <span className="flex h-[198px] flex-col items-center justify-center text-white">
+                    <span className="font-yc-display text-[26px] font-semibold tracking-[-0.02em]">
+                      {pct(FUNNEL.pcts[i])}
+                    </span>
+                    <span className="text-[12.5px] opacity-90">{st.cap}</span>
+                  </span>
+                  <span className="font-yc-display text-[28px] font-semibold tracking-[-0.02em] text-yc-ink">
+                    {num(FUNNEL.counts[i])}
+                  </span>
+                  <span className="mt-0.5 max-w-[170px] text-[12.5px] leading-4 text-yc-sand-500">
+                    {st.count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          {FUNNEL.drops.map((d, i) => (
+            <span
+              key={i}
+              className={cn(
+                "absolute top-[167px] z-30 -translate-x-1/2 rounded-full px-2.5 py-1 text-[12px] font-semibold shadow-sm",
+                i === FUNNEL.worst ? "bg-yc-ink text-white" : "bg-white text-yc-ink",
+              )}
+              style={{ left: `${(i + 1) * 20}%` }}
+            >
+              −{pct(d)}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Bridge() {
+  const label = useCrm().night.funnel.bridge;
+  return (
+    <div className="relative px-6 sm:px-8">
+      <div className="border-t border-yc-sand-200" />
+      <span className="absolute left-1/2 top-0 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-full border border-yc-sand-200 bg-white px-4 py-1.5 text-[13px] font-semibold text-yc-ink">
+        <ArrowDown className="size-3.5 text-yc-red-500" />
+        {label}
+      </span>
+    </div>
+  );
+}
+
 function ClientsTable() {
   const t = useCrm().night.table;
   const { num } = useFmt();
@@ -28,117 +186,121 @@ function ClientsTable() {
   const tones: (null | string[])[] = [null, ["hot"], ["new"], ["cold"]];
   const rows = t.rows.filter((r) => !tones[f] || tones[f]!.includes(r.tone));
   return (
-    <div ref={ref} className="relative bg-white p-6 text-left sm:p-8 sm:pb-24">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <div className="font-yc-display text-[24px] font-semibold tracking-[-0.025em] text-yc-ink">
-            {t.title}
+    <div ref={ref} className="relative bg-white text-left">
+      <Funnel />
+      <Bridge />
+      <div className="p-6 sm:p-8 sm:pb-24">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <div className="font-yc-display text-[24px] font-semibold tracking-[-0.025em] text-yc-ink">
+              {t.title}
+            </div>
+            <div className="mt-0.5 text-[13.5px] text-yc-sand-500">{t.sub}</div>
           </div>
-          <div className="mt-0.5 text-[13.5px] text-yc-sand-500">{t.sub}</div>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="flex h-9 w-[220px] items-center gap-2 rounded-full border border-yc-sand-200 bg-white px-3 text-[13.5px] text-yc-sand-400">
-            <Search className="size-4" />
-            {t.search}
-          </span>
-          <div className="inline-flex gap-0.5 rounded-full bg-yc-sand-100 p-[3px]">
-            {t.filters.map((x, i) => (
-              <button
-                key={x}
-                type="button"
-                onClick={() => setF(i)}
-                className={cn(
-                  "h-[30px] rounded-full px-3.5 text-[13px] font-semibold transition-colors",
-                  f === i ? "bg-yc-ink text-white" : "text-yc-sand-600 hover:text-yc-ink",
-                )}
-              >
-                {x}
-              </button>
-            ))}
-          </div>
-          <span className="hidden h-9 items-center gap-1.5 rounded-full border border-yc-sand-200 px-3.5 text-[13.5px] font-semibold text-yc-ink sm:flex">
-            <Download className="size-4" />
-            {t.export}
-          </span>
-        </div>
-      </div>
-      <div className="mt-5 overflow-x-auto">
-        <table className="w-full min-w-[760px] border-separate border-spacing-0 text-[14px]">
-          <thead>
-            <tr>
-              {t.cols.map((c, i) => (
-                <th
-                  key={c}
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="flex h-9 w-[220px] items-center gap-2 rounded-full border border-yc-sand-200 bg-white px-3 text-[13.5px] text-yc-sand-400">
+              <Search className="size-4" />
+              {t.search}
+            </span>
+            <div className="inline-flex gap-0.5 rounded-full bg-yc-sand-100 p-[3px]">
+              {t.filters.map((x, i) => (
+                <button
+                  key={x}
+                  type="button"
+                  onClick={() => setF(i)}
                   className={cn(
-                    "whitespace-nowrap border-b border-yc-sand-200 px-3.5 py-2.5 text-left font-yc-mono text-[11.5px] font-medium uppercase tracking-[0.05em] text-yc-sand-500",
-                    (i === 1 || i === 2) && "text-right",
+                    "h-[30px] rounded-full px-3.5 text-[13px] font-semibold transition-colors",
+                    f === i ? "bg-yc-ink text-white" : "text-yc-sand-600 hover:text-yc-ink",
                   )}
                 >
-                  {c}
-                </th>
+                  {x}
+                </button>
               ))}
-            </tr>
-          </thead>
-          <tbody>
-            <AnimatePresence initial={false}>
-              {rows.map((r, i) => (
-                <motion.tr
-                  key={r.name}
-                  layout
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 8 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.45, delay: inView ? i * 0.05 : 0 }}
-                  className={cn(
-                    "transition-colors hover:bg-yc-paper",
-                    i === 1 && f === 0 && "bg-yc-red-50 hover:bg-yc-red-50",
-                  )}
-                >
-                  <td className="border-b border-yc-sand-100 px-3.5 py-3">
-                    <span className="flex items-center gap-2.5">
-                      <Avatar ini={r.ini} tone={r.tone as "hot"} size={34} />
-                      <span className="flex flex-col">
-                        <span className="whitespace-nowrap font-semibold leading-[18px] text-yc-ink">
-                          {r.name}
+            </div>
+            <span className="hidden h-9 items-center gap-1.5 rounded-full border border-yc-sand-200 px-3.5 text-[13.5px] font-semibold text-yc-ink sm:flex">
+              <Download className="size-4" />
+              {t.export}
+            </span>
+          </div>
+        </div>
+        <div className="mt-5 overflow-x-auto">
+          <table className="w-full min-w-[760px] border-separate border-spacing-0 text-[14px]">
+            <thead>
+              <tr>
+                {t.cols.map((c, i) => (
+                  <th
+                    key={c}
+                    className={cn(
+                      "whitespace-nowrap border-b border-yc-sand-200 px-3.5 py-2.5 text-left font-yc-mono text-[11.5px] font-medium uppercase tracking-[0.05em] text-yc-sand-500",
+                      (i === 1 || i === 2) && "text-right",
+                    )}
+                  >
+                    {c}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <AnimatePresence initial={false}>
+                {rows.map((r, i) => (
+                  <motion.tr
+                    key={r.name}
+                    layout
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 8 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.45, delay: inView ? i * 0.05 : 0 }}
+                    className={cn(
+                      "transition-colors hover:bg-yc-paper",
+                      i === 1 && f === 0 && "bg-yc-red-50 hover:bg-yc-red-50",
+                    )}
+                  >
+                    <td className="border-b border-yc-sand-100 px-3.5 py-3">
+                      <span className="flex items-center gap-2.5">
+                        <Avatar ini={r.ini} tone={r.tone as "hot"} size={34} />
+                        <span className="flex flex-col">
+                          <span className="whitespace-nowrap font-semibold leading-[18px] text-yc-ink">
+                            {r.name}
+                          </span>
+                          <span className="text-[12.5px] leading-4 text-yc-red-600">{r.sub}</span>
                         </span>
-                        <span className="text-[12.5px] leading-4 text-yc-red-600">{r.sub}</span>
                       </span>
-                    </span>
-                  </td>
-                  <td className="border-b border-yc-sand-100 px-3.5 py-3 text-right font-medium tabular-nums text-yc-ink">
-                    {num(r.nights)}
-                  </td>
-                  <td className="whitespace-nowrap border-b border-yc-sand-100 px-3.5 py-3 text-right text-yc-sand-700">
-                    {r.last}
-                  </td>
-                  <td className="border-b border-yc-sand-100 px-3.5 py-3">
-                    <span className="flex min-w-[130px] items-center gap-2.5">
-                      <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-yc-sand-100">
-                        <span
-                          className="block h-full rounded-full"
-                          style={{
-                            width: inView ? `${r.score}%` : "0%",
-                            background: "var(--gradient-brand)",
-                            transition: `width 1s cubic-bezier(.22,1,.36,1) ${0.2 + i * 0.06}s`,
-                          }}
-                        />
+                    </td>
+                    <td className="border-b border-yc-sand-100 px-3.5 py-3 text-right font-medium tabular-nums text-yc-ink">
+                      {num(r.nights)}
+                    </td>
+                    <td className="whitespace-nowrap border-b border-yc-sand-100 px-3.5 py-3 text-right text-yc-sand-700">
+                      {r.last}
+                    </td>
+                    <td className="border-b border-yc-sand-100 px-3.5 py-3">
+                      <span className="flex min-w-[130px] items-center gap-2.5">
+                        <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-yc-sand-100">
+                          <span
+                            className="block h-full rounded-full"
+                            style={{
+                              width: inView ? `${r.score}%` : "0%",
+                              background: "var(--gradient-brand)",
+                              transition: `width 1s cubic-bezier(.22,1,.36,1) ${0.2 + i * 0.06}s`,
+                            }}
+                          />
+                        </span>
+                        <span className="w-6 text-right text-[13px] font-semibold tabular-nums text-yc-ink">
+                          {r.score}
+                        </span>
                       </span>
-                      <span className="w-6 text-right text-[13px] font-semibold tabular-nums text-yc-ink">
-                        {r.score}
-                      </span>
-                    </span>
-                  </td>
-                  <td className="whitespace-nowrap border-b border-yc-sand-100 px-3.5 py-3 text-[13px] text-yc-sand-600">
-                    {r.reach}
-                  </td>
-                  <td className="border-b border-yc-sand-100 px-3.5 py-3">
-                    <StatusTag tone={r.tone as "hot"}>{r.tag}</StatusTag>
-                  </td>
-                </motion.tr>
-              ))}
-            </AnimatePresence>
-          </tbody>
-        </table>
+                    </td>
+                    <td className="whitespace-nowrap border-b border-yc-sand-100 px-3.5 py-3 text-[13px] text-yc-sand-600">
+                      {r.reach}
+                    </td>
+                    <td className="border-b border-yc-sand-100 px-3.5 py-3">
+                      <StatusTag tone={r.tone as "hot"}>{r.tag}</StatusTag>
+                    </td>
+                  </motion.tr>
+                ))}
+              </AnimatePresence>
+            </tbody>
+          </table>
+        </div>
       </div>
       <motion.div
         initial={{ opacity: 0, y: 16 }}
