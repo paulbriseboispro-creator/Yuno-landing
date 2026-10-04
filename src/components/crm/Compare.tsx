@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/react";
+import { useRef, useState } from "react";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import yunoIcon from "@/assets/crm/yuno-app-icon.webp";
@@ -12,49 +12,15 @@ import { Accent, CtaButton, EASE, Reveal } from "./ui";
 // "Your ticketing says how many tickets went. Yuno says who to nudge." Two
 // folder tabs around a dial: the dial turns from a plain knob into the Yuno logo,
 // the card flips from sand (what ticketing gives) to night (what Yuno gives).
-// Flips on its own once when it comes into view; the tabs and the dial toggle it.
+// Flips with the scroll: the logo stays put, the card changes as it crosses the viewport.
 
-function Dial({ on, onClick, label }: { on: boolean; onClick: () => void; label: string }) {
+function Badge() {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-label={label}
-      aria-pressed={on}
-      className="relative z-20 grid size-[108px] place-items-center rounded-full outline-none focus-visible:ring-4 focus-visible:ring-yc-red-200 sm:size-[150px]"
-    >
-      <span className="absolute inset-x-[18%] -top-[14%] h-[38%] rounded-t-[40px] bg-yc-ink [clip-path:polygon(0_100%,8%_0,92%_0,100%_100%)]" />
-      <motion.span
-        animate={{ rotate: on ? 180 : 0 }}
-        transition={{ type: "spring", stiffness: 120, damping: 14 }}
-        className="relative grid size-full place-items-center rounded-full bg-yc-ink p-[7px] shadow-[0_18px_40px_-12px_rgba(28,21,23,.55)]"
-      >
-        <span className="relative grid size-full place-items-center overflow-hidden rounded-full bg-[radial-gradient(circle_at_35%_30%,#ffffff,#d9d4d3_45%,#a8a2a1_75%,#8a8483)] shadow-[inset_0_2px_6px_rgba(255,255,255,.8),inset_0_-6px_12px_rgba(0,0,0,.25)]">
-          <AnimatePresence initial={false} mode="popLayout">
-            {on ? (
-              <motion.img
-                key="logo"
-                src={yunoIcon}
-                alt=""
-                initial={{ opacity: 0, scale: 0.6, rotate: -180 }}
-                animate={{ opacity: 1, scale: 1, rotate: -180 }}
-                exit={{ opacity: 0, scale: 0.6 }}
-                transition={{ duration: 0.5, ease: EASE }}
-                className="absolute inset-[6%] size-[88%] rounded-full object-cover"
-              />
-            ) : (
-              <motion.span
-                key="knob"
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.6 }}
-                className="size-[38%] rounded-full bg-[conic-gradient(from_0deg,#b9b3b2,#f2efee,#9b9594,#e6e2e1,#b9b3b2)] shadow-[0_2px_4px_rgba(0,0,0,.25),inset_0_1px_2px_rgba(255,255,255,.7)]"
-              />
-            )}
-          </AnimatePresence>
-        </span>
-      </motion.span>
-    </button>
+    <img
+      src={yunoIcon}
+      alt=""
+      className="relative z-20 size-[108px] rounded-full object-cover sm:size-[150px]"
+    />
   );
 }
 
@@ -62,20 +28,10 @@ export function CrmCompare() {
   const c = useCrm().compare;
   const reduce = useReducedMotion();
   const [on, setOn] = useState(false);
-  const [touched, setTouched] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { amount: 0.55, once: true });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 70%", "end 30%"] });
 
-  useEffect(() => {
-    if (!inView || touched) return;
-    const t = setTimeout(() => setOn(true), reduce ? 0 : 1600);
-    return () => clearTimeout(t);
-  }, [inView, touched, reduce]);
-
-  const pick = (v: boolean) => {
-    setTouched(true);
-    setOn(v);
-  };
+  useMotionValueEvent(scrollYProgress, "change", (v) => setOn(v > 0.4));
 
   return (
     <section data-ph-section="compare" className="relative px-4 pt-28 sm:px-6 sm:pt-36">
@@ -88,33 +44,29 @@ export function CrmCompare() {
       <div ref={ref} className="relative mx-auto mt-16 max-w-[980px]">
         {/* folder tabs around the dial */}
         <div className="relative flex items-end justify-center">
-          <button
-            type="button"
-            onClick={() => pick(false)}
+          <div
             className={cn(
               "relative -mr-6 flex min-h-[64px] flex-1 items-center justify-end rounded-t-[22px] border border-b-0 py-3 pl-3 pr-12 text-right text-[13px] font-semibold leading-tight transition-colors sm:pr-20 sm:text-[16px]",
               !on
                 ? "border-yc-sand-200 bg-yc-sand-50 text-yc-ink"
-                : "border-transparent bg-transparent text-yc-sand-400 hover:text-yc-sand-600",
+                : "border-transparent bg-transparent text-yc-sand-400",
             )}
           >
             {c.tabs[0]}
-          </button>
-          <div className="relative z-20 -mb-10 flex-none sm:-mb-12">
-            <Dial on={on} onClick={() => pick(!on)} label={on ? c.tabs[0] : c.tabs[1]} />
           </div>
-          <button
-            type="button"
-            onClick={() => pick(true)}
+          <div className="relative z-20 -mb-10 flex-none sm:-mb-12">
+            <Badge />
+          </div>
+          <div
             className={cn(
               "relative -ml-6 flex min-h-[64px] flex-1 items-center rounded-t-[22px] border border-b-0 py-3 pl-12 pr-3 text-left text-[13px] font-semibold leading-tight transition-colors sm:pl-20 sm:text-[16px]",
               on
                 ? "border-yc-night bg-yc-night text-white"
-                : "border-transparent bg-transparent text-yc-sand-400 hover:text-yc-sand-600",
+                : "border-transparent bg-transparent text-yc-sand-400",
             )}
           >
             {c.tabs[1]}
-          </button>
+          </div>
         </div>
 
         <div className="relative overflow-hidden rounded-[32px]">
