@@ -16,7 +16,7 @@ import {
   type SignupRole,
 } from "@/components/landing/context";
 import { SignupFlow } from "@/components/landing/SignupFlow";
-import { crmContent } from "@/content/crm";
+import { CrmSignup } from "@/components/crm/signup/CrmSignup";
 import { YunoLogo } from "@/components/landing/ui";
 
 // "/start", "/fr/start", "/es/start" — the direct path to a Yuno pro account:
@@ -41,20 +41,27 @@ export function StartPage({
 }
 
 function StartBody({ role, product }: { role?: SignupRole; product?: "crm" }) {
+  // Yuno CRM: the Claude Design signup funnel, on a page of its own.
+  if (product === "crm") return <CrmStartBody />;
+  return <SuiteStartBody role={role} />;
+}
+
+function CrmStartBody() {
+  const { lang } = useLanding();
+  // The funnel reads sessionStorage and draws a random journey key: client only.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return (
+    <div className="ycrm min-h-screen overflow-x-clip">
+      {mounted ? <CrmSignup lang={lang} /> : <div className="min-h-screen bg-white" aria-hidden />}
+    </div>
+  );
+}
+
+function SuiteStartBody({ role }: { role?: SignupRole }) {
   const { t, lang } = useLanding();
-  const crm = product === "crm" ? crmContent[lang] : null;
-  // Yuno CRM: the left column tells the CRM story (the Suite copy says "no subscription").
-  const p = crm
-    ? {
-        ...t.start,
-        eyebrow: crm.hero.eyebrow,
-        heading: crm.hero.title,
-        sub: crm.hero.sub,
-        bullets: crm.hero.trust,
-        proof: "",
-      }
-    : t.start;
-  const query = [role ? `role=${role}` : "", crm ? "product=crm" : ""].filter(Boolean).join("&");
+  const p = t.start;
+  const query = role ? `role=${role}` : "";
   // The funnel reads sessionStorage and draws a random journey key: render it
   // on the client only, so server HTML and first client render always match.
   const [mounted, setMounted] = useState(false);
@@ -119,7 +126,7 @@ function StartBody({ role, product }: { role?: SignupRole; product?: "crm" }) {
           <p className="mt-4 text-[13.5px] text-zinc-600">
             {p.help}{" "}
             <a
-              href={whatsappHref(crm ? crm.whatsappMessage : t.whatsappMessage)}
+              href={whatsappHref(t.whatsappMessage)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 font-medium text-zinc-950 underline-offset-2 hover:underline"
@@ -132,13 +139,7 @@ function StartBody({ role, product }: { role?: SignupRole; product?: "crm" }) {
         <section className="order-1 md:order-2">
           <div className="yl-card p-6 sm:p-8">
             {mounted ? (
-              <SignupFlow
-                source={crm ? "start_crm" : "start"}
-                initialRole={role}
-                variant="page"
-                product={crm ? "crm" : "suite"}
-                crmCopy={crm?.signup}
-              />
+              <SignupFlow source="start" initialRole={role} variant="page" />
             ) : (
               <div className="h-[420px] animate-pulse rounded-2xl bg-zinc-50" aria-hidden />
             )}

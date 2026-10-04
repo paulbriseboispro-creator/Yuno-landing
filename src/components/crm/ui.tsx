@@ -10,6 +10,7 @@ import {
 import { motion, useInView, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { crmStartHref } from "@/i18n/start";
 import { useLanding, type SignupRole } from "@/components/landing/context";
 import appIcon from "@/assets/crm/yuno-app-icon.webp";
 
@@ -94,8 +95,9 @@ export function Eyebrow({
   );
 }
 
-// Every CTA opens the CRM signup (SignupModal product="crm"). `cta` is the
-// tracking id read by the delegated PostHog listener (src/lib/posthog-dom.ts).
+// Every CTA leads to the CRM signup funnel (/start?product=crm, the Claude Design
+// "Inscription" screens). `cta` is the tracking id read by the delegated PostHog
+// listener (src/lib/posthog-dom.ts).
 export function CtaButton({
   children,
   cta = "signup_crm",
@@ -115,15 +117,14 @@ export function CtaButton({
   block?: boolean;
   className?: string;
 }) {
-  const { openSignup } = useLanding();
+  const { lang } = useLanding();
   return (
-    <button
-      type="button"
-      onClick={() => openSignup({ role })}
+    <a
+      href={crmStartHref(lang)}
       data-ph-cta={cta}
       data-ph-role={role}
       className={cn(
-        "yc-btn has-disc",
+        "yc-btn has-disc no-underline",
         size === "sm" && "yc-btn--sm",
         size === "lg" && "yc-btn--lg",
         variant === "primary" && "yc-btn--primary",
@@ -138,7 +139,7 @@ export function CtaButton({
       <span className="yc-btn__disc" aria-hidden>
         <ArrowRight strokeWidth={2.6} />
       </span>
-    </button>
+    </a>
   );
 }
 

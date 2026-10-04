@@ -12,7 +12,7 @@ export const Route = createFileRoute("/start")({
     const product = parseStartProduct(search.product);
     return { ...(role ? { role } : {}), ...(product ? { product } : {}) };
   },
-  head: () => startHead("en"),
+  head: ({ match }) => startHead("en", match.search.product),
   component: function Start() {
     const { role, product } = Route.useSearch();
     return <StartPage lang="en" role={role} product={product} />;

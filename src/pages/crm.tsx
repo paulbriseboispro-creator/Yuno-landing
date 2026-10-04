@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { crmContent } from "@/content/crm";
 import type { LandingLang } from "@/i18n/landing-lang";
-import { CRM_PATHS } from "@/i18n/crm";
-import { LandingProvider, useLanding } from "@/components/landing/context";
-import { SignupModal } from "@/components/landing/SignupModal";
+import { CRM_PATHS } from "@/i18n/landing-lang";
+import { crmStartHref } from "@/i18n/start";
+import { LandingProvider } from "@/components/landing/context";
 import { CrmNav } from "@/components/crm/Nav";
 import { CrmHero } from "@/components/crm/Hero";
 import { CrmProof } from "@/components/crm/Proof";
@@ -21,8 +21,8 @@ import { CrmFaq, CrmFinal, CrmMobileBar } from "@/components/crm/Closing";
 // Yuno CRM ("/crm", "/fr/crm", "/es/crm"): for clubs and organizers who keep
 // their ticketing (Shotgun first). The Insyder landing grammar rebuilt on the
 // Yuno design system (src/styles/crm.css, Claude Design "Design system Yuno
-// créé"); every CTA opens the CRM signup (SignupFlow product="crm"), which opens
-// a CRM Console with its 14-day trial.
+// créé"); every CTA leads to the CRM signup funnel (/start?product=crm, see
+// components/crm/signup/CrmSignup.tsx), which opens a CRM Console with its 14-day trial.
 // Order: hero + live Console → profiles → problem → night block (features) →
 // 2-minute steps → smart marketing (automations, channels, analytics) → your AI through MCP → ticketing vs Yuno → bento → sending
 // (one counter) → pricing → FAQ → close.
@@ -53,18 +53,16 @@ export function CrmPage({ lang }: { lang: LandingLang }) {
         </main>
         <CrmFinal />
         <CrmMobileBar />
-        <SignupModal product="crm" source="crm" crmCopy={c.signup} />
-        <OpenFromHash />
+        <OpenFromHash lang={lang} />
       </div>
     </LandingProvider>
   );
 }
 
-// "…/crm#signup" opens the signup straight away (bio, DM, email signature).
-function OpenFromHash() {
-  const { openSignup } = useLanding();
+// "…/crm#signup" (bio, DM, email signature) goes straight to the signup funnel.
+function OpenFromHash({ lang }: { lang: LandingLang }) {
   useEffect(() => {
-    if (window.location.hash === "#signup") openSignup();
-  }, [openSignup]);
+    if (window.location.hash === "#signup") window.location.replace(crmStartHref(lang));
+  }, [lang]);
   return null;
 }
