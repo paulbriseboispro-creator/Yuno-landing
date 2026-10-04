@@ -34,6 +34,7 @@ import { TOPIC_PATHS } from "@/content/topics";
 import { organizationLd } from "@/i18n/landing-seo";
 import { initPosthog } from "@/lib/posthog";
 import { installClickTracking, trackSectionViews } from "@/lib/posthog-dom";
+import { measureCrmPage } from "@/lib/crm-measure";
 
 // Pages that exist in both languages. Only these get the French redirect, so
 // asset/server routes (sitemap.xml, og/*.png) are never rewritten to /fr.
@@ -250,6 +251,9 @@ function RootComponent() {
     return installClickTracking();
   }, []);
   useEffect(() => trackSectionViews(pathname), [pathname]);
+  // Yuno CRM page + its signup funnel: first-party, cookieless measurement
+  // read by the CRM super admin (src/lib/crm-measure.ts).
+  useEffect(() => measureCrmPage(pathname, window.location.search), [pathname]);
 
   let header: ReactNode;
   let footer: ReactNode;
