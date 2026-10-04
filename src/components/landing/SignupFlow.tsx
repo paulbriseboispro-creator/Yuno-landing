@@ -54,7 +54,7 @@ import { capture, identifyAccount } from "@/lib/posthog";
 // their ticketing, so there is no "what do you sell" step — the structure step
 // asks which ticketing they use (Shotgun preselected) and every tracked step
 // carries `product: "crm"`, which complete_pro_signup reads to open a CRM
-// Console (yuno repo, migration 20261002190000) with a 14-day Pro trial.
+// Console (yuno repo, migration 20261002190000) with its 14-day trial (5,000 Yunits).
 
 const ROLE_ICONS: Record<SignupRole, LucideIcon> = {
   club: Building2,

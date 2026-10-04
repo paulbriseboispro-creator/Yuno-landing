@@ -134,15 +134,21 @@ ticketing the pro already uses (Shotgun by API token, read-only; other tools by 
 nothing: no tickets, no door, no payments. It is the Yuno marketing engine on an external ticketing:
 living base, night reports compared with the previous night, segments, Email Studio, automations,
 Meta audiences (not live yet — say "soon"), team rights, consent and deliverability.
-**Unlike the ticketing Suite, it is PAID** — never reuse the Suite's "€0 subscription" lines on its page:
-| Plan | Price excl. VAT / month | Founder price (first 15 accounts, 12 months) | Emails / month | SMS / month | Sync | Automations | Users |
-|---|---|---|---|---|---|---|---|
-| Free | 0 € | — | 1,000 | — | daily | — | 1 |
-| Essential | 49 € | 35 € | 15,000 | 100 | hourly | 3 at once | 3 |
-| Pro (most chosen) | 129 € | 89 € | 50,000 | 250 | every 15 min | all + A/B + resend | 5 |
-| Business | 249 € | 175 € | 100,000 | 500 | every 15 min | all | unlimited |
-Yearly = 10 months. Every account starts with 14 days of Pro, no card; then Free with the base intact.
-SMS sending and Meta audiences open later ("soon"). Email top-ups at cost (10 € per 10,000). Source of
-truth for the grid: `src/lib/crmPlans.ts` in the yuno repo (mirror of `crm_plan_limits`).
+**Unlike the ticketing Suite, it is PAID** — never reuse the Suite's "€0 subscription" lines on its page.
+One offer since 4 Oct 2026 (Paul's decision of 2 Oct): a subscription + Yunits, no plans, no email quota,
+no seat or automation cap.
+| Item | Value |
+|---|---|
+| Subscription | 29 € HT / month at launch (39 € later for NEW accounts; a 29 € subscriber keeps 29 € while subscribed) |
+| Yearly | 348 € HT / year (12 × 29, no discount) + 30,000 bonus Yunits at once (≈ two months) |
+| Yunits included | 10,000 every month (offered Yunits expire at month end and are used first) |
+| Cost per send | email 1 Yunit · SMS 40 Yunits · Instagram DM 10 and WhatsApp 100 = "soon" |
+| Always free | test sends, the AI assistant, contacts Yuno sets aside so as not to overload them |
+| Recharges | 500 Yunits per € (10 € = 5,000 · 25 € = 12,500 · 50 € = 27,500 (+10 %) · 100 € = 57,500 (+15 %)), valid 12 months; auto top-up off by default, with a ceiling |
+| Trial | 14 days, the whole tool + 5,000 Yunits, no card, no free plan; without a subscription the account pauses (base visible, nothing sent, Shotgun sync stops) |
+Prices excl. VAT (20 % on the invoice). SMS and the MCP server (plug ChatGPT, Claude or Gemini
+into the base) are announced as live (Paul, 4 Oct 2026). Meta audiences: "soon". Data hosted in the EU (Supabase
+eu-west-1): write "Europe", never "France". Source of truth: `src/lib/crmPlans.ts`,
+`supabase/functions/_shared/crm-billing.ts` and `crm_pricing_config()` in the yuno repo.
 Positioning: "Keep your ticketing. Make your crowd come back." Don't claim Shotgun lacks a CRM
 (it has one): talk about what Yuno CRM does, not what others don't.

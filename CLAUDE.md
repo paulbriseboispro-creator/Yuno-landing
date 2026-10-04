@@ -64,16 +64,34 @@ Starting from `main` silently throws away the newest design and copy. So, before
 ## Yuno CRM page (`/crm`, `/fr/crm`, `/es/crm`)
 - Second product: organizers and clubs who KEEP their ticketing (Shotgun first). Page
   `src/pages/crm.tsx`, sections `src/components/crm/*`, copy `src/content/crm.ts` (EN/FR/ES,
-  shape-checked), head/JSON-LD `src/i18n/crm.ts` (bump `CRM_UPDATED`), paths `CRM_PATHS` in
-  `src/i18n/landing-lang.ts` (standalone surface, like the asso page; "/crm" sends FR/ES browsers on).
-- PAID pricing (unlike the Suite): grid in `docs/yuno-context.md` § Yuno CRM, mirror of the app's
-  `src/lib/crmPlans.ts`. Never show the Suite's "€0" banner or copy there.
+  shape-checked: `fr` is the shape), head/JSON-LD `src/i18n/crm.ts` (bump `CRM_UPDATED`), paths
+  `CRM_PATHS` in `src/i18n/landing-lang.ts` (standalone surface; "/crm" sends FR/ES browsers on).
+- Look: the Insyder landing grammar (floating pill nav, centred hero + live product frame, profile
+  marquee, problem + phone, night block with chip marquees, sticky monitor steps, "your data, your AI,
+  through MCP" (ChatGPT / Claude / Gemini marks in `components/crm/marks.tsx`), "your ticketing gives
+  you / Yuno gives you" dial, bento, sending composer, pricing, FAQ, final call + footer card) rebuilt on the
+  Yuno design system of the Claude Design project "Design system Yuno créé": tokens and `.yc-*`
+  classes in `src/styles/crm.css` (scoped to `.ycrm`, `yc-` Tailwind colors/fonts, light only),
+  Bricolage Grotesque / Geist / Geist Mono loaded by `crmHead`. Yuno Red #E3141B + tangerine gradient,
+  vouvoiement in FR, one accented phrase per headline (`title` + `accent` in the copy).
+- The hero frame is a React rebuild of the Console home ("Dashboard Accueil" of the design,
+  `components/crm/Dashboard.tsx`), scaled from 1440 px; it tours itself (`.yc-tour`). Its numbers are
+  the design's demo club (Le Bunker), not real data. No `h1`/`h2` inside it (page outline).
+- Assets `src/assets/crm/*`: the app icon, the Shotgun logo, and the two 3D Yunit coins cut out from
+  Paul's originals (`Downloads/Token #1|#2.png`).
+- SMS and the MCP server (ChatGPT, Claude, Gemini) are announced as live (Paul, 4 Oct 2026);
+  Instagram DM, WhatsApp and Meta audiences stay "soon".
+- Pricing (one subscription + Yunits): table in `docs/yuno-context.md` § Yuno CRM, mirrored in
+  `components/crm/Pricing.tsx` (packs + cheapest-recharge solver of the design). Never show the
+  Suite's "€0" banner or copy there, never "hosted in France" (EU).
 - Signup: `SignupFlow product="crm"` (modal on the page, `/start?product=crm`): no "what you sell"
   step, the ticketing is asked in "structure" (Shotgun preselected), every tracked step carries
-  `product: "crm"` → `complete_pro_signup` opens a CRM Console with a 14-day Pro trial (yuno repo,
-  migrations `20261002190000` + `200000`). Own journey key (`yuno_crm_signup`).
-- `/start?product=crm` tracks the journey on load: never screenshot it against production without
-  deleting the `pro_signups` row it writes (anonymous, `source = 'start_crm'`).
+  `product: "crm"` → `complete_pro_signup` opens a CRM Console with its 14-day trial (yuno repo,
+  migrations `20261002190000` + `200000`). Own journey key (`yuno_crm_signup`). On this page the
+  dialog wears the Yuno design system (overrides at the end of `crm.css`).
+- Opening the signup (modal or `/start?product=crm`) writes a `pro_signups` row in production: never
+  test it against production without blocking `track_pro_signup` or deleting the row it writes
+  (anonymous, `source = 'crm'` / `'start_crm'`).
 
 ## PostHog (cookieless, same project as the Yuno app)
 - Single entry point `src/lib/posthog.ts`: `persistence: 'memory'` (no cookie, no banner), dynamic
