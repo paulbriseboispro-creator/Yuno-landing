@@ -682,27 +682,6 @@ html:has(.ycrm) {
   border-color: var(--color-yc-red-500) !important;
   box-shadow: 0 0 0 3px var(--color-yc-red-200) !important;
 }
-.ycrm .yc-su-code {
-  width: 100%;
-  height: 64px;
-  border-radius: 12px;
-  border: 1.5px solid var(--color-yc-sand-200);
-  text-align: center;
-  font-family: var(--font-yc-display);
-  font-weight: 600;
-  font-size: 28px;
-  color: var(--color-yc-ink);
-  outline: none;
-  padding: 0;
-  transition:
-    border-color 160ms,
-    background 200ms,
-    box-shadow 160ms;
-}
-.ycrm .yc-su-code:focus {
-  border-color: var(--color-yc-red-500) !important;
-  box-shadow: 0 0 0 3px var(--color-yc-red-200);
-}
 .ycrm .yc-su-toggle {
   color: var(--color-yc-sand-600);
 }

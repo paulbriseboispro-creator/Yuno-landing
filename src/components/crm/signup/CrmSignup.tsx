@@ -21,7 +21,7 @@ import { YUNO_APP_ORIGIN, appHandoffUrl, newSignupKey, trackSignup, yunoApp } fr
 
 // The Yuno CRM account funnel ("/start?product=crm", "/fr/start?product=crm"…):
 // the Claude Design project "Yuno CRM" > Inscription.dc.html. Email → password →
-// activity → name → crowd size → (email code) → done, with a live preview of the
+// activity → name → crowd size → (email link, only if confirmation is on) → done, with a live preview of the
 // console on the side. Backend = the landing's existing pro signup: every step is
 // tracked in the app's `pro_signups` (RPC track_pro_signup, `product: "crm"`), the
 // account is created on the Yuno app's Supabase, `complete_pro_signup` opens a CRM
@@ -30,11 +30,12 @@ import { YUNO_APP_ORIGIN, appHandoffUrl, newSignupKey, trackSignup, yunoApp } fr
 // back HERE with the session in the URL fragment; the funnel resumes on "type" and the
 // account is opened like any other (same `complete_pro_signup`, same handoff).
 
-type Step = "email" | "password" | "type" | "name" | "cap" | "code" | "done";
-type CodeState = "idle" | "checking" | "ok" | "error";
+type Step = "email" | "password" | "type" | "name" | "cap" | "confirm" | "done";
 
-const FLOW: Step[] = ["email", "password", "type", "name", "cap", "code", "done"];
-// Google / Apple: the provider vouches for the address, so no password and no code.
+// "confirm" is NOT part of the journey: it only shows if Supabase email confirmation is on
+// (no session after signUp) and tells the person to open the link sent to them.
+const FLOW: Step[] = ["email", "password", "type", "name", "cap", "done"];
+// Google / Apple: the provider vouches for the address, so no password and no confirmation.
 // "email" stays as the (already done) first bar; the journey resumes on "type".
 const FLOW_OAUTH: Step[] = ["email", "type", "name", "cap", "done"];
 type Provider = "google" | "apple";
@@ -209,9 +210,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
   const [nameErr, setNameErr] = useState(false);
   const [city, setCity] = useState("");
   const [cap, setCap] = useState<string | null>(null);
-  const [code, setCode] = useState<string[]>(["", "", "", "", "", ""]);
-  const [codeState, setCodeState] = useState<CodeState>("idle");
-  const [codeNote, setCodeNote] = useState("");
+  const [resendNote, setResendNote] = useState("");
   const [resend, setResend] = useState(30);
   const [busy, setBusy] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -231,8 +230,6 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
   const pwWrap = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const nameWrap = useRef<HTMLDivElement>(null);
-  const codeWrap = useRef<HTMLDivElement>(null);
-  const codeRefs = useRef<(HTMLInputElement | null)[]>([]);
   const timer = useRef<number>(0);
 
   const typeItem = t.type.items.find((i) => i.id === type);
@@ -326,18 +323,14 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       if (step === "email") emailRef.current?.focus({ preventScroll: true });
       if (step === "password") pwRef.current?.focus({ preventScroll: true });
       if (step === "name") nameRef.current?.focus({ preventScroll: true });
-      if (step === "code") {
-        const i = code.findIndex((x) => !x);
-        codeRefs.current[i < 0 ? 0 : i]?.focus({ preventScroll: true });
-      }
     }, 80);
     return () => window.clearTimeout(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
 
-  // Resend countdown on the code step.
+  // Resend countdown on the confirmation step.
   useEffect(() => {
-    if (step !== "code") return;
+    if (step !== "confirm") return;
     const id = window.setInterval(() => setResend((n) => Math.max(0, n - 1)), 1000);
     return () => window.clearInterval(id);
   }, [step]);
@@ -348,7 +341,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
     window.clearTimeout(timer.current);
     setSubmitError("");
     const i = flow.indexOf(step);
-    if (step === "code") return go("email");
+    if (step === "confirm") return go("email");
     if (i > firstIndex && step !== "done") go(flow[i - 1]);
   }, [step, go, flow, firstIndex]);
 
@@ -653,76 +646,23 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       );
       setBusy(false);
       setResend(30);
-      setCode(["", "", "", "", "", ""]);
-      setCodeState("idle");
-      setCodeNote("");
-      go("code");
+      setResendNote("");
+      go("confirm");
       return;
     }
     await openSpace(data.session);
     setBusy(false);
   }
 
-  async function verifyCode(digits: string) {
-    setCodeState("checking");
-    setCodeNote("");
-    const { data, error } = await yunoApp().auth.verifyOtp({
-      email: email.trim().toLowerCase(),
-      token: digits,
-      type: "signup",
-    });
-    if (error || !data.session) {
-      setCodeState("error");
-      setCode(["", "", "", "", "", ""]);
-      shake(codeWrap.current);
-      window.setTimeout(() => codeRefs.current[0]?.focus(), 60);
-      return;
-    }
-    setCodeState("ok");
-    await openSpace(data.session);
-  }
-
-  function onCode(i: number, raw: string) {
-    const d = raw.replace(/\D/g, "");
-    const next = [...code];
-    if (d.length > 1)
-      d.slice(0, 6 - i)
-        .split("")
-        .forEach((ch, k) => (next[i + k] = ch));
-    else next[i] = d;
-    setCode(next);
-    setCodeState("idle");
-    setCodeNote("");
-    const firstEmpty = next.findIndex((x) => !x);
-    if (firstEmpty < 0) {
-      codeRefs.current[5]?.blur();
-      void verifyCode(next.join(""));
-    } else if (d) codeRefs.current[firstEmpty]?.focus();
-  }
-
-  function onCodeKey(i: number, e: React.KeyboardEvent) {
-    if (e.key === "Backspace" && !code[i] && i > 0) {
-      e.preventDefault();
-      const next = [...code];
-      next[i - 1] = "";
-      setCode(next);
-      codeRefs.current[i - 1]?.focus();
-    }
-    if (e.key === "ArrowLeft" && i > 0) codeRefs.current[i - 1]?.focus();
-    if (e.key === "ArrowRight" && i < 5) codeRefs.current[i + 1]?.focus();
-  }
-
   async function resendCode() {
     if (resend > 0) return;
     setResend(30);
-    setCode(["", "", "", "", "", ""]);
-    setCodeState("idle");
     const { error } = await yunoApp().auth.resend({
       type: "signup",
       email: email.trim().toLowerCase(),
+      options: { emailRedirectTo: `${YUNO_APP_ORIGIN}/get-started?key=${key}` },
     });
-    setCodeNote(error ? t.errors.rate : t.code.resent);
-    codeRefs.current[0]?.focus();
+    setResendNote(error ? t.errors.rate : t.confirm.resent);
   }
 
   function openConsole() {
@@ -1248,77 +1188,30 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
                 </div>
               )}
 
-              {step === "code" && (
+              {step === "confirm" && (
                 <div className="flex flex-col gap-6">
                   <div className="flex flex-col gap-3">
                     <Title>
-                      {t.code.titlePre} <Accent>{t.code.accent}</Accent>
-                      {t.code.titlePost}
+                      {t.confirm.titlePre} <Accent>{t.confirm.accent}</Accent>
+                      {t.confirm.titlePost}
                     </Title>
                     <p
                       className="m-0 text-base leading-normal [overflow-wrap:anywhere]"
                       style={{ color: c("sand-600") }}
                     >
-                      {t.code.sentTo}{" "}
+                      {t.confirm.sentTo}{" "}
                       <strong className="font-semibold" style={{ color: c("ink") }}>
                         {email}
                       </strong>
-                      . {t.code.valid}
+                      . {t.confirm.hint}
                     </p>
-                  </div>
-                  <div ref={codeWrap} className="grid grid-cols-6 gap-2">
-                    {code.map((v, i) => (
-                      <input
-                        key={i}
-                        ref={(el) => {
-                          codeRefs.current[i] = el;
-                        }}
-                        value={v}
-                        onChange={(e) => onCode(i, e.target.value)}
-                        onKeyDown={(e) => onCodeKey(i, e)}
-                        onFocus={(e) => e.target.select()}
-                        inputMode="numeric"
-                        autoComplete="one-time-code"
-                        aria-label={fill(t.code.digit, { n: i + 1 })}
-                        className="yc-su-code"
-                        style={{
-                          borderColor:
-                            codeState === "ok"
-                              ? c("green-500")
-                              : codeState === "error"
-                                ? c("red-500")
-                                : v
-                                  ? c("ink")
-                                  : c("sand-200"),
-                          background:
-                            codeState === "ok"
-                              ? c("green-50")
-                              : codeState === "checking"
-                                ? c("sand-50")
-                                : "#fff",
-                        }}
-                      />
-                    ))}
                   </div>
                   <div
                     className="min-h-5 text-[14px] font-medium"
-                    style={{
-                      color:
-                        codeState === "ok"
-                          ? c("green-700")
-                          : codeState === "error"
-                            ? c("red-600")
-                            : c("sand-600"),
-                    }}
+                    style={{ color: c("sand-600") }}
                     aria-live="polite"
                   >
-                    {codeState === "checking"
-                      ? t.code.checking
-                      : codeState === "ok"
-                        ? t.code.ok
-                        : codeState === "error"
-                          ? t.code.bad
-                          : codeNote}
+                    {resendNote}
                   </div>
                   <div className="flex flex-wrap justify-between gap-x-5 gap-y-2 text-[14px]">
                     <button
@@ -1331,23 +1224,17 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
                       }}
                     >
                       {resend > 0
-                        ? fill(t.code.resendIn, { t: `0:${String(resend).padStart(2, "0")}` })
-                        : t.code.resend}
+                        ? fill(t.confirm.resendIn, { t: `0:${String(resend).padStart(2, "0")}` })
+                        : t.confirm.resend}
                     </button>
                     <button
                       type="button"
                       onClick={back}
                       className="yc-su-back cursor-pointer border-0 bg-transparent p-0 font-medium"
                     >
-                      {t.code.edit}
+                      {t.confirm.edit}
                     </button>
                   </div>
-                  <p
-                    className="m-0 rounded-xl px-3.5 py-3 text-[12px] leading-relaxed"
-                    style={{ background: c("sand-50"), fontFamily: MONO, color: c("sand-600") }}
-                  >
-                    {t.code.linkHint}
-                  </p>
                 </div>
               )}
 
@@ -1439,7 +1326,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
               className="text-[12px] uppercase"
               style={{ fontFamily: MONO, letterSpacing: ".08em", color: c("sand-500") }}
             >
-              {step === "code" ? t.code.kicker : done ? t.done.kicker : scene?.k}
+              {step === "confirm" ? t.confirm.kicker : done ? t.done.kicker : scene?.k}
             </span>
           </div>
           <div className="relative flex min-h-[260px] flex-1 items-center justify-center">
@@ -1470,7 +1357,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
             className="relative m-0 text-center text-[14px] leading-normal"
             style={{ color: c("sand-600") }}
           >
-            {step === "code" ? t.code.caption : done ? t.done.caption : scene?.c}
+            {step === "confirm" ? t.confirm.caption : done ? t.done.caption : scene?.c}
           </p>
         </div>
       </aside>
@@ -1484,7 +1371,7 @@ const ORB: Record<Step, string> = {
   type: "translate(130px,-60px)",
   name: "translate(-70px,90px)",
   cap: "translate(110px,130px)",
-  code: "translate(-130px,30px)",
+  confirm: "translate(-130px,30px)",
   done: "translate(0,0) scale(1.25)",
 };
 
@@ -1992,7 +1879,7 @@ function Scene(p: {
     );
   }
 
-  if (step === "code")
+  if (step === "confirm")
     return (
       <div
         className="flex w-full max-w-[360px] items-center gap-3 rounded-[20px] px-4 py-3.5"
@@ -2007,14 +1894,14 @@ function Scene(p: {
         />
         <div className="flex min-w-0 flex-1 flex-col gap-px leading-snug">
           <div className="flex items-baseline justify-between gap-2">
-            <span className="text-[14px] font-semibold">{t.code.notifTitle}</span>
+            <span className="text-[14px] font-semibold">{t.confirm.notifTitle}</span>
             <span className="text-[12px]" style={{ color: c("sand-500") }}>
-              {t.code.notifNow}
+              {t.confirm.notifNow}
             </span>
           </div>
-          <span className="text-[14px] font-semibold">{t.code.notifCode}</span>
+          <span className="text-[14px] font-semibold">{t.confirm.notifLine}</span>
           <span className="text-[13px]" style={{ color: c("sand-600") }}>
-            {t.code.notifNote}
+            {t.confirm.notifNote}
           </span>
         </div>
       </div>

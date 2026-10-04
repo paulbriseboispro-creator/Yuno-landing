@@ -87,16 +87,18 @@ Starting from `main` silently throws away the newest design and copy. So, before
 - Signup: every CRM CTA is a plain link to the funnel `/start?product=crm` (`/fr/start`, `/es/start`;
   `crmStartHref` in `src/i18n/start.ts`; `…/crm#signup` redirects there). The funnel is the Claude Design
   "Inscription" screens: `src/components/crm/signup/CrmSignup.tsx` (email → password → activity → name →
-  crowd size → email code → done, live console preview on the side; copy EN/FR/ES in
+  crowd size → done, live console preview on the side; copy EN/FR/ES in
   `src/content/crm-signup.ts`, styles `.yc-su-*` at the end of `crm.css`). Same backend as the Suite flow:
   every tracked step carries `product: "crm"` (`track_pro_signup`), `auth.signUp` on the app's Supabase,
   `complete_pro_signup` opens a CRM Console with its 14-day trial, then handoff to yunoapp.eu. Own
   journey key (`yuno_crm_signup_key`). Type → role: club/bar → club, collective/festival → organizer.
-  The 6-digit step uses `verifyOtp(type: "signup")`: the Supabase "Confirm signup" email template must
-  contain `{{ .Token }}` (the link keeps working as a fallback). Google / Apple (wired 4 Oct 2026): `signInWithOAuth` on the app's Supabase (implicit flow, `skipBrowserRedirect`),
+  There is NO code step: the account opens at once (the app's Supabase has email confirmation off: `mailer_autoconfirm`).
+  If confirmation is ever switched on, `signUp` returns no session and the funnel shows a "confirm" screen (link sent,
+  resend button): the link lands on `yunoapp.eu/get-started?key=…` which finishes the job. SMTP + templates to prepare
+  first: `scripts/auth-smtp` in the yuno repo. Google / Apple (wired 4 Oct 2026): `signInWithOAuth` on the app's Supabase (implicit flow, `skipBrowserRedirect`),
   `redirectTo` = this funnel in the page's language (`/fr/start?product=crm`); the session comes back in the URL fragment,
   is read by `CrmSignup` (`setSession`, fragment wiped with `history.replaceState`) and the journey resumes on "type"
-  with a shorter flow (`FLOW_OAUTH`: no password, no code, no way back to the email step). Same `complete_pro_signup`
+  with a shorter flow (`FLOW_OAUTH`: no password, no confirmation, no way back to the email step). Same `complete_pro_signup`
   and handoff afterwards. **Prerequisite in the Yuno app's Supabase Auth → URL configuration: `https://landing.yunoapp.eu/**`
   must be in the Redirect URLs allow-list**, otherwise Supabase falls back to yunoapp.eu and the funnel never resumes.
   Google and Apple providers are already enabled there (Apple Services ID `eu.yunoapp.web`).
