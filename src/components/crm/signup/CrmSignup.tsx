@@ -30,7 +30,9 @@ import { YUNO_APP_ORIGIN, appHandoffUrl, newSignupKey, trackSignup, yunoApp } fr
 // back HERE with the session in the URL fragment; the funnel resumes on "type" and the
 // account is opened like any other (same `complete_pro_signup`, same handoff).
 
-type Step = "email" | "password" | "type" | "name" | "cap" | "confirm" | "done";
+// "existing": the person signed in with Google / Apple and already has a Yuno account
+// (Ticketing or CRM): we offer to open Yuno CRM on it instead of a new account.
+type Step = "email" | "password" | "type" | "name" | "cap" | "confirm" | "existing" | "done";
 
 // "confirm" is NOT part of the journey: it only shows if Supabase email confirmation is on
 // (no session after signUp) and tells the person to open the link sent to them.
@@ -39,6 +41,16 @@ const FLOW: Step[] = ["email", "password", "type", "name", "cap", "done"];
 // "email" stays as the (already done) first bar; the journey resumes on "type".
 const FLOW_OAUTH: Step[] = ["email", "type", "name", "cap", "done"];
 type Provider = "google" | "apple";
+
+/** An account the signed-in person holds (RPC get_my_product_accounts, yuno repo). */
+interface ExistingAccount {
+  kind: "venue" | "org";
+  venue_id: string | null;
+  organizer_user_id: string | null;
+  name: string;
+  city: string | null;
+  products: string[];
+}
 const STORE_KEY = "yuno_crm_signup_key";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 // What complete_pro_signup knows: a club or an organizer space.
@@ -220,6 +232,8 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
   const [oauthSession, setOauthSession] = useState<Session | null>(null);
   const [oauthBusy, setOauthBusy] = useState<Provider | null>(null);
   const [oauthErr, setOauthErr] = useState("");
+  const [accounts, setAccounts] = useState<ExistingAccount[]>([]);
+  const [pickedAccount, setPickedAccount] = useState(0);
   const [resuming, setResuming] = useState(() =>
     /(^|[#&])(access_token|error)=/.test(window.location.hash),
   );
@@ -299,7 +313,16 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       });
       setEmail(user.email);
       setOauthSession(data.session);
+      // Already a Yuno pro (Ticketing or CRM)? Then no second account: open
+      // Yuno CRM on that one (open_product_on_my_account, yuno repo).
+      const { data: owned } = await sb.rpc("get_my_product_accounts");
+      const list = (Array.isArray(owned) ? owned : []) as ExistingAccount[];
       setResuming(false);
+      if (list.length) {
+        setAccounts(list);
+        go("existing");
+        return;
+      }
       go("type");
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -325,7 +348,6 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       if (step === "name") nameRef.current?.focus({ preventScroll: true });
     }, 80);
     return () => window.clearTimeout(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
 
   // Resend countdown on the confirmation step.
@@ -411,6 +433,69 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       return;
     }
     window.location.assign(data.url);
+  }
+
+  const withCrm = accounts.find((a) => a.products.includes("crm"));
+  const candidates = accounts.filter((a) => !a.products.includes("crm"));
+  const target = candidates[pickedAccount] ?? candidates[0];
+
+  /** Open Yuno CRM on the account the person already has, then go to the CRM console. */
+  async function openOnExisting() {
+    if (!oauthSession || busy) return;
+    setSubmitError("");
+    setBusy(true);
+    if (target) {
+      const { error } = await yunoApp().rpc("open_product_on_my_account", {
+        p_product: "crm",
+        p_venue_id: target.venue_id,
+        p_organizer_user_id: target.kind === "org" ? target.organizer_user_id : null,
+        p_signup_key: key,
+      });
+      if (error) {
+        setBusy(false);
+        setSubmitError(t.errors.generic);
+        capture("pro_signup_failed", {
+          audience: "pro",
+          product: "crm",
+          lang,
+          source: "start_crm",
+          method: "existing",
+          code: error.message.slice(0, 60),
+        });
+        return;
+      }
+    }
+    capture(
+      "pro_signup_account_created",
+      {
+        audience: "pro",
+        product: "crm",
+        lang,
+        source: "start_crm",
+        existing_account: true,
+        space_opened: true,
+        method: oauthSession.user.app_metadata?.provider ?? "oauth",
+      },
+      true,
+    );
+    identifyAccount(oauthSession.user.id, null);
+    try {
+      sessionStorage.removeItem(STORE_KEY);
+    } catch {
+      /* ignore */
+    }
+    window.location.assign(
+      appHandoffUrl(oauthSession.access_token, oauthSession.refresh_token, lang, "/crm"),
+    );
+  }
+
+  /** Another address: forget this session and start again from the email step. */
+  async function switchAddress() {
+    await yunoApp().auth.signOut({ scope: "local" });
+    setOauthSession(null);
+    setAccounts([]);
+    setEmail("");
+    go("email");
   }
 
   function submitEmail(e: FormEvent) {
@@ -772,7 +857,11 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
                   className="text-[12px] uppercase"
                   style={{ fontFamily: MONO, letterSpacing: ".08em", color: c("sand-500") }}
                 >
-                  {done ? t.created : fill(t.stepOf, { n: stepIndex + 1, total })}
+                  {done
+                    ? t.created
+                    : stepIndex < 0
+                      ? ""
+                      : fill(t.stepOf, { n: stepIndex + 1, total })}
                 </span>
               </div>
               <div className="flex gap-1.5" aria-hidden>
@@ -883,7 +972,10 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
                       {exists && !emailErr && (
                         <span className="text-[14px] font-medium" style={{ color: c("red-600") }}>
                           {t.email.exists}{" "}
-                          <a href={LOGIN_URL} className="yc-su-link font-semibold underline">
+                          <a
+                            href={`${YUNO_APP_ORIGIN}/auth?redirect=${encodeURIComponent("/open/crm")}`}
+                            className="yc-su-link font-semibold underline"
+                          >
                             {t.email.existsCta}
                           </a>
                         </span>
@@ -1188,6 +1280,83 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
                 </div>
               )}
 
+              {step === "existing" && (
+                <div className="flex flex-col gap-6">
+                  <div className="flex flex-col gap-3">
+                    <Title>{withCrm && !target ? t.existing.hasCrmTitle : t.existing.title}</Title>
+                    <p
+                      className="m-0 text-base leading-normal text-pretty"
+                      style={{ color: c("sand-600") }}
+                    >
+                      {withCrm && !target
+                        ? fill(t.existing.hasCrmBody, { name: withCrm.name })
+                        : fill(t.existing.body, { name: target?.name ?? "" })}
+                    </p>
+                  </div>
+                  {candidates.length > 1 && (
+                    <div className="flex flex-col gap-2" role="radiogroup">
+                      {candidates.map((a, i) => {
+                        const on = i === pickedAccount;
+                        return (
+                          <button
+                            key={`${a.kind}-${a.venue_id ?? a.organizer_user_id}`}
+                            type="button"
+                            role="radio"
+                            aria-checked={on}
+                            onClick={() => setPickedAccount(i)}
+                            className="yc-su-oauth justify-start px-4 text-left"
+                            style={{ borderColor: on ? c("red-500") : undefined }}
+                          >
+                            {a.name}
+                            {a.city ? (
+                              <span style={{ color: c("sand-500"), fontWeight: 400 }}>
+                                {" "}
+                                · {a.city}
+                              </span>
+                            ) : null}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+                  {target && (
+                    <ul className="m-0 flex list-none flex-col gap-2 p-0">
+                      {t.existing.facts.map((f) => (
+                        <li key={f} className="flex items-center gap-2.5 text-[15px]">
+                          <span style={{ color: c("red-500"), fontWeight: 700 }}>✓</span> {f}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {submitError && (
+                    <p
+                      className="m-0 text-[14px] font-medium"
+                      style={{ color: c("red-600") }}
+                      role="alert"
+                    >
+                      {submitError}
+                    </p>
+                  )}
+                  <div className="flex flex-col items-center gap-3">
+                    <Cta type="button" onClick={() => void openOnExisting()} disabled={busy}>
+                      {busy
+                        ? t.cap.busy
+                        : target
+                          ? fill(t.existing.cta, { name: target.name })
+                          : t.existing.hasCrmCta}
+                    </Cta>
+                    <button
+                      type="button"
+                      onClick={() => void switchAddress()}
+                      disabled={busy}
+                      className="yc-su-back cursor-pointer border-0 bg-transparent p-1.5 text-[14px] font-medium"
+                    >
+                      {t.existing.other}
+                    </button>
+                  </div>
+                </div>
+              )}
+
               {step === "confirm" && (
                 <div className="flex flex-col gap-6">
                   <div className="flex flex-col gap-3">
@@ -1332,7 +1501,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
           <div className="relative flex min-h-[260px] flex-1 items-center justify-center">
             <div key={step} className="yc-su-scene flex w-full items-center justify-center">
               <Scene
-                step={step}
+                step={step === "existing" ? "email" : step}
                 t={t}
                 email={email}
                 pw={pw}
@@ -1372,6 +1541,7 @@ const ORB: Record<Step, string> = {
   name: "translate(-70px,90px)",
   cap: "translate(110px,130px)",
   confirm: "translate(-130px,30px)",
+  existing: "translate(-90px,-130px)",
   done: "translate(0,0) scale(1.25)",
 };
 
