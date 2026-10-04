@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/react";
 import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import yunitCoin from "@/assets/crm/yunit-coin.webp";
+import yunoIcon from "@/assets/crm/yuno-app-icon.webp";
 import { useCrm } from "./content";
 import { ConsoleHome, Scaled } from "./Dashboard";
 import { TicketingPhone } from "./Phone";
@@ -10,7 +10,7 @@ import { Accent, CtaButton, EASE, Reveal } from "./ui";
 
 // "Instagram Insights says 10,000 views. Insyder says who to contact." →
 // "Your ticketing says how many tickets went. Yuno says who to nudge." Two
-// folder tabs around a dial: the dial turns from a plain knob into a Yunit coin,
+// folder tabs around a dial: the dial turns from a plain knob into the Yuno logo,
 // the card flips from sand (what ticketing gives) to night (what Yuno gives).
 // Flips on its own once when it comes into view; the tabs and the dial toggle it.
 
@@ -33,14 +33,14 @@ function Dial({ on, onClick, label }: { on: boolean; onClick: () => void; label:
           <AnimatePresence initial={false} mode="popLayout">
             {on ? (
               <motion.img
-                key="coin"
-                src={yunitCoin}
+                key="logo"
+                src={yunoIcon}
                 alt=""
                 initial={{ opacity: 0, scale: 0.6, rotate: -180 }}
                 animate={{ opacity: 1, scale: 1, rotate: -180 }}
                 exit={{ opacity: 0, scale: 0.6 }}
                 transition={{ duration: 0.5, ease: EASE }}
-                className="absolute inset-[6%] size-[88%] object-contain"
+                className="absolute inset-[6%] size-[88%] rounded-full object-cover"
               />
             ) : (
               <motion.span
@@ -160,12 +160,6 @@ export function CrmCompare() {
                 transition={{ duration: 0.5, ease: EASE }}
                 className="yc-aura--night relative isolate min-h-[560px] overflow-hidden px-6 pt-20 text-yc-on-night sm:px-12"
               >
-                <img
-                  src={yunitCoin}
-                  alt=""
-                  aria-hidden
-                  className="pointer-events-none absolute -bottom-48 -left-20 -z-10 w-[280px] rotate-[-18deg] opacity-80 blur-[1px]"
-                />
                 <h3 className="yc-h3 text-center text-[32px] sm:text-[42px]">{c.right.title}</h3>
                 <div className="mt-10 grid items-end gap-8 md:grid-cols-[0.85fr_1.15fr]">
                   <ul className="relative z-10 flex flex-col gap-4 pb-14 md:pl-4">
