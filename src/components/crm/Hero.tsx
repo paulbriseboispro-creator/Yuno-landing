@@ -2,15 +2,11 @@ import { Fragment, useEffect, useLayoutEffect, useRef, useState, type CSSPropert
 import {
   AnimatePresence,
   motion,
-  useMotionValue,
   useReducedMotion,
   useScroll,
-  useSpring,
   useTransform,
 } from "motion/react";
 import { Clock3, CreditCard, Lock, ShieldCheck } from "lucide-react";
-import yunitStack from "@/assets/crm/yunit-stack.webp";
-import yunitCoin from "@/assets/crm/yunit-coin.webp";
 import shotgunLogo from "@/assets/crm/shotgun-logo.webp";
 import { useCrm } from "./content";
 import { ConsoleHome } from "./Dashboard";
@@ -21,7 +17,6 @@ import { Avatar, CtaButton, EASE, YunitFace } from "./ui";
 //   0.15 eyebrow chip
 //   0.25 headline, word by word, out of a blur (accent word in the brand gradient)
 //   0.75 sub · 0.90 CTA springs in with its glow · 1.05 trust row
-//   0.65 / 0.85 the two Yunit coins pop in, then float and follow the pointer
 //   1.00 the live Console rises in a tilted frame, and flattens as you scroll
 // The frame then plays like the reference's video: the Console tours itself
 // (pauses on hover) while notifications pop on its edges.
@@ -54,52 +49,6 @@ function Headline({ text, accent }: { text: string; accent: string }) {
         </Fragment>
       ))}
     </h1>
-  );
-}
-
-function Sticker({
-  src,
-  className,
-  rotate,
-  delay,
-  depth,
-  mx,
-  my,
-}: {
-  src: string;
-  className: string;
-  rotate: number;
-  delay: number;
-  depth: number;
-  mx: ReturnType<typeof useSpring>;
-  my: ReturnType<typeof useSpring>;
-}) {
-  const x = useTransform(mx, (v) => v * depth);
-  const y = useTransform(my, (v) => v * depth);
-  return (
-    <motion.div
-      aria-hidden
-      className={`pointer-events-none absolute hidden md:block ${className}`}
-      style={{ x, y }}
-    >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.4, rotate: rotate - 28 }}
-        animate={{ opacity: 1, scale: 1, rotate }}
-        transition={{ type: "spring", stiffness: 160, damping: 14, delay }}
-      >
-        <div
-          className="yc-float"
-          style={{ "--r": "0deg", "--fd": `${5.5 + depth}s` } as CSSProperties}
-        >
-          <img
-            src={src}
-            alt=""
-            className="w-full select-none drop-shadow-[0_24px_30px_rgba(157,11,18,.28)]"
-            draggable={false}
-          />
-        </div>
-      </motion.div>
-    </motion.div>
   );
 }
 
@@ -198,21 +147,6 @@ export function CrmHero() {
   const frameRef = useRef<HTMLDivElement>(null);
   const [started, setStarted] = useState(false);
 
-  // Pointer parallax for the coins.
-  const px = useMotionValue(0);
-  const py = useMotionValue(0);
-  const mx = useSpring(px, { stiffness: 60, damping: 18 });
-  const my = useSpring(py, { stiffness: 60, damping: 18 });
-  useEffect(() => {
-    if (reduce) return;
-    const onMove = (e: PointerEvent) => {
-      px.set((e.clientX / window.innerWidth - 0.5) * -24);
-      py.set((e.clientY / window.innerHeight - 0.5) * -18);
-    };
-    window.addEventListener("pointermove", onMove, { passive: true });
-    return () => window.removeEventListener("pointermove", onMove);
-  }, [px, py, reduce]);
-
   // The frame flattens as it reaches the middle of the screen.
   const { scrollYProgress } = useScroll({ target: frameRef, offset: ["start end", "start 0.25"] });
   const rotateX = useTransform(scrollYProgress, [0, 1], [reduce ? 0 : 20, 0]);
@@ -249,25 +183,6 @@ export function CrmHero() {
       />
 
       <div className="relative mx-auto max-w-[1180px] px-4 text-center sm:px-6">
-        <Sticker
-          src={yunitStack}
-          className="-left-2 top-[92px] w-[150px] lg:left-[2%] lg:w-[178px] xl:left-[5%]"
-          rotate={-10}
-          delay={0.65}
-          depth={1.1}
-          mx={mx}
-          my={my}
-        />
-        <Sticker
-          src={yunitCoin}
-          className="right-0 top-[150px] w-[112px] lg:right-[4%] lg:w-[132px] xl:right-[7%]"
-          rotate={14}
-          delay={0.85}
-          depth={0.7}
-          mx={mx}
-          my={my}
-        />
-
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 10, filter: "blur(6px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}

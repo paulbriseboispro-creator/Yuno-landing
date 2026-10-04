@@ -317,6 +317,25 @@ const fr = {
     title: "Vos billets savent déjà qui revient. Maintenant, vous aussi.",
     accent: "vous aussi",
     sub: "Chaque billet laisse un nom, une date, une soirée. Yuno rassemble tout dans un seul fichier, fusionne les doublons et classe vos clients par fidélité. Il se met à jour tout seul.",
+    funnel: {
+      title: "Où s’arrêtent-ils ?",
+      sub: "11 655 visites de la page du club · 30 derniers jours",
+      hint: "Cliquez une étape",
+      insight:
+        "C’est entre « Soirée consultée » et « Clic « Réserver » » que vous perdez le plus : 83 % s’arrêtent là.",
+      bridge: "Derrière chaque chiffre, un nom",
+      steps: [
+        { label: "Visite", cap: "point de départ", count: "ont visité la page du club" },
+        {
+          label: "Soirée consultée",
+          cap: "des visiteurs",
+          count: "ont ouvert la fiche d’une soirée",
+        },
+        { label: "Clic « Réserver »", cap: "des consultations", count: "ont cliqué pour réserver" },
+        { label: "Achat", cap: "des clics", count: "ont acheté (confirmé par Shotgun)" },
+        { label: "Retour", cap: "des acheteurs", count: "ont racheté sous 90 jours" },
+      ],
+    },
     table: {
       title: "Tous les clients",
       sub: "18 420 contacts uniques · classés par fidélité",
@@ -1208,6 +1227,20 @@ const en: CrmContent = {
     title: "Your tickets already know who comes back. Now you do too.",
     accent: "you do too",
     sub: "Every ticket leaves a name, a date, a night. Yuno brings it all into one file, merges duplicates and ranks your customers by loyalty. It updates itself.",
+    funnel: {
+      title: "Where do they drop off?",
+      sub: "11,655 club page visits · last 30 days",
+      hint: "Click a step",
+      insight: "You lose the most between “Night viewed” and “Book” click: 83% stop there.",
+      bridge: "Behind every number, a name",
+      steps: [
+        { label: "Visit", cap: "starting point", count: "visited the club page" },
+        { label: "Night viewed", cap: "of visitors", count: "opened a night page" },
+        { label: "“Book” click", cap: "of views", count: "clicked to book" },
+        { label: "Purchase", cap: "of clicks", count: "bought (confirmed by Shotgun)" },
+        { label: "Return", cap: "of buyers", count: "bought again within 90 days" },
+      ],
+    },
     table: {
       title: "All customers",
       sub: "18,420 unique contacts · ranked by loyalty",
@@ -2109,6 +2142,29 @@ const es: CrmContent = {
     title: "Tus entradas ya saben quién vuelve. Ahora tú también.",
     accent: "tú también",
     sub: "Cada entrada deja un nombre, una fecha, una fiesta. Yuno lo reúne todo en un solo archivo, fusiona los duplicados y ordena a tus clientes por fidelidad. Se actualiza solo.",
+    funnel: {
+      title: "¿Dónde se quedan?",
+      sub: "11.655 visitas a la página del club · últimos 30 días",
+      hint: "Haga clic en una etapa",
+      insight:
+        "Es entre «Fiesta vista» y «Clic en Reservar» donde más pierde: el 83 % se queda ahí.",
+      bridge: "Detrás de cada cifra, un nombre",
+      steps: [
+        { label: "Visita", cap: "punto de partida", count: "visitaron la página del club" },
+        {
+          label: "Fiesta vista",
+          cap: "de los visitantes",
+          count: "abrieron la ficha de una fiesta",
+        },
+        {
+          label: "Clic en «Reservar»",
+          cap: "de las consultas",
+          count: "hicieron clic para reservar",
+        },
+        { label: "Compra", cap: "de los clics", count: "compraron (confirmado por Shotgun)" },
+        { label: "Vuelta", cap: "de los compradores", count: "volvieron a comprar en 90 días" },
+      ],
+    },
     table: {
       title: "Todos los clientes",
       sub: "18.420 contactos únicos · ordenados por fidelidad",
