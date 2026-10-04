@@ -126,12 +126,12 @@ export function CrmCompare() {
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: -10, filter: "blur(8px)" }}
                 transition={{ duration: 0.5, ease: EASE }}
-                className="relative min-h-[560px] overflow-hidden bg-yc-sand-50 px-6 pb-0 pt-20 ring-1 ring-inset ring-yc-sand-200 sm:px-12"
+                className="relative flex h-[860px] flex-col overflow-hidden bg-yc-sand-50 px-6 pb-0 pt-20 md:h-[600px] ring-1 ring-inset ring-yc-sand-200 sm:px-12"
               >
                 <h3 className="yc-h3 text-center text-[32px] text-yc-ink sm:text-[42px]">
                   {c.left.title}
                 </h3>
-                <div className="mt-10 grid items-end gap-8 md:grid-cols-2">
+                <div className="mt-10 grid min-h-0 flex-1 items-end gap-8 md:grid-cols-2">
                   <ul className="flex flex-col gap-4 pb-14 md:pl-8">
                     {c.left.items.map((it, i) => (
                       <motion.li
@@ -147,7 +147,7 @@ export function CrmCompare() {
                     ))}
                   </ul>
                   <div className="flex justify-center">
-                    <TicketingPhone className="mb-10" />
+                    <TicketingPhone className="mb-8 w-[190px]" />
                   </div>
                 </div>
               </motion.div>
@@ -158,10 +158,10 @@ export function CrmCompare() {
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: -10, filter: "blur(8px)" }}
                 transition={{ duration: 0.5, ease: EASE }}
-                className="yc-aura--night relative isolate min-h-[560px] overflow-hidden px-6 pt-20 text-yc-on-night sm:px-12"
+                className="yc-aura--night relative isolate flex h-[860px] flex-col overflow-hidden px-6 md:h-[600px] pt-20 text-yc-on-night sm:px-12"
               >
                 <h3 className="yc-h3 text-center text-[32px] sm:text-[42px]">{c.right.title}</h3>
-                <div className="mt-10 grid items-end gap-8 md:grid-cols-[0.85fr_1.15fr]">
+                <div className="mt-10 grid min-h-0 flex-1 items-end gap-8 md:grid-cols-[0.85fr_1.15fr]">
                   <ul className="relative z-10 flex flex-col gap-4 pb-14 md:pl-4">
                     {c.right.items.map((it, i) => (
                       <motion.li
