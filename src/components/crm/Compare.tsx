@@ -147,7 +147,7 @@ export function CrmCompare() {
                     ))}
                   </ul>
                   <div className="flex justify-center">
-                    <TicketingPhone className="-mb-28 scale-[.92]" />
+                    <TicketingPhone className="mb-10" />
                   </div>
                 </div>
               </motion.div>
