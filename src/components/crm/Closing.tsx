@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 import { ArrowUpRight, Mail, Minus, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { LOGIN_URL, useLanding, whatsappHref } from "@/components/landing/context";
+import { useLanding, whatsappHref } from "@/components/landing/context";
 import { LANDING_LANGS, LANDING_PATHS } from "@/i18n/landing-lang";
-import { landingHref } from "@/i18n/hosts";
+import { landingHref, CRM_LOGIN_URL } from "@/i18n/hosts";
 import yunitStack from "@/assets/crm/yunit-stack.webp";
 import yunitCoin from "@/assets/crm/yunit-coin.webp";
 import { useCrm } from "./content";
@@ -116,7 +116,7 @@ export function CrmFinal() {
     href === "whatsapp"
       ? whatsappHref(whatsappMessage)
       : href === "login"
-        ? LOGIN_URL
+        ? CRM_LOGIN_URL
         : href.startsWith("/")
           ? landingHref(href)
           : href;

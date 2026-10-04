@@ -12,13 +12,12 @@ import type { Session } from "@supabase/supabase-js";
 import appIcon from "@/assets/crm/yuno-app-icon.webp";
 import { crmContent } from "@/content/crm";
 import { crmSignupContent, type CrmSignupCopy } from "@/content/crm-signup";
-import { LOGIN_URL } from "@/components/landing/context";
 import { type LandingLang } from "@/i18n/landing-lang";
-import { crmPagePaths, landingHref } from "@/i18n/hosts";
+import { CRM_LOGIN_URL, CRM_ORIGIN, crmPagePaths, landingHref } from "@/i18n/hosts";
 import { START_PATHS } from "@/i18n/start";
 import { submitLead } from "@/lib/leads.functions";
 import { capture, identifyAccount } from "@/lib/posthog";
-import { YUNO_APP_ORIGIN, appHandoffUrl, newSignupKey, trackSignup, yunoApp } from "@/lib/yuno-app";
+import { appHandoffUrl, newSignupKey, trackSignup, yunoApp } from "@/lib/yuno-app";
 
 // The Yuno CRM account funnel ("/start?product=crm", "/fr/start?product=crm"…):
 // the Claude Design project "Yuno CRM" > Inscription.dc.html. Email → password →
@@ -486,7 +485,13 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       /* ignore */
     }
     window.location.assign(
-      appHandoffUrl(oauthSession.access_token, oauthSession.refresh_token, lang, "/crm"),
+      appHandoffUrl(
+        oauthSession.access_token,
+        oauthSession.refresh_token,
+        lang,
+        "/crm",
+        CRM_ORIGIN,
+      ),
     );
   }
 
@@ -669,7 +674,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       email: addr,
       password: pw,
       // Email confirmation ON: the link in the mail lands on the page that finishes the job.
-      options: { emailRedirectTo: `${YUNO_APP_ORIGIN}/get-started?key=${key}` },
+      options: { emailRedirectTo: `${CRM_ORIGIN}/get-started?key=${key}` },
     });
 
     if (signErr) {
@@ -746,7 +751,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
     const { error } = await yunoApp().auth.resend({
       type: "signup",
       email: email.trim().toLowerCase(),
-      options: { emailRedirectTo: `${YUNO_APP_ORIGIN}/get-started?key=${key}` },
+      options: { emailRedirectTo: `${CRM_ORIGIN}/get-started?key=${key}` },
     });
     setResendNote(error ? t.errors.rate : t.confirm.resent);
   }
@@ -754,7 +759,9 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
   function openConsole() {
     if (!handoff || leaving) return;
     setLeaving(true);
-    window.location.assign(appHandoffUrl(handoff.at, handoff.rt, lang, handoff.redirect));
+    window.location.assign(
+      appHandoffUrl(handoff.at, handoff.rt, lang, handoff.redirect, CRM_ORIGIN),
+    );
   }
 
   // ---- preview values ------------------------------------------------------------
@@ -820,7 +827,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
           </a>
           <span className="text-[14px]" style={{ color: c("sand-600") }}>
             {t.haveAccount}{" "}
-            <a href={LOGIN_URL} className="yc-su-link font-semibold">
+            <a href={CRM_LOGIN_URL} className="yc-su-link font-semibold">
               {t.login}
             </a>
           </span>
@@ -974,7 +981,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
                         <span className="text-[14px] font-medium" style={{ color: c("red-600") }}>
                           {t.email.exists}{" "}
                           <a
-                            href={`${YUNO_APP_ORIGIN}/auth?redirect=${encodeURIComponent("/open/crm")}`}
+                            href={`${CRM_LOGIN_URL}?redirect=${encodeURIComponent("/open/crm")}`}
                             className="yc-su-link font-semibold underline"
                           >
                             {t.email.existsCta}

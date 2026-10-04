@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useScroll, useSpring } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { LOGIN_URL, useLanding } from "@/components/landing/context";
+import { useLanding } from "@/components/landing/context";
+import { CRM_LOGIN_URL } from "@/i18n/hosts";
 import { LANDING_LANGS } from "@/i18n/landing-lang";
 import { useCrm } from "./content";
 import { CtaButton, EASE, Wordmark } from "./ui";
@@ -108,7 +109,7 @@ export function CrmNav() {
           </div>
           <div className="flex flex-none items-center gap-1.5">
             <a
-              href={LOGIN_URL}
+              href={CRM_LOGIN_URL}
               className="hidden whitespace-nowrap rounded-full px-3 py-2 text-[14px] font-semibold text-yc-sand-600 transition-colors hover:text-yc-ink lg:inline-block"
             >
               {c.nav.login}
@@ -171,7 +172,7 @@ export function CrmNav() {
                     {l.label}
                   </a>
                 ))}
-                <a href={LOGIN_URL} className="py-4 text-[16px] font-semibold text-yc-sand-600">
+                <a href={CRM_LOGIN_URL} className="py-4 text-[16px] font-semibold text-yc-sand-600">
                   {c.nav.login}
                 </a>
               </div>
