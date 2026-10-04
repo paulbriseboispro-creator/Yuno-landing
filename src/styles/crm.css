@@ -1,0 +1,613 @@
+/*
+ * Yuno CRM landing (/crm, /fr/crm, /es/crm) — the Yuno design system from the
+ * Claude Design project "Design system Yuno créé" (tokens/*.css, components.css).
+ * Light only, scoped to `.ycrm`: Yuno Red #E3141B, tangerine gradient partner,
+ * warm sand neutrals, Bricolage Grotesque / Geist / Geist Mono.
+ * Utilities are namespaced `yc-` (bg-yc-sand-50, text-yc-ink, font-yc-display…).
+ */
+@theme {
+  --color-yc-red-50: #fff2f1;
+  --color-yc-red-100: #ffe1df;
+  --color-yc-red-200: #ffc4c0;
+  --color-yc-red-300: #ff948d;
+  --color-yc-red-400: #f5524b;
+  --color-yc-red-500: #e3141b;
+  --color-yc-red-600: #c30d15;
+  --color-yc-red-700: #9d0b12;
+  --color-yc-red-800: #740a10;
+  --color-yc-tangerine-400: #ff8a4c;
+  --color-yc-tangerine-500: #ff6b35;
+  --color-yc-paper: #fcfaf9;
+  --color-yc-sand-50: #f7f4f3;
+  --color-yc-sand-100: #f0ebea;
+  --color-yc-sand-200: #e6dfdd;
+  --color-yc-sand-300: #cfc6c4;
+  --color-yc-sand-400: #a39a98;
+  --color-yc-sand-500: #857b7d;
+  --color-yc-sand-600: #5e5457;
+  --color-yc-sand-700: #3d3437;
+  --color-yc-ink: #1c1517;
+  --color-yc-night: #120c0e;
+  --color-yc-night-2: #1e1619;
+  --color-yc-on-night: #f7f2f1;
+  --color-yc-on-night-2: #b9aeb0;
+  --color-yc-green-50: #eaf8ef;
+  --color-yc-green-500: #17a34a;
+  --color-yc-green-700: #0f7a37;
+  --color-yc-mint: #7ce0a2;
+  --color-yc-amber-50: #fff6e5;
+  --color-yc-amber-500: #e59a0b;
+  --color-yc-amber-700: #9a6300;
+  --font-yc-display: "Bricolage Grotesque", "Helvetica Neue", Helvetica, sans-serif;
+  --font-yc-body: "Geist", "Helvetica Neue", Helvetica, sans-serif;
+  --font-yc-mono: "Geist Mono", ui-monospace, Menlo, monospace;
+}
+
+html:has(.ycrm) {
+  color-scheme: light;
+  background: #fff;
+}
+
+/* Component layer: Tailwind utilities (hidden, w-full, justify-*) still win. */
+@layer components {
+  .ycrm {
+    --gradient-brand: linear-gradient(110deg, #e3141b 0%, #f2392a 45%, #ff6b35 100%);
+    --shadow-xs: 0 1px 2px rgba(28, 21, 23, 0.06);
+    --shadow-sm: 0 1px 2px rgba(28, 21, 23, 0.05), 0 4px 12px rgba(28, 21, 23, 0.06);
+    --shadow-md: 0 2px 4px rgba(28, 21, 23, 0.05), 0 12px 32px rgba(28, 21, 23, 0.1);
+    --shadow-lg: 0 4px 8px rgba(28, 21, 23, 0.04), 0 30px 60px -20px rgba(28, 21, 23, 0.28);
+    --shadow-cta:
+      inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -3px 0 rgba(0, 0, 0, 0.1),
+      0 8px 16px rgba(227, 20, 27, 0.32);
+    --shadow-halo:
+      0 0 0 1px rgba(255, 255, 255, 0.08), 0 30px 80px -10px rgba(227, 20, 27, 0.45),
+      0 0 140px 10px rgba(255, 107, 53, 0.18);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .11 0 0 0 0 .08 0 0 0 0 .09 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    --noise-night: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    font-family: var(--font-yc-body);
+    color: var(--color-yc-ink);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .ycrm ::selection {
+    background: var(--color-yc-red-100);
+    color: var(--color-yc-ink);
+  }
+  .ycrm section[id] {
+    scroll-margin-top: 96px;
+  }
+
+  /* ===== Type ===== */
+  .yc-display {
+    font-family: var(--font-yc-display);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    font-size: clamp(2.45rem, 6.2vw, 4.75rem);
+    text-wrap: balance;
+  }
+  .yc-h2 {
+    font-family: var(--font-yc-display);
+    font-weight: 600;
+    letter-spacing: -0.032em;
+    line-height: 1.04;
+    font-size: clamp(2.05rem, 4.6vw, 3.6rem);
+    text-wrap: balance;
+  }
+  .yc-h3 {
+    font-family: var(--font-yc-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+  .yc-lead {
+    font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+    line-height: 1.55;
+    font-weight: 500;
+    color: var(--color-yc-sand-600);
+    text-wrap: pretty;
+  }
+  .yc-label {
+    font-family: var(--font-yc-mono);
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--color-yc-sand-500);
+  }
+  .yc-accent {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    /* keep descenders inside the clipped box */
+    padding-bottom: 0.06em;
+  }
+  .yc-num {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ===== Eyebrow chip ===== */
+  .yc-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid var(--color-yc-sand-200);
+    box-shadow: var(--shadow-xs);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-yc-sand-700);
+    white-space: nowrap;
+  }
+  .yc-chip--night {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: var(--color-yc-on-night);
+    box-shadow: none;
+  }
+
+  /* ===== Buttons (pill + white arrow disc, CTA lifts 1px, disc nudges right) ===== */
+  .yc-btn {
+    --h: 52px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    height: var(--h);
+    padding: 0 24px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-family: var(--font-yc-body);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+      transform 160ms var(--ease-out),
+      box-shadow 240ms var(--ease-out),
+      background-color 200ms,
+      filter 200ms;
+  }
+  .yc-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--color-yc-red-200);
+  }
+  .yc-btn:active {
+    transform: scale(0.97);
+  }
+  .yc-btn--sm {
+    --h: 40px;
+    padding: 0 16px;
+    font-size: 14.5px;
+    gap: 10px;
+  }
+  .yc-btn--lg {
+    --h: 60px;
+    padding: 0 28px;
+    font-size: 17.5px;
+  }
+  .yc-btn--primary {
+    background: var(--gradient-brand);
+    color: #fff;
+    box-shadow: var(--shadow-cta);
+  }
+  .yc-btn--primary:hover {
+    filter: saturate(1.1) brightness(1.04);
+    transform: translateY(-1px);
+  }
+  /* soft outer ring around the primary CTA, like the reference */
+  .yc-btn--ring::before {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border-radius: inherit;
+    border: 1px solid rgba(227, 20, 27, 0.18);
+    background: rgba(255, 255, 255, 0.5);
+    z-index: -1;
+    transition:
+      inset 240ms var(--ease-out),
+      border-color 240ms;
+  }
+  .yc-btn--ring:hover::before {
+    inset: -7px;
+    border-color: rgba(227, 20, 27, 0.28);
+  }
+  .yc-btn--ring::after {
+    content: "";
+    position: absolute;
+    left: 14%;
+    right: 14%;
+    bottom: -14px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(255, 107, 53, 0.45);
+    filter: blur(14px);
+    z-index: -2;
+    opacity: 0.8;
+  }
+  .yc-btn--dark {
+    background: var(--color-yc-ink);
+    color: #fff;
+  }
+  .yc-btn--dark:hover {
+    background: var(--color-yc-sand-700);
+  }
+  .yc-btn--light {
+    background: #fff;
+    color: var(--color-yc-ink);
+    border-color: var(--color-yc-sand-200);
+    box-shadow: var(--shadow-xs);
+  }
+  .yc-btn--light:hover {
+    border-color: var(--color-yc-sand-300);
+    background: var(--color-yc-paper);
+  }
+  .yc-btn--white {
+    background: #fff;
+    color: var(--color-yc-ink);
+  }
+  .yc-btn.has-disc {
+    padding-right: 6px;
+  }
+  /* full-width CTA: the label may wrap, the disc stays on the right */
+  .yc-btn--block {
+    width: 100%;
+    justify-content: space-between;
+    height: auto;
+    min-height: var(--h);
+    padding-top: 6px;
+    padding-bottom: 6px;
+    white-space: normal;
+    text-align: left;
+    line-height: 1.2;
+  }
+  .yc-btn--block .yc-btn__disc {
+    flex: none;
+  }
+  @media (max-width: 440px) {
+    .yc-btn--lg {
+      --h: 56px;
+      padding-left: 22px;
+      font-size: 16px;
+    }
+  }
+  .yc-btn__disc {
+    display: inline-grid;
+    place-items: center;
+    width: calc(var(--h) - 12px);
+    height: calc(var(--h) - 12px);
+    border-radius: 50%;
+    background: #fff;
+    color: var(--color-yc-red-500);
+    transition: transform 260ms var(--ease-spring);
+  }
+  .yc-btn--dark .yc-btn__disc,
+  .yc-btn--white .yc-btn__disc {
+    background: var(--gradient-brand);
+    color: #fff;
+  }
+  .yc-btn:hover .yc-btn__disc {
+    transform: translateX(3px);
+  }
+  .yc-btn__disc svg {
+    width: 48%;
+    height: 48%;
+  }
+
+  /* ===== Surfaces ===== */
+  .yc-card {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border-radius: 28px;
+    background: var(--color-yc-sand-50);
+    box-shadow: inset 0 0 0 1px rgba(28, 21, 23, 0.04);
+  }
+  .yc-card--white {
+    background: #fff;
+    box-shadow:
+      inset 0 0 0 1px var(--color-yc-sand-200),
+      var(--shadow-sm);
+  }
+  .yc-panel {
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: inset 0 0 0 1px var(--color-yc-sand-200);
+  }
+  .yc-frame {
+    border-radius: 28px;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  /* ===== Backgrounds (aura + grain) ===== */
+  .yc-aura {
+    background:
+      radial-gradient(55% 60% at 88% -10%, rgba(255, 107, 53, 0.13), transparent 70%),
+      radial-gradient(50% 55% at 6% 0%, rgba(227, 20, 27, 0.08), transparent 70%), var(--noise),
+      var(--color-yc-paper);
+  }
+  .yc-aura--night {
+    background:
+      radial-gradient(70% 55% at 50% 115%, rgba(227, 20, 27, 0.42), transparent 70%),
+      radial-gradient(40% 45% at 92% -5%, rgba(255, 107, 53, 0.16), transparent 70%),
+      radial-gradient(35% 40% at 0% 10%, rgba(227, 20, 27, 0.1), transparent 70%),
+      var(--noise-night), var(--color-yc-night);
+  }
+  .yc-aura--brand {
+    background:
+      radial-gradient(60% 70% at 0% 0%, rgba(255, 255, 255, 0.24), transparent 60%),
+      radial-gradient(50% 60% at 100% 100%, rgba(120, 0, 10, 0.28), transparent 70%),
+      var(--noise-night), var(--gradient-brand);
+  }
+  .yc-dots {
+    background-color: var(--color-yc-sand-100);
+    background-image: radial-gradient(rgba(28, 21, 23, 0.13) 1px, transparent 1.2px);
+    background-size: 14px 14px;
+  }
+
+  /* ===== Night block frame lines (the reference's crosshair grid) ===== */
+  .yc-gridlines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .yc-gridlines i {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.07);
+  }
+  .yc-plus {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    margin: -7px 0 0 -7px;
+    pointer-events: none;
+  }
+  .yc-plus::before,
+  .yc-plus::after {
+    content: "";
+    position: absolute;
+    background: rgba(255, 255, 255, 0.28);
+  }
+  .yc-plus::before {
+    left: 7px;
+    top: 0;
+    width: 1px;
+    height: 15px;
+  }
+  .yc-plus::after {
+    top: 7px;
+    left: 0;
+    height: 1px;
+    width: 15px;
+  }
+
+  /* ===== Marquee ===== */
+  .yc-marquee {
+    overflow: hidden;
+    -webkit-mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
+  .yc-marquee__track {
+    display: flex;
+    gap: var(--gap, 14px);
+    width: max-content;
+    animation: yc-marquee var(--dur, 40s) linear infinite;
+  }
+  .yc-marquee--rev .yc-marquee__track {
+    animation-direction: reverse;
+  }
+  .yc-marquee:hover .yc-marquee__track {
+    animation-play-state: paused;
+  }
+  @keyframes yc-marquee {
+    to {
+      transform: translateX(calc(-50% - var(--gap, 14px) / 2));
+    }
+  }
+
+  /* ===== Small motion helpers ===== */
+  @keyframes yc-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.25;
+    }
+  }
+  .yc-live {
+    animation: yc-pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes yc-float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(var(--r, 0deg));
+    }
+    50% {
+      transform: translateY(-10px) rotate(calc(var(--r, 0deg) + 2deg));
+    }
+  }
+  .yc-float {
+    animation: yc-float var(--fd, 6s) ease-in-out infinite;
+  }
+  @keyframes yc-caret {
+    50% {
+      opacity: 0;
+    }
+  }
+  .yc-caret {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    margin-left: 1px;
+    vertical-align: -0.18em;
+    background: var(--color-yc-red-500);
+    animation: yc-caret 1s steps(1) infinite;
+  }
+  @keyframes yc-shine {
+    from {
+      transform: translateX(-120%) skewX(-18deg);
+    }
+    to {
+      transform: translateX(260%) skewX(-18deg);
+    }
+  }
+  .yc-shine {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  .yc-shine::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+    animation: yc-shine 3.6s var(--ease-out) 2.4s infinite;
+  }
+
+  /* The hero Console tours itself like a product video; hover pauses it. */
+  @keyframes yc-tour {
+    0%,
+    10% {
+      transform: translateY(0);
+    }
+    42%,
+    58% {
+      transform: translateY(calc(var(--tour) * 0.55));
+    }
+    78%,
+    86% {
+      transform: translateY(var(--tour));
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  .yc-tour {
+    animation: yc-tour 34s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+  .yc-frame:hover .yc-tour {
+    animation-play-state: paused;
+  }
+
+  /* Range input (pricing simulator) */
+  .yc-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 999px;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(
+      to right,
+      var(--color-yc-red-500) 0%,
+      var(--color-yc-tangerine-500) var(--pct, 0%),
+      var(--color-yc-sand-100) var(--pct, 0%),
+      var(--color-yc-sand-100) 100%
+    );
+  }
+  .yc-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid var(--color-yc-sand-300);
+    box-shadow: 0 2px 8px rgba(28, 21, 23, 0.18);
+    transition: transform 0.15s ease;
+  }
+  .yc-range::-webkit-slider-thumb:hover {
+    transform: scale(1.12);
+  }
+  .yc-range::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid var(--color-yc-sand-300);
+    box-shadow: 0 2px 8px rgba(28, 21, 23, 0.18);
+    cursor: pointer;
+  }
+  .yc-range:focus-visible {
+    box-shadow: 0 0 0 3px var(--color-yc-red-200);
+  }
+
+  /*
+   * The signup dialog (SignupFlow, shared with the other landings) wears the
+   * Yuno design system on this page: gradient CTA, Bricolage titles, red focus.
+   * The dialog root carries `.yl`; on this page we keep it light whatever the
+   * landing theme saved in localStorage.
+   */
+  .ycrm [role="dialog"].yl {
+    --yl-ink: #1c1517;
+    --yl-muted: #857b7d;
+    --yl-line: #e6dfdd;
+    --yl-soft: #f7f4f3;
+    --yl-bg: #ffffff;
+    --yl-btn-hover: #3d3437;
+    --color-white: #fff;
+    --color-zinc-50: #fcfaf9;
+    --color-zinc-100: #f7f4f3;
+    --color-zinc-200: #e6dfdd;
+    --color-zinc-300: #cfc6c4;
+    --color-zinc-400: #a39a98;
+    --color-zinc-500: #857b7d;
+    --color-zinc-600: #5e5457;
+    --color-zinc-700: #3d3437;
+    --color-zinc-800: #2a2124;
+    --color-zinc-900: #1c1517;
+    --color-zinc-950: #1c1517;
+    --yuno-red: #e3141b;
+    font-family: var(--font-yc-body);
+    color: var(--color-yc-ink);
+    background: #fff;
+  }
+  .ycrm [role="dialog"].yl h2,
+  .ycrm [role="dialog"].yl h3 {
+    font-family: var(--font-yc-display);
+    letter-spacing: -0.025em;
+  }
+  .ycrm [role="dialog"].yl .yl-btn-primary {
+    background: var(--gradient-brand);
+    box-shadow: var(--shadow-cta);
+    font-weight: 600;
+  }
+  .ycrm [role="dialog"].yl .yl-btn-primary:hover {
+    background: var(--gradient-brand);
+    filter: saturate(1.1) brightness(1.04);
+  }
+  .ycrm [role="dialog"].yl input:focus {
+    border-color: var(--color-yc-red-500) !important;
+    box-shadow: 0 0 0 3px var(--color-yc-red-200) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yc-marquee__track,
+  .yc-tour,
+  .yc-float,
+  .yc-live,
+  .yc-caret,
+  .yc-shine::after {
+    animation: none !important;
+  }
+}
