@@ -1,4 +1,6 @@
 # Yuno — nightclub ticketing & management software (landing.yunoapp.eu)
+# and Yuno CRM, the CRM for clubs and organizers who keep their ticketing
+# (crm.yunoapp.eu). Both domains serve this file.
 # Search engines and AI assistants are welcome: the whole public site may be
 # crawled, quoted and used to answer questions about Yuno.
 # Summary for language models: https://landing.yunoapp.eu/llms.txt
@@ -28,3 +30,4 @@ Allow: /
 
 Sitemap: https://landing.yunoapp.eu/sitemap.xml
 Sitemap: https://landing.yunoapp.eu/sitemap-pages.xml
+Sitemap: https://crm.yunoapp.eu/sitemap-crm.xml

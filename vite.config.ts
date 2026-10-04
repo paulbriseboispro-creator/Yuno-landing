@@ -23,15 +23,19 @@ function staticSitemap(): Plugin {
         const clientOut = resolve(root, builder.environments.client.config.build.outDir);
         const serverOut = resolve(root, builder.environments.ssr.config.build.outDir);
         const server = await import(pathToFileURL(resolve(serverOut, "server.js")).href);
-        const res: Response = await server.default.fetch(
-          new Request("https://landing.yunoapp.eu/sitemap.xml"),
-          {},
-          {},
-        );
-        const xml = await res.text();
-        if (!res.ok || !xml.startsWith("<?xml") || !xml.includes("<urlset")) {
-          throw new Error(`static sitemap: /sitemap.xml returned ${res.status}`);
-        }
+        const render = async (path: string): Promise<string> => {
+          const res: Response = await server.default.fetch(
+            new Request(`https://landing.yunoapp.eu${path}`),
+            {},
+            {},
+          );
+          const xml = await res.text();
+          if (!res.ok || !xml.startsWith("<?xml") || !xml.includes("<urlset")) {
+            throw new Error(`static sitemap: ${path} returned ${res.status}`);
+          }
+          return xml;
+        };
+        const xml = await render("/sitemap.xml");
         // Same file under a second, never-failed name: Search Console kept
         // /sitemap.xml stuck at "couldn't fetch" even once it was fixed, while
         // a freshly named file was read at once. Submit sitemap-pages.xml there.
@@ -39,6 +43,10 @@ function staticSitemap(): Plugin {
           await writeFile(resolve(clientOut, name), xml);
         }
         builder.config.logger.info(`static sitemap: ${xml.match(/<url>/g)?.length ?? 0} URLs`);
+        // crm.yunoapp.eu's own sitemap (src/routes/sitemap-crm[.]xml.ts).
+        const crm = await render("/sitemap-crm.xml");
+        await writeFile(resolve(clientOut, "sitemap-crm.xml"), crm);
+        builder.config.logger.info(`static CRM sitemap: ${crm.match(/<url>/g)?.length ?? 0} URLs`);
       },
     },
   };

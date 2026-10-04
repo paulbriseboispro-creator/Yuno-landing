@@ -6,7 +6,7 @@ import { TOPIC_PAGES } from "@/content/topics";
 import { LANDING_LANGS, landingUrl } from "@/i18n/landing-lang";
 import { LANDING_UPDATED } from "@/i18n/landing-seo";
 import { ASSO_UPDATED, assoUrl } from "@/i18n/asso";
-import { CRM_UPDATED, crmUrl } from "@/i18n/crm";
+import { type SitemapEntry, sitemapXml } from "@/i18n/sitemap-xml";
 
 // Kept deliberately plain (<loc> + <lastmod>, no hreflang namespace): Search
 // Console could not fetch the richer Worker-rendered version, while a static
@@ -15,11 +15,6 @@ import { CRM_UPDATED, crmUrl } from "@/i18n/crm";
 // staticSitemap) renders it to dist/client/sitemap.xml (+ sitemap-pages.xml,
 // the name submitted in Search Console) and Cloudflare serves
 // that static file first. The route still answers in `vite dev`.
-
-interface SitemapEntry {
-  loc: string;
-  lastmod?: string;
-}
 
 function sitemapEntries(): SitemapEntry[] {
   // Pages published in English (root) and French (/fr).
@@ -55,38 +50,15 @@ function sitemapEntries(): SitemapEntry[] {
   for (const lang of LANDING_LANGS) {
     entries.push({ loc: assoUrl(lang), lastmod: ASSO_UPDATED });
   }
-  // Yuno CRM: one page per language.
-  for (const lang of LANDING_LANGS) {
-    entries.push({ loc: crmUrl(lang), lastmod: CRM_UPDATED });
-  }
+  // Yuno CRM lives on crm.yunoapp.eu: its own sitemap (sitemap-crm[.]xml.ts).
   return entries;
-}
-
-function sitemapXml(): string {
-  const urls = sitemapEntries().map((e) =>
-    [
-      `  <url>`,
-      `    <loc>${e.loc}</loc>`,
-      e.lastmod ? `    <lastmod>${e.lastmod}</lastmod>` : null,
-      `  </url>`,
-    ]
-      .filter(Boolean)
-      .join("\n"),
-  );
-  return [
-    `<?xml version="1.0" encoding="UTF-8"?>`,
-    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
-    ...urls,
-    `</urlset>`,
-    ``,
-  ].join("\n");
 }
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () =>
-        new Response(sitemapXml(), {
+        new Response(sitemapXml(sitemapEntries()), {
           headers: {
             "Content-Type": "application/xml; charset=utf-8",
             "Cache-Control": "public, max-age=3600",

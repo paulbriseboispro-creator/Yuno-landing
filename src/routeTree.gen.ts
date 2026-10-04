@@ -13,6 +13,7 @@ import { Route as VipTableBookingSoftwareRouteImport } from './routes/vip-table-
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as StartRouteImport } from './routes/start'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SitemapCrmDotxmlRouteImport } from './routes/sitemap-crm[.]xml'
 import { Route as PromoterTrackingSoftwareRouteImport } from './routes/promoter-tracking-software'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
@@ -79,6 +80,11 @@ const StartRoute = StartRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapCrmDotxmlRoute = SitemapCrmDotxmlRouteImport.update({
+  id: '/sitemap-crm.xml',
+  path: '/sitemap-crm.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PromoterTrackingSoftwareRoute =
@@ -346,6 +352,7 @@ export interface FileRoutesByFullPath {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/promoter-tracking-software': typeof PromoterTrackingSoftwareRoute
+  '/sitemap-crm.xml': typeof SitemapCrmDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
   '/terms': typeof TermsRoute
@@ -399,6 +406,7 @@ export interface FileRoutesByTo {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/promoter-tracking-software': typeof PromoterTrackingSoftwareRoute
+  '/sitemap-crm.xml': typeof SitemapCrmDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
   '/terms': typeof TermsRoute
@@ -453,6 +461,7 @@ export interface FileRoutesById {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/promoter-tracking-software': typeof PromoterTrackingSoftwareRoute
+  '/sitemap-crm.xml': typeof SitemapCrmDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
   '/terms': typeof TermsRoute
@@ -508,6 +517,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/promoter-tracking-software'
+    | '/sitemap-crm.xml'
     | '/sitemap.xml'
     | '/start'
     | '/terms'
@@ -561,6 +571,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/promoter-tracking-software'
+    | '/sitemap-crm.xml'
     | '/sitemap.xml'
     | '/start'
     | '/terms'
@@ -614,6 +625,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/promoter-tracking-software'
+    | '/sitemap-crm.xml'
     | '/sitemap.xml'
     | '/start'
     | '/terms'
@@ -668,6 +680,7 @@ export interface RootRouteChildren {
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   PromoterTrackingSoftwareRoute: typeof PromoterTrackingSoftwareRoute
+  SitemapCrmDotxmlRoute: typeof SitemapCrmDotxmlRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StartRoute: typeof StartRoute
   TermsRoute: typeof TermsRoute
@@ -732,6 +745,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap-crm.xml': {
+      id: '/sitemap-crm.xml'
+      path: '/sitemap-crm.xml'
+      fullPath: '/sitemap-crm.xml'
+      preLoaderRoute: typeof SitemapCrmDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/promoter-tracking-software': {
@@ -1084,6 +1104,7 @@ const rootRouteChildren: RootRouteChildren = {
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   PromoterTrackingSoftwareRoute: PromoterTrackingSoftwareRoute,
+  SitemapCrmDotxmlRoute: SitemapCrmDotxmlRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StartRoute: StartRoute,
   TermsRoute: TermsRoute,
