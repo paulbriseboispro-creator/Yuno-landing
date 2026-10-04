@@ -3,21 +3,28 @@ import { crmContent } from "@/content/crm";
 import type { LandingLang } from "@/i18n/landing-lang";
 import { CRM_PATHS } from "@/i18n/crm";
 import { LandingProvider, useLanding } from "@/components/landing/context";
-import { LandingNav } from "@/components/landing/Nav";
-import { Problem } from "@/components/landing/Stats";
-import { Faq } from "@/components/landing/Pricing";
-import { LandingFooter, MobileCta } from "@/components/landing/Closing";
 import { SignupModal } from "@/components/landing/SignupModal";
+import { CrmNav } from "@/components/crm/Nav";
 import { CrmHero } from "@/components/crm/Hero";
-import { CrmFeatures, CrmHow, CrmStats } from "@/components/crm/Sections";
+import { CrmProof } from "@/components/crm/Proof";
+import { CrmProblem } from "@/components/crm/Problem";
+import { CrmNight } from "@/components/crm/Night";
+import { CrmSteps } from "@/components/crm/Steps";
+import { CrmChannels } from "@/components/crm/Channels";
+import { CrmMcp } from "@/components/crm/Mcp";
+import { CrmCompare } from "@/components/crm/Compare";
+import { CrmBento } from "@/components/crm/Bento";
 import { CrmPricing } from "@/components/crm/Pricing";
-import { CrmFinal } from "@/components/crm/Closing";
+import { CrmFaq, CrmFinal, CrmMobileBar } from "@/components/crm/Closing";
 
-// Yuno CRM ("/crm", "/fr/crm", "/es/crm"): for organizers and clubs who keep
-// their ticketing (Shotgun first). The main landing's look, its own story and
-// its own paid pricing; every CTA opens the CRM signup (SignupFlow
-// product="crm"), which opens a CRM Console with a 14-day Pro trial.
-// Section order: promise → facts → problem → how → features → pricing → FAQ → close.
+// Yuno CRM ("/crm", "/fr/crm", "/es/crm"): for clubs and organizers who keep
+// their ticketing (Shotgun first). The Insyder landing grammar rebuilt on the
+// Yuno design system (src/styles/crm.css, Claude Design "Design system Yuno
+// créé"); every CTA opens the CRM signup (SignupFlow product="crm"), which opens
+// a CRM Console with its 14-day trial.
+// Order: hero + live Console → profiles → problem → night block (features) →
+// 2-minute steps → your AI through MCP → ticketing vs Yuno → bento → sending
+// (one counter) → pricing → FAQ → close.
 export function CrmPage({ lang }: { lang: LandingLang }) {
   const c = crmContent[lang];
   return (
@@ -27,20 +34,23 @@ export function CrmPage({ lang }: { lang: LandingLang }) {
       home={CRM_PATHS[lang]}
       whatsappMessage={c.whatsappMessage}
     >
-      <div className="yl min-h-screen overflow-x-clip">
-        <LandingNav links={c.nav.links} cta={c.nav.cta} />
+      <div className="ycrm min-h-screen overflow-x-clip">
+        <CrmNav />
         <main>
           <CrmHero />
-          <CrmStats />
-          <Problem content={c.problem} />
-          <CrmHow />
-          <CrmFeatures />
+          <CrmProof />
+          <CrmProblem />
+          <CrmNight />
+          <CrmSteps />
+          <CrmMcp />
+          <CrmCompare />
+          <CrmBento />
+          <CrmChannels />
           <CrmPricing />
-          <Faq eyebrow={c.faq.eyebrow} title={c.faq.title} items={c.faq.items} />
-          <CrmFinal />
+          <CrmFaq />
         </main>
-        <LandingFooter />
-        <MobileCta label={c.mobileCta} />
+        <CrmFinal />
+        <CrmMobileBar />
         <SignupModal product="crm" source="crm" crmCopy={c.signup} />
         <OpenFromHash />
       </div>

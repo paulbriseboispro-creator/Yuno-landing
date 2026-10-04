@@ -5,12 +5,13 @@ import { SITE_ORIGIN } from "@/i18n/seo";
 
 // The Yuno CRM page (EN / FR / ES): a product of its own for organizers and
 // clubs who keep their ticketing. Its pricing is paid (unlike the ticketing
-// Suite), so it never shares the Suite's "€0" claims.
+// Suite), so it never shares the Suite's "€0" claims: one subscription
+// (monthly or yearly) plus Yunits for the sends.
 
 export { CRM_PATHS };
 
 // Last meaningful copy update of the CRM page (sitemap, dateModified).
-export const CRM_UPDATED = "2026-10-02";
+export const CRM_UPDATED = "2026-10-04";
 
 const OG_LOCALE: Record<LandingLang, string> = { en: "en_GB", fr: "fr_FR", es: "es_ES" };
 
@@ -47,13 +48,36 @@ export function crmHead(lang: LandingLang) {
       operatingSystem: "Web",
       description: c.meta.description,
       publisher: { "@id": ORG_ID },
-      offers: c.pricing.plans.map((p) => ({
-        "@type": "Offer",
-        name: p.name,
-        price: String(p.month),
-        priceCurrency: "EUR",
-        url: `${self}#pricing`,
-      })),
+      offers: [
+        {
+          "@type": "Offer",
+          name: `${c.pricing.plan} · ${c.pricing.monthly}`,
+          price: String(c.pricing.month),
+          priceCurrency: "EUR",
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            price: c.pricing.month,
+            priceCurrency: "EUR",
+            unitCode: "MON",
+            valueAddedTaxIncluded: false,
+          },
+          url: `${self}#tarifs`,
+        },
+        {
+          "@type": "Offer",
+          name: `${c.pricing.plan} · ${c.pricing.annual}`,
+          price: String(c.pricing.year),
+          priceCurrency: "EUR",
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            price: c.pricing.year,
+            priceCurrency: "EUR",
+            unitCode: "ANN",
+            valueAddedTaxIncluded: false,
+          },
+          url: `${self}#tarifs`,
+        },
+      ],
     },
     {
       "@type": "FAQPage",
@@ -87,6 +111,11 @@ export function crmHead(lang: LandingLang) {
     ],
     links: [
       { rel: "canonical", href: self },
+      // The Yuno design system's faces, only on this page.
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap",
+      },
       ...LANDING_LANGS.map((l) => ({ rel: "alternate", hrefLang: l, href: crmUrl(l) })),
       { rel: "alternate", hrefLang: "x-default", href: crmUrl("en") },
     ],
