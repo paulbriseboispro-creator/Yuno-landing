@@ -26,7 +26,6 @@ function Badge() {
 
 export function CrmCompare() {
   const c = useCrm().compare;
-  const reduce = useReducedMotion();
   const [on, setOn] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 70%", "end 30%"] });
