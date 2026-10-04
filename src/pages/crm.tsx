@@ -10,6 +10,7 @@ import { CrmProof } from "@/components/crm/Proof";
 import { CrmProblem } from "@/components/crm/Problem";
 import { CrmNight } from "@/components/crm/Night";
 import { CrmSteps } from "@/components/crm/Steps";
+import { CrmEngine } from "@/components/crm/Engine";
 import { CrmChannels } from "@/components/crm/Channels";
 import { CrmMcp } from "@/components/crm/Mcp";
 import { CrmCompare } from "@/components/crm/Compare";
@@ -23,7 +24,7 @@ import { CrmFaq, CrmFinal, CrmMobileBar } from "@/components/crm/Closing";
 // créé"); every CTA opens the CRM signup (SignupFlow product="crm"), which opens
 // a CRM Console with its 14-day trial.
 // Order: hero + live Console → profiles → problem → night block (features) →
-// 2-minute steps → your AI through MCP → ticketing vs Yuno → bento → sending
+// 2-minute steps → smart marketing (automations, channels, analytics) → your AI through MCP → ticketing vs Yuno → bento → sending
 // (one counter) → pricing → FAQ → close.
 export function CrmPage({ lang }: { lang: LandingLang }) {
   const c = crmContent[lang];
@@ -42,6 +43,7 @@ export function CrmPage({ lang }: { lang: LandingLang }) {
           <CrmProblem />
           <CrmNight />
           <CrmSteps />
+          <CrmEngine />
           <CrmMcp />
           <CrmCompare />
           <CrmBento />
