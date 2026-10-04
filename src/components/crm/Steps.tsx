@@ -12,7 +12,7 @@ import { Accent, Count, CtaButton, EASE, Eyebrow, Reveal, YunitFace, useFmt } fr
 // validates itself), Yuno sorts everything (the Yunit counts the import), then
 // the Console home.
 
-function ConnectScreen({ active, inset = false }: { active: boolean; inset?: boolean }) {
+function ConnectScreen({ active }: { active: boolean }) {
   const c = useCrm().steps.connect;
   const reduce = useReducedMotion();
   const token = "shg_live_8Hq2••••••••••••Xk4";
@@ -42,7 +42,7 @@ function ConnectScreen({ active, inset = false }: { active: boolean; inset?: boo
 
   return (
     <div
-      className={cn("grid h-[475px] w-[760px] place-items-center p-6", inset && "pr-[100px]")}
+      className="grid h-[450px] w-[720px] place-items-center p-6"
       style={{
         background:
           "radial-gradient(60% 60% at 50% 0%,rgba(255,107,53,.10),transparent 70%),var(--color-yc-paper)",
@@ -108,7 +108,7 @@ function ConnectScreen({ active, inset = false }: { active: boolean; inset?: boo
   );
 }
 
-function SortScreen({ active, inset = false }: { active: boolean; inset?: boolean }) {
+function SortScreen({ active }: { active: boolean }) {
   const s = useCrm().steps.sort;
   const { num } = useFmt();
   const [done, setDone] = useState(false);
@@ -120,16 +120,13 @@ function SortScreen({ active, inset = false }: { active: boolean; inset?: boolea
   }, [active]);
   return (
     <div
-      className={cn(
-        "flex h-[475px] w-[760px] flex-col items-center justify-center gap-4 bg-white p-6",
-        inset && "pr-[100px]",
-      )}
+      className="flex h-[450px] w-[720px] flex-col items-center justify-center gap-3 bg-white p-6"
     >
       <motion.div
         animate={active ? { y: [0, -8, 0] } : {}}
         transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
       >
-        <YunitFace mood={done ? "ravi" : "content"} size={76} />
+        <YunitFace mood={done ? "ravi" : "content"} size={64} />
       </motion.div>
       <div className="text-center">
         <div className="font-yc-display text-[19px] font-semibold tracking-[-0.02em]">
@@ -183,10 +180,11 @@ function SortScreen({ active, inset = false }: { active: boolean; inset?: boolea
 
 function Monitor({ step }: { step: number }) {
   return (
-    <div className="yc-dots relative flex aspect-[1/1.06] items-center justify-end overflow-hidden rounded-[32px] lg:aspect-[1/1.12]">
-      <div className="relative ml-[9%] w-[104%]">
-        <div className="overflow-hidden rounded-[18px] border-[9px] border-[#151112] bg-[#151112] shadow-[0_40px_80px_-30px_rgba(28,21,23,.6)]">
-          <div className="relative aspect-[16/10] overflow-hidden rounded-[8px] bg-white">
+    <div className="yc-dots relative grid aspect-[1/1] place-items-center overflow-hidden rounded-[32px] px-[7%] lg:aspect-[1/0.96]">
+      <div className="relative w-full">
+        {/* bezel + screen */}
+        <div className="rounded-[20px] bg-[#151112] p-[10px] shadow-[inset_0_0_0_1px_rgba(255,255,255,.08),0_40px_70px_-28px_rgba(28,21,23,.55)]">
+          <div className="relative aspect-[16/10] overflow-hidden rounded-[10px] bg-white">
             <AnimatePresence mode="popLayout" initial={false}>
               <motion.div
                 key={step}
@@ -197,13 +195,13 @@ function Monitor({ step }: { step: number }) {
                 className="absolute inset-0"
               >
                 {step === 0 && (
-                  <Scaled cw={760} height={475} className="h-full">
-                    <ConnectScreen active inset />
+                  <Scaled cw={720} height={450} className="h-full">
+                    <ConnectScreen active />
                   </Scaled>
                 )}
                 {step === 1 && (
-                  <Scaled cw={760} height={475} className="h-full">
-                    <SortScreen active inset />
+                  <Scaled cw={720} height={450} className="h-full">
+                    <SortScreen active />
                   </Scaled>
                 )}
                 {step === 2 && (
@@ -211,13 +209,14 @@ function Monitor({ step }: { step: number }) {
                     <ConsoleHome start />
                   </Scaled>
                 )}
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,.14),transparent_38%)]" />
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
-        {/* stand */}
-        <div className="mx-auto h-[70px] w-[22%] bg-[linear-gradient(90deg,#8f8a89,#cfcac9_30%,#a7a2a1_70%,#7d7877)]" />
-        <div className="mx-auto h-2 w-[30%] rounded-t-[4px] bg-[linear-gradient(90deg,#8f8a89,#d8d3d2_40%,#8f8a89)] shadow-[0_8px_14px_-6px_rgba(0,0,0,.35)]" />
+        {/* neck + foot, centred under the screen */}
+        <div className="mx-auto h-[clamp(36px,7vw,64px)] w-[17%] bg-[linear-gradient(90deg,#8f8a89,#d4cfce_32%,#a7a2a1_72%,#7d7877)] [clip-path:polygon(8%_0,92%_0,100%_100%,0_100%)]" />
+        <div className="mx-auto h-[7px] w-[30%] rounded-[3px] bg-[linear-gradient(90deg,#8f8a89,#dcd7d6_40%,#8f8a89)] shadow-[0_10px_16px_-6px_rgba(0,0,0,.4)]" />
       </div>
     </div>
   );
@@ -328,12 +327,12 @@ export function CrmSteps() {
                 <div className="relative aspect-[16/10]">
                   <div className="absolute inset-0">
                     {desktop === false && i === 0 && (
-                      <Scaled cw={760} height={475} className="h-full">
+                      <Scaled cw={720} height={450} className="h-full">
                         <ConnectScreen active />
                       </Scaled>
                     )}
                     {desktop === false && i === 1 && (
-                      <Scaled cw={760} height={475} className="h-full">
+                      <Scaled cw={720} height={450} className="h-full">
                         <SortScreen active />
                       </Scaled>
                     )}
