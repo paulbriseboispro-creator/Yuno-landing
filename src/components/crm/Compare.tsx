@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import yunoIcon from "@/assets/crm/yuno-app-icon.webp";
 import { useCrm } from "./content";
 import { ConsoleHome, Scaled } from "./Dashboard";
 import { TicketingPhone } from "./Phone";
@@ -14,13 +13,65 @@ import { Accent, CtaButton, EASE, Reveal } from "./ui";
 // the card flips from sand (what ticketing gives) to night (what Yuno gives).
 // Flips with the scroll: the logo stays put, the card changes as it crosses the viewport.
 
-function Badge() {
+// Yunit seen straight on: flat red disc, white pixel face, no tilt, no gloss.
+function YunitFace() {
   return (
-    <img
-      src={yunoIcon}
-      alt=""
-      className="relative z-20 size-[108px] rounded-full object-cover sm:size-[150px]"
-    />
+    <svg viewBox="0 0 100 100" aria-hidden className="absolute inset-[5%] size-[90%]">
+      <defs>
+        <radialGradient id="yunit-face" cx="35%" cy="28%" r="85%">
+          <stop offset="0" stopColor="#ff5a3c" />
+          <stop offset="1" stopColor="#e8192c" />
+        </radialGradient>
+      </defs>
+      <circle cx="50" cy="50" r="50" fill="url(#yunit-face)" />
+      <g transform="translate(21 21) scale(.58)">
+        <path
+          fill="#fff"
+          d="M30 0h40v10h20v20h10v40H90v20H70v10H30V90H10V70H0V30h10V10h20z"
+        />
+        <rect x="27" y="32" width="15" height="17" fill="#ef2a2a" />
+        <rect x="58" y="32" width="15" height="17" fill="#ef2a2a" />
+        <path d="M22 60q28 22 56 0" fill="none" stroke="#ef2a2a" strokeWidth="7" />
+      </g>
+    </svg>
+  );
+}
+
+function Dial({ on }: { on: boolean }) {
+  return (
+    <div className="relative z-20 grid size-[108px] place-items-center rounded-full sm:size-[150px]">
+      <span className="absolute inset-x-[18%] -top-[14%] h-[38%] rounded-t-[40px] bg-yc-ink [clip-path:polygon(0_100%,8%_0,92%_0,100%_100%)]" />
+      <motion.span
+        animate={{ rotate: on ? 180 : 0 }}
+        transition={{ type: "spring", stiffness: 120, damping: 14 }}
+        className="relative grid size-full place-items-center rounded-full bg-yc-ink p-[7px] shadow-[0_18px_40px_-12px_rgba(28,21,23,.55)]"
+      >
+        <span className="relative grid size-full place-items-center overflow-hidden rounded-full bg-[radial-gradient(circle_at_35%_30%,#ffffff,#d9d4d3_45%,#a8a2a1_75%,#8a8483)] shadow-[inset_0_2px_6px_rgba(255,255,255,.8),inset_0_-6px_12px_rgba(0,0,0,.25)]">
+          <AnimatePresence initial={false} mode="popLayout">
+            {on ? (
+              <motion.span
+                key="yunit"
+                initial={{ opacity: 0, scale: 0.6, rotate: -180 }}
+                animate={{ opacity: 1, scale: 1, rotate: -180 }}
+                exit={{ opacity: 0, scale: 0.6 }}
+                transition={{ duration: 0.5, ease: EASE }}
+                className="absolute inset-0"
+              >
+                <YunitFace />
+              </motion.span>
+            ) : (
+              <motion.span
+                key="knob"
+                initial={{ opacity: 0, scale: 0.6 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.6 }}
+                className="size-[38%] rounded-full bg-[conic-gradient(from_0deg,#b9b3b2,#f2efee,#9b9594,#e6e2e1,#b9b3b2)] shadow-[0_2px_4px_rgba(0,0,0,.25),inset_0_1px_2px_rgba(255,255,255,.7)]"
+              />
+            )}
+          </AnimatePresence>
+        </span>
+      </motion.span>
+    </div>
   );
 }
 
@@ -54,7 +105,7 @@ export function CrmCompare() {
             {c.tabs[0]}
           </div>
           <div className="relative z-20 -mb-10 flex-none sm:-mb-12">
-            <Badge />
+            <Dial on={on} />
           </div>
           <div
             className={cn(
