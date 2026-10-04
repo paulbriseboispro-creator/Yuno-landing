@@ -12,8 +12,8 @@ import { useCrm } from "./content";
 import { Accent, CtaButton, EASE, Eyebrow, Reveal, Rich, YunitFace, useFmt } from "./ui";
 
 // Pricing of the design (Tarifs.dc.html), mirror of the app's billing
-// (src/lib/crmPlans.ts + _shared/crm-billing.ts): one subscription, 29 € HT a
-// month (launch price; 39 € later for new accounts) or 348 € HT a year with
+// (src/lib/crmPlans.ts + _shared/crm-billing.ts): one subscription, 24 € HT a
+// month (launch price; 34 € later for new accounts) or 288 € HT a year with
 // 30,000 bonus Yunits, 10,000 Yunits offered every month, sends paid in Yunits
 // (email 1, SMS 40), recharges at 500 Yunits per euro with +10 % / +15 % bonus.
 

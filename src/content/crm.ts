@@ -8,7 +8,7 @@
 // you / Yuno gives you" switch, bento, pricing, FAQ, final call) rebuilt on the
 // Yuno design system (Claude Design project "Design system Yuno créé").
 //
-// Facts must match the yuno repo: one subscription (29 € HT launch price, 39 €
+// Facts must match the yuno repo: one subscription (24 € HT launch price, 34 €
 // later for new accounts, annual = 12 months + 30,000 Yunits), 10,000 Yunits a
 // month, 14-day trial with 5,000 Yunits and no card, recharges at 500 Yunits per
 // euro with +10 % / +15 % bonuses (src/lib/crmPlans.ts, _shared/crm-billing.ts,
@@ -32,7 +32,7 @@ const fr = {
   meta: {
     title: "Yuno CRM — Sachez qui vient à vos soirées, et faites-les revenir",
     description:
-      "Yuno CRM se branche sur Shotgun et regroupe vos acheteurs dans un seul fichier clients : habitués, nouveaux, à relancer. E-mails, SMS, bilans de soirée. 29 € HT par mois, 14 jours d’essai sans carte.",
+      "Yuno CRM se branche sur Shotgun et regroupe vos acheteurs dans un seul fichier clients : habitués, nouveaux, à relancer. E-mails, SMS, bilans de soirée. 24 € HT par mois, 14 jours d’essai sans carte.",
   },
   whatsappMessage:
     "Bonjour Paul 👋 Je vends sur Shotgun et j’aimerais en savoir plus sur Yuno CRM.",
@@ -775,13 +775,13 @@ const fr = {
     annualNote: "Annuel : **30 000 Yunits offerts d’un coup**, soit environ deux mois offerts.",
     plan: "Yuno CRM",
     launch: "Prix de lancement",
-    month: 29,
-    year: 348,
+    month: 24,
+    year: 288,
     perMonth: "HT / mois",
     perYear: "HT / an",
     subMonthly:
-      "Puis 39 € pour les nouveaux clients. Vous, vous gardez 29 € tant que vous restez abonné.",
-    subAnnual: "Soit 29 € par mois, sans remise. Facturé une fois par an.",
+      "Puis 34 € pour les nouveaux clients. Vous, vous gardez 24 € tant que vous restez abonné.",
+    subAnnual: "Soit 24 € par mois, sans remise. Facturé une fois par an.",
     monthlyYunits: "**10 000 Yunits** offerts chaque mois",
     monthlyYunitsSub: "de quoi envoyer 10 000 e-mails",
     annualBonus: "**30 000 Yunits** en plus, d’un coup",
@@ -898,15 +898,15 @@ const fr = {
       },
       {
         q: "Combien ça coûte, et après les 14 jours ?",
-        a: "29 € HT par mois, avec 10 000 Yunits offerts chaque mois pour vos envois. Sans abonnement à la fin de l’essai, le compte se met en pause : vous voyez toujours votre base, rien ne part.",
+        a: "24 € HT par mois, avec 10 000 Yunits offerts chaque mois pour vos envois. Sans abonnement à la fin de l’essai, le compte se met en pause : vous voyez toujours votre base, rien ne part.",
       },
       {
         q: "Que se passe-t-il s’il me manque des Yunits ?",
         a: "Avant chaque envoi, Yuno affiche son coût et votre solde. S’il en manque, vous rechargez sans quitter l’écran et l’envoi reprend. Les offerts partent en premier, ceux achetés restent valables un an.",
       },
       {
-        q: "Le prix de 29 € peut-il augmenter ?",
-        a: "Le prix passera à 39 € plus tard, pour les nouveaux clients seulement. Si vous vous abonnez à 29 €, vous gardez ce prix tant que vous restez abonné.",
+        q: "Le prix de 24 € peut-il augmenter ?",
+        a: "Le prix passera à 34 € plus tard, pour les nouveaux clients seulement. Si vous vous abonnez à 24 €, vous gardez ce prix tant que vous restez abonné.",
       },
       {
         q: "Où sont hébergées mes données ?",
@@ -974,7 +974,7 @@ const en: CrmContent = {
   meta: {
     title: "Yuno CRM — Know who comes to your nights, and bring them back",
     description:
-      "Yuno CRM plugs into Shotgun and gathers your buyers in one customer file: regulars, newcomers, people to win back. Emails, SMS, night reports. €29 excl. VAT a month, 14-day trial, no card.",
+      "Yuno CRM plugs into Shotgun and gathers your buyers in one customer file: regulars, newcomers, people to win back. Emails, SMS, night reports. €24 excl. VAT a month, 14-day trial, no card.",
   },
   whatsappMessage: "Hi Paul 👋 I sell on Shotgun and I'd like to know more about Yuno CRM.",
   nav: {
@@ -1672,12 +1672,12 @@ const en: CrmContent = {
     annualNote: "Yearly: **30,000 Yunits offered at once**, about two months free.",
     plan: "Yuno CRM",
     launch: "Launch price",
-    month: 29,
-    year: 348,
+    month: 24,
+    year: 288,
     perMonth: "excl. VAT / month",
     perYear: "excl. VAT / year",
-    subMonthly: "Then €39 for new customers. You keep €29 for as long as you stay subscribed.",
-    subAnnual: "That's €29 a month, no discount. Billed once a year.",
+    subMonthly: "Then €34 for new customers. You keep €24 for as long as you stay subscribed.",
+    subAnnual: "That's €24 a month, no discount. Billed once a year.",
     monthlyYunits: "**10,000 Yunits** offered every month",
     monthlyYunitsSub: "enough to send 10,000 emails",
     annualBonus: "**30,000 Yunits** on top, at once",
@@ -1794,15 +1794,15 @@ const en: CrmContent = {
       },
       {
         q: "How much is it, and after the 14 days?",
-        a: "€29 excl. VAT a month, with 10,000 Yunits offered every month for your sends. Without a subscription at the end of the trial, the account pauses: you still see your base, nothing goes out.",
+        a: "€24 excl. VAT a month, with 10,000 Yunits offered every month for your sends. Without a subscription at the end of the trial, the account pauses: you still see your base, nothing goes out.",
       },
       {
         q: "What if I run out of Yunits?",
         a: "Before every send, Yuno shows its cost and your balance. If some are missing, you top up without leaving the screen and the send resumes. Offered Yunits go first; the ones you buy stay valid for a year.",
       },
       {
-        q: "Can the €29 price go up?",
-        a: "The price will move to €39 later, for new customers only. If you subscribe at €29, you keep that price for as long as you stay subscribed.",
+        q: "Can the €24 price go up?",
+        a: "The price will move to €34 later, for new customers only. If you subscribe at €24, you keep that price for as long as you stay subscribed.",
       },
       {
         q: "Where is my data hosted?",
@@ -1867,7 +1867,7 @@ const es: CrmContent = {
   meta: {
     title: "Yuno CRM — Sabe quién viene a tus fiestas, y haz que vuelvan",
     description:
-      "Yuno CRM se conecta a Shotgun y reúne a tus compradores en un solo archivo de clientes: habituales, nuevos, a recuperar. E-mails, SMS, informes de cada fiesta. 29 € + IVA al mes, 14 días de prueba sin tarjeta.",
+      "Yuno CRM se conecta a Shotgun y reúne a tus compradores en un solo archivo de clientes: habituales, nuevos, a recuperar. E-mails, SMS, informes de cada fiesta. 24 € + IVA al mes, 14 días de prueba sin tarjeta.",
   },
   whatsappMessage: "Hola Paul 👋 Vendo en Shotgun y me gustaría saber más sobre Yuno CRM.",
   nav: {
@@ -2604,12 +2604,12 @@ const es: CrmContent = {
     annualNote: "Anual: **30.000 Yunits de regalo de golpe**, unos dos meses gratis.",
     plan: "Yuno CRM",
     launch: "Precio de lanzamiento",
-    month: 29,
-    year: 348,
+    month: 24,
+    year: 288,
     perMonth: "+ IVA / mes",
     perYear: "+ IVA / año",
-    subMonthly: "Luego 39 € para los nuevos clientes. Tú mantienes 29 € mientras sigas suscrito.",
-    subAnnual: "Es decir, 29 € al mes, sin descuento. Facturado una vez al año.",
+    subMonthly: "Luego 34 € para los nuevos clientes. Tú mantienes 24 € mientras sigas suscrito.",
+    subAnnual: "Es decir, 24 € al mes, sin descuento. Facturado una vez al año.",
     monthlyYunits: "**10.000 Yunits** de regalo cada mes",
     monthlyYunitsSub: "para enviar 10.000 e-mails",
     annualBonus: "**30.000 Yunits** más, de golpe",
@@ -2726,15 +2726,15 @@ const es: CrmContent = {
       },
       {
         q: "¿Cuánto cuesta, y después de los 14 días?",
-        a: "29 € + IVA al mes, con 10.000 Yunits de regalo cada mes para tus envíos. Sin suscripción al final de la prueba, la cuenta se pone en pausa: sigues viendo tu base, no sale nada.",
+        a: "24 € + IVA al mes, con 10.000 Yunits de regalo cada mes para tus envíos. Sin suscripción al final de la prueba, la cuenta se pone en pausa: sigues viendo tu base, no sale nada.",
       },
       {
         q: "¿Qué pasa si me faltan Yunits?",
         a: "Antes de cada envío, Yuno muestra su coste y tu saldo. Si faltan, recargas sin salir de la pantalla y el envío continúa. Los regalados se usan primero; los comprados son válidos un año.",
       },
       {
-        q: "¿Puede subir el precio de 29 €?",
-        a: "El precio pasará a 39 € más adelante, solo para los nuevos clientes. Si te suscribes a 29 €, mantienes ese precio mientras sigas suscrito.",
+        q: "¿Puede subir el precio de 24 €?",
+        a: "El precio pasará a 34 € más adelante, solo para los nuevos clientes. Si te suscribes a 24 €, mantienes ese precio mientras sigas suscrito.",
       },
       {
         q: "¿Dónde se alojan mis datos?",

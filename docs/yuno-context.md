@@ -139,8 +139,8 @@ One offer since 4 Oct 2026 (Paul's decision of 2 Oct): a subscription + Yunits, 
 no seat or automation cap.
 | Item | Value |
 |---|---|
-| Subscription | 29 € HT / month at launch (39 € later for NEW accounts; a 29 € subscriber keeps 29 € while subscribed) |
-| Yearly | 348 € HT / year (12 × 29, no discount) + 30,000 bonus Yunits at once (≈ two months) |
+| Subscription | 24 € HT / month at launch (34 € later for NEW accounts; a 24 € subscriber keeps 24 € while subscribed) |
+| Yearly | 288 € HT / year (12 × 24, no discount) + 30,000 bonus Yunits at once (≈ two months) |
 | Yunits included | 10,000 every month (offered Yunits expire at month end and are used first) |
 | Cost per send | email 1 Yunit · SMS 40 Yunits · Instagram DM 10 and WhatsApp 100 = "soon" |
 | Always free | test sends, the AI assistant, contacts Yuno sets aside so as not to overload them |
