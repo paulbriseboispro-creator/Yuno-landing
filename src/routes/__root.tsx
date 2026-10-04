@@ -27,6 +27,7 @@ import {
   isLandingPath,
   type LandingLang,
 } from "@/i18n/landing-lang";
+import { crmPagePaths } from "@/i18n/hosts";
 import { common } from "@/content/common";
 import { COMPARE_PATHS } from "@/content/compare";
 import { TOPIC_PATHS } from "@/content/topics";
@@ -122,11 +123,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       }
       return { locale: "en" as Locale, lang: "en" as LandingLang, landing };
     }
-    // Same for the Yuno CRM page.
+    // Same for the Yuno CRM page ("/" on crm.yunoapp.eu: the redirect goes to
+    // the visitor's host's own path, "/fr" there, "/fr/crm" here).
     if (path === CRM_PATHS.en || path === CRM_PATHS.en + "/") {
       const pref = detectLandingLang();
       if (pref !== "en") {
-        throw redirect({ href: CRM_PATHS[pref] + (location.searchStr ?? "") });
+        throw redirect({ href: crmPagePaths()[pref] + (location.searchStr ?? "") });
       }
       return { locale: "en" as Locale, lang: "en" as LandingLang, landing };
     }

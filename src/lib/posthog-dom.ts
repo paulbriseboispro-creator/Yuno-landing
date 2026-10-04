@@ -15,6 +15,8 @@
 //
 // Browser only (called from effects), no-op without a PostHog key.
 import { capture, landingLangFromPath, pageFromPath, posthogEnabled } from "./posthog";
+import { CRM_ORIGIN } from "@/i18n/hosts";
+import { SITE_ORIGIN } from "@/i18n/seo";
 
 type Role = "club" | "organizer" | "promoter" | "other";
 const ROLES = new Set<string>(["club", "organizer", "promoter", "other"]);
@@ -75,7 +77,13 @@ function onClick(e: MouseEvent) {
 
   // CTA: explicit attribute first, then links that are CTAs by destination.
   let cta = ctaEl?.dataset.phCta ?? null;
-  const internal = !!url && url.origin === window.location.origin;
+  // landing.yunoapp.eu and crm.yunoapp.eu are one site (a CRM page links the
+  // legal pages of the landing): a link between them is not "leaving".
+  const internal =
+    !!url &&
+    (url.origin === window.location.origin ||
+      url.origin === SITE_ORIGIN ||
+      url.origin === CRM_ORIGIN);
   if (!cta && url && internal) {
     if (isStartPath(url.pathname)) cta = "start";
     else if (isContactPath(url.pathname)) cta = "contact";

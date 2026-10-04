@@ -18,6 +18,7 @@
 //    read from the URL at send time by `before_send`, so it stays right after
 //    a language switch and on $pageview too).
 import type { PostHog } from "posthog-js";
+import { crmRoutePath, isCrmHost } from "@/i18n/hosts";
 
 // Public PROJECT key (`phc_`) of the EUROPEAN PostHog project (eu.posthog.com,
 // project 284316), the same one the Yuno app writes to. It lives in code so a
@@ -65,9 +66,17 @@ export function landingLangFromPath(pathname: string): LandingLang {
   return "en";
 }
 
-/** Page id without the language prefix: "/fr/pricing" → "/pricing", "/es" → "/". */
+/**
+ * Page id without the language prefix: "/fr/pricing" → "/pricing", "/es" → "/".
+ * On crm.yunoapp.eu the page is named after its route ("/fr" → "/crm"), so the
+ * CRM page keeps one id whatever domain served it.
+ */
 export function pageFromPath(pathname: string): string {
-  const bare = pathname.replace(/^\/(fr|es)(?=\/|$)/, "").replace(/\/+$/, "");
+  const path =
+    typeof window !== "undefined" && isCrmHost(window.location.host)
+      ? crmRoutePath(pathname)
+      : pathname;
+  const bare = path.replace(/^\/(fr|es)(?=\/|$)/, "").replace(/\/+$/, "");
   return bare || "/";
 }
 

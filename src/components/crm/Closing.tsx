@@ -4,6 +4,7 @@ import { ArrowUpRight, Mail, Minus, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LOGIN_URL, useLanding, whatsappHref } from "@/components/landing/context";
 import { LANDING_LANGS, LANDING_PATHS } from "@/i18n/landing-lang";
+import { landingHref } from "@/i18n/hosts";
 import yunitStack from "@/assets/crm/yunit-stack.webp";
 import yunitCoin from "@/assets/crm/yunit-coin.webp";
 import { useCrm } from "./content";
@@ -110,8 +111,15 @@ export function CrmFinal() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const coinY = useTransform(scrollYProgress, [0, 1], [80, -120]);
   const stackY = useTransform(scrollYProgress, [0, 1], [40, -60]);
+  // Legal pages and the Suite live on landing.yunoapp.eu, not on crm.yunoapp.eu.
   const linkFor = (href: string) =>
-    href === "whatsapp" ? whatsappHref(whatsappMessage) : href === "login" ? LOGIN_URL : href;
+    href === "whatsapp"
+      ? whatsappHref(whatsappMessage)
+      : href === "login"
+        ? LOGIN_URL
+        : href.startsWith("/")
+          ? landingHref(href)
+          : href;
 
   return (
     <section
@@ -200,7 +208,7 @@ export function CrmFinal() {
             © 2026 {c.footer.rights} · {c.footer.region}
           </span>
           <a
-            href={LANDING_PATHS[lang]}
+            href={landingHref(LANDING_PATHS[lang])}
             className="inline-flex items-center gap-1 font-medium text-yc-sand-600 transition-colors hover:text-yc-red-600"
           >
             {c.footer.suite}

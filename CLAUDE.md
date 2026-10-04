@@ -61,7 +61,19 @@ Starting from `main` silently throws away the newest design and copy. So, before
 - Competitors here are HelloAsso, Shotgun, Lydia/Bizum + forms (sources dated in `switch.sources`).
   Never claim "cheapest" (HelloAsso and Billetweb can cost the asso less).
 
-## Yuno CRM page (`/crm`, `/fr/crm`, `/es/crm`)
+## Yuno CRM page (crm.yunoapp.eu: `/`, `/fr`, `/es`; routes `/crm`, `/fr/crm`, `/es/crm`)
+- **Own domain since 4 Oct 2026: `crm.yunoapp.eu`**, attached to the SAME Worker as
+  landing.yunoapp.eu (Cloudflare → yuno-landing → Domains). Single source: `src/i18n/hosts.ts`.
+  On the CRM host the router rewrites `/`, `/fr`, `/es` to the `/crm` routes (`rewrite` in
+  `src/router.tsx`, both ways), `/start` keeps its paths with `product=crm` implied, and every
+  other path 301s to landing.yunoapp.eu; `landing.yunoapp.eu/crm` (+ fr/es) and
+  `/start?product=crm` 301 to the CRM host (`hostMiddleware`, `src/start.ts`). Canonical,
+  hreflang, og and JSON-LD of the CRM page and its signup point to crm.yunoapp.eu; its URLs
+  live in `sitemap-crm.xml` (static, listed in `public/robots.txt`), not in the landing sitemap.
+  A link from a CRM page to the landing (legal pages, the Suite) goes through `landingHref()`;
+  the CRM page's own links through `crmPagePaths()`. Never import app modules into
+  `src/server.ts`: their constants become exports of the Worker entry and the deploy is
+  rejected ("Incorrect type for map entry"). Try it locally on `crm.localhost:<port>`.
 - Second product: organizers and clubs who KEEP their ticketing (Shotgun first). Page
   `src/pages/crm.tsx`, sections `src/components/crm/*`, copy `src/content/crm.ts` (EN/FR/ES,
   shape-checked: `fr` is the shape), head/JSON-LD `src/i18n/crm.ts` (bump `CRM_UPDATED`), paths
@@ -99,8 +111,8 @@ Starting from `main` silently throws away the newest design and copy. So, before
   `redirectTo` = this funnel in the page's language (`/fr/start?product=crm`); the session comes back in the URL fragment,
   is read by `CrmSignup` (`setSession`, fragment wiped with `history.replaceState`) and the journey resumes on "type"
   with a shorter flow (`FLOW_OAUTH`: no password, no confirmation, no way back to the email step). Same `complete_pro_signup`
-  and handoff afterwards. **Prerequisite in the Yuno app's Supabase Auth → URL configuration: `https://landing.yunoapp.eu/**`
-  must be in the Redirect URLs allow-list**, otherwise Supabase falls back to yunoapp.eu and the funnel never resumes.
+  and handoff afterwards. **Prerequisite in the Yuno app's Supabase Auth → URL configuration: `https://crm.yunoapp.eu/**`
+  (and `https://landing.yunoapp.eu/**`) must be in the Redirect URLs allow-list**, otherwise Supabase falls back to yunoapp.eu and the funnel never resumes.
   Google and Apple providers are already enabled there (Apple Services ID `eu.yunoapp.web`).
   The generic `SignupFlow`/`SignupModal` stay for the Suite landing, associations and `/start` without product.
 - Opening the signup (modal or `/start?product=crm`) writes a `pro_signups` row in production: never

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { crmContent } from "@/content/crm";
 import type { LandingLang } from "@/i18n/landing-lang";
-import { CRM_PATHS } from "@/i18n/landing-lang";
+import { crmPagePaths } from "@/i18n/hosts";
 import { crmStartHref } from "@/i18n/start";
 import { LandingProvider } from "@/components/landing/context";
 import { CrmNav } from "@/components/crm/Nav";
@@ -18,7 +18,7 @@ import { CrmBento } from "@/components/crm/Bento";
 import { CrmPricing } from "@/components/crm/Pricing";
 import { CrmFaq, CrmFinal, CrmMobileBar } from "@/components/crm/Closing";
 
-// Yuno CRM ("/crm", "/fr/crm", "/es/crm"): for clubs and organizers who keep
+// Yuno CRM (crm.yunoapp.eu: "/", "/fr", "/es"; routes "/crm", "/fr/crm", "/es/crm"): for clubs and organizers who keep
 // their ticketing (Shotgun first). The Insyder landing grammar rebuilt on the
 // Yuno design system (src/styles/crm.css, Claude Design "Design system Yuno
 // créé"); every CTA leads to the CRM signup funnel (/start?product=crm, see
@@ -28,11 +28,13 @@ import { CrmFaq, CrmFinal, CrmMobileBar } from "@/components/crm/Closing";
 // (one counter) → pricing → FAQ → close.
 export function CrmPage({ lang }: { lang: LandingLang }) {
   const c = crmContent[lang];
+  // "/fr/crm" on landing.yunoapp.eu (dev), "/fr" on crm.yunoapp.eu.
+  const paths = crmPagePaths();
   return (
     <LandingProvider
       lang={lang}
-      langHrefs={CRM_PATHS}
-      home={CRM_PATHS[lang]}
+      langHrefs={paths}
+      home={paths[lang]}
       whatsappMessage={c.whatsappMessage}
     >
       <div className="ycrm min-h-screen overflow-x-clip">

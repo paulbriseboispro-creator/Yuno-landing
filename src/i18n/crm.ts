@@ -1,27 +1,25 @@
 import { crmContent } from "@/content/crm";
 import { CRM_PATHS, LANDING_LANGS, type LandingLang } from "@/i18n/landing-lang";
 import { ORG_ID, organizationLd } from "@/i18n/landing-seo";
-import { SITE_ORIGIN } from "@/i18n/seo";
+import { CRM_ORIGIN, crmUrl } from "@/i18n/hosts";
 
 // The Yuno CRM page (EN / FR / ES): a product of its own for organizers and
 // clubs who keep their ticketing. Its pricing is paid (unlike the ticketing
 // Suite), so it never shares the Suite's "€0" claims: one subscription
 // (monthly or yearly) plus Yunits for the sends.
 
-export { CRM_PATHS };
+// Route paths; the page is published at crm.yunoapp.eu ("/", "/fr", "/es"),
+// see src/i18n/hosts.ts.
+export { CRM_PATHS, crmUrl };
 
 // Last meaningful copy update of the CRM page (sitemap, dateModified).
 export const CRM_UPDATED = "2026-10-04";
 
 const OG_LOCALE: Record<LandingLang, string> = { en: "en_GB", fr: "fr_FR", es: "es_ES" };
 
-export function crmUrl(lang: LandingLang): string {
-  return SITE_ORIGIN + CRM_PATHS[lang];
-}
-
 // No dedicated preview image yet: the landing's.
 function crmOgImage(lang: LandingLang): string {
-  return `${SITE_ORIGIN}/og/landing-${lang}.png`;
+  return `${CRM_ORIGIN}/og/landing-${lang}.png`;
 }
 
 export function crmHead(lang: LandingLang) {

@@ -13,7 +13,8 @@ import appIcon from "@/assets/crm/yuno-app-icon.webp";
 import { crmContent } from "@/content/crm";
 import { crmSignupContent, type CrmSignupCopy } from "@/content/crm-signup";
 import { LOGIN_URL } from "@/components/landing/context";
-import { CRM_PATHS, type LandingLang } from "@/i18n/landing-lang";
+import { type LandingLang } from "@/i18n/landing-lang";
+import { crmPagePaths, landingHref } from "@/i18n/hosts";
 import { START_PATHS } from "@/i18n/start";
 import { submitLead } from "@/lib/leads.functions";
 import { capture, identifyAccount } from "@/lib/posthog";
@@ -325,7 +326,6 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       if (step === "name") nameRef.current?.focus({ preventScroll: true });
     }, 80);
     return () => window.clearTimeout(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
 
   // Resend countdown on the confirmation step.
@@ -713,7 +713,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       <main className="flex min-h-screen min-w-0 flex-1 basis-[520px] flex-col bg-white px-5 py-6 sm:px-[clamp(20px,5vw,56px)]">
         <header className="flex items-center justify-between gap-4">
           <a
-            href={CRM_PATHS[lang]}
+            href={crmPagePaths()[lang]}
             className="flex items-center gap-2.5 no-underline"
             style={{
               color: c("ink"),
@@ -911,12 +911,15 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
                       style={{ color: c("sand-500") }}
                     >
                       {t.email.termsPre}{" "}
-                      <a href={lang === "en" ? "/terms" : `/${lang}/terms`} className="yc-su-link">
+                      <a
+                        href={landingHref(lang === "fr" ? "/fr/terms" : "/terms")}
+                        className="yc-su-link"
+                      >
                         {t.email.cgu}
                       </a>{" "}
                       {t.email.termsMid}{" "}
                       <a
-                        href={lang === "en" ? "/privacy" : `/${lang}/privacy`}
+                        href={landingHref(lang === "fr" ? "/fr/privacy" : "/privacy")}
                         className="yc-su-link"
                       >
                         {t.email.privacy}

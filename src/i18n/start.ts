@@ -2,6 +2,7 @@ import { landingContent } from "@/content/landing";
 import { crmSignupContent } from "@/content/crm-signup";
 import { LANDING_LANGS, type LandingLang } from "@/i18n/landing-lang";
 import { SITE_ORIGIN } from "@/i18n/seo";
+import { CRM_ORIGIN } from "@/i18n/hosts";
 
 // "/start" routes: the direct path to a Yuno pro account (EN / FR / ES).
 
@@ -19,7 +20,10 @@ export function crmStartHref(lang: LandingLang): string {
 export function startHead(lang: LandingLang, product?: "crm") {
   // Yuno CRM signup: its own title and the design system's faces.
   const t = product === "crm" ? crmSignupContent[lang].meta : landingContent[lang].start;
-  const self = SITE_ORIGIN + START_PATHS[lang];
+  // The CRM funnel is published on crm.yunoapp.eu (src/i18n/hosts.ts).
+  const url = (l: LandingLang) =>
+    product === "crm" ? `${CRM_ORIGIN}${crmStartHref(l)}` : SITE_ORIGIN + START_PATHS[l];
+  const self = url(lang);
   return {
     meta: [
       { title: t.title },
@@ -44,9 +48,9 @@ export function startHead(lang: LandingLang, product?: "crm") {
       ...LANDING_LANGS.map((l) => ({
         rel: "alternate",
         hrefLang: l,
-        href: SITE_ORIGIN + START_PATHS[l],
+        href: url(l),
       })),
-      { rel: "alternate", hrefLang: "x-default", href: SITE_ORIGIN + START_PATHS.en },
+      { rel: "alternate", hrefLang: "x-default", href: url("en") },
     ],
   };
 }
