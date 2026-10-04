@@ -725,24 +725,6 @@ const fr = {
         { t: "Recharge de 10 €", s: "en un clic", d: "+ 5 000", k: "plus" },
       ],
     },
-    packs: {
-      title: "Besoin de plus ? Vous rechargez.",
-      sub: "Plus le pack est grand, plus vous recevez de Yunits. Ceux que vous achetez restent valables un an.",
-      pack: "Pack",
-      bonus: "de Yunits",
-      eq: "≈ {mail} e-mails ou {sms} SMS",
-      per: "{p} € les 1 000 e-mails",
-      notes: [
-        {
-          b: "Valables un an.",
-          t: "Rien n’est perdu à la fin du mois sur ce que vous avez acheté.",
-        },
-        {
-          b: "Recharge automatique, éteinte par défaut.",
-          t: "Si vous l’activez, vous fixez un plafond qu’elle ne dépasse jamais.",
-        },
-      ],
-    },
     sim: {
       title: "Combien me coûtera mon mois ?",
       sub: "Choisissez un profil ou réglez vos envois. Le calcul utilise les vraies recharges, au meilleur prix.",
@@ -1542,21 +1524,6 @@ const en: CrmContent = {
         { t: "AI assistant", s: "12 questions asked", d: "Free", k: "free" },
         { t: "“Brunch” campaign", s: "5,000 emails", d: "− 5,000", k: "minus" },
         { t: "€10 top-up", s: "in one click", d: "+ 5,000", k: "plus" },
-      ],
-    },
-    packs: {
-      title: "Need more? Top up.",
-      sub: "The bigger the pack, the more Yunits you get. The ones you buy stay valid for a year.",
-      pack: "Pack",
-      bonus: "Yunits",
-      eq: "≈ {mail} emails or {sms} SMS",
-      per: "€{p} per 1,000 emails",
-      notes: [
-        { b: "Valid for a year.", t: "Nothing you bought is lost at the end of the month." },
-        {
-          b: "Automatic top-up, off by default.",
-          t: "If you turn it on, you set a ceiling it never goes past.",
-        },
       ],
     },
     sim: {
@@ -2377,21 +2344,6 @@ const es: CrmContent = {
         { t: "Asistente IA", s: "12 preguntas", d: "Gratis", k: "free" },
         { t: "Campaña «Brunch»", s: "5.000 e-mails", d: "− 5.000", k: "minus" },
         { t: "Recarga de 10 €", s: "en un clic", d: "+ 5.000", k: "plus" },
-      ],
-    },
-    packs: {
-      title: "¿Necesitas más? Recargas.",
-      sub: "Cuanto más grande el pack, más Yunits recibes. Los que compras son válidos un año.",
-      pack: "Pack",
-      bonus: "de Yunits",
-      eq: "≈ {mail} e-mails o {sms} SMS",
-      per: "{p} € los 1000 e-mails",
-      notes: [
-        { b: "Válidos un año.", t: "Nada de lo que compraste se pierde a final de mes." },
-        {
-          b: "Recarga automática, desactivada por defecto.",
-          t: "Si la activas, fijas un tope que nunca supera.",
-        },
       ],
     },
     sim: {

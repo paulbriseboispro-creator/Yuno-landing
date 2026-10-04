@@ -3,9 +3,7 @@ import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/rea
 import {
   Check,
   CircleCheck,
-  Infinity as InfinityIcon,
   Plus,
-  RefreshCcw,
   Sparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -528,12 +526,9 @@ function Simulator() {
 
 export function CrmPricing() {
   const p = useCrm().pricing;
-  const { num, money, pct } = useFmt();
+  const { num, money } = useFmt();
   const [annual, setAnnual] = useState(false);
   const y = p.yunits;
-  const maxY = PACKS[3].y;
-  const packsRef = useRef<HTMLDivElement>(null);
-  const packsIn = useInView(packsRef, { once: true, amount: 0.3 });
 
   return (
     <section id="tarifs" data-ph-section="pricing" className="relative px-4 pt-28 sm:px-6 sm:pt-36">
@@ -651,105 +646,6 @@ export function CrmPricing() {
         <Reveal delay={0.1}>
           <Wallet />
         </Reveal>
-      </div>
-
-      {/* Packs */}
-      <div className="mx-auto mt-28 max-w-[1080px]">
-        <div className="max-w-[640px]">
-          <Reveal>
-            <h3 className="yc-h2 text-[clamp(1.9rem,3.6vw,2.8rem)] text-yc-ink">{p.packs.title}</h3>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <p className="mt-4 text-[17px] leading-[1.6] text-yc-sand-600">{p.packs.sub}</p>
-          </Reveal>
-        </div>
-        <div ref={packsRef} className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {PACKS.map((pk, i) => {
-            const hi = i === 3;
-            const per = num((pk.p / pk.y) * 1000, 2);
-            return (
-              <Reveal key={pk.p} delay={i * 0.08}>
-                <div
-                  className={cn(
-                    "flex h-full flex-col rounded-[24px] p-5 ring-1",
-                    hi
-                      ? "bg-yc-ink text-white shadow-[var(--shadow-md)] ring-yc-ink"
-                      : "bg-white text-yc-ink ring-yc-sand-200",
-                  )}
-                >
-                  <div className="flex items-center justify-between">
-                    <span
-                      className={cn(
-                        "font-yc-mono text-[11.5px] uppercase tracking-[0.08em]",
-                        hi ? "text-yc-on-night-2" : "text-yc-sand-500",
-                      )}
-                    >
-                      {p.packs.pack}
-                    </span>
-                    {pk.b > 0 && (
-                      <span
-                        className={cn(
-                          "rounded-full px-2.5 py-1 text-[12px] font-semibold",
-                          hi ? "text-white" : "bg-yc-red-50 text-yc-red-700",
-                        )}
-                        style={hi ? { background: "var(--gradient-brand)" } : undefined}
-                      >
-                        +{pct(pk.b)} {p.packs.bonus}
-                      </span>
-                    )}
-                  </div>
-                  <div className="mt-3 font-yc-display text-[44px] font-semibold leading-none tracking-[-0.04em]">
-                    {money(pk.p)}
-                  </div>
-                  <div className="mt-4 flex h-[124px] items-end">
-                    <div
-                      className={cn(
-                        "flex w-full items-start justify-center rounded-[14px] pt-2.5 text-[13px] font-semibold",
-                        hi ? "text-white" : "bg-yc-sand-100 text-yc-sand-700",
-                      )}
-                      style={{
-                        height: packsIn ? Math.max(38, Math.round((pk.y / maxY) * 124)) : 0,
-                        background: hi ? "var(--gradient-brand)" : undefined,
-                        transition: `height 900ms cubic-bezier(.22,1,.36,1) ${i * 120}ms`,
-                      }}
-                    >
-                      {num(pk.y)} Yunits
-                    </div>
-                  </div>
-                  <div
-                    className={cn(
-                      "mt-3 flex flex-col text-[12.5px]",
-                      hi ? "text-yc-on-night-2" : "text-yc-sand-600",
-                    )}
-                  >
-                    <span>
-                      {p.packs.eq
-                        .replace("{mail}", num(pk.y))
-                        .replace("{sms}", num(Math.floor(pk.y / 40)))}
-                    </span>
-                    <span>{p.packs.per.replace("{p}", per)}</span>
-                  </div>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2">
-          {p.packs.notes.map((n, i) => (
-            <Reveal
-              key={n.b}
-              delay={i * 0.06}
-              className="flex items-start gap-3 rounded-[18px] bg-yc-sand-50 p-4"
-            >
-              <span className="grid size-8 flex-none place-items-center rounded-full bg-white text-yc-red-600 shadow-[var(--shadow-xs)]">
-                {i === 0 ? <InfinityIcon className="size-4" /> : <RefreshCcw className="size-4" />}
-              </span>
-              <span className="text-[14px] leading-[1.5] text-yc-sand-600">
-                <strong className="font-semibold text-yc-ink">{n.b}</strong> {n.t}
-              </span>
-            </Reveal>
-          ))}
-        </div>
       </div>
 
       {/* Simulator */}
