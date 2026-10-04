@@ -38,7 +38,7 @@ const fr = {
     termsPost: ".",
     trust: ["Sans carte bancaire", "Données hébergées dans l’UE", "Rien à installer"],
     exists: "Cette adresse a déjà un compte Yuno.",
-    existsCta: "Connectez-vous",
+    existsCta: "Connectez-vous pour ouvrir aussi Yuno CRM",
   },
   password: {
     titlePre: "Choisissez un",
@@ -137,6 +137,20 @@ const fr = {
       { id: "l", big: "500–1 500", val: 1500 },
       { id: "xl", big: "1 500 +", val: 2000 },
     ],
+  },
+  existing: {
+    title: "Vous avez déjà un compte Yuno",
+    body: "{name} utilise déjà Yuno Billetterie. Ouvrez aussi Yuno CRM sur ce compte, sans en créer un second.",
+    facts: [
+      "Même connexion, mêmes contacts",
+      "14 jours d’essai, sans carte, puis l’abonnement Yuno CRM",
+      "Votre billetterie ne change pas",
+    ],
+    cta: "Ouvrir Yuno CRM sur {name}",
+    hasCrmTitle: "Yuno CRM vous attend",
+    hasCrmBody: "{name} a déjà sa console Yuno CRM.",
+    hasCrmCta: "Ouvrir ma console",
+    other: "Utiliser une autre adresse",
   },
   confirm: {
     titlePre: "Confirmez votre",
@@ -246,7 +260,7 @@ const en: CrmSignupCopy = {
     termsPost: ".",
     trust: ["No credit card", "Data hosted in the EU", "Nothing to install"],
     exists: "This address already has a Yuno account.",
-    existsCta: "Log in",
+    existsCta: "Log in to open Yuno CRM too",
   },
   password: {
     titlePre: "Choose a",
@@ -341,6 +355,20 @@ const en: CrmSignupCopy = {
       { id: "l", big: "500–1,500", val: 1500 },
       { id: "xl", big: "1,500 +", val: 2000 },
     ],
+  },
+  existing: {
+    title: "You already have a Yuno account",
+    body: "{name} already uses Yuno Ticketing. Open Yuno CRM on that account too, without creating a second one.",
+    facts: [
+      "Same login, same contacts",
+      "14-day trial, no card, then the Yuno CRM subscription",
+      "Your ticketing stays as it is",
+    ],
+    cta: "Open Yuno CRM on {name}",
+    hasCrmTitle: "Yuno CRM is waiting for you",
+    hasCrmBody: "{name} already has its Yuno CRM console.",
+    hasCrmCta: "Open my console",
+    other: "Use another address",
   },
   confirm: {
     titlePre: "Confirm your",
@@ -447,7 +475,7 @@ const es: CrmSignupCopy = {
     termsPost: ".",
     trust: ["Sin tarjeta", "Datos alojados en la UE", "Nada que instalar"],
     exists: "Esta dirección ya tiene una cuenta de Yuno.",
-    existsCta: "Entra",
+    existsCta: "Entra para abrir también Yuno CRM",
   },
   password: {
     titlePre: "Elige una",
@@ -542,6 +570,20 @@ const es: CrmSignupCopy = {
       { id: "l", big: "500–1.500", val: 1500 },
       { id: "xl", big: "1.500 +", val: 2000 },
     ],
+  },
+  existing: {
+    title: "Ya tienes una cuenta de Yuno",
+    body: "{name} ya usa Yuno Ticketing. Abre también Yuno CRM en esa cuenta, sin crear otra.",
+    facts: [
+      "Mismo acceso, mismos contactos",
+      "14 días de prueba, sin tarjeta, luego la suscripción a Yuno CRM",
+      "Tu ticketing no cambia",
+    ],
+    cta: "Abrir Yuno CRM en {name}",
+    hasCrmTitle: "Yuno CRM te espera",
+    hasCrmBody: "{name} ya tiene su consola Yuno CRM.",
+    hasCrmCta: "Abrir mi consola",
+    other: "Usar otra dirección",
   },
   confirm: {
     titlePre: "Confirma tu",

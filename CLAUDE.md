@@ -114,6 +114,11 @@ Starting from `main` silently throws away the newest design and copy. So, before
   and handoff afterwards. **Prerequisite in the Yuno app's Supabase Auth → URL configuration: `https://crm.yunoapp.eu/**`
   (and `https://landing.yunoapp.eu/**`) must be in the Redirect URLs allow-list**, otherwise Supabase falls back to yunoapp.eu and the funnel never resumes.
   Google and Apple providers are already enabled there (Apple Services ID `eu.yunoapp.web`).
+  **Existing Yuno account** (4 Oct 2026, yuno repo `docs/ACCOUNT_PRODUCTS.md`): after Google / Apple, the funnel
+  calls `get_my_product_accounts`; if the person already holds a club or an organization, it shows the `existing`
+  step instead of the questions: "open Yuno CRM on {name}" (`open_product_on_my_account`, CRM trial on the SAME
+  account, same contacts) or "Yuno CRM is waiting for you" if it already has CRM, then handoff to `/crm`. By
+  email + password, "address already used" links to `yunoapp.eu/auth?redirect=/open/crm`. Never a second account.
   The generic `SignupFlow`/`SignupModal` stay for the Suite landing, associations and `/start` without product.
 - Opening the signup (modal or `/start?product=crm`) writes a `pro_signups` row in production: never
   test it against production without blocking `track_pro_signup` or deleting the row it writes
