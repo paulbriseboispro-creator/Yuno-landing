@@ -1,5 +1,12 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useInView,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "motion/react";
 import {
   ArrowUp,
   BarChart3,
@@ -24,12 +31,14 @@ import { Accent, CtaButton, EASE, Eyebrow, Reveal, YunitFace } from "./ui";
 
 function Float({
   children,
-  className,
+  className = "",
+  style,
   delay,
   d,
 }: {
   children: ReactNode;
-  className: string;
+  className?: string;
+  style?: CSSProperties;
   delay: number;
   d: number;
 }) {
@@ -39,7 +48,8 @@ function Float({
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ type: "spring", stiffness: 170, damping: 13, delay }}
-      className={`absolute ${className}`}
+      className={`absolute -translate-x-1/2 ${className}`}
+      style={style}
     >
       <span className="yc-float block" style={{ "--fd": `${d}s` } as CSSProperties}>
         {children}
@@ -206,6 +216,9 @@ function PromptBox() {
 
 export function CrmMcp() {
   const m = useCrm().mcp;
+  const stageRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: stageRef, offset: ["start end", "end start"] });
+  const markScale = useTransform(scrollYProgress, [0, 1], [0.9, 1.12]);
   const icons = [BarChart3, Users, PenLine, GitCompareArrows, TrendingUp];
   return (
     <section
@@ -233,29 +246,49 @@ export function CrmMcp() {
         </Reveal>
       </div>
 
-      <div className="relative mx-auto mt-16 max-w-[1000px] pb-4 pt-28 sm:pt-36">
-        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[300px]">
-          <Float className="left-[22%] top-[22%] sm:left-[26%]" delay={0.1} d={5.4}>
-            <ClaudeMark className="size-10 sm:size-12" />
+      {/* The reference's arc of AI marks over the stage title (ChatGPT on top,
+          Claude and Gemini on each side, two more at the title's ends). */}
+      <div ref={stageRef} className="relative mx-auto mt-14 max-w-[1000px] pb-4 pt-[118px]">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-[70px] -z-10 h-[420px] w-[min(900px,100%)] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(255,148,141,.32),rgba(255,107,53,.12)_55%,transparent)] blur-2xl"
+        />
+        <motion.div
+          aria-hidden
+          style={{ scale: markScale }}
+          className="pointer-events-none absolute inset-x-0 top-0 h-[150px] origin-bottom"
+        >
+          <Float style={{ left: "50%", top: 0 }} delay={0.1} d={6.2}>
+            <ChatGptMark className="size-[34px] text-[#1d1d1d]" />
           </Float>
-          <Float className="left-1/2 top-0 -translate-x-1/2" delay={0.18} d={6.2}>
-            <ChatGptMark className="size-10 text-black sm:size-12" />
+          <Float style={{ left: "calc(50% - 163px)", top: 33 }} delay={0.18} d={5.4}>
+            <ClaudeMark className="size-[34px]" />
           </Float>
-          <Float className="right-[22%] top-[22%] sm:right-[26%]" delay={0.26} d={5.8}>
-            <GeminiMark className="size-10 sm:size-12" />
+          <Float style={{ left: "calc(50% + 164px)", top: 33 }} delay={0.26} d={5.8}>
+            <GeminiMark className="size-[32px]" />
           </Float>
-          <Float className="left-[4%] top-[62%] hidden sm:block sm:left-[12%]" delay={0.34} d={6.8}>
-            <span className="grid size-12 place-items-center rounded-[14px] bg-yc-ink text-white shadow-[0_10px_24px_-10px_rgba(28,21,23,.5)]">
-              <Plug className="size-6" />
+          <Float
+            className="hidden md:block"
+            style={{ left: "calc(50% - 302px)", top: 112 }}
+            delay={0.34}
+            d={6.8}
+          >
+            <span className="grid size-[34px] place-items-center rounded-[10px] bg-yc-ink text-white">
+              <Plug className="size-[18px]" />
             </span>
           </Float>
-          <Float className="right-[4%] top-[62%] hidden sm:block sm:right-[12%]" delay={0.42} d={6}>
-            <YunitFace size={48} />
+          <Float
+            className="hidden md:block"
+            style={{ left: "calc(50% + 302px)", top: 112 }}
+            delay={0.42}
+            d={6}
+          >
+            <YunitFace size={34} />
           </Float>
-        </div>
+        </motion.div>
 
-        <Reveal className="relative mb-6 text-center">
-          <h3 className="yc-h3 text-[clamp(1.7rem,3.4vw,2.6rem)] text-yc-ink">
+        <Reveal className="relative mb-6 px-10 text-center">
+          <h3 className="yc-h3 text-[clamp(1.6rem,3vw,2.35rem)] text-yc-ink">
             <Accent text={m.stage} accent={m.stageAccent} />
           </h3>
         </Reveal>
