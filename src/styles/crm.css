@@ -127,6 +127,10 @@ html:has(.ycrm) {
     color: transparent;
     /* keep descenders inside the clipped box */
     padding-bottom: 0.06em;
+    /* negative tracking makes the last glyph overflow the box, and
+       background-clip:text would cut it (the P of "MCP"): reserve the room */
+    padding-right: 0.08em;
+    margin-right: -0.08em;
   }
   .yc-num {
     font-variant-numeric: tabular-nums;

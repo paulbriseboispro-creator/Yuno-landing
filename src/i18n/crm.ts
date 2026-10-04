@@ -127,3 +127,63 @@ export function crmHead(lang: LandingLang) {
     ],
   };
 }
+
+// One language of the CRM page as markdown, for /llms-full.txt. Built from the
+// page's own copy, so what an AI assistant reads matches what visitors see.
+export function crmMarkdown(lang: LandingLang): string {
+  const c = crmContent[lang];
+  const out: string[] = [
+    `# ${c.meta.title}`,
+    "",
+    `> ${c.meta.description}`,
+    "",
+    `URL: ${crmUrl(lang)}`,
+    "",
+    c.hero.sub,
+    "",
+    `## ${c.problem.title}`,
+    "",
+    c.problem.sub,
+    "",
+    ...c.problem.cards.map((it) => `- **${it.title}** ${it.body}`),
+    "",
+    `## ${c.steps.title}`,
+    "",
+    c.steps.sub,
+    "",
+    ...c.steps.items.map((it, i) => `${i + 1}. **${it.title}** ${it.body}`),
+    "",
+    `## ${c.engine.title}`,
+    "",
+    c.engine.sub,
+    "",
+    ...c.engine.pillars.map((p) => `- **${p.t}:** ${p.d}`),
+    "",
+    `${c.engine.autosTitle}: ${c.engine.autos.join(", ")}.`,
+    "",
+    ...c.engine.rules.map((r) => `- ${r}`),
+    "",
+    `${c.engine.stats.map((s) => `${s.v} ${s.l}`).join(" · ")}. ${c.engine.statsNote}`,
+    "",
+    `## ${c.mcp.title}`,
+    "",
+    c.mcp.sub,
+    "",
+    `## ${c.channels.title}`,
+    "",
+    c.channels.sub,
+    "",
+    ...c.channels.rates.map((r) => `- ${r.name}: ${r.cost}`),
+    "",
+    `## ${c.pricing.title}`,
+    "",
+    `${c.pricing.sub} ${c.pricing.plan}: ${c.pricing.month} ${c.pricing.perMonth} (${c.pricing.launch}), ${c.pricing.year} ${c.pricing.perYear}. ${c.pricing.notes.join(". ")}.`,
+    "",
+    ...c.pricing.feats.map((f) => `- **${f.t}:** ${f.d}`),
+    "",
+    `## ${c.faq.title}`,
+    "",
+  ];
+  for (const it of c.faq.items) out.push(`### ${it.q}`, "", it.a, "");
+  return out.join("\n");
+}

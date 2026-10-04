@@ -14,6 +14,7 @@ import { compareMarkdown } from "@/i18n/compare-seo";
 import { TOPIC_PAGES } from "@/content/topics";
 import { topicMarkdown } from "@/i18n/topic-seo";
 import { SITE_ORIGIN } from "@/i18n/seo";
+import { crmMarkdown } from "@/i18n/crm";
 
 const HEADINGS: Record<
   LandingLang,
@@ -201,7 +202,7 @@ export function llmsIndex(): string {
   return out.join("\n");
 }
 
-// /llms-full.txt — every language's page in full.
+// /llms-full.txt — every language's page in full (landing, then Yuno CRM).
 export function llmsFull(): string {
   const header = [
     "# Yuno — nightclub ticketing & management software (EN · FR · ES)",
@@ -211,6 +212,7 @@ export function llmsFull(): string {
   return [
     header,
     ...LANDING_LANGS.map(landingMarkdown),
+    ...LANDING_LANGS.map(crmMarkdown),
     ...COMPARE_PAGES.map(compareMarkdown),
     ...TOPIC_PAGES.map(topicMarkdown),
   ].join("\n\n---\n\n");
