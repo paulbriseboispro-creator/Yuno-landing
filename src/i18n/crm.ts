@@ -1,7 +1,8 @@
 import { crmContent } from "@/content/crm";
 import { CRM_PATHS, LANDING_LANGS, type LandingLang } from "@/i18n/landing-lang";
 import { ORG_ID, organizationLd } from "@/i18n/landing-seo";
-import { CRM_ORIGIN, crmUrl } from "@/i18n/hosts";
+import { crmUrl } from "@/i18n/hosts";
+import { crmOgImageMeta } from "@/i18n/og";
 
 // The Yuno CRM page (EN / FR / ES): a product of its own for organizers and
 // clubs who keep their ticketing. Its pricing is paid (unlike the ticketing
@@ -17,15 +18,9 @@ export const CRM_UPDATED = "2026-10-04";
 
 const OG_LOCALE: Record<LandingLang, string> = { en: "en_GB", fr: "fr_FR", es: "es_ES" };
 
-// No dedicated preview image yet: the landing's.
-function crmOgImage(lang: LandingLang): string {
-  return `${CRM_ORIGIN}/og/landing-${lang}.png`;
-}
-
 export function crmHead(lang: LandingLang) {
   const c = crmContent[lang];
   const self = crmUrl(lang);
-  const image = crmOgImage(lang);
   const graph = [
     organizationLd(lang),
     {
@@ -100,11 +95,9 @@ export function crmHead(lang: LandingLang) {
       { property: "og:description", content: c.meta.description },
       { property: "og:url", content: self },
       { property: "og:locale", content: OG_LOCALE[lang] },
-      { property: "og:image", content: image },
-      { name: "twitter:card", content: "summary_large_image" },
+      ...crmOgImageMeta(lang),
       { name: "twitter:title", content: c.meta.title },
       { name: "twitter:description", content: c.meta.description },
-      { name: "twitter:image", content: image },
       { name: "theme-color", content: "#ffffff" },
     ],
     links: [

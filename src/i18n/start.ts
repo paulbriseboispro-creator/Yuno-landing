@@ -3,6 +3,7 @@ import { crmSignupContent } from "@/content/crm-signup";
 import { LANDING_LANGS, type LandingLang } from "@/i18n/landing-lang";
 import { SITE_ORIGIN } from "@/i18n/seo";
 import { CRM_ORIGIN } from "@/i18n/hosts";
+import { crmOgImageMeta } from "@/i18n/og";
 
 // "/start" routes: the direct path to a Yuno pro account (EN / FR / ES).
 
@@ -33,6 +34,8 @@ export function startHead(lang: LandingLang, product?: "crm") {
       { property: "og:url", content: self },
       { name: "twitter:title", content: t.title },
       { name: "twitter:description", content: t.description },
+      // The CRM signup previews as Yuno CRM, not as the ticketing landing.
+      ...(product === "crm" ? crmOgImageMeta(lang) : []),
       { name: "theme-color", content: "#ffffff" },
     ],
     links: [

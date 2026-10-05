@@ -41,12 +41,17 @@ export function appLoginUrl(signupKey?: string): string {
   return `${YUNO_APP_ORIGIN}/auth?redirect=${encodeURIComponent(back)}`;
 }
 
-/** Session handoff to yunoapp.eu (see AuthHandoff.tsx in the yuno repo). */
+/**
+ * Session handoff to the app (see AuthHandoff.tsx in the yuno repo): yunoapp.eu
+ * for Yuno Ticketing, crm.yunoapp.eu for Yuno CRM (its own origin, so its own
+ * session — the app serves its CRM side there since 4 Oct 2026).
+ */
 export function appHandoffUrl(
   accessToken: string,
   refreshToken: string,
   lang: string,
   redirect = "/get-started",
+  origin = YUNO_APP_ORIGIN,
 ): string {
   const frag = new URLSearchParams({
     yuno_at: accessToken,
@@ -54,7 +59,7 @@ export function appHandoffUrl(
     redirect,
     lang,
   });
-  return `${YUNO_APP_ORIGIN}/auth/handoff#${frag.toString()}`;
+  return `${origin}/auth/handoff#${frag.toString()}`;
 }
 
 /** Random, unguessable id for one signup journey (pro_signups.client_key). */

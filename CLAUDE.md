@@ -65,13 +65,35 @@ Starting from `main` silently throws away the newest design and copy. So, before
 - **Own domain since 4 Oct 2026: `crm.yunoapp.eu`**, attached to the SAME Worker as
   landing.yunoapp.eu (Cloudflare → yuno-landing → Domains). Single source: `src/i18n/hosts.ts`.
   On the CRM host the router rewrites `/`, `/fr`, `/es` to the `/crm` routes (`rewrite` in
-  `src/router.tsx`, both ways), `/start` keeps its paths with `product=crm` implied, and every
-  other path 301s to landing.yunoapp.eu; `landing.yunoapp.eu/crm` (+ fr/es) and
+  `src/router.tsx`, both ways), `/start` keeps its paths with `product=crm` implied, the Yuno
+  APP's CRM side is relayed to yunoapp.eu (see next bullet), and every other path 301s to
+  landing.yunoapp.eu; `landing.yunoapp.eu/crm` (+ fr/es) and
   `/start?product=crm` 301 to the CRM host (`hostMiddleware`, `src/start.ts`). Canonical,
   hreflang, og and JSON-LD of the CRM page and its signup point to crm.yunoapp.eu; its URLs
   live in `sitemap-crm.xml` (static, listed in `public/robots.txt`), not in the landing sitemap.
   A link from a CRM page to the landing (legal pages, the Suite) goes through `landingHref()`;
-  the CRM page's own links through `crmPagePaths()`. Never import app modules into
+  the CRM page's own links through `crmPagePaths()`.
+- **The Yuno app's CRM side lives on crm.yunoapp.eu too** (Paul, 4 Oct 2026: "tout le CRM passe
+  par ce lien"): sign-in `/login`, Console `/crm/*`, Admin CRM `/admin/crm/*`, session handoff
+  `/auth/handoff`, `/open/crm`, `/get-started`, 2FA, team invites, the ticketing consoles the CRM
+  links to, the app's `/assets/*` and any other file path. `hostRoute` (src/i18n/hosts.ts) sends
+  them to `relayToApp`, which fetches `https://yunoapp.eu` + path (a Worker may fetch another
+  Worker's custom domain on the same zone) and passes the answer through. The list
+  (`APP_PATH_PREFIXES`) mirrors `CRM_PATH_PREFIXES` + `SHARED_PATH_PREFIXES` of
+  `src/lib/productHost.ts` in the yuno repo: a new app path that should work here goes in BOTH,
+  otherwise it 301s to landing.yunoapp.eu. `/crm` is now the app's Console here (only `/fr/crm`,
+  `/es/crm` still 301 to `/fr`, `/es`). "Log in" on CRM pages = `CRM_LOGIN_URL`
+  (crm.yunoapp.eu/login); the CRM signup hands the session to `crm.yunoapp.eu/auth/handoff`
+  (`appHandoffUrl(…, CRM_ORIGIN)`), never to yunoapp.eu. `VITE_YUNO_APP_ORIGIN` points the relay
+  at a local app build. `wrangler dev` crashes on its own on this project ("Network connection
+  lost"): test a build by importing `dist/server/server.js` and calling its `fetch` (static
+  `dist/client` files first, like Cloudflare).
+- Link previews: `public/og/crm-{en,fr,es}.png`, rendered by `bun scripts/og/crm.ts`
+  (`CHROMIUM_PATH` = Chrome): hero title + accent, Shotgun chip, the trial as a button, and the
+  real Console captured from the live page in each language (fonts in `scripts/og/*.woff2`).
+  Tags = `crmOgImageMeta()` (`src/i18n/og.ts`, bump `CRM_OG_VERSION` after a re-render), on the
+  CRM page AND its signup (`/start?product=crm`); always the full set, or the root route's
+  landing image leaks its `secure_url` and alt. Never import app modules into
   `src/server.ts`: their constants become exports of the Worker entry and the deploy is
   rejected ("Incorrect type for map entry"). Try it locally on `crm.localhost:<port>`.
 - Second product: organizers and clubs who KEEP their ticketing (Shotgun first). Page
@@ -102,11 +124,11 @@ Starting from `main` silently throws away the newest design and copy. So, before
   crowd size → done, live console preview on the side; copy EN/FR/ES in
   `src/content/crm-signup.ts`, styles `.yc-su-*` at the end of `crm.css`). Same backend as the Suite flow:
   every tracked step carries `product: "crm"` (`track_pro_signup`), `auth.signUp` on the app's Supabase,
-  `complete_pro_signup` opens a CRM Console with its 14-day trial, then handoff to yunoapp.eu. Own
+  `complete_pro_signup` opens a CRM Console with its 14-day trial, then handoff to crm.yunoapp.eu. Own
   journey key (`yuno_crm_signup_key`). Type → role: club/bar → club, collective/festival → organizer.
   There is NO code step: the account opens at once (the app's Supabase has email confirmation off: `mailer_autoconfirm`).
   If confirmation is ever switched on, `signUp` returns no session and the funnel shows a "confirm" screen (link sent,
-  resend button): the link lands on `yunoapp.eu/get-started?key=…` which finishes the job. SMTP + templates to prepare
+  resend button): the link lands on `crm.yunoapp.eu/get-started?key=…` which finishes the job. SMTP + templates to prepare
   first: `scripts/auth-smtp` in the yuno repo. Google / Apple (wired 4 Oct 2026): `signInWithOAuth` on the app's Supabase (implicit flow, `skipBrowserRedirect`),
   `redirectTo` = this funnel in the page's language (`/fr/start?product=crm`); the session comes back in the URL fragment,
   is read by `CrmSignup` (`setSession`, fragment wiped with `history.replaceState`) and the journey resumes on "type"
@@ -118,7 +140,7 @@ Starting from `main` silently throws away the newest design and copy. So, before
   calls `get_my_product_accounts`; if the person already holds a club or an organization, it shows the `existing`
   step instead of the questions: "open Yuno CRM on {name}" (`open_product_on_my_account`, CRM trial on the SAME
   account, same contacts) or "Yuno CRM is waiting for you" if it already has CRM, then handoff to `/crm`. By
-  email + password, "address already used" links to `yunoapp.eu/auth?redirect=/open/crm`. Never a second account.
+  email + password, "address already used" links to `crm.yunoapp.eu/login?redirect=/open/crm`. Never a second account.
   The generic `SignupFlow`/`SignupModal` stay for the Suite landing, associations and `/start` without product.
 - Opening the signup (modal or `/start?product=crm`) writes a `pro_signups` row in production: never
   test it against production without blocking `track_pro_signup` or deleting the row it writes

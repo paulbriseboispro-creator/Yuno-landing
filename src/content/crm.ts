@@ -56,7 +56,7 @@ const fr = {
     sub: "Yuno regroupe tous vos acheteurs Shotgun dans un seul fichier clients, puis vous aide à les retrouver, à leur écrire par e-mail et SMS, et à voir ce qui remplit votre salle.",
     cta: "Essayer 14 jours gratuitement",
     trust: ["Connexion par l’API Shotgun", "Prêt en 2 minutes", "Sans carte bancaire"],
-    frameUrl: "yunoapp.eu/crm",
+    frameUrl: "crm.yunoapp.eu/crm",
     live: "En direct",
     toasts: [
       { title: "Camille revient pour la 4ᵉ fois", sub: "Habituée · Techno Night" },
@@ -997,7 +997,7 @@ const en: CrmContent = {
     sub: "Yuno gathers all your Shotgun buyers in one customer file, then helps you find them, write to them by email and SMS, and see what fills your room.",
     cta: "Try it free for 14 days",
     trust: ["Connected through the Shotgun API", "Ready in 2 minutes", "No card needed"],
-    frameUrl: "yunoapp.eu/crm",
+    frameUrl: "crm.yunoapp.eu/crm",
     live: "Live",
     toasts: [
       { title: "Camille is back for the 4th time", sub: "Regular · Techno Night" },
@@ -1890,7 +1890,7 @@ const es: CrmContent = {
     sub: "Yuno reúne a todos tus compradores de Shotgun en un solo archivo de clientes, y te ayuda a encontrarlos, a escribirles por e-mail y SMS, y a ver qué llena tu sala.",
     cta: "Probar gratis 14 días",
     trust: ["Conexión por la API de Shotgun", "Listo en 2 minutos", "Sin tarjeta"],
-    frameUrl: "yunoapp.eu/crm",
+    frameUrl: "crm.yunoapp.eu/crm",
     live: "En directo",
     toasts: [
       { title: "Camille vuelve por 4ª vez", sub: "Habitual · Techno Night" },
