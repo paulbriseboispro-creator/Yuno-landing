@@ -38,6 +38,8 @@ const APP_PATH_PREFIXES = [
   "/admin",
   "/login",
   "/open",
+  // Pages d'inscription publiques de Yuno CRM (/j/<slug>, /j/<slug>/ok) : servies par l'app.
+  "/j",
   "/auth",
   "/get-started",
   "/accept-org-member",
