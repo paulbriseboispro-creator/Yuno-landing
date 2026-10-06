@@ -142,7 +142,7 @@ no seat or automation cap.
 | Subscription | 24 € HT / month at launch (34 € later for NEW accounts; a 24 € subscriber keeps 24 € while subscribed) |
 | Yearly | 288 € HT / year (12 × 24, no discount) + 30,000 bonus Yunits at once (≈ two months) |
 | Yunits included | 10,000 every month (offered Yunits expire at month end and are used first) |
-| Cost per send | email 1 Yunit · SMS 40 Yunits · Instagram DM 10 and WhatsApp 100 = "soon" |
+| Cost per send | email 1 Yunit · SMS 35 Yunits · Instagram DM 10 and WhatsApp 100 = "soon" |
 | Always free | test sends, the AI assistant, contacts Yuno sets aside so as not to overload them |
 | Recharges | 500 Yunits per € (10 € = 5,000 · 25 € = 12,500 · 50 € = 27,500 (+10 %) · 100 € = 57,500 (+15 %)), valid 12 months; auto top-up off by default, with a ceiling |
 | Trial | 14 days, the whole tool + 5,000 Yunits, no card, no free plan; without a subscription the account pauses (base visible, nothing sent, Shotgun sync stops) |

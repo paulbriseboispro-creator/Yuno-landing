@@ -74,7 +74,7 @@ function Composer() {
   }, [mi, inView, reduce, full, c.messages.length]);
 
   const isSms = m.channel === "SMS";
-  const cost = m.count * (isSms ? 40 : 1);
+  const cost = m.count * (isSms ? 35 : 1);
 
   return (
     <div ref={ref} className="relative mx-auto w-full max-w-[600px]">

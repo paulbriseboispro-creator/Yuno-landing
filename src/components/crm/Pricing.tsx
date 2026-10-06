@@ -10,7 +10,7 @@ import { Accent, CtaButton, EASE, Eyebrow, Reveal, Rich, YunitFace, useFmt } fro
 // (src/lib/crmPlans.ts + _shared/crm-billing.ts): one subscription, 24 € HT a
 // month (launch price; 34 € later for new accounts) or 288 € HT a year with
 // 30,000 bonus Yunits, 10,000 Yunits offered every month, sends paid in Yunits
-// (email 1, SMS 40), recharges at 500 Yunits per euro with +10 % / +15 % bonus.
+// (email 1, SMS 35), recharges at 500 Yunits per euro with +10 % / +15 % bonus.
 
 // Recharge packs (crm_pricing_config: 500 Yunits / €, +10 % from 25,000, +15 % from 50,000).
 const PACKS = [
@@ -20,6 +20,7 @@ const PACKS = [
   { y: 57500, p: 100, b: 15 },
 ];
 const MONTHLY_YUNITS = 10000;
+const SMS_YUNITS = 35;
 
 // Cheapest mix of packs covering `need` Yunits (the design's solver, 500-Yunit units).
 function solve(need: number) {
@@ -224,11 +225,11 @@ function PriceCard({ annual }: { annual: boolean }) {
 const STAGES = [
   { b: 10000, w: 900 },
   { b: 7800, w: 1500 },
-  { b: 5400, w: 1500 },
-  { b: 5400, w: 1300 },
-  { b: 5400, w: 1300 },
-  { b: 400, w: 1900 },
-  { b: 5400, w: 2800 },
+  { b: 5700, w: 1500 },
+  { b: 5700, w: 1300 },
+  { b: 5700, w: 1300 },
+  { b: 700, w: 1900 },
+  { b: 5700, w: 2800 },
 ];
 
 function Wallet() {
@@ -372,7 +373,7 @@ function Simulator() {
   const [preset, setPreset] = useState("orga");
   const [emails, setEmails] = useState(45000);
   const [sms, setSms] = useState(300);
-  const used = emails + sms * 40;
+  const used = emails + sms * SMS_YUNITS;
   const inc = Math.min(used, MONTHLY_YUNITS);
   const need = Math.max(0, used - MONTHLY_YUNITS);
   const r = useMemo(() => solve(need), [need]);
@@ -448,7 +449,7 @@ function Simulator() {
             {
               label: s.sms,
               v: sms,
-              eq: `${num(sms)} × 40 = ${num(sms * 40)} Yunits`,
+              eq: `${num(sms)} × ${SMS_YUNITS} = ${num(sms * SMS_YUNITS)} Yunits`,
               pos: sPos,
               on: (x: number) => setSms(snapS(3000 * Math.pow(x / 1000, 2))),
             },

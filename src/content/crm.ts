@@ -15,7 +15,8 @@
 // crm_pricing_config). Data lives in the EU (Supabase eu-west-1), never write
 // "hosted in France". Instagram data is never read: Instagram DM and WhatsApp
 // are "soon" channels only. Meta audiences are "soon". SMS and the MCP server
-// (ChatGPT, Claude, Gemini) are presented as live (Paul, 4 Oct 2026).
+// (ChatGPT, Claude, Gemini) are presented as live (Paul, 4 Oct 2026); an SMS
+// costs 35 Yunits in France since 8 Oct 2026 (sending opened through Octopush).
 //
 // `title` + `accent`: the accent is a substring of the title, painted with the
 // brand gradient (one accented word or phrase per headline).
@@ -656,7 +657,7 @@ const fr = {
     },
     rates: [
       { name: "E-mail", cost: "1 Yunit", soon: false },
-      { name: "SMS", cost: "40 Yunits", soon: false },
+      { name: "SMS", cost: "35 Yunits", soon: false },
       { name: "DM Instagram", cost: "Bientôt", soon: true },
       { name: "WhatsApp", cost: "Bientôt", soon: true },
     ],
@@ -809,7 +810,7 @@ const fr = {
       soon: "Bientôt",
       rates: [
         { name: "E-mail", cost: 1, soon: false },
-        { name: "SMS", cost: 40, soon: false },
+        { name: "SMS", cost: 35, soon: false },
         { name: "DM Instagram", cost: 10, soon: true },
         { name: "WhatsApp", cost: 100, soon: true },
       ],
@@ -821,12 +822,12 @@ const fr = {
         "L’assistant IA",
         "Les contacts que Yuno écarte pour ne pas les saturer",
       ],
-      eq: "10 000 Yunits, c’est 10 000 e-mails, ou 250 SMS, ou un mélange des deux.",
+      eq: "10 000 Yunits, c’est 10 000 e-mails, ou 285 SMS, ou un mélange des deux.",
       wallet: "Votre solde",
       chip: ["Offerts + achetés", "Solde bas", "Rechargé"],
       rows: [
         { t: "Campagne « Samedi »", s: "2 200 e-mails", d: "− 2 200", k: "minus" },
-        { t: "Relance SMS", s: "60 contacts", d: "− 2 400", k: "minus" },
+        { t: "Relance SMS", s: "60 contacts", d: "− 2 100", k: "minus" },
         { t: "Test d’envoi", s: "envoyé à vous-même", d: "Gratuit", k: "free" },
         { t: "Assistant IA", s: "12 questions posées", d: "Gratuit", k: "free" },
         { t: "Campagne « Brunch »", s: "5 000 e-mails", d: "− 5 000", k: "minus" },
@@ -1562,7 +1563,7 @@ const en: CrmContent = {
     },
     rates: [
       { name: "Email", cost: "1 Yunit", soon: false },
-      { name: "SMS", cost: "40 Yunits", soon: false },
+      { name: "SMS", cost: "35 Yunits", soon: false },
       { name: "Instagram DM", cost: "Soon", soon: true },
       { name: "WhatsApp", cost: "Soon", soon: true },
     ],
@@ -1714,7 +1715,7 @@ const en: CrmContent = {
       soon: "Soon",
       rates: [
         { name: "Email", cost: 1, soon: false },
-        { name: "SMS", cost: 40, soon: false },
+        { name: "SMS", cost: 35, soon: false },
         { name: "Instagram DM", cost: 10, soon: true },
         { name: "WhatsApp", cost: 100, soon: true },
       ],
@@ -1726,12 +1727,12 @@ const en: CrmContent = {
         "The AI assistant",
         "Contacts Yuno sets aside so as not to overload them",
       ],
-      eq: "10,000 Yunits means 10,000 emails, or 250 SMS, or a mix of both.",
+      eq: "10,000 Yunits means 10,000 emails, or 285 SMS, or a mix of both.",
       wallet: "Your balance",
       chip: ["Offered + bought", "Low balance", "Topped up"],
       rows: [
         { t: "“Saturday” campaign", s: "2,200 emails", d: "− 2,200", k: "minus" },
-        { t: "SMS follow-up", s: "60 contacts", d: "− 2,400", k: "minus" },
+        { t: "SMS follow-up", s: "60 contacts", d: "− 2,100", k: "minus" },
         { t: "Test send", s: "sent to yourself", d: "Free", k: "free" },
         { t: "AI assistant", s: "12 questions asked", d: "Free", k: "free" },
         { t: "“Brunch” campaign", s: "5,000 emails", d: "− 5,000", k: "minus" },
@@ -2496,7 +2497,7 @@ const es: CrmContent = {
     },
     rates: [
       { name: "E-mail", cost: "1 Yunit", soon: false },
-      { name: "SMS", cost: "40 Yunits", soon: false },
+      { name: "SMS", cost: "35 Yunits", soon: false },
       { name: "DM de Instagram", cost: "Pronto", soon: true },
       { name: "WhatsApp", cost: "Pronto", soon: true },
     ],
@@ -2648,7 +2649,7 @@ const es: CrmContent = {
       soon: "Pronto",
       rates: [
         { name: "E-mail", cost: 1, soon: false },
-        { name: "SMS", cost: 40, soon: false },
+        { name: "SMS", cost: 35, soon: false },
         { name: "DM de Instagram", cost: 10, soon: true },
         { name: "WhatsApp", cost: 100, soon: true },
       ],
@@ -2660,12 +2661,12 @@ const es: CrmContent = {
         "El asistente IA",
         "Los contactos que Yuno aparta para no saturarlos",
       ],
-      eq: "10.000 Yunits son 10.000 e-mails, o 250 SMS, o una mezcla de ambos.",
+      eq: "10.000 Yunits son 10.000 e-mails, o 285 SMS, o una mezcla de ambos.",
       wallet: "Tu saldo",
       chip: ["Regalados + comprados", "Saldo bajo", "Recargado"],
       rows: [
         { t: "Campaña «Sábado»", s: "2.200 e-mails", d: "− 2.200", k: "minus" },
-        { t: "Aviso por SMS", s: "60 contactos", d: "− 2.400", k: "minus" },
+        { t: "Aviso por SMS", s: "60 contactos", d: "− 2.100", k: "minus" },
         { t: "Envío de prueba", s: "enviado a ti mismo", d: "Gratis", k: "free" },
         { t: "Asistente IA", s: "12 preguntas", d: "Gratis", k: "free" },
         { t: "Campaña «Brunch»", s: "5.000 e-mails", d: "− 5.000", k: "minus" },
