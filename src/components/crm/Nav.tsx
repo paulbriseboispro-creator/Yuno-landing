@@ -6,6 +6,7 @@ import { useLanding } from "@/components/landing/context";
 import { CRM_LOGIN_URL } from "@/i18n/hosts";
 import { LANDING_LANGS } from "@/i18n/landing-lang";
 import { useCrm } from "./content";
+import { useMedia } from "./media";
 import { CtaButton, EASE, Wordmark } from "./ui";
 
 // The floating pill nav of the reference: white 86 % + blur, links with a
@@ -18,6 +19,10 @@ export function CrmNav() {
   const [active, setActive] = useState<string>("");
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // Phones: the pill tucks away while you read down and comes back as soon as
+  // you scroll up (the progress bar stays), so the text gets the whole screen.
+  const narrow = useMedia("(max-width: 767px)");
+  const [tucked, setTucked] = useState(false);
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 30, mass: 0.3 });
 
@@ -25,11 +30,22 @@ export function CrmNav() {
   useEffect(() => {
     const ids = c.nav.links.map((l) => l.href.slice(1));
     let raf = 0;
+    let lastY = window.scrollY;
     const onScroll = () => {
       if (raf) return;
       raf = requestAnimationFrame(() => {
         raf = 0;
-        setScrolled(window.scrollY > 24);
+        const y = window.scrollY;
+        setScrolled(y > 24);
+        // Direction over at least 8 px of travel (a slow scroll moves < 8 px
+        // per frame, so the reference point only moves once a way is decided).
+        if (y < 140) {
+          setTucked(false);
+          lastY = y;
+        } else if (Math.abs(y - lastY) > 8) {
+          setTucked(y > lastY);
+          lastY = y;
+        }
         const mid = window.innerHeight * 0.45;
         let cur = "";
         for (const id of ids) {
@@ -68,7 +84,13 @@ export function CrmNav() {
         className="fixed inset-x-0 top-0 z-[60] h-[3px] origin-left"
         style={{ scaleX: progress, background: "var(--gradient-brand)" }}
       />
-      <div className="pointer-events-none sticky top-0 z-50 px-3 pt-3 sm:px-6" data-ph-area="nav">
+      <div
+        className={cn(
+          "pointer-events-none sticky top-0 z-50 px-3 pt-3 transition-transform duration-300 [transition-timing-function:cubic-bezier(.22,1,.36,1)] sm:px-6",
+          narrow && tucked && !open && "-translate-y-[calc(100%+4px)]",
+        )}
+        data-ph-area="nav"
+      >
         <motion.nav
           initial={{ opacity: 0, y: -22, filter: "blur(8px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
