@@ -23,6 +23,25 @@ export const EASE = [0.22, 1, 0.36, 1] as const;
 
 const LOCALES = { en: "en-GB", fr: "fr-FR", es: "es-ES" } as const;
 
+const MONTHS = {
+  en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
+  fr: [
+    "janv.",
+    "févr.",
+    "mars",
+    "avr.",
+    "mai",
+    "juin",
+    "juil.",
+    "août",
+    "sept.",
+    "oct.",
+    "nov.",
+    "déc.",
+  ],
+  es: ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sept", "oct", "nov", "dic"],
+} as const;
+
 // Numbers the way each language writes them; French keeps a plain space as
 // thousands separator (the design never shows narrow no-break spaces).
 export function useFmt() {
@@ -36,7 +55,9 @@ export function useFmt() {
     lang === "en" ? `€${num(n, digits)}` : `${num(n, digits)} €`;
   const pct = (n: number, digits = 0) =>
     lang === "en" ? `${num(n, digits)}%` : `${num(n, digits)} %`;
-  const day = (d: Date) => d.toLocaleDateString(locale, { day: "numeric", month: "short" });
+  // Fixed month names: the server's and the browser's Intl data disagree on
+  // short months ("4 Sept" vs "4 Sep" in en-GB), which broke hydration.
+  const day = (d: Date) => `${d.getDate()} ${MONTHS[lang][d.getMonth()]}`;
   return { num, money, pct, day, lang, locale };
 }
 
