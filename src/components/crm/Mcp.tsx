@@ -22,6 +22,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useCrm } from "./content";
 import { ChatGptMark, ClaudeMark, GeminiMark } from "./marks";
+import { useIsPhone } from "./media";
 import { Accent, CtaButton, EASE, Eyebrow, Reveal, YunitFace } from "./ui";
 
 // The reference's "Your data. Your AI. Through MCP." block: Yuno exposes the
@@ -111,18 +112,31 @@ function PromptBox() {
   }, [i, inView, reduce, item.q, item.a, m.convo.length]);
 
   const sent = phase === "thinking" || phase === "answer";
+  // Phones: the conversation never collapses. While a question is typed, the
+  // exchange before it stays on screen (the last one of the list at first), so
+  // the box keeps its size and the page under the thumb never moves.
+  const keep = useIsPhone() === true;
+  const shownI = sent ? i : (i - 1 + m.convo.length) % m.convo.length;
+  const shown = m.convo[shownI];
+  const ShownMark = MARKS[shownI % MARKS.length];
+  const shownModel = m.models[shownI % m.models.length];
 
   return (
-    <div ref={ref} className="relative mx-auto w-full max-w-[600px]">
+    // Phones: the answer grows upwards inside a reserved height, so the page
+    // under the box never jumps while the conversation plays.
+    <div
+      ref={ref}
+      className="relative mx-auto flex min-h-[348px] w-full max-w-[600px] flex-col justify-end sm:block sm:min-h-0"
+    >
       <div
         aria-hidden
         className="pointer-events-none absolute -inset-x-16 -inset-y-12 -z-10 rounded-[80px] bg-[radial-gradient(closest-side,rgba(255,107,53,.30),rgba(227,20,27,.14)_55%,transparent)] blur-2xl"
       />
       <div className="overflow-hidden rounded-[22px] bg-white text-left shadow-[0_2px_4px_rgba(28,21,23,.05),0_30px_70px_-30px_rgba(157,11,18,.4)] ring-1 ring-yc-sand-200">
         <AnimatePresence initial={false}>
-          {sent && (
+          {(sent || (keep && phase !== "idle")) && (
             <motion.div
-              key={`ans-${i}`}
+              key={keep ? "ans" : `ans-${i}`}
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -131,14 +145,16 @@ function PromptBox() {
             >
               <div className="flex flex-col gap-3 px-5 py-4">
                 <div className="ml-auto max-w-[85%] rounded-[16px] rounded-br-[6px] bg-yc-ink px-4 py-2.5 text-[14.5px] leading-[1.45] text-white">
-                  {item.q}
+                  {shown.q}
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="grid size-8 flex-none place-items-center rounded-full bg-white shadow-[var(--shadow-xs)] ring-1 ring-yc-sand-200">
-                    <Mark className="size-[18px] text-black" />
+                    <ShownMark className="size-[18px] text-black" />
                   </span>
                   <div className="min-w-0 flex-1">
-                    {phase === "thinking" ? (
+                    {!sent ? (
+                      <p className="text-[15px] leading-[1.55] text-yc-ink">{shown.a}</p>
+                    ) : phase === "thinking" ? (
                       <span className="inline-flex h-6 items-center gap-1">
                         {[0, 1, 2].map((d) => (
                           <motion.i
@@ -157,7 +173,7 @@ function PromptBox() {
                     )}
                     <span className="mt-1.5 inline-flex items-center gap-1.5 text-[12px] font-medium text-yc-sand-500">
                       <YunitFace size={14} blink={false} />
-                      {model} · {m.via}
+                      {shownModel} · {m.via}
                     </span>
                   </div>
                 </div>
@@ -223,7 +239,7 @@ export function CrmMcp() {
   return (
     <section
       data-ph-section="mcp"
-      className="relative overflow-hidden px-4 pb-6 pt-28 sm:px-6 sm:pt-36"
+      className="relative overflow-hidden px-4 pb-6 pt-20 sm:px-6 sm:pt-36"
     >
       <div className="mx-auto max-w-[860px] text-center">
         <Reveal>
@@ -235,11 +251,11 @@ export function CrmMcp() {
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mx-auto mt-6 max-w-[34rem] text-pretty text-[17px] font-semibold leading-[1.55] text-yc-sand-700 sm:text-[18px]">
+          <p className="mx-auto mt-5 max-w-[34rem] text-pretty text-[16px] font-semibold leading-[1.55] text-yc-sand-700 sm:mt-6 sm:text-[18px]">
             {m.sub}
           </p>
         </Reveal>
-        <Reveal delay={0.15} className="mt-9 flex justify-center">
+        <Reveal delay={0.15} className="mt-9 hidden justify-center sm:flex">
           <CtaButton size="lg" ring cta="mcp_crm">
             {m.cta}
           </CtaButton>
@@ -248,7 +264,10 @@ export function CrmMcp() {
 
       {/* The reference's arc of AI marks over the stage title (ChatGPT on top,
           Claude and Gemini on each side, two more at the title's ends). */}
-      <div ref={stageRef} className="relative mx-auto mt-14 max-w-[1000px] pb-4 pt-[118px]">
+      <div
+        ref={stageRef}
+        className="relative mx-auto mt-8 max-w-[1000px] pb-4 pt-[104px] sm:mt-14 sm:pt-[118px]"
+      >
         <div
           aria-hidden
           className="pointer-events-none absolute left-1/2 top-[70px] -z-10 h-[420px] w-[min(900px,100%)] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(255,148,141,.32),rgba(255,107,53,.12)_55%,transparent)] blur-2xl"
@@ -287,7 +306,7 @@ export function CrmMcp() {
           </Float>
         </motion.div>
 
-        <Reveal className="relative mb-6 px-10 text-center">
+        <Reveal className="relative mb-2 px-10 text-center sm:mb-6">
           <h3 className="yc-h3 text-[clamp(1.6rem,3vw,2.35rem)] text-yc-ink">
             <Accent text={m.stage} accent={m.stageAccent} />
           </h3>

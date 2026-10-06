@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/rea
 import {
   BarChart3,
   Check,
+  ChevronDown,
   ChevronRight,
   Mail,
   MessageSquareText,
@@ -13,7 +14,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCrm } from "./content";
-import { Accent, Avatar, CtaButton, EASE, Eyebrow, Reveal, StatusTag } from "./ui";
+import { Accent, Avatar, CtaButton, EASE, Eyebrow, Marquee, Reveal, StatusTag } from "./ui";
 
 // "Smart marketing" block, right after "Yuno in 2 minutes": what the CRM does
 // once the customers are in. One customer at a time goes through three cards —
@@ -47,13 +48,16 @@ function Journey() {
   }, [i, inView, reduce, e.journeys.length]);
 
   return (
-    <div ref={ref} className="relative mx-auto mt-14 max-w-[1100px]">
+    <div ref={ref} className="relative mx-auto mt-10 max-w-[1100px] sm:mt-14">
       <div
         aria-hidden
         className="pointer-events-none absolute -inset-x-10 -inset-y-10 -z-10 rounded-[60px] bg-[radial-gradient(closest-side,rgba(255,107,53,.22),rgba(227,20,27,.08)_62%,transparent)] blur-2xl"
       />
 
-      <div className="mb-5 flex justify-center gap-2" role="tablist">
+      <div
+        className="yc-swipe yc-swipe--start -mx-4 mb-4 gap-2 px-4 sm:mx-0 sm:mb-5 sm:justify-center sm:px-0"
+        role="tablist"
+      >
         {e.journeys.map((x, k) => (
           <button
             key={x.name}
@@ -62,7 +66,7 @@ function Journey() {
             aria-selected={k === i}
             onClick={() => setI(k)}
             className={cn(
-              "inline-flex h-9 items-center gap-2 rounded-full border px-3.5 text-[13.5px] font-semibold transition-colors",
+              "inline-flex h-9 items-center gap-2 whitespace-nowrap rounded-full border px-3.5 text-[13.5px] font-semibold transition-colors",
               k === i
                 ? "border-yc-ink bg-yc-ink text-white"
                 : "border-yc-sand-200 bg-white text-yc-sand-600 hover:text-yc-ink",
@@ -115,6 +119,7 @@ function Journey() {
           aria-hidden
           className="mx-auto hidden size-6 self-center text-yc-sand-400 md:block"
         />
+        <ChevronDown aria-hidden className="mx-auto -my-1 size-5 text-yc-sand-400 md:hidden" />
 
         {/* 2 — what Yuno decides */}
         <div className="rounded-[22px] bg-white p-5 text-left shadow-[0_2px_4px_rgba(28,21,23,.05),0_24px_60px_-30px_rgba(157,11,18,.35)] ring-1 ring-yc-sand-200">
@@ -183,11 +188,12 @@ function Journey() {
           aria-hidden
           className="mx-auto hidden size-6 self-center text-yc-sand-400 md:block"
         />
+        <ChevronDown aria-hidden className="mx-auto -my-1 size-5 text-yc-sand-400 md:hidden" />
 
         {/* 3 — what it earns */}
         <div className="rounded-[22px] bg-white p-5 text-left shadow-[0_2px_4px_rgba(28,21,23,.05),0_24px_60px_-30px_rgba(28,21,23,.3)] ring-1 ring-yc-sand-200">
           <div className="yc-label">{e.flow.result}</div>
-          <ul className="mt-4 space-y-2.5">
+          <ul className="mt-4 grid grid-cols-2 gap-2 md:flex md:flex-col md:gap-2.5">
             {e.flow.funnel.map((label, k) => {
               const lit = step > k;
               const last = k === e.flow.funnel.length - 1;
@@ -195,7 +201,7 @@ function Journey() {
                 <li
                   key={label}
                   className={cn(
-                    "flex items-center justify-between gap-3 rounded-[12px] px-3 py-2.5 text-[14px] transition-all duration-500",
+                    "flex flex-col items-start gap-1 rounded-[12px] px-3 py-2.5 text-[14px] transition-all duration-500 md:flex-row md:items-center md:justify-between md:gap-3",
                     lit
                       ? last
                         ? "bg-yc-green-50 text-yc-green-700"
@@ -218,7 +224,9 @@ function Journey() {
                     </span>
                     {label}
                   </span>
-                  <span className="font-semibold tabular-nums">{lit ? j.result[k] : "·"}</span>
+                  <span className="font-semibold tabular-nums max-md:pl-7 max-md:font-yc-display max-md:text-[19px] max-md:tracking-[-0.02em]">
+                    {lit ? j.result[k] : "·"}
+                  </span>
                 </li>
               );
             })}
@@ -235,7 +243,7 @@ export function CrmEngine() {
     <section
       id="marketing"
       data-ph-section="engine"
-      className="relative overflow-hidden px-4 pb-6 pt-28 sm:px-6 sm:pt-36"
+      className="relative overflow-hidden px-4 pb-6 pt-20 sm:px-6 sm:pt-36"
     >
       <div className="mx-auto max-w-[860px] text-center">
         <Reveal>
@@ -253,30 +261,51 @@ export function CrmEngine() {
 
       <Journey />
 
-      <div className="mx-auto mt-16 grid max-w-[1100px] gap-4 md:grid-cols-3">
+      {/* Phones: left out, the three cards above already walk through the same
+          three ideas (what the CRM knows → what Yuno decides → what it earns).
+          Tablets: one card, three rows; desktop: three cards. */}
+      <div className="mx-auto mt-10 hidden max-w-[1100px] overflow-hidden rounded-[22px] border border-yc-sand-200 bg-white/80 max-md:divide-y max-md:divide-yc-sand-200 sm:grid md:mt-16 md:grid-cols-3 md:gap-4 md:overflow-visible md:rounded-none md:border-0 md:bg-transparent">
         {e.pillars.map((p, k) => {
           const Icon = PILLAR_ICONS[k];
           return (
             <Reveal key={p.t} delay={k * 0.06}>
-              <div className="h-full rounded-[20px] border border-yc-sand-200 bg-white/70 p-5 text-left">
-                <span className="grid size-10 place-items-center rounded-[12px] bg-yc-red-50 text-yc-red-700">
+              <div className="flex h-full gap-4 p-5 text-left md:block md:rounded-[20px] md:border md:border-yc-sand-200 md:bg-white/70">
+                <span className="grid size-10 flex-none place-items-center rounded-[12px] bg-yc-red-50 text-yc-red-700">
                   <Icon className="size-5" />
                 </span>
-                <h3 className="mt-4 font-yc-display text-[19px] font-semibold tracking-[-0.01em] text-yc-ink">
-                  {p.t}
-                </h3>
-                <p className="mt-1.5 text-[14.5px] leading-[1.55] text-yc-sand-600">{p.d}</p>
+                <div className="min-w-0">
+                  <h3 className="font-yc-display text-[18px] font-semibold tracking-[-0.01em] text-yc-ink md:mt-4 md:text-[19px]">
+                    {p.t}
+                  </h3>
+                  <p className="mt-1 text-[14px] leading-[1.55] text-yc-sand-600 md:mt-1.5 md:text-[14.5px]">
+                    {p.d}
+                  </p>
+                </div>
               </div>
             </Reveal>
           );
         })}
       </div>
 
-      <div className="mx-auto mt-14 max-w-[900px] text-center">
+      <div className="mx-auto mt-12 max-w-[900px] text-center sm:mt-14">
         <Reveal>
           <span className="text-[16px] font-medium text-yc-ink">{e.autosTitle}</span>
         </Reveal>
-        <Reveal delay={0.05} className="mt-5 flex flex-wrap justify-center gap-2.5">
+        {/* Phones: one drifting row instead of four wrapped ones */}
+        <Reveal delay={0.05} className="-mx-4 mt-4 sm:hidden">
+          <Marquee duration={30} gap={8}>
+            {e.autos.map((a) => (
+              <span
+                key={a}
+                className="inline-flex h-10 flex-none items-center gap-2 whitespace-nowrap rounded-[12px] border border-yc-sand-200 bg-white px-3.5 text-[14px] font-medium text-yc-ink shadow-[var(--shadow-xs)]"
+              >
+                <Zap className="size-3.5 text-yc-red-600" />
+                {a}
+              </span>
+            ))}
+          </Marquee>
+        </Reveal>
+        <Reveal delay={0.05} className="mt-5 hidden flex-wrap justify-center gap-2.5 sm:flex">
           {e.autos.map((a) => (
             <span
               key={a}
@@ -288,10 +317,13 @@ export function CrmEngine() {
           ))}
         </Reveal>
         <Reveal delay={0.1}>
-          <ul className="mx-auto mt-5 flex flex-wrap justify-center gap-x-5 gap-y-1.5 text-[13.5px] text-yc-sand-500">
+          <ul className="mx-auto mt-5 flex flex-col gap-2.5 rounded-[18px] bg-yc-sand-50 p-4 text-left text-[13.5px] leading-[1.4] text-yc-sand-600 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-5 sm:gap-y-1.5 sm:bg-transparent sm:p-0 sm:text-center sm:text-yc-sand-500 sm:leading-normal">
             {e.rules.map((r) => (
-              <li key={r} className="flex items-center gap-1.5">
-                <Check className="size-3.5 text-yc-green-700" strokeWidth={3} />
+              <li key={r} className="flex items-start gap-2 sm:items-center sm:gap-1.5">
+                <Check
+                  className="mt-0.5 size-3.5 flex-none text-yc-green-700 sm:mt-0"
+                  strokeWidth={3}
+                />
                 {r}
               </li>
             ))}
@@ -299,24 +331,42 @@ export function CrmEngine() {
         </Reveal>
       </div>
 
-      <Reveal className="mx-auto mt-14 max-w-[900px]">
-        <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-[20px] bg-yc-sand-200 ring-1 ring-yc-sand-200 md:grid-cols-4">
-          {e.stats.map((s) => (
-            <div key={s.l} className="bg-white px-4 py-5 text-center">
-              <dt className="sr-only">{s.l}</dt>
-              <dd className="font-yc-display text-[30px] font-semibold tracking-[-0.02em] text-yc-ink sm:text-[34px]">
-                {s.v}
-              </dd>
-              <p aria-hidden className="mt-1 text-[13px] leading-[1.35] text-yc-sand-500">
-                {s.l}
-              </p>
-            </div>
-          ))}
+      <Reveal className="mx-auto mt-10 max-w-[900px] sm:mt-14">
+        {/* Phones: three short numbers in a row, the long one ("7 out of 10")
+            across the width with its label beside it. */}
+        <dl className="grid grid-cols-3 gap-px overflow-hidden rounded-[20px] bg-yc-sand-200 ring-1 ring-yc-sand-200 sm:grid-cols-2 md:grid-cols-4">
+          {e.stats.map((s, k) => {
+            const wide = k === e.stats.length - 1;
+            return (
+              <div
+                key={s.l}
+                className={cn(
+                  "bg-white px-2 py-4 text-center sm:px-4 sm:py-5",
+                  wide &&
+                    "max-sm:col-span-3 max-sm:flex max-sm:items-center max-sm:justify-center max-sm:gap-3 max-sm:px-4 max-sm:text-left",
+                )}
+              >
+                <dt className="sr-only">{s.l}</dt>
+                <dd className="whitespace-nowrap font-yc-display text-[24px] font-semibold tracking-[-0.02em] text-yc-ink sm:text-[34px]">
+                  {s.v}
+                </dd>
+                <p
+                  aria-hidden
+                  className={cn(
+                    "mt-1 text-[12px] leading-[1.35] text-yc-sand-500 sm:text-[13px]",
+                    wide && "max-sm:mt-0 max-sm:max-w-[12rem] max-sm:text-[13px]",
+                  )}
+                >
+                  {s.l}
+                </p>
+              </div>
+            );
+          })}
         </dl>
         <p className="mt-4 text-center text-[13px] text-yc-sand-500">{e.statsNote}</p>
       </Reveal>
 
-      <Reveal className="mt-10 flex justify-center">
+      <Reveal className="mt-10 hidden justify-center sm:flex">
         <CtaButton size="lg" ring cta="engine_crm">
           {e.cta}
         </CtaButton>
