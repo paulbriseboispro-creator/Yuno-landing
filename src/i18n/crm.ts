@@ -14,7 +14,7 @@ import { crmOgImageMeta } from "@/i18n/og";
 export { CRM_PATHS, crmUrl };
 
 // Last meaningful copy update of the CRM page (sitemap, dateModified).
-export const CRM_UPDATED = "2026-10-04";
+export const CRM_UPDATED = "2026-10-06";
 
 const OG_LOCALE: Record<LandingLang, string> = { en: "en_GB", fr: "fr_FR", es: "es_ES" };
 

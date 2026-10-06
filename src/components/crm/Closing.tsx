@@ -8,7 +8,7 @@ import { landingHref, CRM_LOGIN_URL } from "@/i18n/hosts";
 import yunitStack from "@/assets/crm/yunit-stack.webp";
 import yunitCoin from "@/assets/crm/yunit-coin.webp";
 import { useCrm } from "./content";
-import { Accent, CtaButton, EASE, Eyebrow, Reveal, Wordmark } from "./ui";
+import { Accent, CtaButton, EASE, Eyebrow, Reveal, Wordmark, YunitFace } from "./ui";
 
 // FAQ (title left, accordion cards right), the final call on a warm aura with
 // the footer as a white card on top of it (the reference's closing), and the
@@ -17,13 +17,16 @@ import { Accent, CtaButton, EASE, Eyebrow, Reveal, Wordmark } from "./ui";
 export function CrmFaq() {
   const f = useCrm().faq;
   const [open, setOpen] = useState(0);
+  // Phones: the first questions, the others one tap away (still in the page).
+  const FIRST = 6;
+  const [all, setAll] = useState(false);
   return (
     <section
       id="faq"
       data-ph-section="faq"
-      className="relative px-4 pb-28 pt-28 sm:px-6 sm:pb-36 sm:pt-36"
+      className="relative px-4 pb-16 pt-20 sm:px-6 sm:pb-36 sm:pt-36"
     >
-      <div className="mx-auto grid max-w-[1200px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+      <div className="mx-auto grid max-w-[1200px] gap-7 sm:gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <Reveal>
             <Eyebrow>{f.eyebrow}</Eyebrow>
@@ -34,21 +37,28 @@ export function CrmFaq() {
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-5 max-w-[24rem] text-[17px] leading-[1.6] text-yc-sand-600">{f.sub}</p>
+            <p className="mt-4 max-w-[24rem] text-[16px] leading-[1.6] text-yc-sand-600 sm:mt-5 sm:text-[17px]">
+              {f.sub}
+            </p>
             <a
               href={`mailto:${f.email}`}
-              className="mt-6 inline-flex h-11 items-center gap-2 rounded-full border border-yc-sand-200 bg-white px-4 text-[14.5px] font-semibold text-yc-ink shadow-[var(--shadow-xs)] transition-colors hover:border-yc-sand-300"
+              className="mt-5 inline-flex h-11 items-center gap-2 sm:mt-6 rounded-full border border-yc-sand-200 bg-white px-4 text-[14.5px] font-semibold text-yc-ink shadow-[var(--shadow-xs)] transition-colors hover:border-yc-sand-300"
             >
               <Mail className="size-4 text-yc-red-500" />
               {f.email}
             </a>
           </Reveal>
         </div>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2.5 sm:gap-3">
           {f.items.map((it, i) => {
             const on = open === i;
             return (
-              <Reveal key={it.q} delay={Math.min(i, 5) * 0.04} amount={0.1}>
+              <Reveal
+                key={it.q}
+                delay={Math.min(i, 5) * 0.04}
+                amount={0.1}
+                className={!all && i >= FIRST ? "max-sm:hidden" : undefined}
+              >
                 <div
                   className={cn(
                     "rounded-[22px] border transition-colors duration-300",
@@ -61,9 +71,9 @@ export function CrmFaq() {
                     type="button"
                     onClick={() => setOpen(on ? -1 : i)}
                     aria-expanded={on}
-                    className="flex w-full items-center justify-between gap-5 px-6 py-5 text-left"
+                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left sm:gap-5 sm:px-6 sm:py-5"
                   >
-                    <span className="text-[17px] font-semibold leading-[1.35] text-yc-ink sm:text-[18px]">
+                    <span className="text-[16px] font-semibold leading-[1.35] text-yc-ink sm:text-[18px]">
                       {it.q}
                     </span>
                     <span
@@ -88,7 +98,7 @@ export function CrmFaq() {
                         transition={{ duration: 0.35, ease: EASE }}
                         className="overflow-hidden"
                       >
-                        <p className="px-6 pb-6 pr-16 text-[15.5px] leading-[1.65] text-yc-sand-600">
+                        <p className="px-5 pb-5 text-[15px] leading-[1.6] text-yc-sand-600 sm:px-6 sm:pb-6 sm:pr-16 sm:text-[15.5px] sm:leading-[1.65]">
                           {it.a}
                         </p>
                       </motion.div>
@@ -98,6 +108,16 @@ export function CrmFaq() {
               </Reveal>
             );
           })}
+          {!all && f.items.length > FIRST && (
+            <button
+              type="button"
+              onClick={() => setAll(true)}
+              className="mt-1 inline-flex h-12 items-center justify-center gap-2 rounded-full border border-yc-sand-200 bg-white text-[15px] font-semibold text-yc-ink shadow-[var(--shadow-xs)] active:scale-[.98] sm:hidden"
+            >
+              <Plus className="size-4" strokeWidth={2.6} />
+              {f.more.replace("{n}", String(f.items.length - FIRST))}
+            </button>
+          )}
         </div>
       </div>
     </section>
@@ -125,7 +145,7 @@ export function CrmFinal() {
     <section
       ref={ref}
       data-ph-section="final"
-      className="relative isolate overflow-hidden px-3 pb-3 pt-32 sm:px-6 sm:pb-6 sm:pt-40"
+      className="relative isolate overflow-hidden px-3 pb-3 pt-20 sm:px-6 sm:pb-6 sm:pt-40"
     >
       <div
         aria-hidden
@@ -157,9 +177,11 @@ export function CrmFinal() {
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="yc-lead mx-auto mt-6 max-w-[34rem] text-yc-sand-700">{c.final.sub}</p>
+          <p className="yc-lead mx-auto mt-5 max-w-[34rem] text-yc-sand-700 sm:mt-6">
+            {c.final.sub}
+          </p>
         </Reveal>
-        <Reveal delay={0.18} className="mt-10 flex justify-center">
+        <Reveal delay={0.18} className="mt-8 flex justify-center sm:mt-10">
           <CtaButton size="lg" ring cta="final_crm">
             {c.final.cta}
           </CtaButton>
@@ -168,17 +190,17 @@ export function CrmFinal() {
 
       <footer
         data-ph-area="footer"
-        className="relative mx-auto mt-32 max-w-[1200px] rounded-[32px] bg-white px-7 py-10 shadow-[0_30px_80px_-30px_rgba(116,10,16,.45)] sm:px-12 sm:py-14"
+        className="relative mx-auto mt-16 max-w-[1200px] rounded-[28px] bg-white px-6 py-8 shadow-[0_30px_80px_-30px_rgba(116,10,16,.45)] sm:mt-32 sm:rounded-[32px] sm:px-12 sm:py-14"
       >
-        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
-          <div>
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:gap-10">
+          <div className="col-span-2 md:col-span-1">
             <Wordmark size={34} />
-            <p className="mt-5 max-w-[22rem] text-[16px] leading-[1.55] text-yc-sand-700">
+            <p className="mt-4 max-w-[22rem] text-[15px] leading-[1.55] text-yc-sand-700 sm:mt-5 sm:text-[16px]">
               {c.footer.tagline}
             </p>
             <a
               href={`mailto:${c.faq.email}`}
-              className="mt-7 inline-flex h-12 items-center gap-2 rounded-full bg-yc-ink px-6 text-[15px] font-semibold text-white transition-colors hover:bg-yc-sand-700"
+              className="mt-5 inline-flex h-12 sm:mt-7 items-center gap-2 rounded-full bg-yc-ink px-6 text-[15px] font-semibold text-white transition-colors hover:bg-yc-sand-700"
             >
               {c.faq.email}
             </a>
@@ -186,7 +208,7 @@ export function CrmFinal() {
           {c.footer.cols.map((col) => (
             <div key={col.title}>
               <div className="text-[16px] font-semibold text-yc-ink">{col.title}</div>
-              <ul className="mt-4 flex flex-col gap-3">
+              <ul className="mt-3 flex flex-col gap-2.5 sm:mt-4 sm:gap-3">
                 {col.links.map((l) => (
                   <li key={l.label}>
                     <a
@@ -203,7 +225,7 @@ export function CrmFinal() {
             </div>
           ))}
         </div>
-        <div className="mt-12 flex flex-col gap-4 border-t border-yc-sand-100 pt-6 text-[13.5px] text-yc-sand-500 md:flex-row md:items-center md:justify-between">
+        <div className="mt-10 flex flex-col gap-4 border-t border-yc-sand-100 pt-6 sm:mt-12 text-[13.5px] text-yc-sand-500 md:flex-row md:items-center md:justify-between">
           <span>
             © 2026 {c.footer.rights} · {c.footer.region}
           </span>
@@ -235,43 +257,64 @@ export function CrmFinal() {
   );
 }
 
-// Mobile: the CTA sticks to the bottom once the hero is gone, hides on the final call.
+// Phones: a slim frosted bar sticks to the bottom once the hero's button has
+// scrolled away, and steps aside whenever another sign-up button is on screen
+// (the pricing card, the final call): never two buttons for the same thing.
 export function CrmMobileBar() {
   const c = useCrm();
   const { signup } = useLanding();
-  const [show, setShow] = useState(false);
-  const [finalIn, setFinalIn] = useState(false);
+  const [heroGone, setHeroGone] = useState(false);
+  const [blocked, setBlocked] = useState(false);
   useEffect(() => {
-    const el = document.querySelector('[data-ph-section="final"]');
-    const io = el
-      ? new IntersectionObserver(([e]) => setFinalIn(e.isIntersecting), {
-          rootMargin: "0px 0px -10% 0px",
-        })
+    const hero = document.querySelector('[data-ph-cta="hero_crm"]');
+    const blockers = Array.from(
+      document.querySelectorAll('[data-ph-cta="pricing_crm"], [data-ph-section="final"]'),
+    );
+    const io1 = hero
+      ? new IntersectionObserver(([e]) =>
+          setHeroGone(!e.isIntersecting && e.boundingClientRect.top < 0),
+        )
       : null;
-    if (el && io) io.observe(el);
-    const onScroll = () => setShow(window.scrollY > 700);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    if (hero && io1) io1.observe(hero);
+    const seen = new Set<Element>();
+    const io2 = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) seen.add(e.target);
+          else seen.delete(e.target);
+        }
+        setBlocked(seen.size > 0);
+      },
+      { rootMargin: "0px 0px -8% 0px" },
+    );
+    blockers.forEach((b) => io2.observe(b));
     return () => {
-      io?.disconnect();
-      window.removeEventListener("scroll", onScroll);
+      io1?.disconnect();
+      io2.disconnect();
     };
   }, []);
-  const visible = show && !finalIn && !signup.open;
+  const visible = heroGone && !blocked && !signup.open;
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
-          initial={{ y: 90, opacity: 0 }}
+          initial={{ y: 96, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 90, opacity: 0 }}
-          transition={{ duration: 0.35, ease: EASE }}
+          exit={{ y: 96, opacity: 0 }}
+          transition={{ duration: 0.4, ease: EASE }}
           className="fixed inset-x-3 bottom-3 z-40 sm:hidden"
           data-ph-area="mobile_cta"
         >
-          <div className="rounded-full bg-white/90 p-1.5 shadow-[0_10px_30px_-8px_rgba(28,21,23,.35)] ring-1 ring-yc-sand-200 backdrop-blur">
-            <CtaButton block cta="mobile_crm">
-              {c.mobileCta}
+          <div className="flex items-center gap-3 rounded-[26px] bg-white/[.82] py-1.5 pl-2 pr-1.5 shadow-[0_1px_2px_rgba(28,21,23,.06),0_18px_44px_-14px_rgba(28,21,23,.38)] ring-1 ring-black/[.06] backdrop-blur-xl backdrop-saturate-150">
+            <YunitFace size={40} mood="content" />
+            <span className="flex min-w-0 flex-1 flex-col leading-tight">
+              <span className="truncate text-[15px] font-semibold text-yc-ink">
+                {c.mobileBar.title}
+              </span>
+              <span className="truncate text-[12.5px] text-yc-sand-500">{c.mobileBar.sub}</span>
+            </span>
+            <CtaButton cta="mobile_crm" className="flex-none">
+              {c.mobileBar.cta}
             </CtaButton>
           </div>
         </motion.div>

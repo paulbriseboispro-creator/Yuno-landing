@@ -867,6 +867,7 @@ const fr = {
     accent: "fréquentes",
     sub: "Une autre question ? Écrivez-nous, on répond le jour même.",
     email: "contact@yunoapp.eu",
+    more: "Voir les {n} autres questions",
     items: [
       {
         q: "Yuno modifie-t-il quelque chose chez Shotgun ?",
@@ -951,7 +952,8 @@ const fr = {
     rights: "Yuno",
     suite: "Vous voulez aussi vendre vos billets ? Découvrez Yuno Billetterie",
   },
-  mobileCta: "Essayer 14 jours gratuitement",
+  // Phones: the bar that sticks to the bottom of the screen.
+  mobileBar: { title: "14 jours gratuits", sub: "Sans carte bancaire", cta: "Essayer" },
   signup: {
     roleTitle: "Qui branche sa billetterie ?",
     roles: [
@@ -1498,7 +1500,14 @@ const en: CrmContent = {
       },
     ],
     autosTitle: "Automations ready to use",
-    autos: ["Abandoned cart", "Table upsell", "Page visited", "New night", "Last tickets", "We miss you"],
+    autos: [
+      "Abandoned cart",
+      "Table upsell",
+      "Page visited",
+      "New night",
+      "Last tickets",
+      "We miss you",
+    ],
     rules: [
       "One automatic message per person every 48 h",
       "Never between 11 pm and 9 am",
@@ -1763,6 +1772,7 @@ const en: CrmContent = {
     accent: "questions",
     sub: "Another question? Write to us, we answer the same day.",
     email: "contact@yunoapp.eu",
+    more: "Show {n} more questions",
     items: [
       {
         q: "Does Yuno change anything on Shotgun?",
@@ -1847,7 +1857,8 @@ const en: CrmContent = {
     rights: "Yuno",
     suite: "Want to sell your tickets too? Discover Yuno Ticketing",
   },
-  mobileCta: "Try it free for 14 days",
+  // Phones: the bar that sticks to the bottom of the screen.
+  mobileBar: { title: "14 days free", sub: "No card needed", cta: "Try it" },
   signup: {
     roleTitle: "Who's plugging in their ticketing?",
     roles: [
@@ -2695,6 +2706,7 @@ const es: CrmContent = {
     accent: "frecuentes",
     sub: "¿Otra pregunta? Escríbenos, respondemos el mismo día.",
     email: "contact@yunoapp.eu",
+    more: "Ver {n} preguntas más",
     items: [
       {
         q: "¿Yuno cambia algo en Shotgun?",
@@ -2779,7 +2791,8 @@ const es: CrmContent = {
     rights: "Yuno",
     suite: "¿También quieres vender tus entradas? Descubre Yuno Ticketing",
   },
-  mobileCta: "Probar gratis 14 días",
+  // Phones: the bar that sticks to the bottom of the screen.
+  mobileBar: { title: "14 días gratis", sub: "Sin tarjeta", cta: "Probar" },
   signup: {
     roleTitle: "¿Quién conecta su ticketera?",
     roles: [
