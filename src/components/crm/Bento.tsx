@@ -1,14 +1,19 @@
-import { useRef, type ReactNode } from "react";
+import { createContext, useContext, useId, useRef, type ReactNode } from "react";
 import { motion, useInView } from "motion/react";
 import { ArrowDown, ArrowRight, Mail, Search, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCrm } from "./content";
-import { Accent, Avatar, CtaButton, Eyebrow, Reveal, StatusTag, useFmt } from "./ui";
+import { Accent, Avatar, CtaButton, Eyebrow, Reveal, StatusTag, SwipeRow, useFmt } from "./ui";
+import { useIsPhone } from "./media";
 
 // "Everything Instagram should have given you" → "Everything your ticketing
 // doesn't show you." The reference's bento: two cards and a tall night card on
 // top, a wide card and a short one under. Each card carries a real piece of the
 // Console that animates when it shows up.
+
+// Inside the phone carousel a card is revealed as soon as a sliver shows, so
+// the next one peeks in from the edge (that's what says "swipe").
+const InRow = createContext(false);
 
 function Card({
   children,
@@ -19,8 +24,13 @@ function Card({
   className?: string;
   delay?: number;
 }) {
+  const inRow = useContext(InRow);
   return (
-    <Reveal delay={delay} className={cn("group relative h-full", className)} amount={0.2}>
+    <Reveal
+      delay={inRow ? 0 : delay}
+      className={cn("group relative h-full", className)}
+      amount={inRow ? 0 : 0.2}
+    >
       <div className="relative isolate flex h-full flex-col overflow-hidden rounded-[28px] transition-transform duration-500 [transition-timing-function:cubic-bezier(.22,1,.36,1)] group-hover:-translate-y-1">
         {children}
       </div>
@@ -30,13 +40,13 @@ function Card({
 
 function CardText({ title, body, night }: { title: string; body: string; night?: boolean }) {
   return (
-    <div className="relative z-10 px-7 pt-7 text-center sm:px-9 sm:pt-9">
-      <h3 className={cn("yc-h3 text-[25px] sm:text-[27px]", night ? "text-white" : "text-yc-ink")}>
+    <div className="relative z-10 px-6 pt-6 text-center sm:px-9 sm:pt-9">
+      <h3 className={cn("yc-h3 text-[23px] sm:text-[27px]", night ? "text-white" : "text-yc-ink")}>
         {title}
       </h3>
       <p
         className={cn(
-          "mx-auto mt-3 max-w-[30rem] text-pretty text-[15px] leading-[1.6]",
+          "mx-auto mt-2 max-w-[30rem] text-pretty text-[14.5px] leading-[1.55] sm:mt-3 sm:text-[15px] sm:leading-[1.6]",
           night ? "text-yc-on-night-2" : "text-yc-sand-600",
         )}
       >
@@ -46,15 +56,15 @@ function CardText({ title, body, night }: { title: string; body: string; night?:
   );
 }
 
-function ClientsCard() {
+function ClientsCard({ className }: { className?: string }) {
   const b = useCrm().bento.clients;
   const table = useCrm().night.table;
   const rows = table.rows.slice(0, 4);
   return (
-    <Card className="min-h-[430px]">
+    <Card className={cn("min-h-[430px]", className)}>
       <div className="absolute inset-0 -z-10 bg-yc-sand-50 ring-1 ring-inset ring-black/[.04]" />
       <CardText title={b.title} body={b.body} />
-      <div className="mt-auto pl-7 pt-8 sm:pl-9">
+      <div className="mt-auto pl-6 pt-6 sm:pl-9 sm:pt-8">
         <div className="translate-x-3 translate-y-3 rounded-tl-[18px] border-l border-t border-yc-sand-200 bg-white p-4 shadow-[var(--shadow-md)] transition-transform duration-700 group-hover:translate-x-1 group-hover:translate-y-1">
           <div className="mb-3 flex h-9 items-center gap-2 rounded-full border border-yc-sand-200 px-3 text-[13px] text-yc-sand-400">
             <Search className="size-3.5" />
@@ -81,13 +91,13 @@ function ClientsCard() {
   );
 }
 
-function SegmentsCard() {
+function SegmentsCard({ className }: { className?: string }) {
   const b = useCrm().bento.segments;
   const { num } = useFmt();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.4 });
   return (
-    <Card className="min-h-[430px]" delay={0.08}>
+    <Card className={cn("min-h-[430px]", className)} delay={0.08}>
       <div className="yc-aura absolute inset-0 -z-10" />
       <div
         aria-hidden
@@ -96,7 +106,7 @@ function SegmentsCard() {
       <CardText title={b.title} body={b.body} />
       <div
         ref={ref}
-        className="mx-6 mb-6 mt-auto rounded-[20px] bg-white p-4 shadow-[var(--shadow-md)] ring-1 ring-yc-sand-200 sm:mx-8 sm:mb-8"
+        className="mx-5 mb-5 mt-auto rounded-[20px] bg-white p-4 shadow-[var(--shadow-md)] ring-1 ring-yc-sand-200 sm:mx-8 sm:mb-8"
       >
         {b.rows.map((r, i) => (
           <div
@@ -129,19 +139,19 @@ function SegmentsCard() {
   );
 }
 
-function RelanceCard() {
+function RelanceCard({ className }: { className?: string }) {
   const b = useCrm().bento.relance;
   const email = useCrm().channels.rates[0].name;
   const rows = useCrm().night.table.rows;
   const list = [rows[4], rows[3], rows[2], rows[5], rows[1], rows[0], rows[6], rows[7]];
   return (
-    <Card className="min-h-[560px] lg:min-h-0" delay={0.12}>
+    <Card className={cn("min-h-[560px] lg:min-h-0", className)} delay={0.12}>
       <div className="absolute inset-0 -z-10 bg-yc-night" />
       <div
         aria-hidden
         className="absolute -bottom-40 -right-40 -z-10 size-[420px] rounded-full bg-[radial-gradient(closest-side,rgba(227,20,27,.45),transparent)]"
       />
-      <div className="relative flex flex-1 items-center justify-center px-6 pt-10">
+      <div className="relative flex flex-1 items-center justify-center px-6 pt-8 sm:pt-10">
         <motion.div
           initial={{ rotate: 6, y: 30, opacity: 0 }}
           whileInView={{ rotate: 8, y: 0, opacity: 1 }}
@@ -158,7 +168,10 @@ function RelanceCard() {
           {list.map((r, i) => (
             <div
               key={r.name}
-              className="flex items-center gap-2 border-b border-yc-sand-100 py-1.5 last:border-0"
+              className={cn(
+                "flex items-center gap-2 border-b border-yc-sand-100 py-1.5 last:border-0",
+                i >= 6 && "max-sm:hidden",
+              )}
             >
               <Avatar ini={r.ini} tone={i < 3 ? "cold" : (r.tone as "hot")} size={24} />
               <span className="flex-1 truncate text-[12px] font-semibold text-yc-ink">
@@ -177,9 +190,9 @@ function RelanceCard() {
           ))}
         </motion.div>
       </div>
-      <div className="relative z-10 px-7 pb-9 pt-10 text-center sm:px-9">
-        <h3 className="yc-h3 text-[25px] text-white sm:text-[27px]">{b.title}</h3>
-        <p className="mx-auto mt-3 max-w-[22rem] text-pretty text-[15px] font-medium leading-[1.6] text-yc-on-night-2">
+      <div className="relative z-10 px-6 pb-7 pt-8 text-center sm:px-9 sm:pb-9 sm:pt-10">
+        <h3 className="yc-h3 text-[23px] text-white sm:text-[27px]">{b.title}</h3>
+        <p className="mx-auto mt-2 max-w-[22rem] text-pretty text-[14.5px] font-medium leading-[1.55] text-yc-on-night-2 sm:mt-3 sm:text-[15px] sm:leading-[1.6]">
           {b.body}
         </p>
       </div>
@@ -187,14 +200,16 @@ function RelanceCard() {
   );
 }
 
-function BilansCard() {
+function BilansCard({ className }: { className?: string }) {
   const b = useCrm().bento.bilans;
+  // Unique gradient ids: the card exists twice in the page (phone carousel + grid).
+  const gid = useId().replace(/[^a-zA-Z0-9]/g, "");
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.4 });
   const cur = "M0 150 C 60 140, 110 120, 170 104 S 260 70, 320 60 S 420 30, 520 18";
   const prev = "M0 152 C 70 146, 120 132, 180 120 S 270 96, 330 88 S 430 62, 520 54";
   return (
-    <Card className="min-h-[420px] sm:col-span-2" delay={0.05}>
+    <Card className={cn("min-h-[420px] sm:col-span-2", className)} delay={0.05}>
       <div
         className="absolute inset-0 -z-10"
         style={{
@@ -205,25 +220,27 @@ function BilansCard() {
       <CardText title={b.title} body={b.body} />
       <div
         ref={ref}
-        className="mx-6 mb-0 mt-8 rounded-t-[22px] bg-white p-6 shadow-[var(--shadow-md)] ring-1 ring-yc-sand-200 sm:mx-10"
+        className="mx-5 mb-0 mt-auto rounded-t-[22px] bg-white p-4 shadow-[var(--shadow-md)] ring-1 ring-yc-sand-200 sm:mx-10 sm:mt-8 sm:p-6"
       >
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div className="flex gap-6">
+        <div className="flex flex-wrap items-start justify-between gap-3 sm:gap-4">
+          <div className="flex gap-4 sm:gap-6">
             {b.stats.map((s, i) => (
               <div key={s.l}>
                 <div
                   className={cn(
-                    "font-yc-display text-[30px] font-semibold leading-none tracking-[-0.03em]",
+                    "whitespace-nowrap font-yc-display text-[24px] font-semibold leading-none tracking-[-0.03em] sm:text-[30px]",
                     i === 1 ? "text-yc-green-700" : "text-yc-ink",
                   )}
                 >
                   {s.v}
                 </div>
-                <div className="mt-1 text-[12.5px] text-yc-sand-500">{s.l}</div>
+                <div className="mt-1 text-[11.5px] leading-[1.3] text-yc-sand-500 sm:text-[12.5px] sm:leading-normal">
+                  {s.l}
+                </div>
               </div>
             ))}
           </div>
-          <div className="flex gap-4 text-[12.5px] text-yc-sand-600">
+          <div className="flex gap-4 text-[12px] text-yc-sand-600 sm:text-[12.5px]">
             <span className="inline-flex items-center gap-1.5">
               <i
                 className="inline-block h-[3px] w-4 rounded-full"
@@ -240,22 +257,22 @@ function BilansCard() {
         <div className="relative mt-4">
           <svg
             viewBox="0 0 520 160"
-            className="h-[150px] w-full overflow-visible"
+            className="h-[104px] w-full overflow-visible sm:h-[150px]"
             preserveAspectRatio="none"
           >
             <defs>
-              <linearGradient id="yc-bil" x1="0" x2="1">
+              <linearGradient id={`${gid}l`} x1="0" x2="1">
                 <stop offset="0" stopColor="#E3141B" />
                 <stop offset="1" stopColor="#FF6B35" />
               </linearGradient>
-              <linearGradient id="yc-bil-fill" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id={`${gid}f`} x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0" stopColor="#FF6B35" stopOpacity=".18" />
                 <stop offset="1" stopColor="#FF6B35" stopOpacity="0" />
               </linearGradient>
             </defs>
             <path
               d={`${cur} L520 160 L0 160 Z`}
-              fill="url(#yc-bil-fill)"
+              fill={`url(#${gid}f)`}
               style={{ opacity: inView ? 1 : 0, transition: "opacity .8s .9s" }}
             />
             <path
@@ -269,7 +286,7 @@ function BilansCard() {
             <path
               d={cur}
               fill="none"
-              stroke="url(#yc-bil)"
+              stroke={`url(#${gid}l)`}
               strokeWidth="3.5"
               strokeLinecap="round"
               vectorEffect="non-scaling-stroke"
@@ -300,10 +317,10 @@ function BilansCard() {
   );
 }
 
-function AutomationsCard() {
+function AutomationsCard({ className }: { className?: string }) {
   const b = useCrm().bento.envois;
   return (
-    <Card className="min-h-[300px]" delay={0.1}>
+    <Card className={cn("min-h-[300px]", className)} delay={0.1}>
       <div className="absolute inset-0 -z-10 bg-yc-sand-50 ring-1 ring-inset ring-black/[.04]" />
       <div className="px-7 pt-7 sm:px-8">
         <div className="mx-auto flex max-w-[300px] flex-col items-stretch">
@@ -351,15 +368,18 @@ function AutomationsCard() {
   );
 }
 
+const PHONE_CARD = "h-[476px] min-h-0 w-[86%] max-w-[340px]";
+
 export function CrmBento() {
   const b = useCrm().bento;
+  const phone = useIsPhone();
   return (
     <section
       id="produit"
       data-ph-section="features"
-      className="relative px-4 pt-28 sm:px-6 sm:pt-36"
+      className="relative px-4 pt-20 sm:px-6 sm:pt-36"
     >
-      <div className="mx-auto flex max-w-[1200px] flex-col justify-between gap-8 lg:flex-row lg:items-end">
+      <div className="mx-auto flex max-w-[1200px] flex-col justify-between gap-5 sm:gap-8 lg:flex-row lg:items-end">
         <div className="max-w-[620px]">
           <Reveal>
             <Eyebrow>{b.eyebrow}</Eyebrow>
@@ -374,14 +394,29 @@ export function CrmBento() {
           delay={0.1}
           className="flex max-w-[400px] flex-col items-start gap-6 lg:items-end lg:text-right"
         >
-          <p className="text-[17px] leading-[1.6] text-yc-sand-600">{b.sub}</p>
-          <CtaButton ring cta="features_crm">
+          <p className="text-[16px] leading-[1.6] text-yc-sand-600 sm:text-[17px]">{b.sub}</p>
+          <CtaButton ring cta="features_crm" className="max-sm:hidden">
             {b.cta}
           </CtaButton>
         </Reveal>
       </div>
 
-      <div className="mx-auto mt-14 grid max-w-[1200px] gap-5 lg:grid-cols-3">
+      {/* Phones: the five cards in a row you swipe */}
+      {phone !== false && (
+        <div className="mt-8 sm:hidden">
+          <InRow.Provider value>
+            <SwipeRow count={5} label={b.title}>
+              <ClientsCard className={PHONE_CARD} />
+              <SegmentsCard className={PHONE_CARD} />
+              <RelanceCard className={PHONE_CARD} />
+              <BilansCard className={PHONE_CARD} />
+              <AutomationsCard className={PHONE_CARD} />
+            </SwipeRow>
+          </InRow.Provider>
+        </div>
+      )}
+
+      <div className="mx-auto mt-14 hidden max-w-[1200px] gap-5 sm:grid lg:grid-cols-3">
         <div className="grid gap-5 sm:grid-cols-2 lg:col-span-2">
           <ClientsCard />
           <SegmentsCard />

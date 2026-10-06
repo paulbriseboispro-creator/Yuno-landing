@@ -1,10 +1,11 @@
 import { useEffect, useId, useRef, useState } from "react";
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
+import { AnimatePresence, motion, useInView, useMotionValueEvent, useScroll } from "motion/react";
 import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCrm } from "./content";
 import { ConsoleHome, Scaled } from "./Dashboard";
 import { TicketingPhone } from "./Phone";
+import { useMedia } from "./media";
 import { Accent, CtaButton, EASE, Reveal } from "./ui";
 
 // "Instagram Insights says 10,000 views. Insyder says who to contact." →
@@ -112,23 +113,79 @@ function Dial({ on }: { on: boolean }) {
   );
 }
 
+// Phones: the two answers stacked, the dial between them; it turns to the Yunit
+// once the night card is on screen (no 860 px card flipping under the thumb).
+function CompareStack() {
+  const c = useCrm().compare;
+  const ref = useRef<HTMLDivElement>(null);
+  const on = useInView(ref, { amount: 0.55 });
+  return (
+    <div className="mx-auto mt-10 max-w-[560px] md:hidden">
+      <Reveal className="rounded-[26px] bg-yc-sand-50 px-6 pb-14 pt-6 ring-1 ring-inset ring-yc-sand-200">
+        <h3 className="yc-h3 text-[21px] text-yc-ink">{c.left.title}</h3>
+        <ul className="mt-4 flex flex-col gap-3">
+          {c.left.items.map((it) => (
+            <li
+              key={it}
+              className="flex items-start gap-3 text-[15px] font-medium leading-[1.45] text-yc-sand-700"
+            >
+              <X className="mt-0.5 size-[18px] flex-none text-yc-red-500" strokeWidth={2.4} />
+              {it}
+            </li>
+          ))}
+        </ul>
+      </Reveal>
+      <div className="relative z-20 -my-12 flex justify-center">
+        <Dial on={on} />
+      </div>
+      <div
+        ref={ref}
+        className="yc-aura--night relative isolate overflow-hidden rounded-[26px] px-6 pb-7 pt-16 text-yc-on-night"
+      >
+        <h3 className="yc-h3 text-[21px]">{c.right.title}</h3>
+        <ul className="mt-4 flex flex-col gap-3">
+          {c.right.items.map((it, i) => (
+            <motion.li
+              key={it}
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ delay: 0.1 + i * 0.07, duration: 0.5, ease: EASE }}
+              className="flex items-start gap-3 text-[15px] font-medium leading-[1.45]"
+            >
+              <span className="mt-0.5 grid size-5 flex-none place-items-center rounded-full bg-yc-mint/20 text-yc-mint">
+                <Check className="size-3.5" strokeWidth={3} />
+              </span>
+              {it}
+            </motion.li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 export function CrmCompare() {
   const c = useCrm().compare;
   const [on, setOn] = useState(false);
+  // Under md the stacked version shows: the hidden one never mounts its Console.
+  const narrow = useMedia("(max-width: 767px)");
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 70%", "end 30%"] });
 
   useMotionValueEvent(scrollYProgress, "change", (v) => setOn(v > 0.4));
 
   return (
-    <section data-ph-section="compare" className="relative px-4 pt-28 sm:px-6 sm:pt-36">
+    <section data-ph-section="compare" className="relative px-4 pt-20 sm:px-6 sm:pt-36">
       <Reveal className="mx-auto max-w-[900px] text-center">
         <h2 className="yc-h2 text-yc-ink">
           <Accent text={c.title} accent={c.accent} />
         </h2>
       </Reveal>
 
-      <div ref={ref} className="relative mx-auto mt-16 max-w-[980px]">
+      <CompareStack />
+
+      <div ref={ref} className="relative mx-auto mt-16 hidden max-w-[980px] md:block">
         {/* folder tabs around the dial */}
         <div className="relative flex items-end justify-center">
           <div
@@ -218,9 +275,11 @@ export function CrmCompare() {
                     ))}
                   </ul>
                   <div className="-mr-12 self-start overflow-hidden rounded-tl-[18px] shadow-[var(--shadow-halo)] ring-1 ring-white/10 sm:-mr-12">
-                    <Scaled cw={1440} height={1300}>
-                      <ConsoleHome start />
-                    </Scaled>
+                    {narrow !== true && (
+                      <Scaled cw={1440} height={1300}>
+                        <ConsoleHome start />
+                      </Scaled>
+                    )}
                   </div>
                 </div>
               </motion.div>
@@ -228,7 +287,7 @@ export function CrmCompare() {
           </AnimatePresence>
         </div>
       </div>
-      <Reveal className="mt-12 flex justify-center">
+      <Reveal className="mt-12 hidden justify-center sm:flex">
         <CtaButton size="lg" ring cta="compare_crm">
           {c.cta}
         </CtaButton>
