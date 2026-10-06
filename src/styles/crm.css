@@ -76,6 +76,32 @@ html:has(.ycrm) {
     background: var(--color-yc-red-100);
     color: var(--color-yc-ink);
   }
+  /* Touch: no grey flash on tap, the components have their own pressed states. */
+  .ycrm a,
+  .ycrm button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Horizontal swipe rows (mobile carousels, tab rows): no scrollbar, snap,
+     edges fade out so the next card shows it can be swiped. */
+  .yc-swipe {
+    display: flex;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .yc-swipe::-webkit-scrollbar {
+    display: none;
+  }
+  .yc-swipe > * {
+    scroll-snap-align: center;
+    flex: none;
+  }
+  .yc-swipe--start > * {
+    scroll-snap-align: start;
+  }
   .ycrm section[id] {
     scroll-margin-top: 96px;
   }
@@ -285,6 +311,11 @@ html:has(.ycrm) {
       --h: 56px;
       padding-left: 22px;
       font-size: 16px;
+    }
+    /* full-width CTA in a card: keep "Essayer 14 jours gratuitement" on one line */
+    .yc-btn--lg.yc-btn--block {
+      font-size: 15px;
+      gap: 8px;
     }
   }
   .yc-btn__disc {

@@ -22,6 +22,7 @@ import {
 import { cn } from "@/lib/utils";
 import appIcon from "@/assets/crm/yuno-app-icon.webp";
 import { useCrm } from "./content";
+import { series } from "./salesSeries";
 import { Count, Rich, YunitFace, useFmt } from "./ui";
 
 // The Yuno CRM Console home ("Dashboard Accueil" of the design project), rebuilt
@@ -31,38 +32,6 @@ import { Count, Rich, YunitFace, useFmt } from "./ui";
 // its frame, like the design's iframes (data-frame).
 
 const W = 1440;
-
-// Deterministic pseudo-random series (same chart on server and client).
-function rng(seed: number) {
-  let s = seed;
-  return () => {
-    s = (s * 16807) % 2147483647;
-    return (s - 1) / 2147483646;
-  };
-}
-
-type Period = { k: string; label: string; vs: string; tot: number; d: number; n: number };
-
-function series(p: Period) {
-  const r = rng(p.n * 31 + 7);
-  const sendAgo = [3, 5, 7, 14, 21, 28, 35, 41].filter((a) => a < p.n);
-  const raw = Array.from({ length: p.n }, (_, i) => {
-    const ago = p.n - 1 - i;
-    const dow = (6 - (ago % 7) + 7) % 7; // 6 = today is Saturday
-    const weekend = dow === 5 || dow === 6 ? 1.15 : dow === 4 ? 0.55 : 0;
-    const boost = sendAgo.some((a) => ago <= a && ago >= a - 2) ? 0.8 : 0;
-    return 0.55 + weekend + boost + r() * 0.45;
-  });
-  const prevRaw = raw.map(() => 0.7 + r() * 0.9);
-  const sum = raw.reduce((a, b) => a + b, 0);
-  const psum = prevRaw.reduce((a, b) => a + b, 0);
-  const prevTot = p.tot / (1 + p.d);
-  return {
-    vals: raw.map((v) => (v / sum) * p.tot),
-    prev: prevRaw.map((v) => (v / psum) * prevTot),
-    sends: sendAgo.map((a) => p.n - 1 - a),
-  };
-}
 
 function useScaled(cw: number) {
   const ref = useRef<HTMLDivElement>(null);
@@ -865,7 +834,7 @@ function HomeMain({ start }: { start: boolean }) {
   );
 }
 
-const CONSOLE_BG =
+export const CONSOLE_BG =
   "radial-gradient(55% 40% at 90% -5%,rgba(255,107,53,.08),transparent 70%),radial-gradient(45% 40% at 0% 0%,rgba(227,20,27,.05),transparent 70%),var(--color-yc-paper)";
 
 // The whole home, at its natural height (static shots, the steps monitor).

@@ -21,6 +21,93 @@ import appIcon from "@/assets/crm/yuno-app-icon.webp";
 
 export const EASE = [0.22, 1, 0.36, 1] as const;
 
+// Swipeable row of cards on phones, with a progress rail under it (the
+// position is read from the scroll, tapping a dot scrolls to that card).
+export function SwipeRow({
+  children,
+  count,
+  className,
+  rail = true,
+  label,
+}: {
+  children: ReactNode;
+  count: number;
+  className?: string;
+  rail?: boolean;
+  label?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const kids = Array.from(el.children) as HTMLElement[];
+        const mid = el.scrollLeft + el.clientWidth / 2;
+        let best = 0;
+        let bestD = Infinity;
+        kids.forEach((k, n) => {
+          const d = Math.abs(k.offsetLeft + k.offsetWidth / 2 - mid);
+          if (d < bestD) {
+            bestD = d;
+            best = n;
+          }
+        });
+        setI(best);
+      });
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      el.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+  const go = (n: number) => {
+    const el = ref.current;
+    const kid = el?.children[n] as HTMLElement | undefined;
+    if (!el || !kid) return;
+    el.scrollTo({
+      left: kid.offsetLeft - (el.clientWidth - kid.offsetWidth) / 2,
+      behavior: "smooth",
+    });
+  };
+  return (
+    <div>
+      <div
+        ref={ref}
+        role="region"
+        aria-label={label}
+        className={cn("yc-swipe -mx-4 gap-3 px-4 pb-2", className)}
+      >
+        {children}
+      </div>
+      {rail && count > 1 && (
+        <div className="mt-4 flex justify-center gap-1.5">
+          {Array.from({ length: count }, (_, n) => (
+            <button
+              key={n}
+              type="button"
+              aria-label={`${n + 1} / ${count}`}
+              onClick={() => go(n)}
+              className="grid h-6 place-items-center px-0.5"
+            >
+              <span
+                className={cn(
+                  "block h-1.5 rounded-full transition-all duration-300",
+                  i === n ? "w-6 bg-yc-ink" : "w-1.5 bg-yc-sand-300",
+                )}
+              />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 const LOCALES = { en: "en-GB", fr: "fr-FR", es: "es-ES" } as const;
 
 const MONTHS = {
