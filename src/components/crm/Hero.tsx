@@ -1,15 +1,11 @@
 import { Fragment, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "motion/react";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { Clock3, CreditCard, Lock, ShieldCheck } from "lucide-react";
 import shotgunLogo from "@/assets/crm/shotgun-logo.webp";
 import { useCrm } from "./content";
 import { ConsoleHome } from "./Dashboard";
+import { PhoneConsole } from "./PhoneConsole";
+import { useIsPhone } from "./media";
 import { Avatar, CtaButton, EASE, YunitFace } from "./ui";
 
 // Opening sequence (≈1.4 s, never blocks the page):
@@ -146,6 +142,9 @@ export function CrmHero() {
   const reduce = useReducedMotion();
   const frameRef = useRef<HTMLDivElement>(null);
   const [started, setStarted] = useState(false);
+  // Phones get the Console laid out at phone width (PhoneConsole); both are in
+  // the server HTML, the one not shown never mounts its live content.
+  const phone = useIsPhone();
 
   // The frame flattens as it reaches the middle of the screen.
   const { scrollYProgress } = useScroll({ target: frameRef, offset: ["start end", "start 0.25"] });
@@ -161,7 +160,7 @@ export function CrmHero() {
   return (
     <section
       data-ph-section="hero"
-      className="relative isolate overflow-x-clip pb-10 pt-12 sm:pt-16 md:pt-20"
+      className="relative isolate overflow-x-clip pb-6 pt-8 sm:pb-10 sm:pt-16 md:pt-20"
     >
       {/* aura blooming behind the fold, like the reference's pink glow */}
       <motion.div
@@ -187,9 +186,9 @@ export function CrmHero() {
           initial={reduce ? false : { opacity: 0, y: 10, filter: "blur(6px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-yc-sand-200 bg-white/90 py-1 pl-1 pr-3.5 text-[13.5px] font-semibold text-yc-sand-700 shadow-[var(--shadow-xs)] backdrop-blur"
+          className="mb-5 inline-flex max-w-full items-center gap-2 whitespace-nowrap rounded-full border border-yc-sand-200 bg-white/90 py-1 pl-1 pr-3 text-[12.5px] font-semibold text-yc-sand-700 shadow-[var(--shadow-xs)] backdrop-blur sm:mb-6 sm:pr-3.5 sm:text-[13.5px]"
         >
-          <span className="inline-flex h-[26px] items-center rounded-full bg-yc-ink px-2.5 text-[12px] font-semibold text-white">
+          <span className="inline-flex h-[26px] flex-none items-center rounded-full bg-yc-ink px-2.5 text-[12px] font-semibold text-white">
             {h.eyebrowTag}
           </span>
           <img src={shotgunLogo} alt="" className="size-[18px] rounded-[5px]" />
@@ -222,16 +221,23 @@ export function CrmHero() {
           initial={reduce ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: EASE, delay: 1.05 }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-x-0 gap-y-2 text-[14.5px] font-medium text-yc-sand-700"
+          className="mx-auto mt-7 grid max-w-[24rem] grid-cols-3 text-[12.5px] font-medium leading-[1.3] text-yc-sand-700 sm:mt-8 sm:flex sm:max-w-none sm:flex-wrap sm:items-center sm:justify-center sm:gap-y-2 sm:text-[14.5px] sm:leading-normal"
         >
           {h.trust.map((t, i) => {
             const Icon = [ShieldCheck, Clock3, CreditCard][i] ?? ShieldCheck;
             return (
-              <li key={t} className="flex items-center">
+              <li
+                key={t}
+                className={
+                  i > 0
+                    ? "flex items-start justify-center border-l border-yc-sand-200 sm:items-center sm:border-0"
+                    : "flex items-start justify-center sm:items-center"
+                }
+              >
                 {i > 0 && (
                   <span aria-hidden className="mx-4 hidden h-5 w-px bg-yc-sand-200 sm:block" />
                 )}
-                <span className="inline-flex items-center gap-2 px-2 sm:px-0">
+                <span className="flex flex-col items-center gap-1.5 px-2 text-center sm:inline-flex sm:flex-row sm:gap-2 sm:px-0 sm:text-left">
                   <Icon
                     className={
                       i === 0 ? "size-[17px] text-yc-green-500" : "size-[17px] text-yc-sand-500"
@@ -246,9 +252,19 @@ export function CrmHero() {
         </motion.ul>
       </div>
 
+      {/* Phone: the Console at phone width */}
+      <motion.div
+        initial={reduce ? false : { opacity: 0, y: 80 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.1, ease: EASE, delay: 1.0 }}
+        className="relative mt-10 px-4 sm:hidden"
+      >
+        {phone !== false && <PhoneConsole start={started} />}
+      </motion.div>
+
       {/* Live product frame */}
       <div
-        className="relative mx-auto mt-14 max-w-[1220px] px-3 sm:mt-16 sm:px-6"
+        className="relative mx-auto mt-14 hidden max-w-[1220px] px-3 sm:mt-16 sm:block sm:px-6"
         style={{ perspective: 1600 }}
       >
         <motion.div
@@ -294,7 +310,7 @@ export function CrmHero() {
                 {h.live}
               </span>
             </div>
-            <LiveConsole start={started} />
+            {phone !== true && <LiveConsole start={started} />}
           </div>
           <Toasts run={started} />
         </motion.div>
