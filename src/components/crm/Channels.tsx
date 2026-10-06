@@ -125,7 +125,7 @@ function Composer() {
             <span className="font-semibold text-yc-ink">{m.subject}</span>
           </div>
         )}
-        <div className="min-h-[124px] px-5 py-4">
+        <div className="min-h-[148px] px-5 py-4 sm:min-h-[124px]">
           {isSms ? (
             <div className="max-w-[86%] rounded-[18px] rounded-bl-[6px] bg-yc-sand-100 px-4 py-3 text-[15px] leading-[1.5] text-yc-ink">
               {full.slice(0, typed)}
@@ -138,7 +138,7 @@ function Composer() {
             </p>
           )}
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-3 bg-yc-sand-50 px-5 py-3.5">
+        <div className="flex flex-col gap-3 bg-yc-sand-50 px-5 py-3.5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
             <YunitFace size={30} blink={false} mood={sent ? "ravi" : "content"} />
             <span className="flex flex-col">
@@ -158,7 +158,7 @@ function Composer() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
-                className="inline-flex h-10 items-center gap-2 rounded-full bg-yc-green-50 px-4 text-[14px] font-semibold text-yc-green-700"
+                className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-yc-green-50 px-4 text-[14px] font-semibold text-yc-green-700"
               >
                 <Check className="size-4" strokeWidth={3} />
                 {c.schedule}
@@ -169,7 +169,7 @@ function Composer() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="inline-flex h-10 items-center gap-2 rounded-full pl-4 pr-1.5 text-[14px] font-semibold text-white"
+                className="inline-flex h-10 items-center justify-between gap-2 rounded-full pl-4 pr-1.5 text-[14px] font-semibold text-white"
                 style={{ background: "var(--gradient-brand)", boxShadow: "var(--shadow-cta)" }}
               >
                 {c.send}
@@ -191,7 +191,7 @@ export function CrmChannels() {
   return (
     <section
       data-ph-section="channels"
-      className="relative overflow-hidden px-4 pb-10 pt-28 sm:px-6 sm:pt-36"
+      className="relative overflow-hidden px-4 pb-6 pt-20 sm:px-6 sm:pb-10 sm:pt-36"
     >
       <div className="mx-auto max-w-[860px] text-center">
         <Reveal>
@@ -205,14 +205,14 @@ export function CrmChannels() {
         <Reveal delay={0.1}>
           <p className="yc-lead mx-auto mt-6 max-w-[40rem]">{ch.sub}</p>
         </Reveal>
-        <Reveal delay={0.15} className="mt-9 flex justify-center">
+        <Reveal delay={0.15} className="mt-9 hidden justify-center sm:flex">
           <CtaButton size="lg" ring cta="channels_crm">
             {ch.cta}
           </CtaButton>
         </Reveal>
       </div>
 
-      <div className="relative mx-auto mt-16 max-w-[1100px] px-0 pb-6 pt-24 sm:px-10 md:pt-28">
+      <div className="relative mx-auto mt-10 max-w-[1100px] px-0 pb-6 sm:mt-16 sm:px-10 md:pt-28">
         <div aria-hidden className="pointer-events-none absolute inset-0 hidden md:block">
           {ORBIT.map(({ Icon, cls, bg, fg, d }, i) => (
             <motion.span
@@ -242,13 +242,13 @@ export function CrmChannels() {
         <Composer />
         <Reveal
           delay={0.1}
-          className="mx-auto mt-8 flex max-w-[780px] flex-wrap justify-center gap-2"
+          className="mx-auto mt-6 grid max-w-[780px] grid-cols-2 gap-2 sm:mt-8 sm:flex sm:flex-wrap sm:justify-center"
         >
           {ch.rates.map((r) => (
             <span
               key={r.name}
               className={cn(
-                "inline-flex h-10 items-center gap-2 rounded-[12px] border px-3.5 text-[14px] font-semibold",
+                "inline-flex h-10 min-w-0 items-center justify-between gap-1.5 whitespace-nowrap rounded-[12px] border px-3 text-[12.5px] font-semibold sm:justify-start sm:gap-2 sm:px-3.5 sm:text-[14px]",
                 r.soon
                   ? "border-dashed border-yc-sand-300 bg-white/60 text-yc-sand-500"
                   : "border-yc-sand-200 bg-white text-yc-ink shadow-[var(--shadow-xs)]",
@@ -257,7 +257,7 @@ export function CrmChannels() {
               {r.name}
               <span
                 className={cn(
-                  "rounded-full px-2 py-0.5 text-[12px]",
+                  "flex-none rounded-full px-1.5 py-0.5 text-[11px] sm:px-2 sm:text-[12px]",
                   r.soon ? "bg-yc-sand-100 text-yc-sand-600" : "bg-yc-red-50 text-yc-red-700",
                 )}
               >
