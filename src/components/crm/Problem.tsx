@@ -102,13 +102,13 @@ export function CrmProblem() {
 
       <div
         ref={stage}
-        className="relative mx-auto mt-14 flex max-w-[860px] justify-center sm:mt-16"
+        className="relative mx-auto mt-10 flex max-w-[860px] justify-center sm:mt-16"
       >
         <motion.div
           style={{ y: phoneY, rotate: phoneR }}
           className="relative z-10 -mb-40 sm:-mb-48"
         >
-          <TicketingPhone />
+          <TicketingPhone className="w-[228px] sm:w-[280px]" />
         </motion.div>
         {p.cards.map((c, i) => (
           <motion.div
@@ -132,15 +132,23 @@ export function CrmProblem() {
       </div>
 
       {/* Mobile: the two cards under the phone */}
-      <div className="relative z-20 mx-auto mt-48 grid max-w-md gap-3 md:hidden">
-        {p.cards.map((c) => (
-          <div
+      <div className="relative z-20 mx-auto mt-44 grid max-w-md gap-2.5 sm:mt-48 md:hidden">
+        {p.cards.map((c, i) => (
+          <Reveal
             key={c.title}
-            className="rounded-[18px] border border-yc-sand-200 bg-white p-5 text-center shadow-[var(--shadow-sm)]"
+            delay={i * 0.06}
+            className="flex gap-3.5 rounded-[20px] border border-yc-sand-200 bg-white p-5 text-left shadow-[var(--shadow-sm)]"
           >
-            <span className="yc-h3 block text-[21px]">{c.title}</span>
-            <span className="mt-2 block text-[14px] leading-[1.55] text-yc-sand-600">{c.body}</span>
-          </div>
+            <span className="grid size-7 flex-none place-items-center rounded-full bg-yc-red-50 font-yc-mono text-[11.5px] font-medium text-yc-red-700">
+              {i + 1}
+            </span>
+            <span className="flex flex-col">
+              <span className="yc-h3 block text-[19px]">{c.title}</span>
+              <span className="mt-1.5 block text-[14px] leading-[1.55] text-yc-sand-600">
+                {c.body}
+              </span>
+            </span>
+          </Reveal>
         ))}
       </div>
     </section>
