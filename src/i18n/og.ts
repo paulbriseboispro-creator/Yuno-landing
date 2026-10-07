@@ -38,8 +38,12 @@ const CRM_OG_IMAGE_ALT: Record<LandingLang, string> = {
 
 // The full set: each tag replaces the root route's (the landing's preview),
 // which otherwise leaks its secure_url and alt into the CRM pages.
+export function crmOgImageUrl(lang: LandingLang): string {
+  return `${CRM_ORIGIN}/og/crm-${lang}.png?v=${CRM_OG_VERSION}`;
+}
+
 export function crmOgImageMeta(lang: LandingLang) {
-  return imageTags(`${CRM_ORIGIN}/og/crm-${lang}.png?v=${CRM_OG_VERSION}`, CRM_OG_IMAGE_ALT[lang]);
+  return imageTags(crmOgImageUrl(lang), CRM_OG_IMAGE_ALT[lang]);
 }
 
 function imageTags(url: string, alt: string) {

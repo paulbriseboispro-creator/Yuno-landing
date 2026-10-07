@@ -2,7 +2,7 @@ import { crmContent } from "@/content/crm";
 import { CRM_PATHS, LANDING_LANGS, type LandingLang } from "@/i18n/landing-lang";
 import { ORG_ID, organizationLd } from "@/i18n/landing-seo";
 import { crmUrl } from "@/i18n/hosts";
-import { crmOgImageMeta } from "@/i18n/og";
+import { crmOgImageMeta, crmOgImageUrl } from "@/i18n/og";
 
 // The Yuno CRM page (EN / FR / ES): a product of its own for organizers and
 // clubs who keep their ticketing. Its pricing is paid (unlike the ticketing
@@ -14,7 +14,7 @@ import { crmOgImageMeta } from "@/i18n/og";
 export { CRM_PATHS, crmUrl };
 
 // Last meaningful copy update of the CRM page (sitemap, dateModified).
-export const CRM_UPDATED = "2026-10-06";
+export const CRM_UPDATED = "2026-10-07";
 
 const OG_LOCALE: Record<LandingLang, string> = { en: "en_GB", fr: "fr_FR", es: "es_ES" };
 
@@ -32,14 +32,23 @@ export function crmHead(lang: LandingLang) {
       inLanguage: lang,
       dateModified: CRM_UPDATED,
       publisher: { "@id": ORG_ID },
+      about: { "@id": `${self}#app` },
+      // The ticketing it plugs into: tells engines what "Shotgun" means here.
+      mentions: { "@type": "Organization", name: "Shotgun", url: "https://shotgun.live" },
     },
     {
       "@type": "SoftwareApplication",
       "@id": `${self}#app`,
       name: "Yuno CRM",
       applicationCategory: "BusinessApplication",
+      applicationSubCategory: "CRM",
       operatingSystem: "Web",
+      url: self,
+      inLanguage: lang,
       description: c.meta.description,
+      featureList: c.meta.features,
+      audience: { "@type": "BusinessAudience", audienceType: c.meta.audience },
+      image: crmOgImageUrl(lang),
       publisher: { "@id": ORG_ID },
       offers: [
         {
@@ -91,12 +100,12 @@ export function crmHead(lang: LandingLang) {
       { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Yuno" },
-      { property: "og:title", content: c.meta.title },
+      { property: "og:title", content: c.meta.ogTitle },
       { property: "og:description", content: c.meta.description },
       { property: "og:url", content: self },
       { property: "og:locale", content: OG_LOCALE[lang] },
       ...crmOgImageMeta(lang),
-      { name: "twitter:title", content: c.meta.title },
+      { name: "twitter:title", content: c.meta.ogTitle },
       { name: "twitter:description", content: c.meta.description },
       { name: "theme-color", content: "#ffffff" },
     ],

@@ -31,9 +31,25 @@ type Pill = {
 
 const fr = {
   meta: {
-    title: "Yuno CRM — Sachez qui vient à vos soirées, et faites-les revenir",
+    // Search result: the category in the words organizers use ("CRM boîte de
+    // nuit", "organisateur de soirées"). Shares keep the headline (ogTitle).
+    title: "Yuno CRM : le CRM des boîtes de nuit et organisateurs de soirées",
+    ogTitle: "Yuno CRM — Sachez qui vient à vos soirées, et faites-les revenir",
+    // Structured data only (SoftwareApplication): who it is for, what it does.
+    audience: "Boîtes de nuit, clubs, organisateurs de soirées et collectifs",
+    features: [
+      "Connexion à Shotgun par l’API, en lecture seule",
+      "Import de fichiers clients (CSV, Excel) depuis toute autre billetterie",
+      "Fichier clients unique, doublons fusionnés",
+      "Segments : habitués, nouveaux, endormis, gros fidèles",
+      "Bilans de soirée comparés à la soirée précédente",
+      "Campagnes e-mail et SMS",
+      "Automatisations de relance",
+      "Liens de partage suivis jusqu’à la vente Shotgun",
+      "Connexion à ChatGPT, Claude et Gemini par MCP",
+    ],
     description:
-      "Yuno CRM se branche sur Shotgun et regroupe vos acheteurs dans un seul fichier clients : habitués, nouveaux, à relancer. E-mails, SMS, bilans de soirée. 24 € HT par mois, 14 jours d’essai sans carte.",
+      "Gardez Shotgun, ajoutez un CRM : fichier clients, habitués qui décrochent, e-mails et SMS ciblés, bilans de soirée. 24 € HT/mois, 14 jours d’essai sans carte.",
   },
   whatsappMessage:
     "Bonjour Paul 👋 Je vends sur Shotgun et j’aimerais en savoir plus sur Yuno CRM.",
@@ -54,7 +70,7 @@ const fr = {
     eyebrow: "Branché à Shotgun en 2 minutes",
     title: "Sachez qui vient à vos soirées. Et faites-les revenir.",
     accent: "revenir",
-    sub: "Yuno regroupe tous vos acheteurs Shotgun dans un seul fichier clients, puis vous aide à les retrouver, à leur écrire par e-mail et SMS, et à voir ce qui remplit votre salle.",
+    sub: "Le CRM des boîtes de nuit et des organisateurs de soirées. Yuno regroupe tous vos acheteurs Shotgun dans un seul fichier clients, puis vous aide à les retrouver, à leur écrire par e-mail et SMS, et à voir ce qui remplit votre salle.",
     cta: "Essayer 14 jours gratuitement",
     trust: ["Connexion par l’API Shotgun", "Prêt en 2 minutes", "Sans carte bancaire"],
     frameUrl: "crm.yunoapp.eu/crm",
@@ -871,6 +887,10 @@ const fr = {
     more: "Voir les {n} autres questions",
     items: [
       {
+        q: "Faut-il quitter Shotgun pour utiliser Yuno CRM ?",
+        a: "Non. Vous continuez à vendre vos billets sur Shotgun, comme aujourd’hui. Yuno CRM s’y branche en lecture seule et s’occupe de ce qui se passe autour de la vente : votre fichier clients, vos relances par e-mail et SMS, vos bilans de soirée.",
+      },
+      {
         q: "Yuno modifie-t-il quelque chose chez Shotgun ?",
         a: "Non. Yuno ne fait que lire : il ne crée, ne rembourse, ne scanne et ne publie rien. Vous pouvez couper la connexion à tout moment, depuis Yuno ou depuis Shotgun.",
       },
@@ -883,8 +903,24 @@ const fr = {
         a: "La connexion prend environ 2 minutes. Yuno importe ensuite tout votre historique (soirées, billets, acheteurs) et vos clients apparaissent classés par fidélité.",
       },
       {
+        q: "Shotgun a déjà des contacts et des newsletters. Qu’apporte Yuno CRM ?",
+        a: "Shotgun vous donne vos contacts, des segments et l’envoi de newsletters et de notifications. Yuno CRM part des mêmes ventes et va plus loin sur la fidélité : chaque soirée comparée à la précédente au même moment, les habitués qui décrochent repérés pour vous, les SMS, des liens par story ou par bio suivis jusqu’à la vente, l’analyse de votre guest list, et les fichiers de vos autres outils réunis dans la même base.",
+      },
+      {
+        q: "J’utilise déjà Brevo ou Mailchimp : quelle différence ?",
+        a: "Brevo et Mailchimp sont des outils d’e-mailing généralistes : ils ne savent pas qui est venu à quelle soirée. Yuno CRM connaît l’historique de chaque client (soirées, dernière venue, fidélité), place dans vos e-mails les tarifs de la soirée au moment de l’envoi et vous dit combien de billets chaque message a fait vendre. Votre fichier Brevo ou Mailchimp s’importe et rejoint la même base, sans doublons.",
+      },
+      {
+        q: "Yuno CRM convient-il à une boîte de nuit comme à un collectif ?",
+        a: "Oui. Une boîte de nuit y suit ses habitués semaine après semaine ; un organisateur ou un collectif qui change de lieu à chaque date garde le même fichier clients d’une soirée à l’autre. Un festival ou un bar peut l’utiliser de la même façon, dès qu’il vend sur Shotgun ou qu’il a un fichier clients.",
+      },
+      {
         q: "Puis-je écrire à tous mes acheteurs ?",
         a: "Seuls ceux qui ont accepté de recevoir vos e-mails reçoivent vos messages. Les autres comptent dans vos chiffres, sans rien recevoir. Chaque message propose aussi une désinscription.",
+      },
+      {
+        q: "Comment savoir quelle story Instagram a fait vendre des billets Shotgun ?",
+        a: "Créez un lien Yuno pour chaque story et un pour votre bio : chacun renvoie vers votre page Shotgun avec sa propre source. Quand Shotgun rapporte la vente, Yuno l’attribue au bon lien, et vous voyez quelle publication a rempli la salle.",
       },
       {
         q: "Yuno lit-il mes statistiques Instagram ?",
@@ -923,7 +959,8 @@ const fr = {
     cta: "Essayer 14 jours gratuitement",
   },
   footer: {
-    tagline: "Le fichier clients des clubs et organisateurs de soirées.",
+    tagline:
+      "Le CRM des boîtes de nuit, des clubs et des organisateurs de soirées. Vous gardez Shotgun, Yuno fait revenir votre public.",
     cols: [
       {
         title: "Produit",
@@ -976,6 +1013,19 @@ export type CrmContent = typeof fr;
 const en: CrmContent = {
   meta: {
     title: "Yuno CRM — Know who comes to your nights, and bring them back",
+    ogTitle: "Yuno CRM — Know who comes to your nights, and bring them back",
+    audience: "Nightclubs, clubs, party organizers and collectives",
+    features: [
+      "Read-only connection to Shotgun through its API",
+      "Customer file import (CSV, Excel) from any other ticketing tool",
+      "One customer file, duplicates merged",
+      "Segments: regulars, newcomers, dormant, big spenders",
+      "Night reports compared with the previous night",
+      "Email and SMS campaigns",
+      "Win-back automations",
+      "Share links tracked down to the Shotgun sale",
+      "ChatGPT, Claude and Gemini connection through MCP",
+    ],
     description:
       "Yuno CRM plugs into Shotgun and gathers your buyers in one customer file: regulars, newcomers, people to win back. Emails, SMS, night reports. €24 excl. VAT a month, 14-day trial, no card.",
   },
@@ -1878,6 +1928,19 @@ const en: CrmContent = {
 const es: CrmContent = {
   meta: {
     title: "Yuno CRM — Sabe quién viene a tus fiestas, y haz que vuelvan",
+    ogTitle: "Yuno CRM — Sabe quién viene a tus fiestas, y haz que vuelvan",
+    audience: "Discotecas, clubs, organizadores de fiestas y colectivos",
+    features: [
+      "Conexión a Shotgun por su API, solo lectura",
+      "Importación de archivos de clientes (CSV, Excel) desde cualquier otra ticketera",
+      "Un solo archivo de clientes, duplicados fusionados",
+      "Segmentos: habituales, nuevos, dormidos, grandes fieles",
+      "Informes de cada fiesta comparados con la anterior",
+      "Campañas de e-mail y SMS",
+      "Automatizaciones para recuperar clientes",
+      "Enlaces compartidos seguidos hasta la venta en Shotgun",
+      "Conexión con ChatGPT, Claude y Gemini por MCP",
+    ],
     description:
       "Yuno CRM se conecta a Shotgun y reúne a tus compradores en un solo archivo de clientes: habituales, nuevos, a recuperar. E-mails, SMS, informes de cada fiesta. 24 € + IVA al mes, 14 días de prueba sin tarjeta.",
   },
