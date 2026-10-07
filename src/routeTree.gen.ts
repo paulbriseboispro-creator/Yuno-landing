@@ -33,14 +33,18 @@ import { Route as AffiliatesRouteImport } from './routes/affiliates'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FrIndexRouteImport } from './routes/fr/index'
 import { Route as EsIndexRouteImport } from './routes/es/index'
+import { Route as FrYunoCrmOuBrevoRouteImport } from './routes/fr/yuno-crm-ou-brevo'
 import { Route as FrTermsRouteImport } from './routes/fr/terms'
 import { Route as FrStartRouteImport } from './routes/fr/start'
+import { Route as FrShotgunCrmRouteImport } from './routes/fr/shotgun-crm'
 import { Route as FrReservationTableVipDiscothequeRouteImport } from './routes/fr/reservation-table-vip-discotheque'
 import { Route as FrPrivacyRouteImport } from './routes/fr/privacy'
 import { Route as FrPricingRouteImport } from './routes/fr/pricing'
 import { Route as FrOrganizersRouteImport } from './routes/fr/organizers'
 import { Route as FrLogicielPromoteursSoireeRouteImport } from './routes/fr/logiciel-promoteurs-soiree'
 import { Route as FrGuestListSoireeLogicielRouteImport } from './routes/fr/guest-list-soiree-logiciel'
+import { Route as FrCrmOrganisateurSoireeRouteImport } from './routes/fr/crm-organisateur-soiree'
+import { Route as FrCrmBoiteDeNuitRouteImport } from './routes/fr/crm-boite-de-nuit'
 import { Route as FrCrmRouteImport } from './routes/fr/crm'
 import { Route as FrContratClubOrganisateurRouteImport } from './routes/fr/contrat-club-organisateur'
 import { Route as FrContactRouteImport } from './routes/fr/contact'
@@ -61,6 +65,11 @@ import { Route as EsAsociacionesRouteImport } from './routes/es/asociaciones'
 import { Route as EsAlternativaXceedRouteImport } from './routes/es/alternativa-xceed'
 import { Route as EsAlternativaFourvenuesRouteImport } from './routes/es/alternativa-fourvenues'
 import { Route as BdeContactRouteImport } from './routes/bde_.contact'
+import { Route as FrGuidesIndexRouteImport } from './routes/fr/guides/index'
+import { Route as FrGuidesSmsSoireeRouteImport } from './routes/fr/guides/sms-soiree'
+import { Route as FrGuidesLienStoryInstagramShotgunRouteImport } from './routes/fr/guides/lien-story-instagram-shotgun'
+import { Route as FrGuidesFideliserPublicBoiteDeNuitRouteImport } from './routes/fr/guides/fideliser-public-boite-de-nuit'
+import { Route as FrGuidesExporterAcheteursShotgunRouteImport } from './routes/fr/guides/exporter-acheteurs-shotgun'
 
 const VipTableBookingSoftwareRoute = VipTableBookingSoftwareRouteImport.update({
   id: '/vip-table-booking-software',
@@ -185,6 +194,11 @@ const EsIndexRoute = EsIndexRouteImport.update({
   path: '/es/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FrYunoCrmOuBrevoRoute = FrYunoCrmOuBrevoRouteImport.update({
+  id: '/fr/yuno-crm-ou-brevo',
+  path: '/fr/yuno-crm-ou-brevo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FrTermsRoute = FrTermsRouteImport.update({
   id: '/fr/terms',
   path: '/fr/terms',
@@ -193,6 +207,11 @@ const FrTermsRoute = FrTermsRouteImport.update({
 const FrStartRoute = FrStartRouteImport.update({
   id: '/fr/start',
   path: '/fr/start',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FrShotgunCrmRoute = FrShotgunCrmRouteImport.update({
+  id: '/fr/shotgun-crm',
+  path: '/fr/shotgun-crm',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FrReservationTableVipDiscothequeRoute =
@@ -228,6 +247,16 @@ const FrGuestListSoireeLogicielRoute =
     path: '/fr/guest-list-soiree-logiciel',
     getParentRoute: () => rootRouteImport,
   } as any)
+const FrCrmOrganisateurSoireeRoute = FrCrmOrganisateurSoireeRouteImport.update({
+  id: '/fr/crm-organisateur-soiree',
+  path: '/fr/crm-organisateur-soiree',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FrCrmBoiteDeNuitRoute = FrCrmBoiteDeNuitRouteImport.update({
+  id: '/fr/crm-boite-de-nuit',
+  path: '/fr/crm-boite-de-nuit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FrCrmRoute = FrCrmRouteImport.update({
   id: '/fr/crm',
   path: '/fr/crm',
@@ -333,6 +362,34 @@ const BdeContactRoute = BdeContactRouteImport.update({
   path: '/bde/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FrGuidesIndexRoute = FrGuidesIndexRouteImport.update({
+  id: '/fr/guides/',
+  path: '/fr/guides/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FrGuidesSmsSoireeRoute = FrGuidesSmsSoireeRouteImport.update({
+  id: '/fr/guides/sms-soiree',
+  path: '/fr/guides/sms-soiree',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FrGuidesLienStoryInstagramShotgunRoute =
+  FrGuidesLienStoryInstagramShotgunRouteImport.update({
+    id: '/fr/guides/lien-story-instagram-shotgun',
+    path: '/fr/guides/lien-story-instagram-shotgun',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FrGuidesFideliserPublicBoiteDeNuitRoute =
+  FrGuidesFideliserPublicBoiteDeNuitRouteImport.update({
+    id: '/fr/guides/fideliser-public-boite-de-nuit',
+    path: '/fr/guides/fideliser-public-boite-de-nuit',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FrGuidesExporterAcheteursShotgunRoute =
+  FrGuidesExporterAcheteursShotgunRouteImport.update({
+    id: '/fr/guides/exporter-acheteurs-shotgun',
+    path: '/fr/guides/exporter-acheteurs-shotgun',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -377,16 +434,25 @@ export interface FileRoutesByFullPath {
   '/fr/contact': typeof FrContactRoute
   '/fr/contrat-club-organisateur': typeof FrContratClubOrganisateurRoute
   '/fr/crm': typeof FrCrmRoute
+  '/fr/crm-boite-de-nuit': typeof FrCrmBoiteDeNuitRoute
+  '/fr/crm-organisateur-soiree': typeof FrCrmOrganisateurSoireeRoute
   '/fr/guest-list-soiree-logiciel': typeof FrGuestListSoireeLogicielRoute
   '/fr/logiciel-promoteurs-soiree': typeof FrLogicielPromoteursSoireeRoute
   '/fr/organizers': typeof FrOrganizersRoute
   '/fr/pricing': typeof FrPricingRoute
   '/fr/privacy': typeof FrPrivacyRoute
   '/fr/reservation-table-vip-discotheque': typeof FrReservationTableVipDiscothequeRoute
+  '/fr/shotgun-crm': typeof FrShotgunCrmRoute
   '/fr/start': typeof FrStartRoute
   '/fr/terms': typeof FrTermsRoute
+  '/fr/yuno-crm-ou-brevo': typeof FrYunoCrmOuBrevoRoute
   '/es/': typeof EsIndexRoute
   '/fr/': typeof FrIndexRoute
+  '/fr/guides/exporter-acheteurs-shotgun': typeof FrGuidesExporterAcheteursShotgunRoute
+  '/fr/guides/fideliser-public-boite-de-nuit': typeof FrGuidesFideliserPublicBoiteDeNuitRoute
+  '/fr/guides/lien-story-instagram-shotgun': typeof FrGuidesLienStoryInstagramShotgunRoute
+  '/fr/guides/sms-soiree': typeof FrGuidesSmsSoireeRoute
+  '/fr/guides/': typeof FrGuidesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -431,16 +497,25 @@ export interface FileRoutesByTo {
   '/fr/contact': typeof FrContactRoute
   '/fr/contrat-club-organisateur': typeof FrContratClubOrganisateurRoute
   '/fr/crm': typeof FrCrmRoute
+  '/fr/crm-boite-de-nuit': typeof FrCrmBoiteDeNuitRoute
+  '/fr/crm-organisateur-soiree': typeof FrCrmOrganisateurSoireeRoute
   '/fr/guest-list-soiree-logiciel': typeof FrGuestListSoireeLogicielRoute
   '/fr/logiciel-promoteurs-soiree': typeof FrLogicielPromoteursSoireeRoute
   '/fr/organizers': typeof FrOrganizersRoute
   '/fr/pricing': typeof FrPricingRoute
   '/fr/privacy': typeof FrPrivacyRoute
   '/fr/reservation-table-vip-discotheque': typeof FrReservationTableVipDiscothequeRoute
+  '/fr/shotgun-crm': typeof FrShotgunCrmRoute
   '/fr/start': typeof FrStartRoute
   '/fr/terms': typeof FrTermsRoute
+  '/fr/yuno-crm-ou-brevo': typeof FrYunoCrmOuBrevoRoute
   '/es': typeof EsIndexRoute
   '/fr': typeof FrIndexRoute
+  '/fr/guides/exporter-acheteurs-shotgun': typeof FrGuidesExporterAcheteursShotgunRoute
+  '/fr/guides/fideliser-public-boite-de-nuit': typeof FrGuidesFideliserPublicBoiteDeNuitRoute
+  '/fr/guides/lien-story-instagram-shotgun': typeof FrGuidesLienStoryInstagramShotgunRoute
+  '/fr/guides/sms-soiree': typeof FrGuidesSmsSoireeRoute
+  '/fr/guides': typeof FrGuidesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -486,16 +561,25 @@ export interface FileRoutesById {
   '/fr/contact': typeof FrContactRoute
   '/fr/contrat-club-organisateur': typeof FrContratClubOrganisateurRoute
   '/fr/crm': typeof FrCrmRoute
+  '/fr/crm-boite-de-nuit': typeof FrCrmBoiteDeNuitRoute
+  '/fr/crm-organisateur-soiree': typeof FrCrmOrganisateurSoireeRoute
   '/fr/guest-list-soiree-logiciel': typeof FrGuestListSoireeLogicielRoute
   '/fr/logiciel-promoteurs-soiree': typeof FrLogicielPromoteursSoireeRoute
   '/fr/organizers': typeof FrOrganizersRoute
   '/fr/pricing': typeof FrPricingRoute
   '/fr/privacy': typeof FrPrivacyRoute
   '/fr/reservation-table-vip-discotheque': typeof FrReservationTableVipDiscothequeRoute
+  '/fr/shotgun-crm': typeof FrShotgunCrmRoute
   '/fr/start': typeof FrStartRoute
   '/fr/terms': typeof FrTermsRoute
+  '/fr/yuno-crm-ou-brevo': typeof FrYunoCrmOuBrevoRoute
   '/es/': typeof EsIndexRoute
   '/fr/': typeof FrIndexRoute
+  '/fr/guides/exporter-acheteurs-shotgun': typeof FrGuidesExporterAcheteursShotgunRoute
+  '/fr/guides/fideliser-public-boite-de-nuit': typeof FrGuidesFideliserPublicBoiteDeNuitRoute
+  '/fr/guides/lien-story-instagram-shotgun': typeof FrGuidesLienStoryInstagramShotgunRoute
+  '/fr/guides/sms-soiree': typeof FrGuidesSmsSoireeRoute
+  '/fr/guides/': typeof FrGuidesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -542,16 +626,25 @@ export interface FileRouteTypes {
     | '/fr/contact'
     | '/fr/contrat-club-organisateur'
     | '/fr/crm'
+    | '/fr/crm-boite-de-nuit'
+    | '/fr/crm-organisateur-soiree'
     | '/fr/guest-list-soiree-logiciel'
     | '/fr/logiciel-promoteurs-soiree'
     | '/fr/organizers'
     | '/fr/pricing'
     | '/fr/privacy'
     | '/fr/reservation-table-vip-discotheque'
+    | '/fr/shotgun-crm'
     | '/fr/start'
     | '/fr/terms'
+    | '/fr/yuno-crm-ou-brevo'
     | '/es/'
     | '/fr/'
+    | '/fr/guides/exporter-acheteurs-shotgun'
+    | '/fr/guides/fideliser-public-boite-de-nuit'
+    | '/fr/guides/lien-story-instagram-shotgun'
+    | '/fr/guides/sms-soiree'
+    | '/fr/guides/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -596,16 +689,25 @@ export interface FileRouteTypes {
     | '/fr/contact'
     | '/fr/contrat-club-organisateur'
     | '/fr/crm'
+    | '/fr/crm-boite-de-nuit'
+    | '/fr/crm-organisateur-soiree'
     | '/fr/guest-list-soiree-logiciel'
     | '/fr/logiciel-promoteurs-soiree'
     | '/fr/organizers'
     | '/fr/pricing'
     | '/fr/privacy'
     | '/fr/reservation-table-vip-discotheque'
+    | '/fr/shotgun-crm'
     | '/fr/start'
     | '/fr/terms'
+    | '/fr/yuno-crm-ou-brevo'
     | '/es'
     | '/fr'
+    | '/fr/guides/exporter-acheteurs-shotgun'
+    | '/fr/guides/fideliser-public-boite-de-nuit'
+    | '/fr/guides/lien-story-instagram-shotgun'
+    | '/fr/guides/sms-soiree'
+    | '/fr/guides'
   id:
     | '__root__'
     | '/'
@@ -650,16 +752,25 @@ export interface FileRouteTypes {
     | '/fr/contact'
     | '/fr/contrat-club-organisateur'
     | '/fr/crm'
+    | '/fr/crm-boite-de-nuit'
+    | '/fr/crm-organisateur-soiree'
     | '/fr/guest-list-soiree-logiciel'
     | '/fr/logiciel-promoteurs-soiree'
     | '/fr/organizers'
     | '/fr/pricing'
     | '/fr/privacy'
     | '/fr/reservation-table-vip-discotheque'
+    | '/fr/shotgun-crm'
     | '/fr/start'
     | '/fr/terms'
+    | '/fr/yuno-crm-ou-brevo'
     | '/es/'
     | '/fr/'
+    | '/fr/guides/exporter-acheteurs-shotgun'
+    | '/fr/guides/fideliser-public-boite-de-nuit'
+    | '/fr/guides/lien-story-instagram-shotgun'
+    | '/fr/guides/sms-soiree'
+    | '/fr/guides/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -705,16 +816,25 @@ export interface RootRouteChildren {
   FrContactRoute: typeof FrContactRoute
   FrContratClubOrganisateurRoute: typeof FrContratClubOrganisateurRoute
   FrCrmRoute: typeof FrCrmRoute
+  FrCrmBoiteDeNuitRoute: typeof FrCrmBoiteDeNuitRoute
+  FrCrmOrganisateurSoireeRoute: typeof FrCrmOrganisateurSoireeRoute
   FrGuestListSoireeLogicielRoute: typeof FrGuestListSoireeLogicielRoute
   FrLogicielPromoteursSoireeRoute: typeof FrLogicielPromoteursSoireeRoute
   FrOrganizersRoute: typeof FrOrganizersRoute
   FrPricingRoute: typeof FrPricingRoute
   FrPrivacyRoute: typeof FrPrivacyRoute
   FrReservationTableVipDiscothequeRoute: typeof FrReservationTableVipDiscothequeRoute
+  FrShotgunCrmRoute: typeof FrShotgunCrmRoute
   FrStartRoute: typeof FrStartRoute
   FrTermsRoute: typeof FrTermsRoute
+  FrYunoCrmOuBrevoRoute: typeof FrYunoCrmOuBrevoRoute
   EsIndexRoute: typeof EsIndexRoute
   FrIndexRoute: typeof FrIndexRoute
+  FrGuidesExporterAcheteursShotgunRoute: typeof FrGuidesExporterAcheteursShotgunRoute
+  FrGuidesFideliserPublicBoiteDeNuitRoute: typeof FrGuidesFideliserPublicBoiteDeNuitRoute
+  FrGuidesLienStoryInstagramShotgunRoute: typeof FrGuidesLienStoryInstagramShotgunRoute
+  FrGuidesSmsSoireeRoute: typeof FrGuidesSmsSoireeRoute
+  FrGuidesIndexRoute: typeof FrGuidesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -887,6 +1007,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fr/yuno-crm-ou-brevo': {
+      id: '/fr/yuno-crm-ou-brevo'
+      path: '/fr/yuno-crm-ou-brevo'
+      fullPath: '/fr/yuno-crm-ou-brevo'
+      preLoaderRoute: typeof FrYunoCrmOuBrevoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/fr/terms': {
       id: '/fr/terms'
       path: '/fr/terms'
@@ -899,6 +1026,13 @@ declare module '@tanstack/react-router' {
       path: '/fr/start'
       fullPath: '/fr/start'
       preLoaderRoute: typeof FrStartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fr/shotgun-crm': {
+      id: '/fr/shotgun-crm'
+      path: '/fr/shotgun-crm'
+      fullPath: '/fr/shotgun-crm'
+      preLoaderRoute: typeof FrShotgunCrmRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fr/reservation-table-vip-discotheque': {
@@ -941,6 +1075,20 @@ declare module '@tanstack/react-router' {
       path: '/fr/guest-list-soiree-logiciel'
       fullPath: '/fr/guest-list-soiree-logiciel'
       preLoaderRoute: typeof FrGuestListSoireeLogicielRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fr/crm-organisateur-soiree': {
+      id: '/fr/crm-organisateur-soiree'
+      path: '/fr/crm-organisateur-soiree'
+      fullPath: '/fr/crm-organisateur-soiree'
+      preLoaderRoute: typeof FrCrmOrganisateurSoireeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fr/crm-boite-de-nuit': {
+      id: '/fr/crm-boite-de-nuit'
+      path: '/fr/crm-boite-de-nuit'
+      fullPath: '/fr/crm-boite-de-nuit'
+      preLoaderRoute: typeof FrCrmBoiteDeNuitRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fr/crm': {
@@ -1083,6 +1231,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BdeContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fr/guides/': {
+      id: '/fr/guides/'
+      path: '/fr/guides'
+      fullPath: '/fr/guides/'
+      preLoaderRoute: typeof FrGuidesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fr/guides/sms-soiree': {
+      id: '/fr/guides/sms-soiree'
+      path: '/fr/guides/sms-soiree'
+      fullPath: '/fr/guides/sms-soiree'
+      preLoaderRoute: typeof FrGuidesSmsSoireeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fr/guides/lien-story-instagram-shotgun': {
+      id: '/fr/guides/lien-story-instagram-shotgun'
+      path: '/fr/guides/lien-story-instagram-shotgun'
+      fullPath: '/fr/guides/lien-story-instagram-shotgun'
+      preLoaderRoute: typeof FrGuidesLienStoryInstagramShotgunRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fr/guides/fideliser-public-boite-de-nuit': {
+      id: '/fr/guides/fideliser-public-boite-de-nuit'
+      path: '/fr/guides/fideliser-public-boite-de-nuit'
+      fullPath: '/fr/guides/fideliser-public-boite-de-nuit'
+      preLoaderRoute: typeof FrGuidesFideliserPublicBoiteDeNuitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fr/guides/exporter-acheteurs-shotgun': {
+      id: '/fr/guides/exporter-acheteurs-shotgun'
+      path: '/fr/guides/exporter-acheteurs-shotgun'
+      fullPath: '/fr/guides/exporter-acheteurs-shotgun'
+      preLoaderRoute: typeof FrGuidesExporterAcheteursShotgunRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -1131,16 +1314,27 @@ const rootRouteChildren: RootRouteChildren = {
   FrContactRoute: FrContactRoute,
   FrContratClubOrganisateurRoute: FrContratClubOrganisateurRoute,
   FrCrmRoute: FrCrmRoute,
+  FrCrmBoiteDeNuitRoute: FrCrmBoiteDeNuitRoute,
+  FrCrmOrganisateurSoireeRoute: FrCrmOrganisateurSoireeRoute,
   FrGuestListSoireeLogicielRoute: FrGuestListSoireeLogicielRoute,
   FrLogicielPromoteursSoireeRoute: FrLogicielPromoteursSoireeRoute,
   FrOrganizersRoute: FrOrganizersRoute,
   FrPricingRoute: FrPricingRoute,
   FrPrivacyRoute: FrPrivacyRoute,
   FrReservationTableVipDiscothequeRoute: FrReservationTableVipDiscothequeRoute,
+  FrShotgunCrmRoute: FrShotgunCrmRoute,
   FrStartRoute: FrStartRoute,
   FrTermsRoute: FrTermsRoute,
+  FrYunoCrmOuBrevoRoute: FrYunoCrmOuBrevoRoute,
   EsIndexRoute: EsIndexRoute,
   FrIndexRoute: FrIndexRoute,
+  FrGuidesExporterAcheteursShotgunRoute: FrGuidesExporterAcheteursShotgunRoute,
+  FrGuidesFideliserPublicBoiteDeNuitRoute:
+    FrGuidesFideliserPublicBoiteDeNuitRoute,
+  FrGuidesLienStoryInstagramShotgunRoute:
+    FrGuidesLienStoryInstagramShotgunRoute,
+  FrGuidesSmsSoireeRoute: FrGuidesSmsSoireeRoute,
+  FrGuidesIndexRoute: FrGuidesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

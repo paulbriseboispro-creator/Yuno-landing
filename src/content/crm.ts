@@ -985,6 +985,17 @@ const fr = {
           { label: "Confidentialité", href: "/fr/privacy" },
         ],
       },
+      // The CRM content pages (src/content/crm-pages): "crm:" = a path on crm.yunoapp.eu.
+      {
+        title: "Ressources",
+        links: [
+          { label: "CRM pour boîte de nuit", href: "crm:/fr/crm-boite-de-nuit" },
+          { label: "CRM pour organisateurs", href: "crm:/fr/crm-organisateur-soiree" },
+          { label: "Shotgun + Yuno CRM", href: "crm:/fr/shotgun-crm" },
+          { label: "Yuno CRM ou Brevo", href: "crm:/fr/yuno-crm-ou-brevo" },
+          { label: "Tous les guides", href: "crm:/fr/guides" },
+        ],
+      },
     ],
     region: "Données hébergées en Europe",
     rights: "Yuno",

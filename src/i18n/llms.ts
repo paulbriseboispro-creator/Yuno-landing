@@ -15,6 +15,8 @@ import { TOPIC_PAGES } from "@/content/topics";
 import { topicMarkdown } from "@/i18n/topic-seo";
 import { SITE_ORIGIN } from "@/i18n/seo";
 import { crmMarkdown, crmUrl } from "@/i18n/crm";
+import { CRM_PAGE_LIST } from "@/content/crm-pages";
+import { crmPageMarkdown, crmPageUrl } from "@/i18n/crm-page-seo";
 import { crmContent } from "@/content/crm";
 
 const HEADINGS: Record<
@@ -183,6 +185,7 @@ export function llmsIndex(): string {
     ...LANDING_LANGS.map(
       (l) => `- [${LANDING_LANG_LABELS[l]}](${crmUrl(l)}): ${crmContent[l].meta.description}`,
     ),
+    ...CRM_PAGE_LIST.map((p) => `- [${p.meta.title}](${crmPageUrl(p)}): ${p.meta.description}`),
     "",
     "## Comparisons",
     "",
@@ -220,6 +223,7 @@ export function llmsFull(): string {
     header,
     ...LANDING_LANGS.map(landingMarkdown),
     ...LANDING_LANGS.map(crmMarkdown),
+    ...CRM_PAGE_LIST.map(crmPageMarkdown),
     ...COMPARE_PAGES.map(compareMarkdown),
     ...TOPIC_PAGES.map(topicMarkdown),
   ].join("\n\n---\n\n");

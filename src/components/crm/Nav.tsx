@@ -13,9 +13,11 @@ import { CtaButton, EASE, Wordmark } from "./ui";
 // scroll-spy pill, the gradient CTA with its arrow disc. A 3 px brand bar on
 // top of the viewport tracks the reading progress. Drops in first in the
 // opening sequence.
-export function CrmNav() {
+// `onHome` false: a CRM content page, whose in-page anchors live on the CRM page.
+export function CrmNav({ onHome = true }: { onHome?: boolean } = {}) {
   const c = useCrm();
   const { home, lang, langHref } = useLanding();
+  const navHref = (href: string) => (onHome || !href.startsWith("#") ? href : home + href);
   const [active, setActive] = useState<string>("");
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -108,7 +110,7 @@ export function CrmNav() {
             {c.nav.links.map((l, i) => (
               <a
                 key={l.href}
-                href={l.href}
+                href={navHref(l.href)}
                 style={
                   {
                     "--d": `${0.25 + i * 0.06}s`,
@@ -191,7 +193,7 @@ export function CrmNav() {
                 {c.nav.links.map((l) => (
                   <a
                     key={l.href}
-                    href={l.href}
+                    href={navHref(l.href)}
                     onClick={() => setOpen(false)}
                     className="border-b border-yc-sand-100 py-4 font-yc-display text-[24px] font-semibold tracking-[-0.02em] text-yc-ink"
                   >

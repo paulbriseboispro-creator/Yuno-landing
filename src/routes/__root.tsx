@@ -28,6 +28,7 @@ import {
   type LandingLang,
 } from "@/i18n/landing-lang";
 import { crmPagePaths } from "@/i18n/hosts";
+import { isCrmPagePath } from "@/i18n/crm-pages";
 import { common } from "@/content/common";
 import { COMPARE_PATHS } from "@/content/compare";
 import { TOPIC_PATHS } from "@/content/topics";
@@ -151,7 +152,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     // The Yuno CRM page draws only with its own faces (Bricolage / Geist, from
     // crmHead): skip the landing's Inter + Newsreader there, a render-blocking
     // stylesheet that delayed its first paint for nothing.
-    const crmPage = matches.some((r) => CRM_ROUTE_IDS.has(r.routeId));
+    const crmPage = matches.some((r) => CRM_ROUTE_IDS.has(r.routeId) || isCrmPagePath(r.routeId));
     return {
       meta: [
         { charSet: "utf-8" },

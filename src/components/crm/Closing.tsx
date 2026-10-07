@@ -127,9 +127,10 @@ export function CrmFaq() {
   );
 }
 
-export function CrmFinal() {
+// `onHome` false: a CRM content page (anchors point back to the CRM page).
+export function CrmFinal({ onHome = true }: { onHome?: boolean } = {}) {
   const c = useCrm();
-  const { lang, langHref, whatsappMessage } = useLanding();
+  const { lang, langHref, whatsappMessage, home } = useLanding();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const coinY = useTransform(scrollYProgress, [0, 1], [80, -120]);
@@ -140,9 +141,13 @@ export function CrmFinal() {
       ? whatsappHref(whatsappMessage)
       : href === "login"
         ? CRM_LOGIN_URL
-        : href.startsWith("/")
-          ? landingHref(href)
-          : href;
+        : href.startsWith("crm:")
+          ? href.slice(4)
+          : href.startsWith("#") && !onHome
+            ? home + href
+            : href.startsWith("/")
+              ? landingHref(href)
+              : href;
 
   return (
     <section
@@ -199,7 +204,14 @@ export function CrmFinal() {
         data-ph-area="footer"
         className="relative mx-auto mt-16 max-w-[1200px] rounded-[28px] bg-white px-6 py-8 shadow-[0_30px_80px_-30px_rgba(116,10,16,.45)] sm:mt-32 sm:rounded-[32px] sm:px-12 sm:py-14"
       >
-        <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:gap-10">
+        <div
+          className={cn(
+            "grid grid-cols-2 gap-x-6 gap-y-8 md:gap-10",
+            c.footer.cols.length > 3
+              ? "md:grid-cols-[1.3fr_1fr_1fr_1fr_1.25fr]"
+              : "md:grid-cols-[1.4fr_1fr_1fr_1fr]",
+          )}
+        >
           <div className="col-span-2 md:col-span-1">
             <Wordmark size={34} />
             <p className="mt-4 max-w-[22rem] text-[15px] leading-[1.55] text-yc-sand-700 sm:mt-5 sm:text-[16px]">

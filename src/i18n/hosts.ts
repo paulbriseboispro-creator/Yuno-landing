@@ -13,6 +13,7 @@ import { createIsomorphicFn } from "@tanstack/react-start";
 import { getRequestHeader } from "@tanstack/react-start/server";
 import { CRM_PATHS, LANDING_LANGS, type LandingLang } from "@/i18n/landing-lang";
 import { SITE_ORIGIN } from "@/i18n/seo";
+import { isCrmPagePath } from "@/i18n/crm-pages";
 
 export const LANDING_HOST = "landing.yunoapp.eu";
 export const CRM_HOST = "crm.yunoapp.eu";
@@ -125,7 +126,7 @@ export function crmRouteToHost(url: URL): URL {
     url.pathname = CRM_HOST_PATHS[lang];
     return url;
   }
-  if (START_PATHS.includes(path)) return url;
+  if (START_PATHS.includes(path) || isCrmPagePath(path)) return url;
   // Every other page lives on the landing.
   return new URL(url.pathname + url.search + url.hash, landingOriginFrom(url.host));
 }
@@ -155,6 +156,8 @@ export function hostRoute(url: URL): HostRoute | null {
   if (hostname(url.host) === LANDING_HOST) {
     const lang = langOf(CRM_PATHS, path);
     if (lang) return { redirect: crmUrl(lang) + url.search };
+    // The CRM content pages (src/i18n/crm-pages.ts) belong to crm.yunoapp.eu.
+    if (isCrmPagePath(path)) return { redirect: CRM_ORIGIN + path + url.search };
     if (START_PATHS.includes(path) && url.searchParams.get("product") === "crm") {
       return { redirect: CRM_ORIGIN + path + url.search };
     }
@@ -164,7 +167,8 @@ export function hostRoute(url: URL): HostRoute | null {
   // "/crm" is the app's Console here; only the localized twins of the former page path move.
   const lang = path === "/crm" ? undefined : langOf(CRM_PATHS, path);
   if (lang) return { redirect: url.origin + CRM_HOST_PATHS[lang] + url.search };
-  if (langOf(CRM_HOST_PATHS, path) || START_PATHS.includes(path)) return null;
+  if (langOf(CRM_HOST_PATHS, path) || START_PATHS.includes(path) || isCrmPagePath(path))
+    return null;
   if (path.startsWith("/_serverFn") || CRM_HOST_FILES.has(path)) return null;
   if (appPathOnCrmHost(path)) return { app: APP_ORIGIN + url.pathname + url.search };
   return { redirect: landingOriginFrom(url.host) + url.pathname + url.search };

@@ -6,6 +6,7 @@ import { createIsomorphicFn } from "@tanstack/react-start";
 import { getCookie, getRequestHeader } from "@tanstack/react-start/server";
 import { LOCALE_COOKIE } from "@/i18n/locale";
 import { SITE_ORIGIN } from "@/i18n/seo";
+import { isCrmPagePath } from "@/i18n/crm-pages";
 
 export const LANDING_LANGS = ["en", "fr", "es"] as const;
 export type LandingLang = (typeof LANDING_LANGS)[number];
@@ -88,6 +89,7 @@ export function isLandingPath(pathname: string): boolean {
   if (p === "/start" || p === "/fr/start" || p === "/es/start") return true;
   if (LANDING_LANGS.some((l) => ASSO_PATHS[l] === p)) return true;
   if (LANDING_LANGS.some((l) => CRM_PATHS[l] === p)) return true;
+  if (isCrmPagePath(p)) return true;
   return (
     pathname === "/" ||
     pathname === "/fr" ||
