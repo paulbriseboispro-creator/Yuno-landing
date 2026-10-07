@@ -11,9 +11,21 @@ import { hostRoute, relayToApp } from "@/i18n/hosts";
 // of the Worker entry, which Cloudflare rejects.
 const hostMiddleware = createMiddleware().server(async ({ next, request }) => {
   if (request.method === "GET" || request.method === "HEAD") {
-    const route = hostRoute(new URL(request.url));
+    const url = new URL(request.url);
+    // One URL per page for search engines: https only (the zone serves plain
+    // http too), and no trailing slash, as a permanent redirect (the router's
+    // own is a 307, which Google reads as temporary).
+    if (url.hostname.endsWith("yunoapp.eu") && url.protocol === "http:") {
+      url.protocol = "https:";
+      return Response.redirect(url.toString(), 301);
+    }
+    const route = hostRoute(url);
     if (route && "app" in route) return relayToApp(request, route.app);
     if (route) return Response.redirect(route.redirect, 301);
+    if (url.pathname.length > 1 && url.pathname.endsWith("/")) {
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      return Response.redirect(url.toString(), 301);
+    }
   }
   return next();
 });

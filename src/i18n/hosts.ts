@@ -182,6 +182,12 @@ export async function relayToApp(request: Request, target: string): Promise<Resp
   const out = new Headers(res.headers);
   out.delete("content-encoding");
   out.delete("content-length");
+  // Sign-in, Consoles, Admin…: app screens, not pages to rank. Served here they
+  // carry the app's public head (ticketing title, canonical yunoapp.eu) and
+  // would blur what crm.yunoapp.eu is about. The organizers' public signup
+  // pages (/j) stay indexable.
+  const appPath = trimSlash(new URL(target).pathname);
+  if (appPath !== "/j" && !appPath.startsWith("/j/")) out.set("x-robots-tag", "noindex");
   const location = out.get("location");
   if (location) {
     const to = new URL(location, target);
