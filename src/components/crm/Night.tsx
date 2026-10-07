@@ -30,7 +30,8 @@ import { Accent, Avatar, CtaButton, Marquee, Reveal, StatusTag, useFmt } from ".
 
 const DOTS = ["#E3141B", "#FF6B35", "#17A34A", "#E59A0B", "#FF948D", "#F7F2F1"];
 
-// The funnel above the customer file: where the club page visitors stop, then
+// The funnel above the customer file: where email recipients stop (the Console's
+// customer journey), then
 // who the customers are. Numbers are the demo club's (Le Bunker), not real data.
 const FUNNEL = {
   counts: [11655, 6593, 1117, 406, 29],
