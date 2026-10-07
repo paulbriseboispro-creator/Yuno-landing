@@ -143,7 +143,11 @@ Conséquences :
    - Inspection d'URL sur `/fr` puis « Demander l'indexation ». Au 7 octobre, Google n'avait
      indexé que l'EN et l'ES.
 2. **Cloudflare** : activer « Always Use HTTPS » et HSTS (le 301 du Worker ne couvre que le HTML).
-3. **Vérité des promesses.**
+3. **Vérité des promesses** (corrigé le 7 octobre : entonnoir = parcours e-mail, comparatif,
+   automatisations vitrines = recettes en ligne). Reste : la page dit « 10 000 Yunits offerts chaque
+   mois » et « 5 000 pendant l'essai », l'app dit 2 000 pendant l'essai et 10 000 une fois à
+   l'abonnement. À aligner avec la refonte des prix en cours.
+   Détail d'origine :
    - Le comparatif (« Les visites avant l'achat, et d'où elles viennent », « Le funnel de
      conversion ») et l'entonnoir « 11 655 visites de la page du club » montrent ce que la Console
      affiche « Bientôt » (Shotgun ne rend pas les visites).
@@ -157,24 +161,42 @@ Conséquences :
    l'amélioration on-page la plus forte non faite. C'est un choix de design.
 5. Page CRM en EN et ES : hors périmètre France, titres inchangés.
 
-## 6. Pages à créer (une intention = une page)
+## 6. Pages de contenu (en ligne depuis le 7 octobre)
 
-Sur crm.yunoapp.eu. Chaque chemin s'ajoute à `CRM_HOST_PATHS` / au routeur, sinon l'hôte le
-renvoie en 301 vers la landing.
+Neuf pages françaises sur crm.yunoapp.eu, une intention de recherche chacune :
 
-1. `/fr/crm-boite-de-nuit` : clubs avec habitués (segments de fidélité, bilans, SMS de fin de
-   semaine).
-2. `/fr/crm-organisateur-soiree` : organisateurs et collectifs sans lieu fixe (base qui suit
-   d'une soirée à l'autre, préventes, liste d'attente).
-3. `/fr/shotgun-crm` : « Vos contacts Shotgun dans un CRM ». Tableau honnête : ce que donne le
-   Smartboard, ce qu'ajoute Yuno, comment brancher le jeton API.
-4. `/fr/guides/lien-story-instagram-shotgun` : attribution par story / bio, avec un générateur de
-   liens UTM Shotgun gratuit (outil = liens entrants).
-5. `/fr/guides/sms-soiree` : règles AF2M / ARCEP 2026, STOP 30101, heures, coût, exemples.
-6. Comparatifs honnêtes, plus tard : « Yuno CRM vs Brevo pour une soirée », « Yuno CRM vs
-   Cymbal ». Pas de « vs Shotgun » côté CRM : on ne le remplace pas.
-7. Article pilier « Fidéliser le public d'une boîte de nuit » avec de vraies données anonymisées
-   (part d'habitués, effet d'une relance). C'est la seule donnée originale citable.
+| Page | Intention visée |
+|---|---|
+| `/fr/crm-boite-de-nuit` | crm boîte de nuit, crm discothèque, crm club de nuit |
+| `/fr/crm-organisateur-soiree` | crm organisateur de soirée, collectifs |
+| `/fr/shotgun-crm` | shotgun crm, crm shotgun, jeton API Shotgun |
+| `/fr/yuno-crm-ou-brevo` | shotgun brevo, newsletter soirée (comparatif honnête : Brevo reste moins cher pour l'e-mail seul) |
+| `/fr/guides` | page qui regroupe les guides |
+| `/fr/guides/lien-story-instagram-shotgun` | lien story Instagram billetterie, associer Instagram et Shotgun (+ générateur de liens gratuit) |
+| `/fr/guides/exporter-acheteurs-shotgun` | exporter les participants Shotgun, export acheteurs, Shotgun Brevo |
+| `/fr/guides/sms-soiree` | sms boîte de nuit, sms marketing discothèque (règles AF2M 2026, Arcep, CNIL) |
+| `/fr/guides/fideliser-public-boite-de-nuit` | fidéliser clientèle boîte de nuit, remplir sa boîte de nuit |
+
+**Architecture**
+- Chemins dans `src/i18n/crm-pages.ts`, contenu dans `src/content/crm-pages/*`, gabarit
+  `src/pages/crm-page.tsx` (design de la page CRM), tête et JSON-LD dans `src/i18n/crm-page-seo.ts`.
+- JSON-LD : WebPage, Article pour un guide, CollectionPage pour le hub, plus BreadcrumbList,
+  FAQPage et une référence au SoftwareApplication.
+- Une page ajoutée = un chemin, un fichier de contenu, une ligne au registre et une route. Le
+  sitemap CRM, `llms.txt`, `llms-full.txt` et l'hôte la prennent d'eux-mêmes.
+- Reliées depuis la colonne « Ressources » du pied de page CRM, le pied de page de la landing et
+  la page « Alternative à Shotgun ».
+
+**Règle de contenu**
+- Tout fait sur Shotgun, Brevo ou une loi a sa source datée.
+- « Non vu dans le centre d'aide » plutôt que « n'existe pas ».
+- Pas de statistique de marché inventée.
+- Prix des envois en Yunits seulement (les Yunits offerts sont en cours de révision).
+
+**À venir** (si les données GSC le justifient) :
+- « Yuno CRM vs Cymbal » ;
+- une page « CRM pour association étudiante » (« crm association » a de la demande) ;
+- l'article de données anonymisées.
 
 ## 7. Hors site
 

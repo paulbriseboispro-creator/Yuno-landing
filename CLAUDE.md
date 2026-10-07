@@ -101,6 +101,11 @@ Starting from `main` silently throws away the newest design and copy. So, before
   in `crm.css`), never a motion `initial` (it ships the hero at opacity 0 until hydration: LCP 9.5 s);
   relayed app screens get `X-Robots-Tag: noindex` (`relayToApp`); never claim Shotgun lacks contacts,
   segments or newsletters (it has them) — say what Yuno CRM adds.
+- CRM content pages (French SEO pages on crm.yunoapp.eu: `/fr/crm-boite-de-nuit`, `/fr/shotgun-crm`,
+  `/fr/guides/*`…): paths `src/i18n/crm-pages.ts` (served on the CRM host, 301 there from the landing),
+  copy `src/content/crm-pages/*` (shape `types.ts`, registry `index.ts`), template `src/pages/crm-page.tsx`,
+  head/JSON-LD `src/i18n/crm-page-seo.ts`, one route file each. Sitemap, llms and footer pick them up.
+  Every claim about another tool cites a dated public source; never promise a Console feature shown "soon".
 - Second product: organizers and clubs who KEEP their ticketing (Shotgun first). Page
   `src/pages/crm.tsx`, sections `src/components/crm/*`, copy `src/content/crm.ts` (EN/FR/ES,
   shape-checked: `fr` is the shape), head/JSON-LD `src/i18n/crm.ts` (bump `CRM_UPDATED`), paths
