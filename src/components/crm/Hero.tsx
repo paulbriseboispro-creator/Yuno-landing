@@ -8,11 +8,11 @@ import { PhoneConsole } from "./PhoneConsole";
 import { useIsPhone } from "./media";
 import { Avatar, CtaButton, EASE, YunitFace } from "./ui";
 
-// Opening sequence (≈1.4 s, never blocks the page):
+// Opening sequence (≈1.4 s, CSS from the first paint, never blocks the page):
 //   0.00 nav drops in (Nav.tsx) · aura blooms behind the fold
 //   0.15 eyebrow chip
 //   0.25 headline, word by word, out of a blur (accent word in the brand gradient)
-//   0.75 sub · 0.90 CTA springs in with its glow · 1.05 trust row
+//   0.40 sub (the LCP element: kept early) · 0.55 CTA springs in · 0.70 trust row
 //   1.00 the live Console rises in a tilted frame, and flattens as you scroll
 // The frame then plays like the reference's video: the Console tours itself
 // (pauses on hover) while notifications pop on its edges.
@@ -204,18 +204,18 @@ export function CrmHero() {
 
         <Headline text={h.title} accent={h.accent} />
 
-        <p style={rise(0.75)} className="yc-rise yc-lead mx-auto mt-6 max-w-[40rem]">
+        <p style={rise(0.4)} className="yc-rise yc-lead mx-auto mt-6 max-w-[40rem]">
           {h.sub}
         </p>
 
-        <div style={rise(0.9)} className="yc-pop relative z-10 mt-9 flex justify-center">
+        <div style={rise(0.55)} className="yc-pop relative z-10 mt-9 flex justify-center">
           <CtaButton size="lg" ring cta="hero_crm">
             {h.cta}
           </CtaButton>
         </div>
 
         <ul
-          style={rise(1.05, "8px", "0px", 0.7)}
+          style={rise(0.7, "8px", "0px", 0.7)}
           className="yc-rise mx-auto mt-7 grid max-w-[24rem] grid-cols-3 text-[12.5px] font-medium leading-[1.3] text-yc-sand-700 sm:mt-8 sm:flex sm:max-w-none sm:flex-wrap sm:items-center sm:justify-center sm:gap-y-2 sm:text-[14.5px] sm:leading-normal"
         >
           {h.trust.map((t, i) => {
