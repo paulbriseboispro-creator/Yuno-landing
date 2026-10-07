@@ -141,11 +141,11 @@ no seat or automation cap.
 |---|---|
 | Subscription | 24 € HT / month at launch (34 € later for NEW accounts; a 24 € subscriber keeps 24 € while subscribed) |
 | Yearly | 288 € HT / year (12 × 24, no discount) + 30,000 bonus Yunits at once (≈ two months) |
-| Yunits included | 10,000 every month (offered Yunits expire at month end and are used first) |
+| Yunits offered | ONCE: 10,000 with the monthly subscription, 30,000 at once with the yearly one, 2,000 during the trial. Nothing is offered every month (Paul, 6–7 Oct 2026). Offered Yunits are used first |
 | Cost per send | email 1 Yunit · SMS 35 Yunits · Instagram DM 10 and WhatsApp 100 = "soon" |
 | Always free | test sends, the AI assistant, contacts Yuno sets aside so as not to overload them |
-| Recharges | 500 Yunits per € (10 € = 5,000 · 25 € = 12,500 · 50 € = 27,500 (+10 %) · 100 € = 57,500 (+15 %)), valid 12 months; auto top-up off by default, with a ceiling |
-| Trial | 14 days, the whole tool + 5,000 Yunits, no card, no free plan; without a subscription the account pauses (base visible, nothing sent, Shotgun sync stops) |
+| Recharges | any amount from 5,000 to 300,000 Yunits by steps of 5,000, 500 Yunits per €, +10 % from 25,000 and +15 % from 50,000 (no preset packs), valid 12 months; auto top-up off by default, with a ceiling |
+| Trial | 14 days, the whole tool + 2,000 Yunits, no card, no free plan; without a subscription the account pauses (base visible, nothing sent, Shotgun sync stops) |
 Prices excl. VAT (20 % on the invoice). SMS and the MCP server (plug ChatGPT, Claude or Gemini
 into the base) are announced as live (Paul, 4 Oct 2026). Meta audiences: "soon". Data hosted in the EU (Supabase
 eu-west-1): write "Europe", never "France". Source of truth: `src/lib/crmPlans.ts`,

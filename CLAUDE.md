@@ -126,7 +126,7 @@ Starting from `main` silently throws away the newest design and copy. So, before
 - SMS and the MCP server (ChatGPT, Claude, Gemini) are announced as live (Paul, 4 Oct 2026);
   Instagram DM, WhatsApp and Meta audiences stay "soon".
 - Pricing (one subscription + Yunits): table in `docs/yuno-context.md` § Yuno CRM, mirrored in
-  `components/crm/Pricing.tsx` (packs + cheapest-recharge solver of the design). Never show the
+  `components/crm/Pricing.tsx` (recharge at the cursor like the app, Yunits offered once: 10,000 monthly, 30,000 yearly, 2,000 trial). Never show the
   Suite's "€0" banner or copy there, never "hosted in France" (EU).
 - Signup: every CRM CTA is a plain link to the funnel `/start?product=crm` (`/fr/start`, `/es/start`;
   `crmStartHref` in `src/i18n/start.ts`; `…/crm#signup` redirects there). The funnel is the Claude Design

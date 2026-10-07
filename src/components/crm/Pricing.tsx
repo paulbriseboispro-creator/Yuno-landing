@@ -7,51 +7,35 @@ import { useCrm } from "./content";
 import { Accent, CtaButton, EASE, Eyebrow, Reveal, Rich, YunitFace, useFmt } from "./ui";
 
 // Pricing of the design (Tarifs.dc.html), mirror of the app's billing
-// (src/lib/crmPlans.ts + _shared/crm-billing.ts): one subscription, 24 € HT a
-// month (launch price; 34 € later for new accounts) or 288 € HT a year with
-// 30,000 bonus Yunits, 10,000 Yunits offered every month, sends paid in Yunits
-// (email 1, SMS 35), recharges at 500 Yunits per euro with +10 % / +15 % bonus.
+// (src/crm/lib/pricing.ts + _shared/crm-billing.ts): one subscription, 24 € HT a
+// month (launch price; 34 € later for new accounts) or 288 € HT a year. Yunits
+// offered ONCE: 10,000 with the monthly subscription, 30,000 with the yearly
+// one, 2,000 during the trial; nothing is offered every month, so a month costs
+// the subscription plus what its sends need. Sends are paid in Yunits (email 1,
+// SMS 35).
 
-// Recharge packs (crm_pricing_config: 500 Yunits / €, +10 % from 25,000, +15 % from 50,000).
-const PACKS = [
-  { y: 5000, p: 10, b: 0 },
-  { y: 12500, p: 25, b: 0 },
-  { y: 27500, p: 50, b: 10 },
-  { y: 57500, p: 100, b: 15 },
-];
-const MONTHLY_YUNITS = 10000;
+// Recharges: any amount from 5,000 to 300,000 Yunits by steps of 5,000, at 500
+// Yunits per euro, +10 % from 25,000 and +15 % from 50,000 (CRM_RECHARGE,
+// crmRechargeQuote / crmRechargeFor in the yuno repo): no preset packs.
+const RECHARGE = { min: 5000, max: 300000, step: 5000, perEuro: 500 };
 const SMS_YUNITS = 35;
 
-// Cheapest mix of packs covering `need` Yunits (the design's solver, 500-Yunit units).
+function bonusPct(base: number) {
+  return base >= 50000 ? 15 : base >= 25000 ? 10 : 0;
+}
+
+// Smallest recharge whose Yunits (bonus included) cover `need`.
 function solve(need: number) {
-  if (need <= 0) return { cost: 0, counts: [0, 0, 0, 0], got: 0 };
-  const N = Math.ceil(need / 500);
-  const P = PACKS.map((p) => ({ u: p.y / 500, c: p.p }));
-  const dp = [0];
-  const ch = [-1];
-  for (let i = 1; i <= N; i++) {
-    let best = Infinity;
-    let k = -1;
-    for (let j = P.length - 1; j >= 0; j--) {
-      const v = dp[Math.max(0, i - P[j].u)] + P[j].c;
-      if (v < best) {
-        best = v;
-        k = j;
-      }
+  if (need <= 0) return { cost: 0, got: 0, pct: 0 };
+  let base = RECHARGE.max;
+  for (let v = RECHARGE.min; v <= RECHARGE.max; v += RECHARGE.step) {
+    if (Math.round(v * (1 + bonusPct(v) / 100)) >= need) {
+      base = v;
+      break;
     }
-    dp[i] = best;
-    ch[i] = k;
   }
-  const counts = [0, 0, 0, 0];
-  let i = N;
-  let got = 0;
-  while (i > 0) {
-    const k = ch[i];
-    counts[k]++;
-    got += PACKS[k].y;
-    i = Math.max(0, i - P[k].u);
-  }
-  return { cost: dp[N], counts, got };
+  const pct = bonusPct(base);
+  return { cost: base / RECHARGE.perEuro, got: Math.round(base * (1 + pct / 100)), pct };
 }
 
 function useTween(value: number, duration = 800) {
@@ -122,7 +106,13 @@ function PriceCard({ annual }: { annual: boolean }) {
           {annual ? p.subAnnual : p.subMonthly}
         </p>
         <div className="mt-6 flex flex-col gap-2.5">
-          <div className="flex items-center gap-3 rounded-[16px] bg-yc-sand-50 p-3">
+          {/* Monthly: 10,000 Yunits once; yearly: 30,000 at once instead (below). */}
+          <div
+            className={cn(
+              "flex items-center gap-3 rounded-[16px] bg-yc-sand-50 p-3",
+              annual && "hidden",
+            )}
+          >
             <img
               src={yunitStack}
               alt=""
@@ -380,8 +370,8 @@ function Simulator() {
   const [emails, setEmails] = useState(45000);
   const [sms, setSms] = useState(300);
   const used = emails + sms * SMS_YUNITS;
-  const inc = Math.min(used, MONTHLY_YUNITS);
-  const need = Math.max(0, used - MONTHLY_YUNITS);
+  // No Yunits are offered every month: the whole month's sends are recharged.
+  const need = used;
   const r = useMemo(() => solve(need), [need]);
   const total = p.month + r.cost;
   const totT = useTween(total, 600);
@@ -497,34 +487,6 @@ function Simulator() {
               <span className="text-[14px] text-yc-on-night-2">{p.perMonth}</span>
             </div>
           </div>
-          <div>
-            <div className="flex h-2.5 gap-0.5 overflow-hidden rounded-full bg-white/10">
-              <div
-                className="transition-[width] duration-500"
-                style={{
-                  width: used ? `${(inc / used) * 100}%` : "0%",
-                  background: "var(--gradient-brand)",
-                }}
-              />
-              <div
-                className="bg-white/60 transition-[width] duration-500"
-                style={{ width: used ? `${(need / used) * 100}%` : "0%" }}
-              />
-            </div>
-            <div className="mt-2 flex gap-4 text-[12px] text-yc-on-night-2">
-              <span className="inline-flex items-center gap-1.5">
-                <i
-                  className="size-2 rounded-full"
-                  style={{ background: "var(--gradient-brand)" }}
-                />
-                {s.offered}
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <i className="size-2 rounded-full bg-white/60" />
-                {s.bought}
-              </span>
-            </div>
-          </div>
           <div className="flex flex-col gap-2 border-t border-white/10 pt-4 text-[14px]">
             <div className="flex justify-between">
               <span className="text-yc-on-night-2">{s.subscription}</span>
@@ -535,10 +497,6 @@ function Simulator() {
               <span className="font-semibold tabular-nums">{num(used)} Yunits</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-yc-on-night-2">{s.included}</span>
-              <span className="font-semibold tabular-nums text-yc-mint">− {num(inc)}</span>
-            </div>
-            <div className="flex justify-between">
               <span className="text-yc-on-night-2">{s.recharges}</span>
               <span className="font-semibold tabular-nums">{money(r.cost)}</span>
             </div>
@@ -546,18 +504,10 @@ function Simulator() {
           {need > 0 ? (
             <div className="flex flex-col gap-2">
               <div className="flex flex-wrap gap-1.5">
-                {r.counts
-                  .map((c, i) => (c ? `${c} × ${money(PACKS[i].p)}` : ""))
-                  .filter(Boolean)
-                  .reverse()
-                  .map((l) => (
-                    <span
-                      key={l}
-                      className="rounded-full bg-white/10 px-2.5 py-1 text-[12.5px] font-semibold"
-                    >
-                      {l}
-                    </span>
-                  ))}
+                <span className="rounded-full bg-white/10 px-2.5 py-1 text-[12.5px] font-semibold">
+                  {num(r.got)} Yunits · {money(r.cost)}
+                  {r.pct ? ` · +${r.pct} %` : ""}
+                </span>
               </div>
               <span className="text-[12.5px] text-yc-on-night-2">
                 {left > 0 ? s.left.replace("{n}", num(left)) : s.exact}
