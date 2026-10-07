@@ -123,7 +123,13 @@ function PriceCard({ annual }: { annual: boolean }) {
         </p>
         <div className="mt-6 flex flex-col gap-2.5">
           <div className="flex items-center gap-3 rounded-[16px] bg-yc-sand-50 p-3">
-            <img src={yunitStack} alt="" className="size-12 flex-none object-contain" />
+            <img
+              src={yunitStack}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="size-12 flex-none object-contain"
+            />
             <span className="text-[14.5px] leading-[1.45] text-yc-sand-700">
               <Rich text={p.monthlyYunits} />{" "}
               <span className="text-yc-sand-500">· {p.monthlyYunitsSub}</span>

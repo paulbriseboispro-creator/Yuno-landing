@@ -84,6 +84,9 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+// Route ids of the Yuno CRM page (crm.yunoapp.eu "/", "/fr", "/es").
+const CRM_ROUTE_IDS = new Set<string>(["/crm", "/fr/crm", "/es/crm"]);
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   beforeLoad: ({ location }) => {
     const path = location.pathname;
@@ -142,9 +145,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     }
     return { locale: "en" as Locale, lang: "en" as LandingLang, landing };
   },
-  head: ({ match }) => {
+  head: ({ match, matches }) => {
     const { locale, lang } = match.context;
     const m = common[locale].meta;
+    // The Yuno CRM page draws only with its own faces (Bricolage / Geist, from
+    // crmHead): skip the landing's Inter + Newsreader there, a render-blocking
+    // stylesheet that delayed its first paint for nothing.
+    const crmPage = matches.some((r) => CRM_ROUTE_IDS.has(r.routeId));
     return {
       meta: [
         { charSet: "utf-8" },
@@ -174,10 +181,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { rel: "stylesheet", href: appCss },
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-        {
-          rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap",
-        },
+        ...(crmPage
+          ? []
+          : [
+              {
+                rel: "stylesheet",
+                href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap",
+              },
+            ]),
       ],
       // The landing routes emit the full @graph (Organization included) from
       // landingHead(); every other page gets the same Organization entity here.

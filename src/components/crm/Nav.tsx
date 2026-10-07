@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { AnimatePresence, motion, useScroll, useSpring } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -91,12 +91,11 @@ export function CrmNav() {
         )}
         data-ph-area="nav"
       >
-        <motion.nav
-          initial={{ opacity: 0, y: -22, filter: "blur(8px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.8, ease: EASE, delay: 0.05 }}
+        {/* Drops in from the first paint (CSS .yc-rise), not after hydration. */}
+        <nav
+          style={{ "--d": "0.05s", "--rise-y": "-22px", "--rise-blur": "8px" } as CSSProperties}
           className={cn(
-            "pointer-events-auto mx-auto flex h-[60px] max-w-[860px] items-center justify-between gap-3 rounded-full border bg-white/[.86] pl-4 pr-2 backdrop-blur-[14px] transition-[box-shadow,border-color] duration-300 sm:pl-5",
+            "yc-rise pointer-events-auto mx-auto flex h-[60px] max-w-[860px] items-center justify-between gap-3 rounded-full border bg-white/[.86] pl-4 pr-2 backdrop-blur-[14px] transition-[box-shadow,border-color] duration-300 sm:pl-5",
             scrolled
               ? "border-yc-sand-200 shadow-[0_1px_2px_rgba(28,21,23,.05),0_10px_30px_-10px_rgba(28,21,23,.18)]"
               : "border-yc-sand-100 shadow-[var(--shadow-sm)]",
@@ -107,14 +106,19 @@ export function CrmNav() {
           </a>
           <div className="hidden min-w-0 flex-1 justify-center gap-0.5 md:flex">
             {c.nav.links.map((l, i) => (
-              <motion.a
+              <a
                 key={l.href}
                 href={l.href}
-                initial={{ opacity: 0, y: -6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: EASE, delay: 0.25 + i * 0.06 }}
+                style={
+                  {
+                    "--d": `${0.25 + i * 0.06}s`,
+                    "--rise-y": "-6px",
+                    "--rise-blur": "0px",
+                    "--dur": "0.6s",
+                  } as CSSProperties
+                }
                 className={cn(
-                  "relative whitespace-nowrap rounded-full px-3.5 py-2 text-[14.5px] font-semibold transition-colors",
+                  "yc-rise relative whitespace-nowrap rounded-full px-3.5 py-2 text-[14.5px] font-semibold transition-colors",
                   active === l.href.slice(1) ? "text-yc-ink" : "text-yc-sand-600 hover:text-yc-ink",
                 )}
               >
@@ -126,7 +130,7 @@ export function CrmNav() {
                   />
                 )}
                 {l.label}
-              </motion.a>
+              </a>
             ))}
           </div>
           <div className="flex flex-none items-center gap-1.5">
@@ -148,7 +152,7 @@ export function CrmNav() {
               <Menu className="size-5" />
             </button>
           </div>
-        </motion.nav>
+        </nav>
       </div>
 
       <AnimatePresence>

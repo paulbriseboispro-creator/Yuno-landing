@@ -10,6 +10,7 @@ export function TicketingPhone({ className }: { className?: string }) {
       alt=""
       width={989}
       height={2000}
+      loading="lazy"
       decoding="async"
       className={cn(
         "block h-auto w-[280px] drop-shadow-[0_40px_50px_rgba(28,21,23,.35)]",

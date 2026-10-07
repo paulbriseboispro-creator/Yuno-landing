@@ -20,7 +20,6 @@ import { Avatar, CtaButton, EASE, YunitFace } from "./ui";
 const START = 0.25;
 
 function Headline({ text, accent }: { text: string; accent: string }) {
-  const reduce = useReducedMotion();
   const a0 = text.indexOf(accent);
   const a1 = a0 + accent.length;
   let pos = 0;
@@ -29,23 +28,33 @@ function Headline({ text, accent }: { text: string; accent: string }) {
     pos += w.length + 1;
     return { w, accent: a0 >= 0 && start >= a0 && start < a1 };
   });
+  // Word by word out of a blur, in CSS (see .yc-rise in crm.css): visible from
+  // the first paint, without waiting for the JavaScript.
   return (
     <h1 className="yc-display mx-auto max-w-[15ch] text-yc-ink md:max-w-[17ch]">
       {words.map((x, i) => (
         <Fragment key={i}>
-          <motion.span
-            className={x.accent ? "yc-accent inline-block" : "inline-block"}
-            initial={reduce ? false : { opacity: 0, y: "0.45em", filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 0.8, ease: EASE, delay: START + i * 0.045 }}
+          <span
+            className={x.accent ? "yc-accent yc-rise inline-block" : "yc-rise inline-block"}
+            style={rise(START + i * 0.045, "0.45em", "10px")}
           >
             {x.w}
-          </motion.span>
+          </span>
           {i < words.length - 1 ? " " : null}
         </Fragment>
       ))}
     </h1>
   );
+}
+
+// Inline variables of the CSS entrance (.yc-rise): delay, travel and blur.
+function rise(d: number, y?: string, blur?: string, dur?: number): CSSProperties {
+  return {
+    "--d": `${d}s`,
+    ...(y ? { "--rise-y": y } : {}),
+    ...(blur ? { "--rise-blur": blur } : {}),
+    ...(dur ? { "--dur": `${dur}s` } : {}),
+  } as CSSProperties;
 }
 
 function Toasts({ run }: { run: boolean }) {
@@ -182,46 +191,32 @@ export function CrmHero() {
       />
 
       <div className="relative mx-auto max-w-[1180px] px-4 text-center sm:px-6">
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: 10, filter: "blur(6px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
-          className="mb-5 inline-flex max-w-full items-center gap-2 whitespace-nowrap rounded-full border border-yc-sand-200 bg-white/90 py-1 pl-1 pr-3 text-[12.5px] font-semibold text-yc-sand-700 shadow-[var(--shadow-xs)] backdrop-blur sm:mb-6 sm:pr-3.5 sm:text-[13.5px]"
+        <div
+          style={rise(0.15, "10px", "6px", 0.7)}
+          className="yc-rise mb-5 inline-flex max-w-full items-center gap-2 whitespace-nowrap rounded-full border border-yc-sand-200 bg-white/90 py-1 pl-1 pr-3 text-[12.5px] font-semibold text-yc-sand-700 shadow-[var(--shadow-xs)] backdrop-blur sm:mb-6 sm:pr-3.5 sm:text-[13.5px]"
         >
           <span className="inline-flex h-[26px] flex-none items-center rounded-full bg-yc-ink px-2.5 text-[12px] font-semibold text-white">
             {h.eyebrowTag}
           </span>
           <img src={shotgunLogo} alt="" className="size-[18px] rounded-[5px]" />
           {h.eyebrow}
-        </motion.div>
+        </div>
 
         <Headline text={h.title} accent={h.accent} />
 
-        <motion.p
-          initial={reduce ? false : { opacity: 0, y: 14, filter: "blur(6px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.8, ease: EASE, delay: 0.75 }}
-          className="yc-lead mx-auto mt-6 max-w-[40rem]"
-        >
+        <p style={rise(0.75)} className="yc-rise yc-lead mx-auto mt-6 max-w-[40rem]">
           {h.sub}
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={reduce ? false : { opacity: 0, scale: 0.94, y: 8 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.9 }}
-          className="relative z-10 mt-9 flex justify-center"
-        >
+        <div style={rise(0.9)} className="yc-pop relative z-10 mt-9 flex justify-center">
           <CtaButton size="lg" ring cta="hero_crm">
             {h.cta}
           </CtaButton>
-        </motion.div>
+        </div>
 
-        <motion.ul
-          initial={reduce ? false : { opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: EASE, delay: 1.05 }}
-          className="mx-auto mt-7 grid max-w-[24rem] grid-cols-3 text-[12.5px] font-medium leading-[1.3] text-yc-sand-700 sm:mt-8 sm:flex sm:max-w-none sm:flex-wrap sm:items-center sm:justify-center sm:gap-y-2 sm:text-[14.5px] sm:leading-normal"
+        <ul
+          style={rise(1.05, "8px", "0px", 0.7)}
+          className="yc-rise mx-auto mt-7 grid max-w-[24rem] grid-cols-3 text-[12.5px] font-medium leading-[1.3] text-yc-sand-700 sm:mt-8 sm:flex sm:max-w-none sm:flex-wrap sm:items-center sm:justify-center sm:gap-y-2 sm:text-[14.5px] sm:leading-normal"
         >
           {h.trust.map((t, i) => {
             const Icon = [ShieldCheck, Clock3, CreditCard][i] ?? ShieldCheck;
@@ -249,7 +244,7 @@ export function CrmHero() {
               </li>
             );
           })}
-        </motion.ul>
+        </ul>
       </div>
 
       {/* Phone: the Console at phone width */}

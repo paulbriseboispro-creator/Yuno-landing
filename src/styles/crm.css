@@ -636,13 +636,55 @@ html:has(.ycrm) {
   }
 }
 
+/*
+ * Above-the-fold entrance (nav, eyebrow, headline words, sub, CTA, trust row):
+ * plain CSS so it plays from the first paint. Driven by JS (motion `initial`),
+ * the server HTML carried all of it at opacity 0 until hydration: on a phone
+ * the headline and the lead appeared ~9 s after the request (Lighthouse LCP).
+ * Same timings and curve as before; `--d` is each element's delay.
+ */
+@keyframes yc-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--rise-y, 14px));
+    filter: blur(var(--rise-blur, 6px));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+@keyframes yc-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.94);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-1px) scale(1.015);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+.yc-rise {
+  animation: yc-rise var(--dur, 0.8s) cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s) both;
+}
+.yc-pop {
+  animation: yc-pop 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .yc-marquee__track,
   .yc-tour,
   .yc-float,
   .yc-live,
   .yc-caret,
-  .yc-shine::after {
+  .yc-shine::after,
+  .yc-rise,
+  .yc-pop {
     animation: none !important;
   }
 }
