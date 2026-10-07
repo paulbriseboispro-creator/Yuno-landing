@@ -71,6 +71,7 @@ export function CrmFaq() {
                     type="button"
                     onClick={() => setOpen(on ? -1 : i)}
                     aria-expanded={on}
+                    aria-controls={`yc-faq-${i}`}
                     className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left sm:gap-5 sm:px-6 sm:py-5"
                   >
                     <span className="text-[16px] font-semibold leading-[1.35] text-yc-ink sm:text-[18px]">
@@ -89,21 +90,23 @@ export function CrmFaq() {
                       )}
                     </span>
                   </button>
-                  <AnimatePresence initial={false}>
-                    {on && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease: EASE }}
-                        className="overflow-hidden"
-                      >
-                        <p className="px-5 pb-5 text-[15px] leading-[1.6] text-yc-sand-600 sm:px-6 sm:pb-6 sm:pr-16 sm:text-[15.5px] sm:leading-[1.65]">
-                          {it.a}
-                        </p>
-                      </motion.div>
+                  {/* Every answer stays in the HTML (search engines and AI
+                      assistants read them all); closed ones fold to zero height. */}
+                  <div
+                    id={`yc-faq-${i}`}
+                    role="region"
+                    aria-label={it.q}
+                    className={cn(
+                      "grid transition-[grid-template-rows,opacity] duration-[350ms] [transition-timing-function:cubic-bezier(.22,1,.36,1)]",
+                      on ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
                     )}
-                  </AnimatePresence>
+                  >
+                    <div className="overflow-hidden" inert={!on}>
+                      <p className="px-5 pb-5 text-[15px] leading-[1.6] text-yc-sand-600 sm:px-6 sm:pb-6 sm:pr-16 sm:text-[15.5px] sm:leading-[1.65]">
+                        {it.a}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </Reveal>
             );
@@ -159,6 +162,8 @@ export function CrmFinal() {
         src={yunitStack}
         alt=""
         aria-hidden
+        loading="lazy"
+        decoding="async"
         style={{ y: stackY }}
         className="pointer-events-none absolute left-[4%] top-[22%] -z-10 hidden w-[180px] rotate-[-12deg] drop-shadow-[0_24px_30px_rgba(157,11,18,.3)] md:block lg:w-[220px]"
       />
@@ -166,6 +171,8 @@ export function CrmFinal() {
         src={yunitCoin}
         alt=""
         aria-hidden
+        loading="lazy"
+        decoding="async"
         style={{ y: coinY }}
         className="pointer-events-none absolute right-[6%] top-[14%] -z-10 hidden w-[120px] rotate-[16deg] drop-shadow-[0_24px_30px_rgba(157,11,18,.3)] md:block lg:w-[150px]"
       />
