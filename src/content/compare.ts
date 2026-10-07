@@ -157,6 +157,7 @@ const shotgunFr: ComparePageContent = {
         "Vous organisez surtout des soirées électro et comptez sur la découverte dans l'app pour trouver du public.",
         "Vous vendez uniquement des billets, sans tables ni bar à gérer.",
         "La revente officielle de billets est importante pour votre public.",
+        "Vous gardez Shotgun pour vendre : Yuno CRM s'y branche pour fidéliser vos acheteurs (crm.yunoapp.eu).",
       ],
     },
     yuno: {
@@ -230,6 +231,10 @@ const shotgunFr: ComparePageContent = {
   related: {
     title: "Pour aller plus loin",
     links: [
+      {
+        label: "Garder Shotgun et ajouter un CRM : Shotgun + Yuno CRM",
+        href: "https://crm.yunoapp.eu/fr/shotgun-crm",
+      },
       { label: "Yuno face à Weezevent, Eventbrite, Xceed et DICE", href: "/fr#compare" },
       { label: "Tarifs Yuno : 0 € d'abonnement, 0 % de commission", href: "/fr#pricing" },
       { label: "Alternativa a Fourvenues (ES)", href: "/es/alternativa-fourvenues" },
@@ -495,6 +500,7 @@ const shotgunEn: ComparePageContent = {
   related: {
     title: "Read next",
     links: [
+      { label: "Keep Shotgun and add a CRM: Yuno CRM", href: "https://crm.yunoapp.eu/" },
       { label: "Yuno vs Weezevent, Eventbrite, Xceed and DICE", href: "/#compare" },
       { label: "Yuno pricing: €0 subscription, 0% commission", href: "/#pricing" },
       { label: "Alternativa a Fourvenues (ES)", href: "/es/alternativa-fourvenues" },
