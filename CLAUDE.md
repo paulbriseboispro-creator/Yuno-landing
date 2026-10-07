@@ -96,6 +96,11 @@ Starting from `main` silently throws away the newest design and copy. So, before
   landing image leaks its `secure_url` and alt. Never import app modules into
   `src/server.ts`: their constants become exports of the Worker entry and the deploy is
   rejected ("Incorrect type for map entry"). Try it locally on `crm.localhost:<port>`.
+- SEO (France): strategy, SERP findings and to-dos in `docs/seo-crm-france.md`. Rules: every FAQ answer stays
+  in the HTML (closed ones fold in CSS, never unmounted); above-the-fold entrance is CSS (`.yc-rise` / `.yc-pop`
+  in `crm.css`), never a motion `initial` (it ships the hero at opacity 0 until hydration: LCP 9.5 s);
+  relayed app screens get `X-Robots-Tag: noindex` (`relayToApp`); never claim Shotgun lacks contacts,
+  segments or newsletters (it has them) — say what Yuno CRM adds.
 - Second product: organizers and clubs who KEEP their ticketing (Shotgun first). Page
   `src/pages/crm.tsx`, sections `src/components/crm/*`, copy `src/content/crm.ts` (EN/FR/ES,
   shape-checked: `fr` is the shape), head/JSON-LD `src/i18n/crm.ts` (bump `CRM_UPDATED`), paths
