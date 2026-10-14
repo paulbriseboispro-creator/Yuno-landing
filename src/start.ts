@@ -1,7 +1,6 @@
 import { createStart, createMiddleware } from "@tanstack/react-start";
 
 import { renderErrorPage } from "./lib/error-page";
-import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
 import { hostRoute, relayToApp } from "@/i18n/hosts";
 
 // landing.yunoapp.eu/crm → crm.yunoapp.eu, and crm.yunoapp.eu serves the CRM
@@ -46,6 +45,5 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
 });
 
 export const startInstance = createStart(() => ({
-  functionMiddleware: [attachSupabaseAuth],
   requestMiddleware: [hostMiddleware, errorMiddleware],
 }));

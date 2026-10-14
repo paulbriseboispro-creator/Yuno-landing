@@ -44,7 +44,7 @@ Starting from `main` silently throws away the newest design and copy. So, before
   `pro_signups` (RPC `track_pro_signup`), opens the club / organizer space with
   `complete_pro_signup`, then hands the session to `yunoapp.eu/auth/handoff`. Server side lives
   in the `yuno` repo (migration `20260924120000_pro_self_signup.sql`, super admin
-  `/admin/signups`). `demo_leads` (this project's Supabase) is only a fallback safety net now.
+  `/admin/signups`). The contact form (`submitLead`) calls the app's public RPC `submit_landing_contact_lead` (table `landing_contact_leads`); the landing has no Supabase project of its own since Oct 2026.
 
 ## Student-association landing (`/fr/associations`, `/associations`, `/es/asociaciones`)
 - Separate audience (BDE, BDS, BDA, ESN…), separate story: page `src/pages/asso.tsx`, sections in

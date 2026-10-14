@@ -15,19 +15,21 @@ const schema = z.object({
 export const submitLead = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => schema.parse(data))
   .handler(async ({ data }) => {
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { error } = await supabaseAdmin.from("demo_leads").insert({
-      segment: data.segment,
-      name: data.name,
-      email: data.email,
-      company: data.company || null,
-      role: data.role || null,
-      phone: data.phone || null,
-      message: data.message || null,
-      source: data.source || null,
+    // The contact form writes to the Yuno app's Supabase (one project to run):
+    // a public RPC, so the Worker needs the publishable key only, no secret.
+    const { yunoApp } = await import("@/lib/yuno-app");
+    const { error } = await yunoApp().rpc("submit_landing_contact_lead", {
+      p_segment: data.segment,
+      p_name: data.name,
+      p_email: data.email,
+      p_company: data.company || null,
+      p_role: data.role || null,
+      p_phone: data.phone || null,
+      p_message: data.message || null,
+      p_source: data.source || null,
     });
     if (error) {
-      console.error("[demo_leads] insert failed", error);
+      console.error("[landing_contact_leads] insert failed", error);
       throw new Error("Could not save your request. Please try again.");
     }
     return { ok: true as const };
