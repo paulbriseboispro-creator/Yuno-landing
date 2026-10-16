@@ -1,26 +1,21 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
-  ArrowLeft,
   ArrowRight,
   BadgeCheck,
   Check,
-  Clock,
   GraduationCap,
   Lock,
   Mail,
-  Minus,
-  Plus,
   ScanLine,
   Ticket,
-  Users,
   Wallet,
   type LucideIcon,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { useLanding } from "@/components/landing/context";
 import { EASE, FounderCta } from "@/components/landing/ui";
 import { useAsso } from "./content";
+import phoneEvent from "@/assets/asso/phone-event.webp";
 
 const NOTIF_ICONS: Record<string, { Icon: LucideIcon; bg: string; fg: string }> = {
   ticket: { Icon: Ticket, bg: "#E8192C26", fg: "#E8192C" },
@@ -203,132 +198,20 @@ export function AssoHero() {
   );
 }
 
-// The student's ticket page, drawn in the app's dark UI (same layout as the
-// real checkout: tiers, guest list, service fee shown before paying).
+// The real event page of the client app (Amoris night, framed iPhone): what a
+// student sees when they open the link from the association's Instagram.
 function PhoneMock() {
-  const p = useAsso().hero.phone;
+  const alt = useAsso().hero.phone.alt;
   return (
-    <div className="yl-keep relative rounded-[2.6rem] bg-zinc-950 p-2.5 shadow-[0_0_0_1px_rgba(10,10,11,0.9),0_50px_100px_-30px_rgba(10,10,11,0.55),0_18px_40px_-18px_rgba(232,25,44,0.35)]">
-      <div className="relative overflow-hidden rounded-[2.1rem] bg-[#0b0b0c] text-white">
-        <div className="absolute left-1/2 top-2.5 z-10 h-[22px] w-[88px] -translate-x-1/2 rounded-full bg-black" />
-        <div className="bg-[radial-gradient(120%_90%_at_50%_0%,rgba(232,25,44,0.45),transparent_70%)] px-5 pb-5 pt-12">
-          <span className="flex size-8 items-center justify-center rounded-lg bg-white/10">
-            <ArrowLeft className="size-4" />
-          </span>
-          <p className="mt-5 text-[22px] font-extrabold uppercase tracking-tight">{p.heading}</p>
-          <p className="text-[13px] text-white/60">{p.event}</p>
-        </div>
-
-        <div className="px-5">
-          <div className="flex items-center justify-between">
-            {p.steps.map((st, i) => (
-              <div key={st} className="flex flex-1 items-center">
-                <div className="flex flex-col items-center gap-1">
-                  <span
-                    className={cn(
-                      "flex size-6 items-center justify-center rounded-full border text-[10px] font-semibold",
-                      i === 0
-                        ? "border-[#E8192C] bg-[#E8192C]/15 text-[#ff4d5e]"
-                        : "border-white/15 text-white/35",
-                    )}
-                  >
-                    {i + 1}
-                  </span>
-                  <span
-                    className={cn(
-                      "font-mono text-[8.5px] uppercase tracking-[0.14em]",
-                      i === 0 ? "text-white" : "text-white/30",
-                    )}
-                  >
-                    {st}
-                  </span>
-                </div>
-                {i < p.steps.length - 1 && <span className="mx-1.5 mb-4 h-px flex-1 bg-white/10" />}
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-4 space-y-2">
-            {p.tiers.map((tier, i) => {
-              const soldOut = !!tier.status;
-              return (
-                <div
-                  key={tier.name}
-                  className={cn(
-                    "flex items-center justify-between rounded-xl border px-3.5 py-3",
-                    soldOut ? "border-white/5 bg-white/[0.03]" : "border-white/15 bg-white/[0.06]",
-                  )}
-                >
-                  <div>
-                    <p
-                      className={cn(
-                        "text-[12.5px] font-bold uppercase tracking-wide",
-                        soldOut && "text-white/40 line-through",
-                      )}
-                    >
-                      {tier.name}
-                    </p>
-                    <p className={cn("text-[15px] font-bold", soldOut && "text-white/40")}>
-                      {tier.price}
-                    </p>
-                  </div>
-                  {soldOut ? (
-                    <span className="rounded-md bg-white/10 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-white/60">
-                      {tier.status}
-                    </span>
-                  ) : (
-                    <div className="flex items-center gap-2">
-                      <span className="flex size-7 items-center justify-center rounded-md bg-white/5 text-white/40">
-                        <Minus className="size-3.5" />
-                      </span>
-                      <span className="w-3 text-center text-[14px] font-semibold">{i}</span>
-                      <span className="flex size-7 items-center justify-center rounded-md bg-[#E8192C]">
-                        <Plus className="size-3.5" />
-                      </span>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="my-3 flex items-center gap-2 text-[9.5px] font-semibold uppercase tracking-[0.16em] text-white/35">
-            <span className="h-px flex-1 bg-white/10" />
-            <Users className="size-3" />
-            Guest list
-            <span className="h-px flex-1 bg-white/10" />
-          </div>
-          <div className="flex items-center justify-between rounded-xl border border-emerald-500/30 bg-emerald-500/[0.06] px-3.5 py-3">
-            <div className="min-w-0">
-              <p className="flex items-center gap-2 text-[13px] font-semibold">
-                <span className="truncate">{p.guest}</span>
-                <span className="rounded bg-emerald-500/15 px-1.5 py-0.5 text-[9px] font-bold uppercase text-emerald-400">
-                  {p.free}
-                </span>
-              </p>
-              <p className="mt-1 flex items-center gap-1 text-[10.5px] text-white/50">
-                <Clock className="size-3" />
-                {p.guestMeta}
-              </p>
-            </div>
-            <div className="shrink-0 text-right">
-              <p className="text-[18px] font-bold text-emerald-400">0 €</p>
-              <p className="text-[9.5px] text-white/40">{p.guestLeft}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-4 border-t border-white/10 px-5 pb-6 pt-3">
-          <div className="flex items-center justify-between text-[11.5px] text-white/55">
-            <span>{p.fee}</span>
-            <span className="font-semibold text-white/80">{p.feeValue}</span>
-          </div>
-          <div className="mt-3 flex h-11 items-center justify-center rounded-xl bg-[#E8192C] text-[14px] font-semibold">
-            {p.pay}
-          </div>
-        </div>
-      </div>
-    </div>
+    <img
+      src={phoneEvent}
+      alt={alt}
+      width={988}
+      height={2000}
+      fetchPriority="high"
+      decoding="async"
+      className="yl-keep relative mx-auto h-auto w-full drop-shadow-[0_40px_60px_rgba(10,10,11,0.35)]"
+    />
   );
 }
 

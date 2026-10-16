@@ -58,20 +58,7 @@ const fr = {
     note: ["0 € pour l'asso", "Compte créé en 2 minutes", "Sans carte bancaire"],
     types: ["Soirées d'inté", "WEI", "Galas", "Afterworks", "Soirées en club", "Tournois"],
     phone: {
-      heading: "Billets",
-      event: "Soirée d'intégration",
-      steps: ["Sélection", "Résumé", "Paiement"],
-      tiers: [
-        { name: "Early", price: "8,00 €", status: "Complet" },
-        { name: "Prévente", price: "10,00 €", status: "" },
-      ],
-      guest: "Guest list bureau",
-      free: "Gratuit",
-      guestMeta: "Entrée gratuite avant 23:30",
-      guestLeft: "40 places",
-      fee: "Frais de service",
-      feeValue: "0,49 €",
-      pay: "Payer 10,49 €",
+      alt: "La page d'une soirée sur Yuno, telle que l'étudiant l'ouvre : affiche, date, horaires et bouton « Réserver · dès 6 € ».",
     },
     notifications: [
       { icon: "ticket", title: "+46 places vendues", meta: "Depuis la story de l'asso · 1 h" },
@@ -554,20 +541,7 @@ const en: AssoContent = {
     note: ["€0 for the association", "Account ready in 2 minutes", "No credit card"],
     types: ["Welcome parties", "Socials", "Galas", "Afterworks", "Club nights", "Tournaments"],
     phone: {
-      heading: "Tickets",
-      event: "Welcome party",
-      steps: ["Selection", "Summary", "Payment"],
-      tiers: [
-        { name: "Early", price: "€8.00", status: "Sold out" },
-        { name: "Presale", price: "€10.00", status: "" },
-      ],
-      guest: "Committee guest list",
-      free: "Free",
-      guestMeta: "Free entry before 11:30 pm",
-      guestLeft: "40 spots",
-      fee: "Service fee",
-      feeValue: "€0.49",
-      pay: "Pay €10.49",
+      alt: "A night's page on Yuno, as a student opens it: poster, date, opening hours and a “Book · from €6” button.",
     },
     notifications: [
       { icon: "ticket", title: "+46 tickets sold", meta: "From the association's story · 1 h" },
@@ -1041,20 +1015,7 @@ const es: AssoContent = {
       "Torneos",
     ],
     phone: {
-      heading: "Entradas",
-      event: "Fiesta de bienvenida",
-      steps: ["Selección", "Resumen", "Pago"],
-      tiers: [
-        { name: "Early", price: "8,00 €", status: "Agotada" },
-        { name: "Preventa", price: "10,00 €", status: "" },
-      ],
-      guest: "Lista de la junta",
-      free: "Gratis",
-      guestMeta: "Entrada gratis antes de las 23:30",
-      guestLeft: "40 plazas",
-      fee: "Gastos de gestión",
-      feeValue: "0,49 €",
-      pay: "Pagar 10,49 €",
+      alt: "La página de una fiesta en Yuno, tal como la abre el estudiante: cartel, fecha, horario y botón «Reservar · desde 6 €».",
     },
     notifications: [
       {
