@@ -6,9 +6,16 @@
 //  - An "asso" account is an ORGANIZER account that a super admin flags
 //    `bde_verified` (organizer_profiles). The flag lowers the MINIMUM service fee
 //    paid by the buyer on tickets and tables from €0.99 to €0.49 (the 4% rate
-//    and the €25 table cap don't change) and makes the association's nights
-//    private by default: link-only, never in public search; going public is a
-//    request a Yuno admin approves.
+//    and the €25 table cap don't change) and gives 2,000 campaign emails a
+//    month (15,000 for a standard pro). The association picks private
+//    (link-only, never in search) or public itself, night by night — no
+//    moderation since 2026-09-27.
+//  - Club nights: the club is INVITED on the night (on Yuno or by email);
+//    acceptance is the agreement. Money is either settled between the parties
+//    or framed by Yuno: signed contract (split per pillar or tiered on the
+//    night's revenue), ONE party collects (direct charge, no automatic Stripe
+//    split), Yuno computes the statement after the night and tracks the bank
+//    transfer of the other share. Drinks are paused: never sell the bar.
 //  - The self-serve signup opens an organizer account (complete_pro_signup) and
 //    tags the journey `source = asso…` so the admin knows to verify it. Until
 //    then the standard minimum applies — the copy says the rate is switched on
@@ -142,8 +149,8 @@ const fr = {
       },
       {
         id: "private",
-        title: "Soirées privées par défaut",
-        body: "Accessibles uniquement par votre lien, jamais affichées dans la recherche publique. Une soirée peut devenir publique sur demande.",
+        title: "Soirée privée ou publique",
+        body: "Privée : accessible seulement par votre lien, jamais dans la recherche. Publique : visible dans Yuno. C'est l'asso qui choisit, soirée par soirée.",
       },
       {
         id: "door",
@@ -158,12 +165,12 @@ const fr = {
       {
         id: "club",
         title: "Soirées en club",
-        body: "Le partage avec le club se signe dans Yuno, et le décompte de fin de soirée se valide à deux. Fini les comptes en cash à 6 h.",
+        body: "Invitez le club sur votre soirée. Le deal se règle entre vous ou s'encadre dans Yuno, avec un décompte calculé et un virement suivi. Fini les comptes en cash à 6 h.",
       },
       {
         id: "mail",
         title: "Emails à vos étudiants",
-        body: "Chaque acheteur rejoint la base de l'asso. Annoncez la prochaine date, relancez les indécis : 15 000 emails/mois inclus.",
+        body: "Chaque acheteur rejoint la base de l'asso. Annoncez la prochaine date, relancez les indécis : 2 000 emails/mois offerts.",
       },
       {
         id: "team",
@@ -174,12 +181,12 @@ const fr = {
   },
   club: {
     eyebrow: "Soirées en club",
-    title: "Une soirée en boîte ? Le deal avec le club, signé dans Yuno.",
-    body: "La plupart des soirées d'asso se font en club. Connectez le club à votre soirée et fixez le partage pilier par pilier : billets, tables, bar. À la fermeture, le club déclare ses recettes, vous validez ou contestez. Rien ne part sans votre accord.",
+    title: "Une soirée en boîte ? Invitez le club, le deal suit.",
+    body: "La plupart des soirées d'asso se font en club. Invitez le club sur votre soirée, même s'il n'est pas encore sur Yuno : son acceptation vaut accord. L'argent, vous le réglez entre vous, ou Yuno l'encadre : contrat signé, partage des billets et des tables, décompte calculé après la soirée et virement suivi jusqu'au « Bien reçu ».",
     bullets: [
-      "Contrat signé dans Yuno avant la soirée, pas sur un coin de table",
+      "Le club invité en un lien, son acceptation vaut accord",
       "Billets, guest list et tables vendus sur la même page",
-      "Décompte validé par les deux, chacun payé sur son propre compte",
+      "Un seul encaisse, Yuno calcule la part de l'autre et suit le virement",
     ],
     card: {
       title: "Contrat asso × club",
@@ -187,10 +194,10 @@ const fr = {
       rows: [
         { label: "Billets", value: "80 % asso · 20 % club" },
         { label: "Guest list", value: "Gratuite avant 23:30" },
-        { label: "Bar", value: "100 % club" },
+        { label: "Encaisse", value: "L'asso" },
       ],
       closing: "Décompte de fin de soirée",
-      closingMeta: "Validé par l'asso et le club",
+      closingMeta: "Calculé par Yuno · virement envoyé et reçu",
       party: "Asso",
       venue: "Club",
     },
@@ -286,12 +293,12 @@ const fr = {
     included: [
       "Billets à paliers, préventes, codes adhérents",
       "Guest list avec quotas et QR nominatifs",
-      "Soirées privées par défaut",
+      "Soirées privées ou publiques, au choix",
       "Scan à l'entrée, codes PIN pour le bureau",
       "Tables et carrés pour les galas",
-      "Contrat et décompte avec le club",
+      "Accord, décompte et virement suivis avec le club",
       "Stripe Connect au nom de l'asso, exports",
-      "15 000 emails/mois à vos étudiants",
+      "2 000 emails/mois offerts à vos étudiants",
       "Apple Wallet, FR · EN · ES",
     ],
     cta: "Créer le compte asso",
@@ -322,7 +329,7 @@ const fr = {
         points: [
           "0 % de commission sur le prix de vos billets, là où Shotgun prélève une commission sur vos ventes",
           "L'argent sur le compte de l'asso au fil des ventes, pas viré 24 h après la soirée",
-          "Le contrat avec le club et le décompte validé à deux, pour vos soirées en boîte",
+          "L'accord avec le club, le décompte et le virement suivis dans Yuno, pour vos soirées en boîte",
         ],
         honest: "",
       },
@@ -378,7 +385,7 @@ const fr = {
       },
       {
         q: "Nos soirées sont-elles visibles par tout le monde ?",
-        a: "Non. Les soirées d'une asso sont privées par défaut : accessibles uniquement par le lien que vous partagez, jamais affichées dans la recherche publique. Vous pouvez demander à rendre une soirée publique ; l'équipe Yuno valide la demande.",
+        a: "C'est vous qui choisissez, soirée par soirée. Privée : accessible uniquement par le lien que vous partagez, jamais affichée dans la recherche. Publique : elle apparaît dans Yuno comme la soirée de n'importe quel organisateur.",
       },
       {
         q: "Peut-on faire un tarif adhérent ?",
@@ -394,7 +401,7 @@ const fr = {
       },
       {
         q: "Et pour une soirée en boîte ?",
-        a: "Connectez le club à votre soirée. Le partage se signe dans Yuno pilier par pilier (billets, tables, bar). À la fermeture, le club déclare ses recettes, vous validez ou contestez, et chacun est payé sur son propre compte.",
+        a: "Invitez le club sur votre soirée, depuis Yuno ou par email s'il n'y est pas encore. Ensuite, deux options : vous réglez l'argent entre vous, ou Yuno l'encadre avec un contrat signé (partage des billets et des tables, ou barème sur le CA de la soirée). Une seule partie encaisse, et le club n'a même pas besoin de Stripe si c'est l'asso. Après la soirée, Yuno calcule le décompte et suit le virement de l'autre part jusqu'au « Bien reçu ».",
       },
       {
         q: "Les étudiants doivent-ils télécharger une app ?",
@@ -476,7 +483,6 @@ const fr = {
         hint: "Bureau, partenaires, gratuit avant une heure",
       },
       { id: "tables", label: "Tables & carrés", hint: "Pour les galas et les soirées en club" },
-      { id: "drinks", label: "Boissons", hint: "Commande au QR du bar" },
     ],
     tool: "Vous utilisez quoi aujourd'hui ?",
     toolOpts: [
@@ -617,8 +623,8 @@ const en: AssoContent = {
       },
       {
         id: "private",
-        title: "Private nights by default",
-        body: "Reachable only through your link, never shown in public search. A night can go public on request.",
+        title: "Private or public night",
+        body: "Private: reachable only through your link, never in search. Public: visible on Yuno. The association decides, night by night.",
       },
       {
         id: "door",
@@ -633,12 +639,12 @@ const en: AssoContent = {
       {
         id: "club",
         title: "Club nights",
-        body: "The split with the club is signed in Yuno, and the end-of-night statement is approved by both sides. No more cash counting at 6 am.",
+        body: "Invite the club to your night. Settle the deal between you or let Yuno frame it, with a computed statement and a tracked bank transfer. No more cash counting at 6 am.",
       },
       {
         id: "mail",
         title: "Emails to your students",
-        body: "Every buyer joins the association's base. Announce the next date, nudge the undecided: 15,000 emails/month included.",
+        body: "Every buyer joins the association's base. Announce the next date, nudge the undecided: 2,000 emails/month included.",
       },
       {
         id: "team",
@@ -649,12 +655,12 @@ const en: AssoContent = {
   },
   club: {
     eyebrow: "Club nights",
-    title: "A night at a club? The deal with the venue, signed in Yuno.",
-    body: "Most student nights happen in clubs. Connect the club to your night and set the split pillar by pillar: tickets, tables, bar. At closing, the club declares its takings and you approve or dispute. Nothing moves without your agreement.",
+    title: "A night at a club? Invite the venue, the deal follows.",
+    body: "Most student nights happen in clubs. Invite the club to your night, even if it isn't on Yuno yet: accepting is agreeing. Settle the money between you, or let Yuno frame it: a signed contract, the split of tickets and tables, a statement computed after the night and the bank transfer tracked until it's marked received.",
     bullets: [
-      "A contract signed in Yuno before the night, not on a napkin",
+      "The club invited with one link, accepting is agreeing",
       "Tickets, guest list and tables sold on the same page",
-      "A statement approved by both sides, each paid on their own account",
+      "One side collects, Yuno computes the other's share and tracks the transfer",
     ],
     card: {
       title: "Association × club contract",
@@ -662,10 +668,10 @@ const en: AssoContent = {
       rows: [
         { label: "Tickets", value: "80% association · 20% club" },
         { label: "Guest list", value: "Free before 11:30 pm" },
-        { label: "Bar", value: "100% club" },
+        { label: "Collects", value: "The association" },
       ],
       closing: "End-of-night statement",
-      closingMeta: "Approved by the association and the club",
+      closingMeta: "Computed by Yuno · transfer sent and received",
       party: "Assoc.",
       venue: "Club",
     },
@@ -755,12 +761,12 @@ const en: AssoContent = {
     included: [
       "Ticket tiers, presales, member codes",
       "Guest list with quotas and named QR codes",
-      "Private nights by default",
+      "Private or public nights, your choice",
       "Door scanning, PIN codes for the committee",
       "Tables and booths for galas",
-      "Contract and statement with the club",
+      "Agreement, statement and transfer tracked with the club",
       "Stripe Connect in the association's name, exports",
-      "15,000 emails/month to your students",
+      "2,000 emails/month included for your students",
       "Apple Wallet, EN · FR · ES",
     ],
     cta: "Create the association account",
@@ -791,7 +797,7 @@ const en: AssoContent = {
         points: [
           "0% commission on your ticket price, where Shotgun takes a commission on your sales",
           "Money on the association's account as you sell, not transferred 24 h after the night",
-          "The club contract and a statement approved by both sides, for your club nights",
+          "The club agreement, statement and transfer tracked in Yuno, for your club nights",
         ],
         honest: "",
       },
@@ -844,7 +850,7 @@ const en: AssoContent = {
       },
       {
         q: "Can anyone see our nights?",
-        a: "No. An association's nights are private by default: reachable only through the link you share, never shown in public search. You can ask for a night to go public; the Yuno team approves the request.",
+        a: "You choose, night by night. Private: reachable only through the link you share, never shown in search. Public: it appears on Yuno like any organizer's night.",
       },
       {
         q: "Can we have a member price?",
@@ -860,7 +866,7 @@ const en: AssoContent = {
       },
       {
         q: "What about a night at a club?",
-        a: "Connect the club to your night. The split is signed in Yuno pillar by pillar (tickets, tables, bar). At closing, the club declares its takings, you approve or dispute, and each side is paid on its own account.",
+        a: "Invite the club to your night, from Yuno or by email if it isn't on Yuno yet. Then two options: settle the money between you, or let Yuno frame it with a signed contract (split of tickets and tables, or a tiered share of the night's revenue). One side collects, and the club doesn't even need Stripe if the association does. After the night, Yuno computes the statement and tracks the transfer of the other share until it's marked received.",
       },
       {
         q: "Do students need to download an app?",
@@ -941,7 +947,6 @@ const en: AssoContent = {
         hint: "Committee, partners, free before a set time",
       },
       { id: "tables", label: "Tables & booths", hint: "For galas and club nights" },
-      { id: "drinks", label: "Drinks", hint: "Order at the bar's QR" },
     ],
     tool: "What do you use today?",
     toolOpts: [
@@ -1107,8 +1112,8 @@ const es: AssoContent = {
       },
       {
         id: "private",
-        title: "Fiestas privadas por defecto",
-        body: "Accesibles solo con tu enlace, nunca en la búsqueda pública. Una fiesta puede hacerse pública si lo pides.",
+        title: "Fiesta privada o pública",
+        body: "Privada: accesible solo con tu enlace, nunca en la búsqueda. Pública: visible en Yuno. Lo decide la asociación, fiesta por fiesta.",
       },
       {
         id: "door",
@@ -1123,12 +1128,12 @@ const es: AssoContent = {
       {
         id: "club",
         title: "Noches en discoteca",
-        body: "El reparto con la discoteca se firma en Yuno y la liquidación de la noche la aprueban las dos partes. Se acabó contar efectivo a las 6.",
+        body: "Invita a la discoteca a tu fiesta. El trato se arregla entre vosotros o lo enmarca Yuno, con una liquidación calculada y una transferencia seguida. Se acabó contar efectivo a las 6.",
       },
       {
         id: "mail",
         title: "Emails a tus estudiantes",
-        body: "Cada comprador entra en la base de la asociación. Anuncia la próxima fecha, reactiva a los indecisos: 15.000 emails/mes incluidos.",
+        body: "Cada comprador entra en la base de la asociación. Anuncia la próxima fecha, reactiva a los indecisos: 2.000 emails/mes incluidos.",
       },
       {
         id: "team",
@@ -1139,12 +1144,12 @@ const es: AssoContent = {
   },
   club: {
     eyebrow: "Noches en discoteca",
-    title: "¿Una fiesta en discoteca? El trato con el local, firmado en Yuno.",
-    body: "La mayoría de las fiestas de asociación se hacen en discotecas. Conecta la discoteca a tu fiesta y fija el reparto pilar por pilar: entradas, mesas, barra. Al cierre, la discoteca declara su recaudación y tú apruebas o reclamas. Nada se mueve sin tu acuerdo.",
+    title: "¿Una fiesta en discoteca? Invita al local, el trato sigue.",
+    body: "La mayoría de las fiestas de asociación se hacen en discotecas. Invita a la discoteca a tu fiesta, aunque todavía no esté en Yuno: aceptar es estar de acuerdo. El dinero lo arregláis entre vosotros, o lo enmarca Yuno: contrato firmado, reparto de entradas y mesas, liquidación calculada después de la fiesta y transferencia seguida hasta el «Recibido».",
     bullets: [
-      "Contrato firmado en Yuno antes de la fiesta, no en una servilleta",
+      "La discoteca invitada con un enlace, aceptar es estar de acuerdo",
       "Entradas, lista de invitados y mesas vendidas en la misma página",
-      "Liquidación aprobada por las dos partes, cada una cobra en su propia cuenta",
+      "Una parte cobra, Yuno calcula la parte de la otra y sigue la transferencia",
     ],
     card: {
       title: "Contrato asociación × discoteca",
@@ -1152,10 +1157,10 @@ const es: AssoContent = {
       rows: [
         { label: "Entradas", value: "80 % asociación · 20 % local" },
         { label: "Lista", value: "Gratis antes de las 23:30" },
-        { label: "Barra", value: "100 % local" },
+        { label: "Cobra", value: "La asociación" },
       ],
       closing: "Liquidación de la noche",
-      closingMeta: "Aprobada por la asociación y la discoteca",
+      closingMeta: "Calculada por Yuno · transferencia enviada y recibida",
       party: "Asoc.",
       venue: "Local",
     },
@@ -1251,12 +1256,12 @@ const es: AssoContent = {
     included: [
       "Entradas por tramos, preventas, códigos para socios",
       "Lista de invitados con cupos y QR nominativos",
-      "Fiestas privadas por defecto",
+      "Fiestas privadas o públicas, a elegir",
       "Control de acceso, PIN para la junta",
       "Mesas y reservados para las galas",
-      "Contrato y liquidación con la discoteca",
+      "Acuerdo, liquidación y transferencia seguidos con la discoteca",
       "Stripe Connect a nombre de la asociación, exportaciones",
-      "15.000 emails/mes a tus estudiantes",
+      "2.000 emails/mes incluidos para tus estudiantes",
       "Apple Wallet, ES · EN · FR",
     ],
     cta: "Crear la cuenta de la asociación",
@@ -1286,7 +1291,7 @@ const es: AssoContent = {
         points: [
           "Tus estudiantes compran en la página de la asociación y entran en tu base",
           "El reparto con la discoteca, firmado antes de la fiesta",
-          "Una liquidación que aprueban las dos partes, sin efectivo a las 6",
+          "La liquidación calculada por Yuno y la transferencia seguida, sin efectivo a las 6",
         ],
         honest: "",
       },
@@ -1297,7 +1302,7 @@ const es: AssoContent = {
         points: [
           "0 % de comisión sobre el precio de tus entradas, donde Shotgun cobra una comisión sobre tus ventas",
           "El dinero en la cuenta de la asociación a medida que vendes, no 24 h después de la fiesta",
-          "El contrato con la discoteca y una liquidación aprobada por las dos partes",
+          "El acuerdo con la discoteca, la liquidación y la transferencia seguidos en Yuno",
         ],
         honest: "",
       },
@@ -1334,7 +1339,7 @@ const es: AssoContent = {
       },
       {
         q: "¿Cualquiera puede ver nuestras fiestas?",
-        a: "No. Las fiestas de una asociación son privadas por defecto: accesibles solo con el enlace que compartes, nunca en la búsqueda pública. Puedes pedir que una fiesta sea pública; el equipo de Yuno aprueba la solicitud.",
+        a: "Lo eliges tú, fiesta por fiesta. Privada: accesible solo con el enlace que compartes, nunca en la búsqueda. Pública: aparece en Yuno como la fiesta de cualquier organizador.",
       },
       {
         q: "¿Podemos tener un precio para socios?",
@@ -1350,7 +1355,7 @@ const es: AssoContent = {
       },
       {
         q: "¿Y una fiesta en discoteca?",
-        a: "Conecta la discoteca a tu fiesta. El reparto se firma en Yuno pilar por pilar (entradas, mesas, barra). Al cierre, la discoteca declara su recaudación, tú apruebas o reclamas y cada parte cobra en su propia cuenta.",
+        a: "Invita a la discoteca a tu fiesta, desde Yuno o por email si todavía no está. Luego, dos opciones: arregláis el dinero entre vosotros, o Yuno lo enmarca con un contrato firmado (reparto de entradas y mesas, o un baremo sobre la facturación de la noche). Cobra una sola parte, y la discoteca ni siquiera necesita Stripe si cobra la asociación. Después de la fiesta, Yuno calcula la liquidación y sigue la transferencia de la otra parte hasta el «Recibido».",
       },
       {
         q: "¿Los estudiantes tienen que descargar una app?",
@@ -1431,7 +1436,6 @@ const es: AssoContent = {
         hint: "Junta, colaboradores, gratis antes de una hora",
       },
       { id: "tables", label: "Mesas y reservados", hint: "Para galas y noches en discoteca" },
-      { id: "drinks", label: "Bebidas", hint: "Pedido en el QR de la barra" },
     ],
     tool: "¿Qué usáis hoy?",
     toolOpts: [
