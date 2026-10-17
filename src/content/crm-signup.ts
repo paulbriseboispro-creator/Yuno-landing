@@ -223,6 +223,24 @@ const fr = {
     generic: "Impossible de créer le compte pour le moment. Réessayez ou écrivez-nous.",
     oauth: "La connexion n’a pas abouti. Réessayez ou continuez avec votre e-mail.",
   },
+  // Offre fondateurs (lien envoyé par Yuno, ?offer=…) : les 5 premiers comptes choisis.
+  offer: {
+    kicker: "Offre fondateur",
+    title: "{months} mois offerts + {yunits} Yunits",
+    line: "Réservée à {org}. Aucune carte demandée, puis {price} € HT / mois, prix de lancement garanti.",
+    lineNoOrg: "Aucune carte demandée, puis {price} € HT / mois, prix de lancement garanti.",
+    invalid: {
+      claimed: "Ce lien d’offre a déjà servi à ouvrir un compte.",
+      expired: "Ce lien d’offre a expiré.",
+      revoked: "Ce lien d’offre n’est plus actif.",
+      unknown: "Ce lien d’offre n’est pas reconnu.",
+    },
+    invalidHelp:
+      "Vous pouvez créer votre compte avec l’essai de 14 jours, ou nous écrire pour recevoir un nouveau lien.",
+    done: "Offre fondateur activée : {months} mois offerts jusqu’au {date}, et {yunits} Yunits déjà sur votre solde.",
+    doneLater:
+      "Votre compte est ouvert. L’offre fondateur n’a pas pu s’appliquer toute seule : nous la posons sur votre compte dans la journée.",
+  },
 };
 
 export type CrmSignupCopy = typeof fr;
@@ -440,6 +458,23 @@ const en: CrmSignupCopy = {
     generic: "We can't create the account right now. Try again or write to us.",
     oauth: "Sign-in didn't go through. Try again or continue with your email.",
   },
+  offer: {
+    kicker: "Founder offer",
+    title: "{months} months free + {yunits} Yunits",
+    line: "Reserved for {org}. No card needed, then €{price} excl. VAT / month, launch price guaranteed.",
+    lineNoOrg: "No card needed, then €{price} excl. VAT / month, launch price guaranteed.",
+    invalid: {
+      claimed: "This offer link has already been used to open an account.",
+      expired: "This offer link has expired.",
+      revoked: "This offer link is no longer active.",
+      unknown: "This offer link isn't recognised.",
+    },
+    invalidHelp:
+      "You can still create your account with the 14-day trial, or write to us for a new link.",
+    done: "Founder offer active: {months} months free until {date}, and {yunits} Yunits already in your balance.",
+    doneLater:
+      "Your account is open. The founder offer couldn't apply on its own: we'll add it to your account today.",
+  },
 };
 
 const es: CrmSignupCopy = {
@@ -655,6 +690,23 @@ const es: CrmSignupCopy = {
     password: "Esta contraseña no se acepta. Elige una más larga.",
     generic: "No podemos crear la cuenta ahora mismo. Inténtalo de nuevo o escríbenos.",
     oauth: "No se pudo iniciar sesión. Inténtalo de nuevo o continúa con tu e-mail.",
+  },
+  offer: {
+    kicker: "Oferta fundador",
+    title: "{months} meses gratis + {yunits} Yunits",
+    line: "Reservada para {org}. Sin tarjeta, y luego {price} € sin IVA / mes, precio de lanzamiento garantizado.",
+    lineNoOrg: "Sin tarjeta, y luego {price} € sin IVA / mes, precio de lanzamiento garantizado.",
+    invalid: {
+      claimed: "Este enlace de oferta ya se usó para abrir una cuenta.",
+      expired: "Este enlace de oferta ha caducado.",
+      revoked: "Este enlace de oferta ya no está activo.",
+      unknown: "No reconocemos este enlace de oferta.",
+    },
+    invalidHelp:
+      "Puedes crear tu cuenta con la prueba de 14 días o escribirnos para recibir un enlace nuevo.",
+    done: "Oferta fundador activada: {months} meses gratis hasta el {date} y {yunits} Yunits ya en tu saldo.",
+    doneLater:
+      "Tu cuenta está abierta. La oferta fundador no se pudo aplicar sola: la añadimos a tu cuenta hoy mismo.",
   },
 };
 

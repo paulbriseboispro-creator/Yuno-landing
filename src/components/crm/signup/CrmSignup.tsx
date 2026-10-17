@@ -52,6 +52,26 @@ interface ExistingAccount {
   products: string[];
 }
 const STORE_KEY = "yuno_crm_signup_key";
+// Founder offer (yuno repo, migration 20261017230000): the link Yuno sends to the 5 accounts
+// it picks carries ?offer=<token>. Kept for the tab (Google / Apple come back without it);
+// the server keeps it on the signup draft and applies it when the account opens.
+const OFFER_KEY = "yuno_crm_offer";
+const OFFER_RE = /^[A-Za-z0-9_-]{20,80}$/;
+type OfferStatus = "ok" | "claimed" | "expired" | "revoked" | "unknown";
+interface OfferPreview {
+  status: OfferStatus;
+  org_name?: string;
+  email?: string | null;
+  free_months?: number;
+  yunits?: number;
+  price_month?: number;
+}
+interface OfferResult {
+  ok: boolean;
+  until?: string;
+  free_months?: number;
+  yunits?: number;
+}
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 // What complete_pro_signup knows: a club or an organizer space.
 const ROLE = { club: "club", bar: "club", orga: "organizer", fest: "organizer" } as const;
@@ -154,6 +174,81 @@ const pwChecks = (v: string) => [
   /[\d\W_]/.test(v),
 ];
 
+/** Founder offer: what the link gives (valid), or why it no longer does (used, expired…). */
+function OfferNote({
+  t,
+  offer,
+  num,
+}: {
+  t: CrmSignupCopy;
+  offer: OfferPreview;
+  num: (n: number) => string;
+}) {
+  if (offer.status !== "ok") {
+    return (
+      <div
+        className="yc-su-in flex flex-col gap-1 rounded-[20px] px-4 py-3.5 text-[14px] leading-snug"
+        style={{ background: c("sand-50"), color: c("sand-700") }}
+        role="status"
+      >
+        <b className="font-semibold">{t.offer.invalid[offer.status]}</b>
+        <span style={{ color: c("sand-600") }}>{t.offer.invalidHelp}</span>
+      </div>
+    );
+  }
+  const vars = {
+    months: offer.free_months ?? 6,
+    yunits: num(offer.yunits ?? 0),
+    price: num(offer.price_month ?? 24),
+    org: offer.org_name ?? "",
+  };
+  return (
+    <div
+      className="yc-su-in flex items-start gap-3.5 rounded-[20px] p-4"
+      style={{
+        background: "linear-gradient(135deg,rgba(227,20,27,.07),rgba(255,107,53,.1))",
+        boxShadow: "inset 0 0 0 1px rgba(227,20,27,.18)",
+      }}
+      role="status"
+    >
+      <span
+        className="grid size-10 shrink-0 place-items-center rounded-full"
+        style={{ background: "var(--gradient-brand)", color: "#fff" }}
+        aria-hidden
+      >
+        <svg
+          width="19"
+          height="19"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+        </svg>
+      </span>
+      <div className="flex min-w-0 flex-col gap-1">
+        <span
+          className="text-[12px] uppercase"
+          style={{ fontFamily: MONO, letterSpacing: ".08em", color: c("red-600") }}
+        >
+          {t.offer.kicker}
+        </span>
+        <span
+          style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 19, letterSpacing: "-.02em" }}
+        >
+          {fill(t.offer.title, vars)}
+        </span>
+        <span className="text-[14px] leading-snug" style={{ color: c("sand-600") }}>
+          {fill(vars.org ? t.offer.line : t.offer.lineNoOrg, vars)}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function ProviderMark({ provider }: { provider: Provider }) {
   if (provider === "apple")
     return (
@@ -237,6 +332,20 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
   const [resuming, setResuming] = useState(() =>
     /(^|[#&])(access_token|error)=/.test(window.location.hash),
   );
+  const [offerToken] = useState<string | null>(() => {
+    let v = new URLSearchParams(window.location.search).get("offer");
+    try {
+      if (v && OFFER_RE.test(v)) sessionStorage.setItem(OFFER_KEY, v);
+      else v = sessionStorage.getItem(OFFER_KEY);
+    } catch {
+      /* ignore */
+    }
+    return v && OFFER_RE.test(v) ? v : null;
+  });
+  const [offer, setOffer] = useState<OfferPreview | null>(null);
+  const [offerResult, setOfferResult] = useState<OfferResult | null>(null);
+  const offerLive = offer?.status === "ok" ? offerToken : null;
+  const offerData = offerToken ? { offer: offerToken } : {};
 
   const emailRef = useRef<HTMLInputElement>(null);
   const emailWrap = useRef<HTMLDivElement>(null);
@@ -255,6 +364,31 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
   const total = flow.length - 1;
   const done = step === "done";
 
+  // Founder offer: read the invitation once (what to show, what to prefill).
+  useEffect(() => {
+    if (!offerToken) return;
+    let off = false;
+    void (async () => {
+      const { data } = await yunoApp().rpc("crm_offer_invite_preview", { p_token: offerToken });
+      if (off) return;
+      const p = ((data ?? null) as OfferPreview | null) ?? { status: "unknown" };
+      setOffer(p);
+      if (p.status === "ok") {
+        if (p.email) setEmail((e) => e || (p.email as string));
+        if (p.org_name) setName((n) => n || (p.org_name as string));
+      } else {
+        try {
+          sessionStorage.removeItem(OFFER_KEY);
+        } catch {
+          /* ignore */
+        }
+      }
+    })();
+    return () => {
+      off = true;
+    };
+  }, [offerToken]);
+
   // Journey opened — or resumed after Google / Apple (session in the URL fragment).
   useEffect(() => {
     const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
@@ -262,7 +396,12 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
     const refreshToken = hash.get("refresh_token");
     const failed = hash.get("error") || new URLSearchParams(window.location.search).get("error");
     if (!accessToken && !failed) {
-      void trackSignup(key, "opened", { lang, product: "crm", ...attribution("start_crm") });
+      void trackSignup(key, "opened", {
+        lang,
+        product: "crm",
+        ...offerData,
+        ...attribution("start_crm"),
+      });
       capture("pro_signup_opened", {
         audience: "pro",
         product: "crm",
@@ -481,6 +620,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
     identifyAccount(oauthSession.user.id, null);
     try {
       sessionStorage.removeItem(STORE_KEY);
+      sessionStorage.removeItem(OFFER_KEY);
     } catch {
       /* ignore */
     }
@@ -589,7 +729,12 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
   /** The person has a session: open the CRM space, then show the last screen. */
   async function openSpace(session: Session) {
     const role = ROLE[type ?? "club"];
-    const { error: cErr } = await yunoApp().rpc("complete_pro_signup", { p_key: key });
+    const { data: cData, error: cErr } = await yunoApp().rpc("complete_pro_signup", { p_key: key });
+    // Founder offer: applied server-side when the account opened (or not: say so honestly).
+    if (offerLive) {
+      const r = (cData as { offer?: OfferResult | null } | null)?.offer ?? null;
+      setOfferResult(r ?? { ok: false });
+    }
     capture(
       "pro_signup_account_created",
       {
@@ -610,6 +755,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
     }
     try {
       sessionStorage.removeItem(STORE_KEY);
+      sessionStorage.removeItem(OFFER_KEY);
     } catch {
       /* ignore */
     }
@@ -648,6 +794,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       size_band: capLabel(usedCap),
       current_tool: "shotgun",
       product: "crm",
+      ...offerData,
     });
     // The draft must exist server-side BEFORE complete_pro_signup reads it.
     await trackSignup(key, "account", {
@@ -659,6 +806,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       pillars: [],
       current_tool: "shotgun",
       product: "crm",
+      ...offerData,
     });
 
     // Google / Apple: the account already exists, only the CRM space is left to open.
@@ -835,6 +983,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
 
         <div className="flex flex-1 items-center justify-center py-12">
           <div className="flex w-full max-w-[440px] flex-col gap-8">
+            {offer && !done && <OfferNote t={t} offer={offer} num={num} />}
             <div className="flex flex-col gap-3">
               <div className="flex min-h-7 items-center justify-between">
                 <button
@@ -981,7 +1130,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
                         <span className="text-[14px] font-medium" style={{ color: c("red-600") }}>
                           {t.email.exists}{" "}
                           <a
-                            href={`${CRM_LOGIN_URL}?redirect=${encodeURIComponent("/open/crm")}`}
+                            href={`${CRM_LOGIN_URL}?redirect=${encodeURIComponent(offerLive ? `/open/crm?offer=${offerLive}` : "/open/crm")}`}
                             className="yc-su-link font-semibold underline"
                           >
                             {t.email.existsCta}
@@ -1451,6 +1600,27 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
                     >
                       {fill(t.done.line, { name: name.trim() || t.name.fallbackName })}
                     </p>
+                    {offerResult && (
+                      <p
+                        className="m-0 rounded-2xl px-4 py-3 text-[15px] leading-normal text-pretty"
+                        style={{
+                          background: offerResult.ok ? c("green-50") : c("sand-50"),
+                          color: offerResult.ok ? c("green-700") : c("sand-700"),
+                        }}
+                        role="status"
+                      >
+                        {offerResult.ok && offerResult.until
+                          ? fill(t.offer.done, {
+                              months: offerResult.free_months ?? offer?.free_months ?? 6,
+                              yunits: num(offerResult.yunits ?? offer?.yunits ?? 0),
+                              date: new Date(offerResult.until).toLocaleDateString(
+                                lang === "fr" ? "fr-FR" : lang === "es" ? "es-ES" : "en-GB",
+                                { day: "numeric", month: "long", year: "numeric" },
+                              ),
+                            })
+                          : t.offer.doneLater}
+                      </p>
+                    )}
                   </div>
                   <div className="flex flex-col gap-2.5">
                     <Cta type="button" onClick={openConsole} disabled={leaving || !handoff}>
