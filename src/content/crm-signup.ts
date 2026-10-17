@@ -230,16 +230,27 @@ const fr = {
     line: "Réservée à {org}. Aucune carte demandée, puis {price} € HT / mois, prix de lancement garanti.",
     lineNoOrg: "Aucune carte demandée, puis {price} € HT / mois, prix de lancement garanti.",
     invalid: {
-      claimed: "Ce lien d’offre a déjà servi à ouvrir un compte.",
-      expired: "Ce lien d’offre a expiré.",
-      revoked: "Ce lien d’offre n’est plus actif.",
-      unknown: "Ce lien d’offre n’est pas reconnu.",
+      claimed: "Ce lien d’invitation a déjà servi à ouvrir un compte.",
+      expired: "Ce lien d’invitation a expiré.",
+      revoked: "Ce lien d’invitation n’est plus actif.",
+      unknown: "Ce lien d’invitation n’est pas reconnu.",
     },
     invalidHelp:
       "Vous pouvez créer votre compte avec l’essai de 14 jours, ou nous écrire pour recevoir un nouveau lien.",
     done: "Offre fondateur activée : {months} mois offerts jusqu’au {date}, et {yunits} Yunits déjà sur votre solde.",
     doneLater:
       "Votre compte est ouvert. L’offre fondateur n’a pas pu s’appliquer toute seule : nous la posons sur votre compte dans la journée.",
+  },
+  // Invitation Yuno CRM sans offre fondateurs (Admin CRM › Inviter) : l’essai de tout le monde.
+  invite: {
+    kicker: "Invitation Yuno CRM",
+    title: "{days} jours d’essai + {trialYunits} Yunits",
+    line: "Préparée pour {org}. Aucune carte demandée, puis {price} € HT / mois, sans engagement.",
+    lineNoOrg: "Aucune carte demandée, puis {price} € HT / mois, sans engagement.",
+    support:
+      "L’équipe Yuno vous proposera de configurer votre compte avec vous : vous accepterez, ou non, depuis votre Console.",
+    done: "Votre essai court jusqu’au {date}.",
+    doneNoDate: "Votre essai a commencé.",
   },
 };
 
@@ -464,16 +475,26 @@ const en: CrmSignupCopy = {
     line: "Reserved for {org}. No card needed, then €{price} excl. VAT / month, launch price guaranteed.",
     lineNoOrg: "No card needed, then €{price} excl. VAT / month, launch price guaranteed.",
     invalid: {
-      claimed: "This offer link has already been used to open an account.",
-      expired: "This offer link has expired.",
-      revoked: "This offer link is no longer active.",
-      unknown: "This offer link isn't recognised.",
+      claimed: "This invitation link has already been used to open an account.",
+      expired: "This invitation link has expired.",
+      revoked: "This invitation link is no longer active.",
+      unknown: "This invitation link isn't recognised.",
     },
     invalidHelp:
       "You can still create your account with the 14-day trial, or write to us for a new link.",
     done: "Founder offer active: {months} months free until {date}, and {yunits} Yunits already in your balance.",
     doneLater:
       "Your account is open. The founder offer couldn't apply on its own: we'll add it to your account today.",
+  },
+  invite: {
+    kicker: "Yuno CRM invitation",
+    title: "{days}-day trial + {trialYunits} Yunits",
+    line: "Prepared for {org}. No card needed, then €{price} excl. VAT / month, no commitment.",
+    lineNoOrg: "No card needed, then €{price} excl. VAT / month, no commitment.",
+    support:
+      "The Yuno team will offer to set up your account with you: you accept, or not, from your Console.",
+    done: "Your trial runs until {date}.",
+    doneNoDate: "Your trial has started.",
   },
 };
 
@@ -697,16 +718,26 @@ const es: CrmSignupCopy = {
     line: "Reservada para {org}. Sin tarjeta, y luego {price} € sin IVA / mes, precio de lanzamiento garantizado.",
     lineNoOrg: "Sin tarjeta, y luego {price} € sin IVA / mes, precio de lanzamiento garantizado.",
     invalid: {
-      claimed: "Este enlace de oferta ya se usó para abrir una cuenta.",
-      expired: "Este enlace de oferta ha caducado.",
-      revoked: "Este enlace de oferta ya no está activo.",
-      unknown: "No reconocemos este enlace de oferta.",
+      claimed: "Este enlace de invitación ya se usó para abrir una cuenta.",
+      expired: "Este enlace de invitación ha caducado.",
+      revoked: "Este enlace de invitación ya no está activo.",
+      unknown: "No reconocemos este enlace de invitación.",
     },
     invalidHelp:
       "Puedes crear tu cuenta con la prueba de 14 días o escribirnos para recibir un enlace nuevo.",
     done: "Oferta fundador activada: {months} meses gratis hasta el {date} y {yunits} Yunits ya en tu saldo.",
     doneLater:
       "Tu cuenta está abierta. La oferta fundador no se pudo aplicar sola: la añadimos a tu cuenta hoy mismo.",
+  },
+  invite: {
+    kicker: "Invitación Yuno CRM",
+    title: "{days} días de prueba + {trialYunits} Yunits",
+    line: "Preparada para {org}. Sin tarjeta, y luego {price} € sin IVA / mes, sin permanencia.",
+    lineNoOrg: "Sin tarjeta, y luego {price} € sin IVA / mes, sin permanencia.",
+    support:
+      "El equipo de Yuno te propondrá configurar tu cuenta contigo: aceptas, o no, desde tu Consola.",
+    done: "Tu prueba dura hasta el {date}.",
+    doneNoDate: "Tu prueba ha empezado.",
   },
 };
 

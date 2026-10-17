@@ -58,17 +58,29 @@ const STORE_KEY = "yuno_crm_signup_key";
 const OFFER_KEY = "yuno_crm_offer";
 const OFFER_RE = /^[A-Za-z0-9_-]{20,80}$/;
 type OfferStatus = "ok" | "claimed" | "expired" | "revoked" | "unknown";
+// An invitation from Yuno CRM's admin (yuno repo, migration 20261019420000) is the same
+// link: `offer` = "founder" (the 5 founder accounts) or "standard" (the regular trial).
+// It carries a pre-profile (kind, organization, first name, email, city) that fills the
+// steps below; the server also copies it into the signup draft.
 interface OfferPreview {
   status: OfferStatus;
+  offer?: "founder" | "standard";
+  kind?: "club" | "organizer" | null;
   org_name?: string;
+  first_name?: string | null;
   email?: string | null;
+  city?: string | null;
   free_months?: number;
   yunits?: number;
   price_month?: number;
+  trial_days?: number;
+  trial_yunits?: number;
+  support_offer?: boolean;
 }
 interface OfferResult {
   ok: boolean;
-  until?: string;
+  offer?: "founder" | "standard";
+  until?: string | null;
   free_months?: number;
   yunits?: number;
 }
@@ -196,12 +208,16 @@ function OfferNote({
       </div>
     );
   }
+  const standard = offer.offer === "standard";
   const vars = {
     months: offer.free_months ?? 6,
     yunits: num(offer.yunits ?? 0),
     price: num(offer.price_month ?? 24),
     org: offer.org_name ?? "",
+    days: offer.trial_days ?? 14,
+    trialYunits: num(offer.trial_yunits ?? 2000),
   };
+  const copy = standard ? t.invite : t.offer;
   return (
     <div
       className="yc-su-in flex items-start gap-3.5 rounded-[20px] p-4"
@@ -234,16 +250,21 @@ function OfferNote({
           className="text-[12px] uppercase"
           style={{ fontFamily: MONO, letterSpacing: ".08em", color: c("red-600") }}
         >
-          {t.offer.kicker}
+          {copy.kicker}
         </span>
         <span
           style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 19, letterSpacing: "-.02em" }}
         >
-          {fill(t.offer.title, vars)}
+          {fill(copy.title, vars)}
         </span>
         <span className="text-[14px] leading-snug" style={{ color: c("sand-600") }}>
-          {fill(vars.org ? t.offer.line : t.offer.lineNoOrg, vars)}
+          {fill(vars.org ? copy.line : copy.lineNoOrg, vars)}
         </span>
+        {offer.support_offer && (
+          <span className="text-[13.5px] leading-snug" style={{ color: c("sand-500") }}>
+            {t.invite.support}
+          </span>
+        )}
       </div>
     </div>
   );
@@ -376,6 +397,9 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       if (p.status === "ok") {
         if (p.email) setEmail((e) => e || (p.email as string));
         if (p.org_name) setName((n) => n || (p.org_name as string));
+        if (p.city) setCity((v) => v || (p.city as string));
+        // The invitation says club or organizer: that answer is already highlighted.
+        if (p.kind) setType((v) => v ?? (p.kind === "club" ? "club" : "orga"));
       } else {
         try {
           sessionStorage.removeItem(OFFER_KEY);
@@ -1600,7 +1624,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
                     >
                       {fill(t.done.line, { name: name.trim() || t.name.fallbackName })}
                     </p>
-                    {offerResult && (
+                    {offerResult && (offerResult.ok || offer?.offer !== "standard") && (
                       <p
                         className="m-0 rounded-2xl px-4 py-3 text-[15px] leading-normal text-pretty"
                         style={{
@@ -1609,16 +1633,25 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
                         }}
                         role="status"
                       >
-                        {offerResult.ok && offerResult.until
-                          ? fill(t.offer.done, {
-                              months: offerResult.free_months ?? offer?.free_months ?? 6,
-                              yunits: num(offerResult.yunits ?? offer?.yunits ?? 0),
-                              date: new Date(offerResult.until).toLocaleDateString(
-                                lang === "fr" ? "fr-FR" : lang === "es" ? "es-ES" : "en-GB",
-                                { day: "numeric", month: "long", year: "numeric" },
-                              ),
-                            })
-                          : t.offer.doneLater}
+                        {offerResult.ok && (offerResult.offer ?? offer?.offer) === "standard"
+                          ? offerResult.until
+                            ? fill(t.invite.done, {
+                                date: new Date(offerResult.until).toLocaleDateString(
+                                  lang === "fr" ? "fr-FR" : lang === "es" ? "es-ES" : "en-GB",
+                                  { day: "numeric", month: "long", year: "numeric" },
+                                ),
+                              })
+                            : t.invite.doneNoDate
+                          : offerResult.ok && offerResult.until
+                            ? fill(t.offer.done, {
+                                months: offerResult.free_months ?? offer?.free_months ?? 6,
+                                yunits: num(offerResult.yunits ?? offer?.yunits ?? 0),
+                                date: new Date(offerResult.until).toLocaleDateString(
+                                  lang === "fr" ? "fr-FR" : lang === "es" ? "es-ES" : "en-GB",
+                                  { day: "numeric", month: "long", year: "numeric" },
+                                ),
+                              })
+                            : t.offer.doneLater}
                       </p>
                     )}
                   </div>
