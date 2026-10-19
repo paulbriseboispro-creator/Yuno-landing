@@ -30,7 +30,7 @@ const APP_ORIGIN = import.meta.env.VITE_YUNO_APP_ORIGIN || "https://yunoapp.eu";
 // Paths of the APP on crm.yunoapp.eu — mirror of `CRM_PATH_PREFIXES` +
 // `SHARED_PATH_PREFIXES` in the yuno repo (src/lib/productHost.ts): the CRM
 // sign-in, Console and Admin, the CRM opening on an account, session handoff,
-// signup follow-up, team invites, 2FA. Plus the ticketing consoles the CRM
+// signup follow-up, team invites, 2FA, AI authorization (/connect-ai). Plus the ticketing consoles the CRM
 // links to: the app hands the session over to yunoapp.eu itself, a plain 301
 // from here would ask to sign in again.
 const APP_PATH_PREFIXES = [
@@ -47,6 +47,8 @@ const APP_PATH_PREFIXES = [
   "/mfa-setup",
   "/mfa-disable-confirm",
   "/account-suspended",
+  // Autorisation d'une IA (Claude…) : un client CRM l'ouvre ici, déjà connecté (yuno, src/lib/productHint.ts).
+  "/connect-ai",
   "/owner",
   "/organizer-app",
   "/manager",
