@@ -38,6 +38,14 @@ Starting from `main` silently throws away the newest design and copy. So, before
   pick them up automatically. `/pricing`, `/fr/pricing`, `/es/precios` are topic pages: the only place
   where pricing is stated, keep it equal to `docs/yuno-context.md`. More "vs" pages: `compare-more.ts`,
   images `bun scripts/og/vs.ts`. Strategy, SERP findings and the weekly GSC/GEO loop: `docs/seo-geo-strategy.md` §9–13.
+- **Mobile number is MANDATORY in every pro signup (Paul's rule, 19/10/2026: he calls every pro who
+  opens an account)**: account step and promoter / other lead of `SignupFlow`, "name" step of
+  `CrmSignup` (password AND Google / Apple). One field, `src/components/PhoneInput.tsx` (country =
+  flag + dial code, number formatted, a pasted `+44 …` switches the country) over the pure helpers of
+  `src/lib/phone.ts`; the value sent to Yuno is international (`+33 6 12 34 56 78`), checked by
+  `composedPhoneIsValid` before anything is sent. Never put back a bare `type="tel"` input. Each new
+  uninvited signup then pings Paul's phone through the Cockpit (yuno repo, migration
+  `20261103410000`).
 - Pro signup funnel: `src/components/landing/SignupFlow.tsx` (dialog `SignupModal` + page
   `/start`, `/fr/start`, `/es/start` in `src/pages/start.tsx`). It creates the account on the
   Yuno APP's Supabase (`src/lib/yuno-app.ts`, public key only), tracks every step in the app's
