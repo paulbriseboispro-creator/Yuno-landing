@@ -31,6 +31,8 @@ import type { CrmContent } from "@/content/crm";
 import { useLanding, whatsappHref, type SignupRole } from "./context";
 import { EASE } from "./ui";
 import { capture, identifyAccount } from "@/lib/posthog";
+import { composedPhoneIsValid } from "@/lib/phone";
+import { PhoneInput } from "@/components/PhoneInput";
 
 // The pro signup funnel: a club or an organizer creates their Yuno account
 // end to end, then lands logged in on yunoapp.eu/get-started with a plan built
@@ -371,6 +373,8 @@ export function SignupFlow({
     setError(null);
     const email = form.email.trim().toLowerCase();
     if (!EMAIL_RE.test(email)) return setError(s.errors.email);
+    // Obligatoire depuis le 19/10/2026 : Paul appelle chaque pro qui ouvre un compte.
+    if (!composedPhoneIsValid(form.phone)) return setError(s.errors.phone);
     if (password.length < 8) return setError(s.errors.password);
     if (!terms) return setError(s.errors.terms);
 
@@ -501,6 +505,7 @@ export function SignupFlow({
     const email = form.email.trim().toLowerCase();
     if (!form.first_name.trim()) return;
     if (!EMAIL_RE.test(email)) return setError(s.errors.email);
+    if (!composedPhoneIsValid(form.phone)) return setError(s.errors.phone);
     setError(null);
     setBusy(true);
     const payload = {
@@ -915,16 +920,16 @@ export function SignupFlow({
                 required
                 maxLength={254}
               />
-              <Field
+              <PhoneField
+                id="signup-phone"
                 label={s.phone}
-                type="tel"
+                countryLabel={s.phoneCountry}
+                lang={lang}
                 value={form.phone}
                 onChange={(v) => set("phone", v)}
                 onBlur={saveIdentity}
-                placeholder={s.phonePh}
-                autoComplete="tel"
                 hint={s.phoneHint}
-                maxLength={40}
+                invalid={error === s.errors.phone}
               />
               <label className="block">
                 <span className="text-[13px] font-medium text-zinc-700">{s.password}</span>
@@ -1031,14 +1036,14 @@ export function SignupFlow({
                 autoComplete="organization"
                 maxLength={120}
               />
-              <Field
+              <PhoneField
+                id="signup-lead-phone"
                 label={s.leadPhone}
-                type="tel"
+                countryLabel={s.phoneCountry}
+                lang={lang}
                 value={form.phone}
                 onChange={(v) => set("phone", v)}
-                placeholder={s.phonePh}
-                autoComplete="tel"
-                maxLength={40}
+                invalid={error === s.errors.phone}
               />
             </div>
             {error && <ErrorNote>{error}</ErrorNote>}
@@ -1134,6 +1139,53 @@ function Field({
       />
       {hint && <span className="mt-1 block text-[11.5px] text-zinc-400">{hint}</span>}
     </label>
+  );
+}
+
+function PhoneField({
+  id,
+  label,
+  countryLabel,
+  lang,
+  value,
+  onChange,
+  onBlur,
+  hint,
+  invalid,
+}: {
+  id: string;
+  label: string;
+  countryLabel: string;
+  lang: "en" | "fr" | "es";
+  value: string;
+  onChange: (v: string) => void;
+  onBlur?: () => void;
+  hint?: string;
+  invalid?: boolean;
+}) {
+  return (
+    <div>
+      <label htmlFor={id} className="text-[13px] font-medium text-zinc-700">
+        {label}
+      </label>
+      <div className="mt-1.5">
+        <PhoneInput
+          id={id}
+          lang={lang}
+          value={value}
+          onChange={(v) => onChange(v)}
+          onBlur={onBlur}
+          countryLabel={countryLabel}
+          invalid={invalid}
+          selectClassName={cn(
+            INPUT,
+            "w-auto px-3 text-zinc-800 focus-within:border-zinc-950 focus-within:shadow-[0_0_0_4px_rgba(10,10,11,0.06)]",
+          )}
+          inputClassName={cn(INPUT, invalid && "border-red-400")}
+        />
+      </div>
+      {hint && <span className="mt-1 block text-[11.5px] text-zinc-400">{hint}</span>}
+    </div>
   );
 }
 

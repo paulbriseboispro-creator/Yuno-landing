@@ -18,6 +18,8 @@ import { START_PATHS } from "@/i18n/start";
 import { submitLead } from "@/lib/leads.functions";
 import { capture, identifyAccount } from "@/lib/posthog";
 import { appHandoffUrl, newSignupKey, trackSignup, yunoApp } from "@/lib/yuno-app";
+import { composedPhoneIsValid } from "@/lib/phone";
+import { PhoneInput } from "@/components/PhoneInput";
 
 // The Yuno CRM account funnel ("/start?product=crm", "/fr/start?product=crm"…):
 // the Claude Design project "Yuno CRM" > Inscription.dc.html. Email → password →
@@ -337,6 +339,9 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
   const [name, setName] = useState("");
   const [nameErr, setNameErr] = useState(false);
   const [city, setCity] = useState("");
+  // Obligatoire depuis le 19/10/2026 : Paul appelle chaque pro qui ouvre un compte.
+  const [phone, setPhone] = useState("");
+  const [phoneErr, setPhoneErr] = useState(false);
   const [cap, setCap] = useState<string | null>(null);
   const [resendNote, setResendNote] = useState("");
   const [resend, setResend] = useState(30);
@@ -374,6 +379,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
   const pwWrap = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const nameWrap = useRef<HTMLDivElement>(null);
+  const phoneWrap = useRef<HTMLDivElement>(null);
   const timer = useRef<number>(0);
 
   const typeItem = t.type.items.find((i) => i.id === type);
@@ -722,6 +728,12 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       nameRef.current?.focus();
       return;
     }
+    if (!composedPhoneIsValid(phone)) {
+      setPhoneErr(true);
+      shake(phoneWrap.current);
+      phoneWrap.current?.querySelector("input")?.focus();
+      return;
+    }
     go("cap");
   }
 
@@ -740,7 +752,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
           email: email.trim(),
           company: name.trim(),
           role: ROLE[type ?? "club"],
-          phone: "",
+          phone,
           message: `[CRM] ${note} — ${city} · ${capLabel(cap)} · shotgun`,
           source: `landing-signup:${lang}`,
         },
@@ -817,6 +829,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       city: city.trim(),
       size_band: capLabel(usedCap),
       current_tool: "shotgun",
+      phone,
       product: "crm",
       ...offerData,
     });
@@ -827,6 +840,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       org_name: name.trim(),
       city: city.trim(),
       email: addr,
+      phone,
       pillars: [],
       current_tool: "shotgun",
       product: "crm",
@@ -1383,6 +1397,33 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
                         );
                       })}
                     </div>
+                  </div>
+                  <div ref={phoneWrap} className="flex flex-col gap-2">
+                    <label htmlFor="y-phone" className="text-[14px] font-semibold">
+                      {t.name.phoneLabel}
+                    </label>
+                    <PhoneInput
+                      id="y-phone"
+                      lang={lang}
+                      value={phone}
+                      onChange={(v) => {
+                        setPhone(v);
+                        setPhoneErr(false);
+                      }}
+                      countryLabel={t.name.phoneCountry}
+                      invalid={phoneErr}
+                      selectClassName="yc-su-input !w-auto px-3"
+                      inputClassName="yc-su-input"
+                    />
+                    {phoneErr ? (
+                      <span className="text-[14px] font-medium" style={{ color: c("red-600") }}>
+                        {t.name.phoneErr}
+                      </span>
+                    ) : (
+                      <span className="text-[13px]" style={{ color: c("sand-500") }}>
+                        {t.name.phoneHint}
+                      </span>
+                    )}
                   </div>
                   <Cta type="submit">{t.name.cta}</Cta>
                 </form>
