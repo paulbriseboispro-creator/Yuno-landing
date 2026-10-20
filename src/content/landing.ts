@@ -161,6 +161,11 @@ const en = {
         body: "Customers pick a table on the floor plan and a package with its bottles, then pay the deposit.",
       },
       {
+        id: "promoters",
+        title: "Promoter links & commissions",
+        body: "A personal link per night: every sale and entry is counted live, and the commission computes itself.",
+      },
+      {
         id: "door",
         title: "Door scanner & staff",
         body: "One scanner for everything. Staff sign in with a PIN — no account, no training.",
@@ -198,6 +203,9 @@ const en = {
       guests: "guests",
       bottles: "bottles",
       hostLive: "VIP host · live",
+      promoLive: "Promoters · tonight",
+      sales: "sales",
+      newSale: "+1 sale",
       scans: [
         {
           label: "Regular ticket",
@@ -611,7 +619,6 @@ const en = {
     sub: "Net sales, conversion, the room live, every night's analytics by channel and by promoter — and an AI assistant that answers on your numbers.",
     tabs: [
       { id: "dashboard", label: "Dashboard" },
-      { id: "live", label: "Live night" },
       { id: "analytics", label: "Analytics" },
       { id: "tables", label: "VIP tables" },
       { id: "ticketing", label: "Ticketing" },
@@ -1101,6 +1108,11 @@ const fr: LandingContent = {
         body: "Le client choisit sa table sur le plan et une formule avec ses bouteilles, puis paie l'acompte.",
       },
       {
+        id: "promoters",
+        title: "Liens promoteurs & commissions",
+        body: "Un lien personnel par soirée : chaque vente et chaque entrée sont comptées en direct, et la commission se calcule seule.",
+      },
+      {
         id: "door",
         title: "Contrôle d'accès & staff",
         body: "Un seul scanner pour tout. Le staff se connecte par code PIN, sans compte ni formation.",
@@ -1138,6 +1150,9 @@ const fr: LandingContent = {
       guests: "pers.",
       bottles: "bouteilles",
       hostLive: "Hôte VIP · en direct",
+      promoLive: "Promoteurs · ce soir",
+      sales: "ventes",
+      newSale: "+1 vente",
       scans: [
         {
           label: "Billet Regular",
@@ -1555,7 +1570,6 @@ const fr: LandingContent = {
     sub: "Ventes nettes, conversion, la salle en direct, l'analyse de chaque soirée par canal et par promoteur — et un assistant IA qui répond sur vos chiffres.",
     tabs: [
       { id: "dashboard", label: "Dashboard" },
-      { id: "live", label: "Soirée en direct" },
       { id: "analytics", label: "Analytics" },
       { id: "tables", label: "Tables VIP" },
       { id: "ticketing", label: "Billetterie" },
@@ -2050,6 +2064,11 @@ const es: LandingContent = {
         body: "El cliente elige su mesa en el plano y un pack con sus botellas, y paga la señal.",
       },
       {
+        id: "promoters",
+        title: "Enlaces de RRPP y comisiones",
+        body: "Un enlace personal por noche: cada venta y cada entrada se cuentan en directo, y la comisión se calcula sola.",
+      },
+      {
         id: "door",
         title: "Control de acceso y staff",
         body: "Un solo escáner para todo. El staff entra con un PIN, sin cuenta ni formación.",
@@ -2087,6 +2106,9 @@ const es: LandingContent = {
       guests: "pers.",
       bottles: "botellas",
       hostLive: "Host VIP · en directo",
+      promoLive: "RRPP · esta noche",
+      sales: "ventas",
+      newSale: "+1 venta",
       scans: [
         {
           label: "Entrada general",
@@ -2504,7 +2526,6 @@ const es: LandingContent = {
     sub: "Ventas netas, conversión, la sala en directo, el análisis de cada noche por canal y por promotor — y un asistente de IA que responde sobre tus cifras.",
     tabs: [
       { id: "dashboard", label: "Panel" },
-      { id: "live", label: "Noche en directo" },
       { id: "analytics", label: "Analítica" },
       { id: "tables", label: "Mesas VIP" },
       { id: "ticketing", label: "Entradas" },

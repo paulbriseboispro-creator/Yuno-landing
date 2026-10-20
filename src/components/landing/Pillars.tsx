@@ -11,16 +11,19 @@ const PILLAR_LINKS: Record<LandingLang, Partial<Record<string, string>>> = {
   en: {
     tickets: "/nightclub-guest-list-software",
     tables: "/vip-table-booking-software",
+    promoters: "/promoter-tracking-software",
     money: "/club-organizer-revenue-split",
   },
   fr: {
     tickets: "/fr/guest-list-soiree-logiciel",
     tables: "/fr/reservation-table-vip-discotheque",
+    promoters: "/fr/logiciel-promoteurs-soiree",
     money: "/fr/contrat-club-organisateur",
   },
   es: {
     tickets: "/es/lista-invitados-discoteca-software",
     tables: "/es/software-reservados-discoteca",
+    promoters: "/es/software-rrpp-discoteca",
     money: "/es/reparto-ingresos-discoteca-organizador",
   },
 };
@@ -33,6 +36,7 @@ export function Pillars() {
   const visuals: Record<string, (m: Mini) => ReactNode> = {
     tickets: (m) => <TicketsMini m={m} />,
     tables: (m) => <TablesMini m={m} />,
+    promoters: (m) => <PromotersMini m={m} />,
     door: (m) => <DoorMini m={m} />,
     crm: (m) => <CrmMini m={m} />,
     money: (m) => <MoneyMini m={m} />,
@@ -330,6 +334,94 @@ function TablesMini({ m }: { m: Mini }) {
               · {FLOOR_PRICE[target.zone]}
             </motion.div>
           )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+// Promoters' leaderboard: each tick one promoter's link brings a sale, their
+// count and commission go up and the board re-sorts itself. (This card took the
+// place of the bar queue when the drinks pillar was paused, 01/10/2026.)
+const PROMOTERS = [
+  { name: "Inès", base: 58 },
+  { name: "Karim", base: 55 },
+  { name: "Léa", base: 27 },
+];
+// Who sells on each tick: Karim catches up, Inès pulls away, Léa keeps going.
+const SALE_ORDER = [1, 0, 1, 2, 1, 0, 1, 2, 0, 0, 1, 2, 0, 0, 2, 0];
+const COMMISSION_PER_SALE = 2;
+const PROMO_TINT = ["#E8192C", "#F59E0B", "#8B5CF6"];
+
+function PromotersMini({ m }: { m: Mini }) {
+  const { ref, i: k } = useLoop(SALE_ORDER.length, 1400);
+  const seller = SALE_ORDER[k];
+  const rows = PROMOTERS.map((p, idx) => ({
+    ...p,
+    idx,
+    sales: p.base + SALE_ORDER.slice(0, k + 1).filter((s) => s === idx).length,
+  })).sort((a, b) => b.sales - a.sales);
+
+  return (
+    <div ref={ref} className="relative w-full max-w-[290px] pb-5">
+      <div className="yl-float-card p-3">
+        <div className="mb-2 flex items-center gap-1.5 text-[10.5px] font-semibold text-zinc-600">
+          <span className="relative flex size-1.5">
+            <span className="yl-pulse-ring absolute inset-0 rounded-full bg-emerald-400" />
+            <span className="relative size-1.5 rounded-full bg-emerald-500" />
+          </span>
+          {m.promoLive}
+        </div>
+        <ul className="space-y-1">
+          {rows.map((r, rank) => {
+            const justSold = r.idx === seller;
+            return (
+              <motion.li
+                key={r.name}
+                layout
+                transition={{ duration: 0.45, ease: EASE }}
+                className={cn(
+                  "flex items-center gap-2 rounded-lg px-2 py-1.5 transition-colors duration-500",
+                  justSold ? "bg-emerald-50" : "bg-transparent",
+                )}
+              >
+                <span className="w-3 text-[11px] font-semibold tabular-nums text-zinc-400">
+                  {rank + 1}
+                </span>
+                <span
+                  className="flex size-[22px] shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-[#fff]"
+                  style={{ background: PROMO_TINT[r.idx] }}
+                >
+                  {r.name[0]}
+                </span>
+                <span className="min-w-0 flex-1 truncate text-[12.5px] font-semibold text-zinc-900">
+                  {r.name}
+                </span>
+                <span className="shrink-0 text-[11px] tabular-nums text-zinc-400">
+                  {r.sales} {m.sales}
+                </span>
+                <span className="w-11 shrink-0 text-right text-[12px] font-semibold tabular-nums text-zinc-900">
+                  €{r.sales * COMMISSION_PER_SALE}
+                </span>
+              </motion.li>
+            );
+          })}
+        </ul>
+      </div>
+
+      {/* sale toast */}
+      <div className="absolute bottom-0 left-1/2 w-max -translate-x-1/2">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`sale-${k}`}
+            initial={{ opacity: 0, y: 8, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.3, ease: EASE }}
+            className="flex items-center gap-1.5 rounded-full bg-emerald-500 px-3 py-1.5 text-[11px] font-semibold text-[#fff] shadow-lg"
+          >
+            <Check className="size-3" strokeWidth={3} /> {m.newSale} · {PROMOTERS[seller].name}
+          </motion.div>
         </AnimatePresence>
       </div>
     </div>

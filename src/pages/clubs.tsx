@@ -25,8 +25,6 @@ import dashAccounting from "@/assets/dashboards/owner/accounting.png";
 import dashStaff from "@/assets/dashboards/owner/staff.png";
 import dashVipService from "@/assets/dashboards/owner/vip-service.png";
 import dashNotifications from "@/assets/dashboards/owner/notifications.png";
-// Live Night control room — a real owner screen (lives outside the 20-tile set).
-import dashLiveNight from "@/assets/dashboards/live-night.png";
 // Phone showcase — a club's customer-facing event page.
 import eventFlyer from "@/assets/bde/event-flyer.png";
 
@@ -142,7 +140,9 @@ const PAIN_IMAGES: Record<string, string> = {
   "co-soiree": dashCollaborations,
   data: dashAnalytics,
   fidelite: dashCustomers,
-  live: dashLiveNight,
+  // The Live Night capture shows the paused bar's order metrics: analytics
+  // stands in until a fresh capture of the live screen.
+  live: dashAnalytics,
   staff: dashStaff,
   compta: dashAccounting,
 };

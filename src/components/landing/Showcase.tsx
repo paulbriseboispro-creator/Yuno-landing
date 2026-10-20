@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { cn } from "@/lib/utils";
 import clubDashboard from "@/assets/home/club-dashboard.webp";
-import liveNight from "@/assets/home/live-night.webp";
 import orgaAnalytics from "@/assets/home/orga-analytics.webp";
 import clubVip from "@/assets/home/club-vip.webp";
 import orgaTicketing from "@/assets/home/orga-ticketing.webp";
@@ -12,7 +11,6 @@ import { FadeIn, FounderCta, PrimaryCta, SectionHeader } from "./ui";
 
 const SHOTS: Record<string, { src: string; url: string }> = {
   dashboard: { src: clubDashboard, url: "yunoapp.eu/owner/dashboard" },
-  live: { src: liveNight, url: "yunoapp.eu/owner/live-night" },
   analytics: { src: orgaAnalytics, url: "yunoapp.eu/organizer-app/analytics" },
   tables: { src: clubVip, url: "yunoapp.eu/owner/tables" },
   ticketing: { src: orgaTicketing, url: "yunoapp.eu/organizer-app/ticketing" },
