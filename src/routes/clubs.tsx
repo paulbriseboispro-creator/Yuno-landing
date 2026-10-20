@@ -1,19 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { clubsContent } from "@/content/clubs";
-import { pageSeo } from "@/i18n/seo";
-import { validateClubSearch } from "@/lib/search-params";
-import { ClubsPage } from "@/pages/clubs";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
+// Retired on 20/10/2026 (Paul): this page belonged to the old site, before the
+// main landing was rebuilt (24/09). Kept as a permanent redirect so the links
+// already shared and indexed land on the real landing.
 export const Route = createFileRoute("/clubs")({
-  validateSearch: validateClubSearch,
-  head: ({ match }) => {
-    const m = clubsContent[match.context.locale].meta;
-    return pageSeo("/clubs", match.context.locale, {
-      title: m.title,
-      description: m.description,
-      ogTitle: m.ogTitle,
-      ogDescription: m.ogDescription,
-    });
+  beforeLoad: () => {
+    throw redirect({ href: "/", statusCode: 301 });
   },
-  component: ClubsPage,
 });

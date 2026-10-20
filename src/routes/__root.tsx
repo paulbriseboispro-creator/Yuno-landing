@@ -85,6 +85,17 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+// Contact and legal pages: plain pages on the landing's light chrome (they
+// bring its nav and footer, src/components/landing/Shell.tsx).
+const LANDING_CHROME_PATHS = new Set<string>([
+  "/contact",
+  "/fr/contact",
+  "/privacy",
+  "/fr/privacy",
+  "/terms",
+  "/fr/terms",
+]);
+
 // Route ids of the Yuno CRM page (crm.yunoapp.eu "/", "/fr", "/es").
 const CRM_ROUTE_IDS = new Set<string>(["/crm", "/fr/crm", "/es/crm"]);
 
@@ -94,7 +105,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     // `lang` drives <html lang>; it only differs from `locale` on the Spanish
     // landing (the rest of the site, and its shared chrome, is EN/FR only).
     // `landing` switches the shell to the light, chrome-less landing surface.
-    const landing = isLandingPath(path) || COMPARE_PATHS.has(path) || TOPIC_PATHS.has(path);
+    const landing =
+      isLandingPath(path) ||
+      COMPARE_PATHS.has(path) ||
+      TOPIC_PATHS.has(path) ||
+      LANDING_CHROME_PATHS.has(path);
     // Spanish exists only for the landing ("/es").
     if (path === "/es" || path.startsWith("/es/")) {
       return { locale: "en" as Locale, lang: "es" as LandingLang, landing };
@@ -244,7 +259,12 @@ function surfaceFor(pathname: string): Surface {
   let path = pathname;
   if (path === "/fr") path = "/";
   else if (path.startsWith("/fr/")) path = path.slice(3); // "/fr/clubs" -> "/clubs"
-  if (isLandingPath(pathname) || COMPARE_PATHS.has(pathname) || TOPIC_PATHS.has(pathname))
+  if (
+    isLandingPath(pathname) ||
+    COMPARE_PATHS.has(pathname) ||
+    TOPIC_PATHS.has(pathname) ||
+    LANDING_CHROME_PATHS.has(pathname)
+  )
     return "landing";
   if (path === "/clubs") return "club";
   if (path === "/organizers") return "orga";

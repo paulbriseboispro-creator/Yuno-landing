@@ -7,23 +7,25 @@ import { useLocale, type Locale } from "@/i18n/locale";
 
 const en = {
   meta: {
-    title: "Book a demo — Yuno",
+    title: "Contact — Yuno",
     description:
-      "Talk to a Yuno expert. We'll walk through your floor plan, your fee stack and what migrating would look like.",
-    ogDescription: "Talk to a Yuno expert. 30-minute call, no pressure.",
+      "Clubs and organizers open their Yuno account themselves in two minutes: €0 subscription, 0% commission. A question first? Write to the founder.",
+    ogDescription: "Open your Yuno account in two minutes, or write to the founder.",
   },
-  tag: "Talk to us",
+  tag: "Contact",
   heading: {
-    lead: "Book a 30-minute",
-    accent: "walkthrough",
+    lead: "Open your account in two minutes,",
+    accent: "or write to us.",
   },
   subhead:
-    "Tell us about your venue or your events. We'll come back within one business day with a tailored demo and a fee comparison.",
+    "Clubs and organizers create their Yuno account themselves, with no call to book. A question first? Leave a message or write to the founder on WhatsApp; we answer within one business day.",
   benefits: [
-    "No card, no commitment",
-    "Migration plan from your current tooling",
-    "EU-based, GDPR-native",
+    "Account open in two minutes, no card",
+    "€0 subscription, 0% commission on your price",
+    "Set up with you if you want",
   ],
+  cta: "Create my free account",
+  formTitle: "A question first?",
   contactInfo: {
     emailLabel: "Email",
     phoneLabel: "Phone",
@@ -46,19 +48,23 @@ const en = {
     companyPlaceholder: "Neon Room",
     phoneLabel: "Phone (optional)",
     phonePlaceholder: "+33 6 ...",
-    messageLabel: "What do you want to fix first?",
-    messagePlaceholder: "VIP no-shows, blind during the night, customer data, co-hosted split...",
-    submit: "Book my demo",
+    messageLabel: "Your message",
+    messagePlaceholder: "A question about your venue, your nights, the price…",
+    submit: "Send my message",
     submitting: "Sending…",
     errorMessage: "Something went wrong.",
+    phoneInvalid: "This phone number doesn't look complete.",
+    or: "or",
+    whatsappCta: "Message the founder on WhatsApp",
+    phoneCountry: "Country code",
   },
   success: {
-    title: "You're on the list.",
-    body: "We'll be in touch within one business day.",
+    title: "Message received.",
+    body: "We'll get back to you within one business day.",
   },
   consent: "By submitting you agree to be contacted about Yuno. We never share your data.",
   // Human-readable label for each ?besoin= pain, used to pre-fill the message so
-  // Paul opens the call on the visitor's actual problem.
+  // Paul answers on the visitor's actual problem.
   prefillPrefix: "I'd like to talk about",
   besoinLabels: {
     vip: "VIP tables & bottle service",
@@ -80,23 +86,25 @@ export type ContactContent = typeof en;
 
 const fr: ContactContent = {
   meta: {
-    title: "Réserver une démo — Yuno",
+    title: "Contact — Yuno",
     description:
-      "Échangez avec un expert Yuno. Nous passerons en revue votre plan de salle, vos frais et ce à quoi ressemblerait une migration.",
-    ogDescription: "Échangez avec un expert Yuno. Appel de 30 minutes, sans pression.",
+      "Clubs et organisateurs ouvrent leur compte Yuno eux-mêmes en deux minutes : 0 € d'abonnement, 0 % de commission. Une question avant ? Écrivez au fondateur.",
+    ogDescription: "Ouvrez votre compte Yuno en deux minutes, ou écrivez au fondateur.",
   },
-  tag: "Parlons-en",
+  tag: "Contact",
   heading: {
-    lead: "Réservez une démo",
-    accent: "de 30 minutes",
+    lead: "Ouvrez votre compte en deux minutes,",
+    accent: "ou écrivez-nous.",
   },
   subhead:
-    "Parlez-nous de votre établissement ou de vos événements. Nous reviendrons vers vous sous un jour ouvré avec une démo sur mesure et un comparatif des frais.",
+    "Clubs et organisateurs créent leur compte Yuno eux-mêmes, sans appel à réserver. Une question avant ? Laissez un message ou écrivez au fondateur sur WhatsApp : on vous répond sous un jour ouvré.",
   benefits: [
-    "Sans carte, sans engagement",
-    "Plan de migration depuis vos outils actuels",
-    "Conforme RGPD, basé en Europe",
+    "Compte ouvert en deux minutes, sans carte",
+    "0 € d'abonnement, 0 % de commission sur votre prix",
+    "Configuration avec vous si vous le souhaitez",
   ],
+  cta: "Créer mon compte gratuit",
+  formTitle: "Une question avant ?",
   contactInfo: {
     emailLabel: "Email",
     phoneLabel: "Téléphone",
@@ -119,16 +127,19 @@ const fr: ContactContent = {
     companyPlaceholder: "Neon Room",
     phoneLabel: "Téléphone (optionnel)",
     phonePlaceholder: "+33 6 ...",
-    messageLabel: "Que souhaitez-vous résoudre en priorité ?",
-    messagePlaceholder:
-      "Tables VIP qui ne viennent pas, aveugle pendant la soirée, données clients, répartition co-soirée...",
-    submit: "Réserver ma démo",
+    messageLabel: "Votre message",
+    messagePlaceholder: "Une question sur votre établissement, vos soirées, les tarifs…",
+    submit: "Envoyer mon message",
     submitting: "Envoi…",
     errorMessage: "Impossible d'enregistrer votre demande. Réessayez.",
+    phoneInvalid: "Ce numéro de téléphone semble incomplet.",
+    or: "ou",
+    whatsappCta: "Écrire au fondateur sur WhatsApp",
+    phoneCountry: "Indicatif du pays",
   },
   success: {
-    title: "Vous êtes sur la liste.",
-    body: "Nous vous recontactons sous un jour ouvré.",
+    title: "Message bien reçu.",
+    body: "On vous répond sous un jour ouvré.",
   },
   consent:
     "En soumettant ce formulaire, vous acceptez d'être contacté au sujet de Yuno. Nous ne partageons jamais vos données.",

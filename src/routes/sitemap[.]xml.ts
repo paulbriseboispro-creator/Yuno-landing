@@ -18,16 +18,7 @@ import { type SitemapEntry, sitemapXml } from "@/i18n/sitemap-xml";
 
 function sitemapEntries(): SitemapEntry[] {
   // Pages published in English (root) and French (/fr).
-  const bilingual = [
-    "/",
-    "/start",
-    "/clubs",
-    "/organizers",
-    "/affiliates",
-    "/contact",
-    "/privacy",
-    "/terms",
-  ];
+  const bilingual = ["/", "/start", "/contact", "/privacy", "/terms"];
   const entries: SitemapEntry[] = bilingual.flatMap((path) => {
     const lastmod = path === "/" ? LANDING_UPDATED : undefined;
     return [
