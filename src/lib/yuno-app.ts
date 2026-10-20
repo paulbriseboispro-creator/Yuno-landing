@@ -62,6 +62,53 @@ export function appHandoffUrl(
   return `${origin}/auth/handoff#${frag.toString()}`;
 }
 
+/**
+ * "Does this address already have a Yuno account?" — asked while the person types it, not
+ * after the password (Poupée, 19/10/2026: a club owner came back to the funnel four times and
+ * only learned at the last screen that his address was taken). App RPC `email_has_account`
+ * (yuno repo, migration 20260830120000): a boolean, never a row; `auth.signUp` already reveals
+ * the same thing, only too late. `null` = we don't know (network, RPC down): never block on it.
+ */
+export async function emailHasAccount(email: string): Promise<boolean | null> {
+  try {
+    const { data, error } = await yunoApp().rpc("email_has_account", {
+      _email: email.trim().toLowerCase(),
+    });
+    if (error || typeof data !== "boolean") return null;
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+export type LoginLinkResult = "sent" | "wait" | "failed";
+
+/**
+ * One-tap way back in for an address that already has an account: a passwordless login link
+ * (Supabase magic link, bilingual FR/EN template of the app's Auth, valid one hour, one use).
+ * It also covers a forgotten password. `shouldCreateUser: false`: it never opens an account.
+ * `redirectTo` must be in the app's Auth redirect allow-list (yunoapp.eu, landing, crm).
+ */
+export async function sendLoginLink(email: string, redirectTo: string): Promise<LoginLinkResult> {
+  try {
+    const { error } = await yunoApp().auth.signInWithOtp({
+      email: email.trim().toLowerCase(),
+      options: { shouldCreateUser: false, emailRedirectTo: redirectTo },
+    });
+    if (!error) return "sent";
+    const code = (error as { code?: string }).code ?? "";
+    if (
+      error.status === 429 ||
+      code === "over_email_send_rate_limit" ||
+      code === "over_request_rate_limit"
+    )
+      return "wait";
+    return "failed";
+  } catch {
+    return "failed";
+  }
+}
+
 /** Random, unguessable id for one signup journey (pro_signups.client_key). */
 export function newSignupKey(): string {
   const bytes = new Uint8Array(18);

@@ -926,8 +926,24 @@ const en = {
     },
     existsTitle: "You already have a Yuno account",
     existsBody:
-      "{email} is already registered. Log in: we'll finish opening your pro space right after.",
+      "{email} already has a Yuno account. Log in with it: you land straight in your Console, nothing to start over.",
     existsCta: "Log in and continue",
+    existsLink: "Email me a login link",
+    existsLinkHint:
+      "Forgot your password? The link logs you in without one, you can pick a new one afterwards.",
+    existsSentTitle: "Login link sent",
+    existsSent:
+      "We sent a login link to {email}. Open it: it takes you straight into your Console. It works once, for one hour.",
+    existsSpam: "Nothing after two minutes? Check your spam folder.",
+    existsResend: "Send it again",
+    existsResendIn: "Send again in {s}s",
+    existsOther: "Use another email address",
+    existsWait: "A link was just sent. Wait a minute before asking for another one.",
+    existsLinkError:
+      "The link couldn't be sent. Log in with your password, or message us on WhatsApp.",
+    fromAppTitle: "Already have a pro account?",
+    fromAppBody:
+      "Log in with the email of your account: your Console is waiting. This form is only to open a new one.",
     confirmTitle: "Check your inbox",
     confirmBody:
       "We sent a link to {email}. Click it to confirm your email — your Console opens straight away.",
@@ -1885,8 +1901,24 @@ const fr: LandingContent = {
     },
     existsTitle: "Vous avez déjà un compte Yuno",
     existsBody:
-      "{email} est déjà inscrit. Connectez-vous : on termine l'ouverture de votre espace pro juste après.",
+      "{email} a déjà un compte Yuno. Connectez-vous avec : vous arrivez directement dans votre Console, rien à recommencer.",
     existsCta: "Me connecter et continuer",
+    existsLink: "Recevoir un lien de connexion",
+    existsLinkHint:
+      "Mot de passe oublié ? Le lien vous connecte sans mot de passe, vous en choisirez un nouveau ensuite.",
+    existsSentTitle: "Lien de connexion envoyé",
+    existsSent:
+      "On a envoyé un lien de connexion à {email}. Ouvrez-le : il vous mène directement dans votre Console. Il sert une fois et vaut une heure.",
+    existsSpam: "Rien après deux minutes ? Regardez dans les indésirables.",
+    existsResend: "Renvoyer le lien",
+    existsResendIn: "Renvoyer dans {s} s",
+    existsOther: "Utiliser une autre adresse",
+    existsWait: "Un lien vient de partir. Patientez une minute avant d'en demander un autre.",
+    existsLinkError:
+      "Le lien n'a pas pu partir. Connectez-vous avec votre mot de passe, ou écrivez-nous sur WhatsApp.",
+    fromAppTitle: "Vous avez déjà un compte pro ?",
+    fromAppBody:
+      "Connectez-vous avec l'e-mail de votre compte : votre Console vous attend. Ce formulaire sert seulement à en ouvrir un nouveau.",
     confirmTitle: "Vérifiez votre boîte mail",
     confirmBody:
       "On a envoyé un lien à {email}. Cliquez dessus pour confirmer votre email — votre Console s'ouvre aussitôt.",
@@ -2855,8 +2887,24 @@ const es: LandingContent = {
     },
     existsTitle: "Ya tienes una cuenta Yuno",
     existsBody:
-      "{email} ya está registrado. Inicia sesión: terminamos de abrir tu espacio pro justo después.",
+      "{email} ya tiene una cuenta Yuno. Inicia sesión con ella: llegas directamente a tu Consola, sin empezar de nuevo.",
     existsCta: "Iniciar sesión y continuar",
+    existsLink: "Recibir un enlace de acceso",
+    existsLinkHint:
+      "¿Olvidaste tu contraseña? El enlace te conecta sin ella; podrás elegir una nueva después.",
+    existsSentTitle: "Enlace de acceso enviado",
+    existsSent:
+      "Hemos enviado un enlace de acceso a {email}. Ábrelo: te lleva directamente a tu Consola. Sirve una sola vez y caduca en una hora.",
+    existsSpam: "¿Nada después de dos minutos? Mira en la carpeta de spam.",
+    existsResend: "Reenviar el enlace",
+    existsResendIn: "Reenviar en {s} s",
+    existsOther: "Usar otra dirección",
+    existsWait: "Acabamos de enviar un enlace. Espera un minuto antes de pedir otro.",
+    existsLinkError:
+      "No hemos podido enviar el enlace. Inicia sesión con tu contraseña o escríbenos por WhatsApp.",
+    fromAppTitle: "¿Ya tienes una cuenta pro?",
+    fromAppBody:
+      "Inicia sesión con el email de tu cuenta: tu Consola te espera. Este formulario solo sirve para abrir una nueva.",
     confirmTitle: "Revisa tu bandeja de entrada",
     confirmBody:
       "Hemos enviado un enlace a {email}. Haz clic para confirmar tu email — tu Consola se abre al momento.",

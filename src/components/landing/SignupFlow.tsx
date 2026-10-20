@@ -5,6 +5,7 @@ import {
   ArrowLeft,
   ArrowRight,
   Building2,
+  CircleUserRound,
   Check,
   Eye,
   EyeOff,
@@ -22,9 +23,12 @@ import {
   YUNO_APP_ORIGIN,
   appHandoffUrl,
   appLoginUrl,
+  emailHasAccount,
   newSignupKey,
+  sendLoginLink,
   trackSignup,
   yunoApp,
+  type LoginLinkResult,
 } from "@/lib/yuno-app";
 import type { AssoContent } from "@/content/asso";
 import type { CrmContent } from "@/content/crm";
@@ -223,7 +227,22 @@ export function SignupFlow({
   const [terms, setTerms] = useState(false);
   const [busy, setBusy] = useState(false);
   const [tick, setTick] = useState(0);
+  // "Does this address already have an account?" — answered while it is typed (Poupée, 19/10).
+  const [accountCheck, setAccountCheck] = useState<{ email: string; exists: boolean | null }>({
+    email: "",
+    exists: null,
+  });
+  const [linkState, setLinkState] = useState<"idle" | "sending" | "sent">("idle");
+  const [linkNote, setLinkNote] = useState<Exclude<LoginLinkResult, "sent"> | null>(null);
+  const [resendIn, setResendIn] = useState(0);
+  // Opened from the app's login page ("Créer un compte pro", utm_medium=auth): offer to log in first.
+  const [fromAppLogin] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      new URLSearchParams(window.location.search).get("utm_medium") === "auth",
+  );
   const rootRef = useRef<HTMLDivElement>(null);
+  const reportedExisting = useRef(new Set<string>());
 
   // Persist the journey for the tab's lifetime: a refresh or a closed modal
   // resumes where the person stopped, on the same pro_signups row.
@@ -268,6 +287,103 @@ export function SignupFlow({
     const id = window.setInterval(() => setTick((n) => Math.min(n + 1, 3)), 650);
     return () => window.clearInterval(id);
   }, [phase]);
+
+  // Account step: check the address as soon as it looks complete (debounced), so a person who
+  // already has an account is offered to log in BEFORE choosing a password for nothing.
+  const typedEmail = form.email.trim().toLowerCase();
+  useEffect(() => {
+    if (step !== "account" || phase !== "form" || !EMAIL_RE.test(typedEmail)) return;
+    if (accountCheck.email === typedEmail) return;
+    let off = false;
+    const id = window.setTimeout(async () => {
+      const exists = await emailHasAccount(typedEmail);
+      if (!off) setAccountCheck({ email: typedEmail, exists });
+    }, 550);
+    return () => {
+      off = true;
+      window.clearTimeout(id);
+    };
+  }, [step, phase, typedEmail, accountCheck.email]);
+
+  const existingAccount = accountCheck.exists === true && accountCheck.email === typedEmail;
+
+  // Seen once per address: the draft gets the email (Paul's "retry" alert reads it) and PostHog
+  // knows the funnel caught it early, not after the password.
+  useEffect(() => {
+    if (!existingAccount || reportedExisting.current.has(typedEmail)) return;
+    reportedExisting.current.add(typedEmail);
+    setLinkState("idle");
+    setLinkNote(null);
+    saveIdentity();
+    capture("pro_signup_existing_account", {
+      audience,
+      product,
+      role: form.role,
+      lang,
+      source,
+      at: "email",
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [existingAccount, typedEmail]);
+
+  // Resend countdown after a login link went out (Supabase allows one per address per minute).
+  useEffect(() => {
+    if (resendIn <= 0) return;
+    const id = window.setTimeout(() => setResendIn((n) => n - 1), 1000);
+    return () => window.clearTimeout(id);
+  }, [resendIn]);
+
+  async function requestLoginLink() {
+    if (linkState === "sending" || resendIn > 0) return;
+    setLinkState("sending");
+    setLinkNote(null);
+    // The draft must hold the answers: if the existing account is a CUSTOMER account, the link
+    // lands on /get-started?key=… which opens the pro space with them (complete_pro_signup).
+    await trackSignup(key, "account", {
+      kind: form.role,
+      lang,
+      org_name: form.org_name,
+      city: form.city,
+      first_name: form.first_name,
+      last_name: form.last_name,
+      email: typedEmail,
+      phone: form.phone,
+      pillars: form.pillars,
+      ...(crm ? { current_tool: form.current_tool, ...productData } : {}),
+    });
+    const r = await sendLoginLink(typedEmail, `${YUNO_APP_ORIGIN}/get-started?key=${key}`);
+    capture("pro_signup_login_link_requested", { audience, product, lang, source, result: r });
+    if (r === "sent") {
+      setLinkState("sent");
+      setResendIn(60);
+      return;
+    }
+    setLinkState(r === "wait" ? "sent" : "idle");
+    if (r === "wait") setResendIn(60);
+    setLinkNote(r);
+  }
+
+  function useAnotherEmail() {
+    setLinkState("idle");
+    setLinkNote(null);
+    setResendIn(0);
+    setPhase("form");
+    setStep("account");
+    set("email", "");
+  }
+
+  const existingActions = (
+    <ExistingAccountActions
+      s={s}
+      email={typedEmail}
+      loginHref={appLoginUrl(key)}
+      linkState={linkState}
+      linkNote={linkNote}
+      resendIn={resendIn}
+      onSendLink={() => void requestLoginLink()}
+      onOther={useAnotherEmail}
+    />
+  );
 
   const steps = stepsFor(form.role, asso, crm);
   const stepIndex = Math.max(1, steps.indexOf(step) + 1);
@@ -584,30 +700,36 @@ export function SignupFlow({
     );
   }
 
-  if (phase === "exists" || phase === "confirm") {
-    const exists = phase === "exists";
+  if (phase === "exists") {
+    return (
+      <div ref={rootRef} className="py-4 text-center">
+        <span className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-900">
+          <CircleUserRound className="size-6" />
+        </span>
+        <h2 id="signup-title" className="yl-h3 mt-6 text-[24px] text-zinc-950">
+          {s.existsTitle}
+        </h2>
+        <p className="mx-auto mt-2 max-w-sm text-pretty text-[14.5px] leading-relaxed text-zinc-500">
+          {s.existsBody.replace("{email}", typedEmail)}
+        </p>
+        <div className="mt-7 text-left">{existingActions}</div>
+      </div>
+    );
+  }
+
+  if (phase === "confirm") {
     return (
       <div ref={rootRef} className="py-4 text-center">
         <span className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-900">
           <Mail className="size-6" />
         </span>
         <h2 id="signup-title" className="yl-h3 mt-6 text-[24px] text-zinc-950">
-          {exists ? s.existsTitle : s.confirmTitle}
+          {s.confirmTitle}
         </h2>
         <p className="mx-auto mt-2 max-w-sm text-pretty text-[14.5px] leading-relaxed text-zinc-500">
-          {(exists ? s.existsBody : s.confirmBody).replace("{email}", form.email.trim())}
+          {s.confirmBody.replace("{email}", form.email.trim())}
         </p>
         <div className="mt-7 flex flex-col gap-2">
-          {exists ? (
-            <a
-              href={appLoginUrl(key)}
-              data-autofocus
-              className="yl-btn-primary group h-12 text-[15px]"
-            >
-              {s.existsCta}
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-            </a>
-          ) : null}
           <a
             href={whatsappHref(whatsappMessage)}
             target="_blank"
@@ -616,18 +738,6 @@ export function SignupFlow({
           >
             <MessageCircle className="size-4 text-[#25D366]" /> {s.doneCta}
           </a>
-          {exists && (
-            <button
-              type="button"
-              onClick={() => {
-                setPhase("form");
-                setStep("account");
-              }}
-              className="h-11 text-[13.5px] font-medium text-zinc-500 hover:text-zinc-900"
-            >
-              {s.back}
-            </button>
-          )}
         </div>
       </div>
     );
@@ -699,6 +809,23 @@ export function SignupFlow({
       <AnimatePresence mode="wait" initial={false}>
         {step === "role" && (
           <Pane key="role">
+            {fromAppLogin && (
+              <div className="mb-6 rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+                <p className="flex items-center gap-2 text-[14px] font-semibold text-zinc-950">
+                  <CircleUserRound className="size-4 shrink-0" /> {s.fromAppTitle}
+                </p>
+                <p className="mt-1 text-pretty text-[13px] leading-relaxed text-zinc-500">
+                  {s.fromAppBody}
+                </p>
+                <a
+                  href={`${YUNO_APP_ORIGIN}/auth`}
+                  className="yl-btn-primary group mt-3 h-11 w-full text-[14px]"
+                >
+                  {s.login}
+                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+                </a>
+              </div>
+            )}
             <h2 id="signup-title" className="yl-h3 text-[24px] text-zinc-950">
               {s.roleTitle}
             </h2>
@@ -734,7 +861,7 @@ export function SignupFlow({
                 );
               })}
             </div>
-            <LoginHint />
+            {!fromAppLogin && <LoginHint />}
           </Pane>
         )}
 
@@ -916,89 +1043,105 @@ export function SignupFlow({
                 onBlur={saveIdentity}
                 placeholder={s.emailPh}
                 autoComplete="email"
-                hint={emailHint}
+                hint={existingAccount ? undefined : emailHint}
                 required
                 maxLength={254}
               />
-              <PhoneField
-                id="signup-phone"
-                label={s.phone}
-                countryLabel={s.phoneCountry}
-                lang={lang}
-                value={form.phone}
-                onChange={(v) => set("phone", v)}
-                onBlur={saveIdentity}
-                hint={s.phoneHint}
-                invalid={error === s.errors.phone}
-              />
-              <label className="block">
-                <span className="text-[13px] font-medium text-zinc-700">{s.password}</span>
-                <span className="relative mt-1.5 block">
-                  <input
-                    type={showPwd ? "text" : "password"}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder={s.passwordPh}
-                    autoComplete="new-password"
-                    required
-                    minLength={8}
-                    maxLength={72}
-                    className={cn(INPUT, "pr-20")}
+              {existingAccount ? (
+                <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+                  <p className="flex items-center gap-2 text-[14px] font-semibold text-zinc-950">
+                    <CircleUserRound className="size-4 shrink-0" /> {s.existsTitle}
+                  </p>
+                  <p className="mt-1 text-pretty text-[13px] leading-relaxed text-zinc-500">
+                    {s.existsBody.replace("{email}", typedEmail)}
+                  </p>
+                  <div className="mt-4">{existingActions}</div>
+                </div>
+              ) : (
+                <>
+                  <PhoneField
+                    id="signup-phone"
+                    label={s.phone}
+                    countryLabel={s.phoneCountry}
+                    lang={lang}
+                    value={form.phone}
+                    onChange={(v) => set("phone", v)}
+                    onBlur={saveIdentity}
+                    hint={s.phoneHint}
+                    invalid={error === s.errors.phone}
                   />
-                  <button
-                    type="button"
-                    onClick={() => setShowPwd((v) => !v)}
-                    className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center gap-1 rounded-lg px-2 py-1 text-[12px] font-medium text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900"
-                  >
-                    {showPwd ? <EyeOff className="size-3.5" /> : <Eye className="size-3.5" />}
-                    {showPwd ? s.hide : s.show}
-                  </button>
-                </span>
-              </label>
-              <label className="flex items-start gap-2.5 pt-1 text-[12.5px] leading-snug text-zinc-500">
-                <input
-                  type="checkbox"
-                  checked={terms}
-                  onChange={(e) => setTerms(e.target.checked)}
-                  className="mt-0.5 size-4 shrink-0 accent-zinc-950"
-                />
-                <span>
-                  {s.termsA}{" "}
-                  <a
-                    href={s.termsHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline hover:text-zinc-900"
-                  >
-                    {s.termsLink}
-                  </a>{" "}
-                  {s.termsB}{" "}
-                  <a
-                    href={s.privacyHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline hover:text-zinc-900"
-                  >
-                    {s.privacyLink}
-                  </a>
-                  .
-                </span>
-              </label>
+                  <label className="block">
+                    <span className="text-[13px] font-medium text-zinc-700">{s.password}</span>
+                    <span className="relative mt-1.5 block">
+                      <input
+                        type={showPwd ? "text" : "password"}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder={s.passwordPh}
+                        autoComplete="new-password"
+                        required
+                        minLength={8}
+                        maxLength={72}
+                        className={cn(INPUT, "pr-20")}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPwd((v) => !v)}
+                        className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center gap-1 rounded-lg px-2 py-1 text-[12px] font-medium text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900"
+                      >
+                        {showPwd ? <EyeOff className="size-3.5" /> : <Eye className="size-3.5" />}
+                        {showPwd ? s.hide : s.show}
+                      </button>
+                    </span>
+                  </label>
+                  <label className="flex items-start gap-2.5 pt-1 text-[12.5px] leading-snug text-zinc-500">
+                    <input
+                      type="checkbox"
+                      checked={terms}
+                      onChange={(e) => setTerms(e.target.checked)}
+                      className="mt-0.5 size-4 shrink-0 accent-zinc-950"
+                    />
+                    <span>
+                      {s.termsA}{" "}
+                      <a
+                        href={s.termsHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline hover:text-zinc-900"
+                      >
+                        {s.termsLink}
+                      </a>{" "}
+                      {s.termsB}{" "}
+                      <a
+                        href={s.privacyHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline hover:text-zinc-900"
+                      >
+                        {s.privacyLink}
+                      </a>
+                      .
+                    </span>
+                  </label>
+                </>
+              )}
             </div>
 
-            {error && <ErrorNote>{error}</ErrorNote>}
+            {error && !existingAccount && <ErrorNote>{error}</ErrorNote>}
 
             <Actions onBack={goBack} backLabel={s.back}>
-              <button
-                type="submit"
-                disabled={!terms}
-                className="yl-btn-primary group h-12 flex-1 text-[15px] disabled:opacity-50"
-              >
-                {s.submit}
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-              </button>
+              {!existingAccount && (
+                <button
+                  type="submit"
+                  disabled={!terms}
+                  className="yl-btn-primary group h-12 flex-1 text-[15px] disabled:opacity-50"
+                >
+                  {s.submit}
+                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+                </button>
+              )}
             </Actions>
-            <LoginHint signupKey={key} />
+            {!existingAccount && <LoginHint signupKey={key} />}
           </Pane>
         )}
 
@@ -1263,6 +1406,101 @@ function ErrorNote({ children }: { children: ReactNode }) {
     <p role="alert" className="mt-4 rounded-xl bg-red-50 px-3.5 py-2.5 text-[13px] text-red-700">
       {children}
     </p>
+  );
+}
+
+type ExistingCopy = {
+  existsCta: string;
+  existsLink: string;
+  existsLinkHint: string;
+  existsSentTitle: string;
+  existsSent: string;
+  existsSpam: string;
+  existsResend: string;
+  existsResendIn: string;
+  existsOther: string;
+  existsWait: string;
+  existsLinkError: string;
+};
+
+// The address already has an account: two ways back in, one tap each. Log in (the app's login,
+// then /get-started) or receive a login link by email, which also covers a forgotten password.
+function ExistingAccountActions({
+  s,
+  email,
+  loginHref,
+  linkState,
+  linkNote,
+  resendIn,
+  onSendLink,
+  onOther,
+}: {
+  s: ExistingCopy;
+  email: string;
+  loginHref: string;
+  linkState: "idle" | "sending" | "sent";
+  linkNote: "wait" | "failed" | null;
+  resendIn: number;
+  onSendLink: () => void;
+  onOther: () => void;
+}) {
+  const sent = linkState === "sent";
+  return (
+    <div className="flex flex-col gap-2" aria-live="polite">
+      {sent ? (
+        <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-3.5 py-3 text-left">
+          <p className="flex items-center gap-2 text-[14px] font-semibold text-emerald-900">
+            <Check className="size-4 shrink-0" strokeWidth={3} /> {s.existsSentTitle}
+          </p>
+          <p className="mt-1 text-pretty text-[13px] leading-relaxed text-emerald-900/80">
+            {linkNote === "wait" ? s.existsWait : s.existsSent.replace("{email}", email)}
+          </p>
+          <p className="mt-1 text-[12px] text-emerald-900/60">{s.existsSpam}</p>
+        </div>
+      ) : (
+        <a href={loginHref} data-autofocus className="yl-btn-primary group h-12 text-[15px]">
+          {s.existsCta}
+          <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+        </a>
+      )}
+      <button
+        type="button"
+        onClick={onSendLink}
+        disabled={linkState === "sending" || resendIn > 0}
+        className="yl-btn-secondary h-12 text-[14px] disabled:opacity-60"
+      >
+        {linkState === "sending" ? (
+          <Loader2 className="size-4 animate-spin" />
+        ) : (
+          <Mail className="size-4" />
+        )}
+        {sent
+          ? resendIn > 0
+            ? s.existsResendIn.replace("{s}", String(resendIn))
+            : s.existsResend
+          : s.existsLink}
+      </button>
+      {sent ? (
+        <a
+          href={loginHref}
+          className="text-center text-[13px] font-medium text-zinc-600 underline-offset-2 hover:text-zinc-950 hover:underline"
+        >
+          {s.existsCta}
+        </a>
+      ) : (
+        <p className="text-pretty text-center text-[12px] leading-snug text-zinc-500">
+          {s.existsLinkHint}
+        </p>
+      )}
+      {linkNote === "failed" && <ErrorNote>{s.existsLinkError}</ErrorNote>}
+      <button
+        type="button"
+        onClick={onOther}
+        className="h-9 text-[12.5px] font-medium text-zinc-500 hover:text-zinc-900"
+      >
+        {s.existsOther}
+      </button>
+    </div>
   );
 }
 

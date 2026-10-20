@@ -43,7 +43,8 @@ export type LandingEvent =
   | "pro_signup_step_completed"
   | "pro_signup_account_created"
   | "pro_signup_email_confirmation_required"
-  | "pro_signup_existing_account"
+  | "pro_signup_existing_account" // {at: "email" when caught while typing, else after the password}
+  | "pro_signup_login_link_requested" // {result: sent | wait | failed}
   | "pro_signup_failed"
   | "pro_signup_lead_submitted"
   | "contact_form_submitted"
