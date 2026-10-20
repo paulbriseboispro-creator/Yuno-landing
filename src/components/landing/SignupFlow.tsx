@@ -115,6 +115,11 @@ const ASSO_STORE_KEY = "yuno_asso_signup";
 const CRM_STORE_KEY = "yuno_crm_signup";
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
+// Drinks ordering is paused in the Yuno app since 01/10/2026 (yuno repo
+// docs/DRINKS_PILLAR_PAUSED.md): the funnel offers tickets (guest list
+// included) and VIP tables only. A journey saved before keeps the rest.
+const PAUSED_PILLARS = ["drinks"];
+
 // What each profile sells first — preselected, the person can untick.
 function defaultPillars(role: SignupRole | null): string[] {
   if (role === "club") return ["tickets", "tables"];
@@ -135,7 +140,12 @@ function loadStored(storeKey: string): { key: string; form: Form } | null {
     if (!raw) return null;
     const v = JSON.parse(raw) as { key?: string; form?: Partial<Form> };
     if (!v.key || !/^[A-Za-z0-9_-]{16,64}$/.test(v.key)) return null;
-    return { key: v.key, form: { ...EMPTY, ...(v.form ?? {}) } };
+    const form = { ...EMPTY, ...(v.form ?? {}) };
+    const pillars = Array.isArray(form.pillars) ? form.pillars : [];
+    return {
+      key: v.key,
+      form: { ...form, pillars: pillars.filter((p) => !PAUSED_PILLARS.includes(p)) },
+    };
   } catch {
     return null;
   }
@@ -937,7 +947,7 @@ export function SignupFlow({
             <p className="mt-1.5 text-[13.5px] text-zinc-500">{s.needsSub}</p>
             <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2">
               {s.pillars
-                .filter((p) => (isClub ? p.id !== "guest_list" : p.id !== "drinks"))
+                .filter((p) => !isClub || p.id !== "guest_list")
                 .map((p, i) => {
                   const on = form.pillars.includes(p.id);
                   return (

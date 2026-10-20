@@ -820,7 +820,7 @@ const en = {
     roleTitle: "What do you run?",
     roleSub: "We set up your Console for it — in two minutes, no call needed.",
     roles: [
-      { id: "club", label: "A club or venue", hint: "Tables, bar, door, events" },
+      { id: "club", label: "A club or venue", hint: "Tickets, VIP tables, door, events" },
       { id: "organizer", label: "Events & nights", hint: "Organizer or collective" },
       { id: "promoter", label: "A promoter team", hint: "Promoter or agency" },
       { id: "other", label: "Something else", hint: "Bar, festival, DJ…" },
@@ -864,7 +864,6 @@ const en = {
         hint: "Free before a set time, scanned at the door",
       },
       { id: "tables", label: "VIP tables", hint: "Floor plan, packages, deposits" },
-      { id: "drinks", label: "Drinks", hint: "Order & pay at the bar's QR" },
     ],
     tool: "What do you use today?",
     toolOpts: [
@@ -966,13 +965,13 @@ const en = {
   start: {
     title: "Create your Yuno pro account — free, in two minutes",
     description:
-      "Clubs and organizers: open your Yuno Console in two minutes. Tickets, VIP tables, guest list and drinks on one page. €0 subscription, 0% commission on your price.",
+      "Clubs and organizers: open your Yuno Console in two minutes. Tickets, guest list and VIP tables on one page. €0 subscription, 0% commission on your price.",
     eyebrow: "Yuno for pros",
     heading: "Your Console, ready in two minutes.",
     sub: "Answer four questions: we set up your space, your first page and a plan built for your next night.",
     bullets: [
       "€0 subscription, 0% commission on your price",
-      "Tickets, guest list, VIP tables and drinks on one page",
+      "Tickets, guest list and VIP tables on one page",
       "Money lands in your own Stripe account, no waiting",
       "Your buyers join YOUR customer base",
     ],
@@ -1794,7 +1793,7 @@ const fr: LandingContent = {
     roleTitle: "Que gérez-vous ?",
     roleSub: "On prépare votre Console en fonction — en deux minutes, sans appel.",
     roles: [
-      { id: "club", label: "Un club ou une salle", hint: "Tables, bar, porte, soirées" },
+      { id: "club", label: "Un club ou une salle", hint: "Billets, tables VIP, porte, soirées" },
       { id: "organizer", label: "Des soirées", hint: "Organisateur ou collectif" },
       { id: "promoter", label: "Une équipe de promo", hint: "Promoteur ou agence" },
       { id: "other", label: "Autre chose", hint: "Bar, festival, DJ…" },
@@ -1839,7 +1838,6 @@ const fr: LandingContent = {
         hint: "Gratuit avant une heure, scannée à la porte",
       },
       { id: "tables", label: "Tables VIP", hint: "Plan de salle, formules, acomptes" },
-      { id: "drinks", label: "Boissons", hint: "Commande et paiement au QR du bar" },
     ],
     tool: "Qu'utilisez-vous aujourd'hui ?",
     toolOpts: [
@@ -1942,13 +1940,13 @@ const fr: LandingContent = {
   start: {
     title: "Créer votre compte pro Yuno — gratuit, en deux minutes",
     description:
-      "Clubs et organisateurs : ouvrez votre Console Yuno en deux minutes. Billets, tables VIP, guest list et boissons sur une seule page. 0 € d'abonnement, 0 % de commission sur votre prix.",
+      "Clubs et organisateurs : ouvrez votre Console Yuno en deux minutes. Billets, guest list et tables VIP sur une seule page. 0 € d'abonnement, 0 % de commission sur votre prix.",
     eyebrow: "Yuno pour les pros",
     heading: "Votre Console, prête en deux minutes.",
     sub: "Répondez à quatre questions : on prépare votre espace, votre première page et un plan pensé pour votre prochaine soirée.",
     bullets: [
       "0 € d'abonnement, 0 % de commission sur votre prix",
-      "Billets, guest list, tables VIP et boissons sur une seule page",
+      "Billets, guest list et tables VIP sur une seule page",
       "L'argent arrive sur votre propre compte Stripe, sans attendre",
       "Vos acheteurs rejoignent VOTRE base clients",
     ],
@@ -2785,7 +2783,7 @@ const es: LandingContent = {
     roleTitle: "¿Qué gestionas?",
     roleSub: "Preparamos tu Consola en función de ello — en dos minutos, sin llamada.",
     roles: [
-      { id: "club", label: "Una discoteca o sala", hint: "Mesas, barra, puerta, eventos" },
+      { id: "club", label: "Una discoteca o sala", hint: "Entradas, mesas VIP, puerta, eventos" },
       { id: "organizer", label: "Eventos y noches", hint: "Organizador o colectivo" },
       { id: "promoter", label: "Un equipo de promo", hint: "Promotor o agencia" },
       { id: "other", label: "Otra cosa", hint: "Bar, festival, DJ…" },
@@ -2829,7 +2827,6 @@ const es: LandingContent = {
         hint: "Gratis antes de una hora, escaneada en puerta",
       },
       { id: "tables", label: "Mesas VIP", hint: "Plano, packs, depósitos" },
-      { id: "drinks", label: "Bebidas", hint: "Pedir y pagar con el QR de la barra" },
     ],
     tool: "¿Qué usas hoy?",
     toolOpts: [
@@ -2928,13 +2925,13 @@ const es: LandingContent = {
   start: {
     title: "Crea tu cuenta pro de Yuno — gratis, en dos minutos",
     description:
-      "Discotecas y organizadores: abre tu Consola Yuno en dos minutos. Entradas, mesas VIP, lista de invitados y bebidas en una sola página. 0 € de suscripción, 0 % de comisión sobre tu precio.",
+      "Discotecas y organizadores: abre tu Consola Yuno en dos minutos. Entradas, lista de invitados y mesas VIP en una sola página. 0 € de suscripción, 0 % de comisión sobre tu precio.",
     eyebrow: "Yuno para profesionales",
     heading: "Tu Consola, lista en dos minutos.",
     sub: "Responde a cuatro preguntas: preparamos tu espacio, tu primera página y un plan pensado para tu próxima noche.",
     bullets: [
       "0 € de suscripción, 0 % de comisión sobre tu precio",
-      "Entradas, lista, mesas VIP y bebidas en una sola página",
+      "Entradas, lista y mesas VIP en una sola página",
       "El dinero llega a tu propia cuenta Stripe, sin esperas",
       "Tus compradores entran en TU base de clientes",
     ],
