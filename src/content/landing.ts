@@ -327,8 +327,8 @@ const en = {
       {
         when: "Next day",
         label: "The wrap-up",
-        title: "The money is split, your base has grown",
-        body: "Each party has its share in its own account. You know who came, through which channel, and they'll be the first to hear about your next date.",
+        title: "The night is settled, your base has grown",
+        body: "The statement shows each party's share to the cent. You know who came, through which channel, and they'll be the first to hear about your next date.",
       },
     ],
   },
@@ -1277,8 +1277,8 @@ const fr: LandingContent = {
       {
         when: "Lendemain",
         label: "Le bilan",
-        title: "L'argent est réparti, votre base a grandi",
-        body: "Chaque partie a sa part sur son compte. Vous savez qui est venu, par quel canal — et ils seront les premiers informés de la prochaine date.",
+        title: "La soirée est soldée, votre base a grandi",
+        body: "Le décompte montre la part de chacun au centime. Vous savez qui est venu, par quel canal — et ils seront les premiers informés de la prochaine date.",
       },
     ],
   },
@@ -2230,8 +2230,8 @@ const es: LandingContent = {
       {
         when: "Día siguiente",
         label: "El balance",
-        title: "El dinero está repartido, tu base ha crecido",
-        body: "Cada parte tiene lo suyo en su cuenta. Sabes quién vino y por qué canal — y serán los primeros en enterarse de tu próxima fecha.",
+        title: "La noche está cerrada, tu base ha crecido",
+        body: "El cierre muestra la parte de cada uno al céntimo. Sabes quién vino y por qué canal — y serán los primeros en enterarse de tu próxima fecha.",
       },
     ],
   },

@@ -36,7 +36,7 @@ const en: TopicPageContent = {
     note: [
       "Contract inside Yuno",
       "Nothing moves without both sides",
-      "Each side paid on its own Stripe",
+      "Statement to the cent, transfer tracked",
     ],
   },
   answer: {
@@ -79,7 +79,7 @@ const en: TopicPageContent = {
       },
       {
         title: "Paid on your own Stripe account",
-        body: "Money lands directly on each side's Stripe account, under their own name. Yuno never holds funds, and refunds, invoices and accounting exports live in the dashboard.",
+        body: "The side that collects is paid on its own Stripe account, under its own name, as it sells. Yuno never holds funds, and refunds, invoices and accounting exports live in the dashboard.",
       },
     ],
   },
@@ -128,7 +128,7 @@ const en: TopicPageContent = {
       },
       {
         title: "Sell and run the night",
-        body: "Tickets and tables are sold through Yuno, the door is scanned, and the money reaches each side's own Stripe account. Promoter commissions are computed automatically if you work with promoters.",
+        body: "Tickets and tables are sold through Yuno, the door is scanned, and the money reaches the Stripe account of the side that collects. Promoter commissions are computed automatically if you work with promoters.",
       },
       {
         title: "Close the night, together",
@@ -168,7 +168,7 @@ const en: TopicPageContent = {
       },
       {
         q: "When does the organizer get paid?",
-        a: "That is the second classic dispute: too often it is “when the club sends a transfer”. In Yuno, each side is paid on its own Stripe account, and the settlement of the shared amounts goes through once the club and the organizer have both agreed the closing statement.",
+        a: "That is the second classic dispute: too often it is “when the club sends a transfer”. In Yuno, the side that collects is paid on its own Stripe account as it sells. The other side's share is transferred once the statement is settled (frozen two days after the night, or approved by both sides on a tiered deal), within the payment term written in the contract, and Yuno tracks that transfer with reminders until it is received.",
       },
       {
         q: "Can we split tickets and tables differently?",
@@ -222,7 +222,7 @@ const fr: TopicPageContent = {
     note: [
       "Contrat signé dans Yuno",
       "Rien ne bouge sans les deux parties",
-      "Chacun payé sur son Stripe",
+      "Décompte au centime, virement suivi",
     ],
   },
   answer: {
@@ -265,7 +265,7 @@ const fr: TopicPageContent = {
       },
       {
         title: "Payé sur votre propre compte Stripe",
-        body: "L'argent arrive directement sur le compte Stripe de chacun, à son nom. Yuno ne détient jamais les fonds ; remboursements, factures et exports comptables sont dans le tableau de bord.",
+        body: "La partie qui encaisse est payée sur son propre compte Stripe, à son nom, au fil des ventes. Yuno ne détient jamais les fonds ; remboursements, factures et exports comptables sont dans le tableau de bord.",
       },
     ],
   },
@@ -314,7 +314,7 @@ const fr: TopicPageContent = {
       },
       {
         title: "Vendez et pilotez la soirée",
-        body: "Billets et tables se vendent via Yuno, l'entrée est scannée et l'argent arrive sur le compte Stripe de chacun. Les commissions des promoteurs sont calculées automatiquement si vous travaillez avec eux.",
+        body: "Billets et tables se vendent via Yuno, l'entrée est scannée et l'argent arrive sur le compte Stripe de la partie qui encaisse. Les commissions des promoteurs sont calculées automatiquement si vous travaillez avec eux.",
       },
       {
         title: "Clôturez la soirée, à deux",
@@ -354,7 +354,7 @@ const fr: TopicPageContent = {
       },
       {
         q: "Quand l'organisateur est-il payé ?",
-        a: "C'est le deuxième litige classique : trop souvent, « quand le club fait le virement ». Dans Yuno, chacun est payé sur son propre compte Stripe, et le règlement des montants partagés passe une fois que le club et l'organisateur ont tous les deux validé le décompte de clôture.",
+        a: "C'est le deuxième litige classique : trop souvent, « quand le club fait le virement ». Dans Yuno, la partie qui encaisse est payée sur son propre compte Stripe au fil des ventes. La part de l'autre lui est virée une fois le décompte réglé (figé deux jours après la soirée, ou validé par les deux parties au barème), dans le délai écrit au contrat, et Yuno suit ce virement avec des relances jusqu'à sa réception.",
       },
       {
         q: "Peut-on partager différemment billets et tables ?",
@@ -414,7 +414,7 @@ const es: TopicPageContent = {
     note: [
       "Contrato dentro de Yuno",
       "Nada se mueve sin las dos partes",
-      "Cada uno cobra en su Stripe",
+      "Cierre al céntimo, transferencia seguida",
     ],
   },
   answer: {
@@ -457,7 +457,7 @@ const es: TopicPageContent = {
       },
       {
         title: "Cobras en tu propia cuenta de Stripe",
-        body: "El dinero llega directo a la cuenta de Stripe de cada uno, a su nombre. Yuno nunca retiene fondos; reembolsos, facturas y exportaciones contables están en el panel.",
+        body: "La parte que cobra recibe el dinero en su propia cuenta de Stripe, a su nombre, a medida que vende. Yuno nunca retiene fondos; reembolsos, facturas y exportaciones contables están en el panel.",
       },
     ],
   },
@@ -506,7 +506,7 @@ const es: TopicPageContent = {
       },
       {
         title: "Vende y dirige la noche",
-        body: "Entradas y mesas se venden con Yuno, la puerta se escanea y el dinero llega a la cuenta de Stripe de cada uno. Las comisiones de los RRPP se calculan solas si trabajas con ellos.",
+        body: "Entradas y mesas se venden con Yuno, la puerta se escanea y el dinero llega a la cuenta de Stripe de la parte que cobra. Las comisiones de los RRPP se calculan solas si trabajas con ellos.",
       },
       {
         title: "Cerrad la noche, juntos",
@@ -546,7 +546,7 @@ const es: TopicPageContent = {
       },
       {
         q: "¿Cuándo cobra el organizador?",
-        a: "Es la segunda disputa clásica: demasiadas veces es «cuando la discoteca haga la transferencia». En Yuno, cada uno cobra en su propia cuenta de Stripe, y la liquidación de los importes compartidos se hace cuando la discoteca y el organizador han aceptado los dos el cierre de la noche.",
+        a: "Es la segunda disputa clásica: demasiadas veces es «cuando la discoteca haga la transferencia». En Yuno, la parte que cobra recibe el dinero en su propia cuenta de Stripe a medida que vende. La parte de la otra se transfiere cuando el cierre queda liquidado (fijado dos días después de la noche, o aceptado por ambas partes en un reparto por tramos), en el plazo escrito en el contrato, y Yuno sigue esa transferencia con recordatorios hasta que se recibe.",
       },
       {
         q: "¿Se puede repartir distinto entradas y mesas?",

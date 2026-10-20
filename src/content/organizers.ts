@@ -1,9 +1,13 @@
 // Orga (event organizer) landing (/organizers). Bilingual, indexed. Rebuilt on
 // the shared RoleLandingContent shape — the same focused skeleton as /clubs and
 // /bde. Copy respects Yuno's real model: 0 cost to the organizer (only Stripe's
-// fee), service fee paid by the customer, revenue split settles two days after
-// the event (J+2), promoter commissions are TRACKED (promoters are not paid out
-// via Stripe). Pre-launch: no traction claims.
+// fee), service fee paid by the customer, money lands on the seller's own
+// Stripe account as it sells (direct charges: Stripe never splits a sale since
+// 29/09/2026). On a night shared with a venue the split is signed in Yuno (or
+// settled between the two), the statement is frozen two days after the night
+// and Yuno tracks the transfer of the other side's share. Promoter commissions
+// are TRACKED (promoters are not paid out via Stripe). Pre-launch: no traction
+// claims.
 //
 // Imagery: the parallax hero, 3D marquee and per-pain proof blocks run on the
 // real organizer captures in src/assets/organizers/ (see src/pages/organizers.tsx).
@@ -20,7 +24,7 @@ const en: RoleLandingContent = {
     description:
       "Sell tickets and tables with €0 subscription and 0% commission, sign the split with your host venue and pay promoters automatically.",
     ogTitle: "Yuno for Organizers",
-    ogDescription: "Low-fee ticketing, automated revenue splits, and your own check-in app.",
+    ogDescription: "Low-fee ticketing, revenue splits computed for you, and your own check-in app.",
   },
   nav: [
     { label: "Pricing", href: "#offre" },
@@ -34,7 +38,7 @@ const en: RoleLandingContent = {
     titleEmphasis: "know if tonight fills, and what you actually net",
     titleRest: ".",
     subtitle:
-      "Without a fixed venue, no screen tells you whether tonight will fill or what you really keep after fees, and you still split with the host by hand. Yuno gives you a Mission Control back-office, your own Stripe payout, and an automatic split with the venue.",
+      "Without a fixed venue, no screen tells you whether tonight will fill or what you really keep after fees, and you still split with the host by hand. Yuno gives you a Mission Control back-office, your own Stripe payout, and a split with the venue that it computes for you.",
     primaryCta: "Book a demo",
     secondaryCta: "See the price",
     note: "€0 subscription · 0% commission · 4% per ticket (€0.99 min), paid by the buyer",
@@ -52,8 +56,8 @@ const en: RoleLandingContent = {
     },
     {
       icon: "users",
-      title: "Auto-split with the venue",
-      body: "Co-produce in a venue and the revenue share is a contract applied at every sale through Stripe Connect — no cash, no Excel.",
+      title: "The split with the venue, computed",
+      body: "Co-produce in a venue and the revenue share is a contract signed in Yuno: each side's share is computed to the cent — no cash, no Excel.",
     },
   ],
   free: {
@@ -117,16 +121,16 @@ const en: RoleLandingContent = {
   },
   payout: {
     tag: "The split",
-    title: "Money settles two days after the event.",
-    body: "Every ticket sale is broken into its agreed parts. Two days after the event the funds settle, fee-free — the short delay leaves room for refunds and disputes. You see your share, the venue sees theirs, and the promoter who brought the sale sees their commission tracked to the cent. No month-end reconciliation, no awkward DMs.",
+    title: "Each side's share, settled two days after the event.",
+    body: "Whoever collects is paid on their own Stripe account as they sell. Two days after the event Yuno freezes the statement — the short delay leaves room for refunds — and shows each side's share to the cent, then tracks the transfer of the other party's share until it's received. The promoter who brought the sale sees their commission tracked to the cent. No month-end reconciliation, no awkward DMs.",
   },
   collab: {
     tag: "Yuno Collab",
     title: "Host an event, unlock the full stack.",
-    body: "Organizing in a venue that's not on Yuno? Propose them Yuno Collab. The venue hosts your event and gets Yuno Pro dashboards for that night — automatically, at no cost to them. You get a co-branded event page and check-in synced with their door. Everyone wins.",
+    body: "Organizing in a venue that's not on Yuno? Propose them Yuno Collab. The venue hosts your event and gets its own Yuno Console for that night — at no cost to them. You get a co-branded event page and check-in synced with their door. Everyone wins.",
     bullets: [
       "Bring your event to any venue",
-      "The venue gets Yuno Pro dashboards for that night, free",
+      "The venue gets its own Yuno Console for that night, free",
       "Co-branded event page",
       "Check-in automatically synced with their door",
     ],
@@ -143,7 +147,7 @@ const en: RoleLandingContent = {
       {
         label: "Split with the venue",
         a: "Manual / month-end",
-        b: "Automatic, 2 days after",
+        b: "Computed, statement 2 days after",
         highlight: true,
       },
       { label: "Check-in app", a: "Basic", b: "Multi-scanner PWA, PIN" },
@@ -156,7 +160,7 @@ const en: RoleLandingContent = {
       },
     ],
     footer:
-      "An event of 200 tickets at €20: a legacy 8% takes €320 in fees; Yuno's 4% takes €160. That's €160 staying in the room, per event. Multiply by your season.",
+      "An event of 200 tickets at €20: a legacy 8% adds €320 in fees; Yuno adds €0.99 a ticket, €198. That's €122 less on your crowd's bill, per event. Multiply by your season.",
   },
   marquee: {
     eyebrow: "The Yuno back-office",
@@ -198,11 +202,11 @@ const en: RoleLandingContent = {
       },
       {
         q: "How and when am I paid?",
-        a: "Through Stripe Connect. Two days after the event the funds settle into each party's Stripe account, fee-free — the short delay covers any refund or dispute. You see your share, the venue sees theirs, every transaction traced to the cent.",
+        a: "Through your own Stripe account: each sale lands there as you sell, then Stripe pays it out to your bank. On a night shared with a venue, two days after the event Yuno freezes the statement and tracks the transfer of the other side's share until it's received. You see your share, the venue sees theirs, every transaction traced to the cent.",
       },
       {
         q: "What about the venue hosting me?",
-        a: "Propose them Yuno Collab. They host your event and get Yuno Pro dashboards for that night automatically, at no cost, with a co-branded page and check-in synced to their door.",
+        a: "Propose them Yuno Collab. They host your event and get their own Yuno Console for that night, at no cost, with a co-branded page and check-in synced to their door.",
       },
       {
         q: "Do I need hardware for the door?",
@@ -278,22 +282,22 @@ const en: RoleLandingContent = {
       hero: {
         badge: "Co-hosted nights",
         titleLead: "The co-produced night, ",
-        titleEmphasis: "split by contract and paid automatically",
+        titleEmphasis: "split by contract, settled without arguments",
         titleRest: ".",
         subtitle:
-          "You split the takings with the host venue by hand: cash, Excel, informal transfers, zero traceability, arguments at settlement. Yuno makes the split a contract applied to every sale.",
+          "You split the takings with the host venue by hand: cash, Excel, informal transfers, zero traceability, arguments at settlement. Yuno makes the split a contract both sides sign before the first sale.",
       },
       focus: {
-        tag: "Auto-split with the venue",
-        title: "Agree the split once. It applies to every sale.",
-        body: "Set the revenue share with your host venue and it's attached to the event before tickets sell. The money splits venue ↔ organizer at each sale through Stripe Connect, by item type. The club stays merchant of record; you see your share to the cent.",
+        tag: "The split with the venue",
+        title: "Agree the split once. Yuno computes every share.",
+        body: "Invite the venue on your night and sign the revenue share in Yuno before tickets sell: pillar by pillar (tickets, tables) or as a tiered share of the night. Whoever collects is paid as they sell; two days after the event Yuno freezes the statement and tracks the transfer of the other side's share. Prefer to settle it between you? Yuno handles that too, no contract needed.",
         bullets: [
-          "Revenue-share contract with the host venue",
-          "Automatic split venue ↔ organizer via Stripe Connect, by item",
-          "Collaboration proposals inbox — no cash, no Excel",
+          "Revenue-share contract signed with the host venue",
+          "Statement to the cent two days after the night, transfer tracked to receipt",
+          "Invite the venue from Yuno or by email — no cash, no Excel",
         ],
       },
-      contactLabel: "Auto-split with a host venue (co-hosted night)",
+      contactLabel: "Revenue split with a host venue (co-hosted night)",
     },
     {
       id: "promo",
@@ -450,7 +454,7 @@ const fr: RoleLandingContent = {
       "Vendez billets et tables avec 0 € d'abonnement et 0 % de commission, signez la répartition avec le club et payez vos promoteurs automatiquement.",
     ogTitle: "Yuno pour les organisateurs",
     ogDescription:
-      "Billetterie à frais réduits, répartition automatique des revenus et votre propre application de contrôle d'accès.",
+      "Billetterie à frais réduits, répartition des revenus calculée pour vous et votre propre application de contrôle d'accès.",
   },
   nav: [
     { label: "Tarifs", href: "#offre" },
@@ -464,7 +468,7 @@ const fr: RoleLandingContent = {
     titleEmphasis: "savoir si ce soir se remplit, et ce que vous touchez vraiment",
     titleRest: ".",
     subtitle:
-      "Sans salle fixe, aucun écran ne vous dit si ce soir va se remplir ni ce que vous gardez vraiment après frais, et vous partagez encore avec l'hôte à la main. Yuno vous donne un back-office Mission Control, votre propre payout Stripe, et une répartition automatique avec l'établissement.",
+      "Sans salle fixe, aucun écran ne vous dit si ce soir va se remplir ni ce que vous gardez vraiment après frais, et vous partagez encore avec l'hôte à la main. Yuno vous donne un back-office Mission Control, votre propre payout Stripe, et une répartition avec l'établissement calculée pour vous.",
     primaryCta: "Réserver une démo",
     secondaryCta: "Voir le prix",
     note: "0 € d'abonnement · 0 % de commission · 4 % par billet (min 0,99 €), payés par l'acheteur",
@@ -482,8 +486,8 @@ const fr: RoleLandingContent = {
     },
     {
       icon: "users",
-      title: "Répartition auto avec la salle",
-      body: "Co-produisez dans un établissement et le partage des revenus est un contrat appliqué à chaque vente via Stripe Connect — sans cash, sans Excel.",
+      title: "La répartition avec la salle, calculée",
+      body: "Co-produisez dans un établissement et le partage des revenus est un contrat signé dans Yuno : la part de chacun est calculée au centime — sans cash, sans Excel.",
     },
   ],
   free: {
@@ -547,16 +551,16 @@ const fr: RoleLandingContent = {
   },
   payout: {
     tag: "La répartition",
-    title: "L'argent est réglé deux jours après l'événement.",
-    body: "Chaque vente de billet est répartie selon les parts convenues. Deux jours après l'événement, les fonds sont réglés, sans frais — ce court délai laisse le temps de gérer remboursements et litiges. Vous voyez votre part, l'établissement voit la sienne, et le promoteur qui a apporté la vente voit sa commission suivie au centime près. Sans réconciliation en fin de mois, sans message gênant.",
+    title: "La part de chacun, réglée deux jours après l'événement.",
+    body: "Celui qui encaisse est payé sur son propre compte Stripe au fil des ventes. Deux jours après l'événement, Yuno fige le décompte — ce court délai laisse le temps de gérer les remboursements — et montre la part de chacun au centime, puis suit le virement de la part de l'autre partie jusqu'à sa réception. Le promoteur qui a apporté la vente voit sa commission suivie au centime près. Sans réconciliation en fin de mois, sans message gênant.",
   },
   collab: {
     tag: "Yuno Collab",
     title: "Organisez un événement, débloquez toute la plateforme.",
-    body: "Vous organisez dans un établissement qui n'est pas sur Yuno ? Proposez-lui Yuno Collab. L'établissement accueille votre événement et obtient les tableaux de bord Yuno Pro pour cette soirée — automatiquement, sans frais pour lui. Vous obtenez une page d'événement co-brandée et un contrôle d'accès synchronisé avec son entrée. Tout le monde y gagne.",
+    body: "Vous organisez dans un établissement qui n'est pas sur Yuno ? Proposez-lui Yuno Collab. L'établissement accueille votre événement et obtient sa propre Yuno Console pour cette soirée — sans frais pour lui. Vous obtenez une page d'événement co-brandée et un contrôle d'accès synchronisé avec son entrée. Tout le monde y gagne.",
     bullets: [
       "Amenez votre événement dans n'importe quel établissement",
-      "L'établissement obtient les tableaux de bord Yuno Pro pour la soirée, gratuitement",
+      "L'établissement obtient sa propre Yuno Console pour la soirée, gratuitement",
       "Page d'événement co-brandée",
       "Contrôle d'accès synchronisé automatiquement avec son entrée",
     ],
@@ -573,7 +577,7 @@ const fr: RoleLandingContent = {
       {
         label: "Répartition avec le lieu",
         a: "Manuelle / fin de mois",
-        b: "Automatique, 2 jours après",
+        b: "Calculée, décompte 2 jours après",
         highlight: true,
       },
       { label: "App de contrôle d'accès", a: "Basique", b: "PWA multi-scanneurs, PIN" },
@@ -586,7 +590,7 @@ const fr: RoleLandingContent = {
       },
     ],
     footer:
-      "Un événement de 200 billets à 20 € : une plateforme à 8 % prend 320 € de frais ; les 4 % de Yuno prennent 160 €. C'est 160 € qui restent dans la salle, par événement. Multipliez par votre saison.",
+      "Un événement de 200 billets à 20 € : une plateforme à 8 % ajoute 320 € de frais ; Yuno ajoute 0,99 € par billet, soit 198 €. C'est 122 € de moins sur la note de votre public, par événement. Multipliez par votre saison.",
   },
   marquee: {
     eyebrow: "Le back-office Yuno",
@@ -628,11 +632,11 @@ const fr: RoleLandingContent = {
       },
       {
         q: "Comment et quand suis-je payé ?",
-        a: "Via Stripe Connect. Deux jours après l'événement, les fonds arrivent sur le compte Stripe de chaque partie, sans frais — ce court délai couvre un éventuel remboursement ou litige. Vous voyez votre part, l'établissement voit la sienne, chaque transaction tracée au centime.",
+        a: "Sur votre propre compte Stripe : chaque vente y arrive au fil de l'eau, puis Stripe la vire sur votre compte bancaire. Sur une soirée partagée avec un établissement, Yuno fige le décompte deux jours après l'événement et suit le virement de la part de l'autre partie jusqu'à sa réception. Vous voyez votre part, l'établissement voit la sienne, chaque transaction tracée au centime.",
       },
       {
         q: "Et l'établissement qui m'accueille ?",
-        a: "Proposez-lui Yuno Collab. Il accueille votre événement et obtient les tableaux de bord Yuno Pro pour la soirée, automatiquement et sans frais, avec une page co-brandée et un contrôle d'accès synchronisé à son entrée.",
+        a: "Proposez-lui Yuno Collab. Il accueille votre événement et obtient sa propre Yuno Console pour la soirée, sans frais, avec une page co-brandée et un contrôle d'accès synchronisé à son entrée.",
       },
       {
         q: "Faut-il du matériel pour l'entrée ?",
@@ -708,22 +712,22 @@ const fr: RoleLandingContent = {
       hero: {
         badge: "Soirées co-produites",
         titleLead: "La soirée co-produite, ",
-        titleEmphasis: "splittée par contrat et payée automatiquement",
+        titleEmphasis: "répartie par contrat, réglée sans dispute",
         titleRest: ".",
         subtitle:
-          "Vous partagez la recette avec l'établissement hôte à la main : cash, Excel, virements informels, zéro traçabilité, des disputes au règlement. Yuno fait du partage un contrat appliqué à chaque vente.",
+          "Vous partagez la recette avec l'établissement hôte à la main : cash, Excel, virements informels, zéro traçabilité, des disputes au règlement. Yuno fait du partage un contrat signé par les deux parties avant la première vente.",
       },
       focus: {
-        tag: "Répartition auto avec la salle",
-        title: "Convenez la répartition une fois. Elle s'applique à chaque vente.",
-        body: "Définissez le partage des revenus avec votre établissement hôte : il est attaché à l'événement avant la vente. L'argent se répartit salle ↔ orga à chaque vente via Stripe Connect, par type d'item. Le club reste vendeur de record ; vous voyez votre part au centime près.",
+        tag: "La répartition avec la salle",
+        title: "Convenez la répartition une fois. Yuno calcule chaque part.",
+        body: "Invitez l'établissement sur votre soirée et signez le partage dans Yuno avant la mise en vente : pilier par pilier (billets, tables) ou au barème sur la soirée. Celui qui encaisse est payé au fil des ventes ; deux jours après l'événement, Yuno fige le décompte et suit le virement de la part de l'autre partie. Vous préférez régler entre vous ? Yuno le gère aussi, sans contrat.",
         bullets: [
-          "Contrat de partage des revenus avec l'établissement hôte",
-          "Répartition automatique salle ↔ orga via Stripe Connect, par item",
-          "Boîte de propositions de collab — sans cash, sans Excel",
+          "Contrat de partage signé avec l'établissement hôte",
+          "Décompte au centime deux jours après la soirée, virement suivi jusqu'à réception",
+          "Invitez l'établissement depuis Yuno ou par email — sans cash, sans Excel",
         ],
       },
-      contactLabel: "Répartition auto avec un établissement hôte (soirée co-produite)",
+      contactLabel: "Répartition avec un établissement hôte (soirée co-produite)",
     },
     {
       id: "promo",

@@ -114,10 +114,10 @@ const en: RoleLandingContent = {
   collab: {
     tag: "Yuno Collab",
     title: "Host organizers, keep your data.",
-    body: "An organizer brings an event to your venue? Connect them through Yuno Collab. They run their ticketing; you get the night's data and Yuno Pro dashboards for that event — automatically, at no cost to you — with check-in synced to your door.",
+    body: "An organizer brings an event to your venue? Connect them through Yuno Collab. They run their ticketing; you get the night's data in your Yuno Console for that event — automatically, at no cost to you — with check-in synced to your door.",
     bullets: [
       "Host external events without losing visibility",
-      "Yuno Pro dashboards for that night, automatically",
+      "The night in your Yuno Console, automatically",
       "Co-branded event page with the organizer",
       "Check-in synced with your door staff",
     ],
@@ -193,7 +193,7 @@ const en: RoleLandingContent = {
       },
       {
         q: "Can we host external organizers in our venue?",
-        a: "Yes — that's Yuno Collab. The organizer runs their event ticketing while you get the night's data and Yuno Pro dashboards for that event automatically, with check-in synced to your door.",
+        a: "Yes — that's Yuno Collab. The organizer runs their event ticketing while you get the night's data in your Yuno Console for that event automatically, with check-in synced to your door.",
       },
     ],
   },
@@ -235,19 +235,19 @@ const en: RoleLandingContent = {
       hero: {
         badge: "Co-hosted nights",
         titleLead: "The co-produced night, ",
-        titleEmphasis: "split by contract and paid automatically",
+        titleEmphasis: "split by contract, settled without arguments",
         titleRest: ".",
         subtitle:
-          "Sharing the takings with a BDE or an organizer by cash, Excel and informal transfers means zero traceability and arguments at settlement. Yuno splits every ticket and table to the agreed shares, automatically, while the club stays merchant of record.",
+          "Sharing the takings with a BDE or an organizer by cash, Excel and informal transfers means zero traceability and arguments at settlement. In Yuno the split is a contract both sides sign, and the night closes on a statement both sides approve.",
       },
       focus: {
         tag: "Co-hosted revenue split",
-        title: "Agree the split once. Yuno applies it to every sale.",
-        body: "Set a recurring revenue-share contract between the club and the organizer or BDE. It's attached to the event before tickets go on sale, and the money splits at each sale through Stripe Connect, by item type. The club stays seller of record. No incumbent does this natively.",
+        title: "Agree the split once. Yuno computes every share.",
+        body: "Sign the revenue share with the organizer or BDE in Yuno before tickets go on sale: pillar by pillar (tickets, tables) or as a tiered share of the night. The party that collects is paid on its own Stripe account as it sells; two days after the night Yuno freezes the statement and tracks the transfer of the other side's share until it's received. On a tiered deal, you declare what you collected on site and the organizer accepts or disputes. No incumbent does this natively.",
         bullets: [
-          "Recurring club ↔ organizer / BDE revenue-share contract",
-          "Automatic split on tickets and tables via Stripe Connect",
-          "Club stays merchant of record (name on the statement)",
+          "Club ↔ organizer / BDE revenue-share contract, signed in Yuno",
+          "Statement to the cent, transfer tracked to receipt",
+          "Nothing moves until both sides agree",
           "Collaboration proposals inbox — no more cash and Excel",
         ],
       },
@@ -484,10 +484,10 @@ const fr: RoleLandingContent = {
   collab: {
     tag: "Yuno Collab",
     title: "Accueillez des organisateurs, gardez vos données.",
-    body: "Un organisateur amène un événement dans votre établissement ? Connectez-le via Yuno Collab. Il gère sa billetterie ; vous obtenez les données de la nuit et les tableaux de bord Yuno Pro pour cet événement — automatiquement, sans frais pour vous — avec un contrôle d'accès synchronisé à votre entrée.",
+    body: "Un organisateur amène un événement dans votre établissement ? Connectez-le via Yuno Collab. Il gère sa billetterie ; vous obtenez les données de la nuit dans votre Yuno Console pour cet événement — automatiquement, sans frais pour vous — avec un contrôle d'accès synchronisé à votre entrée.",
     bullets: [
       "Accueillez des événements externes sans perdre la visibilité",
-      "Tableaux de bord Yuno Pro pour cette soirée, automatiquement",
+      "La soirée dans votre Yuno Console, automatiquement",
       "Page d'événement co-brandée avec l'organisateur",
       "Contrôle d'accès synchronisé avec votre staff d'entrée",
     ],
@@ -567,7 +567,7 @@ const fr: RoleLandingContent = {
       },
       {
         q: "Peut-on accueillir des organisateurs externes dans notre salle ?",
-        a: "Oui — c'est Yuno Collab. L'organisateur gère la billetterie de son événement pendant que vous récupérez les données de la nuit et les tableaux de bord Yuno Pro pour cet événement, automatiquement, avec un contrôle d'accès synchronisé à votre entrée.",
+        a: "Oui — c'est Yuno Collab. L'organisateur gère la billetterie de son événement pendant que vous récupérez les données de la nuit dans votre Yuno Console pour cet événement, automatiquement, avec un contrôle d'accès synchronisé à votre entrée.",
       },
     ],
   },
@@ -609,19 +609,19 @@ const fr: RoleLandingContent = {
       hero: {
         badge: "Soirées co-produites",
         titleLead: "La soirée co-produite, ",
-        titleEmphasis: "splittée par contrat et payée automatiquement",
+        titleEmphasis: "répartie par contrat, réglée sans dispute",
         titleRest: ".",
         subtitle:
-          "Partager la recette avec un BDE ou un orga en cash, Excel et virements informels, c'est zéro traçabilité et des disputes au règlement. Yuno répartit chaque billet et chaque table selon les parts convenues, automatiquement, pendant que le club reste vendeur de record.",
+          "Partager la recette avec un BDE ou un orga en cash, Excel et virements informels, c'est zéro traçabilité et des disputes au règlement. Dans Yuno, le partage est un contrat signé par les deux parties, et la soirée se clôt sur un décompte validé des deux côtés.",
       },
       focus: {
         tag: "Répartition co-soirée",
-        title: "Convenez la répartition une fois. Yuno l'applique à chaque vente.",
-        body: "Mettez en place un contrat de partage de revenus récurrent entre le club et l'orga ou le BDE. Il est attaché à l'événement avant la mise en vente, et l'argent se répartit à chaque vente via Stripe Connect, par type d'item. Le club reste vendeur de record. Aucun concurrent ne le fait nativement.",
+        title: "Convenez la répartition une fois. Yuno calcule chaque part.",
+        body: "Signez le partage avec l'orga ou le BDE dans Yuno avant la mise en vente : pilier par pilier (billets, tables) ou au barème sur la soirée. La partie qui encaisse est payée sur son propre compte Stripe au fil des ventes ; deux jours après la soirée, Yuno fige le décompte et suit le virement de la part de l'autre partie jusqu'à sa réception. Au barème, vous déclarez ce que vous avez encaissé sur place et l'organisateur accepte ou conteste. Aucun concurrent ne le fait nativement.",
         bullets: [
-          "Contrat de partage de revenus récurrent club ↔ orga / BDE",
-          "Répartition automatique sur billets et tables via Stripe Connect",
-          "Le club reste vendeur de record (nom sur le relevé)",
+          "Contrat de partage club ↔ orga / BDE, signé dans Yuno",
+          "Décompte au centime, virement suivi jusqu'à réception",
+          "Rien ne part sans l'accord des deux parties",
           "Boîte de propositions de collab — fini le cash et l'Excel",
         ],
       },
