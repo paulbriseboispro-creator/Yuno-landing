@@ -53,6 +53,16 @@ Starting from `main` silently throws away the newest design and copy. So, before
   `complete_pro_signup`, then hands the session to `yunoapp.eu/auth/handoff`. Server side lives
   in the `yuno` repo (migration `20260924120000_pro_self_signup.sql`, super admin
   `/admin/signups`). The contact form (`submitLead`) calls the app's public RPC `submit_landing_contact_lead` (table `landing_contact_leads`); the landing has no Supabase project of its own since Oct 2026.
+- **An address that already has a Yuno account is caught WHILE IT IS TYPED, never after the password**
+  (Poupée, 19/10/2026: a club owner restarted the signup four times with his own address). Both funnels
+  call the app's anon RPC `email_has_account` (boolean only, `emailHasAccount` in `src/lib/yuno-app.ts`,
+  debounced 550 ms; `null` = unknown, never blocks) and then replace phone / password / submit with two
+  one-tap ways back in: log in, or "receive a login link" (`sendLoginLink` = `signInWithOtp`,
+  `shouldCreateUser: false`, which also covers a forgotten password). Suite / asso: the link lands on
+  `yunoapp.eu/get-started?key=…`. CRM: it comes back to the funnel (`/start?product=crm&k=<journey>`)
+  and resumes exactly like Google / Apple (`existing` step); an expired link says so (`linkExpired`).
+  Opened from the app's login page (`utm_medium=auth`), the Suite funnel offers "Log in" before the
+  role question. The app's Auth email templates (magic link, recovery) are FR/EN only.
 
 ## Student-association landing (`/fr/associations`, `/associations`, `/es/asociaciones`)
 - Separate audience (BDE, BDS, BDA, ESN…), separate story: page `src/pages/asso.tsx`, sections in
@@ -158,7 +168,8 @@ Starting from `main` silently throws away the newest design and copy. So, before
   calls `get_my_product_accounts`; if the person already holds a club or an organization, it shows the `existing`
   step instead of the questions: "open Yuno CRM on {name}" (`open_product_on_my_account`, CRM trial on the SAME
   account, same contacts) or "Yuno CRM is waiting for you" if it already has CRM, then handoff to `/crm`. By
-  email + password, "address already used" links to `crm.yunoapp.eu/login?redirect=/open/crm`. Never a second account.
+  email, the address is checked on the email step (see the Pro signup bullet): "Log in" →
+  `crm.yunoapp.eu/login?redirect=/open/crm`, or a login link back to the funnel. Never a second account.
   The generic `SignupFlow`/`SignupModal` stay for the Suite landing, associations and `/start` without product.
 - Opening the signup (modal or `/start?product=crm`) writes a `pro_signups` row in production: never
   test it against production without blocking `track_pro_signup` or deleting the row it writes
