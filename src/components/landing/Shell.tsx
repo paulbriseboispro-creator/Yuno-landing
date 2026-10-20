@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { LandingLang } from "@/i18n/landing-lang";
+import { LANDING_PATHS, type LandingLang } from "@/i18n/landing-lang";
 import { LandingProvider } from "./context";
 import { LandingNav } from "./Nav";
 import { LandingFooter, MobileCta } from "./Closing";
@@ -15,10 +15,15 @@ export function LandingShell({
 }: {
   lang: "en" | "fr";
   // The page's English path ("/contact"); the French one is "/fr" + path.
-  path: string;
+  // Without it (404), the language switcher points to the landing.
+  path?: string;
   children: ReactNode;
 }) {
-  const langHrefs: Partial<Record<LandingLang, string>> = { en: path, fr: `/fr${path}` };
+  // Passing hrefs also points the nav's and footer's "#section" anchors to the
+  // landing (they would go nowhere on this page).
+  const langHrefs: Partial<Record<LandingLang, string>> = path
+    ? { en: path, fr: `/fr${path}` }
+    : { ...LANDING_PATHS };
   return (
     <LandingProvider lang={lang} langHrefs={langHrefs}>
       <div className="yl min-h-screen overflow-x-clip">

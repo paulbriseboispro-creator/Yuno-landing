@@ -11,10 +11,6 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { SiteHeader } from "@/components/site/SiteHeader";
-import { SiteFooter } from "@/components/site/SiteFooter";
-import { FoundingBanner } from "@/components/site/FoundingBanner";
-import { RoleHeader, RoleFooter } from "@/components/site/RoleChrome";
 import { NotFoundPage } from "@/components/not-found";
 import { LocaleProvider, detectLocale, getStandaloneLocale, type Locale } from "@/i18n/locale";
 import { BING_SITE_VERIFICATION, GOOGLE_SITE_VERIFICATION, localePath } from "@/i18n/seo";
@@ -41,9 +37,6 @@ import { measureCrmPage } from "@/lib/crm-measure";
 // asset/server routes (sitemap.xml, og/*.png) are never rewritten to /fr.
 const LOCALIZED_PATHS = new Set([
   "/",
-  "/clubs",
-  "/organizers",
-  "/affiliates",
   "/pricing",
   "/contact",
   "/privacy",
@@ -59,24 +52,21 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="yl flex min-h-screen items-center justify-center px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-medium tracking-tight text-foreground">{t.title}</h1>
-        <p className="mt-2 text-sm text-muted-foreground">{t.body}</p>
+        <h1 className="yl-h3 text-xl text-zinc-950">{t.title}</h1>
+        <p className="mt-2 text-sm text-zinc-500">{t.body}</p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+            className="yl-btn-primary h-10 px-4 text-sm"
           >
             {t.tryAgain}
           </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground hover:bg-surface transition-colors"
-          >
+          <a href="/" className="yl-btn-secondary h-10 px-4 text-sm">
             {t.goHome}
           </a>
         </div>
@@ -84,17 +74,6 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     </div>
   );
 }
-
-// Contact and legal pages: plain pages on the landing's light chrome (they
-// bring its nav and footer, src/components/landing/Shell.tsx).
-const LANDING_CHROME_PATHS = new Set<string>([
-  "/contact",
-  "/fr/contact",
-  "/privacy",
-  "/fr/privacy",
-  "/terms",
-  "/fr/terms",
-]);
 
 // Route ids of the Yuno CRM page (crm.yunoapp.eu "/", "/fr", "/es").
 const CRM_ROUTE_IDS = new Set<string>(["/crm", "/fr/crm", "/es/crm"]);
@@ -104,12 +83,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     const path = location.pathname;
     // `lang` drives <html lang>; it only differs from `locale` on the Spanish
     // landing (the rest of the site, and its shared chrome, is EN/FR only).
-    // `landing` switches the shell to the light, chrome-less landing surface.
-    const landing =
-      isLandingPath(path) ||
-      COMPARE_PATHS.has(path) ||
-      TOPIC_PATHS.has(path) ||
-      LANDING_CHROME_PATHS.has(path);
+    // `landing` = a page that writes its own JSON-LD (landingHead and friends);
+    // the others (contact, legal, 404) get the Organization entity from here.
+    const landing = isLandingPath(path) || COMPARE_PATHS.has(path) || TOPIC_PATHS.has(path);
     // Spanish exists only for the landing ("/es").
     if (path === "/es" || path.startsWith("/es/")) {
       return { locale: "en" as Locale, lang: "es" as LandingLang, landing };
@@ -230,14 +206,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 const LANDING_THEME_SCRIPT = `try{if(localStorage.getItem("yl-theme")==="dark")document.documentElement.setAttribute("data-yl-theme","dark")}catch(e){}`;
 
 function RootShell({ children }: { children: ReactNode }) {
-  const { lang, landing } = Route.useRouteContext();
+  const { lang } = Route.useRouteContext();
+  // Every page is on the landing's light surface since the old site was retired
+  // (20/10/2026): each one brings the landing's nav and footer itself.
   return (
-    <html lang={lang} className={landing ? "yl-page" : "dark"} suppressHydrationWarning>
+    <html lang={lang} className="yl-page" suppressHydrationWarning>
       <head>
-        {landing && (
-          // Applies the visitor's saved landing theme before first paint (no flash).
-          <script dangerouslySetInnerHTML={{ __html: LANDING_THEME_SCRIPT }} />
-        )}
+        {/* Applies the visitor's saved landing theme before first paint (no flash). */}
+        <script dangerouslySetInnerHTML={{ __html: LANDING_THEME_SCRIPT }} />
         <HeadContent />
       </head>
       <body>
@@ -248,33 +224,9 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
-// Which chrome a path gets. The role landings (/clubs, /organizers) and the
-// gate (/) get a stripped-down, role-focused header — no full-site nav — so a
-// visitor who picked a role stays in that clean funnel instead of facing the
-// "trop d'éléments" menu again. Everything
-// else (pricing, contact, affiliates, legal) keeps the full site chrome.
-type Surface = "landing" | "club" | "orga" | "main";
-
-function surfaceFor(pathname: string): Surface {
-  let path = pathname;
-  if (path === "/fr") path = "/";
-  else if (path.startsWith("/fr/")) path = path.slice(3); // "/fr/clubs" -> "/clubs"
-  if (
-    isLandingPath(pathname) ||
-    COMPARE_PATHS.has(pathname) ||
-    TOPIC_PATHS.has(pathname) ||
-    LANDING_CHROME_PATHS.has(pathname)
-  )
-    return "landing";
-  if (path === "/clubs") return "club";
-  if (path === "/organizers") return "orga";
-  return "main";
-}
-
 function RootComponent() {
   const { queryClient, locale } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const surface = surfaceFor(pathname);
   // PostHog, browser only and cookieless (see src/lib/posthog.ts). One
   // delegated click listener + one section observer per page view
   // (src/lib/posthog-dom.ts): components only carry `data-ph-*` attributes.
@@ -287,44 +239,10 @@ function RootComponent() {
   // read by the CRM super admin (src/lib/crm-measure.ts).
   useEffect(() => measureCrmPage(pathname, window.location.search), [pathname]);
 
-  let header: ReactNode;
-  let footer: ReactNode;
-  switch (surface) {
-    case "landing":
-      // The landing brings its own nav and footer (light surface).
-      return (
-        <QueryClientProvider client={queryClient}>
-          <LocaleProvider initialLocale={locale as Locale}>
-            <Outlet />
-          </LocaleProvider>
-        </QueryClientProvider>
-      );
-    case "club":
-      header = <RoleHeader role="club" />;
-      footer = <RoleFooter />;
-      break;
-    case "orga":
-      header = <RoleHeader role="orga" />;
-      footer = <RoleFooter />;
-      break;
-    default:
-      header = (
-        <>
-          <FoundingBanner />
-          <SiteHeader />
-        </>
-      );
-      footer = <SiteFooter />;
-  }
-
   return (
     <QueryClientProvider client={queryClient}>
       <LocaleProvider initialLocale={locale as Locale}>
-        <div className="sticky top-0 z-[70] w-full">{header}</div>
-        <main className="min-h-[60vh]">
-          <Outlet />
-        </main>
-        {footer}
+        <Outlet />
       </LocaleProvider>
     </QueryClientProvider>
   );
