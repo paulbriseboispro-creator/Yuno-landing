@@ -28,22 +28,37 @@ export function StartPage({
   lang,
   role,
   product,
+  email,
+  org,
 }: {
   lang: LandingLang;
   role?: SignupRole;
   product?: "crm";
+  /** Pre-filled from a Yuno page that knows the person (`?email=`, `?org=`). */
+  email?: string;
+  org?: string;
 }) {
   return (
     <LandingProvider lang={lang}>
-      <StartBody role={role} product={product} />
+      <StartBody role={role} product={product} email={email} org={org} />
     </LandingProvider>
   );
 }
 
-function StartBody({ role, product }: { role?: SignupRole; product?: "crm" }) {
+function StartBody({
+  role,
+  product,
+  email,
+  org,
+}: {
+  role?: SignupRole;
+  product?: "crm";
+  email?: string;
+  org?: string;
+}) {
   // Yuno CRM: the Claude Design signup funnel, on a page of its own.
   if (product === "crm") return <CrmStartBody />;
-  return <SuiteStartBody role={role} />;
+  return <SuiteStartBody role={role} email={email} org={org} />;
 }
 
 function CrmStartBody() {
@@ -58,7 +73,7 @@ function CrmStartBody() {
   );
 }
 
-function SuiteStartBody({ role }: { role?: SignupRole }) {
+function SuiteStartBody({ role, email, org }: { role?: SignupRole; email?: string; org?: string }) {
   const { t, lang } = useLanding();
   const p = t.start;
   const query = role ? `role=${role}` : "";
@@ -139,7 +154,13 @@ function SuiteStartBody({ role }: { role?: SignupRole }) {
         <section className="order-1 md:order-2">
           <div className="yl-card p-6 sm:p-8">
             {mounted ? (
-              <SignupFlow source="start" initialRole={role} variant="page" />
+              <SignupFlow
+                source="start"
+                initialRole={role}
+                initialEmail={email}
+                initialOrgName={org}
+                variant="page"
+              />
             ) : (
               <div className="h-[420px] animate-pulse rounded-2xl bg-zinc-50" aria-hidden />
             )}

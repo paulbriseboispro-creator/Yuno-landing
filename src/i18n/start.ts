@@ -62,6 +62,20 @@ export function parseStartRole(v: unknown): "club" | "organizer" | undefined {
   return v === "club" || v === "organizer" ? v : undefined;
 }
 
+/**
+ * `?email=` and `?org=` : a pre-filled signup, from a Yuno page that already
+ * knows the person (the host-club page of a night, /h/<token> on the app).
+ * Only a plausible email and a short name pass; anything else is dropped.
+ */
+export function parseStartPrefill(search: Record<string, unknown>): { email?: string; org?: string } {
+  const email = typeof search.email === "string" ? search.email.trim().slice(0, 254) : "";
+  const org = typeof search.org === "string" ? search.org.replace(/\s+/g, " ").trim().slice(0, 120) : "";
+  return {
+    ...(/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) ? { email } : {}),
+    ...(org ? { org } : {}),
+  };
+}
+
 /** `?product=crm` : the Yuno CRM signup (the person keeps their ticketing). */
 export function parseStartProduct(v: unknown): "crm" | undefined {
   return v === "crm" ? v : undefined;
