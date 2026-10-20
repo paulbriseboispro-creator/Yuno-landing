@@ -7,7 +7,7 @@
 // structures are industry-common, phrased carefully; no legal advice.
 import type { TopicPageContent } from "../topic-types";
 
-const UPDATED = "2026-09-29";
+const UPDATED = "2026-10-20";
 const TWINS = {
   en: "/club-organizer-revenue-split",
   fr: "/fr/contrat-club-organisateur",
@@ -30,7 +30,7 @@ const en: TopicPageContent = {
   hero: {
     kicker: "Club × organizer contract & revenue split for club nights",
     title: "Split the night's money without the spreadsheet and the argument.",
-    sub: "Sign the deal between club and organizer inside Yuno — pillar by pillar or as a tiered revenue share. At closing the club declares the bar and door takings, the organizer accepts or disputes, and nothing moves until both sides agree.",
+    sub: "Sign the deal between club and organizer inside Yuno — pillar by pillar or as a tiered revenue share. At closing the club declares the takings it collected on site (its bar, the cash door), the organizer accepts or disputes, and nothing moves until both sides agree.",
     primary: "Create my free account",
     secondary: "Talk to the founder",
     note: [
@@ -43,11 +43,11 @@ const en: TopicPageContent = {
     title: "In short",
     paragraphs: [
       "There is no single standard, but club nights are usually split in one of a few ways: a percentage of the door or tickets, a percentage of the bar, a minimum guarantee for one side, a revenue share that changes once sales pass a threshold, or a different split for each source of money (tickets, tables, bar). Most disputes are not about the percentages: they are about who counts the bar and door takings, and when the organizer gets paid.",
-      "Yuno turns the agreement into a contract signed inside the platform, either pillar by pillar (tickets, tables, bar) or as a tiered revenue share. At closing, the club declares the bar and door takings, the organizer accepts or disputes them, and nothing moves without both sides agreeing. Each side is paid on its own Stripe account.",
+      "Yuno turns the agreement into a contract signed inside the platform, either pillar by pillar (tickets, tables) or as a tiered revenue share. At closing, the club declares the takings it collected on site (its bar, the cash door), the organizer accepts or disputes them, and nothing moves without both sides agreeing. Each side is paid on its own Stripe account.",
     ],
     bullets: [
       "For example, a contract can read “Tickets 70/30 · Tables 50/50”: an illustration of a per-pillar split, not a recommended deal.",
-      "€0 subscription and 0% commission for the club and the organizer. The buyer pays a 4% service fee on tickets (min €0.99), 4% on tables (capped at €25) and 3% on drinks.",
+      "€0 subscription and 0% commission for the club and the organizer. The buyer pays a 4% service fee on tickets (min €0.99) and 4% on tables (capped at €25).",
       "Card processing (Stripe, 1.5% + €0.25) is paid by the club or organizer; Yuno never holds the funds.",
       "This page describes common practice and how Yuno works. It is not legal advice: have your contract reviewed.",
     ],
@@ -63,7 +63,7 @@ const en: TopicPageContent = {
       },
       {
         title: "Pillar by pillar",
-        body: "Set a split for tickets, another for tables, another for the bar. For example: Tickets 70/30 · Tables 50/50. Each pillar follows its own rule.",
+        body: "Set a split for tickets and another for tables. For example: Tickets 70/30 · Tables 50/50. Each pillar follows its own rule.",
       },
       {
         title: "Or a tiered revenue share",
@@ -71,7 +71,7 @@ const en: TopicPageContent = {
       },
       {
         title: "Closing declared by the club",
-        body: "At the end of the night the club declares the bar and door takings. The organizer sees the figures and the resulting statement, and accepts or disputes them.",
+        body: "At the end of the night the club declares the takings it collected on site (its bar, the cash door). The organizer sees the figures and the resulting statement, and accepts or disputes them.",
       },
       {
         title: "Nothing moves without both sides",
@@ -97,7 +97,7 @@ const en: TopicPageContent = {
       [
         "Percentage of the bar",
         "The organizer receives a share of the bar takings on the night, or above a baseline.",
-        "The club is the one who counts the bar: agree what is included (discounts, staff drinks, VIP bottles).",
+        "The club is the one who counts the bar: agree what is included (discounts, staff consumption, VIP bottles).",
       ],
       [
         "Minimum guarantee",
@@ -116,7 +116,7 @@ const en: TopicPageContent = {
       ],
     ],
     footnote:
-      "Illustrative structures based on common industry practice, not statistics and not recommendations. Yuno supports a per-pillar split and a tiered revenue share. Have your contract reviewed by a professional: this is not legal advice.",
+      "Illustrative structures based on common industry practice, not statistics and not recommendations. Yuno supports a per-pillar split (tickets, tables) and a tiered revenue share. Have your contract reviewed by a professional: this is not legal advice.",
   },
   steps: {
     eyebrow: "How it works",
@@ -124,15 +124,15 @@ const en: TopicPageContent = {
     items: [
       {
         title: "Sign the deal inside Yuno",
-        body: "Club and organizer agree the terms in the platform: a split per pillar (tickets, tables, bar) or a tiered revenue share. Both sides see the same contract.",
+        body: "Club and organizer agree the terms in the platform: a split per pillar (tickets, tables) or a tiered revenue share. Both sides see the same contract.",
       },
       {
         title: "Sell and run the night",
-        body: "Tickets, tables and drinks are sold through Yuno, the door is scanned, and the money reaches each side's own Stripe account. Promoter commissions are computed automatically if you work with promoters.",
+        body: "Tickets and tables are sold through Yuno, the door is scanned, and the money reaches each side's own Stripe account. Promoter commissions are computed automatically if you work with promoters.",
       },
       {
         title: "Close the night, together",
-        body: "The club declares the bar and door takings. The organizer accepts or disputes. Once both agree, the statement is settled — and until then, nothing moves.",
+        body: "The club declares the takings it collected on site (its bar, the cash door). The organizer accepts or disputes. Once both agree, the statement is settled — and until then, nothing moves.",
       },
     ],
   },
@@ -141,7 +141,7 @@ const en: TopicPageContent = {
     title: "Built for the club × organizer relationship",
     stats: [
       { value: "€0 · 0%", label: "subscription and commission for the club and the organizer" },
-      { value: "3", label: "pillars you can split separately: tickets, tables and drinks" },
+      { value: "2", label: "pillars you can split separately: tickets and tables" },
       { value: "22", label: "partner clubs listed in Madrid, launched with Amoris" },
       { value: "EN · FR · ES", label: "one platform in three languages" },
     ],
@@ -152,7 +152,7 @@ const en: TopicPageContent = {
     items: [
       {
         q: "How do I split revenue between a club and an event organizer?",
-        a: "Agree in writing which sources are shared (tickets, tables, bar, door), at what percentage, and who counts what. Common structures are a percentage of the door, a percentage of the bar, a minimum guarantee, a tiered share above a threshold, or a different split per source. In Yuno the contract is signed inside the platform, pillar by pillar or as a tiered revenue share.",
+        a: "Agree in writing which sources are shared (tickets, tables, bar, door), at what percentage, and who counts what. Common structures are a percentage of the door, a percentage of the bar, a minimum guarantee, a tiered share above a threshold, or a different split per source. In Yuno the contract is signed inside the platform, pillar by pillar (tickets, tables) or as a tiered revenue share.",
       },
       {
         q: "What is a typical nightclub promoter contract revenue share?",
@@ -164,19 +164,19 @@ const en: TopicPageContent = {
       },
       {
         q: "Who counts the bar and door takings, and how do we avoid disputes?",
-        a: "Usually the club, since it runs the bar and the door. To avoid disputes, both sides should see the same figures. In Yuno the club declares the bar and door takings at closing, the organizer accepts or disputes, and the settlement waits until both sides agree.",
+        a: "Usually the club, since it runs the bar and the door. To avoid disputes, both sides should see the same figures. In Yuno the club declares the takings it collected on site (its bar, the cash door) at closing, the organizer accepts or disputes, and the settlement waits until both sides agree.",
       },
       {
         q: "When does the organizer get paid?",
         a: "That is the second classic dispute: too often it is “when the club sends a transfer”. In Yuno, each side is paid on its own Stripe account, and the settlement of the shared amounts goes through once the club and the organizer have both agreed the closing statement.",
       },
       {
-        q: "Can we split tickets, tables and bar differently?",
+        q: "Can we split tickets and tables differently?",
         a: "Yes. The contract can set a split per pillar, for example Tickets 70/30 · Tables 50/50, or use a tiered revenue share instead. Each night has one switch per pillar, so you can also start with a single pillar.",
       },
       {
         q: "Does Yuno take a commission on the split?",
-        a: "No. Yuno charges the club and the organizer €0 subscription and 0% commission. The buyer pays a service fee: 4% on tickets (min €0.99), 4% on tables (capped at €25), 3% on drinks. Stripe card fees (1.5% + €0.25) are paid by the club or organizer.",
+        a: "No. Yuno charges the club and the organizer €0 subscription and 0% commission. The buyer pays a service fee: 4% on tickets (min €0.99) and 4% on tables (capped at €25). Stripe card fees (1.5% + €0.25) are paid by the club or organizer.",
       },
       {
         q: "Do other ticketing platforms offer a club × organizer contract?",
@@ -216,7 +216,7 @@ const fr: TopicPageContent = {
   hero: {
     kicker: "Contrat club × organisateur et partage des recettes de soirée",
     title: "Partagez l'argent de la soirée sans tableur et sans dispute.",
-    sub: "Signez l'accord entre le club et l'organisateur dans Yuno — pilier par pilier ou en partage par paliers. À la clôture, le club déclare les recettes du bar et de l'entrée, l'organisateur accepte ou conteste, et rien ne bouge tant que les deux ne sont pas d'accord.",
+    sub: "Signez l'accord entre le club et l'organisateur dans Yuno — pilier par pilier ou en partage par paliers. À la clôture, le club déclare les recettes qu'il a encaissées sur place (son bar, la caisse de l'entrée), l'organisateur accepte ou conteste, et rien ne bouge tant que les deux ne sont pas d'accord.",
     primary: "Créer mon compte gratuit",
     secondary: "Parler au fondateur",
     note: [
@@ -229,11 +229,11 @@ const fr: TopicPageContent = {
     title: "En bref",
     paragraphs: [
       "Il n'existe pas de standard unique, mais les soirées club se partagent le plus souvent de quelques façons : un pourcentage sur l'entrée ou la billetterie, un pourcentage sur le bar, un minimum garanti pour l'une des parties, un partage qui change au-delà d'un palier de ventes, ou une répartition différente pour chaque source (billets, tables, bar). La plupart des litiges ne portent pas sur les pourcentages, mais sur qui compte les recettes du bar et de l'entrée, et sur le moment où l'organisateur est payé.",
-      "Yuno transforme l'accord en contrat signé dans la plateforme, pilier par pilier (billets, tables, bar) ou en partage par paliers. À la clôture, le club déclare les recettes du bar et de l'entrée, l'organisateur les accepte ou les conteste, et rien ne bouge sans l'accord des deux parties. Chacun est payé sur son propre compte Stripe.",
+      "Yuno transforme l'accord en contrat signé dans la plateforme, pilier par pilier (billets, tables) ou en partage par paliers. À la clôture, le club déclare les recettes qu'il a encaissées sur place (son bar, la caisse de l'entrée), l'organisateur les accepte ou les conteste, et rien ne bouge sans l'accord des deux parties. Chacun est payé sur son propre compte Stripe.",
     ],
     bullets: [
       "Par exemple, un contrat peut dire « Billets 70/30 · Tables 50/50 » : une illustration d'un partage par pilier, pas une recommandation.",
-      "0 € d'abonnement et 0 % de commission pour le club et l'organisateur. L'acheteur paie 4 % de frais de service sur les billets (min. 0,99 €), 4 % sur les tables (plafonnés à 25 €) et 3 % sur les boissons.",
+      "0 € d'abonnement et 0 % de commission pour le club et l'organisateur. L'acheteur paie 4 % de frais de service sur les billets (min. 0,99 €) et 4 % sur les tables (plafonnés à 25 €).",
       "Les frais de carte (Stripe, 1,5 % + 0,25 €) sont à la charge du club ou de l'organisateur ; Yuno ne détient jamais les fonds.",
       "Cette page décrit les pratiques courantes et le fonctionnement de Yuno. Ce n'est pas un conseil juridique : faites relire votre contrat.",
     ],
@@ -249,7 +249,7 @@ const fr: TopicPageContent = {
       },
       {
         title: "Pilier par pilier",
-        body: "Définissez un partage pour les billets, un autre pour les tables, un autre pour le bar. Par exemple : Billets 70/30 · Tables 50/50. Chaque pilier suit sa propre règle.",
+        body: "Définissez un partage pour les billets et un autre pour les tables. Par exemple : Billets 70/30 · Tables 50/50. Chaque pilier suit sa propre règle.",
       },
       {
         title: "Ou un partage par paliers",
@@ -257,7 +257,7 @@ const fr: TopicPageContent = {
       },
       {
         title: "Clôture déclarée par le club",
-        body: "En fin de soirée, le club déclare les recettes du bar et de l'entrée. L'organisateur voit les chiffres et le décompte qui en résulte, puis les accepte ou les conteste.",
+        body: "En fin de soirée, le club déclare les recettes qu'il a encaissées sur place (son bar, la caisse de l'entrée). L'organisateur voit les chiffres et le décompte qui en résulte, puis les accepte ou les conteste.",
       },
       {
         title: "Rien ne bouge sans les deux parties",
@@ -302,7 +302,7 @@ const fr: TopicPageContent = {
       ],
     ],
     footnote:
-      "Structures données à titre d'illustration, d'après les pratiques courantes du secteur : ce ne sont ni des statistiques ni des recommandations. Yuno gère un partage par pilier et un partage par paliers. Faites relire votre contrat par un professionnel : ceci n'est pas un conseil juridique.",
+      "Structures données à titre d'illustration, d'après les pratiques courantes du secteur : ce ne sont ni des statistiques ni des recommandations. Yuno gère un partage par pilier (billets, tables) et un partage par paliers. Faites relire votre contrat par un professionnel : ceci n'est pas un conseil juridique.",
   },
   steps: {
     eyebrow: "Comment ça marche",
@@ -310,15 +310,15 @@ const fr: TopicPageContent = {
     items: [
       {
         title: "Signez l'accord dans Yuno",
-        body: "Le club et l'organisateur fixent les conditions dans la plateforme : un partage par pilier (billets, tables, bar) ou un partage par paliers. Les deux parties voient le même contrat.",
+        body: "Le club et l'organisateur fixent les conditions dans la plateforme : un partage par pilier (billets, tables) ou un partage par paliers. Les deux parties voient le même contrat.",
       },
       {
         title: "Vendez et pilotez la soirée",
-        body: "Billets, tables et boissons se vendent via Yuno, l'entrée est scannée et l'argent arrive sur le compte Stripe de chacun. Les commissions des promoteurs sont calculées automatiquement si vous travaillez avec eux.",
+        body: "Billets et tables se vendent via Yuno, l'entrée est scannée et l'argent arrive sur le compte Stripe de chacun. Les commissions des promoteurs sont calculées automatiquement si vous travaillez avec eux.",
       },
       {
         title: "Clôturez la soirée, à deux",
-        body: "Le club déclare les recettes du bar et de l'entrée. L'organisateur accepte ou conteste. Quand les deux sont d'accord, le décompte est réglé — et d'ici là, rien ne bouge.",
+        body: "Le club déclare les recettes qu'il a encaissées sur place (son bar, la caisse de l'entrée). L'organisateur accepte ou conteste. Quand les deux sont d'accord, le décompte est réglé — et d'ici là, rien ne bouge.",
       },
     ],
   },
@@ -327,7 +327,7 @@ const fr: TopicPageContent = {
     title: "Pensé pour la relation club × organisateur",
     stats: [
       { value: "0 € · 0 %", label: "d'abonnement et de commission pour le club et l'organisateur" },
-      { value: "3", label: "piliers à partager séparément : billets, tables et boissons" },
+      { value: "2", label: "piliers à partager séparément : billets et tables" },
       { value: "22", label: "clubs partenaires référencés à Madrid, lancement avec Amoris" },
       { value: "FR · EN · ES", label: "une plateforme en trois langues" },
     ],
@@ -338,7 +338,7 @@ const fr: TopicPageContent = {
     items: [
       {
         q: "Comment partager les recettes entre une discothèque et un organisateur ?",
-        a: "Convenez par écrit des sources partagées (billets, tables, bar, entrée), du pourcentage et de qui compte quoi. Les modèles courants : un pourcentage sur l'entrée, un pourcentage sur le bar, un minimum garanti, un partage par paliers au-delà d'un seuil, ou une répartition différente par source. Dans Yuno, le contrat est signé dans la plateforme, pilier par pilier ou en partage par paliers.",
+        a: "Convenez par écrit des sources partagées (billets, tables, bar, entrée), du pourcentage et de qui compte quoi. Les modèles courants : un pourcentage sur l'entrée, un pourcentage sur le bar, un minimum garanti, un partage par paliers au-delà d'un seuil, ou une répartition différente par source. Dans Yuno, le contrat est signé dans la plateforme, pilier par pilier (billets, tables) ou en partage par paliers.",
       },
       {
         q: "Que contient un contrat entre une discothèque et un organisateur ?",
@@ -350,19 +350,19 @@ const fr: TopicPageContent = {
       },
       {
         q: "Qui compte les recettes du bar et de l'entrée, et comment éviter les litiges ?",
-        a: "En général le club, puisqu'il tient le bar et la porte. Pour éviter les litiges, les deux parties doivent voir les mêmes chiffres. Dans Yuno, le club déclare les recettes du bar et de l'entrée à la clôture, l'organisateur accepte ou conteste, et le règlement attend l'accord des deux.",
+        a: "En général le club, puisqu'il tient le bar et la porte. Pour éviter les litiges, les deux parties doivent voir les mêmes chiffres. Dans Yuno, le club déclare à la clôture les recettes qu'il a encaissées sur place (son bar, la caisse de l'entrée), l'organisateur accepte ou conteste, et le règlement attend l'accord des deux.",
       },
       {
         q: "Quand l'organisateur est-il payé ?",
         a: "C'est le deuxième litige classique : trop souvent, « quand le club fait le virement ». Dans Yuno, chacun est payé sur son propre compte Stripe, et le règlement des montants partagés passe une fois que le club et l'organisateur ont tous les deux validé le décompte de clôture.",
       },
       {
-        q: "Peut-on partager différemment billets, tables et bar ?",
+        q: "Peut-on partager différemment billets et tables ?",
         a: "Oui. Le contrat peut fixer un partage par pilier, par exemple Billets 70/30 · Tables 50/50, ou utiliser à la place un partage par paliers. Chaque soirée a un interrupteur par pilier : vous pouvez aussi commencer par un seul pilier.",
       },
       {
         q: "Yuno prend-il une commission sur le partage ?",
-        a: "Non. Yuno facture 0 € d'abonnement et 0 % de commission au club et à l'organisateur. L'acheteur paie des frais de service : 4 % sur les billets (min. 0,99 €), 4 % sur les tables (plafonnés à 25 €), 3 % sur les boissons. Les frais de carte Stripe (1,5 % + 0,25 €) sont à la charge du club ou de l'organisateur.",
+        a: "Non. Yuno facture 0 € d'abonnement et 0 % de commission au club et à l'organisateur. L'acheteur paie des frais de service : 4 % sur les billets (min. 0,99 €) et 4 % sur les tables (plafonnés à 25 €). Les frais de carte Stripe (1,5 % + 0,25 €) sont à la charge du club ou de l'organisateur.",
       },
       {
         q: "Les autres billetteries proposent-elles un contrat club × organisateur ?",
@@ -408,7 +408,7 @@ const es: TopicPageContent = {
   hero: {
     kicker: "Contrato discoteca × organizador y reparto de ingresos de la noche",
     title: "Reparte el dinero de la noche sin hojas de cálculo y sin discusiones.",
-    sub: "Firma el acuerdo entre la discoteca y el organizador dentro de Yuno — pilar por pilar o como reparto por tramos. En el cierre, la discoteca declara lo de la barra y la puerta, el organizador acepta o discute, y nada se mueve hasta que los dos estén de acuerdo.",
+    sub: "Firma el acuerdo entre la discoteca y el organizador dentro de Yuno — pilar por pilar o como reparto por tramos. En el cierre, la discoteca declara lo que ha cobrado ella misma en el local (su barra, la taquilla de la puerta), el organizador acepta o discute, y nada se mueve hasta que los dos estén de acuerdo.",
     primary: "Crear mi cuenta gratis",
     secondary: "Hablar con el fundador",
     note: [
@@ -421,11 +421,11 @@ const es: TopicPageContent = {
     title: "En breve",
     paragraphs: [
       "No hay un estándar único, pero las noches de discoteca suelen repartirse de unas pocas formas: un porcentaje de la puerta o de las entradas, un porcentaje de la barra, un mínimo garantizado para una de las partes, un reparto que cambia al superar un tramo de ventas, o un reparto distinto por cada fuente (entradas, mesas, barra). La mayoría de las disputas no son por los porcentajes, sino por quién cuenta lo de la barra y la puerta, y por cuándo cobra el organizador.",
-      "Yuno convierte el acuerdo en un contrato firmado dentro de la plataforma, pilar por pilar (entradas, mesas, barra) o como reparto por tramos. En el cierre, la discoteca declara lo recaudado en barra y puerta, el organizador lo acepta o lo discute, y nada se mueve sin que las dos partes estén de acuerdo. Cada uno cobra en su propia cuenta de Stripe.",
+      "Yuno convierte el acuerdo en un contrato firmado dentro de la plataforma, pilar por pilar (entradas, mesas) o como reparto por tramos. En el cierre, la discoteca declara lo que ha cobrado ella misma en el local (su barra, la taquilla de la puerta), el organizador lo acepta o lo discute, y nada se mueve sin que las dos partes estén de acuerdo. Cada uno cobra en su propia cuenta de Stripe.",
     ],
     bullets: [
       "Por ejemplo, un contrato puede decir «Entradas 70/30 · Mesas 50/50»: una ilustración de un reparto por pilar, no una recomendación.",
-      "0 € de cuota y 0 % de comisión para la discoteca y el organizador. El comprador paga un 4 % de gastos de servicio en las entradas (mín. 0,99 €), un 4 % en las mesas (tope de 25 €) y un 3 % en las copas.",
+      "0 € de cuota y 0 % de comisión para la discoteca y el organizador. El comprador paga un 4 % de gastos de servicio en las entradas (mín. 0,99 €) y un 4 % en las mesas (tope de 25 €).",
       "Los gastos de tarjeta (Stripe, 1,5 % + 0,25 €) los paga la discoteca o el organizador; Yuno nunca retiene los fondos.",
       "Esta página describe prácticas habituales y cómo funciona Yuno. No es asesoramiento jurídico: haz revisar tu contrato.",
     ],
@@ -441,7 +441,7 @@ const es: TopicPageContent = {
       },
       {
         title: "Pilar por pilar",
-        body: "Define un reparto para las entradas, otro para las mesas y otro para la barra. Por ejemplo: Entradas 70/30 · Mesas 50/50. Cada pilar sigue su propia regla.",
+        body: "Define un reparto para las entradas y otro para las mesas. Por ejemplo: Entradas 70/30 · Mesas 50/50. Cada pilar sigue su propia regla.",
       },
       {
         title: "O un reparto por tramos",
@@ -449,7 +449,7 @@ const es: TopicPageContent = {
       },
       {
         title: "Cierre declarado por la discoteca",
-        body: "Al terminar la noche, la discoteca declara lo recaudado en barra y puerta. El organizador ve las cifras y la liquidación resultante, y las acepta o las discute.",
+        body: "Al terminar la noche, la discoteca declara lo que ha cobrado ella misma en el local (su barra, la taquilla de la puerta). El organizador ve las cifras y la liquidación resultante, y las acepta o las discute.",
       },
       {
         title: "Nada se mueve sin las dos partes",
@@ -475,7 +475,7 @@ const es: TopicPageContent = {
       [
         "Porcentaje de la barra",
         "El organizador recibe una parte de lo recaudado en la barra esa noche, o por encima de una base.",
-        "La que cuenta la barra es la discoteca: acordad qué entra (descuentos, copas del personal, botellas VIP).",
+        "La que cuenta la barra es la discoteca: acordad qué entra (descuentos, consumos del personal, botellas VIP).",
       ],
       [
         "Mínimo garantizado",
@@ -494,7 +494,7 @@ const es: TopicPageContent = {
       ],
     ],
     footnote:
-      "Estructuras a modo de ilustración, basadas en prácticas habituales del sector: no son estadísticas ni recomendaciones. Yuno admite un reparto por pilar y un reparto por tramos. Haz revisar tu contrato por un profesional: esto no es asesoramiento jurídico.",
+      "Estructuras a modo de ilustración, basadas en prácticas habituales del sector: no son estadísticas ni recomendaciones. Yuno admite un reparto por pilar (entradas, mesas) y un reparto por tramos. Haz revisar tu contrato por un profesional: esto no es asesoramiento jurídico.",
   },
   steps: {
     eyebrow: "Cómo funciona",
@@ -502,15 +502,15 @@ const es: TopicPageContent = {
     items: [
       {
         title: "Firma el acuerdo dentro de Yuno",
-        body: "La discoteca y el organizador fijan las condiciones en la plataforma: un reparto por pilar (entradas, mesas, barra) o un reparto por tramos. Las dos partes ven el mismo contrato.",
+        body: "La discoteca y el organizador fijan las condiciones en la plataforma: un reparto por pilar (entradas, mesas) o un reparto por tramos. Las dos partes ven el mismo contrato.",
       },
       {
         title: "Vende y dirige la noche",
-        body: "Entradas, mesas y copas se venden con Yuno, la puerta se escanea y el dinero llega a la cuenta de Stripe de cada uno. Las comisiones de los RRPP se calculan solas si trabajas con ellos.",
+        body: "Entradas y mesas se venden con Yuno, la puerta se escanea y el dinero llega a la cuenta de Stripe de cada uno. Las comisiones de los RRPP se calculan solas si trabajas con ellos.",
       },
       {
         title: "Cerrad la noche, juntos",
-        body: "La discoteca declara lo recaudado en barra y puerta. El organizador acepta o discute. Cuando los dos están de acuerdo, la liquidación se cierra — y hasta entonces, nada se mueve.",
+        body: "La discoteca declara lo que ha cobrado ella misma en el local (su barra, la taquilla de la puerta). El organizador acepta o discute. Cuando los dos están de acuerdo, la liquidación se cierra — y hasta entonces, nada se mueve.",
       },
     ],
   },
@@ -519,7 +519,7 @@ const es: TopicPageContent = {
     title: "Pensado para la relación discoteca × organizador",
     stats: [
       { value: "0 € · 0 %", label: "de cuota y de comisión para la discoteca y el organizador" },
-      { value: "3", label: "pilares que puedes repartir por separado: entradas, mesas y copas" },
+      { value: "2", label: "pilares que puedes repartir por separado: entradas y mesas" },
       { value: "22", label: "discotecas asociadas en Madrid, lanzamiento con Amoris" },
       { value: "ES · EN · FR", label: "una plataforma en tres idiomas" },
     ],
@@ -530,7 +530,7 @@ const es: TopicPageContent = {
     items: [
       {
         q: "¿Cómo se reparten los ingresos entre una discoteca y un organizador?",
-        a: "Pactad por escrito qué fuentes se reparten (entradas, mesas, barra, puerta), con qué porcentaje y quién cuenta qué. Las fórmulas habituales son un porcentaje de la puerta, un porcentaje de la barra, un mínimo garantizado, un reparto por tramos al superar un umbral o un reparto distinto por fuente. En Yuno el contrato se firma dentro de la plataforma, pilar por pilar o como reparto por tramos.",
+        a: "Pactad por escrito qué fuentes se reparten (entradas, mesas, barra, puerta), con qué porcentaje y quién cuenta qué. Las fórmulas habituales son un porcentaje de la puerta, un porcentaje de la barra, un mínimo garantizado, un reparto por tramos al superar un umbral o un reparto distinto por fuente. En Yuno el contrato se firma dentro de la plataforma, pilar por pilar (entradas, mesas) o como reparto por tramos.",
       },
       {
         q: "¿Qué lleva un contrato entre una discoteca y una promotora?",
@@ -542,19 +542,19 @@ const es: TopicPageContent = {
       },
       {
         q: "¿Quién cuenta lo recaudado en barra y puerta, y cómo se evitan las disputas?",
-        a: "Normalmente la discoteca, porque es quien lleva la barra y la puerta. Para evitar disputas, las dos partes deben ver las mismas cifras. En Yuno, la discoteca declara lo recaudado en barra y puerta en el cierre, el organizador acepta o discute, y la liquidación espera a que los dos estén de acuerdo.",
+        a: "Normalmente la discoteca, porque es quien lleva la barra y la puerta. Para evitar disputas, las dos partes deben ver las mismas cifras. En Yuno, en el cierre la discoteca declara lo que ha cobrado ella misma en el local (su barra, la taquilla de la puerta), el organizador acepta o discute, y la liquidación espera a que los dos estén de acuerdo.",
       },
       {
         q: "¿Cuándo cobra el organizador?",
         a: "Es la segunda disputa clásica: demasiadas veces es «cuando la discoteca haga la transferencia». En Yuno, cada uno cobra en su propia cuenta de Stripe, y la liquidación de los importes compartidos se hace cuando la discoteca y el organizador han aceptado los dos el cierre de la noche.",
       },
       {
-        q: "¿Se puede repartir distinto entradas, mesas y barra?",
+        q: "¿Se puede repartir distinto entradas y mesas?",
         a: "Sí. El contrato puede fijar un reparto por pilar, por ejemplo Entradas 70/30 · Mesas 50/50, o usar en su lugar un reparto por tramos. Cada noche tiene un interruptor por pilar, así que también puedes empezar con un solo pilar.",
       },
       {
         q: "¿Yuno cobra comisión sobre el reparto?",
-        a: "No. Yuno cobra a la discoteca y al organizador 0 € de cuota y 0 % de comisión. El comprador paga unos gastos de servicio: 4 % en las entradas (mín. 0,99 €), 4 % en las mesas (tope de 25 €) y 3 % en las copas. Los gastos de tarjeta de Stripe (1,5 % + 0,25 €) los paga la discoteca o el organizador.",
+        a: "No. Yuno cobra a la discoteca y al organizador 0 € de cuota y 0 % de comisión. El comprador paga unos gastos de servicio: 4 % en las entradas (mín. 0,99 €) y 4 % en las mesas (tope de 25 €). Los gastos de tarjeta de Stripe (1,5 % + 0,25 €) los paga la discoteca o el organizador.",
       },
       {
         q: "¿Otras ticketeras ofrecen un contrato discoteca × organizador?",

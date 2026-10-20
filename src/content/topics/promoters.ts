@@ -5,7 +5,7 @@
 // "cómo pagar a los RRPP" (ES). Facts: docs/yuno-context.md.
 import type { TopicPageContent } from "../topic-types";
 
-const UPDATED = "2026-09-29";
+const UPDATED = "2026-10-20";
 const TWINS = {
   en: "/promoter-tracking-software",
   fr: "/fr/logiciel-promoteurs-soiree",
@@ -43,7 +43,7 @@ const en: TopicPageContent = {
     bullets: [
       "€0 subscription, 0% commission for the club or organizer. The buyer pays a 4% service fee on tickets (min €0.99).",
       "Card processing (Stripe, 1.5% + €0.25) is paid by the club or organizer; the money goes straight to your own Stripe account.",
-      "Promoter tracking is part of the same account as tickets, guest list, tables and drinks — not a separate tool.",
+      "Promoter tracking is part of the same account as tickets, guest list and tables — not a separate tool.",
     ],
   },
   features: {
@@ -96,9 +96,9 @@ const en: TopicPageContent = {
         "RRPP management with automatic count at close and fixed or variable commissions",
       ],
       [
-        "Tables and bar in the same account",
-        "Yes — tickets, tables, drinks, door",
-        "No VIP tables or bar in what we found",
+        "VIP tables in the same account",
+        "Yes — tickets, guest list, tables, door",
+        "No VIP tables in what we found",
         "Yes (full club suite)",
       ],
       [
@@ -175,7 +175,7 @@ const en: TopicPageContent = {
       },
       {
         q: "Can I start with just the guest list and promoter links?",
-        a: "Yes. Each night has one switch per pillar (tickets, tables, drinks), so you can begin with the free guest list and promoter links, and add the rest later.",
+        a: "Yes. Each night has one switch per pillar (tickets, tables), so you can begin with the free guest list and promoter links, and add the rest later.",
       },
     ],
   },
@@ -235,7 +235,7 @@ const fr: TopicPageContent = {
     bullets: [
       "0 € d'abonnement, 0 % de commission pour le club ou l'organisateur. L'acheteur paie 4 % de frais de service sur les billets (min. 0,99 €).",
       "Les frais de carte (Stripe, 1,5 % + 0,25 €) sont à la charge du club ou de l'organisateur ; l'argent va directement sur votre propre compte Stripe.",
-      "Le suivi des promoteurs est dans le même compte que la billetterie, la guest list, les tables et les boissons — pas un outil de plus.",
+      "Le suivi des promoteurs est dans le même compte que la billetterie, la guest list et les tables — pas un outil de plus.",
     ],
   },
   features: {
@@ -288,9 +288,9 @@ const fr: TopicPageContent = {
         "Gestion des RRPP avec décompte automatique à la clôture et commissions fixes ou variables",
       ],
       [
-        "Tables et bar dans le même compte",
-        "Oui — billets, tables, boissons, porte",
-        "Ni tables VIP ni bar dans ce que nous avons trouvé",
+        "Tables VIP dans le même compte",
+        "Oui — billets, guest list, tables, porte",
+        "Pas de tables VIP dans ce que nous avons trouvé",
         "Oui (suite complète pour clubs)",
       ],
       [
@@ -370,7 +370,7 @@ const fr: TopicPageContent = {
       },
       {
         q: "Puis-je commencer par la seule guest list et les liens promoteurs ?",
-        a: "Oui. Chaque soirée a un interrupteur par pilier (billets, tables, boissons) : vous pouvez démarrer avec la guest list gratuite et les liens promoteurs, puis ajouter le reste plus tard.",
+        a: "Oui. Chaque soirée a un interrupteur par pilier (billets, tables) : vous pouvez démarrer avec la guest list gratuite et les liens promoteurs, puis ajouter le reste plus tard.",
       },
     ],
   },
@@ -436,7 +436,7 @@ const es: TopicPageContent = {
     bullets: [
       "0 € de cuota y 0 % de comisión para la discoteca o el organizador. El comprador paga un 4 % de gastos de servicio en las entradas (mín. 0,99 €).",
       "Los gastos de tarjeta (Stripe, 1,5 % + 0,25 €) los paga la discoteca o el organizador; el dinero va directo a tu propia cuenta de Stripe.",
-      "El seguimiento de RRPP vive en la misma cuenta que las entradas, la lista, las mesas y las copas — no es otra herramienta más.",
+      "El seguimiento de RRPP vive en la misma cuenta que las entradas, la lista y las mesas — no es otra herramienta más.",
     ],
   },
   features: {
@@ -489,9 +489,9 @@ const es: TopicPageContent = {
         "Gestión de RRPP con recuento automático al cierre y comisiones fijas o variables",
       ],
       [
-        "Mesas y barra en la misma cuenta",
-        "Sí — entradas, mesas, copas, puerta",
-        "Ni mesas VIP ni barra en lo que encontramos",
+        "Mesas VIP en la misma cuenta",
+        "Sí — entradas, listas, mesas, puerta",
+        "Sin mesas VIP en lo que encontramos",
         "Sí (suite completa para discotecas)",
       ],
       [
@@ -571,7 +571,7 @@ const es: TopicPageContent = {
       },
       {
         q: "¿Puedo empezar solo con la lista y los enlaces de RRPP?",
-        a: "Sí. Cada noche tiene un interruptor por pilar (entradas, mesas, copas): puedes empezar con la lista gratuita y los enlaces de RRPP, y añadir el resto más adelante.",
+        a: "Sí. Cada noche tiene un interruptor por pilar (entradas, mesas): puedes empezar con la lista gratuita y los enlaces de RRPP, y añadir el resto más adelante.",
       },
     ],
   },

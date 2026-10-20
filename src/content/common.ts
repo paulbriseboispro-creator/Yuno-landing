@@ -62,12 +62,6 @@ const en = {
         keywords: ["vip", "floor", "tables", "minimum spend"],
       },
       {
-        title: "Click & Collect bar",
-        category: "Product",
-        to: "/clubs",
-        keywords: ["bar", "queue", "drinks", "order"],
-      },
-      {
         title: "Live Night dashboard",
         category: "Product",
         to: "/clubs",
@@ -219,12 +213,6 @@ const fr: CommonContent = {
         category: "Product",
         to: "/clubs",
         keywords: ["vip", "salle", "tables", "minimum"],
-      },
-      {
-        title: "Bar Click & Collect",
-        category: "Product",
-        to: "/clubs",
-        keywords: ["bar", "file", "boissons", "commande"],
       },
       {
         title: "Tableau de bord Live Night",

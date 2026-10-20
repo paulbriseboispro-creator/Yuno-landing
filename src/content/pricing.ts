@@ -109,7 +109,7 @@ const en = {
       ],
     },
   ],
-  fees: "Plus 4% per ticket (€0.99 min) and 3% on drinks — service fees paid by the customer, never by you. Organizer and Affiliate accounts are free.",
+  fees: "Plus 4% per ticket (€0.99 min) — service fees paid by the customer, never by you. Organizer and Affiliate accounts are free.",
   // Billing-cadence note shown under the plan grid.
   annualLine:
     "Prices shown are monthly. Pay for the year in one payment and 2 months are on us — same plan, lower yearly cost.",
@@ -168,14 +168,10 @@ const en = {
 
   // ServiceFeeCalculator copy. Numbers/percentages stay exact.
   serviceFee: {
-    summaryDrinksLabel: "Drinks:",
-    summaryDrinksValue: "3%",
     summaryTicketsLabel: "Tickets & tables:",
     summaryTicketsValue: "from 0.99€ (max 4%)",
     summaryNote: "Service fees — always paid by the customer, never by you",
-    drinksLabel: "Drinks",
     ticketsLabel: "Tickets & Tables",
-    drinksFootnote: "3% of item price",
     ticketsFootnote: "From 0.99€, up to 4% of order value",
     itemPrice: "Item price:",
     serviceFeeLabel: "Service fee:",
@@ -190,7 +186,7 @@ const en = {
     sub: "Monthly SaaS plans for the back office, plus transparent transactional fees on what actually moves money.",
     feeIntroA: "Yuno charges you a ",
     feeIntroMonthly: "monthly subscription",
-    feeIntroB: ". Ticket and drink fees are paid by your guests at checkout — ",
+    feeIntroB: ". Ticket and table fees are paid by your guests at checkout — ",
     feeIntroNotYou: "not by you",
     feeIntroC: ". The fee calculator below shows what your attendees pay per purchase.",
     noCutBold: "Yuno doesn't take a cut from your revenue.",
@@ -242,10 +238,6 @@ const en = {
       {
         title: "Tickets & tables",
         body: "4% per order with a €0.99 minimum. The service fee is always paid by the customer at checkout — never deducted from your share. Stripe fees (1.5% + €0.25) apply on payout.",
-      },
-      {
-        title: "Drinks (Click & Collect)",
-        body: "A flat 3% service fee on every pre-ordered round, paid by the customer. You receive 100% of the menu price, less standard Stripe processing — pre-ordering is a guest-side perk that cuts your queue.",
       },
       {
         title: "VIP tables",
@@ -365,7 +357,7 @@ const fr: PricingContent = {
       ],
     },
   ],
-  fees: "Plus 4 % par billet (0,99 € min) et 3 % sur les boissons — des frais de service réglés par le client, jamais par vous. Les comptes Organisateur et Affilié sont gratuits.",
+  fees: "Plus 4 % par billet (0,99 € min) — des frais de service réglés par le client, jamais par vous. Les comptes Organisateur et Affilié sont gratuits.",
   annualLine:
     "Les tarifs affichés sont mensuels. Réglez l'année en un seul paiement et 2 mois vous sont offerts — la même formule, un coût annuel plus bas.",
   cardNote: "Sans frais d'installation · Annulation à tout moment · Sans engagement",
@@ -419,14 +411,10 @@ const fr: PricingContent = {
   },
 
   serviceFee: {
-    summaryDrinksLabel: "Boissons :",
-    summaryDrinksValue: "3 %",
     summaryTicketsLabel: "Billets & tables :",
     summaryTicketsValue: "à partir de 0,99 € (max 4 %)",
     summaryNote: "Frais de service — toujours réglés par le client, jamais par vous",
-    drinksLabel: "Boissons",
     ticketsLabel: "Billets & tables",
-    drinksFootnote: "3 % du prix de l'article",
     ticketsFootnote: "À partir de 0,99 €, jusqu'à 4 % du montant de la commande",
     itemPrice: "Prix de l'article :",
     serviceFeeLabel: "Frais de service :",
@@ -445,7 +433,7 @@ const fr: PricingContent = {
     feeIntroA: "Yuno vous facture un ",
     feeIntroMonthly: "abonnement mensuel",
     feeIntroB:
-      ". Les frais sur les billets et les boissons sont réglés par vos invités au moment du paiement — ",
+      ". Les frais sur les billets et les tables sont réglés par vos invités au moment du paiement — ",
     feeIntroNotYou: "pas par vous",
     feeIntroC:
       ". Le calculateur de frais ci-dessous montre ce que vos participants paient par achat.",
@@ -498,10 +486,6 @@ const fr: PricingContent = {
       {
         title: "Billets & tables",
         body: "4 % par commande avec un minimum de 0,99 €. Le frais de service est toujours réglé par le client au moment du paiement — jamais déduit de votre part. Les frais Stripe (1,5 % + 0,25 €) s'appliquent au versement.",
-      },
-      {
-        title: "Boissons (Click & Collect)",
-        body: "Un frais de service forfaitaire de 3 % sur chaque tournée précommandée, réglé par le client. Vous recevez 100 % du prix du menu, hors frais de traitement Stripe habituels — la précommande est un avantage côté client qui réduit votre file d'attente.",
       },
       {
         title: "Tables VIP",

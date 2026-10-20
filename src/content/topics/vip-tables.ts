@@ -4,7 +4,7 @@
 // "reservados discoteca online" (ES). Facts: docs/yuno-context.md.
 import type { TopicPageContent } from "../topic-types";
 
-const UPDATED = "2026-09-29";
+const UPDATED = "2026-10-20";
 const TWINS = {
   en: "/vip-table-booking-software",
   fr: "/fr/reservation-table-vip-discotheque",
@@ -27,7 +27,7 @@ const en: TopicPageContent = {
   hero: {
     kicker: "VIP table booking & bottle service software for nightclubs",
     title: "Sell your VIP tables online. Get paid before the night starts.",
-    sub: "An interactive floor plan, packages, deposits and bottle pre-orders — then a live floor plan for your VIP host on the night. Money lands on your own account, with €0 subscription and 0% commission.",
+    sub: "An interactive floor plan, packages with their bottles and deposits — then a live floor plan for your VIP host on the night. Money lands on your own account, with €0 subscription and 0% commission.",
     primary: "Create my free account",
     secondary: "Talk to the founder",
     note: ["No subscription", "0% commission on your price", "No app to install"],
@@ -36,12 +36,12 @@ const en: TopicPageContent = {
     title: "In short",
     paragraphs: [
       "Yuno is nightclub software that lets guests book and pay for a VIP table from their phone. You draw your floor plan, set zones, packages and minimum spend, and take a deposit (or full payment) online — or let guests pay on site.",
-      "On the night, your VIP host sees the same floor plan live: which tables are seated, walk-ins, bottles ordered from the table and how far each table is from its minimum spend.",
+      "On the night, your VIP host sees the same floor plan live: which tables are seated, walk-ins and how far each table is from its minimum spend.",
     ],
     bullets: [
       "€0 subscription, 0% commission for the club or organizer. The buyer pays a 4% service fee on tables (min €0.99, capped at €25).",
       "Card processing (Stripe, 1.5% + €0.25) is paid by the club; the money goes straight to your Stripe account — Yuno never holds your funds.",
-      "Tables are one of three pillars (tickets, tables, drinks): switch each on or off per night.",
+      "Tables are one of two pillars (tickets, tables): switch each on or off per night.",
     ],
   },
   features: {
@@ -62,16 +62,16 @@ const en: TopicPageContent = {
         body: "Take a deposit online to lock the booking, or the full amount. Guests can also pay on site. Fewer no-shows, cash in before the doors open.",
       },
       {
-        title: "Bottle pre-orders",
-        body: "Guests add bottles when they book. The order is waiting at the table, and your bar knows what to prepare.",
+        title: "Bottles chosen at booking",
+        body: "Guests pick a package with its bottles when they book the table. You know before the doors open what each table has chosen.",
       },
       {
         title: "Live VIP host screen",
-        body: "A living floor plan on the host's phone: seat walk-ins, track each table's minimum spend, take orders from the table and see who to nudge with one more bottle.",
+        body: "A living floor plan on the host's phone: seat walk-ins, track each table's minimum spend and see who to nudge with one more bottle.",
       },
       {
-        title: "Same account as your tickets and bar",
-        body: "Tables sit next to tickets, guest list and drinks: one customer base, one dashboard, one payout — no second tool for VIP.",
+        title: "Same account as your tickets",
+        body: "Tables sit next to tickets and the guest list: one customer base, one dashboard, one payout — no second tool for VIP.",
       },
     ],
   },
@@ -94,8 +94,8 @@ const en: TopicPageContent = {
         "Not published",
       ],
       [
-        "Tickets, bar and promoters in the same tool",
-        "Yes — tickets, tables, drinks, door, promoter commissions",
+        "Tickets, guest list and promoters in the same tool",
+        "Yes — tickets, guest list, tables, door, promoter commissions",
         "Tables only",
         "Yes (full club suite)",
       ],
@@ -118,7 +118,7 @@ const en: TopicPageContent = {
       },
       {
         title: "Your host runs the night",
-        body: "Seat guests from the live plan, add walk-ins, take orders from the table and see each minimum spend fill up. The money is already on your account.",
+        body: "Seat guests from the live plan, add walk-ins and see each minimum spend fill up. The money is already on your account.",
       },
     ],
   },
@@ -146,15 +146,15 @@ const en: TopicPageContent = {
       },
       {
         q: "Can guests pre-order bottles with their table?",
-        a: "Yes. Bottles can be added when the table is booked; the order is ready for the table and visible to your bar. During the night, your VIP host can also add orders from the table.",
+        a: "Yes, through the package: each table is sold with its package (bottles included), which guests pick when they book. On the night, your VIP host tracks each table's spend against its minimum.",
       },
       {
         q: "Can I sell tables for one night only, or use it alongside my current ticketing?",
-        a: "Yes. Each night has one switch per pillar (tickets, tables, drinks), so you can start with tables only, or with the guest list, and add the rest later.",
+        a: "Yes. Each night has one switch per pillar (tickets, tables), so you can start with tables only, or with the guest list, and add the rest later.",
       },
       {
         q: "What does my VIP host see on the night?",
-        a: "A live floor plan: seated and open tables, walk-ins, each table's spend against its minimum, and orders taken from the table.",
+        a: "A live floor plan: seated and open tables, walk-ins and each table's spend against its minimum.",
       },
       {
         q: "Who is Yuno for?",
@@ -202,7 +202,7 @@ const fr: TopicPageContent = {
   hero: {
     kicker: "Logiciel de réservation de tables VIP et bottle service pour discothèques",
     title: "Vendez vos carrés VIP en ligne. Encaissez avant que la soirée commence.",
-    sub: "Un plan de salle interactif, des formules, un acompte et la précommande de bouteilles — puis un plan vivant pour votre responsable VIP le soir même. L'argent arrive sur votre compte, avec 0 € d'abonnement et 0 % de commission.",
+    sub: "Un plan de salle interactif, des formules avec leurs bouteilles et un acompte — puis un plan vivant pour votre responsable VIP le soir même. L'argent arrive sur votre compte, avec 0 € d'abonnement et 0 % de commission.",
     primary: "Créer mon compte gratuit",
     secondary: "Parler au fondateur",
     note: ["Sans abonnement", "0 % de commission sur votre prix", "Aucune app à installer"],
@@ -211,12 +211,12 @@ const fr: TopicPageContent = {
     title: "En bref",
     paragraphs: [
       "Yuno est un logiciel pour boîtes de nuit qui permet à vos clients de réserver et payer un carré VIP depuis leur téléphone. Vous dessinez votre plan de salle, fixez zones, formules et minimum de consommation, puis encaissez un acompte (ou la totalité) en ligne — ou laissez payer sur place.",
-      "Le soir même, votre responsable VIP voit le même plan en direct : tables installées, walk-ins, bouteilles commandées depuis la table et où en est chaque table par rapport à son minimum.",
+      "Le soir même, votre responsable VIP voit le même plan en direct : tables installées, walk-ins et où en est chaque table par rapport à son minimum.",
     ],
     bullets: [
       "0 € d'abonnement, 0 % de commission pour le club ou l'organisateur. L'acheteur paie 4 % de frais de service sur les tables (min. 0,99 €, plafonnés à 25 €).",
       "Les frais de carte (Stripe, 1,5 % + 0,25 €) sont à la charge du club ; l'argent va directement sur votre compte Stripe — Yuno ne détient jamais vos fonds.",
-      "Les tables sont l'un des trois piliers (billets, tables, boissons) : activez-les soirée par soirée.",
+      "Les tables sont l'un des deux piliers (billets, tables) : activez-les soirée par soirée.",
     ],
   },
   features: {
@@ -237,16 +237,16 @@ const fr: TopicPageContent = {
         body: "Prenez un acompte en ligne pour verrouiller la réservation, ou la totalité. Le client peut aussi payer sur place. Moins de no-shows, de la trésorerie avant l'ouverture.",
       },
       {
-        title: "Précommande de bouteilles",
-        body: "Le client ajoute ses bouteilles à la réservation. La commande attend à la table et votre bar sait quoi préparer.",
+        title: "Bouteilles choisies à la réservation",
+        body: "Le client choisit une formule avec ses bouteilles en réservant sa table. Vous savez avant l'ouverture ce que chaque table a choisi.",
       },
       {
         title: "Écran responsable VIP en direct",
-        body: "Un plan vivant sur le téléphone du responsable : installer les walk-ins, suivre le minimum de chaque table, prendre les commandes depuis la table et savoir qui relancer avec une bouteille de plus.",
+        body: "Un plan vivant sur le téléphone du responsable : installer les walk-ins, suivre le minimum de chaque table et savoir qui relancer avec une bouteille de plus.",
       },
       {
-        title: "Le même compte que billets et bar",
-        body: "Les tables sont à côté de la billetterie, de la guest list et des boissons : une base clients, un tableau de bord, un seul virement — pas d'outil de plus pour le VIP.",
+        title: "Le même compte que votre billetterie",
+        body: "Les tables sont à côté de la billetterie et de la guest list : une base clients, un tableau de bord, un seul virement — pas d'outil de plus pour le VIP.",
       },
     ],
   },
@@ -269,8 +269,8 @@ const fr: TopicPageContent = {
         "Non publiée",
       ],
       [
-        "Billets, bar et promoteurs dans le même outil",
-        "Oui — billets, tables, boissons, entrée, commissions promoteurs",
+        "Billets, guest list et promoteurs dans le même outil",
+        "Oui — billets, guest list, tables, entrée, commissions promoteurs",
         "Tables uniquement",
         "Oui (suite complète pour clubs)",
       ],
@@ -293,7 +293,7 @@ const fr: TopicPageContent = {
       },
       {
         title: "Votre responsable VIP pilote la nuit",
-        body: "Installez les clients depuis le plan vivant, ajoutez les walk-ins, prenez les commandes de la table et regardez chaque minimum se remplir. L'argent est déjà sur votre compte.",
+        body: "Installez les clients depuis le plan vivant, ajoutez les walk-ins et regardez chaque minimum se remplir. L'argent est déjà sur votre compte.",
       },
     ],
   },
@@ -324,15 +324,15 @@ const fr: TopicPageContent = {
       },
       {
         q: "Le client peut-il précommander des bouteilles avec sa table ?",
-        a: "Oui. Les bouteilles s'ajoutent à la réservation ; la commande est prête pour la table et visible par votre bar. Pendant la nuit, votre responsable VIP peut aussi ajouter des commandes depuis la table.",
+        a: "Oui, par la formule : chaque table se vend avec sa formule (bouteilles incluses), que le client choisit en réservant. Pendant la nuit, votre responsable VIP suit la dépense de chaque table par rapport à son minimum.",
       },
       {
         q: "Puis-je vendre des tables pour une seule soirée, ou l'utiliser avec ma billetterie actuelle ?",
-        a: "Oui. Chaque soirée a un interrupteur par pilier (billets, tables, boissons) : vous pouvez commencer par les tables seules, ou par la guest list, et ajouter le reste plus tard.",
+        a: "Oui. Chaque soirée a un interrupteur par pilier (billets, tables) : vous pouvez commencer par les tables seules, ou par la guest list, et ajouter le reste plus tard.",
       },
       {
         q: "Que voit mon responsable VIP pendant la soirée ?",
-        a: "Un plan de salle en direct : tables installées et libres, walk-ins, dépense de chaque table par rapport à son minimum et commandes prises depuis la table.",
+        a: "Un plan de salle en direct : tables installées et libres, walk-ins et dépense de chaque table par rapport à son minimum.",
       },
       {
         q: "Pour qui est fait Yuno ?",
@@ -386,7 +386,7 @@ const es: TopicPageContent = {
   hero: {
     kicker: "Software de reservados y mesas VIP para discotecas",
     title: "Vende tus reservados online. Cobra antes de que empiece la noche.",
-    sub: "Un plano interactivo, packs, señal y botellas reservadas de antemano — y un plano en directo para tu responsable VIP durante la noche. El dinero llega a tu cuenta, sin cuota y sin comisión.",
+    sub: "Un plano interactivo, packs con sus botellas y señal — y un plano en directo para tu responsable VIP durante la noche. El dinero llega a tu cuenta, sin cuota y sin comisión.",
     primary: "Crear mi cuenta gratis",
     secondary: "Hablar con el fundador",
     note: ["Sin cuota mensual", "0 % de comisión sobre tu precio", "Sin app que instalar"],
@@ -395,12 +395,12 @@ const es: TopicPageContent = {
     title: "En breve",
     paragraphs: [
       "Yuno es un software para discotecas con el que tus clientes reservan y pagan un reservado desde el móvil. Dibujas tu plano, defines zonas, packs y consumo mínimo, y cobras una señal (o el total) online — o dejas pagar en el local.",
-      "Durante la noche, tu responsable VIP ve el mismo plano en directo: mesas sentadas, clientes sin reserva, botellas pedidas desde la mesa y cuánto le falta a cada mesa para su consumo mínimo.",
+      "Durante la noche, tu responsable VIP ve el mismo plano en directo: mesas sentadas, clientes sin reserva y cuánto le falta a cada mesa para su consumo mínimo.",
     ],
     bullets: [
       "0 € de cuota y 0 % de comisión para la discoteca o el organizador. El comprador paga un 4 % de gastos de servicio en las mesas (mín. 0,99 €, tope de 25 €).",
       "Los gastos de tarjeta (Stripe, 1,5 % + 0,25 €) los paga la discoteca; el dinero va directo a tu cuenta de Stripe — Yuno nunca retiene tus fondos.",
-      "Las mesas son uno de los tres pilares (entradas, mesas, copas): actívalos noche a noche.",
+      "Las mesas son uno de los dos pilares (entradas, mesas): actívalos noche a noche.",
     ],
   },
   features: {
@@ -421,16 +421,16 @@ const es: TopicPageContent = {
         body: "Cobra una señal online para asegurar la reserva, o el importe completo. El cliente también puede pagar en el local. Menos no-shows y liquidez antes de abrir puertas.",
       },
       {
-        title: "Botellas reservadas de antemano",
-        body: "El cliente añade botellas al reservar. El pedido espera en la mesa y tu barra sabe qué preparar.",
+        title: "Botellas elegidas al reservar",
+        body: "El cliente elige un pack con sus botellas al reservar la mesa. Antes de abrir puertas sabes lo que ha elegido cada mesa.",
       },
       {
         title: "Pantalla del responsable VIP en directo",
-        body: "Un plano vivo en el móvil del responsable: sentar a los clientes sin reserva, seguir el mínimo de cada mesa, tomar pedidos desde la mesa y saber a quién ofrecer una botella más.",
+        body: "Un plano vivo en el móvil del responsable: sentar a los clientes sin reserva, seguir el mínimo de cada mesa y saber a quién ofrecer una botella más.",
       },
       {
-        title: "La misma cuenta que entradas y barra",
-        body: "Las mesas conviven con la venta de entradas, las listas y las copas: una base de clientes, un panel, un solo pago — sin otra herramienta para el VIP.",
+        title: "La misma cuenta que tus entradas",
+        body: "Las mesas conviven con la venta de entradas y las listas: una base de clientes, un panel, un solo pago — sin otra herramienta para el VIP.",
       },
     ],
   },
@@ -448,8 +448,8 @@ const es: TopicPageContent = {
         "No publicada",
       ],
       [
-        "Entradas, barra y RRPP en la misma herramienta",
-        "Sí — entradas, mesas, copas, puerta, comisiones de RRPP",
+        "Entradas, listas y RRPP en la misma herramienta",
+        "Sí — entradas, listas, mesas, puerta, comisiones de RRPP",
         "Solo mesas",
         "Sí (suite completa para discotecas)",
       ],
@@ -472,7 +472,7 @@ const es: TopicPageContent = {
       },
       {
         title: "Tu responsable VIP dirige la noche",
-        body: "Sienta a los clientes desde el plano vivo, añade a los que llegan sin reserva, toma los pedidos de la mesa y mira cómo se llena cada mínimo. El dinero ya está en tu cuenta.",
+        body: "Sienta a los clientes desde el plano vivo, añade a los que llegan sin reserva y mira cómo se llena cada mínimo. El dinero ya está en tu cuenta.",
       },
     ],
   },
@@ -503,15 +503,15 @@ const es: TopicPageContent = {
       },
       {
         q: "¿Pueden los clientes reservar botellas junto con la mesa?",
-        a: "Sí. Las botellas se añaden al reservar; el pedido queda listo para la mesa y visible para tu barra. Durante la noche, tu responsable VIP también puede añadir pedidos desde la mesa.",
+        a: "Sí, con el pack: cada mesa se vende con su pack (botellas incluidas), que el cliente elige al reservar. Durante la noche, tu responsable VIP sigue el gasto de cada mesa frente a su mínimo.",
       },
       {
         q: "¿Puedo vender mesas solo para una noche, o usarlo junto a mi ticketera actual?",
-        a: "Sí. Cada noche tiene un interruptor por pilar (entradas, mesas, copas): puedes empezar solo con las mesas, o con la lista de invitados, y añadir el resto más adelante.",
+        a: "Sí. Cada noche tiene un interruptor por pilar (entradas, mesas): puedes empezar solo con las mesas, o con la lista de invitados, y añadir el resto más adelante.",
       },
       {
         q: "¿Qué ve mi responsable VIP durante la noche?",
-        a: "Un plano de sala en directo: mesas sentadas y libres, clientes sin reserva, el gasto de cada mesa frente a su mínimo y los pedidos tomados desde la mesa.",
+        a: "Un plano de sala en directo: mesas sentadas y libres, clientes sin reserva y el gasto de cada mesa frente a su mínimo.",
       },
       {
         q: "¿Para quién es Yuno?",

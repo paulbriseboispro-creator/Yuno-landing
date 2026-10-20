@@ -6,7 +6,7 @@
 import type { ComparePageContent } from "./compare-types";
 import { MORE_COMPARE_PAGES } from "./compare-more";
 
-const UPDATED = "2026-09-24";
+const UPDATED = "2026-10-20";
 
 // ---------------------------------------------------------------- Shotgun FR
 const shotgunFr: ComparePageContent = {
@@ -19,14 +19,14 @@ const shotgunFr: ComparePageContent = {
   meta: {
     title: "Alternative à Shotgun Pro : billetterie, frais et commission | Yuno",
     description:
-      "Shotgun Pro ou Yuno ? Frais, commission organisateur, paiements, tables VIP, bar, promoteurs : le comparatif sourcé pour choisir votre billetterie de soirée.",
+      "Shotgun Pro ou Yuno ? Frais, commission organisateur, paiements, tables VIP, promoteurs : le comparatif sourcé pour choisir votre billetterie de soirée.",
     ogAlt: "Yuno vs Shotgun Pro — comparatif billetterie pour clubs et organisateurs",
   },
   breadcrumb: { home: "Yuno", current: "Alternative à Shotgun" },
   hero: {
     kicker: "Yuno vs Shotgun Pro — comparatif billetterie, frais et commissions",
-    title: "L'alternative à Shotgun qui vend aussi vos tables, votre bar et paie vos promoteurs.",
-    sub: "Shotgun est une excellente billetterie pour la scène électro. Yuno est la plateforme de toute la soirée : billets et guest list, tables VIP, commande au bar, répartition club × organisateur et commissions des promoteurs — 0 € d'abonnement, 0 % de commission sur votre prix.",
+    title: "L'alternative à Shotgun qui vend aussi vos tables VIP et paie vos promoteurs.",
+    sub: "Shotgun est une excellente billetterie pour la scène électro. Yuno est la plateforme de toute la soirée : billets et guest list, tables VIP, répartition club × organisateur et commissions des promoteurs — 0 € d'abonnement, 0 % de commission sur votre prix.",
     primary: "Créer mon compte gratuit",
     secondary: "Parler au fondateur",
     updatedLabel: "Informations publiques relevées le 24 septembre 2026",
@@ -36,7 +36,7 @@ const shotgunFr: ComparePageContent = {
     items: [
       "Commission organisateur : 0 % chez Yuno ; chez Shotgun, 10 % des ventes par défaut, négociable au contrat (taux non affiché sur son site).",
       "Frais acheteur : Shotgun est moins cher pour l'acheteur (2,75 %, min. 0,30 €) que Yuno (4 %, min. 0,99 €).",
-      "Au-delà du billet : Yuno vend les tables VIP avec acompte, prend les commandes au bar par QR code et répartit la soirée entre club, organisateur et promoteurs. Nous n'avons pas trouvé ces fonctions dans l'aide publique de Shotgun.",
+      "Au-delà du billet : Yuno vend les tables VIP avec acompte et répartit la soirée entre club, organisateur et promoteurs. Nous n'avons pas trouvé ces fonctions dans l'aide publique de Shotgun.",
       "Audience : l'app Shotgun fait découvrir vos soirées à plus de 5 millions d'utilisateurs par mois (selon Shotgun). Yuno a aussi sa marketplace, sur l'App Store et en web app, et chaque acheteur rejoint votre base.",
     ],
   },
@@ -63,7 +63,7 @@ const shotgunFr: ComparePageContent = {
       },
       {
         criterion: "Frais payés par l'acheteur",
-        yuno: "4 % (min. 0,99 €) sur les billets ; 4 % plafonnés à 25 € sur les tables ; 3 % sur les boissons.",
+        yuno: "4 % (min. 0,99 €) sur les billets ; 4 % plafonnés à 25 € sur les tables.",
         other: "2,75 % de la transaction (min. 0,30 €).",
         verdict: "other",
       },
@@ -76,15 +76,9 @@ const shotgunFr: ComparePageContent = {
       },
       {
         criterion: "Tables VIP & bottle service",
-        yuno: "Plan de salle interactif, formules, acompte ou paiement sur place, précommande de bouteilles, minimum de dépense suivi en direct.",
+        yuno: "Plan de salle interactif, formules avec leurs bouteilles, acompte ou paiement sur place, minimum de dépense suivi en direct.",
         other:
           "Pas de module de réservation de tables dans l'aide publique ; les billets de groupe peuvent servir aux carrés.",
-        verdict: "yuno",
-      },
-      {
-        criterion: "Bar",
-        yuno: "Commande et paiement au QR code du bar, file d'attente sur l'écran du barman.",
-        other: "Le cashless n'est pas fourni par Shotgun (aide acheteurs).",
         verdict: "yuno",
       },
       {
@@ -110,7 +104,7 @@ const shotgunFr: ComparePageContent = {
       },
       {
         criterion: "Base clients & emailing",
-        yuno: "Chaque acheteur (billet, table, boisson, guest list) rejoint votre base ; 9 automatisations, 15 000 emails/mois inclus, ventes attribuées à chaque campagne.",
+        yuno: "Chaque acheteur (billet, table, guest list) rejoint votre base ; 9 automatisations, 15 000 emails/mois inclus, ventes attribuées à chaque campagne.",
         other:
           "Base de contacts enrichie à chaque vente ; newsletters et notifications push aux contacts qui ont accepté.",
         verdict: "tie",
@@ -130,7 +124,7 @@ const shotgunFr: ComparePageContent = {
       },
       {
         criterion: "Contrôle à l'entrée",
-        yuno: "Un seul scanner pour billets, guest list et tables, recherche par nom ; chaque membre du staff a son propre compte (videur, serveur VIP, barman…).",
+        yuno: "Un seul scanner pour billets, guest list et tables, recherche par nom ; chaque membre du staff a son propre compte (videur, serveur VIP, vestiaire…).",
         other:
           "App Shotgun Scan (hors ligne, fenêtres de validité, connexion PIN) et vente à la porte.",
         verdict: "tie",
@@ -145,7 +139,7 @@ const shotgunFr: ComparePageContent = {
     paragraphs: [
       "Shotgun est une billetterie née à Paris en 2014 sur la scène électronique. Shotgun Pro est son espace organisateurs (« La billetterie qui engage vos fans ») : collectifs, clubs et festivals y créent leurs événements, vendent leurs billets et retrouvent leurs contacts.",
       "Sa force, c'est l'app grand public : plus de 5 millions d'utilisateurs actifs par mois selon Shotgun, qui y découvrent des soirées recommandées selon leurs goûts. C'est une vraie source de ventes pour un collectif qui cherche du public.",
-      "Yuno part d'un autre besoin : faire tourner toute la soirée au même endroit. Les billets, mais aussi les tables VIP, le bar, la porte, les promoteurs et la répartition de l'argent entre le club et l'organisateur — avec une commission de 0 % pour vous.",
+      "Yuno part d'un autre besoin : faire tourner toute la soirée au même endroit. Les billets, mais aussi les tables VIP, la porte, les promoteurs et la répartition de l'argent entre le club et l'organisateur — avec une commission de 0 % pour vous.",
     ],
   },
   choose: {
@@ -155,7 +149,7 @@ const shotgunFr: ComparePageContent = {
       title: "Shotgun vous convient si…",
       items: [
         "Vous organisez surtout des soirées électro et comptez sur la découverte dans l'app pour trouver du public.",
-        "Vous vendez uniquement des billets, sans tables ni bar à gérer.",
+        "Vous vendez uniquement des billets, sans tables VIP à gérer.",
         "La revente officielle de billets est importante pour votre public.",
         "Vous gardez Shotgun pour vendre : Yuno CRM s'y branche pour fidéliser vos acheteurs (crm.yunoapp.eu).",
       ],
@@ -200,7 +194,7 @@ const shotgunFr: ComparePageContent = {
       },
       {
         q: "Comment fonctionne la billetterie Shotgun pour un organisateur ?",
-        a: "Sur Shotgun Pro, l'organisateur crée son événement et ses tarifs, vend ses billets sur l'app et le site Shotgun, suit ses contacts et scanne les entrées avec l'app Shotgun Scan. L'acheteur paie 2,75 % de frais de service (min. 0,30 €) et le solde est viré 24 h après l'événement. Avec Yuno, la même soirée vend aussi les tables VIP et les boissons, paie les promoteurs et verse l'argent sur votre propre compte au fil des ventes.",
+        a: "Sur Shotgun Pro, l'organisateur crée son événement et ses tarifs, vend ses billets sur l'app et le site Shotgun, suit ses contacts et scanne les entrées avec l'app Shotgun Scan. L'acheteur paie 2,75 % de frais de service (min. 0,30 €) et le solde est viré 24 h après l'événement. Avec Yuno, la même soirée vend aussi les tables VIP, paie les promoteurs et verse l'argent sur votre propre compte au fil des ventes.",
       },
       {
         q: "Quels sont les frais de Shotgun ?",
@@ -216,15 +210,15 @@ const shotgunFr: ComparePageContent = {
       },
       {
         q: "Quelle est la meilleure alternative à Shotgun pour un club ?",
-        a: "Pour un club, il faut plus qu'une billetterie : tables VIP avec acompte, bar, contrôle d'accès et partage des recettes avec les organisateurs invités. Yuno réunit tout cela dans un seul compte, avec 0 € d'abonnement et 0 % de commission sur votre prix.",
+        a: "Pour un club, il faut plus qu'une billetterie : tables VIP avec acompte, contrôle d'accès et partage des recettes avec les organisateurs invités. Yuno réunit tout cela dans un seul compte, avec 0 € d'abonnement et 0 % de commission sur votre prix.",
       },
       {
         q: "Peut-on utiliser Shotgun et Yuno en même temps ?",
-        a: "Oui. Chaque soirée Yuno s'active pilier par pilier : vous pouvez garder Shotgun pour les billets et utiliser Yuno pour la guest list, les tables VIP ou le bar, puis basculer quand vous le souhaitez.",
+        a: "Oui. Chaque soirée Yuno s'active pilier par pilier : vous pouvez garder Shotgun pour les billets et utiliser Yuno pour la guest list ou les tables VIP, puis basculer quand vous le souhaitez.",
       },
       {
         q: "Comment récupérer mes clients Shotgun dans Yuno ?",
-        a: "Vous importez votre fichier clients existant dans Yuno : il est dédoublonné et chaque contact garde son consentement attesté. Ensuite, chaque acheteur de billet, de table, de boisson ou inscrit en guest list rejoint automatiquement votre base.",
+        a: "Vous importez votre fichier clients existant dans Yuno : il est dédoublonné et chaque contact garde son consentement attesté. Ensuite, chaque acheteur de billet ou de table, et chaque inscrit en guest list, rejoint automatiquement votre base.",
       },
     ],
   },
@@ -269,10 +263,6 @@ const shotgunFr: ComparePageContent = {
         label: "Shotgun — Frais Shotgun (aide acheteurs)",
         url: "https://support.shotgun.live/hc/fr/articles/16492705310482",
       },
-      {
-        label: "Shotgun — Cashless (aide acheteurs)",
-        url: "https://support.shotgun.live/hc/fr/articles/16486055540626",
-      },
       { label: "Stripe — Étude de cas Shotgun", url: "https://stripe.com/customers/shotgun" },
     ],
   },
@@ -291,15 +281,14 @@ const shotgunEn: ComparePageContent = {
   meta: {
     title: "Shotgun alternative: Yuno vs Shotgun Pro fees & features | Yuno",
     description:
-      "Shotgun Pro or Yuno? Organizer commission, buyer fees, payouts, VIP tables, bar and promoters compared, with sources — to pick the right ticketing for your nights.",
+      "Shotgun Pro or Yuno? Organizer commission, buyer fees, payouts, VIP tables and promoters compared, with sources — to pick the right ticketing for your nights.",
     ogAlt: "Yuno vs Shotgun Pro — ticketing comparison for clubs and organizers",
   },
   breadcrumb: { home: "Yuno", current: "Shotgun alternative" },
   hero: {
     kicker: "Yuno vs Shotgun Pro — ticketing, fees and commissions compared",
-    title:
-      "The Shotgun alternative that also sells your tables, runs your bar and pays your promoters.",
-    sub: "Shotgun is a great ticketing platform for the electronic scene. Yuno runs the whole night: tickets and guest list, VIP tables, bar ordering, the club × organizer split and promoter commissions — €0 subscription, 0% commission on your price.",
+    title: "The Shotgun alternative that also sells your VIP tables and pays your promoters.",
+    sub: "Shotgun is a great ticketing platform for the electronic scene. Yuno runs the whole night: tickets and guest list, VIP tables, the club × organizer split and promoter commissions — €0 subscription, 0% commission on your price.",
     primary: "Create my free account",
     secondary: "Talk to the founder",
     updatedLabel: "Public information checked on 24 September 2026",
@@ -309,7 +298,7 @@ const shotgunEn: ComparePageContent = {
     items: [
       "Organizer commission: 0% with Yuno; with Shotgun, 10% of sales by default, negotiable by contract (rate not shown on its site).",
       "Buyer fees: Shotgun is cheaper for the buyer (2.75%, min. €0.30) than Yuno (4%, min. €0.99).",
-      "Beyond tickets: Yuno sells VIP tables with deposits, takes QR orders at the bar and splits the night between club, organizer and promoters. We found none of these in Shotgun's public help centre.",
+      "Beyond tickets: Yuno sells VIP tables with deposits and splits the night between club, organizer and promoters. We found none of these in Shotgun's public help centre.",
       "Audience: the Shotgun app shows your events to 5M+ monthly users (Shotgun's figure). Yuno has its own marketplace too, on the App Store and as a web app, and every buyer joins your base.",
     ],
   },
@@ -335,7 +324,7 @@ const shotgunEn: ComparePageContent = {
       },
       {
         criterion: "Fees paid by the buyer",
-        yuno: "4% (min. €0.99) on tickets; 4% capped at €25 on tables; 3% on drinks.",
+        yuno: "4% (min. €0.99) on tickets; 4% capped at €25 on tables.",
         other: "2.75% of the transaction (min. €0.30).",
         verdict: "other",
       },
@@ -348,15 +337,9 @@ const shotgunEn: ComparePageContent = {
       },
       {
         criterion: "VIP tables & bottle service",
-        yuno: "Interactive floor plan, packages, deposit or pay on site, bottle pre-orders, minimum spend tracked live.",
+        yuno: "Interactive floor plan, packages with their bottles, deposit or pay on site, minimum spend tracked live.",
         other:
           "No table-booking module in the public help centre; group tickets can be used for table areas.",
-        verdict: "yuno",
-      },
-      {
-        criterion: "Bar",
-        yuno: "Order and pay at the bar's QR code; the queue shows on the bartender's screen.",
-        other: "Cashless is not provided by Shotgun (buyer help centre).",
         verdict: "yuno",
       },
       {
@@ -381,7 +364,7 @@ const shotgunEn: ComparePageContent = {
       },
       {
         criterion: "Customer base & emailing",
-        yuno: "Every buyer (ticket, table, drink, guest list) joins your base; 9 automations, 15,000 emails/month included, sales attributed per campaign.",
+        yuno: "Every buyer (ticket, table, guest list) joins your base; 9 automations, 15,000 emails/month included, sales attributed per campaign.",
         other:
           "Contact base grows with each sale; newsletters and push notifications to contacts who opted in.",
         verdict: "tie",
@@ -401,7 +384,7 @@ const shotgunEn: ComparePageContent = {
       },
       {
         criterion: "Door",
-        yuno: "One scanner for tickets, guest list and tables, name search; every staff member has their own account (bouncer, VIP waiter, bartender…).",
+        yuno: "One scanner for tickets, guest list and tables, name search; every staff member has their own account (bouncer, VIP waiter, cloakroom attendant…).",
         other: "Shotgun Scan app (offline, validity windows, PIN login) and door sales.",
         verdict: "tie",
       },
@@ -415,7 +398,7 @@ const shotgunEn: ComparePageContent = {
     paragraphs: [
       'Shotgun is a ticketing platform founded in Paris in 2014 on the electronic music scene. Shotgun Pro is its organizer workspace ("the ticketing platform that engages your fans"): collectives, clubs and festivals create events, sell tickets and follow their contacts there.',
       "Its strength is the consumer app: 5M+ monthly active users according to Shotgun, discovering events recommended from their music taste. For a collective looking for a crowd, that is a real sales channel.",
-      "Yuno starts from a different need: running the whole night in one place. Tickets, but also VIP tables, the bar, the door, promoters and the money split between club and organizer — with 0% commission for you.",
+      "Yuno starts from a different need: running the whole night in one place. Tickets, but also VIP tables, the door, promoters and the money split between club and organizer — with 0% commission for you.",
     ],
   },
   choose: {
@@ -425,7 +408,7 @@ const shotgunEn: ComparePageContent = {
       title: "Shotgun fits if…",
       items: [
         "You mostly run electronic nights and count on in-app discovery to find a crowd.",
-        "You only sell tickets, with no tables or bar to manage.",
+        "You only sell tickets, with no VIP tables to manage.",
         "Official ticket resale matters to your audience.",
       ],
     },
@@ -469,7 +452,7 @@ const shotgunEn: ComparePageContent = {
       },
       {
         q: "How does Shotgun ticketing work for organizers?",
-        a: "On Shotgun Pro, organizers create the event and its prices, sell tickets on the Shotgun app and website, follow their contacts and scan entries with the Shotgun Scan app. Buyers pay a 2.75% service fee (min. €0.30) and the balance is paid out 24 hours after the event. With Yuno, the same night also sells VIP tables and drinks, pays promoters and puts the money in your own account as you sell.",
+        a: "On Shotgun Pro, organizers create the event and its prices, sell tickets on the Shotgun app and website, follow their contacts and scan entries with the Shotgun Scan app. Buyers pay a 2.75% service fee (min. €0.30) and the balance is paid out 24 hours after the event. With Yuno, the same night also sells VIP tables, pays promoters and puts the money in your own account as you sell.",
       },
       {
         q: "What are Shotgun's fees?",
@@ -485,15 +468,15 @@ const shotgunEn: ComparePageContent = {
       },
       {
         q: "What is the best Shotgun alternative for a nightclub?",
-        a: "A club needs more than ticketing: VIP tables with deposits, the bar, door control and a revenue split with guest organizers. Yuno puts all of that in one account, with a €0 subscription and 0% commission on your price.",
+        a: "A club needs more than ticketing: VIP tables with deposits, door control and a revenue split with guest organizers. Yuno puts all of that in one account, with a €0 subscription and 0% commission on your price.",
       },
       {
         q: "Can I use Shotgun and Yuno at the same time?",
-        a: "Yes. Each Yuno night is switched on pillar by pillar: keep Shotgun for tickets and use Yuno for the guest list, VIP tables or the bar, then move over when you're ready.",
+        a: "Yes. Each Yuno night is switched on pillar by pillar: keep Shotgun for tickets and use Yuno for the guest list or VIP tables, then move over when you're ready.",
       },
       {
         q: "How do I bring my Shotgun customers into Yuno?",
-        a: "Import your existing customer file into Yuno: it is deduplicated and each contact keeps its attested consent. From then on, every ticket, table or drink buyer and every guest-list sign-up joins your base automatically.",
+        a: "Import your existing customer file into Yuno: it is deduplicated and each contact keeps its attested consent. From then on, every ticket or table buyer and every guest-list sign-up joins your base automatically.",
       },
     ],
   },
@@ -535,10 +518,6 @@ const shotgunEn: ComparePageContent = {
         label: "Shotgun — Shotgun fees (buyer help)",
         url: "https://support.shotgun.live/hc/en-us/articles/16492705310482",
       },
-      {
-        label: "Shotgun — Cashless (buyer help)",
-        url: "https://support.shotgun.live/hc/en-us/articles/16486055540626",
-      },
       { label: "Stripe — Shotgun case study", url: "https://stripe.com/customers/shotgun" },
     ],
   },
@@ -574,7 +553,7 @@ const fourvenuesEs: ComparePageContent = {
     items: [
       "Público: Yuno tiene un marketplace para el público (app en la App Store y web app) y una comunidad en Instagram que da visibilidad a las noches de la plataforma. Fourvenues es un software para el equipo del local: sus apps (Pro, Access y POS) son para el staff, y el público compra por los enlaces del local o de sus RRPP.",
       "Compra: con Yuno, el cliente compra en 30 segundos, sin cuenta, con tarjeta o Apple Pay, recibe su QR en Apple Wallet, y vuelve a encontrar tus noches en el marketplace de Yuno.",
-      "Gestión: las dos plataformas cubren entradas, listas, reservados y RRPP. Fourvenues añade un TPV propio; Yuno añade el pedido de copas desde el móvil y el reparto discoteca × promotora firmado en la plataforma.",
+      "Gestión: las dos plataformas cubren entradas, listas, reservados y RRPP. Fourvenues añade un TPV propio; Yuno añade el reparto discoteca × promotora firmado en la plataforma.",
       "Precio: Fourvenues no publica sus tarifas (se contratan tras una demo). Yuno sí: 0 € de suscripción, 0 % de comisión sobre tu precio y una tarifa de servicio que paga el cliente.",
     ],
   },
@@ -634,7 +613,7 @@ const fourvenuesEs: ComparePageContent = {
       },
       {
         criterion: "Gastos que paga el comprador",
-        yuno: "4 % (mín. 0,99 €) en entradas; 4 % con máximo de 25 € en reservados; 3 % en copas.",
+        yuno: "4 % (mín. 0,99 €) en entradas; 4 % con máximo de 25 € en reservados.",
         other: "Gastos de gestión configurables (importe fijo o porcentaje), según su web.",
         verdict: "tie",
       },
@@ -646,7 +625,7 @@ const fourvenuesEs: ComparePageContent = {
       },
       {
         criterion: "Entradas, listas y reservados",
-        yuno: "Tramos de precio, lista gratis hasta una hora, QR nominativos; plano interactivo con señal, botellas pre-pedidas y consumo mínimo en directo.",
+        yuno: "Tramos de precio, lista gratis hasta una hora, QR nominativos; plano interactivo con señal, packs con sus botellas y consumo mínimo en directo.",
         other:
           "Venta con precios dinámicos y extras; listas unificadas; mapa interactivo de reservados con fianzas.",
         verdict: "tie",
@@ -663,12 +642,6 @@ const fourvenuesEs: ComparePageContent = {
         yuno: "Contrato firmado en Yuno (por pilar o por tramos), cierre aprobado por las dos partes, cada una cobra en su cuenta.",
         other: "No encontrado en sus páginas públicas.",
         verdict: "yuno",
-      },
-      {
-        criterion: "Barra",
-        yuno: "El cliente pide y paga su copa con el QR de la barra; el camarero ve la cola. No sustituye a tu TPV.",
-        other: "TPV propio (Fourvenues POS) para la venta en barra y taquilla.",
-        verdict: "tie",
       },
       {
         criterion: "Trayectoria",

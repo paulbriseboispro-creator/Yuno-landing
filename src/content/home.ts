@@ -9,16 +9,16 @@ const en = {
   meta: {
     title: "Yuno — The OS for clubs, organizers & promoters",
     description:
-      "The all-in-one platform powering modern nightlife. VIP floor plans, click-and-collect bars, ticketing with automated Stripe Connect revenue splits.",
+      "The all-in-one platform powering modern nightlife. VIP floor plans, ticketing and guest list, club × organizer revenue splits.",
     ogDescription:
-      "The all-in-one platform powering modern nightlife. VIP floor plans, click-and-collect bars, automated revenue splits.",
+      "The all-in-one platform powering modern nightlife. VIP floor plans, ticketing and guest list, club × organizer revenue splits.",
   },
   hero: {
     eyebrow: "The nightlife operating system",
     titleA: "Run your whole",
     titleEm: "night.",
     titleB: "Keep 100% of every ticket.",
-    sub: "Every night ends with a spreadsheet. Promoter payments, bar splits, guest list reconciliation — hours of work after a night that already ran on adrenaline. Yuno closes the loop automatically, so your next morning starts with a bank transfer, not a calculator.",
+    sub: "Every night ends with a spreadsheet. Promoter payments, ticket and table splits, guest list reconciliation — hours of work after a night that already ran on adrenaline. Yuno closes the loop automatically, so your next morning starts with a bank transfer, not a calculator.",
     ctaPrimary: "Start free",
     ctaSecondary: "Watch product tour",
     fineprint: "You keep your full ticket price. Only standard Stripe processing fees apply.",
@@ -48,7 +48,7 @@ const en = {
       },
       { label: "Bank transfer fees", shotgun: "+3%", yuno: "Included" },
       { label: "Funds recovery", shotgun: "72h after the event", yuno: "2 days after, fee-free" },
-      { label: "Bar, floor plan, CRM", shotgun: false, yuno: true },
+      { label: "VIP floor plan, CRM", shotgun: false, yuno: true },
     ] as ComparisonRow[],
     footerA: "Over a 20-night season:",
     footerShotgun: "€8,000",
@@ -93,7 +93,6 @@ const en = {
       title: "Run the floor, not the spreadsheet",
       bullets: [
         "Interactive VIP floor plan with live minimum-spend tracking",
-        "Guests order from their phone. Bar staff receive the order. No queue, no cash handling, 30% higher average order.",
         "Your bouncer is on the door in 30 seconds. No app download, no email account — just a PIN. Built for the turnover rate of nightlife.",
         "Built-in CRM with SMS & email campaigns to your top spenders",
         "Bouncer QR scanner with real-time capacity tracking and incident logging",
@@ -129,7 +128,7 @@ const en = {
         key: "club",
         tag: "Clubs",
         title: "For clubs & venues",
-        body: "Floor plans, the click-and-collect bar, PIN-based staff and fee-free payouts — the full operating picture for the room.",
+        body: "Floor plans, the door scanner, PIN-based staff and fee-free payouts — the full operating picture for the room.",
         href: "https://yunoapp.eu/club/womber",
       },
       {
@@ -158,11 +157,6 @@ const en = {
         body: "Drag-and-drop your tables, zones and minimum spend. VIP hosts log bottles from their own phone — the system flags shortfalls automatically. No extra hardware to buy.",
       },
       {
-        tag: "Bar",
-        title: "Click & Collect Bar",
-        body: "Guests pre-order drinks from their phone. Barmen see a live queue — Waiting → Prep → Ready — and push a notification when it's ready.",
-      },
-      {
         tag: "CRM",
         title: "CRM & SMS Marketing",
         body: "Every visit, favourite bottle and door incident in one profile. Send targeted SMS or email campaigns to your top 1% of spenders.",
@@ -170,7 +164,7 @@ const en = {
       {
         tag: "Staff",
         title: "PIN-Based Staff Login",
-        body: "Bouncers, barmen, vestiaire and VIP hosts sign in with a 4-digit PIN. Two seconds, any terminal — built for nightly turnover.",
+        body: "Bouncers, cloakroom staff and VIP hosts sign in with a 4-digit PIN. Two seconds, any terminal — built for nightly turnover.",
       },
       {
         tag: "Promoters",
@@ -180,7 +174,7 @@ const en = {
       {
         tag: "Live night",
         title: "Live Night Dashboard",
-        body: "Entries, bar revenue, table spend and staff status — one screen, refreshed in real time, the way a night manager actually thinks.",
+        body: "Entries, ticket revenue, table spend and staff status — one screen, refreshed in real time, the way a night manager actually thinks.",
       },
     ],
   },
@@ -211,7 +205,7 @@ const en = {
     stepLabel: "Step",
     steps: [
       { step: "01", title: "Setup your events, tickets, floor plan & staff", time: "30 min" },
-      { step: "02", title: "Connect Stripe & configure your bar", time: "20 min" },
+      { step: "02", title: "Connect Stripe & configure your tables", time: "20 min" },
       {
         step: "03",
         title:
@@ -264,7 +258,8 @@ const en = {
     statValue: "4h+",
     statBodyA: "The average club spends ",
     statBodyHighlight: "4+ hours per event",
-    statBodyB: " on post-night reconciliation — promoter payouts, bar splits, guest list, refunds.",
+    statBodyB:
+      " on post-night reconciliation — promoter payouts, revenue splits, guest list, refunds.",
     statResultA: "Yuno reduces that to ",
     statResultHighlight: "zero",
     statResultB: ".",
@@ -299,7 +294,7 @@ const en = {
         category: "features",
         title: "Can I keep my existing ticketing or POS?",
         content:
-          "Yuno can run alongside an external ticketing provider for an event, but you'll get full operational value (bar, VIP, CRM, payouts) only when ticketing runs through Yuno.",
+          "Yuno can run alongside an external ticketing provider for an event, but you'll get full operational value (door, VIP, CRM, payouts) only when ticketing runs through Yuno.",
       },
       {
         id: "floor-plan",
@@ -307,13 +302,6 @@ const en = {
         title: "How does the VIP floor plan editor work?",
         content:
           "Drag-and-drop tables, zones and minimum spend directly in the app. VIP hosts log bottles from their own phone — the system flags shortfalls automatically and updates availability in real time. No extra hardware required.",
-      },
-      {
-        id: "bar-flow",
-        category: "features",
-        title: "How does the Click & Collect bar reduce queues?",
-        content:
-          "Guests pre-order drinks from their phone. Barmen see a live queue — pending, preparing, ready — and push a notification when the round is ready for pickup.",
       },
       {
         id: "revenue-split",
@@ -379,16 +367,16 @@ const fr: HomeContent = {
   meta: {
     title: "Yuno — Le système d'exploitation des clubs, organisateurs & promoteurs",
     description:
-      "La plateforme tout-en-un qui propulse la vie nocturne moderne. Plans de salle VIP, bars en click-and-collect, billetterie avec répartition automatique des revenus via Stripe Connect.",
+      "La plateforme tout-en-un qui propulse la vie nocturne moderne. Plans de salle VIP, billetterie et guest list, répartition des revenus entre club et organisateur.",
     ogDescription:
-      "La plateforme tout-en-un qui propulse la vie nocturne moderne. Plans de salle VIP, bars en click-and-collect, répartition automatique des revenus.",
+      "La plateforme tout-en-un qui propulse la vie nocturne moderne. Plans de salle VIP, billetterie et guest list, répartition des revenus entre club et organisateur.",
   },
   hero: {
     eyebrow: "Le système d'exploitation de la vie nocturne",
     titleA: "Gérez toute votre",
     titleEm: "soirée.",
     titleB: "Gardez 100 % de chaque billet.",
-    sub: "Chaque nuit se termine par un tableur. Paiements des promoteurs, répartition du bar, réconciliation de la liste d'invités — des heures de travail après une nuit déjà menée à l'adrénaline. Yuno boucle la boucle automatiquement, pour que votre matin commence par un virement, pas par une calculatrice.",
+    sub: "Chaque nuit se termine par un tableur. Paiements des promoteurs, répartition des billets et des tables, réconciliation de la liste d'invités — des heures de travail après une nuit déjà menée à l'adrénaline. Yuno boucle la boucle automatiquement, pour que votre matin commence par un virement, pas par une calculatrice.",
     ctaPrimary: "Commencer gratuitement",
     ctaSecondary: "Voir la démo produit",
     fineprint:
@@ -423,7 +411,7 @@ const fr: HomeContent = {
         shotgun: "72 h après l'événement",
         yuno: "2 jours après, sans frais",
       },
-      { label: "Bar, plan de salle, CRM", shotgun: false, yuno: true },
+      { label: "Plan de salle VIP, CRM", shotgun: false, yuno: true },
     ],
     footerA: "Sur une saison de 20 soirées :",
     footerShotgun: "8 000 €",
@@ -468,7 +456,6 @@ const fr: HomeContent = {
       title: "Gérez la salle, pas le tableur",
       bullets: [
         "Plan de salle VIP interactif avec suivi du minimum de consommation en temps réel",
-        "Les clients commandent depuis leur téléphone. Le staff du bar reçoit la commande. Pas de file d'attente, pas de manipulation d'espèces, panier moyen supérieur de 30 %.",
         "Votre videur est sur la porte en 30 secondes. Aucune application à télécharger, aucun compte e-mail — juste un PIN. Conçu pour le rythme de rotation de la vie nocturne.",
         "CRM intégré avec campagnes SMS & e-mail vers vos meilleurs clients",
         "Scanner QR pour videur avec suivi de capacité en temps réel et journal des incidents",
@@ -504,7 +491,7 @@ const fr: HomeContent = {
         key: "club",
         tag: "Clubs",
         title: "Pour les clubs & établissements",
-        body: "Plans de salle, bar en click-and-collect, staff par PIN et versements sans frais — toute la vue opérationnelle de la salle.",
+        body: "Plans de salle, scanner de porte, staff par PIN et versements sans frais — toute la vue opérationnelle de la salle.",
         href: "https://yunoapp.eu/club/womber",
       },
       {
@@ -533,11 +520,6 @@ const fr: HomeContent = {
         body: "Glissez-déposez vos tables, zones et minimum de consommation. Les hôtes VIP enregistrent les bouteilles depuis leur propre téléphone — le système signale automatiquement les manques. Aucun matériel à acheter.",
       },
       {
-        tag: "Bar",
-        title: "Bar Click & Collect",
-        body: "Les clients commandent leurs boissons à l'avance depuis leur téléphone. Les barmen voient une file en direct — En attente → Préparation → Prêt — et envoient une notification dès que c'est prêt.",
-      },
-      {
         tag: "CRM",
         title: "CRM & marketing SMS",
         body: "Chaque visite, bouteille préférée et incident à la porte dans un seul profil. Envoyez des campagnes SMS ou e-mail ciblées à vos 1 % de meilleurs clients.",
@@ -545,7 +527,7 @@ const fr: HomeContent = {
       {
         tag: "Staff",
         title: "Connexion du staff par PIN",
-        body: "Videurs, barmen, vestiaire et hôtes VIP se connectent avec un PIN à 4 chiffres. Deux secondes, sur n'importe quel terminal — conçu pour la rotation nocturne.",
+        body: "Videurs, vestiaire et hôtes VIP se connectent avec un PIN à 4 chiffres. Deux secondes, sur n'importe quel terminal — conçu pour la rotation nocturne.",
       },
       {
         tag: "Promoteurs",
@@ -555,7 +537,7 @@ const fr: HomeContent = {
       {
         tag: "Live night",
         title: "Tableau de bord Live Night",
-        body: "Entrées, revenus du bar, dépenses par table et statut du staff — un seul écran, actualisé en temps réel, à la manière dont un manager de nuit raisonne vraiment.",
+        body: "Entrées, revenus de la billetterie, dépenses par table et statut du staff — un seul écran, actualisé en temps réel, à la manière dont un manager de nuit raisonne vraiment.",
       },
     ],
   },
@@ -590,7 +572,7 @@ const fr: HomeContent = {
         title: "Configurez vos événements, billets, plan de salle & staff",
         time: "30 min",
       },
-      { step: "02", title: "Connectez Stripe & configurez votre bar", time: "20 min" },
+      { step: "02", title: "Connectez Stripe & configurez vos tables", time: "20 min" },
       {
         step: "03",
         title:
@@ -644,7 +626,7 @@ const fr: HomeContent = {
     statBodyA: "Un club passe en moyenne ",
     statBodyHighlight: "plus de 4 heures par événement",
     statBodyB:
-      " sur la réconciliation post-soirée — versements aux promoteurs, répartition du bar, liste d'invités, remboursements.",
+      " sur la réconciliation post-soirée — versements aux promoteurs, répartition des revenus, liste d'invités, remboursements.",
     statResultA: "Yuno réduit ça à ",
     statResultHighlight: "zéro",
     statResultB: ".",
@@ -679,7 +661,7 @@ const fr: HomeContent = {
         category: "features",
         title: "Puis-je garder ma billetterie ou mon POS actuel ?",
         content:
-          "Yuno peut fonctionner aux côtés d'un prestataire de billetterie externe pour un événement, mais vous n'obtiendrez toute la valeur opérationnelle (bar, VIP, CRM, versements) que lorsque la billetterie passe par Yuno.",
+          "Yuno peut fonctionner aux côtés d'un prestataire de billetterie externe pour un événement, mais vous n'obtiendrez toute la valeur opérationnelle (porte, VIP, CRM, versements) que lorsque la billetterie passe par Yuno.",
       },
       {
         id: "floor-plan",
@@ -687,13 +669,6 @@ const fr: HomeContent = {
         title: "Comment fonctionne l'éditeur de plan de salle VIP ?",
         content:
           "Glissez-déposez tables, zones et minimum de consommation directement dans l'application. Les hôtes VIP enregistrent les bouteilles depuis leur propre téléphone — le système signale automatiquement les manques et met à jour la disponibilité en temps réel. Aucun matériel supplémentaire requis.",
-      },
-      {
-        id: "bar-flow",
-        category: "features",
-        title: "Comment le bar Click & Collect réduit-il les files d'attente ?",
-        content:
-          "Les clients commandent leurs boissons à l'avance depuis leur téléphone. Les barmen voient une file en direct — en attente, en préparation, prêt — et envoient une notification dès que la tournée est prête à être récupérée.",
       },
       {
         id: "revenue-split",

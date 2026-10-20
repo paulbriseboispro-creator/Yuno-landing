@@ -11,13 +11,13 @@ const en: RoleLandingContent = {
   meta: {
     title: "Nightclub management software for club owners | Yuno",
     description:
-      "Run your club from one account: VIP floor plan with deposits, bar ordering by QR code, door control, staff screens and CRM. €0 subscription, 0% commission.",
+      "Run your club from one account: VIP floor plan with deposits, ticketing and guest list, door control, staff screens and CRM. €0 subscription, 0% commission.",
     ogTitle: "Yuno for Clubs",
-    ogDescription: "VIP floor plan, click-and-collect bar, PIN staff login, CRM & SMS.",
+    ogDescription: "VIP floor plan, ticketing & guest list, PIN staff login, CRM & SMS.",
   },
   nav: [
     { label: "Floor plan", href: "#audience" },
-    { label: "The bar", href: "#app" },
+    { label: "Event page", href: "#app" },
     { label: "Offer", href: "#offre" },
     { label: "FAQ", href: "#faq" },
   ],
@@ -30,7 +30,7 @@ const en: RoleLandingContent = {
       "An €800 VIP table that no-shows is dead money. Yuno sells and cashes your tables up front, tracks every minimum spend live, and settles the night under the club's own name — no paper floor plan, no WhatsApp, no end-of-night cash count.",
     primaryCta: "Book a demo",
     secondaryCta: "See the offer",
-    note: "€0 subscription · 0% commission · 4% tickets & tables (€0.99 min), 3% drinks, paid by the customer",
+    note: "€0 subscription · 0% commission · 4% tickets & tables (€0.99 min), paid by the customer",
   },
   quickPoints: [
     {
@@ -46,16 +46,16 @@ const en: RoleLandingContent = {
     {
       icon: "zap",
       title: "Live, all night",
-      body: "Every table's minimum, every order, every entry — tracked in real time from doors to close, on one screen.",
+      body: "Every table's minimum, every sale, every entry — tracked in real time from doors to close, on one screen.",
     },
   ],
   free: {
     tag: "Pricing",
     title: "€0 subscription. 0% commission on your price.",
-    body: "No subscription and no commission on your price, at one published service level. The buyer pays a service fee at checkout — 4% on tickets and tables (€0.99 minimum, capped at €25 on tables) and 3% on drinks — so it isn't taken out of your revenue. You only pay Stripe's card processing (1.5% + €0.25), and the money lands on your own account.",
+    body: "No subscription and no commission on your price, at one published service level. The buyer pays a service fee at checkout — 4% on tickets and tables (€0.99 minimum, capped at €25 on tables) — so it isn't taken out of your revenue. You only pay Stripe's card processing (1.5% + €0.25), and the money lands on your own account.",
     bullets: [
       "€0 subscription, 0% commission on your price",
-      "Buyer pays 4% on tickets & tables (€0.99 min, €25 max on tables), 3% on drinks",
+      "Buyer pays 4% on tickets & tables (€0.99 min, €25 max on tables)",
       "No setup fee, no commitment",
       "Money straight to your own Stripe account",
     ],
@@ -74,22 +74,22 @@ const en: RoleLandingContent = {
     ],
   },
   showcase: {
-    tag: "The bar",
-    title: "Drinks paid up front: cash out of staff hands, basket up.",
-    body: "Guests order and pay from their phone, so the cash never passes through the barman's hands. The order moves through a live queue — pending → prepping → ready — and the barman scans the QR to serve. Cart rules and packs lift the average basket on purpose, not by luck.",
-    imageAlt: "A Yuno drink order and the live bar queue on a phone.",
+    tag: "The event page",
+    title: "Tickets and tables bought in thirty seconds, no app.",
+    body: "Each night gets one page: tickets with their price tiers, the guest list and your VIP tables, bought by card or Apple Pay without creating an account. The QR arrives by email and in Apple Wallet, and every buyer joins your customer base.",
+    imageAlt: "A club's event page on Yuno, on a phone.",
     features: [
       {
-        title: "Pre-paid orders, QR pickup",
-        body: "The fan pays before the bar; your staff just executes. The cash never touches a till.",
+        title: "One page for the whole night",
+        body: "Tickets, guest list and VIP tables side by side, each switched on or off per night.",
       },
       {
-        title: "Live bar-side queue",
-        body: "Barmen see every order move pending → prepping → ready, and scan the QR to serve.",
+        title: "Checkout in thirty seconds",
+        body: "Card or Apple Pay, no account, no app. The QR lands by email and in Apple Wallet.",
       },
       {
-        title: "Average-basket upsell rules",
-        body: "Cart suggestions, drink packs and ticket add-ons you configure — measured in your upsell stats.",
+        title: "Every buyer in your base",
+        body: "Tickets, tables and guest-list sign-ups join your CRM, ready for the next night.",
       },
     ],
   },
@@ -109,7 +109,7 @@ const en: RoleLandingContent = {
   payout: {
     tag: "Live control",
     title: "Every table, every sale, on one screen.",
-    body: "Entries, bar orders, table minimums and revenue update in real time as the night runs. Your manager sees the whole room from one dashboard, and money settles cleanly through Stripe — no end-of-night cash count, no month-end reconciliation.",
+    body: "Entries, ticket sales, table minimums and revenue update in real time as the night runs. Your manager sees the whole room from one dashboard, and money settles cleanly through Stripe — no end-of-night cash count, no month-end reconciliation.",
   },
   collab: {
     tag: "Yuno Collab",
@@ -134,7 +134,7 @@ const en: RoleLandingContent = {
         b: "Built in",
         highlight: true,
       },
-      { label: "The bar", a: "Register + paper tickets", b: "Click-and-collect" },
+      { label: "The door", a: "Paper list + another scanner app", b: "One scanner for everything" },
       { label: "Staff access", a: "Shared passwords", b: "Role-scoped PIN" },
       { label: "Promoter tracking", a: "Spreadsheet", b: "Automatic attribution" },
       { label: "Customer data", a: false, b: true, highlight: true },
@@ -162,12 +162,12 @@ const en: RoleLandingContent = {
       {
         n: "2",
         title: "Hand out the PINs",
-        body: "Bouncers, barmen, VIP hosts and vestiaire each get a role-scoped PIN. No app to install.",
+        body: "Bouncers, VIP hosts and cloakroom staff each get a role-scoped PIN. No app to install.",
       },
       {
         n: "3",
         title: "Run the night",
-        body: "Watch every table, order and entry update live. Revoke any access the moment a shift ends.",
+        body: "Watch every table, sale and entry update live. Revoke any access the moment a shift ends.",
       },
     ],
   },
@@ -177,11 +177,11 @@ const en: RoleLandingContent = {
     items: [
       {
         q: "How much does it cost?",
-        a: "€0 subscription and 0% commission on your price. The buyer pays a service fee at checkout (4% on tickets and tables, €0.99 minimum, capped at €25 on tables; 3% on drinks). You only pay Stripe's card processing (1.5% + €0.25), and the money goes straight to your own account.",
+        a: "€0 subscription and 0% commission on your price. The buyer pays a service fee at checkout (4% on tickets and tables, €0.99 minimum, capped at €25 on tables). You only pay Stripe's card processing (1.5% + €0.25), and the money goes straight to your own account.",
       },
       {
         q: "Do we need to buy hardware?",
-        a: "No. The VIP host app, the bar queue and the door check-in all run in the browser on any phone. Staff sign in with a temporary PIN — nothing to install.",
+        a: "No. The VIP host app, the door check-in and the cloakroom all run in the browser on any phone. Staff sign in with a temporary PIN — nothing to install.",
       },
       {
         q: "How long does it take to get set up?",
@@ -221,7 +221,7 @@ const en: RoleLandingContent = {
         title: "Sell the table, track the minimum, run the service.",
         body: "Build your floor plan, price each table with its own minimum spend and packs, and take the deposit through Stripe up front. On the night the VIP host sees every table live — what's been spent, what's left to reach the minimum, what to upsell — from their own phone.",
         bullets: [
-          "Drag-and-drop floor-plan editor, table packs and per-table QR",
+          "Drag-and-drop floor-plan editor and table packs",
           "Live minimum-spend bar: spent / minimum / left to reach",
           "VIP service timer and a dedicated VIP host dashboard",
           "The table is cashed before the night, under the club's name",
@@ -238,16 +238,16 @@ const en: RoleLandingContent = {
         titleEmphasis: "split by contract and paid automatically",
         titleRest: ".",
         subtitle:
-          "Sharing the takings with a BDE or an organizer by cash, Excel and informal transfers means zero traceability and arguments at settlement. Yuno splits every ticket, table and drink to the agreed shares, automatically, while the club stays merchant of record.",
+          "Sharing the takings with a BDE or an organizer by cash, Excel and informal transfers means zero traceability and arguments at settlement. Yuno splits every ticket and table to the agreed shares, automatically, while the club stays merchant of record.",
       },
       focus: {
         tag: "Co-hosted revenue split",
         title: "Agree the split once. Yuno applies it to every sale.",
-        body: "Set a recurring revenue-share contract between the club and the organizer or BDE. It's attached to the event before tickets go on sale, and the money splits at each sale through Stripe Connect, by item type. The club keeps the alcohol licence and stays seller of record. No incumbent does this natively.",
+        body: "Set a recurring revenue-share contract between the club and the organizer or BDE. It's attached to the event before tickets go on sale, and the money splits at each sale through Stripe Connect, by item type. The club stays seller of record. No incumbent does this natively.",
         bullets: [
           "Recurring club ↔ organizer / BDE revenue-share contract",
-          "Automatic split on tickets, tables and drinks via Stripe Connect",
-          "Club stays merchant of record (alcohol licence, name on the statement)",
+          "Automatic split on tickets and tables via Stripe Connect",
+          "Club stays merchant of record (name on the statement)",
           "Collaboration proposals inbox — no more cash and Excel",
         ],
       },
@@ -308,45 +308,22 @@ const en: RoleLandingContent = {
       hero: {
         badge: "Live night",
         titleLead: "The whole night on one screen — ",
-        titleEmphasis: "the bar backing up shows the minute it happens",
+        titleEmphasis: "the door backing up shows the minute it happens",
         titleRest: ", not the next morning.",
         subtitle:
-          "During the night you're blind, running between the door, the bar and the booth with no overview. Yuno's Live Night is the real-time control room for the night in progress.",
+          "During the night you're blind, running between the door, the tables and the booth with no overview. Yuno's Live Night is the real-time control room for the night in progress.",
       },
       focus: {
         tag: "Live night control room",
         title: "A war-room for the night in progress.",
-        body: "Live KPIs (revenue, tickets, orders placed / in progress / done, average basket, entries, refunds, cloakroom), an order pipeline, per-staff activity, the entry flow by hour, and severity alerts — a backlog is a warning, a rush is info, a refund spike is critical.",
+        body: "Live KPIs (revenue, tickets, entries, refunds, cloakroom), per-staff activity, the entry flow by hour, and severity alerts — a rush is info, a refund spike is critical.",
         bullets: [
           "Live KPI bar with live / 1h / full-night windows",
-          "Order pipeline and per-staff activity in real time",
-          "Severity alerts: backlog, rush, refund spike",
+          "Per-staff activity and the entry flow in real time",
+          "Severity alerts: rush, refund spike",
         ],
       },
       contactLabel: "The Live Night real-time control room",
-    },
-    {
-      id: "bar",
-      chipLabel: "The bar",
-      hero: {
-        badge: "The bar",
-        titleLead: "The drink paid up front: ",
-        titleEmphasis: "cash out of staff hands, basket up",
-        titleRest: ".",
-        subtitle:
-          "At the bar the cash passes through the barman's hands and the average basket depends on who's working. Yuno takes payment up front and turns the basket into something you can steer.",
-      },
-      focus: {
-        tag: "Bar & average basket",
-        title: "Anti-theft by design, basket by intent.",
-        body: "Guests order and pay before the bar, so the cash never touches the barman's hands. Orders move pending → prepping → ready and the barman scans the QR to serve. Cart rules, drink packs and ticket add-ons lift the average basket on purpose, tracked in your upsell stats.",
-        bullets: [
-          "Pre-paid drink orders, QR pickup, live bar queue",
-          "Cart rules and packs to lift the average basket",
-          "Upsell stats — measured, not guessed",
-        ],
-      },
-      contactLabel: "Pre-paid bar orders and average-basket upsell",
     },
     {
       id: "staff",
@@ -357,12 +334,12 @@ const en: RoleLandingContent = {
         titleEmphasis: "sees only their post",
         titleRest: " — without ever sharing your password.",
         subtitle:
-          "You can't hand the master login to a bouncer. Yuno gives every role — bar, door, cloakroom, VIP — its own view, fast, on a shared phone.",
+          "You can't hand the master login to a bouncer. Yuno gives every role — door, cloakroom, VIP — its own view, fast, on a shared phone.",
       },
       focus: {
         tag: "Staff & roles",
         title: "Role dashboards, PIN login, your password stays yours.",
-        body: "Barman, bouncer, VIP host and cloakroom each get their own dashboard and a per-employee PIN login. The bouncer scans tickets and guest list and logs incidents; the barman runs the order queue; the cloakroom turns the ticket into a QR. A manager gets around 25 granular permissions, delegated without account control.",
+        body: "Bouncer, VIP host and cloakroom each get their own dashboard and a per-employee PIN login. The bouncer scans tickets and guest list and logs incidents; the VIP host seats the tables; the cloakroom turns the ticket into a QR. A manager gets around 25 granular permissions, delegated without account control.",
         bullets: [
           "Per-role dashboards and per-employee PIN login",
           "Bouncer entry control and incident log; cloakroom QR",
@@ -380,15 +357,15 @@ const en: RoleLandingContent = {
         titleEmphasis: "and the accounting reconciles itself",
         titleRest: ".",
         subtitle:
-          "Reconciling Stripe payouts against ticket, table and drink sales by hand, plus a shoebox of receipts for the accountant. Yuno makes the money one source of truth.",
+          "Reconciling Stripe payouts against ticket and table sales by hand, plus a shoebox of receipts for the accountant. Yuno makes the money one source of truth.",
       },
       focus: {
         tag: "Accounting",
         title: "One source of truth, club as seller of record.",
-        body: "Club revenue equals the amount paid minus Yuno's fee; net payout is gross minus Stripe minus refunds, across all three pillars. An accounting view with gross / club net / Yuno fee / Stripe fee / refunds per line and configurable VAT, PDF invoices per ticket, table and order with period exports, and refunds that read the service fee frozen at purchase.",
+        body: "Club revenue equals the amount paid minus Yuno's fee; net payout is gross minus Stripe minus refunds, across tickets and tables. An accounting view with gross / club net / Yuno fee / Stripe fee / refunds per line and configurable VAT, PDF invoices per ticket and table with period exports, and refunds that read the service fee frozen at purchase.",
         bullets: [
           "Accounting view: gross / club net / Yuno / Stripe / refunds, configurable VAT",
-          "PDF invoices per ticket, table and order, plus period exports",
+          "PDF invoices per ticket and table, plus period exports",
           "Money paid under the club's name, direct payout to your IBAN",
         ],
       },
@@ -403,14 +380,14 @@ const fr: RoleLandingContent = {
   meta: {
     title: "Logiciel de gestion de boîte de nuit pour discothèques | Yuno",
     description:
-      "Pilotez votre club dans un seul compte : plan de salle VIP avec acompte, bar au QR code, contrôle d'accès, écrans staff et CRM. 0 € d'abonnement.",
+      "Pilotez votre club dans un seul compte : plan de salle VIP avec acompte, billetterie et guest list, contrôle d'accès, écrans staff et CRM. 0 € d'abonnement.",
     ogTitle: "Yuno pour les clubs",
     ogDescription:
-      "Plan de salle VIP, bar en click-and-collect, connexion du staff par PIN, CRM & SMS.",
+      "Plan de salle VIP, billetterie & guest list, connexion du staff par PIN, CRM & SMS.",
   },
   nav: [
     { label: "Plan de salle", href: "#audience" },
-    { label: "Le bar", href: "#app" },
+    { label: "Page de soirée", href: "#app" },
     { label: "L'offre", href: "#offre" },
     { label: "FAQ", href: "#faq" },
   ],
@@ -423,7 +400,7 @@ const fr: RoleLandingContent = {
       "Une table VIP à 800 € qui ne vient pas, c'est mort sec. Yuno vend et encaisse vos tables à l'avance, suit chaque minimum de conso en direct, et règle la soirée au nom du club — sans plan papier, sans WhatsApp, sans comptage de caisse à la fermeture.",
     primaryCta: "Réserver une démo",
     secondaryCta: "Voir l'offre",
-    note: "0 € d'abonnement · 0 % de commission · 4 % billets & tables (min 0,99 €), 3 % boissons, payés par le client",
+    note: "0 € d'abonnement · 0 % de commission · 4 % billets & tables (min 0,99 €), payés par le client",
   },
   quickPoints: [
     {
@@ -439,16 +416,16 @@ const fr: RoleLandingContent = {
     {
       icon: "zap",
       title: "En direct, toute la nuit",
-      body: "Le minimum de chaque table, chaque commande, chaque entrée — suivis en temps réel de l'ouverture à la fermeture, sur un seul écran.",
+      body: "Le minimum de chaque table, chaque vente, chaque entrée — suivis en temps réel de l'ouverture à la fermeture, sur un seul écran.",
     },
   ],
   free: {
     tag: "Le prix",
     title: "0 € d'abonnement. 0 % de commission sur votre prix.",
-    body: "Pas d'abonnement et pas de commission sur votre prix, à un seul niveau de service publié. L'acheteur paie des frais de service au moment du paiement — 4 % sur les billets et les tables (0,99 € minimum, plafonnés à 25 € sur les tables) et 3 % sur les boissons — donc jamais déduits de vos revenus. Vous ne payez que le traitement de carte Stripe (1,5 % + 0,25 €), et l'argent arrive sur votre propre compte.",
+    body: "Pas d'abonnement et pas de commission sur votre prix, à un seul niveau de service publié. L'acheteur paie des frais de service au moment du paiement — 4 % sur les billets et les tables (0,99 € minimum, plafonnés à 25 € sur les tables) — donc jamais déduits de vos revenus. Vous ne payez que le traitement de carte Stripe (1,5 % + 0,25 €), et l'argent arrive sur votre propre compte.",
     bullets: [
       "0 € d'abonnement, 0 % de commission sur votre prix",
-      "L'acheteur paie 4 % sur billets & tables (0,99 € min, 25 € max sur les tables), 3 % sur les boissons",
+      "L'acheteur paie 4 % sur billets & tables (0,99 € min, 25 € max sur les tables)",
       "Aucuns frais d'installation, sans engagement",
       "L'argent directement sur votre compte Stripe",
     ],
@@ -467,22 +444,22 @@ const fr: RoleLandingContent = {
     ],
   },
   showcase: {
-    tag: "Le bar",
-    title: "La boisson payée d'avance : le cash sort des mains du staff, le panier monte.",
-    body: "Les clients commandent et paient depuis leur téléphone : le cash ne passe plus par les mains du barman. La commande suit une file en direct — en attente → préparation → prête — et le barman scanne le QR pour servir. Des règles de panier et des packs font monter le panier moyen volontairement, pas au hasard.",
-    imageAlt: "Une commande de boisson Yuno et la file du bar en direct, sur un téléphone.",
+    tag: "La page de soirée",
+    title: "Billets et tables achetés en trente secondes, sans app.",
+    body: "Chaque soirée a sa page : les billets et leurs paliers de prix, la guest list et vos tables VIP, achetés par carte ou Apple Pay sans créer de compte. Le QR arrive par email et dans Apple Wallet, et chaque acheteur entre dans votre base clients.",
+    imageAlt: "La page de soirée d'un club sur Yuno, sur un téléphone.",
     features: [
       {
-        title: "Commandes prépayées, retrait par QR",
-        body: "Le client paie avant le bar ; votre staff n'a plus qu'à exécuter. Le cash ne touche aucune caisse.",
+        title: "Une page pour toute la soirée",
+        body: "Billets, guest list et tables VIP côte à côte, chacun activé ou coupé par soirée.",
       },
       {
-        title: "File du bar en direct",
-        body: "Les barmen voient chaque commande passer d'en attente → préparation → prête, et scannent le QR pour servir.",
+        title: "Paiement en trente secondes",
+        body: "Carte ou Apple Pay, sans compte ni app. Le QR arrive par email et dans Apple Wallet.",
       },
       {
-        title: "Règles d'upsell sur le panier",
-        body: "Suggestions panier, packs et add-ons de billet que vous configurez — mesurés dans vos stats d'upsell.",
+        title: "Chaque acheteur dans votre base",
+        body: "Billets, tables et inscriptions en guest list entrent dans votre CRM, prêts pour la prochaine soirée.",
       },
     ],
   },
@@ -502,7 +479,7 @@ const fr: RoleLandingContent = {
   payout: {
     tag: "Pilotage en direct",
     title: "Chaque table, chaque vente, sur un seul écran.",
-    body: "Entrées, commandes au bar, minimums de table et recettes se mettent à jour en temps réel pendant la nuit. Votre manager voit toute la salle depuis un seul tableau de bord, et l'argent est réglé proprement via Stripe — sans comptage d'espèces en fin de nuit, sans réconciliation en fin de mois.",
+    body: "Entrées, ventes de billets, minimums de table et recettes se mettent à jour en temps réel pendant la nuit. Votre manager voit toute la salle depuis un seul tableau de bord, et l'argent est réglé proprement via Stripe — sans comptage d'espèces en fin de nuit, sans réconciliation en fin de mois.",
   },
   collab: {
     tag: "Yuno Collab",
@@ -527,7 +504,11 @@ const fr: RoleLandingContent = {
         b: "Intégré",
         highlight: true,
       },
-      { label: "Le bar", a: "Caisse + tickets papier", b: "Click-and-collect" },
+      {
+        label: "La porte",
+        a: "Liste papier + une autre appli de scan",
+        b: "Un seul scanner pour tout",
+      },
       { label: "Accès du staff", a: "Mots de passe partagés", b: "PIN limité par rôle" },
       { label: "Suivi des promoteurs", a: "Tableur", b: "Attribution automatique" },
       { label: "Données clients", a: false, b: true, highlight: true },
@@ -555,12 +536,12 @@ const fr: RoleLandingContent = {
       {
         n: "2",
         title: "Distribuez les PIN",
-        body: "Videurs, barmen, hôtes VIP et vestiaire reçoivent chacun un PIN limité à leur rôle. Aucune appli à installer.",
+        body: "Videurs, hôtes VIP et vestiaire reçoivent chacun un PIN limité à leur rôle. Aucune appli à installer.",
       },
       {
         n: "3",
         title: "Pilotez la nuit",
-        body: "Suivez chaque table, commande et entrée en direct. Révoquez n'importe quel accès dès la fin d'un service.",
+        body: "Suivez chaque table, vente et entrée en direct. Révoquez n'importe quel accès dès la fin d'un service.",
       },
     ],
   },
@@ -570,11 +551,11 @@ const fr: RoleLandingContent = {
     items: [
       {
         q: "Combien ça coûte ?",
-        a: "0 € d'abonnement et 0 % de commission sur votre prix. L'acheteur paie des frais de service au moment du paiement (4 % sur les billets et les tables, 0,99 € minimum, plafonnés à 25 € sur les tables ; 3 % sur les boissons). Vous ne payez que le traitement de carte Stripe (1,5 % + 0,25 €), et l'argent va directement sur votre propre compte.",
+        a: "0 € d'abonnement et 0 % de commission sur votre prix. L'acheteur paie des frais de service au moment du paiement (4 % sur les billets et les tables, 0,99 € minimum, plafonnés à 25 € sur les tables). Vous ne payez que le traitement de carte Stripe (1,5 % + 0,25 €), et l'argent va directement sur votre propre compte.",
       },
       {
         q: "Faut-il acheter du matériel ?",
-        a: "Non. L'app hôte VIP, la file du bar et le contrôle d'accès tournent tous dans le navigateur, sur n'importe quel téléphone. Le staff se connecte avec un PIN temporaire — rien à installer.",
+        a: "Non. L'app hôte VIP, le contrôle d'accès et le vestiaire tournent tous dans le navigateur, sur n'importe quel téléphone. Le staff se connecte avec un PIN temporaire — rien à installer.",
       },
       {
         q: "Combien de temps pour être opérationnel ?",
@@ -614,7 +595,7 @@ const fr: RoleLandingContent = {
         title: "Vendez la table, suivez le minimum, pilotez le service.",
         body: "Construisez votre plan de salle, tarifez chaque table avec son minimum de conso et ses packs, prenez l'acompte via Stripe à l'avance. Le soir, l'hôte VIP voit chaque table en direct — ce qui est consommé, ce qu'il reste pour atteindre le minimum, quoi proposer en plus — depuis son propre téléphone.",
         bullets: [
-          "Éditeur de plan de salle, packs de tables et QR par table",
+          "Éditeur de plan de salle et packs de tables",
           "Barre de minimum de conso en direct : consommé / minimum / reste à atteindre",
           "Timer de service et tableau de bord hôte VIP dédié",
           "La table est encaissée avant la soirée, au nom du club",
@@ -631,16 +612,16 @@ const fr: RoleLandingContent = {
         titleEmphasis: "splittée par contrat et payée automatiquement",
         titleRest: ".",
         subtitle:
-          "Partager la recette avec un BDE ou un orga en cash, Excel et virements informels, c'est zéro traçabilité et des disputes au règlement. Yuno répartit chaque billet, table et boisson selon les parts convenues, automatiquement, pendant que le club reste vendeur de record.",
+          "Partager la recette avec un BDE ou un orga en cash, Excel et virements informels, c'est zéro traçabilité et des disputes au règlement. Yuno répartit chaque billet et chaque table selon les parts convenues, automatiquement, pendant que le club reste vendeur de record.",
       },
       focus: {
         tag: "Répartition co-soirée",
         title: "Convenez la répartition une fois. Yuno l'applique à chaque vente.",
-        body: "Mettez en place un contrat de partage de revenus récurrent entre le club et l'orga ou le BDE. Il est attaché à l'événement avant la mise en vente, et l'argent se répartit à chaque vente via Stripe Connect, par type d'item. Le club garde la licence alcool et reste vendeur de record. Aucun concurrent ne le fait nativement.",
+        body: "Mettez en place un contrat de partage de revenus récurrent entre le club et l'orga ou le BDE. Il est attaché à l'événement avant la mise en vente, et l'argent se répartit à chaque vente via Stripe Connect, par type d'item. Le club reste vendeur de record. Aucun concurrent ne le fait nativement.",
         bullets: [
           "Contrat de partage de revenus récurrent club ↔ orga / BDE",
-          "Répartition automatique sur billets, tables et boissons via Stripe Connect",
-          "Le club reste vendeur de record (licence alcool, nom sur le relevé)",
+          "Répartition automatique sur billets et tables via Stripe Connect",
+          "Le club reste vendeur de record (nom sur le relevé)",
           "Boîte de propositions de collab — fini le cash et l'Excel",
         ],
       },
@@ -701,45 +682,22 @@ const fr: RoleLandingContent = {
       hero: {
         badge: "Live night",
         titleLead: "Toute la soirée sur un seul écran — ",
-        titleEmphasis: "le bar qui bouchonne se voit à la minute",
+        titleEmphasis: "la porte qui bouchonne se voit à la minute",
         titleRest: ", pas le lendemain.",
         subtitle:
-          "Pendant la soirée vous êtes aveugle, à courir entre la porte, le bar et le booth sans vue d'ensemble. Le Live Night de Yuno, c'est la war-room temps réel de la soirée en cours.",
+          "Pendant la soirée vous êtes aveugle, à courir entre la porte, les tables et le booth sans vue d'ensemble. Le Live Night de Yuno, c'est la war-room temps réel de la soirée en cours.",
       },
       focus: {
         tag: "War-room Live Night",
         title: "Une war-room pour la soirée en cours.",
-        body: "KPIs live (revenu, billets, commandes placées / en cours / terminées, panier moyen, entrées, remboursements, vestiaire), un pipeline de commandes, l'activité par staff, le flux d'entrées par heure, et des alertes de sévérité — un backlog est un warning, un rush une info, un pic de remboursements une alerte critique.",
+        body: "KPIs live (revenu, billets, entrées, remboursements, vestiaire), l'activité par staff, le flux d'entrées par heure, et des alertes de sévérité — un rush est une info, un pic de remboursements une alerte critique.",
         bullets: [
           "Barre de KPIs live avec fenêtres live / 1h / nuit complète",
-          "Pipeline de commandes et activité par staff en temps réel",
+          "Activité par staff et flux d'entrées en temps réel",
           "Alertes de sévérité : backlog, rush, pic de remboursements",
         ],
       },
       contactLabel: "La war-room temps réel Live Night",
-    },
-    {
-      id: "bar",
-      chipLabel: "Le bar",
-      hero: {
-        badge: "Le bar",
-        titleLead: "La boisson payée d'avance : ",
-        titleEmphasis: "le cash sort des mains du staff, le panier monte",
-        titleRest: ".",
-        subtitle:
-          "Au bar, le cash passe par les mains du barman et le panier moyen dépend de qui bosse ce soir. Yuno encaisse à l'avance et transforme le panier en quelque chose que vous pilotez.",
-      },
-      focus: {
-        tag: "Bar & panier moyen",
-        title: "Anti-vol par conception, panier par intention.",
-        body: "Les clients commandent et paient avant le bar : le cash ne touche jamais les mains du barman. Les commandes passent en attente → préparation → prête et le barman scanne le QR pour servir. Règles de panier, packs de boissons et add-ons de billet font monter le panier moyen volontairement, suivis dans vos stats d'upsell.",
-        bullets: [
-          "Commandes de boisson prépayées, retrait QR, file du bar en direct",
-          "Règles de panier et packs pour faire monter le panier moyen",
-          "Stats d'upsell — mesurées, pas devinées",
-        ],
-      },
-      contactLabel: "Commandes de bar prépayées et upsell du panier",
     },
     {
       id: "staff",
@@ -750,12 +708,12 @@ const fr: RoleLandingContent = {
         titleEmphasis: "ne voit que son poste",
         titleRest: " — sans jamais partager votre mot de passe.",
         subtitle:
-          "Impossible de filer le login maître à un videur. Yuno donne à chaque rôle — bar, porte, vestiaire, VIP — sa propre vue, vite, sur un téléphone partagé.",
+          "Impossible de filer le login maître à un videur. Yuno donne à chaque rôle — porte, vestiaire, VIP — sa propre vue, vite, sur un téléphone partagé.",
       },
       focus: {
         tag: "Staff & rôles",
         title: "Dashboards par rôle, connexion par PIN, votre mot de passe reste le vôtre.",
-        body: "Barman, videur, hôte VIP et vestiaire ont chacun leur dashboard et une connexion par PIN par employé. Le videur scanne billets et guestlist et log les incidents ; le barman gère la file de commandes ; le vestiaire transforme le ticket en QR. Le manager reçoit environ 25 permissions granulaires, déléguées sans contrôle du compte.",
+        body: "Videur, hôte VIP et vestiaire ont chacun leur dashboard et une connexion par PIN par employé. Le videur scanne billets et guestlist et log les incidents ; l'hôte VIP place les tables ; le vestiaire transforme le ticket en QR. Le manager reçoit environ 25 permissions granulaires, déléguées sans contrôle du compte.",
         bullets: [
           "Dashboards par rôle et connexion par PIN par employé",
           "Contrôle d'entrée videur et journal d'incidents ; QR vestiaire",
@@ -773,15 +731,15 @@ const fr: RoleLandingContent = {
         titleEmphasis: "et la compta se réconcilie toute seule",
         titleRest: ".",
         subtitle:
-          "Réconcilier les virements Stripe avec les ventes billets, tables et boissons à la main, plus la boîte à chaussures de reçus pour le comptable. Yuno fait de l'argent une seule source de vérité.",
+          "Réconcilier les virements Stripe avec les ventes billets et tables à la main, plus la boîte à chaussures de reçus pour le comptable. Yuno fait de l'argent une seule source de vérité.",
       },
       focus: {
         tag: "Comptabilité",
         title: "Une source de vérité, le club comme vendeur de record.",
-        body: "Revenu club = montant payé moins les frais Yuno ; payout net = brut moins Stripe moins remboursements, sur les trois piliers. Une vue comptabilité avec brut / net club / frais Yuno / frais Stripe / remboursements par ligne et TVA configurable, des factures PDF par billet, table et commande avec exports par période, et des remboursements qui lisent le frais de service gelé à l'achat.",
+        body: "Revenu club = montant payé moins les frais Yuno ; payout net = brut moins Stripe moins remboursements, sur les billets et les tables. Une vue comptabilité avec brut / net club / frais Yuno / frais Stripe / remboursements par ligne et TVA configurable, des factures PDF par billet et par table avec exports par période, et des remboursements qui lisent le frais de service gelé à l'achat.",
         bullets: [
           "Vue compta : brut / net club / Yuno / Stripe / remboursements, TVA configurable",
-          "Factures PDF par billet, table et commande, plus exports par période",
+          "Factures PDF par billet et par table, plus exports par période",
           "Argent encaissé au nom du club, payout direct sur votre IBAN",
         ],
       },

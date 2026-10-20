@@ -9,10 +9,10 @@ import type { LandingLang } from "@/i18n/landing-lang";
 // June–Sept 2026). Facts live here once; each language only translates notes.
 export type Mark = "yes" | "partial" | "no";
 const MARKS: Record<string, Mark[]> = {
-  yuno: ["yes", "yes", "yes", "yes", "yes", "yes", "yes", "yes"],
-  shotgun: ["yes", "no", "no", "partial", "partial", "no", "partial", "partial"],
-  weezevent: ["yes", "no", "partial", "partial", "no", "no", "partial", "yes"],
-  xceed: ["yes", "partial", "no", "partial", "partial", "no", "no", "partial"],
+  yuno: ["yes", "yes", "yes", "yes", "yes", "yes", "yes"],
+  shotgun: ["yes", "no", "partial", "partial", "no", "partial", "partial"],
+  weezevent: ["yes", "no", "partial", "no", "no", "partial", "yes"],
+  xceed: ["yes", "partial", "partial", "partial", "no", "no", "partial"],
 };
 const cells = (marks: Mark[], notes: string[]) =>
   marks.map((mark, i) => ({ mark, note: notes[i] ?? "" }));
@@ -21,13 +21,13 @@ const en = {
   meta: {
     title: "Nightclub ticketing, VIP tables & guest list software | Yuno",
     description:
-      "Sell tickets, VIP tables and drinks, run the guest list and the door, and pay promoters automatically. €0 subscription, 0% commission. Your customers stay yours.",
+      "Sell tickets and VIP tables, run the guest list and the door, and pay promoters automatically. €0 subscription, 0% commission. Your customers stay yours.",
     // Link previews (WhatsApp, iMessage, LinkedIn…): short enough not to be cut.
     shareTitle: "Yuno — Sell your nights. Run them end to end.",
     shareDescription:
-      "Tickets, VIP tables, drinks, the door and the money split on one platform for clubs and organizers. €0 subscription, 0% commission.",
+      "Tickets, guest list, VIP tables, the door and the money split on one platform for clubs and organizers. €0 subscription, 0% commission.",
     entity:
-      "Yuno is a nightclub ticketing and management platform for clubs, event organizers and promoters. One account sells tickets, guest-list spots, VIP tables and drinks, runs the door and table service, emails your customer base and splits the money between club, organizer and promoters — with a €0 subscription and 0% commission on your price.",
+      "Yuno is a nightclub ticketing and management platform for clubs, event organizers and promoters. One account sells tickets, guest-list spots and VIP tables, runs the door and table service, emails your customer base and splits the money between club, organizer and promoters — with a €0 subscription and 0% commission on your price.",
   },
   nav: {
     links: [
@@ -48,7 +48,7 @@ const en = {
     kicker: "Nightclub ticketing & management software for clubs, organizers and promoters",
     titleA: "Sell your nights.",
     titleB: "Run them end to end.",
-    sub: "Tickets, VIP tables and drinks on one page — then the door, the bar and the money split between club, organizer and promoters. Where other platforms stop at the ticket, Yuno runs the whole night.",
+    sub: "Tickets, guest list and VIP tables on one page — then the door, table service and the money split between club, organizer and promoters. Where other platforms stop at the ticket, Yuno runs the whole night.",
     primary: "Create my free account",
     secondary: "Talk to the founder",
     note: ["No subscription", "0% commission on your price", "No app to install"],
@@ -98,9 +98,9 @@ const en = {
         body: "Service fees are added on top and paid by the customer. You keep your full ticket price.",
       },
       {
-        value: "3",
+        value: "2",
         label: "Sales pillars",
-        body: "Tickets, VIP tables and drinks on one page — plus the door, the bar and the split.",
+        body: "Tickets (guest list included) and VIP tables on one page — plus the door, table service and the split.",
       },
       {
         value: "30s",
@@ -140,14 +140,14 @@ const en = {
       {
         subject: "The data",
         today: "Scattered between the ticketing export, table DMs and a separate emailing tool.",
-        yuno: "Tickets, tables, drinks and guest list in one base — and emails that know what's left to sell.",
+        yuno: "Tickets, tables and guest list in one base — and emails that know what's left to sell.",
       },
     ],
   },
   pillars: {
     eyebrow: "The product",
-    title: "Ticketing, VIP tables, bar and door — your whole night in one workspace.",
-    sub: "Three sales pillars on one event page, and every screen your team needs to run the night. Switch each pillar on or off per event — start with the guest list alone if you like.",
+    title: "Ticketing, VIP tables and the door — your whole night in one workspace.",
+    sub: "Two sales pillars on one event page, tickets and VIP tables, and every screen your team needs to run the night. Switch each pillar on or off per event — start with the guest list alone if you like.",
     more: "Learn more",
     items: [
       {
@@ -158,12 +158,7 @@ const en = {
       {
         id: "tables",
         title: "VIP table booking & bottle service",
-        body: "Customers pick a table on the floor plan, pay the deposit and pre-order bottles.",
-      },
-      {
-        id: "bar",
-        title: "QR drink ordering at the bar",
-        body: "Order and pay at the bar's QR code. The bartender sees the queue on screen.",
+        body: "Customers pick a table on the floor plan and a package with its bottles, then pay the deposit.",
       },
       {
         id: "door",
@@ -191,9 +186,6 @@ const en = {
       booked: "Booked",
       available: "Available",
       minSpend: "min. spend",
-      pending: "Pending",
-      prepping: "Prepping",
-      ready: "Ready",
       valid: "Valid entry",
       entries: "entries tonight",
       segments: ["Takes tables", "High basket", "Seen < 60 days", "Regulars slipping"],
@@ -206,14 +198,6 @@ const en = {
       guests: "guests",
       bottles: "bottles",
       hostLive: "VIP host · live",
-      barName: "Main bar",
-      queue: "in queue",
-      avgWait: "avg. 1 min 48",
-      paidWith: "Paid · Apple Pay",
-      pickup: "Pick up",
-      atBar: "Bar QR",
-      table: "Table",
-      drinks: ["2× Mojito", "Gin tonic", "4× Shots", "Moët & Chandon", "Spritz", "3× Beer"],
       scans: [
         {
           label: "Regular ticket",
@@ -245,7 +229,7 @@ const en = {
         },
         {
           name: "Hugo",
-          role: "Bar",
+          role: "Cloakroom",
         },
       ],
       pinLogin: "PIN login",
@@ -259,11 +243,11 @@ const en = {
       {
         id: "club",
         label: "Clubs",
-        title: "Run the room, the bar and the door from one screen.",
-        body: "Sell tables before the doors open, take drink orders by QR, scan every entry and watch the night live. You stay the seller: the money lands in your account, under your name.",
+        title: "Run the room, the tables and the door from one screen.",
+        body: "Sell tables before the doors open, scan every entry, follow each table's minimum spend and watch the night live. You stay the seller: the money lands in your account, under your name.",
         bullets: [
           "Living floor plan, minimum spend tracked per table",
-          "Bartender, bouncer, VIP host, cloakroom: a screen each, PIN login",
+          "Bouncer, VIP host, cloakroom: a screen each, PIN login",
           "Dashboard with net sales, conversion and 3 AI actions of the day",
         ],
         cta: "Create my club account",
@@ -318,7 +302,7 @@ const en = {
         when: "D-1",
         label: "Preparation",
         title: "You already know what the night will look like",
-        body: "Tables booked and paid, bottle pre-orders, door list ready, staff PIN codes. The live view shows who is on your page right now.",
+        body: "Tables booked and paid, packages chosen, door list ready, staff PIN codes. The live view shows who is on your page right now.",
       },
       {
         when: "11 p.m.",
@@ -330,7 +314,7 @@ const en = {
         when: "1 a.m.",
         label: "The room",
         title: "The tables work for you",
-        body: "The VIP host seats arrivals, tracks each table's minimum and serves bottles ordered from the table. One more bottle sells without looking for a waiter.",
+        body: "The VIP host seats arrivals and follows each table's minimum spend live. You see which table is close to its minimum and where one more bottle is worth suggesting.",
       },
       {
         when: "Next day",
@@ -386,8 +370,7 @@ const en = {
     features: [
       "Tickets & guest list",
       "VIP tables on a floor plan, with deposits",
-      "Drink ordering at the bar",
-      "A dedicated account per staff role — door, bar, VIP service",
+      "A dedicated account per staff role — door, VIP service, cloakroom",
       "Promoter links, commissions computed for you",
       "Club × organizer contract & night statement",
       "CRM & marketing: email, SMS, push, Meta Ads",
@@ -399,8 +382,7 @@ const en = {
       cells: cells(MARKS.yuno, [
         "Presales, promo codes, Apple Wallet",
         "Deposit or pay on site",
-        "Order & pay by QR",
-        "Bouncer, VIP waiter, bartender: each their own account",
+        "Bouncer, VIP host, cloakroom: each their own account",
         "Live leaderboard",
         "Approved by both sides",
         "All four, from one customer base",
@@ -413,7 +395,6 @@ const en = {
         name: "Shotgun",
         kind: "Ticketing marketplace",
         cells: cells(MARKS.shotgun, [
-          "",
           "",
           "",
           "Door scan only",
@@ -430,14 +411,13 @@ const en = {
         cells: cells(MARKS.weezevent, [
           "",
           "Seat numbering, not club tables",
-          "Cashless add-on, €1.20/transaction",
           "Staff add-on from €1,000",
           "",
           "",
           "Email & SMS (WeezTarget)",
           "2.5% per ticket",
         ]),
-        cost: "2.5% per ticket (min. €0.99), payouts every 15 days, paid add-ons for cashless and staff.",
+        cost: "2.5% per ticket (min. €0.99), payouts every 15 days, paid add-on for staff.",
       },
       {
         name: "Xceed",
@@ -445,7 +425,6 @@ const en = {
         cells: cells(MARKS.xceed, [
           "",
           "Pro plan",
-          "",
           "Door scan",
           "Pro plan",
           "",
@@ -462,12 +441,12 @@ const en = {
         {
           id: "sales",
           title: "Sales",
-          body: "Tickets, guest list, VIP tables and drinks on one event page.",
+          body: "Tickets, guest list and VIP tables on one event page.",
         },
         {
           id: "ops",
           title: "Operations",
-          body: "Door, bar, VIP service and cloakroom: every staff member on their own account.",
+          body: "Door, VIP service and cloakroom: every staff member on their own account.",
         },
         {
           id: "crm",
@@ -662,12 +641,6 @@ const en = {
         highlight: false,
       },
       {
-        item: "Service fee, drinks",
-        who: "The customer, on top of the price",
-        amount: "3%",
-        highlight: false,
-      },
-      {
         item: "Card processing (Stripe)",
         who: "You, on what you collect",
         amount: "1.5% + €0.25",
@@ -684,7 +657,7 @@ const en = {
       "Ticketing, presales, promo codes, Apple Wallet",
       "Guest list with quotas and named QR codes",
       "VIP tables, floor plan, deposits & table service",
-      "Bar ordering by QR, bartender screen",
+      "VIP host and cloakroom screens",
       "Door scanner, staff PINs, manager access",
       "Stripe Connect, contracts, statements, invoices",
       "Promoter links & automatic commissions",
@@ -710,15 +683,15 @@ const en = {
     items: [
       {
         q: "What is Yuno?",
-        a: "Yuno is a nightclub ticketing and management platform for clubs, event organizers and promoters. One account sells tickets, guest-list spots, VIP tables and drinks, runs the door scanner and table service, emails your customer base and splits the money between club, organizer and promoters. €0 subscription, 0% commission on your price.",
+        a: "Yuno is a nightclub ticketing and management platform for clubs, event organizers and promoters. One account sells tickets, guest-list spots and VIP tables, runs the door scanner and table service, emails your customer base and splits the money between club, organizer and promoters. €0 subscription, 0% commission on your price.",
       },
       {
         q: "Is it really free for me?",
-        a: "Yes. €0 subscription and 0% commission on your price. Yuno's service fee (4% on tickets and tables with a €0.99 minimum, 3% on drinks) is added at checkout and paid by the customer. You only pay Stripe's card processing: 1.5% + €0.25.",
+        a: "Yes. €0 subscription and 0% commission on your price. Yuno's service fee (4% on tickets and tables with a €0.99 minimum, capped at €25 on tables) is added at checkout and paid by the customer. You only pay Stripe's card processing: 1.5% + €0.25.",
       },
       {
         q: "Is Yuno an alternative to Shotgun, DICE, Eventbrite or Weezevent?",
-        a: "Yes, for club nights. Yuno sells tickets online like they do, and every buyer — from your page or from the Yuno marketplace (App Store and web app) — joins your own customer base. It also covers what ticketing platforms don't combine: VIP table booking with deposits, QR bar ordering, promoter commissions and the club × organizer split — with no subscription and 0% commission on your price.",
+        a: "Yes, for club nights. Yuno sells tickets online like they do, and every buyer — from your page or from the Yuno marketplace (App Store and web app) — joins your own customer base. It also covers what ticketing platforms don't combine: VIP table booking with deposits, the door scanner, promoter commissions and the club × organizer split — with no subscription and 0% commission on your price.",
       },
       {
         q: "When do I get my money?",
@@ -734,7 +707,7 @@ const en = {
       },
       {
         q: "How do VIP table bookings and deposits work?",
-        a: "Customers pick a table on your interactive floor plan, choose a package, pay a deposit online or pay on site (your choice) and can pre-order bottles. On the night, the VIP host sees every table live, seats walk-ins and tracks each table's minimum spend. The service fee on tables is 4%, capped at €25, paid by the customer.",
+        a: "Customers pick a table on your interactive floor plan, choose a package with its bottles and pay a deposit online or pay on site (your choice). On the night, the VIP host sees every table live, seats walk-ins and tracks each table's minimum spend. The service fee on tables is 4%, capped at €25, paid by the customer.",
       },
       {
         q: "How are promoters tracked and paid?",
@@ -742,7 +715,7 @@ const en = {
       },
       {
         q: "How does a club and an organizer split a night?",
-        a: "The contract is signed inside Yuno, pillar by pillar (tickets, tables, guest list) or as a tiered share of the night's revenue. At closing the club declares bar and door takings, the organizer accepts or disputes, and nothing moves without both sides agreeing.",
+        a: "The contract is signed inside Yuno, pillar by pillar (tickets, tables, guest list) or as a tiered share of the night's revenue. At closing the club declares the takings it collected on site, the organizer accepts or disputes, and nothing moves without both sides agreeing.",
       },
       {
         q: "Who owns my customer data?",
@@ -767,7 +740,7 @@ const en = {
     note: "No card required · Set up with you if you want · EN · FR · ES",
   },
   footer: {
-    tagline: "The platform for the night. Tickets, tables, bar, door and payouts — in one place.",
+    tagline: "The platform for the night. Tickets, tables, door and payouts — in one place.",
     cols: [
       {
         title: "Product",
@@ -988,12 +961,12 @@ const fr: LandingContent = {
   meta: {
     title: "Billetterie soirée, tables VIP & logiciel boîte de nuit | Yuno",
     description:
-      "Billetterie sans commission pour clubs et organisateurs : billets, guest list, réservation de tables VIP, commande au bar et scan à l'entrée. 0 € d'abonnement.",
+      "Billetterie sans commission pour clubs et organisateurs : billets, guest list, réservation de tables VIP, scan à l'entrée et commissions des promoteurs. 0 € d'abonnement.",
     shareTitle: "Yuno — Vendez vos soirées. Pilotez-les de A à Z.",
     shareDescription:
-      "Billets, tables VIP, boissons, porte et répartition de l'argent sur une seule plateforme pour clubs et organisateurs. 0 € d'abonnement, 0 % de commission.",
+      "Billets, guest list, tables VIP, porte et répartition de l'argent sur une seule plateforme pour clubs et organisateurs. 0 € d'abonnement, 0 % de commission.",
     entity:
-      "Yuno est une billetterie et un logiciel de gestion pour boîtes de nuit, organisateurs de soirées et promoteurs. Un seul compte vend les billets, la guest list, les tables VIP et les boissons, tient la porte et le service en salle, écrit à votre base clients et répartit l'argent entre club, organisateur et promoteurs — avec 0 € d'abonnement et 0 % de commission sur votre prix.",
+      "Yuno est une billetterie et un logiciel de gestion pour boîtes de nuit, organisateurs de soirées et promoteurs. Un seul compte vend les billets, la guest list et les tables VIP, tient la porte et le service en salle, écrit à votre base clients et répartit l'argent entre club, organisateur et promoteurs — avec 0 € d'abonnement et 0 % de commission sur votre prix.",
   },
   nav: {
     links: [
@@ -1014,7 +987,7 @@ const fr: LandingContent = {
     kicker: "Billetterie & logiciel de gestion pour boîtes de nuit, organisateurs et promoteurs",
     titleA: "Vendez vos soirées.",
     titleB: "Pilotez-les de A à Z.",
-    sub: "Billets, tables VIP et boissons sur une seule page — puis la porte, le bar et la répartition de l'argent entre club, organisateur et promoteurs. Là où les billetteries s'arrêtent au billet, Yuno fait tourner toute la soirée.",
+    sub: "Billets, guest list et tables VIP sur une seule page — puis la porte, le service en salle et la répartition de l'argent entre club, organisateur et promoteurs. Là où les billetteries s'arrêtent au billet, Yuno fait tourner toute la soirée.",
     primary: "Créer mon compte gratuit",
     secondary: "Parler au fondateur",
     note: ["Sans abonnement", "0 % de commission sur votre prix", "Aucune app à installer"],
@@ -1064,9 +1037,9 @@ const fr: LandingContent = {
         body: "Les frais de service s'ajoutent au prix et sont payés par le client. Votre prix vous revient en entier.",
       },
       {
-        value: "3",
+        value: "2",
         label: "Piliers de vente",
-        body: "Billets, tables VIP et boissons sur une seule page — plus la porte, le bar et la répartition.",
+        body: "Billets (guest list comprise) et tables VIP sur une seule page — plus la porte, le service en salle et la répartition.",
       },
       {
         value: "30 s",
@@ -1107,14 +1080,14 @@ const fr: LandingContent = {
         subject: "La donnée",
         today:
           "Éparpillée entre l'export de la billetterie, les DM des tables et un outil d'emailing à part.",
-        yuno: "Billets, tables, boissons et guest list dans une seule base — et des emails qui savent ce qu'il reste à vendre.",
+        yuno: "Billets, tables et guest list dans une seule base — et des emails qui savent ce qu'il reste à vendre.",
       },
     ],
   },
   pillars: {
     eyebrow: "Le produit",
-    title: "Billetterie, tables VIP, bar et porte : toute votre soirée dans un seul espace.",
-    sub: "Trois piliers de vente sur une seule page d'événement, et tous les écrans dont votre équipe a besoin. Chaque pilier s'active ou se coupe par soirée — commencez par la guest list seule si vous voulez.",
+    title: "Billetterie, tables VIP et porte : toute votre soirée dans un seul espace.",
+    sub: "Deux piliers de vente sur une seule page d'événement, les billets et les tables VIP, et tous les écrans dont votre équipe a besoin. Chaque pilier s'active ou se coupe par soirée — commencez par la guest list seule si vous voulez.",
     more: "En savoir plus",
     items: [
       {
@@ -1125,12 +1098,7 @@ const fr: LandingContent = {
       {
         id: "tables",
         title: "Réservation de tables VIP & bottle service",
-        body: "Le client choisit sa table sur le plan, paie l'acompte et précommande ses bouteilles.",
-      },
-      {
-        id: "bar",
-        title: "Commande au bar par QR code",
-        body: "Commande et paiement au QR du bar. Le barman voit la file sur son écran.",
+        body: "Le client choisit sa table sur le plan et une formule avec ses bouteilles, puis paie l'acompte.",
       },
       {
         id: "door",
@@ -1158,9 +1126,6 @@ const fr: LandingContent = {
       booked: "Réservée",
       available: "Libre",
       minSpend: "minimum",
-      pending: "En attente",
-      prepping: "En préparation",
-      ready: "Prête",
       valid: "Entrée valide",
       entries: "entrées ce soir",
       segments: ["Prend des tables", "Panier élevé", "Vus < 60 jours", "Habitués qui décrochent"],
@@ -1173,14 +1138,6 @@ const fr: LandingContent = {
       guests: "pers.",
       bottles: "bouteilles",
       hostLive: "Hôte VIP · en direct",
-      barName: "Bar principal",
-      queue: "en file",
-      avgWait: "moy. 1 min 48",
-      paidWith: "Payé · Apple Pay",
-      pickup: "À retirer",
-      atBar: "QR du bar",
-      table: "Table",
-      drinks: ["2× Mojito", "Gin tonic", "4× Shots", "Moët & Chandon", "Spritz", "3× Bière"],
       scans: [
         {
           label: "Billet Regular",
@@ -1212,7 +1169,7 @@ const fr: LandingContent = {
         },
         {
           name: "Hugo",
-          role: "Bar",
+          role: "Vestiaire",
         },
       ],
       pinLogin: "Connexion PIN",
@@ -1226,11 +1183,11 @@ const fr: LandingContent = {
       {
         id: "club",
         label: "Clubs",
-        title: "La salle, le bar et la porte depuis un seul écran.",
-        body: "Vendez vos tables avant l'ouverture, prenez les commandes au QR, scannez chaque entrée et suivez la soirée en direct. Vous restez le vendeur : l'argent arrive sur votre compte, à votre nom.",
+        title: "La salle, les tables et la porte depuis un seul écran.",
+        body: "Vendez vos tables avant l'ouverture, scannez chaque entrée, suivez le minimum de chaque table et la soirée en direct. Vous restez le vendeur : l'argent arrive sur votre compte, à votre nom.",
         bullets: [
           "Plan de salle vivant, minimum de dépense suivi par table",
-          "Barman, videur, hôte VIP, vestiaire : chacun son écran, connexion par PIN",
+          "Videur, hôte VIP, vestiaire : chacun son écran, connexion par PIN",
           "Dashboard : ventes nettes, conversion et 3 actions du jour proposées par l'IA",
         ],
         cta: "Créer mon compte club",
@@ -1288,7 +1245,7 @@ const fr: LandingContent = {
         when: "J-1",
         label: "Préparation",
         title: "Vous savez déjà à quoi ressemblera la nuit",
-        body: "Tables réservées et payées, précommandes de bouteilles, liste de porte prête, codes PIN du staff. La vue en direct montre qui regarde votre page.",
+        body: "Tables réservées et payées, formules choisies, liste de porte prête, codes PIN du staff. La vue en direct montre qui regarde votre page.",
       },
       {
         when: "23 h",
@@ -1300,7 +1257,7 @@ const fr: LandingContent = {
         when: "1 h",
         label: "La salle",
         title: "Les tables travaillent pour vous",
-        body: "L'hôte VIP place les arrivées, suit le minimum de chaque carré et sert les bouteilles commandées depuis la table. Une bouteille de plus se vend sans chercher un serveur.",
+        body: "L'hôte VIP place les arrivées et suit en direct le minimum de chaque carré. Vous voyez quelle table approche de son minimum, et où proposer une bouteille de plus.",
       },
       {
         when: "Lendemain",
@@ -1356,8 +1313,7 @@ const fr: LandingContent = {
     features: [
       "Billetterie & guest list",
       "Tables VIP sur plan de salle, avec acompte",
-      "Commande de boissons au bar",
-      "Un compte dédié par rôle staff — porte, bar, service VIP",
+      "Un compte dédié par rôle staff — porte, service VIP, vestiaire",
       "Liens promoteurs, commissions calculées pour vous",
       "Contrat club × organisateur & décompte de soirée",
       "CRM & marketing : email, SMS, push, Meta Ads",
@@ -1369,8 +1325,7 @@ const fr: LandingContent = {
       cells: cells(MARKS.yuno, [
         "Préventes, codes promo, Apple Wallet",
         "Acompte ou règlement sur place",
-        "Commande et paiement par QR",
-        "Videur, serveur VIP, barman : chacun son compte",
+        "Videur, hôte VIP, vestiaire : chacun son compte",
         "Classement en direct",
         "Validé par les deux parties",
         "Les quatre, depuis une seule base clients",
@@ -1383,7 +1338,6 @@ const fr: LandingContent = {
         name: "Shotgun",
         kind: "Billetterie marketplace",
         cells: cells(MARKS.shotgun, [
-          "",
           "",
           "",
           "Scan à l'entrée uniquement",
@@ -1400,14 +1354,13 @@ const fr: LandingContent = {
         cells: cells(MARKS.weezevent, [
           "",
           "Places numérotées, pas de tables de club",
-          "Module cashless, 1,20 €/transaction",
           "Module staff dès 1 000 €",
           "",
           "",
           "Email & SMS (WeezTarget)",
           "2,5 % par billet",
         ]),
-        cost: "2,5 % par billet (min. 0,99 €), virements tous les 15 jours, modules cashless et staff payants.",
+        cost: "2,5 % par billet (min. 0,99 €), virements tous les 15 jours, module staff payant.",
       },
       {
         name: "Xceed",
@@ -1415,7 +1368,6 @@ const fr: LandingContent = {
         cells: cells(MARKS.xceed, [
           "",
           "Formule Pro",
-          "",
           "Scan à l'entrée",
           "Formule Pro",
           "",
@@ -1432,12 +1384,12 @@ const fr: LandingContent = {
         {
           id: "sales",
           title: "Vente",
-          body: "Billets, guest list, tables VIP et boissons sur une seule page de soirée.",
+          body: "Billets, guest list et tables VIP sur une seule page de soirée.",
         },
         {
           id: "ops",
           title: "Opérations",
-          body: "Porte, bar, service VIP et vestiaire : chaque membre du staff sur son propre compte.",
+          body: "Porte, service VIP et vestiaire : chaque membre du staff sur son propre compte.",
         },
         {
           id: "crm",
@@ -1633,12 +1585,6 @@ const fr: LandingContent = {
         highlight: false,
       },
       {
-        item: "Frais de service, boissons",
-        who: "Le client, en plus du prix",
-        amount: "3 %",
-        highlight: false,
-      },
-      {
         item: "Traitement bancaire (Stripe)",
         who: "Vous, sur l'encaissement",
         amount: "1,5 % + 0,25 €",
@@ -1655,7 +1601,7 @@ const fr: LandingContent = {
       "Billetterie, préventes, codes promo, Apple Wallet",
       "Guest list avec quotas et QR nominatifs",
       "Tables VIP, plan de salle, acomptes & service",
-      "Commande au bar par QR, écran barman",
+      "Écrans hôte VIP et vestiaire",
       "Scanner de porte, codes PIN, accès manager",
       "Stripe Connect, contrats, décomptes, factures",
       "Liens promoteurs & commissions automatiques",
@@ -1681,15 +1627,15 @@ const fr: LandingContent = {
     items: [
       {
         q: "Qu'est-ce que Yuno ?",
-        a: "Yuno est une billetterie et un logiciel de gestion pour boîtes de nuit, organisateurs de soirées et promoteurs. Un seul compte vend les billets, la guest list, les tables VIP et les boissons, tient la porte et le service en salle, écrit à votre base clients et répartit l'argent entre club, organisateur et promoteurs. 0 € d'abonnement, 0 % de commission sur votre prix.",
+        a: "Yuno est une billetterie et un logiciel de gestion pour boîtes de nuit, organisateurs de soirées et promoteurs. Un seul compte vend les billets, la guest list et les tables VIP, tient la porte et le service en salle, écrit à votre base clients et répartit l'argent entre club, organisateur et promoteurs. 0 € d'abonnement, 0 % de commission sur votre prix.",
       },
       {
         q: "C'est vraiment gratuit pour moi ?",
-        a: "Oui. 0 € d'abonnement et 0 % de commission sur votre prix. Les frais de service Yuno (4 % sur les billets et tables avec un minimum de 0,99 €, 3 % sur les boissons) sont ajoutés à l'achat et payés par le client. Vous ne payez que le traitement bancaire Stripe : 1,5 % + 0,25 €.",
+        a: "Oui. 0 € d'abonnement et 0 % de commission sur votre prix. Les frais de service Yuno (4 % sur les billets et tables avec un minimum de 0,99 €, plafonnés à 25 € sur les tables) sont ajoutés à l'achat et payés par le client. Vous ne payez que le traitement bancaire Stripe : 1,5 % + 0,25 €.",
       },
       {
         q: "Yuno est-il une alternative à Shotgun, Weezevent, Eventbrite ou DICE ?",
-        a: "Oui, pour les soirées en club. Yuno vend vos billets en ligne comme eux, et chaque acheteur — venu de votre page ou de la marketplace Yuno (App Store et web app) — entre dans votre propre base clients. Yuno réunit aussi ce que les billetteries ne combinent pas : réservation de tables VIP avec acompte, commande au bar par QR code, commissions des promoteurs et répartition club × organisateur — sans abonnement et avec 0 % de commission sur votre prix.",
+        a: "Oui, pour les soirées en club. Yuno vend vos billets en ligne comme eux, et chaque acheteur — venu de votre page ou de la marketplace Yuno (App Store et web app) — entre dans votre propre base clients. Yuno réunit aussi ce que les billetteries ne combinent pas : réservation de tables VIP avec acompte, scan à l'entrée, commissions des promoteurs et répartition club × organisateur — sans abonnement et avec 0 % de commission sur votre prix.",
       },
       {
         q: "Quand est-ce que je touche mon argent ?",
@@ -1705,7 +1651,7 @@ const fr: LandingContent = {
       },
       {
         q: "Comment fonctionne la réservation de tables VIP avec acompte ?",
-        a: "Le client choisit sa table sur votre plan de salle interactif, prend une formule, paie un acompte en ligne ou règle sur place (au choix) et peut précommander ses bouteilles. Le soir même, l'hôte VIP voit chaque table en direct, place les arrivées sans réservation et suit le minimum de dépense de chaque carré. Les frais de service sur les tables sont de 4 %, plafonnés à 25 €, payés par le client.",
+        a: "Le client choisit sa table sur votre plan de salle interactif, prend une formule avec ses bouteilles et paie un acompte en ligne ou règle sur place (au choix). Le soir même, l'hôte VIP voit chaque table en direct, place les arrivées sans réservation et suit le minimum de dépense de chaque carré. Les frais de service sur les tables sont de 4 %, plafonnés à 25 €, payés par le client.",
       },
       {
         q: "Comment suivre et rémunérer ses promoteurs ?",
@@ -1713,7 +1659,7 @@ const fr: LandingContent = {
       },
       {
         q: "Comment un club et un organisateur se répartissent une soirée ?",
-        a: "Le contrat se signe dans Yuno, pilier par pilier (billets, tables, guest list) ou au barème sur le chiffre d'affaires. À la fermeture, le club déclare le bar et les entrées, l'organisateur accepte ou conteste, et rien ne part sans l'accord des deux parties.",
+        a: "Le contrat se signe dans Yuno, pilier par pilier (billets, tables, guest list) ou au barème sur le chiffre d'affaires. À la fermeture, le club déclare les recettes qu'il a encaissées sur place, l'organisateur accepte ou conteste, et rien ne part sans l'accord des deux parties.",
       },
       {
         q: "À qui appartiennent mes données clients ?",
@@ -1738,8 +1684,7 @@ const fr: LandingContent = {
     note: "Sans carte bancaire · Configuration avec vous si besoin · EN · FR · ES",
   },
   footer: {
-    tagline:
-      "La plateforme de la soirée. Billets, tables, bar, porte et paiements — au même endroit.",
+    tagline: "La plateforme de la soirée. Billets, tables, porte et paiements — au même endroit.",
     cols: [
       {
         title: "Produit",
@@ -1961,12 +1906,12 @@ const es: LandingContent = {
   meta: {
     title: "Software para discotecas: entradas, reservados y RRPP | Yuno",
     description:
-      "Venta de entradas sin comisiones, listas, reservados y mesas VIP, copas con QR y comisiones de RRPP automáticas. 0 € de suscripción.",
+      "Venta de entradas sin comisiones, listas, reservados y mesas VIP, control de acceso y comisiones de RRPP automáticas. 0 € de suscripción.",
     shareTitle: "Yuno — Vende tus noches. Gestiónalas de la A a la Z.",
     shareDescription:
-      "Entradas, mesas VIP, bebidas, puerta y reparto del dinero en una sola plataforma para discotecas y organizadores. 0 € de suscripción, 0 % de comisión.",
+      "Entradas, listas, mesas VIP, puerta y reparto del dinero en una sola plataforma para discotecas y organizadores. 0 € de suscripción, 0 % de comisión.",
     entity:
-      "Yuno es un software para discotecas, organizadores de eventos y RRPP. Una sola cuenta vende entradas, listas, reservados y copas, gestiona la puerta y el servicio en sala, escribe a tu base de clientes y reparte el dinero entre discoteca, organizador y RRPP — con 0 € de suscripción y 0 % de comisión sobre tu precio.",
+      "Yuno es un software para discotecas, organizadores de eventos y RRPP. Una sola cuenta vende entradas, listas y reservados, gestiona la puerta y el servicio en sala, escribe a tu base de clientes y reparte el dinero entre discoteca, organizador y RRPP — con 0 € de suscripción y 0 % de comisión sobre tu precio.",
   },
   nav: {
     links: [
@@ -1987,7 +1932,7 @@ const es: LandingContent = {
     kicker: "Software para discotecas, organizadores y RRPP: venta de entradas sin comisiones",
     titleA: "Vende tus noches.",
     titleB: "Gestiónalas de la A a la Z.",
-    sub: "Entradas, mesas VIP y bebidas en una sola página — y después la puerta, la barra y el reparto del dinero entre discoteca, organizador y promotores. Donde las ticketeras se quedan en la entrada, Yuno gestiona toda la noche.",
+    sub: "Entradas, listas y mesas VIP en una sola página — y después la puerta, el servicio en sala y el reparto del dinero entre discoteca, organizador y promotores. Donde las ticketeras se quedan en la entrada, Yuno gestiona toda la noche.",
     primary: "Crear mi cuenta gratis",
     secondary: "Hablar con el fundador",
     note: ["Sin suscripción", "0 % de comisión sobre tu precio", "Sin app que instalar"],
@@ -2041,9 +1986,9 @@ const es: LandingContent = {
         body: "Las tarifas de servicio se suman al precio y las paga el cliente. Tu precio es íntegramente tuyo.",
       },
       {
-        value: "3",
+        value: "2",
         label: "Pilares de venta",
-        body: "Entradas, mesas VIP y bebidas en una sola página — además de la puerta, la barra y el reparto.",
+        body: "Entradas (lista de invitados incluida) y mesas VIP en una sola página — además de la puerta, el servicio en sala y el reparto.",
       },
       {
         value: "30 s",
@@ -2090,8 +2035,8 @@ const es: LandingContent = {
   },
   pillars: {
     eyebrow: "El producto",
-    title: "Entradas, reservados, barra y puerta: toda tu noche en un solo espacio.",
-    sub: "Tres pilares de venta en una sola página de evento, y todas las pantallas que tu equipo necesita. Activa o desactiva cada pilar por evento — empieza solo con la lista de invitados si quieres.",
+    title: "Entradas, reservados y puerta: toda tu noche en un solo espacio.",
+    sub: "Dos pilares de venta en una sola página de evento, las entradas y los reservados, y todas las pantallas que tu equipo necesita. Activa o desactiva cada pilar por evento — empieza solo con la lista de invitados si quieres.",
     more: "Saber más",
     items: [
       {
@@ -2102,12 +2047,7 @@ const es: LandingContent = {
       {
         id: "tables",
         title: "Reservados, mesas VIP y botellas",
-        body: "El cliente elige su mesa en el plano, paga la señal y reserva sus botellas.",
-      },
-      {
-        id: "bar",
-        title: "Pedidos de copas con QR",
-        body: "Pide y paga en el QR de la barra. El camarero ve la cola en su pantalla.",
+        body: "El cliente elige su mesa en el plano y un pack con sus botellas, y paga la señal.",
       },
       {
         id: "door",
@@ -2135,9 +2075,6 @@ const es: LandingContent = {
       booked: "Reservada",
       available: "Libre",
       minSpend: "mínimo",
-      pending: "Pendiente",
-      prepping: "Preparando",
-      ready: "Lista",
       valid: "Entrada válida",
       entries: "entradas esta noche",
       segments: ["Reserva mesas", "Ticket alto", "Vistos < 60 días", "Habituales que se alejan"],
@@ -2150,14 +2087,6 @@ const es: LandingContent = {
       guests: "pers.",
       bottles: "botellas",
       hostLive: "Host VIP · en directo",
-      barName: "Barra principal",
-      queue: "en cola",
-      avgWait: "media 1 min 48",
-      paidWith: "Pagado · Apple Pay",
-      pickup: "Recoger",
-      atBar: "QR de barra",
-      table: "Mesa",
-      drinks: ["2× Mojito", "Gin tonic", "4× Chupitos", "Moët & Chandon", "Spritz", "3× Cerveza"],
       scans: [
         {
           label: "Entrada general",
@@ -2189,7 +2118,7 @@ const es: LandingContent = {
         },
         {
           name: "Hugo",
-          role: "Barra",
+          role: "Guardarropa",
         },
       ],
       pinLogin: "Acceso con PIN",
@@ -2203,11 +2132,11 @@ const es: LandingContent = {
       {
         id: "club",
         label: "Discotecas",
-        title: "La sala, la barra y la puerta desde una sola pantalla.",
-        body: "Vende tus mesas antes de abrir, recibe pedidos por QR, escanea cada entrada y sigue la noche en directo. Tú sigues siendo el vendedor: el dinero llega a tu cuenta, a tu nombre.",
+        title: "La sala, las mesas y la puerta desde una sola pantalla.",
+        body: "Vende tus mesas antes de abrir, escanea cada entrada, sigue el mínimo de cada mesa y la noche en directo. Tú sigues siendo el vendedor: el dinero llega a tu cuenta, a tu nombre.",
         bullets: [
           "Plano de sala vivo, consumo mínimo seguido por mesa",
-          "Camarero, portero, host VIP, guardarropa: cada uno su pantalla, acceso con PIN",
+          "Portero, host VIP, guardarropa: cada uno su pantalla, acceso con PIN",
           "Panel con ventas netas, conversión y 3 acciones del día sugeridas por la IA",
         ],
         cta: "Crear mi cuenta de discoteca",
@@ -2262,7 +2191,7 @@ const es: LandingContent = {
         when: "D-1",
         label: "Preparación",
         title: "Ya sabes cómo será la noche",
-        body: "Mesas reservadas y pagadas, botellas pre-pedidas, lista de puerta lista, PIN del staff. La vista en directo muestra quién mira tu página ahora mismo.",
+        body: "Mesas reservadas y pagadas, packs elegidos, lista de puerta lista, PIN del staff. La vista en directo muestra quién mira tu página ahora mismo.",
       },
       {
         when: "23 h",
@@ -2274,7 +2203,7 @@ const es: LandingContent = {
         when: "1 h",
         label: "La sala",
         title: "Las mesas trabajan para ti",
-        body: "El host VIP sienta a los que llegan, sigue el mínimo de cada mesa y sirve las botellas pedidas desde la mesa. Una botella más se vende sin buscar camarero.",
+        body: "El host VIP sienta a los que llegan y sigue en directo el mínimo de cada mesa. Ves qué mesa se acerca a su mínimo y dónde proponer una botella más.",
       },
       {
         when: "Día siguiente",
@@ -2330,8 +2259,7 @@ const es: LandingContent = {
     features: [
       "Entradas y lista de invitados",
       "Mesas VIP en plano de sala, con señal",
-      "Pedidos de bebidas en la barra",
-      "Una cuenta dedicada por rol — puerta, barra, servicio VIP",
+      "Una cuenta dedicada por rol — puerta, servicio VIP, guardarropa",
       "Enlaces de promotor, comisiones calculadas por ti",
       "Contrato discoteca × organizador y cierre de la noche",
       "CRM y marketing: email, SMS, push, Meta Ads",
@@ -2343,8 +2271,7 @@ const es: LandingContent = {
       cells: cells(MARKS.yuno, [
         "Preventas, códigos promo, Apple Wallet",
         "Señal o pago en el local",
-        "Pide y paga por QR",
-        "Portero, camarero VIP, barman: cada uno su cuenta",
+        "Portero, host VIP, guardarropa: cada uno su cuenta",
         "Ranking en directo",
         "Aprobado por ambas partes",
         "Los cuatro, desde una sola base de clientes",
@@ -2357,7 +2284,6 @@ const es: LandingContent = {
         name: "Shotgun",
         kind: "Ticketera marketplace",
         cells: cells(MARKS.shotgun, [
-          "",
           "",
           "",
           "Solo escaneo en puerta",
@@ -2374,14 +2300,13 @@ const es: LandingContent = {
         cells: cells(MARKS.weezevent, [
           "",
           "Butacas numeradas, no mesas de club",
-          "Módulo cashless, 1,20 €/transacción",
           "Módulo de staff desde 1.000 €",
           "",
           "",
           "Email y SMS (WeezTarget)",
           "2,5 % por entrada",
         ]),
-        cost: "2,5 % por entrada (mín. 0,99 €), pagos cada 15 días, módulos de cashless y staff de pago.",
+        cost: "2,5 % por entrada (mín. 0,99 €), pagos cada 15 días, módulo de staff de pago.",
       },
       {
         name: "Xceed",
@@ -2389,7 +2314,6 @@ const es: LandingContent = {
         cells: cells(MARKS.xceed, [
           "",
           "Plan Pro",
-          "",
           "Escaneo en puerta",
           "Plan Pro",
           "",
@@ -2406,12 +2330,12 @@ const es: LandingContent = {
         {
           id: "sales",
           title: "Venta",
-          body: "Entradas, lista de invitados, mesas VIP y bebidas en una sola página de evento.",
+          body: "Entradas, lista de invitados y mesas VIP en una sola página de evento.",
         },
         {
           id: "ops",
           title: "Operaciones",
-          body: "Puerta, barra, servicio VIP y guardarropa: cada miembro del staff con su propia cuenta.",
+          body: "Puerta, servicio VIP y guardarropa: cada miembro del staff con su propia cuenta.",
         },
         {
           id: "crm",
@@ -2610,12 +2534,6 @@ const es: LandingContent = {
         highlight: false,
       },
       {
-        item: "Tarifa de servicio, bebidas",
-        who: "El cliente, además del precio",
-        amount: "3 %",
-        highlight: false,
-      },
-      {
         item: "Procesamiento de pago (Stripe)",
         who: "Tú, sobre lo cobrado",
         amount: "1,5 % + 0,25 €",
@@ -2633,7 +2551,7 @@ const es: LandingContent = {
       "Venta de entradas, preventas, códigos promo, Apple Wallet",
       "Lista de invitados con cupos y QR nominativos",
       "Mesas VIP, plano de sala, señales y servicio",
-      "Pedidos en barra por QR, pantalla de camarero",
+      "Pantallas de host VIP y guardarropa",
       "Escáner de puerta, PIN de staff, acceso de mánager",
       "Stripe Connect, contratos, cierres, facturas",
       "Enlaces de promotor y comisiones automáticas",
@@ -2665,15 +2583,15 @@ const es: LandingContent = {
     items: [
       {
         q: "¿Qué es Yuno?",
-        a: "Yuno es un software para discotecas, organizadores de eventos y RRPP. Una sola cuenta vende entradas, listas, reservados y copas, gestiona la puerta y el servicio en sala, escribe a tu base de clientes y reparte el dinero entre discoteca, organizador y RRPP. 0 € de suscripción, 0 % de comisión sobre tu precio.",
+        a: "Yuno es un software para discotecas, organizadores de eventos y RRPP. Una sola cuenta vende entradas, listas y reservados, gestiona la puerta y el servicio en sala, escribe a tu base de clientes y reparte el dinero entre discoteca, organizador y RRPP. 0 € de suscripción, 0 % de comisión sobre tu precio.",
       },
       {
         q: "¿De verdad es gratis para mí?",
-        a: "Sí. 0 € de suscripción y 0 % de comisión sobre tu precio. La tarifa de servicio de Yuno (4 % en entradas y mesas con un mínimo de 0,99 €, 3 % en bebidas) se suma al comprar y la paga el cliente. Tú solo pagas el procesamiento de Stripe: 1,5 % + 0,25 €.",
+        a: "Sí. 0 € de suscripción y 0 % de comisión sobre tu precio. La tarifa de servicio de Yuno (4 % en entradas y mesas con un mínimo de 0,99 €, con un máximo de 25 € en mesas) se suma al comprar y la paga el cliente. Tú solo pagas el procesamiento de Stripe: 1,5 % + 0,25 €.",
       },
       {
         q: "¿Es Yuno una alternativa a Xceed, Shotgun, Eventbrite o DICE?",
-        a: "Sí, para las noches de discoteca. Yuno vende tus entradas online como ellas, y cada comprador — desde tu página o desde el marketplace de Yuno (App Store y web app) — entra en tu propia base de clientes. Además reúne lo que las ticketeras no combinan: reservados con señal, pedidos de copas con QR, comisiones de RRPP y el reparto discoteca × organizador — sin suscripción y con 0 % de comisión sobre tu precio.",
+        a: "Sí, para las noches de discoteca. Yuno vende tus entradas online como ellas, y cada comprador — desde tu página o desde el marketplace de Yuno (App Store y web app) — entra en tu propia base de clientes. Además reúne lo que las ticketeras no combinan: reservados con señal, control de acceso, comisiones de RRPP y el reparto discoteca × organizador — sin suscripción y con 0 % de comisión sobre tu precio.",
       },
       {
         q: "¿Cuándo recibo mi dinero?",
@@ -2689,7 +2607,7 @@ const es: LandingContent = {
       },
       {
         q: "¿Cómo funcionan los reservados y las mesas VIP con señal?",
-        a: "El cliente elige su mesa en tu plano interactivo, escoge un pack, paga la señal online o paga en el local (tú decides) y puede pre-pedir sus botellas. Esa noche, el anfitrión VIP ve cada mesa en directo, sienta a quien llega sin reserva y sigue el consumo mínimo de cada reservado. La tarifa de servicio en mesas es del 4 %, con un máximo de 25 €, y la paga el cliente.",
+        a: "El cliente elige su mesa en tu plano interactivo, escoge un pack con sus botellas y paga la señal online o paga en el local (tú decides). Esa noche, el anfitrión VIP ve cada mesa en directo, sienta a quien llega sin reserva y sigue el consumo mínimo de cada reservado. La tarifa de servicio en mesas es del 4 %, con un máximo de 25 €, y la paga el cliente.",
       },
       {
         q: "¿Cómo se controlan y pagan las comisiones de los RRPP?",
@@ -2697,7 +2615,7 @@ const es: LandingContent = {
       },
       {
         q: "¿Cómo se reparten una noche la discoteca y el organizador?",
-        a: "El contrato se firma en Yuno, por pilar (entradas, mesas, lista) o por tramos sobre la facturación. Al cierre, la discoteca declara la barra y la puerta, el organizador acepta o impugna, y nada se mueve sin el acuerdo de ambas partes.",
+        a: "El contrato se firma en Yuno, por pilar (entradas, mesas, lista) o por tramos sobre la facturación. Al cierre, la discoteca declara lo que cobró en el local, el organizador acepta o impugna, y nada se mueve sin el acuerdo de ambas partes.",
       },
       {
         q: "¿De quién son los datos de mis clientes?",
@@ -2722,8 +2640,7 @@ const es: LandingContent = {
     note: "Sin tarjeta · Configuración contigo si quieres · EN · FR · ES",
   },
   footer: {
-    tagline:
-      "La plataforma de la noche. Entradas, mesas, barra, puerta y cobros — en un solo lugar.",
+    tagline: "La plataforma de la noche. Entradas, mesas, puerta y cobros — en un solo lugar.",
     cols: [
       {
         title: "Producto",

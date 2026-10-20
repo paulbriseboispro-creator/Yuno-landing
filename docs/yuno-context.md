@@ -4,15 +4,25 @@ Distilled from the September 2026 brochures (FR/EN presentation brochure, organi
 brochure, emailing brochure). These supersede older copy in `src/content/*` where they
 disagree — notably pricing: **there are no paid plans any more** (no Core/Essential/Pro/Elite).
 
+**Drinks pillar PAUSED since 1 Oct 2026 (Paul's decision).** Ordering drinks at the bar (QR
+ordering, Click & Collect, bartender screen, bar queue, drink menu, drink upsells, bottle
+pre-orders at table checkout, ordering from the table) is switched off in the Yuno app: code
+kept, nothing shown (yuno repo `docs/DRINKS_PILLAR_PAUSED.md`, flag `DRINKS_PILLAR_LIVE`).
+Public copy speaks of TWO pillars: tickets (guest list included) and VIP tables & bottle
+service (packages with their bottles, minimum spend tracked by the VIP host). Never present
+drinks, the bar or a bartender as part of the offer, and no "3% on drinks". Still live: the
+free drink included with a ticket or guest-list spot, shown at the door. The landing was
+cleaned on 20 Oct 2026; relaunching drinks = revert that commit (Pillars bar mockup included).
+
 ## One-liner
 Landing positioning (Sept 2026, Paul): "Sell your nights. Run them end to end." — other platforms
-stop at the ticket; Yuno also sells tables and drinks, runs the door and the bar, and splits the
+stop at the ticket; Yuno also sells VIP tables, runs the door and table service, and splits the
 money. The brochure line "Your ticketing platform keeps your customers. Yuno gives them back." is
 **retired as a headline**: most ticketing tools let organizers export buyers (Weezevent, Shotgun CRM),
 so buyer ownership is not Yuno's strongest edge. Don't lead with it or compare on it.
 
-Yuno is the platform for the night: one platform sells tickets, VIP tables and drinks, runs
-the door, the bar and table service, then splits the money between the club, the organizer
+Yuno is the platform for the night: one platform sells tickets (guest list included) and VIP
+tables, runs the door and table service, then splits the money between the club, the organizer
 and the promoters. No subscription. No app to install. Three languages (EN · FR · ES).
 Audience: clubs, organizers/collectives, promoters, agencies (+ DJs in the ecosystem).
 Do NOT mention BDE / student unions on the main landing (Paul's instruction).
@@ -23,7 +33,6 @@ Do NOT mention BDE / student unions on the main landing (Paul's instruction).
 | Subscription / commission | — | €0 · 0% |
 | Service fee, tickets | Customer, on top of price | 4% · min €0.99 |
 | Service fee, VIP tables | Customer, on amount charged | 4% · min €0.99 · max €25 |
-| Service fee, drinks | Customer, on top of price | 3% |
 | Card processing (Stripe) | Club / organizer | 1.5% + €0.25 |
 | Student associations | reduced minimum | €0.49 per ticket |
 
@@ -36,7 +45,7 @@ Emailing: 15,000 emails/month included, then €10 per 10,000 (€24 per 25,000)
 Only use the competitor facts from those docs — their Yuno columns are outdated. The landing
 matrix lives in `src/content/landing.ts` (`MARKS` + `compare`): Shotgun, Weezevent, Xceed.
 Fourvenues is deliberately left off (too close to Yuno in features — Paul, Sep 2026). Staff row pitch:
-each staff member has their own specialised account (bouncer, VIP waiter, bartender…), not "a PIN".
+each staff member has their own specialised account (bouncer, VIP waiter, cloakroom…), not "a PIN".
 Savings calculator (Money section, `COMPETITOR_KEEP` in `Money.tsx`): Yuno vs Shotgun (10% of sales)
 and Weezevent (2.5%, min €0.99), competitor fees counted as paid by the organizer, card fees included.
 Xceed left out: its 3% is close to Yuno's card fees on tickets alone. Don't allude to Shotgun's "J+72"
@@ -44,19 +53,19 @@ payout, and keep the verdict under the matrix generic (Yuno = the whole system o
 - Shotgun: ticketing marketplace (5M+ app users). 10% base commission on the organizer's sales,
   contracts negotiable case by case (Paul, Sep 2026); buyer fees capped at €15; payout after the event;
   15% on resale / waiting list. Has CRM, newsletters, push, promoter tracking links (commissions by
-  hand), offline scan, door sales. No VIP tables / floor plan, no bar, no staff roles, no club × organizer split.
+  hand), offline scan, door sales. No VIP tables / floor plan, no staff roles, no club × organizer split.
 - Weezevent: generalist ticketing, 2.5% min €0.99 per ticket (can be passed to buyer), payouts every
   15 days. Paid add-ons: cashless WeezPay €1.20/transaction, staff WeezCrew from €1,000. CRM
   WeezTarget free. Seat numbering but no club floor plan, no promoter management, no splits.
 - Xceed: clubbing marketplace (5M+ users). 3% per ticket, 15% on marketplace sales, €29–59/month
-  (lowest on annual). Floor plan + promoter accounting on Pro plan only. No bar, no CRM, no splits.
+  (lowest on annual). Floor plan + promoter accounting on Pro plan only. No CRM, no splits.
 - Fourvenues: closest competitor (Pacha, BCM…), full club suite (tables, POS, promoters, CRM, live
   analytics, API, passes, channel manager). Subscription on quote after a demo. No club × organizer split.
 - DICE (Fever since 2025): live-music ticket app, organizer pricing on quote. Not shown on the landing
   (no public info to compare).
 - NCLUB / NCLOUD (Spain): guest-list app + promoter CRM, €450/month or €999/month + VAT; no ticket sales.
 - Eventbrite: 3.5% + €0.49 (Essentials) to 5.5% + €0.99 (Pro) per ticket; generalist.
-- Yuno's real edges: whole night in one account (tables + bar + door + staff screens), club × organizer
+- Yuno's real edges: whole night in one account (tickets + tables + door + staff screens), club × organizer
   contract and statement (nobody else), promoter commissions computed, €0 / 0% at a published price
   (vs 10% at Shotgun, quote-only Fourvenues), money on your own Stripe account as you sell.
 - Don't claim "cheapest": the 4% (min €0.99) buyer fee is above Weezevent's per ticket once the
@@ -66,33 +75,33 @@ payout, and keep the verdict under the matrix generic (Yuno = the whole system o
   what the competitor publishes, with dated sources (`src/content/compare.ts`).
 - Emailing vs Brevo Standard (€79/mo) and Mailchimp Standard (€117.76/mo) for 50k emails; Yuno €34.
 
-## Three sales pillars
+## Two sales pillars (drinks paused since 1 Oct 2026)
 - Tickets & guest list: price tiers, presales, promo codes, free guest list before a set time,
   tracked links per promoter, Apple Wallet passes, waiting list. Checkout 30 s, no account, no app,
   card or Apple Pay.
-- VIP tables & bottle service: interactive floor plan, zones, packages, deposit or pay on site,
-  bottle pre-orders; VIP host tracks minimum spend and service live.
-- Drinks: order & pay from phone at the bar's QR, bartender sees queue; switchable per club/bar.
+- VIP tables & bottle service: interactive floor plan, zones, packages (bottles included), deposit
+  or pay on site; VIP host tracks minimum spend and service live.
+- (Paused, not to be presented: drinks ordered and paid from the phone at the bar's QR.)
 Each night has one switch per pillar; adopt pillar by pillar (guest list alone first is fine).
 
 ## Screens & staff
 Customer (event page), bouncer (one scanner for tickets/guests/tables, name search, duplicates
 explained, live entry counter, incidents), VIP host (living floor plan, walk-ins, min spend,
-orders from table), bartender, cloakroom, manager. Staff log in with a PIN — no account, no training.
+bottles served), cloakroom, manager. Staff log in with a PIN — no account, no training.
 Organizer team roles: admin, editor, scanner.
 
 ## Money
 Stripe Connect: money lands directly in the club's/organizer's account, under their name on the
 statement. Yuno never holds funds. Refunds, invoices, accounting exports in the dashboard.
 Club × organizer contract signed inside Yuno, pillar by pillar or as a tiered revenue share;
-at closing the club declares bar and door takings, organizer accepts or disputes; nothing moves
+at closing the club declares the takings it collected on site, organizer accepts or disputes; nothing moves
 without both sides agreeing. Promoters: personal link per night, sales and entries counted live,
 commission computed automatically, settlement in three tracked, timestamped steps.
 
 ## Data, CRM & emailing
 Marketing channels to present (Paul, Sep 2026 — assume them even if SMS and Meta Ads are still
 shipping): email, SMS, push notifications (Yuno app) and Meta Ads, all from the same customer base.
-Every buyer (ticket, table, drink, guest list) joins YOUR customer base. Import existing file,
+Every buyer (ticket, table, guest list) joins YOUR customer base. Import existing file,
 deduplicated, with attested consent. Segments on real purchases: takes tables, high basket,
 seen < 60 days, regulars slipping away. Email editor reads the night at send time (open tier
 price, tables left, guest-list spots). 9 automations: new night, abandoned cart, price going up,

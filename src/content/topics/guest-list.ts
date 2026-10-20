@@ -6,7 +6,7 @@
 // online", "control de acceso discoteca app" (ES). Facts: docs/yuno-context.md.
 import type { TopicPageContent } from "../topic-types";
 
-const UPDATED = "2026-09-29";
+const UPDATED = "2026-10-20";
 const TWINS = {
   en: "/nightclub-guest-list-software",
   fr: "/fr/guest-list-soiree-logiciel",
@@ -42,7 +42,7 @@ const en: TopicPageContent = {
     ],
     bullets: [
       "€0 subscription and 0% commission for the club or organizer. Guests sign up for the guest list for free; the buyer service fee (4%, min €0.99) applies to paid tickets — see the pricing page.",
-      "Each night has one switch per pillar (tickets, tables, drinks): you can run the guest list alone, then add the rest when you are ready.",
+      "Each night has one switch per pillar (tickets, tables): you can run the guest list alone, then add the rest when you are ready.",
       "Everyone who signs up joins your own customer base, with email consent attested, so you can invite them back to the next night.",
     ],
   },
@@ -81,7 +81,7 @@ const en: TopicPageContent = {
       },
       {
         title: "A screen for each role",
-        body: "Each staff member has their own role-specific screen: bouncer, VIP host, bartender, cloakroom, manager. The organizer team also has admin, editor and scanner roles.",
+        body: "Each staff member has their own role-specific screen: bouncer, VIP host, cloakroom, manager. The organizer team also has admin, editor and scanner roles.",
       },
     ],
   },
@@ -161,7 +161,7 @@ const en: TopicPageContent = {
     items: [
       {
         q: "Can I use Yuno for the guest list only?",
-        a: "Yes. Each night has one switch per pillar (tickets, tables, drinks), so you can run the guest list alone and add tickets, tables or drinks later. The first real night in Paris ran on the guest list, online sign-ups and a verified door scan.",
+        a: "Yes. Each night has one switch per pillar (tickets, tables), so you can run the guest list alone and add tickets or tables later. The first real night in Paris ran on the guest list, online sign-ups and a verified door scan.",
       },
       {
         q: "How does the online QR code check-in work?",
@@ -185,7 +185,7 @@ const en: TopicPageContent = {
       },
       {
         q: "How do my staff log in?",
-        a: "Each staff member has their own role-specific screen: bouncer, VIP host, bartender, cloakroom or manager. There is no account for guests and no training needed for the door.",
+        a: "Each staff member has their own role-specific screen: bouncer, VIP host, cloakroom or manager. There is no account for guests and no training needed for the door.",
       },
       {
         q: "What does it cost?",
@@ -234,7 +234,7 @@ const fr: TopicPageContent = {
     ],
     bullets: [
       "0 € d'abonnement et 0 % de commission pour le club ou l'organisateur. L'inscription à la guest list est gratuite pour l'invité ; les frais de service acheteur (4 %, min. 0,99 €) s'appliquent aux billets payants — voir la page tarifs.",
-      "Chaque soirée a un interrupteur par pilier (billets, tables, boissons) : vous pouvez lancer la guest list seule, puis ajouter le reste quand vous êtes prêt.",
+      "Chaque soirée a un interrupteur par pilier (billets, tables) : vous pouvez lancer la guest list seule, puis ajouter le reste quand vous êtes prêt.",
       "Toute personne inscrite rejoint votre propre base clients, avec le consentement email attesté, pour la réinviter à votre prochaine soirée.",
     ],
   },
@@ -273,7 +273,7 @@ const fr: TopicPageContent = {
       },
       {
         title: "Un écran par rôle",
-        body: "Chaque membre de l'équipe a son propre écran adapté à son rôle : videur, responsable VIP, barman, vestiaire, manager. L'équipe organisateur dispose aussi des rôles admin, éditeur et scanner.",
+        body: "Chaque membre de l'équipe a son propre écran adapté à son rôle : videur, responsable VIP, vestiaire, manager. L'équipe organisateur dispose aussi des rôles admin, éditeur et scanner.",
       },
     ],
   },
@@ -357,7 +357,7 @@ const fr: TopicPageContent = {
     items: [
       {
         q: "Puis-je utiliser Yuno uniquement pour la guest list ?",
-        a: "Oui. Chaque soirée a un interrupteur par pilier (billets, tables, boissons) : vous pouvez lancer la guest list seule et ajouter billets, tables ou boissons plus tard. La première vraie soirée à Paris a tourné avec la guest list, des inscriptions en ligne et un scan à l'entrée vérifié.",
+        a: "Oui. Chaque soirée a un interrupteur par pilier (billets, tables) : vous pouvez lancer la guest list seule et ajouter billets ou tables plus tard. La première vraie soirée à Paris a tourné avec la guest list, des inscriptions en ligne et un scan à l'entrée vérifié.",
       },
       {
         q: "Comment fonctionne le contrôle d'accès par QR code ?",
@@ -381,7 +381,7 @@ const fr: TopicPageContent = {
       },
       {
         q: "Comment mon équipe se connecte-t-elle ?",
-        a: "Chaque membre de l'équipe a son propre écran adapté à son rôle : videur, responsable VIP, barman, vestiaire ou manager. L'invité n'a pas de compte à créer et l'équipe d'entrée n'a pas besoin de formation.",
+        a: "Chaque membre de l'équipe a son propre écran adapté à son rôle : videur, responsable VIP, vestiaire ou manager. L'invité n'a pas de compte à créer et l'équipe d'entrée n'a pas besoin de formation.",
       },
       {
         q: "Combien ça coûte ?",
@@ -439,7 +439,7 @@ const es: TopicPageContent = {
     ],
     bullets: [
       "0 € de cuota y 0 % de comisión para la discoteca o el organizador. Apuntarse a la lista de invitados es gratis para el invitado; los gastos de servicio al comprador (4 %, mín. 0,99 €) se aplican a las entradas de pago — consulta la página de precios.",
-      "Cada noche tiene un interruptor por pilar (entradas, mesas, copas): puedes empezar solo con la lista de invitados y añadir el resto cuando quieras.",
+      "Cada noche tiene un interruptor por pilar (entradas, mesas): puedes empezar solo con la lista de invitados y añadir el resto cuando quieras.",
       "Todas las personas que se apuntan pasan a tu propia base de clientes, con el consentimiento por email acreditado, para invitarlas de nuevo a tu próxima noche.",
     ],
   },
@@ -478,7 +478,7 @@ const es: TopicPageContent = {
       },
       {
         title: "Una pantalla para cada rol",
-        body: "Cada miembro del equipo tiene su propia pantalla según su rol: portero, responsable VIP, camarero, guardarropa, manager. El equipo del organizador también cuenta con los roles admin, editor y escáner.",
+        body: "Cada miembro del equipo tiene su propia pantalla según su rol: portero, responsable VIP, guardarropa, manager. El equipo del organizador también cuenta con los roles admin, editor y escáner.",
       },
     ],
   },
@@ -562,7 +562,7 @@ const es: TopicPageContent = {
     items: [
       {
         q: "¿Puedo usar Yuno solo para la lista de invitados?",
-        a: "Sí. Cada noche tiene un interruptor por pilar (entradas, mesas, copas): puedes empezar solo con la lista de invitados y añadir entradas, mesas o copas más adelante. La primera noche real en París funcionó con la lista, inscripciones online y un escaneo en puerta verificado.",
+        a: "Sí. Cada noche tiene un interruptor por pilar (entradas, mesas): puedes empezar solo con la lista de invitados y añadir entradas o mesas más adelante. La primera noche real en París funcionó con la lista, inscripciones online y un escaneo en puerta verificado.",
       },
       {
         q: "¿Cómo funciona el control de acceso con QR?",
@@ -586,7 +586,7 @@ const es: TopicPageContent = {
       },
       {
         q: "¿Cómo accede mi equipo?",
-        a: "Cada miembro del equipo tiene su propia pantalla según su rol: portero, responsable VIP, camarero, guardarropa o manager. El invitado no crea ninguna cuenta y el equipo de puerta no necesita formación.",
+        a: "Cada miembro del equipo tiene su propia pantalla según su rol: portero, responsable VIP, guardarropa o manager. El invitado no crea ninguna cuenta y el equipo de puerta no necesita formación.",
       },
       {
         q: "¿Cuánto cuesta?",

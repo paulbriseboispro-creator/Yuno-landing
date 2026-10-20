@@ -59,10 +59,10 @@ const en: RoleLandingContent = {
   free: {
     tag: "Pricing",
     title: "€0 subscription. 4% per ticket, paid by the buyer.",
-    body: "No mandatory subscription to sell. Yuno's fee is a flat 4% per ticket and VIP table (€0.99 minimum), 3% on drinks, added at checkout and paid by the buyer, so it isn't taken out of your revenue. You only ever pay Stripe's processing fee.",
+    body: "No mandatory subscription to sell. Yuno's fee is a flat 4% per ticket and VIP table (€0.99 minimum), added at checkout and paid by the buyer, so it isn't taken out of your revenue. You only ever pay Stripe's processing fee.",
     bullets: [
       "€0 subscription and 0% commission on your price",
-      "Flat 4% tickets & tables, 3% drinks (€0.99 min), paid by the buyer",
+      "Flat 4% tickets & tables (€0.99 min), paid by the buyer",
       "Early Bird / Regular / Late tiers with quotas",
       "Fees shown to the buyer before payment — no surprises",
     ],
@@ -261,7 +261,7 @@ const en: RoleLandingContent = {
       focus: {
         tag: "Your cost: 0 €",
         title: "Free for you. The 4% rides on the buyer, not your margin.",
-        body: "No subscription to start selling and no Yuno commission taken from your revenue. The 4% service fee (€0.99 min, 3% on drinks) is added at checkout and paid by the buyer, so it never touches your share. On a co-produced night the split and the fees are shown to the cent. The only cost that reaches you is Stripe's standard processing fee — the same one you'd pay on any platform.",
+        body: "No subscription to start selling and no Yuno commission taken from your revenue. The 4% service fee (€0.99 min) is added at checkout and paid by the buyer, so it never touches your share. On a co-produced night the split and the fees are shown to the cent. The only cost that reaches you is Stripe's standard processing fee — the same one you'd pay on any platform.",
         bullets: [
           "No subscription, no Yuno commission on your revenue",
           "The 4% (€0.99 min) is paid by the buyer, never deducted from you",
@@ -286,7 +286,7 @@ const en: RoleLandingContent = {
       focus: {
         tag: "Auto-split with the venue",
         title: "Agree the split once. It applies to every sale.",
-        body: "Set the revenue share with your host venue and it's attached to the event before tickets sell. The money splits venue ↔ organizer at each sale through Stripe Connect, by item type. The club stays merchant of record (alcohol licence); you see your share to the cent.",
+        body: "Set the revenue share with your host venue and it's attached to the event before tickets sell. The money splits venue ↔ organizer at each sale through Stripe Connect, by item type. The club stays merchant of record; you see your share to the cent.",
         bullets: [
           "Revenue-share contract with the host venue",
           "Automatic split venue ↔ organizer via Stripe Connect, by item",
@@ -397,17 +397,17 @@ const en: RoleLandingContent = {
       hero: {
         badge: "On the door",
         titleLead: "Your own door app — ",
-        titleEmphasis: "scan tickets, drinks and cloakroom",
+        titleEmphasis: "scan tickets, tables and cloakroom",
         titleRest: ".",
         subtitle:
-          "Turn any phone into a scanner. Tickets, drinks and cloakroom, each scanned by type, with a live guest list synced across every device.",
+          "Turn any phone into a scanner. Tickets, tables and cloakroom, each scanned by type, with a live guest list synced across every device.",
       },
       focus: {
         tag: "Check-in & guest list",
         title: "The door runs on your team's phones.",
-        body: "Each scanner signs in and validates entry by type — tickets, drinks, cloakroom — so nothing gets mixed up. The guest list is allocated per event with a share link your promoters and the host club can fill, and sign-ups sync live across every device.",
+        body: "Each scanner signs in and validates entry by type — tickets, tables, cloakroom — so nothing gets mixed up. The guest list is allocated per event with a share link your promoters and the host club can fill, and sign-ups sync live across every device.",
         bullets: [
-          "Multi-type scanner: tickets, drinks, cloakroom",
+          "Multi-type scanner: tickets, tables, cloakroom",
           "Live guest list with a shareable sign-up link",
           "Synced across every device at the door",
         ],
@@ -489,10 +489,10 @@ const fr: RoleLandingContent = {
   free: {
     tag: "Le prix",
     title: "0 € d'abonnement. 4 % par billet, payés par l'acheteur.",
-    body: "Aucun abonnement obligatoire pour vendre. Le frais Yuno est un taux plat de 4 % par billet et table VIP (0,99 € minimum), 3 % sur les boissons, ajouté au paiement et payé par l'acheteur, donc jamais déduit de vos revenus. Vous ne réglez que les frais de traitement Stripe.",
+    body: "Aucun abonnement obligatoire pour vendre. Le frais Yuno est un taux plat de 4 % par billet et table VIP (0,99 € minimum), ajouté au paiement et payé par l'acheteur, donc jamais déduit de vos revenus. Vous ne réglez que les frais de traitement Stripe.",
     bullets: [
       "0 € d'abonnement et 0 % de commission sur votre prix",
-      "Taux plat 4 % billets & tables, 3 % boissons (min 0,99 €), payés par l'acheteur",
+      "Taux plat 4 % billets & tables (min 0,99 €), payés par l'acheteur",
       "Paliers Early Bird / Regular / Late avec quotas",
       "Frais affichés à l'acheteur avant le paiement — aucune surprise",
     ],
@@ -691,7 +691,7 @@ const fr: RoleLandingContent = {
       focus: {
         tag: "Votre coût : 0 €",
         title: "Gratuit pour vous. Les 4 % sont sur l'acheteur, pas sur votre marge.",
-        body: "Aucun abonnement pour commencer à vendre et aucune commission Yuno prélevée sur vos revenus. Les 4 % de frais de service (min 0,99 €, 3 % sur les boissons) sont ajoutés au paiement et payés par l'acheteur : ils ne touchent jamais votre part. Sur une soirée co-produite, la répartition et les frais sont affichés au centime près. Le seul coût qui vous revient, ce sont les frais de traitement Stripe — les mêmes que sur n'importe quelle plateforme.",
+        body: "Aucun abonnement pour commencer à vendre et aucune commission Yuno prélevée sur vos revenus. Les 4 % de frais de service (min 0,99 €) sont ajoutés au paiement et payés par l'acheteur : ils ne touchent jamais votre part. Sur une soirée co-produite, la répartition et les frais sont affichés au centime près. Le seul coût qui vous revient, ce sont les frais de traitement Stripe — les mêmes que sur n'importe quelle plateforme.",
         bullets: [
           "Aucun abonnement, aucune commission Yuno sur vos revenus",
           "Les 4 % (min 0,99 €) sont payés par l'acheteur, jamais déduits de vous",
@@ -716,7 +716,7 @@ const fr: RoleLandingContent = {
       focus: {
         tag: "Répartition auto avec la salle",
         title: "Convenez la répartition une fois. Elle s'applique à chaque vente.",
-        body: "Définissez le partage des revenus avec votre établissement hôte : il est attaché à l'événement avant la vente. L'argent se répartit salle ↔ orga à chaque vente via Stripe Connect, par type d'item. Le club reste vendeur de record (licence alcool) ; vous voyez votre part au centime près.",
+        body: "Définissez le partage des revenus avec votre établissement hôte : il est attaché à l'événement avant la vente. L'argent se répartit salle ↔ orga à chaque vente via Stripe Connect, par type d'item. Le club reste vendeur de record ; vous voyez votre part au centime près.",
         bullets: [
           "Contrat de partage des revenus avec l'établissement hôte",
           "Répartition automatique salle ↔ orga via Stripe Connect, par item",
@@ -827,17 +827,17 @@ const fr: RoleLandingContent = {
       hero: {
         badge: "À l'entrée",
         titleLead: "Votre propre app d'accès — ",
-        titleEmphasis: "scannez billets, boissons et vestiaire",
+        titleEmphasis: "scannez billets, tables et vestiaire",
         titleRest: ".",
         subtitle:
-          "Transformez n'importe quel téléphone en scanneur. Billets, boissons et vestiaire, chacun scanné par type, avec une liste d'invités synchronisée sur tous les appareils.",
+          "Transformez n'importe quel téléphone en scanneur. Billets, tables et vestiaire, chacun scanné par type, avec une liste d'invités synchronisée sur tous les appareils.",
       },
       focus: {
         tag: "Contrôle d'accès & liste d'invités",
         title: "L'entrée tourne sur les téléphones de votre équipe.",
-        body: "Chaque scanneur se connecte et valide l'entrée par type — billets, boissons, vestiaire — pour que rien ne se mélange. La liste d'invités est allouée par événement avec un lien de partage que vos promoteurs et l'établissement hôte peuvent remplir, et les inscriptions se synchronisent en direct sur tous les appareils.",
+        body: "Chaque scanneur se connecte et valide l'entrée par type — billets, tables, vestiaire — pour que rien ne se mélange. La liste d'invités est allouée par événement avec un lien de partage que vos promoteurs et l'établissement hôte peuvent remplir, et les inscriptions se synchronisent en direct sur tous les appareils.",
         bullets: [
-          "Scanneur multi-types : billets, boissons, vestiaire",
+          "Scanneur multi-types : billets, tables, vestiaire",
           "Liste d'invités avec lien d'inscription partageable",
           "Synchronisé sur tous les appareils à l'entrée",
         ],

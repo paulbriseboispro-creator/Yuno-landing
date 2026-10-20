@@ -6,7 +6,7 @@
 // plans page. Facts: docs/yuno-context.md (pricing table, worked example, competitors).
 import type { TopicPageContent } from "../topic-types";
 
-const UPDATED = "2026-09-29";
+const UPDATED = "2026-10-20";
 const TWINS = {
   en: "/pricing",
   fr: "/fr/pricing",
@@ -37,12 +37,12 @@ const en: TopicPageContent = {
   answer: {
     title: "In short",
     paragraphs: [
-      "Yuno costs €0 a month and takes 0% commission on the price you set. There is one service level: no Core, Pro or Elite plan, no paid options, no annual contract. Ticketing, guest list, VIP tables, bar ordering, door scanning, promoter commissions, club × organizer contracts and the CRM are all included.",
-      "Yuno earns a service fee that is added to your displayed price and paid by the end customer: 4% on tickets (minimum €0.99), 4% on VIP tables (minimum €0.99, maximum €25) and 3% on drinks. The only cost on your side is card processing by Stripe, 1.5% + €0.25 on what you collect, and the money goes straight to your own account.",
+      "Yuno costs €0 a month and takes 0% commission on the price you set. There is one service level: no Core, Pro or Elite plan, no paid options, no annual contract. Ticketing, guest list, VIP tables, door scanning, promoter commissions, club × organizer contracts and the CRM are all included.",
+      "Yuno earns a service fee that is added to your displayed price and paid by the end customer: 4% on tickets (minimum €0.99) and 4% on VIP tables (minimum €0.99, maximum €25). The only cost on your side is card processing by Stripe, 1.5% + €0.25 on what you collect, and the money goes straight to your own account.",
     ],
     bullets: [
       "€0 subscription and 0% commission for the club, organizer or promoter.",
-      "Paid by the customer: tickets 4% (min €0.99) · tables 4% (min €0.99, max €25) · drinks 3%.",
+      "Paid by the customer: tickets 4% (min €0.99) · tables 4% (min €0.99, max €25).",
       "Paid by you: Stripe card processing, 1.5% + €0.25. Yuno never holds your funds.",
       "Emailing to your customers: 15,000 emails a month included, then €10 per 10,000.",
     ],
@@ -57,12 +57,12 @@ const en: TopicPageContent = {
         body: "Price tiers, presales, promo codes, Apple Wallet passes, and a guest list with quotas and named QR codes. Checkout takes about thirty seconds, with no account and no app.",
       },
       {
-        title: "VIP tables & drinks",
-        body: "An interactive floor plan with deposits and bottle pre-orders, and drink ordering from the bar's QR code, with a screen for the bartender.",
+        title: "VIP tables & bottle service",
+        body: "An interactive floor plan with zones and packages (bottles included), a deposit or payment on site, and each table's minimum spend tracked live by your VIP host.",
       },
       {
-        title: "Door, bar and staff screens",
-        body: "One scanner for tickets, guests and tables, a live entry counter, and a screen for each role — bouncer, VIP host, bartender — with no training.",
+        title: "Door and staff screens",
+        body: "One scanner for tickets, guests and tables, a live entry counter, and a screen for each role — bouncer, VIP host, cloakroom — with no training.",
       },
       {
         title: "Promoters & club × organizer split",
@@ -91,7 +91,6 @@ const en: TopicPageContent = {
         "The customer, on the amount charged",
         "4% · min. €0.99 · max. €25",
       ],
-      ["Service fee, drinks", "The customer, on top of your price", "3%"],
       ["Card processing (Stripe)", "You (club or organizer), on what you collect", "1.5% + €0.25"],
       ["Emailing to your customers", "Included", "15,000 emails/month, then €10 per 10,000"],
       ["Plans, tiers or paid options", "None", "One service level"],
@@ -135,7 +134,7 @@ const en: TopicPageContent = {
     items: [
       {
         q: "How much does Yuno cost?",
-        a: "€0 a month and 0% commission on your price. The customer pays a service fee on top: 4% on tickets (min. €0.99), 4% on VIP tables (min. €0.99, max. €25) and 3% on drinks. You only pay Stripe's card processing, 1.5% + €0.25.",
+        a: "€0 a month and 0% commission on your price. The customer pays a service fee on top: 4% on tickets (min. €0.99) and 4% on VIP tables (min. €0.99, max. €25). You only pay Stripe's card processing, 1.5% + €0.25.",
       },
       {
         q: "Is there a ticketing platform with no commission?",
@@ -143,7 +142,7 @@ const en: TopicPageContent = {
       },
       {
         q: "Who pays Yuno's service fee?",
-        a: "The end customer, added to your displayed price at checkout: 4% on tickets (min. €0.99), 4% on tables (min. €0.99, max. €25), 3% on drinks. The club or organizer does not pay it.",
+        a: "The end customer, added to your displayed price at checkout: 4% on tickets (min. €0.99) and 4% on tables (min. €0.99, max. €25). The club or organizer does not pay it.",
       },
       {
         q: "What does the club or organizer pay?",
@@ -228,12 +227,12 @@ const fr: TopicPageContent = {
   answer: {
     title: "En bref",
     paragraphs: [
-      "Yuno coûte 0 € par mois et ne prend aucune commission (0 %) sur le prix que vous fixez. Il n'y a qu'un seul niveau de service : pas de formule Core, Pro ou Elite, pas d'options payantes, pas d'engagement annuel. Billetterie, guest list, tables VIP, commande au bar, scan à la porte, commissions des promoteurs, contrats club × organisateur et CRM sont inclus.",
-      "Yuno se rémunère par des frais de service ajoutés au prix affiché et payés par le client final : 4 % sur les billets (minimum 0,99 €), 4 % sur les tables VIP (minimum 0,99 €, maximum 25 €) et 3 % sur les boissons. Seul coût de votre côté : le traitement bancaire de Stripe, 1,5 % + 0,25 € sur l'encaissement, et l'argent arrive directement sur votre propre compte.",
+      "Yuno coûte 0 € par mois et ne prend aucune commission (0 %) sur le prix que vous fixez. Il n'y a qu'un seul niveau de service : pas de formule Core, Pro ou Elite, pas d'options payantes, pas d'engagement annuel. Billetterie, guest list, tables VIP, scan à la porte, commissions des promoteurs, contrats club × organisateur et CRM sont inclus.",
+      "Yuno se rémunère par des frais de service ajoutés au prix affiché et payés par le client final : 4 % sur les billets (minimum 0,99 €) et 4 % sur les tables VIP (minimum 0,99 €, maximum 25 €). Seul coût de votre côté : le traitement bancaire de Stripe, 1,5 % + 0,25 € sur l'encaissement, et l'argent arrive directement sur votre propre compte.",
     ],
     bullets: [
       "0 € d'abonnement et 0 % de commission pour le club, l'organisateur ou le promoteur.",
-      "Payé par le client : billets 4 % (min. 0,99 €) · tables 4 % (min. 0,99 €, max. 25 €) · boissons 3 %.",
+      "Payé par le client : billets 4 % (min. 0,99 €) · tables 4 % (min. 0,99 €, max. 25 €).",
       "Payé par vous : traitement bancaire Stripe, 1,5 % + 0,25 €. Yuno ne détient jamais vos fonds.",
       "Emailing vers vos clients : 15 000 emails par mois inclus, puis 10 € les 10 000.",
     ],
@@ -248,12 +247,12 @@ const fr: TopicPageContent = {
         body: "Paliers de prix, préventes, codes promo, pass Apple Wallet, et une guest list avec quotas et QR nominatifs. Le paiement prend une trentaine de secondes, sans compte ni app.",
       },
       {
-        title: "Tables VIP et boissons",
-        body: "Un plan de salle interactif avec acomptes et précommande de bouteilles, et la commande de boissons depuis le QR code du bar, avec un écran pour le barman.",
+        title: "Tables VIP et service bouteilles",
+        body: "Un plan de salle interactif avec zones et formules (bouteilles incluses), un acompte ou un paiement sur place, et le minimum de consommation de chaque table suivi en direct par votre responsable VIP.",
       },
       {
-        title: "Porte, bar et écrans du staff",
-        body: "Un scanner pour les billets, les invités et les tables, un compteur d'entrées en direct, et un écran par rôle — videur, responsable VIP, barman — sans formation.",
+        title: "Porte et écrans du staff",
+        body: "Un scanner pour les billets, les invités et les tables, un compteur d'entrées en direct, et un écran par rôle — videur, responsable VIP, vestiaire — sans formation.",
       },
       {
         title: "Promoteurs et répartition club × organisateur",
@@ -282,7 +281,6 @@ const fr: TopicPageContent = {
         "Le client, sur le montant débité",
         "4 % · min. 0,99 € · max. 25 €",
       ],
-      ["Frais de service, boissons", "Le client, en plus de votre prix", "3 %"],
       [
         "Traitement bancaire (Stripe)",
         "Vous (club ou organisateur), sur l'encaissement",
@@ -333,7 +331,7 @@ const fr: TopicPageContent = {
     items: [
       {
         q: "Combien coûte une billetterie pour une soirée avec Yuno ?",
-        a: "0 € par mois et 0 % de commission sur votre prix. Le client paie des frais de service en plus : 4 % sur les billets (min. 0,99 €), 4 % sur les tables VIP (min. 0,99 €, max. 25 €) et 3 % sur les boissons. Vous ne payez que le traitement bancaire Stripe, 1,5 % + 0,25 €.",
+        a: "0 € par mois et 0 % de commission sur votre prix. Le client paie des frais de service en plus : 4 % sur les billets (min. 0,99 €) et 4 % sur les tables VIP (min. 0,99 €, max. 25 €). Vous ne payez que le traitement bancaire Stripe, 1,5 % + 0,25 €.",
       },
       {
         q: "Existe-t-il une billetterie sans commission ?",
@@ -341,7 +339,7 @@ const fr: TopicPageContent = {
       },
       {
         q: "Qui paie les frais de service de Yuno ?",
-        a: "Le client final, ajoutés à votre prix affiché au moment du paiement : 4 % sur les billets (min. 0,99 €), 4 % sur les tables (min. 0,99 €, max. 25 €), 3 % sur les boissons. Le club ou l'organisateur ne les paie pas.",
+        a: "Le client final, ajoutés à votre prix affiché au moment du paiement : 4 % sur les billets (min. 0,99 €) et 4 % sur les tables (min. 0,99 €, max. 25 €). Le club ou l'organisateur ne les paie pas.",
       },
       {
         q: "Que paie le club ou l'organisateur ?",
@@ -435,12 +433,12 @@ const es: TopicPageContent = {
   answer: {
     title: "En breve",
     paragraphs: [
-      "Yuno cuesta 0 € al mes y no cobra comisión (0 %) sobre el precio que tú fijas. Hay un solo nivel de servicio: sin planes Core, Pro o Elite, sin opciones de pago y sin permanencia anual. Venta de entradas, lista de invitados, reservados, pedidos en barra, control de puerta, comisiones de RRPP, contratos discoteca × organizador y CRM están incluidos.",
-      "Yuno cobra unos gastos de servicio que se suman a tu precio y paga el cliente final: 4 % en entradas (mínimo 0,99 €), 4 % en mesas VIP (mínimo 0,99 €, máximo 25 €) y 3 % en copas. Tu único coste es el procesamiento de tarjeta de Stripe, 1,5 % + 0,25 € sobre lo que cobras, y el dinero llega directo a tu propia cuenta.",
+      "Yuno cuesta 0 € al mes y no cobra comisión (0 %) sobre el precio que tú fijas. Hay un solo nivel de servicio: sin planes Core, Pro o Elite, sin opciones de pago y sin permanencia anual. Venta de entradas, lista de invitados, reservados, control de puerta, comisiones de RRPP, contratos discoteca × organizador y CRM están incluidos.",
+      "Yuno cobra unos gastos de servicio que se suman a tu precio y paga el cliente final: 4 % en entradas (mínimo 0,99 €) y 4 % en mesas VIP (mínimo 0,99 €, máximo 25 €). Tu único coste es el procesamiento de tarjeta de Stripe, 1,5 % + 0,25 € sobre lo que cobras, y el dinero llega directo a tu propia cuenta.",
     ],
     bullets: [
       "0 € de cuota y 0 % de comisión para la discoteca, el organizador o el RRPP.",
-      "Lo paga el cliente: entradas 4 % (mín. 0,99 €) · mesas 4 % (mín. 0,99 €, máx. 25 €) · copas 3 %.",
+      "Lo paga el cliente: entradas 4 % (mín. 0,99 €) · mesas 4 % (mín. 0,99 €, máx. 25 €).",
       "Lo pagas tú: procesamiento de tarjeta de Stripe, 1,5 % + 0,25 €. Yuno nunca retiene tus fondos.",
       "Emailing a tus clientes: 15.000 emails al mes incluidos, y luego 10 € por cada 10.000.",
     ],
@@ -455,12 +453,12 @@ const es: TopicPageContent = {
         body: "Tramos de precio, preventas, códigos promocionales, pases de Apple Wallet y una lista de invitados con cupos y QR nominativos. El pago lleva unos treinta segundos, sin cuenta ni app.",
       },
       {
-        title: "Mesas VIP y copas",
-        body: "Un plano interactivo con señales y botellas reservadas de antemano, y pedidos de copas desde el QR de la barra, con una pantalla para el camarero.",
+        title: "Mesas VIP y servicio de botellas",
+        body: "Un plano interactivo con zonas y packs (botellas incluidas), señal o pago en el local, y el consumo mínimo de cada mesa seguido en directo por tu responsable VIP.",
       },
       {
-        title: "Puerta, barra y pantallas del staff",
-        body: "Un escáner para entradas, invitados y mesas, un contador de entradas en directo y una pantalla por rol — portero, responsable VIP, camarero — sin formación.",
+        title: "Puerta y pantallas del staff",
+        body: "Un escáner para entradas, invitados y mesas, un contador de entradas en directo y una pantalla por rol — portero, responsable VIP, guardarropa — sin formación.",
       },
       {
         title: "RRPP y reparto discoteca × organizador",
@@ -489,7 +487,6 @@ const es: TopicPageContent = {
         "El cliente, sobre el importe cobrado",
         "4 % · mín. 0,99 € · máx. 25 €",
       ],
-      ["Gastos de servicio, copas", "El cliente, además de tu precio", "3 %"],
       [
         "Procesamiento de tarjeta (Stripe)",
         "Tú (discoteca u organizador), sobre lo cobrado",
@@ -540,7 +537,7 @@ const es: TopicPageContent = {
     items: [
       {
         q: "¿Cuánto cobra Yuno como ticketera?",
-        a: "0 € al mes y 0 % de comisión sobre tu precio. El cliente paga además unos gastos de servicio: 4 % en entradas (mín. 0,99 €), 4 % en mesas VIP (mín. 0,99 €, máx. 25 €) y 3 % en copas. Tú solo pagas el procesamiento de tarjeta de Stripe, 1,5 % + 0,25 €.",
+        a: "0 € al mes y 0 % de comisión sobre tu precio. El cliente paga además unos gastos de servicio: 4 % en entradas (mín. 0,99 €) y 4 % en mesas VIP (mín. 0,99 €, máx. 25 €). Tú solo pagas el procesamiento de tarjeta de Stripe, 1,5 % + 0,25 €.",
       },
       {
         q: "¿Existe una ticketera sin comisiones?",
@@ -548,7 +545,7 @@ const es: TopicPageContent = {
       },
       {
         q: "¿Quién paga los gastos de servicio de Yuno?",
-        a: "El cliente final, sumados a tu precio al pagar: 4 % en entradas (mín. 0,99 €), 4 % en mesas (mín. 0,99 €, máx. 25 €) y 3 % en copas. La discoteca o el organizador no los paga.",
+        a: "El cliente final, sumados a tu precio al pagar: 4 % en entradas (mín. 0,99 €) y 4 % en mesas (mín. 0,99 €, máx. 25 €). La discoteca o el organizador no los paga.",
       },
       {
         q: "¿Qué paga la discoteca o el organizador?",

@@ -3,16 +3,7 @@
 // proof block); /contact also carries the segment so a lead arrives pre-tagged
 // with the role + pain. Unknown values are dropped so the URL stays clean.
 
-const CLUB_PAINS = new Set([
-  "vip",
-  "co-soiree",
-  "data",
-  "fidelite",
-  "live",
-  "bar",
-  "staff",
-  "compta",
-]);
+const CLUB_PAINS = new Set(["vip", "co-soiree", "data", "fidelite", "live", "staff", "compta"]);
 const ORGA_PAINS = new Set([
   "orga",
   "prix",

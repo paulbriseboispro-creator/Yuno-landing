@@ -20,11 +20,9 @@ import dashPromoters from "@/assets/dashboards/owner/promoters.png";
 import dashCustomers from "@/assets/dashboards/owner/customers.png";
 import dashLoyalty from "@/assets/dashboards/owner/loyalty.png";
 import dashSms from "@/assets/dashboards/owner/sms.png";
-import dashOrders from "@/assets/dashboards/owner/orders.png";
 import dashInvoices from "@/assets/dashboards/owner/invoices.png";
 import dashAccounting from "@/assets/dashboards/owner/accounting.png";
 import dashStaff from "@/assets/dashboards/owner/staff.png";
-import dashDrinkMenu from "@/assets/dashboards/owner/drink-menu.png";
 import dashVipService from "@/assets/dashboards/owner/vip-service.png";
 import dashNotifications from "@/assets/dashboards/owner/notifications.png";
 // Live Night control room — a real owner screen (lives outside the 20-tile set).
@@ -32,8 +30,10 @@ import dashLiveNight from "@/assets/dashboards/live-night.png";
 // Phone showcase — a club's customer-facing event page.
 import eventFlyer from "@/assets/bde/event-flyer.png";
 
-// All 20 owner dashboards, in owner-sidebar order (Overview → Events →
+// The owner dashboards, in owner-sidebar order (Overview → Events →
 // Marketing/CRM → Operations). Index positions drive the sequences below.
+// The bar screens (drink menu, drink orders) are left out: the drinks pillar
+// is paused in the Yuno app since 01/10/2026.
 const DASHBOARDS = [
   dashDashboard, //       0
   dashAnalytics, //       1
@@ -48,13 +48,11 @@ const DASHBOARDS = [
   dashCustomers, //      10
   dashLoyalty, //        11
   dashSms, //            12
-  dashOrders, //         13
-  dashInvoices, //       14
-  dashAccounting, //     15
-  dashStaff, //          16
-  dashDrinkMenu, //      17
-  dashVipService, //     18
-  dashNotifications, //  19
+  dashInvoices, //       13
+  dashAccounting, //     14
+  dashStaff, //          15
+  dashVipService, //     16
+  dashNotifications, //  17
 ];
 
 // Localized labels for the parallax cards (hover overlay + alt text), one per
@@ -74,11 +72,9 @@ const PARALLAX_TITLES: Record<"en" | "fr", string[]> = {
     "Customers",
     "Loyalty",
     "SMS",
-    "Orders",
     "Invoices",
     "Accounting",
     "Staff",
-    "Drink menu",
     "VIP Service",
     "Notifications",
   ],
@@ -96,50 +92,48 @@ const PARALLAX_TITLES: Record<"en" | "fr", string[]> = {
     "Clients",
     "Fidélité",
     "SMS",
-    "Commandes",
     "Factures",
     "Comptabilité",
     "Équipe",
-    "Carte boissons",
     "Service VIP",
     "Notifications",
   ],
 };
 
 // Hero parallax renders 15 cards (three rows of five) — a curated, visually rich
-// subset. The marquee below shows all 20, so every screen still appears.
+// subset. The marquee below shows them all, so every screen still appears.
 const BASE_PARALLAX = [
   0,
   1,
   2,
   5,
-  15, //   dashboard, analytics, events, vip-tables, accounting
+  14, //   dashboard, analytics, events, vip-tables, accounting
   10,
   11,
+  4,
   13,
-  14,
-  9, // customers, loyalty, orders, invoices, promoters
+  9, // customers, loyalty, guest list, invoices, promoters
   6,
   7,
   8,
-  18,
+  16,
   3, //    djs, booking-dj, collaborations, vip-service, ticketing
 ];
 
-// 3D marquee wall — every owner screen (4 columns of 5).
-const MARQUEE_SEQUENCE = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+// 3D marquee wall — every owner screen, 4 columns of 5 (the dashboard and the
+// VIP tables come back once at the end to fill the last column).
+const MARQUEE_SEQUENCE = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 0, 5];
 
 // When a pain is active, these DASHBOARDS indices lead the parallax hero so the
 // pain's own screens show first. (Index map: see DASHBOARDS comments above.)
 const PAIN_LEAD: Record<string, number[]> = {
-  vip: [5, 18, 8],
+  vip: [5, 16, 8],
   "co-soiree": [8, 5, 2],
   data: [1, 4, 0],
   fidelite: [10, 11, 12],
-  live: [0, 13, 1],
-  bar: [17, 13, 5],
-  staff: [16, 4, 19],
-  compta: [15, 14, 0],
+  live: [0, 1, 2],
+  staff: [15, 4, 17],
+  compta: [14, 13, 0],
 };
 
 // Real screenshot proving each pain's focus block (keyed by RolePain.id).
@@ -149,7 +143,6 @@ const PAIN_IMAGES: Record<string, string> = {
   data: dashAnalytics,
   fidelite: dashCustomers,
   live: dashLiveNight,
-  bar: dashDrinkMenu,
   staff: dashStaff,
   compta: dashAccounting,
 };
@@ -159,7 +152,6 @@ const PAIN_IMAGES: Record<string, string> = {
 const PAIN_IMAGES_ALT: Record<string, string> = {
   vip: dashVipService, // plan VIP + suivi du minimum de conso en direct
   fidelite: dashLoyalty, // CRM + programme de fidélité
-  bar: dashOrders, // carte boissons + pipeline de commandes
   compta: dashInvoices, // compta + factures PDF
 };
 

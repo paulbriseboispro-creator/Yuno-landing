@@ -4,7 +4,7 @@
 // never a guessed number. Yuno facts: docs/yuno-context.md.
 import type { ComparePageContent } from "./compare-types";
 
-const UPDATED = "2026-09-29";
+const UPDATED = "2026-10-20";
 
 // ------------------------------------------------------------- Weezevent FR
 const weezeventFr: ComparePageContent = {
@@ -17,15 +17,15 @@ const weezeventFr: ComparePageContent = {
   meta: {
     title: "Alternative à Weezevent pour soirées et clubs | Yuno",
     description:
-      "Weezevent ou Yuno pour une soirée ? Commission, frais acheteur, versements, tables VIP, bar, promoteurs : le comparatif sourcé, forces de Weezevent incluses.",
+      "Weezevent ou Yuno pour une soirée ? Commission, frais acheteur, versements, tables VIP, promoteurs : le comparatif sourcé, forces de Weezevent incluses.",
     ogAlt: "Yuno vs Weezevent — comparatif billetterie pour soirées et clubs",
   },
   breadcrumb: { home: "Yuno", current: "Alternative à Weezevent" },
   hero: {
     kicker: "Yuno vs Weezevent — billetterie de soirée, frais et versements",
     title:
-      "L'alternative à Weezevent pensée pour la nuit : tables, bar, promoteurs et versements sur votre compte.",
-    sub: "Weezevent est une billetterie généraliste solide, utilisée pour tous types d'événements. Yuno est bâtie pour les soirées : billets et guest list, tables VIP avec acompte, commande au bar, répartition club × organisateur et commissions des promoteurs — 0 € d'abonnement, 0 % de commission sur votre prix, argent versé au fil des ventes.",
+      "L'alternative à Weezevent pensée pour la nuit : tables VIP, promoteurs et versements sur votre compte.",
+    sub: "Weezevent est une billetterie généraliste solide, utilisée pour tous types d'événements. Yuno est bâtie pour les soirées : billets et guest list, tables VIP avec acompte, répartition club × organisateur et commissions des promoteurs — 0 € d'abonnement, 0 % de commission sur votre prix, argent versé au fil des ventes.",
     primary: "Créer mon compte gratuit",
     secondary: "Parler au fondateur",
     updatedLabel: "Informations publiques relevées en septembre 2026",
@@ -36,7 +36,7 @@ const weezeventFr: ComparePageContent = {
       "Commission : Weezevent affiche 2,5 % par billet vendu en ligne, minimum 0,99 € TTC (répercutable sur l'acheteur). Yuno : 0 % côté organisateur ; l'acheteur paie 4 % (min. 0,99 €).",
       "Prix du billet : jusqu'à environ 25 € le billet, les frais acheteur sont équivalents (0,99 € minimum des deux côtés) ; au-delà, la grille de Weezevent est moins chère pour l'acheteur. Yuno ne prétend pas être la moins chère : son argument est 0 € d'abonnement et 0 % de commission à un prix publié.",
       "Versements : Weezevent verse les recettes tous les 15 jours. Sur Yuno, l'argent arrive directement sur votre compte Stripe, au fil des ventes ; Yuno ne détient jamais les fonds.",
-      "La nuit : Yuno ajoute les tables VIP avec acompte, la commande au bar par QR code, les commissions des promoteurs calculées et la répartition club × organisateur. Nous ne les avons pas trouvées dans la documentation publique de Weezevent.",
+      "La nuit : Yuno ajoute les tables VIP avec acompte, les commissions des promoteurs calculées et la répartition club × organisateur. Nous ne les avons pas trouvées dans la documentation publique de Weezevent.",
     ],
   },
   table: {
@@ -62,7 +62,7 @@ const weezeventFr: ComparePageContent = {
       },
       {
         criterion: "Frais payés par l'acheteur",
-        yuno: "4 % (min. 0,99 €) sur les billets ; 4 % plafonnés à 25 € sur les tables ; 3 % sur les boissons.",
+        yuno: "4 % (min. 0,99 €) sur les billets ; 4 % plafonnés à 25 € sur les tables.",
         other:
           "La commission est à la charge de l'organisateur par défaut ; elle peut être répercutée sur l'acheteur (2,5 %, min. 0,99 €).",
         verdict: "other",
@@ -75,20 +75,14 @@ const weezeventFr: ComparePageContent = {
       },
       {
         criterion: "Tables VIP & bottle service",
-        yuno: "Plan de salle interactif, formules, acompte ou paiement sur place, précommande de bouteilles, minimum de dépense suivi en direct.",
+        yuno: "Plan de salle interactif, formules avec leurs bouteilles, acompte ou paiement sur place, minimum de dépense suivi en direct.",
         other:
           "Billetterie avec placement et numérotation de places ; pas de module de tables VIP de club dans la documentation publique consultée.",
         verdict: "yuno",
       },
       {
-        criterion: "Bar",
-        yuno: "Commande et paiement au QR code du bar, file d'attente sur l'écran du barman.",
-        other: "Cashless WeezPay en option payante (1,20 € par transaction).",
-        verdict: "tie",
-      },
-      {
         criterion: "Personnel & accès",
-        yuno: "Un scanner pour billets, guest list et tables ; chaque membre du staff a son propre compte (videur, serveur VIP, barman…).",
+        yuno: "Un scanner pour billets, guest list et tables ; chaque membre du staff a son propre compte (videur, serveur VIP, vestiaire…).",
         other: "Personnel géré via WeezCrew, module payant à partir de 1 000 €.",
         verdict: "yuno",
       },
@@ -127,8 +121,8 @@ const weezeventFr: ComparePageContent = {
     title: "Weezevent vend des billets pour tous les événements. Yuno gère toute la soirée.",
     paragraphs: [
       "Weezevent est l'une des billetteries les plus utilisées en France : concerts, festivals, événements sportifs, associations. Sa force est la polyvalence et une grille tarifaire simple et publique : 2,5 % par billet vendu en ligne, avec un minimum de 0,99 € TTC, que l'organisateur peut choisir de reporter sur l'acheteur.",
-      "Pour une soirée en club, le billet n'est qu'une partie de la nuit. Les tables VIP, le bar, la porte, les promoteurs et le partage des recettes avec le club se gèrent souvent à côté — dans des tableurs, des messages et des virements manuels. Weezevent propose des modules payants pour certains besoins (cashless, personnel), mais nous n'y avons pas trouvé de réservation de carrés VIP, de commissions de promoteurs ni de contrat club × organisateur.",
-      "Yuno met ces éléments dans le même compte que la billetterie : chaque soirée a un interrupteur par pilier (billets, tables, boissons), et l'argent va directement sur votre compte Stripe. Vous pouvez commencer par la guest list et ajouter le reste plus tard.",
+      "Pour une soirée en club, le billet n'est qu'une partie de la nuit. Les tables VIP, la porte, les promoteurs et le partage des recettes avec le club se gèrent souvent à côté — dans des tableurs, des messages et des virements manuels. Weezevent propose des modules payants pour certains besoins (cashless, personnel), mais nous n'y avons pas trouvé de réservation de carrés VIP, de commissions de promoteurs ni de contrat club × organisateur.",
+      "Yuno met ces éléments dans le même compte que la billetterie : chaque soirée a un interrupteur par pilier (billets, tables), et l'argent va directement sur votre compte Stripe. Vous pouvez commencer par la guest list et ajouter le reste plus tard.",
     ],
   },
   choose: {
@@ -145,7 +139,7 @@ const weezeventFr: ComparePageContent = {
     yuno: {
       title: "Yuno convient si…",
       items: [
-        "Vous organisez des soirées et voulez vendre billets, tables VIP et boissons dans le même compte.",
+        "Vous organisez des soirées et voulez vendre billets, guest list et tables VIP dans le même compte.",
         "Vous payez des promoteurs à la commission et voulez qu'elle soit calculée et réglée sans tableur.",
         "Vous co-organisez avec un club et voulez un contrat et un décompte validés par les deux parties.",
         "Vous voulez l'argent sur votre compte au fil des ventes plutôt que tous les 15 jours.",
@@ -178,7 +172,7 @@ const weezeventFr: ComparePageContent = {
     items: [
       {
         q: "Quelle est la meilleure alternative à Weezevent pour une soirée en club ?",
-        a: "Pour une soirée, une alternative doit couvrir plus que le billet : tables VIP avec acompte, commande au bar, contrôle à l'entrée, commissions des promoteurs et répartition avec le club. Yuno réunit ces éléments dans un seul compte, avec 0 € d'abonnement et 0 % de commission sur votre prix.",
+        a: "Pour une soirée, une alternative doit couvrir plus que le billet : tables VIP avec acompte, contrôle à l'entrée, commissions des promoteurs et répartition avec le club. Yuno réunit ces éléments dans un seul compte, avec 0 € d'abonnement et 0 % de commission sur votre prix.",
       },
       {
         q: "Combien coûte Weezevent pour une billetterie de soirée ?",
@@ -251,7 +245,7 @@ const xceedEs: ComparePageContent = {
   meta: {
     title: "Alternativa a Xceed para discotecas: comisiones y precios | Yuno",
     description:
-      "¿Xceed o Yuno para entradas y reservados? Comisión, marketplace del 15 %, cuota mensual, RRPP, barra y reparto: comparativa con fuentes públicas.",
+      "¿Xceed o Yuno para entradas y reservados? Comisión, marketplace del 15 %, cuota mensual, RRPP y reparto: comparativa con fuentes públicas.",
     ogAlt: "Yuno vs Xceed — comparativa para discotecas y organizadores",
   },
   breadcrumb: { home: "Yuno", current: "Alternativa a Xceed" },
@@ -259,7 +253,7 @@ const xceedEs: ComparePageContent = {
     kicker: "Yuno vs Xceed — entradas, reservados, RRPP y comisiones",
     title:
       "La alternativa a Xceed con 0 € de cuota, precios públicos y toda la noche en una cuenta.",
-    sub: "Xceed es un marketplace de ocio nocturno conocido, con un plan Pro para discotecas. Yuno vende entradas, listas y reservados, gestiona la puerta y la barra, calcula las comisiones de tus RRPP y reparte la noche entre discoteca, organizador y RRPP — 0 € de cuota mensual, 0 % de comisión sobre tu precio y el dinero directo a tu cuenta.",
+    sub: "Xceed es un marketplace de ocio nocturno conocido, con un plan Pro para discotecas. Yuno vende entradas, listas y reservados, gestiona la puerta, calcula las comisiones de tus RRPP y reparte la noche entre discoteca, organizador y RRPP — 0 € de cuota mensual, 0 % de comisión sobre tu precio y el dinero directo a tu cuenta.",
     primary: "Crear mi cuenta gratis",
     secondary: "Hablar con el fundador",
     updatedLabel: "Información pública revisada en septiembre de 2026",
@@ -270,7 +264,7 @@ const xceedEs: ComparePageContent = {
       "Comisión: Xceed publica un 3 % por entrada solo en las ventas por tus propios canales, RRPP y afiliados, y un 15 % de comisión en las reservas que llegan por su marketplace. Yuno: 0 % para el organizador; el comprador paga un 4 % (mín. 0,99 €).",
       "Cuota: las herramientas de gestión de Xceed Pro (mapa de mesas, RRPP) tienen una cuota mensual publicada de 29 a 59 €. Yuno no cobra cuota mensual.",
       "Público: Xceed aporta la audiencia de su marketplace; es su gran ventaja. Yuno tiene su marketplace (App Store y web app) y cada comprador entra en tu propia base.",
-      "Toda la noche: Yuno añade el pedido de copas con QR, el reparto discoteca × organizador firmado en la plataforma y las comisiones de RRPP calculadas. No los encontramos en la documentación pública de Xceed.",
+      "Toda la noche: Yuno añade el reparto discoteca × organizador firmado en la plataforma y las comisiones de RRPP calculadas. No los encontramos en la documentación pública de Xceed.",
     ],
   },
   table: {
@@ -302,7 +296,7 @@ const xceedEs: ComparePageContent = {
       },
       {
         criterion: "Mapa de mesas y reservados",
-        yuno: "Plano interactivo, señal, botellas pre-pedidas, consumo mínimo en directo. Incluido, sin plan.",
+        yuno: "Plano interactivo, señal, packs con sus botellas, consumo mínimo en directo. Incluido, sin plan.",
         other: "Mapa de mesas con asignación de clientes, en Xceed Pro.",
         verdict: "tie",
       },
@@ -311,12 +305,6 @@ const xceedEs: ComparePageContent = {
         yuno: "Enlace personal por noche, ventas y entradas en directo, comisión calculada y liquidada en tres pasos con fecha y hora.",
         other: "Enlaces de venta, listas y seguimiento de RRPP, en Xceed Pro.",
         verdict: "tie",
-      },
-      {
-        criterion: "Barra",
-        yuno: "El cliente pide y paga su copa con el QR de la barra; el camarero ve la cola.",
-        other: "No encontrado en la documentación pública.",
-        verdict: "yuno",
       },
       {
         criterion: "Reparto discoteca × organizador",
@@ -334,7 +322,7 @@ const xceedEs: ComparePageContent = {
     paragraphs: [
       "Xceed es una plataforma europea de ocio nocturno: un marketplace donde el público descubre y compra entradas, y un plan Pro con herramientas de gestión para locales y promotoras (mapa de mesas, RRPP, listas de puerta). Su gran ventaja es la audiencia que ya tiene.",
       "Su modelo mezcla varias tarifas: un 3 % por entrada cuando la venta viene de tus propios canales, RRPP o afiliados; un 15 % de comisión de marketing cuando el comprador llega por el marketplace; y una cuota mensual publicada de 29 a 59 € para las herramientas Pro.",
-      "Yuno parte de otro modelo: 0 € de cuota, 0 % de comisión sobre tu precio y un solo nivel de servicio, con precios públicos. El comprador paga los gastos de servicio; tú pagas solo los gastos de tarjeta de Stripe. Y la noche entera — entradas, reservados, copas, puerta, RRPP y reparto con la discoteca — vive en la misma cuenta.",
+      "Yuno parte de otro modelo: 0 € de cuota, 0 % de comisión sobre tu precio y un solo nivel de servicio, con precios públicos. El comprador paga los gastos de servicio; tú pagas solo los gastos de tarjeta de Stripe. Y la noche entera — entradas, reservados, puerta, RRPP y reparto con la discoteca — vive en la misma cuenta.",
     ],
   },
   choose: {
@@ -352,7 +340,7 @@ const xceedEs: ComparePageContent = {
       title: "Yuno encaja si…",
       items: [
         "Quieres saber lo que pagas antes de hablar con nadie: 0 € de cuota, 0 % de comisión, tarifa pública.",
-        "Quieres el pedido de copas con QR, la puerta y las comisiones de RRPP en la misma cuenta que las entradas.",
+        "Quieres los reservados, la puerta y las comisiones de RRPP en la misma cuenta que las entradas.",
         "Trabajas con una discoteca y quieres un reparto firmado y aprobado por las dos partes.",
         "Quieres que cada comprador entre en tu propia base y volver a escribirle para la siguiente noche.",
         "Quieres el dinero en tu cuenta a medida que vendes.",
@@ -384,7 +372,7 @@ const xceedEs: ComparePageContent = {
     items: [
       {
         q: "¿Cuál es la mejor alternativa a Xceed para una discoteca u organizador?",
-        a: "Depende de lo que necesites, pero una alternativa debería cubrir más que la venta de entradas: reservados, copas, puerta, RRPP y reparto con la discoteca. Yuno lo reúne en una sola cuenta, con 0 € de cuota mensual, 0 % de comisión sobre tu precio y tarifas públicas.",
+        a: "Depende de lo que necesites, pero una alternativa debería cubrir más que la venta de entradas: reservados, puerta, RRPP y reparto con la discoteca. Yuno lo reúne en una sola cuenta, con 0 € de cuota mensual, 0 % de comisión sobre tu precio y tarifas públicas.",
       },
       {
         q: "¿Cuánto cobra Xceed por entrada?",
@@ -453,14 +441,14 @@ const diceEn: ComparePageContent = {
   meta: {
     title: "DICE alternative for club nights: published fees | Yuno",
     description:
-      "A DICE alternative for club nights? Compare fees, payouts, VIP tables, bar and promoters. Yuno: €0 subscription, 0% commission, published prices.",
+      "A DICE alternative for club nights? Compare fees, payouts, VIP tables and promoters. Yuno: €0 subscription, 0% commission, published prices.",
     ogAlt: "Yuno vs DICE — an alternative for club nights, with published fees",
   },
   breadcrumb: { home: "Yuno", current: "DICE alternative" },
   hero: {
     kicker: "Yuno vs DICE — ticketing for club nights, fees and payouts",
     title: "A DICE alternative that publishes its fees and runs the whole club night.",
-    sub: "DICE is a well-known fan app for live music and nights out. Yuno is built for the people running the night: tickets and guest list, VIP tables, drinks at the bar, the door, promoter commissions and the split with the club — €0 subscription, 0% commission on your price, at prices you can read before talking to anyone.",
+    sub: "DICE is a well-known fan app for live music and nights out. Yuno is built for the people running the night: tickets and guest list, VIP tables, the door, promoter commissions and the split with the club — €0 subscription, 0% commission on your price, at prices you can read before talking to anyone.",
     primary: "Create my free account",
     secondary: "Talk to the founder",
     updatedLabel: "Public information checked in September 2026",
@@ -470,7 +458,7 @@ const diceEn: ComparePageContent = {
     items: [
       "Fees: DICE does not publish its organiser pricing; terms are agreed per partnership (third-party comparisons estimate 10–15%). Yuno publishes everything: €0 subscription, 0% commission for the organiser, a buyer service fee of 4% (min. €0.99).",
       "Audience: DICE brings a large fan audience, its main strength (owned by Fever since 2025). Yuno has its own marketplace (App Store and web app), and every buyer joins your own customer base.",
-      "The night itself: Yuno adds VIP tables with deposits, ordering at the bar by QR code, computed promoter commissions and a club × organiser split signed in the platform. We did not find these in DICE's public documentation.",
+      "The night itself: Yuno adds VIP tables with deposits, computed promoter commissions and a club × organiser split signed in the platform. We did not find these in DICE's public documentation.",
       "Money: on Yuno, funds go straight to your own Stripe account as you sell; Yuno never holds them.",
     ],
   },
@@ -496,7 +484,7 @@ const diceEn: ComparePageContent = {
       },
       {
         criterion: "Fees paid by the buyer",
-        yuno: "4% (min. €0.99) on tickets; 4% capped at €25 on tables; 3% on drinks.",
+        yuno: "4% (min. €0.99) on tickets; 4% capped at €25 on tables.",
         other: "A booking fee is added for fans and split with organisers; it varies by event.",
         verdict: "tie",
       },
@@ -520,13 +508,7 @@ const diceEn: ComparePageContent = {
       },
       {
         criterion: "VIP tables & bottle service",
-        yuno: "Interactive floor plan, packages, deposit or pay on site, bottle pre-orders, minimum spend tracked live.",
-        other: "Not found in DICE's public documentation.",
-        verdict: "yuno",
-      },
-      {
-        criterion: "Bar",
-        yuno: "Order and pay at the bar's QR code; the bartender sees the queue.",
+        yuno: "Interactive floor plan, packages with their bottles, deposit or pay on site, minimum spend tracked live.",
         other: "Not found in DICE's public documentation.",
         verdict: "yuno",
       },
@@ -551,8 +533,8 @@ const diceEn: ComparePageContent = {
     title: "DICE is a fan app. Yuno is the platform for the people running the night.",
     paragraphs: [
       "DICE is a ticketing app known for live music, gigs and club nights, with a large consumer audience. It joined Fever in 2025. Organiser pricing is not published: fees are agreed per partnership, and third-party comparisons put them around 10–15%.",
-      "For a club night, the ticket is only one part of the evening. VIP tables, drinks, the door, the promoters and the split with the venue are usually handled next to the ticketing — spreadsheets, messages, manual transfers. We did not find tables, bar ordering, promoter commissions or a venue × organiser contract in DICE's public documentation.",
-      "Yuno puts these in the same account as the tickets. Each night has one switch per pillar (tickets, tables, drinks), so you can start with the guest list and add the rest later. Prices are public: €0 subscription and 0% commission on your price; the buyer pays the service fee and you pay only Stripe's card fees.",
+      "For a club night, the ticket is only one part of the evening. VIP tables, the door, the promoters and the split with the venue are usually handled next to the ticketing — spreadsheets, messages, manual transfers. We did not find tables, promoter commissions or a venue × organiser contract in DICE's public documentation.",
+      "Yuno puts these in the same account as the tickets. Each night has one switch per pillar (tickets, tables), so you can start with the guest list and add the rest later. Prices are public: €0 subscription and 0% commission on your price; the buyer pays the service fee and you pay only Stripe's card fees.",
     ],
   },
   choose: {
@@ -563,13 +545,13 @@ const diceEn: ComparePageContent = {
       items: [
         "You want to reach DICE's fan audience and are happy with terms negotiated with their team.",
         "Your nights are mainly gigs and live music and you sell tickets only.",
-        "You do not need tables, bar ordering or promoter tools in the same platform.",
+        "You do not need tables or promoter tools in the same platform.",
       ],
     },
     yuno: {
       title: "Yuno fits if…",
       items: [
-        "You run club nights and want tickets, VIP tables and drinks in one account.",
+        "You run club nights and want tickets, guest list and VIP tables in one account.",
         "You want to know what you pay before talking to anyone: €0 subscription, 0% commission.",
         "You pay promoters on commission and want it computed and settled without a spreadsheet.",
         "You share a night with a club and want a contract and statement both sides approve.",
@@ -602,7 +584,7 @@ const diceEn: ComparePageContent = {
     items: [
       {
         q: "What is the best DICE alternative for club nights?",
-        a: "For club nights, an alternative should cover more than the ticket: VIP tables, drinks, door control, promoter commissions and the split with the venue. Yuno puts all of this in one account, with €0 subscription, 0% commission on your price and published fees.",
+        a: "For club nights, an alternative should cover more than the ticket: VIP tables, door control, promoter commissions and the split with the venue. Yuno puts all of this in one account, with €0 subscription, 0% commission on your price and published fees.",
       },
       {
         q: "How much does DICE charge organisers?",
@@ -614,7 +596,7 @@ const diceEn: ComparePageContent = {
       },
       {
         q: "Who owns the customer data on Yuno?",
-        a: "Every buyer — ticket, table, drink or guest list — joins your own customer base. You can import your existing file (deduplicated, with attested consent) and email your customers with 9 ready-made automations.",
+        a: "Every buyer — ticket, table or guest list — joins your own customer base. You can import your existing file (deduplicated, with attested consent) and email your customers with 9 ready-made automations.",
       },
       {
         q: "When do I get paid?",

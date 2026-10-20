@@ -4,7 +4,7 @@
 // launch with Amoris + 22 partner clubs listed; pricing table; Fourvenues facts).
 import type { TopicPageContent } from "../topic-types";
 
-const UPDATED = "2026-09-29";
+const UPDATED = "2026-10-20";
 const TWINS = {
   es: "/es/software-discotecas-madrid",
 };
@@ -18,14 +18,14 @@ const es: TopicPageContent = {
   meta: {
     title: "Software para discotecas en Madrid: entradas y mesas | Yuno",
     description:
-      "Vende entradas, listas y reservados en Madrid y gestiona puerta, barra y RRPP desde una cuenta. 0 € de cuota, 0 % de comisión, dinero directo a tu cuenta.",
+      "Vende entradas, listas y reservados en Madrid y gestiona puerta y RRPP desde una cuenta. 0 € de cuota, 0 % de comisión, dinero directo a tu cuenta.",
     ogAlt: "Yuno — software para discotecas y organizadores de fiestas en Madrid",
   },
   breadcrumb: { home: "Yuno", current: "Software para discotecas en Madrid" },
   hero: {
     kicker: "Software para discotecas y organizadores de fiestas en Madrid",
-    title: "Vende y gestiona tu noche en Madrid, de la entrada a la barra.",
-    sub: "Entradas, listas, reservados y copas en una sola cuenta, con la puerta, los RRPP y el reparto discoteca × organizador dentro. Yuno se lanzó en Madrid con Amoris y 22 discotecas asociadas. Sin cuota y sin comisión sobre tu precio.",
+    title: "Vende y gestiona tu noche en Madrid, de la entrada al reservado.",
+    sub: "Entradas, listas y reservados en una sola cuenta, con la puerta, los RRPP y el reparto discoteca × organizador dentro. Yuno se lanzó en Madrid con Amoris y 22 discotecas asociadas. Sin cuota y sin comisión sobre tu precio.",
     primary: "Crear mi cuenta gratis",
     secondary: "Hablar con el fundador",
     note: ["Sin cuota mensual", "0 % de comisión sobre tu precio", "Páginas de reserva en español"],
@@ -33,11 +33,11 @@ const es: TopicPageContent = {
   answer: {
     title: "En breve",
     paragraphs: [
-      "Yuno es un software para discotecas y organizadores de fiestas en Madrid. Una sola cuenta vende entradas online, gestiona la lista de invitados, vende reservados y mesas con señal, toma pedidos en la barra con un QR, sigue las ventas de cada RRPP, controla la puerta y reparte el dinero entre la discoteca y el organizador.",
+      "Yuno es un software para discotecas y organizadores de fiestas en Madrid. Una sola cuenta vende entradas online, gestiona la lista de invitados, vende reservados y mesas con señal, sigue las ventas de cada RRPP, controla la puerta y reparte el dinero entre la discoteca y el organizador.",
       "Yuno se lanzó en Madrid con Amoris, organizador de eventos, y 22 discotecas asociadas ya listadas en la plataforma. El público descubre las noches en la app de iOS (App Store) y en la app web; cada comprador, venga de donde venga, pasa a formar parte de la base de clientes de la discoteca o del organizador.",
     ],
     bullets: [
-      "0 € de cuota y 0 % de comisión sobre tu precio. El comprador paga los gastos de servicio: 4 % en entradas (mín. 0,99 €), 4 % en mesas (mín. 0,99 €, tope de 25 €) y 3 % en copas.",
+      "0 € de cuota y 0 % de comisión sobre tu precio. El comprador paga los gastos de servicio: 4 % en entradas (mín. 0,99 €) y 4 % en mesas (mín. 0,99 €, tope de 25 €).",
       "Los gastos de tarjeta (Stripe, 1,5 % + 0,25 €) los paga la discoteca o el organizador. El dinero llega directo a tu cuenta; Yuno nunca retiene tus fondos.",
       "Páginas de reserva en español (también en inglés y francés), sin registro para el comprador y sin app obligatoria.",
     ],
@@ -57,11 +57,7 @@ const es: TopicPageContent = {
       },
       {
         title: "Reservados y mesas VIP",
-        body: "Plano interactivo, packs o consumo mínimo, señal o pago completo y botellas reservadas de antemano. Tu responsable VIP ve el plano en directo durante la noche.",
-      },
-      {
-        title: "Barra con QR",
-        body: "El cliente pide y paga desde el móvil escaneando el QR de la barra, y el camarero ve la cola de pedidos. Se activa por discoteca o por barra.",
+        body: "Plano interactivo, packs (botellas incluidas) o consumo mínimo, y señal o pago completo. Tu responsable VIP ve el plano en directo durante la noche.",
       },
       {
         title: "RRPP con enlace propio",
@@ -73,11 +69,11 @@ const es: TopicPageContent = {
       },
       {
         title: "Reparto discoteca × organizador",
-        body: "El contrato se firma dentro de Yuno, pilar por pilar o como reparto escalonado. Al cierre la discoteca declara barra y puerta, el organizador acepta o discute, y nada se mueve sin acuerdo de las dos partes.",
+        body: "El contrato se firma dentro de Yuno, pilar por pilar o como reparto escalonado. Al cierre la discoteca declara lo que ha cobrado ella misma en el local (su barra, la taquilla de la puerta), el organizador acepta o discute, y nada se mueve sin acuerdo de las dos partes.",
       },
       {
         title: "Tus clientes, tu base",
-        body: "Cada comprador (entrada, mesa, copa o lista) entra en tu base de clientes, con importación de tu fichero actual y emailing incluido: 15.000 emails al mes.",
+        body: "Cada comprador (entrada, mesa o lista) entra en tu base de clientes, con importación de tu fichero actual y emailing incluido: 15.000 emails al mes.",
       },
     ],
   },
@@ -94,7 +90,6 @@ const es: TopicPageContent = {
         "El cliente, sobre el importe cobrado",
         "4 % · mín. 0,99 € · máx. 25 €",
       ],
-      ["Gastos de servicio, copas", "El cliente, además del precio", "3 %"],
       [
         "Procesamiento de tarjeta (Stripe)",
         "La discoteca o el organizador, sobre lo cobrado",
@@ -115,11 +110,11 @@ const es: TopicPageContent = {
       },
       {
         title: "Publica tu noche",
-        body: "Activa entradas, mesas y copas noche a noche, con un interruptor por pilar. Comparte el enlace con tus RRPP y en tus redes, y tu noche también se descubre en la app y en la web de Yuno.",
+        body: "Activa entradas y mesas noche a noche, con un interruptor por pilar. Comparte el enlace con tus RRPP y en tus redes, y tu noche también se descubre en la app y en la web de Yuno.",
       },
       {
-        title: "Dirige la puerta y la barra",
-        body: "El portero escanea, el responsable VIP sienta las mesas y el camarero ve los pedidos. Al cierre, el reparto entre discoteca y organizador se acepta dentro de Yuno.",
+        title: "Dirige la puerta y los reservados",
+        body: "El portero escanea y el responsable VIP sienta las mesas. Al cierre, el reparto entre discoteca y organizador se acepta dentro de Yuno.",
       },
     ],
   },
@@ -143,11 +138,11 @@ const es: TopicPageContent = {
     items: [
       {
         q: "¿Qué software puede usar una discoteca en Madrid para vender entradas y gestionar la noche?",
-        a: "Yuno vende entradas online, listas, reservados y copas, controla la puerta con un escáner y calcula las comisiones de los RRPP, todo desde una sola cuenta. La cuota es de 0 € y la comisión sobre tu precio, del 0 %. Fourvenues, otra herramienta conocida entre los locales españoles, también ofrece una suite para discotecas.",
+        a: "Yuno vende entradas online, listas y reservados, controla la puerta con un escáner y calcula las comisiones de los RRPP, todo desde una sola cuenta. La cuota es de 0 € y la comisión sobre tu precio, del 0 %. Fourvenues, otra herramienta conocida entre los locales españoles, también ofrece una suite para discotecas.",
       },
       {
         q: "¿Cuánto cuesta vender entradas de discoteca con Yuno en Madrid?",
-        a: "Para la discoteca o el organizador, 0 € de cuota y 0 % de comisión sobre tu precio. El comprador paga los gastos de servicio: 4 % en entradas (mín. 0,99 €), 4 % en mesas (mín. 0,99 €, tope de 25 €) y 3 % en copas. Solo pagas el procesamiento de tarjeta de Stripe: 1,5 % + 0,25 €.",
+        a: "Para la discoteca o el organizador, 0 € de cuota y 0 % de comisión sobre tu precio. El comprador paga los gastos de servicio: 4 % en entradas (mín. 0,99 €) y 4 % en mesas (mín. 0,99 €, tope de 25 €). Solo pagas el procesamiento de tarjeta de Stripe: 1,5 % + 0,25 €.",
       },
       {
         q: "¿En qué se diferencia Yuno de Fourvenues?",
@@ -155,7 +150,7 @@ const es: TopicPageContent = {
       },
       {
         q: "Soy organizador de fiestas y alquilo la sala: ¿cómo reparto los ingresos con la discoteca?",
-        a: "El contrato discoteca × organizador se firma dentro de Yuno, pilar por pilar (entradas, mesas, barra, puerta) o como reparto escalonado. Al cierre, la discoteca declara lo cobrado en barra y puerta y el organizador lo acepta o lo discute: nada se mueve sin el acuerdo de las dos partes.",
+        a: "El contrato discoteca × organizador se firma dentro de Yuno, pilar por pilar (entradas, mesas) o como reparto escalonado. Al cierre, la discoteca declara lo que ha cobrado ella misma en el local (su barra, la taquilla de la puerta) y el organizador lo acepta o lo discute: nada se mueve sin el acuerdo de las dos partes.",
       },
       {
         q: "¿Mis clientes tienen que descargar una app?",
@@ -171,7 +166,7 @@ const es: TopicPageContent = {
       },
       {
         q: "¿Puedo empezar solo con la lista de invitados?",
-        a: "Sí. Cada noche tiene un interruptor por pilar (entradas, mesas, copas), así que puedes empezar por la lista de invitados y activar el resto cuando quieras.",
+        a: "Sí. Cada noche tiene un interruptor por pilar (entradas, mesas), así que puedes empezar por la lista de invitados y activar el resto cuando quieras.",
       },
     ],
   },

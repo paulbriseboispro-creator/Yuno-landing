@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/react";
-import { Check, Crown, Martini, MousePointer2, QrCode, Ticket, Wine, X } from "lucide-react";
+import { Check, Crown, MousePointer2, Ticket, Wine, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { LandingLang } from "@/i18n/landing-lang";
 import { useLanding } from "./context";
@@ -33,7 +33,6 @@ export function Pillars() {
   const visuals: Record<string, (m: Mini) => ReactNode> = {
     tickets: (m) => <TicketsMini m={m} />,
     tables: (m) => <TablesMini m={m} />,
-    bar: (m) => <BarMini m={m} />,
     door: (m) => <DoorMini m={m} />,
     crm: (m) => <CrmMini m={m} />,
     money: (m) => <MoneyMini m={m} />,
@@ -331,106 +330,6 @@ function TablesMini({ m }: { m: Mini }) {
               · {FLOOR_PRICE[target.zone]}
             </motion.div>
           )}
-        </AnimatePresence>
-      </div>
-    </div>
-  );
-}
-
-// Bartender queue: orders paid from the table QR land on top, move through
-// pending → prepping → ready, then leave once picked up.
-const DRINK_PRICES = ["€18", "€11", "€16", "€120", "€10", "€15"];
-const STATUS_PROGRESS = ["18%", "62%", "100%"];
-
-function BarMini({ m }: { m: Mini }) {
-  const { ref, i: n } = useLoop(10_000, 1700);
-  const states = [
-    { label: m.pending, cls: "bg-amber-100 text-amber-700", bar: "bg-amber-400" },
-    { label: m.prepping, cls: "bg-sky-100 text-sky-700", bar: "bg-sky-500" },
-    { label: m.ready, cls: "bg-emerald-100 text-emerald-700", bar: "bg-emerald-500" },
-  ];
-  // newest first: pending, prepping, ready
-  const orders = [n + 2, n + 1, n].map((id, pos) => ({ id, status: 2 - pos }));
-
-  return (
-    <div ref={ref} className="w-full max-w-[290px]">
-      <div className="mb-2 flex items-center justify-between px-1 text-[10.5px] font-medium text-zinc-400">
-        <span className="flex items-center gap-1.5 font-semibold text-zinc-700">
-          <Martini className="size-3.5 text-violet-600" />
-          {m.barName}
-        </span>
-        <span className="tabular-nums">
-          3 {m.queue} · {m.avgWait}
-        </span>
-      </div>
-      <div className="relative h-[164px]">
-        <AnimatePresence initial={false} mode="popLayout">
-          {orders.map((o) => {
-            const st = states[o.status];
-            const drink = m.drinks[o.id % m.drinks.length];
-            const source = o.id % 2 ? `${m.table} ${((o.id * 5) % 12) + 1}` : m.atBar;
-            return (
-              <motion.div
-                key={o.id}
-                layout
-                initial={{ opacity: 0, y: -18, scale: 0.96 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, x: 60, transition: { duration: 0.35 } }}
-                transition={{ duration: 0.45, ease: EASE }}
-                className={cn(
-                  "yl-float-card relative mb-1.5 overflow-hidden px-3 py-2",
-                  o.status === 2 && "border-emerald-300/60",
-                )}
-              >
-                <div className="flex items-center gap-2.5">
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-violet-50">
-                    <QrCode className="size-3.5 text-violet-600" />
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block truncate text-[12.5px] font-semibold text-zinc-900">
-                      {drink}
-                    </span>
-                    <span className="block truncate text-[10.5px] text-zinc-400">
-                      #{1040 + o.id} · {source} · {DRINK_PRICES[o.id % DRINK_PRICES.length]}
-                    </span>
-                  </span>
-                  <AnimatePresence mode="wait" initial={false}>
-                    <motion.span
-                      key={o.status}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8 }}
-                      transition={{ duration: 0.2 }}
-                      className={cn(
-                        "shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold",
-                        st.cls,
-                      )}
-                    >
-                      {o.status === 2 ? `${m.pickup} ✓` : st.label}
-                    </motion.span>
-                  </AnimatePresence>
-                </div>
-                {o.status === 0 && (
-                  <motion.span
-                    initial={{ opacity: 1 }}
-                    animate={{ opacity: 0 }}
-                    transition={{ delay: 1.1, duration: 0.4 }}
-                    className="absolute right-2 top-1 rounded-full bg-zinc-950 px-1.5 text-[8.5px] font-semibold text-white"
-                  >
-                    {m.paidWith}
-                  </motion.span>
-                )}
-                <div className="absolute inset-x-0 bottom-0 h-[2px] bg-zinc-100">
-                  <motion.div
-                    className={cn("h-full", st.bar)}
-                    initial={false}
-                    animate={{ width: STATUS_PROGRESS[o.status] }}
-                    transition={{ duration: 1.2, ease: EASE }}
-                  />
-                </div>
-              </motion.div>
-            );
-          })}
         </AnimatePresence>
       </div>
     </div>

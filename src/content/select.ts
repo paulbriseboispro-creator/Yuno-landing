@@ -47,7 +47,7 @@ const en = {
   wedge: {
     tag: "Club × Organizer",
     title: "Co-produce a night? Split it by contract, paid automatically.",
-    body: "The one thing no one else does natively: a recurring revenue-share between a club and an organizer or BDE, applied to every ticket, table and drink through Stripe Connect. No cash, no Excel, no argument at settlement.",
+    body: "The one thing no one else does natively: a recurring revenue-share between a club and an organizer or BDE, applied to every ticket and table. No cash, no Excel, no argument at settlement.",
     clubCta: { label: "I'm the venue", to: "/clubs", besoin: "co-soiree" },
     orgaCta: { label: "I'm the organizer", to: "/organizers", besoin: "co-soiree" },
   },
@@ -99,7 +99,7 @@ const fr: SelectContent = {
   wedge: {
     tag: "Club × Organisateur",
     title: "Vous co-produisez une soirée ? Splittez-la par contrat, payée automatiquement.",
-    body: "La chose que personne d'autre ne fait nativement : un partage de revenus récurrent entre un club et un orga ou un BDE, appliqué à chaque billet, table et boisson via Stripe Connect. Sans cash, sans Excel, sans dispute au règlement.",
+    body: "La chose que personne d'autre ne fait nativement : un partage de revenus récurrent entre un club et un orga ou un BDE, appliqué à chaque billet et chaque table. Sans cash, sans Excel, sans dispute au règlement.",
     clubCta: { label: "Je suis l'établissement", to: "/clubs", besoin: "co-soiree" },
     orgaCta: { label: "Je suis l'organisateur", to: "/organizers", besoin: "co-soiree" },
   },
