@@ -39,6 +39,20 @@ const fr = {
     trust: ["Sans carte bancaire", "Données hébergées dans l’UE", "Rien à installer"],
     exists: "Cette adresse a déjà un compte Yuno.",
     existsCta: "Connectez-vous pour ouvrir aussi Yuno CRM",
+    existsBody: "Connectez-vous avec : Yuno CRM s’ouvre sur ce compte, sans en créer un second.",
+    existsLogin: "Me connecter",
+    existsLink: "Recevoir un lien de connexion",
+    existsLinkHint: "Mot de passe oublié ? Le lien vous connecte sans mot de passe.",
+    existsSentTitle: "Lien de connexion envoyé",
+    existsSent:
+      "Ouvrez le lien reçu à {email} : vous revenez ici connecté, et Yuno CRM s’ouvre sur votre compte. Il sert une fois et vaut une heure.",
+    existsSpam: "Rien après deux minutes ? Regardez dans les indésirables.",
+    existsResend: "Renvoyer le lien",
+    existsResendIn: "Renvoyer dans {s} s",
+    existsOther: "Utiliser une autre adresse",
+    existsWait: "Un lien vient de partir. Patientez une minute avant d’en demander un autre.",
+    existsLinkError:
+      "Le lien n’a pas pu partir. Connectez-vous avec votre mot de passe, ou écrivez-nous.",
   },
   password: {
     titlePre: "Choisissez un",
@@ -226,6 +240,8 @@ const fr = {
     password: "Ce mot de passe n’est pas accepté. Choisissez-en un plus long.",
     generic: "Impossible de créer le compte pour le moment. Réessayez ou écrivez-nous.",
     oauth: "La connexion n’a pas abouti. Réessayez ou continuez avec votre e-mail.",
+    linkExpired:
+      "Ce lien de connexion a expiré ou a déjà servi. Entrez votre e-mail pour en recevoir un nouveau.",
   },
   // Offre fondateurs (lien envoyé par Yuno, ?offer=…) : les 5 premiers comptes choisis.
   offer: {
@@ -294,6 +310,19 @@ const en: CrmSignupCopy = {
     trust: ["No credit card", "Data hosted in the EU", "Nothing to install"],
     exists: "This address already has a Yuno account.",
     existsCta: "Log in to open Yuno CRM too",
+    existsBody: "Log in with it: Yuno CRM opens on that account, no second account.",
+    existsLogin: "Log in",
+    existsLink: "Email me a login link",
+    existsLinkHint: "Forgot your password? The link logs you in without one.",
+    existsSentTitle: "Login link sent",
+    existsSent:
+      "Open the link sent to {email}: you come back here logged in, and Yuno CRM opens on your account. It works once, for one hour.",
+    existsSpam: "Nothing after two minutes? Check your spam folder.",
+    existsResend: "Send it again",
+    existsResendIn: "Send again in {s}s",
+    existsOther: "Use another email address",
+    existsWait: "A link was just sent. Wait a minute before asking for another one.",
+    existsLinkError: "The link couldn't be sent. Log in with your password, or write to us.",
   },
   password: {
     titlePre: "Choose a",
@@ -476,6 +505,8 @@ const en: CrmSignupCopy = {
     password: "This password isn't accepted. Choose a longer one.",
     generic: "We can't create the account right now. Try again or write to us.",
     oauth: "Sign-in didn't go through. Try again or continue with your email.",
+    linkExpired:
+      "This login link has expired or was already used. Enter your email to get a new one.",
   },
   offer: {
     kicker: "Founder offer",
@@ -540,6 +571,20 @@ const es: CrmSignupCopy = {
     trust: ["Sin tarjeta", "Datos alojados en la UE", "Nada que instalar"],
     exists: "Esta dirección ya tiene una cuenta de Yuno.",
     existsCta: "Entra para abrir también Yuno CRM",
+    existsBody: "Inicia sesión con ella: Yuno CRM se abre en esa cuenta, sin crear una segunda.",
+    existsLogin: "Iniciar sesión",
+    existsLink: "Recibir un enlace de acceso",
+    existsLinkHint: "¿Olvidaste tu contraseña? El enlace te conecta sin ella.",
+    existsSentTitle: "Enlace de acceso enviado",
+    existsSent:
+      "Abre el enlace enviado a {email}: vuelves aquí conectado y Yuno CRM se abre en tu cuenta. Sirve una sola vez y caduca en una hora.",
+    existsSpam: "¿Nada después de dos minutos? Mira en la carpeta de spam.",
+    existsResend: "Reenviar el enlace",
+    existsResendIn: "Reenviar en {s} s",
+    existsOther: "Usar otra dirección",
+    existsWait: "Acabamos de enviar un enlace. Espera un minuto antes de pedir otro.",
+    existsLinkError:
+      "No hemos podido enviar el enlace. Inicia sesión con tu contraseña o escríbenos.",
   },
   password: {
     titlePre: "Elige una",
@@ -723,6 +768,8 @@ const es: CrmSignupCopy = {
     password: "Esta contraseña no se acepta. Elige una más larga.",
     generic: "No podemos crear la cuenta ahora mismo. Inténtalo de nuevo o escríbenos.",
     oauth: "No se pudo iniciar sesión. Inténtalo de nuevo o continúa con tu e-mail.",
+    linkExpired:
+      "Este enlace de acceso ha caducado o ya se usó. Escribe tu e-mail para recibir uno nuevo.",
   },
   offer: {
     kicker: "Oferta fundador",

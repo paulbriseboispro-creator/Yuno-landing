@@ -17,7 +17,15 @@ import { CRM_LOGIN_URL, CRM_ORIGIN, crmPagePaths, landingHref } from "@/i18n/hos
 import { START_PATHS } from "@/i18n/start";
 import { submitLead } from "@/lib/leads.functions";
 import { capture, identifyAccount } from "@/lib/posthog";
-import { appHandoffUrl, newSignupKey, trackSignup, yunoApp } from "@/lib/yuno-app";
+import {
+  appHandoffUrl,
+  emailHasAccount,
+  newSignupKey,
+  sendLoginLink,
+  trackSignup,
+  yunoApp,
+  type LoginLinkResult,
+} from "@/lib/yuno-app";
 import { composedPhoneIsValid } from "@/lib/phone";
 import { PhoneInput } from "@/components/PhoneInput";
 
@@ -312,6 +320,9 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
   const num = (n: number) => nf.format(Math.round(n));
 
   const [key] = useState(() => {
+    // A login link opened in another tab or on another device brings the journey back (?k=).
+    const fromLink = new URLSearchParams(window.location.search).get("k");
+    if (fromLink && /^[A-Za-z0-9_-]{16,64}$/.test(fromLink)) return fromLink;
     try {
       const k = sessionStorage.getItem(STORE_KEY);
       if (k && /^[A-Za-z0-9_-]{16,64}$/.test(k)) return k;
@@ -332,6 +343,17 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
   const [email, setEmail] = useState(initialEmail ?? "");
   const [emailErr, setEmailErr] = useState("");
   const [exists, setExists] = useState(false);
+  // "Does this address already have an account?" — answered on the email step, before any
+  // password (Poupée, 19/10/2026: a club owner kept restarting the signup with his address).
+  const [accountCheck, setAccountCheck] = useState<{ email: string; exists: boolean | null }>({
+    email: "",
+    exists: null,
+  });
+  const [checking, setChecking] = useState(false);
+  const [linkState, setLinkState] = useState<"idle" | "sending" | "sent">("idle");
+  const [linkNote, setLinkNote] = useState<Exclude<LoginLinkResult, "sent"> | null>(null);
+  const [resendIn, setResendIn] = useState(0);
+  const reportedExisting = useRef(new Set<string>());
   const [pw, setPw] = useState("");
   const [pwShow, setPwShow] = useState(false);
   const [pwErr, setPwErr] = useState(false);
@@ -444,7 +466,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
     }
     // Tokens must not stay in the address bar (history, shared screenshots).
     window.history.replaceState(null, "", `${window.location.pathname}?product=crm`);
-    const fail = (reason: string) => {
+    const fail = (reason: string, message = t.errors.oauth) => {
       capture("pro_signup_failed", {
         audience: "pro",
         product: "crm",
@@ -453,11 +475,16 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
         method: "oauth",
         code: reason,
       });
-      setOauthErr(t.errors.oauth);
+      setOauthErr(message);
       setResuming(false);
     };
     if (failed || !accessToken || !refreshToken) {
-      fail(failed || "no_session");
+      // A login link (see requestLoginLink) that was already used or is older than one hour.
+      const expired = hash.get("error_code") === "otp_expired";
+      fail(
+        expired ? "otp_expired" : failed || "no_session",
+        expired ? t.errors.linkExpired : undefined,
+      );
       return;
     }
     void (async () => {
@@ -562,6 +589,92 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
           .trim()
       : "";
   const suggestion = dom && TYPOS[dom] ? email.slice(0, at) + "@" + TYPOS[dom] : "";
+
+  const typedEmail = email.trim().toLowerCase();
+  const emailTaken = exists || (accountCheck.exists === true && accountCheck.email === typedEmail);
+
+  // Check the address as soon as it looks complete (debounced), like the Suite funnel.
+  useEffect(() => {
+    if (step !== "email" || oauthSession || !EMAIL_RE.test(typedEmail)) return;
+    if (accountCheck.email === typedEmail) return;
+    let off = false;
+    const id = window.setTimeout(async () => {
+      const taken = await emailHasAccount(typedEmail);
+      if (!off) setAccountCheck({ email: typedEmail, exists: taken });
+    }, 550);
+    return () => {
+      off = true;
+      window.clearTimeout(id);
+    };
+  }, [step, oauthSession, typedEmail, accountCheck.email]);
+
+  // Seen once per address: the draft gets the email (Paul's "retry" alert reads it).
+  useEffect(() => {
+    if (!emailTaken || reportedExisting.current.has(typedEmail)) return;
+    reportedExisting.current.add(typedEmail);
+    setLinkState("idle");
+    setLinkNote(null);
+    void trackSignup(key, "account", { email: typedEmail, lang, product: "crm", ...offerData });
+    capture("pro_signup_existing_account", {
+      audience: "pro",
+      product: "crm",
+      lang,
+      source: "start_crm",
+      at: "email",
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [emailTaken, typedEmail]);
+
+  useEffect(() => {
+    if (resendIn <= 0) return;
+    const id = window.setTimeout(() => setResendIn((n) => n - 1), 1000);
+    return () => window.clearTimeout(id);
+  }, [resendIn]);
+
+  const loginHref = `${CRM_LOGIN_URL}?redirect=${encodeURIComponent(offerLive ? `/open/crm?offer=${offerLive}` : "/open/crm")}`;
+
+  /**
+   * Passwordless way back in (also covers a forgotten password). The link comes back to THIS
+   * funnel with the session in the URL fragment, exactly like Google / Apple: the person lands
+   * on "open Yuno CRM on {account}" (existing step). `k` keeps the journey if the link is opened
+   * in another tab or on another device.
+   */
+  async function requestLoginLink() {
+    if (linkState === "sending" || resendIn > 0) return;
+    setLinkState("sending");
+    setLinkNote(null);
+    const back = new URLSearchParams({ product: "crm", k: key });
+    if (offerLive) back.set("offer", offerLive);
+    const r = await sendLoginLink(
+      typedEmail,
+      `${window.location.origin}${START_PATHS[lang]}?${back.toString()}`,
+    );
+    capture("pro_signup_login_link_requested", {
+      audience: "pro",
+      product: "crm",
+      lang,
+      source: "start_crm",
+      result: r,
+    });
+    if (r === "failed") {
+      setLinkState("idle");
+      setLinkNote("failed");
+      return;
+    }
+    setLinkState("sent");
+    setLinkNote(r === "wait" ? "wait" : null);
+    setResendIn(60);
+  }
+
+  function useAnotherEmail() {
+    setExists(false);
+    setAccountCheck({ email: "", exists: null });
+    setLinkState("idle");
+    setLinkNote(null);
+    setResendIn(0);
+    setEmail("");
+    emailRef.current?.focus();
+  }
 
   async function startOAuth(provider: Provider) {
     if (oauthBusy) return;
@@ -674,7 +787,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
     go("email");
   }
 
-  function submitEmail(e: FormEvent) {
+  async function submitEmail(e: FormEvent) {
     e.preventDefault();
     const v = email.trim();
     if (!EMAIL_RE.test(v)) {
@@ -683,6 +796,17 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
       emailRef.current?.focus();
       return;
     }
+    if (emailTaken || checking) return;
+    // Already an account? Say it now, not after the password and three more screens.
+    const addr = v.toLowerCase();
+    let taken = accountCheck.email === addr ? accountCheck.exists : null;
+    if (accountCheck.email !== addr) {
+      setChecking(true);
+      taken = await emailHasAccount(addr);
+      setChecking(false);
+      setAccountCheck({ email: addr, exists: taken });
+    }
+    if (taken === true) return;
     setExists(false);
     capture("pro_signup_step_completed", {
       audience: "pro",
@@ -1164,17 +1288,7 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
                           {emailErr}
                         </span>
                       )}
-                      {exists && !emailErr && (
-                        <span className="text-[14px] font-medium" style={{ color: c("red-600") }}>
-                          {t.email.exists}{" "}
-                          <a
-                            href={`${CRM_LOGIN_URL}?redirect=${encodeURIComponent(offerLive ? `/open/crm?offer=${offerLive}` : "/open/crm")}`}
-                            className="yc-su-link font-semibold underline"
-                          >
-                            {t.email.existsCta}
-                          </a>
-                        </span>
-                      )}
+
                       {suggestion && !emailErr && (
                         <span className="text-[14px]" style={{ color: c("sand-600") }}>
                           {t.email.didYouMean}{" "}
@@ -1192,7 +1306,22 @@ export function CrmSignup({ lang, initialEmail }: { lang: LandingLang; initialEm
                         </span>
                       )}
                     </div>
-                    <Cta type="submit">{t.email.cta}</Cta>
+                    {emailTaken && !emailErr ? (
+                      <ExistingAccountPanel
+                        t={t.email}
+                        email={typedEmail}
+                        loginHref={loginHref}
+                        linkState={linkState}
+                        linkNote={linkNote}
+                        resendIn={resendIn}
+                        onSendLink={() => void requestLoginLink()}
+                        onOther={useAnotherEmail}
+                      />
+                    ) : (
+                      <Cta type="submit" disabled={checking}>
+                        {checking ? t.email.busy : t.email.cta}
+                      </Cta>
+                    )}
                     <p
                       className="m-0 text-center text-[13px] leading-normal"
                       style={{ color: c("sand-500") }}
@@ -1839,14 +1968,17 @@ function Cta({
   type,
   onClick,
   disabled,
+  href,
 }: {
   children: ReactNode;
   type: "submit" | "button";
   onClick?: () => void;
   disabled?: boolean;
+  /** A real link (opens in a new tab with a long press), same look. */
+  href?: string;
 }) {
-  return (
-    <button type={type} onClick={onClick} disabled={disabled} className="yc-su-cta">
+  const inner = (
+    <>
       <span>{children}</span>
       <span
         className="flex size-9 items-center justify-center rounded-full"
@@ -1865,7 +1997,113 @@ function Cta({
           <path d="M5 12h14M13 6l6 6-6 6" />
         </svg>
       </span>
+    </>
+  );
+  return href ? (
+    <a href={href} className="yc-su-cta no-underline">
+      {inner}
+    </a>
+  ) : (
+    <button type={type} onClick={onClick} disabled={disabled} className="yc-su-cta">
+      {inner}
     </button>
+  );
+}
+
+// The address already has a Yuno account: log in, or get a login link by email (which also
+// covers a forgotten password). Never a second account.
+function ExistingAccountPanel({
+  t,
+  email,
+  loginHref,
+  linkState,
+  linkNote,
+  resendIn,
+  onSendLink,
+  onOther,
+}: {
+  t: CrmSignupCopy["email"];
+  email: string;
+  loginHref: string;
+  linkState: "idle" | "sending" | "sent";
+  linkNote: "wait" | "failed" | null;
+  resendIn: number;
+  onSendLink: () => void;
+  onOther: () => void;
+}) {
+  const sent = linkState === "sent";
+  return (
+    <div
+      className="flex flex-col gap-3 rounded-2xl border-[1.5px] p-4"
+      style={{ borderColor: c("sand-200"), background: c("sand-50") }}
+      aria-live="polite"
+    >
+      <div className="flex flex-col gap-1">
+        <p className="m-0 text-[15px] font-semibold" style={{ color: c("ink") }}>
+          {t.exists}
+        </p>
+        <p className="m-0 text-[14px] leading-normal" style={{ color: c("sand-600") }}>
+          {sent
+            ? linkNote === "wait"
+              ? t.existsWait
+              : fill(t.existsSent, { email })
+            : t.existsBody}
+        </p>
+        {sent && (
+          <p className="m-0 text-[13px]" style={{ color: c("sand-500") }}>
+            {t.existsSpam}
+          </p>
+        )}
+      </div>
+      {sent ? (
+        <p
+          className="m-0 flex items-center gap-2 text-[14px] font-semibold"
+          style={{ color: c("green-700") }}
+        >
+          <Tick size={16} color={c("green-500")} /> {t.existsSentTitle}
+        </p>
+      ) : (
+        <Cta type="button" href={loginHref}>
+          {t.existsLogin}
+        </Cta>
+      )}
+      <button
+        type="button"
+        onClick={onSendLink}
+        disabled={linkState === "sending" || resendIn > 0}
+        className="yc-su-ghost flex h-[52px] cursor-pointer items-center justify-center rounded-full border-[1.5px] text-[15px] font-semibold disabled:cursor-default disabled:opacity-60"
+        style={{ borderColor: c("sand-200"), color: c("ink"), background: "#fff" }}
+      >
+        {linkState === "sending"
+          ? t.busy
+          : sent
+            ? resendIn > 0
+              ? fill(t.existsResendIn, { s: String(resendIn) })
+              : t.existsResend
+            : t.existsLink}
+      </button>
+      {sent ? (
+        <a href={loginHref} className="yc-su-link text-center text-[14px] font-semibold">
+          {t.existsLogin}
+        </a>
+      ) : (
+        <p className="m-0 text-center text-[13px] leading-normal" style={{ color: c("sand-500") }}>
+          {t.existsLinkHint}
+        </p>
+      )}
+      {linkNote === "failed" && (
+        <p className="m-0 text-[14px] font-medium" style={{ color: c("red-600") }} role="alert">
+          {t.existsLinkError}
+        </p>
+      )}
+      <button
+        type="button"
+        onClick={onOther}
+        className="yc-su-back cursor-pointer border-0 bg-transparent p-1.5 text-[14px] font-medium"
+      >
+        {t.existsOther}
+      </button>
+    </div>
   );
 }
 
