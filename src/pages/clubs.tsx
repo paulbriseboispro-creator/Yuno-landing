@@ -7,6 +7,9 @@ import type { RoleImages } from "@/content/role-landing";
 // Owner de club screens — the full Yuno back-office, captured page by page. The
 // scroll-parallax hero and the 3D marquee at the bottom both run on these.
 // (Confirmed by Paul: les photos du scroll + l'élément du bas = celles du owner.)
+// Recaptured on 20/10/2026 from the live Console (demo club, English, 1440×900
+// at 2×) after the drinks pillar was paused: VIP service = its Placement tab,
+// staff = its Briefing tab, notifications = /owner/push.
 import dashDashboard from "@/assets/dashboards/owner/dashboard.png";
 import dashAnalytics from "@/assets/dashboards/owner/analytics.png";
 import dashEvents from "@/assets/dashboards/owner/events.png";
@@ -19,7 +22,7 @@ import dashCollaborations from "@/assets/dashboards/owner/collaborations.png";
 import dashPromoters from "@/assets/dashboards/owner/promoters.png";
 import dashCustomers from "@/assets/dashboards/owner/customers.png";
 import dashLoyalty from "@/assets/dashboards/owner/loyalty.png";
-import dashSms from "@/assets/dashboards/owner/sms.png";
+import dashCampaigns from "@/assets/dashboards/owner/campaigns.png";
 import dashInvoices from "@/assets/dashboards/owner/invoices.png";
 import dashAccounting from "@/assets/dashboards/owner/accounting.png";
 import dashStaff from "@/assets/dashboards/owner/staff.png";
@@ -45,7 +48,7 @@ const DASHBOARDS = [
   dashPromoters, //       9
   dashCustomers, //      10
   dashLoyalty, //        11
-  dashSms, //            12
+  dashCampaigns, //      12
   dashInvoices, //       13
   dashAccounting, //     14
   dashStaff, //          15
@@ -69,7 +72,7 @@ const PARALLAX_TITLES: Record<"en" | "fr", string[]> = {
     "Promoters",
     "Customers",
     "Loyalty",
-    "SMS",
+    "Email campaigns",
     "Invoices",
     "Accounting",
     "Staff",
@@ -89,7 +92,7 @@ const PARALLAX_TITLES: Record<"en" | "fr", string[]> = {
     "Promoteurs",
     "Clients",
     "Fidélité",
-    "SMS",
+    "Campagnes email",
     "Factures",
     "Comptabilité",
     "Équipe",

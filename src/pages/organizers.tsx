@@ -16,7 +16,7 @@ import ownerTicketing from "@/assets/dashboards/owner/ticketing.png";
 import ownerCustomers from "@/assets/dashboards/owner/customers.png";
 import ownerAccounting from "@/assets/dashboards/owner/accounting.png";
 import ownerGuestList from "@/assets/dashboards/owner/guest-list.png";
-import ownerSms from "@/assets/dashboards/owner/sms.png";
+import ownerCampaigns from "@/assets/dashboards/owner/campaigns.png";
 import ownerInvoices from "@/assets/dashboards/owner/invoices.png";
 // Phone showcase — the real ticket page guests buy from, split across two screens
 // (billets + liste d'invités, then tables VIP + plan de salle) because the live
@@ -48,7 +48,7 @@ const imgTicketing = org("ticketing", ownerTicketing);
 const imgAccounting = org("accounting", ownerAccounting);
 const imgCheckin = org("checkin", ownerGuestList);
 const imgGuestList = org("guest-list", ownerGuestList);
-const imgCampaign = org("campaign", ownerSms);
+const imgCampaign = org("campaign", ownerCampaigns);
 const imgInvoices = org("invoices", ownerInvoices);
 
 // Parallax hero + 3D marquee run on these real organizer screens (index-keyed).
