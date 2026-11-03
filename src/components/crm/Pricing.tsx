@@ -8,9 +8,9 @@ import { Accent, CtaButton, EASE, Eyebrow, Reveal, Rich, YunitFace, useFmt } fro
 
 // Pricing of the design (Tarifs.dc.html), mirror of the app's billing
 // (src/crm/lib/pricing.ts + _shared/crm-billing.ts): one subscription, 24 € HT a
-// month (launch price; 34 € later for new accounts) or 288 € HT a year. Yunits
-// offered ONCE: 10,000 with the monthly subscription, 30,000 with the yearly
-// one, 2,000 during the trial; nothing is offered every month, so a month costs
+// month (launch price; 34 € later for new accounts) or 240 € HT a year (10 months,
+// "2 months free", 03/11). Yunits offered ONCE: 10,000 with either plan, 2,000
+// during the trial; nothing is offered every month, so a month costs
 // the subscription plus what its sends need. Sends are paid in Yunits (email 1,
 // SMS 35).
 
@@ -106,7 +106,7 @@ function PriceCard({ annual }: { annual: boolean }) {
           {annual ? p.subAnnual : p.subMonthly}
         </p>
         <div className="mt-6 flex flex-col gap-2.5">
-          {/* Monthly: 10,000 Yunits once; yearly: 30,000 at once instead (below). */}
+          {/* Monthly: 10,000 Yunits once; yearly: the 2 free months (below), same Yunits. */}
           <div
             className={cn(
               "flex items-center gap-3 rounded-[16px] bg-yc-sand-50 p-3",

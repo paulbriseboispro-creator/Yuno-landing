@@ -9,7 +9,7 @@
 // Yuno design system (Claude Design project "Design system Yuno créé").
 //
 // Facts must match the yuno repo: one subscription (24 € HT launch price, 34 €
-// later for new accounts, annual = 12 months + 30,000 Yunits at once), 10,000 Yunits
+// later for new accounts, annual = 10 months, "2 months free" since 03/11), 10,000 Yunits
 // offered ONCE with the monthly subscription (nothing every month), 14-day trial
 // with 2,000 Yunits and no card, recharges at 500 Yunits per
 // euro with +10 % / +15 % bonuses (src/lib/crmPlans.ts, _shared/crm-billing.ts,
@@ -790,20 +790,20 @@ const fr = {
     sub: "Un petit abonnement fixe. Ensuite, vous ne payez que ce que vous envoyez.",
     monthly: "Mensuel",
     annual: "Annuel",
-    annualNote: "Annuel : **30 000 Yunits offerts d’un coup**, trois fois plus qu’au mensuel.",
+    annualNote: "Annuel : **2 mois offerts**, 12 mois pour le prix de 10.",
     plan: "Yuno CRM",
     launch: "Prix de lancement",
     month: 24,
-    year: 288,
+    year: 240,
     perMonth: "HT / mois",
     perYear: "HT / an",
     subMonthly:
       "Puis 34 € pour les nouveaux clients. Vous, vous gardez 24 € tant que vous restez abonné.",
-    subAnnual: "Soit 24 € par mois, sans remise. Facturé une fois par an.",
+    subAnnual: "Soit 20 € par mois au lieu de 24 €. Facturé une fois par an.",
     monthlyYunits: "**10 000 Yunits** offerts à l’abonnement",
     monthlyYunitsSub: "de quoi envoyer vos 10 000 premiers e-mails",
-    annualBonus: "**30 000 Yunits** offerts d’un coup",
-    annualBonusSub: "≈ 60 € d’envois",
+    annualBonus: "**2 mois offerts** chaque année",
+    annualBonusSub: "et les mêmes 10 000 Yunits offerts à l’abonnement",
     cta: "Essayer 14 jours gratuitement",
     notes: ["Sans carte bancaire", "2 000 Yunits offerts pendant l’essai"],
     includedTitle: "Tout est inclus",
@@ -832,7 +832,7 @@ const fr = {
         { name: "WhatsApp", cost: 100, soon: true },
       ],
       accent: "Yunit",
-      sub: "La monnaie de l’outil. Chaque envoi en consomme quelques-uns, et 10 000 sont offerts une fois, à l’abonnement (30 000 à l’annuel).",
+      sub: "La monnaie de l’outil. Chaque envoi en consomme quelques-uns, et 10 000 sont offerts une fois, à l’abonnement, au mensuel comme à l’annuel.",
       free: "Toujours gratuits",
       freeItems: [
         "Les tests d’envoi",
@@ -937,7 +937,7 @@ const fr = {
       },
       {
         q: "Combien ça coûte, et après les 14 jours ?",
-        a: "24 € HT par mois. L’essai offre 2 000 Yunits ; l’abonnement mensuel en offre 10 000 une fois, l’annuel 30 000 d’un coup. Ensuite, vos envois se rechargent en Yunits. Sans abonnement à la fin de l’essai, le compte se met en pause : vous voyez toujours votre base, rien ne part.",
+        a: "24 € HT par mois. L’essai offre 2 000 Yunits ; l’abonnement en offre 10 000 une fois, au mensuel comme à l’annuel (240 € HT par an, 2 mois offerts). Ensuite, vos envois se rechargent en Yunits. Sans abonnement à la fin de l’essai, le compte se met en pause : vous voyez toujours votre base, rien ne part.",
       },
       {
         q: "Que se passe-t-il s’il me manque des Yunits ?",
@@ -1741,19 +1741,19 @@ const en: CrmContent = {
     sub: "A small fixed subscription. After that, you only pay for what you send.",
     monthly: "Monthly",
     annual: "Yearly",
-    annualNote: "Yearly: **30,000 Yunits offered at once**, three times the monthly bonus.",
+    annualNote: "Yearly: **2 months free**, 12 months for the price of 10.",
     plan: "Yuno CRM",
     launch: "Launch price",
     month: 24,
-    year: 288,
+    year: 240,
     perMonth: "excl. VAT / month",
     perYear: "excl. VAT / year",
     subMonthly: "Then €34 for new customers. You keep €24 for as long as you stay subscribed.",
-    subAnnual: "That's €24 a month, no discount. Billed once a year.",
+    subAnnual: "That's €20 a month instead of €24. Billed once a year.",
     monthlyYunits: "**10,000 Yunits** offered when you subscribe",
     monthlyYunitsSub: "enough for your first 10,000 emails",
-    annualBonus: "**30,000 Yunits** offered at once",
-    annualBonusSub: "≈ €60 of sends",
+    annualBonus: "**2 months free** every year",
+    annualBonusSub: "and the same 10,000 Yunits offered when you subscribe",
     cta: "Try it free for 14 days",
     notes: ["No card needed", "2,000 Yunits offered during the trial"],
     includedTitle: "Everything included",
@@ -1782,7 +1782,7 @@ const en: CrmContent = {
         { name: "WhatsApp", cost: 100, soon: true },
       ],
       accent: "Yunit",
-      sub: "The tool's currency. Each send uses a few, and 10,000 are offered once, when you subscribe (30,000 with the yearly plan).",
+      sub: "The tool's currency. Each send uses a few, and 10,000 are offered once, when you subscribe, monthly or yearly.",
       free: "Always free",
       freeItems: [
         "Test sends",
@@ -1867,7 +1867,7 @@ const en: CrmContent = {
       },
       {
         q: "How much is it, and after the 14 days?",
-        a: "€24 excl. VAT a month. The trial offers 2,000 Yunits; the monthly subscription offers 10,000 once, the yearly one 30,000 at once. After that, you top up Yunits for your sends. Without a subscription at the end of the trial, the account pauses: you still see your base, nothing goes out.",
+        a: "€24 excl. VAT a month. The trial offers 2,000 Yunits; the subscription offers 10,000 once, monthly or yearly (€240 excl. VAT a year, 2 months free). After that, you top up Yunits for your sends. Without a subscription at the end of the trial, the account pauses: you still see your base, nothing goes out.",
       },
       {
         q: "What if I run out of Yunits?",
@@ -2684,19 +2684,19 @@ const es: CrmContent = {
     sub: "Una pequeña suscripción fija. Después, solo pagas lo que envías.",
     monthly: "Mensual",
     annual: "Anual",
-    annualNote: "Anual: **30.000 Yunits de regalo de golpe**, el triple que en mensual.",
+    annualNote: "Anual: **2 meses gratis**, 12 meses por el precio de 10.",
     plan: "Yuno CRM",
     launch: "Precio de lanzamiento",
     month: 24,
-    year: 288,
+    year: 240,
     perMonth: "+ IVA / mes",
     perYear: "+ IVA / año",
     subMonthly: "Luego 34 € para los nuevos clientes. Tú mantienes 24 € mientras sigas suscrito.",
-    subAnnual: "Es decir, 24 € al mes, sin descuento. Facturado una vez al año.",
+    subAnnual: "Es decir, 20 € al mes en lugar de 24 €. Facturado una vez al año.",
     monthlyYunits: "**10.000 Yunits** de regalo al suscribirte",
     monthlyYunitsSub: "para tus 10.000 primeros e-mails",
-    annualBonus: "**30.000 Yunits** de regalo, de golpe",
-    annualBonusSub: "≈ 60 € de envíos",
+    annualBonus: "**2 meses gratis** cada año",
+    annualBonusSub: "y los mismos 10.000 Yunits de regalo al suscribirte",
     cta: "Probar gratis 14 días",
     notes: ["Sin tarjeta", "2.000 Yunits de regalo durante la prueba"],
     includedTitle: "Todo incluido",
@@ -2725,7 +2725,7 @@ const es: CrmContent = {
         { name: "WhatsApp", cost: 100, soon: true },
       ],
       accent: "Yunit",
-      sub: "La moneda de la herramienta. Cada envío consume unos cuantos, y te regalamos 10.000 una vez, al suscribirte (30.000 con el plan anual).",
+      sub: "La moneda de la herramienta. Cada envío consume unos cuantos, y te regalamos 10.000 una vez, al suscribirte, mensual o anual.",
       free: "Siempre gratis",
       freeItems: [
         "Los envíos de prueba",
@@ -2810,7 +2810,7 @@ const es: CrmContent = {
       },
       {
         q: "¿Cuánto cuesta, y después de los 14 días?",
-        a: "24 € + IVA al mes. La prueba regala 2.000 Yunits; la suscripción mensual regala 10.000 una vez, la anual 30.000 de golpe. Después, recargas Yunits para tus envíos. Sin suscripción al final de la prueba, la cuenta se pone en pausa: sigues viendo tu base, no sale nada.",
+        a: "24 € + IVA al mes. La prueba regala 2.000 Yunits; la suscripción regala 10.000 una vez, mensual o anual (240 € + IVA al año, 2 meses gratis). Después, recargas Yunits para tus envíos. Sin suscripción al final de la prueba, la cuenta se pone en pausa: sigues viendo tu base, no sale nada.",
       },
       {
         q: "¿Qué pasa si me faltan Yunits?",
