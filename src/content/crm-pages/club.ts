@@ -160,7 +160,7 @@ export const club: CrmPageContent = {
       },
       {
         q: "Combien coûte Yuno CRM pour un club ?",
-        a: "24 € HT par mois au prix de lancement, gardé tant que vous restez abonné. Les envois se paient en Yunits : 1 e-mail = 1 Yunit, 1 SMS en France = 35 Yunits. L’essai dure 14 jours, sans carte bancaire.",
+        a: "24 € par mois au prix de lancement, gardé tant que vous restez abonné. Les envois se paient en Yunits : 1 e-mail = 1 Yunit, 1 SMS en France = 35 Yunits. L’essai dure 14 jours, sans carte bancaire.",
       },
       {
         q: "Mon équipe peut-elle l’utiliser ?",

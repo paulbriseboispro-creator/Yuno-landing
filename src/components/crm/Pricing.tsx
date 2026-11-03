@@ -7,8 +7,8 @@ import { useCrm } from "./content";
 import { Accent, CtaButton, EASE, Eyebrow, Reveal, Rich, YunitFace, useFmt } from "./ui";
 
 // Pricing of the design (Tarifs.dc.html), mirror of the app's billing
-// (src/crm/lib/pricing.ts + _shared/crm-billing.ts): one subscription, 24 € HT a
-// month (launch price; 34 € later for new accounts) or 240 € HT a year (10 months,
+// (src/crm/lib/pricing.ts + _shared/crm-billing.ts): one subscription, 24 € a
+// month (launch price; 34 € later for new accounts) or 240 € a year (10 months,
 // "2 months free", 03/11). Yunits offered ONCE: 10,000 with either plan, 2,000
 // during the trial; nothing is offered every month, so a month costs
 // the subscription plus what its sends need. Sends are paid in Yunits (email 1,

@@ -160,7 +160,7 @@ export const sms: CrmPageContent = {
       },
       {
         q: "Combien coûte un SMS avec Yuno CRM ?",
-        a: "35 Yunits par SMS en France, 70 vers l’étranger. Au tarif de recharge de base (500 Yunits pour 1 € HT), un SMS en France revient à 7 centimes HT.",
+        a: "35 Yunits par SMS en France, 70 vers l’étranger. Au tarif de recharge de base (500 Yunits pour 1 €), un SMS en France revient à 7 centimes.",
       },
       {
         q: "Puis-je envoyer avec mon numéro de portable ?",

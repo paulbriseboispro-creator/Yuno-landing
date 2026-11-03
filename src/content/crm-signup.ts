@@ -247,8 +247,8 @@ const fr = {
   offer: {
     kicker: "Offre fondateur",
     title: "{months} mois offerts + {yunits} Yunits",
-    line: "Réservée à {org}. Aucune carte demandée, puis {price} € HT / mois, prix de lancement garanti.",
-    lineNoOrg: "Aucune carte demandée, puis {price} € HT / mois, prix de lancement garanti.",
+    line: "Réservée à {org}. Aucune carte demandée, puis {price} € / mois, prix de lancement garanti.",
+    lineNoOrg: "Aucune carte demandée, puis {price} € / mois, prix de lancement garanti.",
     invalid: {
       claimed: "Ce lien d’invitation a déjà servi à ouvrir un compte.",
       expired: "Ce lien d’invitation a expiré.",
@@ -265,8 +265,8 @@ const fr = {
   invite: {
     kicker: "Invitation Yuno CRM",
     title: "{days} jours d’essai + {trialYunits} Yunits",
-    line: "Préparée pour {org}. Aucune carte demandée, puis {price} € HT / mois, sans engagement.",
-    lineNoOrg: "Aucune carte demandée, puis {price} € HT / mois, sans engagement.",
+    line: "Préparée pour {org}. Aucune carte demandée, puis {price} € / mois, sans engagement.",
+    lineNoOrg: "Aucune carte demandée, puis {price} € / mois, sans engagement.",
     support:
       "L’équipe Yuno vous proposera de configurer votre compte avec vous : vous accepterez, ou non, depuis votre Console.",
     done: "Votre essai court jusqu’au {date}.",
@@ -511,8 +511,8 @@ const en: CrmSignupCopy = {
   offer: {
     kicker: "Founder offer",
     title: "{months} months free + {yunits} Yunits",
-    line: "Reserved for {org}. No card needed, then €{price} excl. VAT / month, launch price guaranteed.",
-    lineNoOrg: "No card needed, then €{price} excl. VAT / month, launch price guaranteed.",
+    line: "Reserved for {org}. No card needed, then €{price} / month, launch price guaranteed.",
+    lineNoOrg: "No card needed, then €{price} / month, launch price guaranteed.",
     invalid: {
       claimed: "This invitation link has already been used to open an account.",
       expired: "This invitation link has expired.",
@@ -528,8 +528,8 @@ const en: CrmSignupCopy = {
   invite: {
     kicker: "Yuno CRM invitation",
     title: "{days}-day trial + {trialYunits} Yunits",
-    line: "Prepared for {org}. No card needed, then €{price} excl. VAT / month, no commitment.",
-    lineNoOrg: "No card needed, then €{price} excl. VAT / month, no commitment.",
+    line: "Prepared for {org}. No card needed, then €{price} / month, no commitment.",
+    lineNoOrg: "No card needed, then €{price} / month, no commitment.",
     support:
       "The Yuno team will offer to set up your account with you: you accept, or not, from your Console.",
     done: "Your trial runs until {date}.",
@@ -774,8 +774,8 @@ const es: CrmSignupCopy = {
   offer: {
     kicker: "Oferta fundador",
     title: "{months} meses gratis + {yunits} Yunits",
-    line: "Reservada para {org}. Sin tarjeta, y luego {price} € sin IVA / mes, precio de lanzamiento garantizado.",
-    lineNoOrg: "Sin tarjeta, y luego {price} € sin IVA / mes, precio de lanzamiento garantizado.",
+    line: "Reservada para {org}. Sin tarjeta, y luego {price} € / mes, precio de lanzamiento garantizado.",
+    lineNoOrg: "Sin tarjeta, y luego {price} € / mes, precio de lanzamiento garantizado.",
     invalid: {
       claimed: "Este enlace de invitación ya se usó para abrir una cuenta.",
       expired: "Este enlace de invitación ha caducado.",
@@ -791,8 +791,8 @@ const es: CrmSignupCopy = {
   invite: {
     kicker: "Invitación Yuno CRM",
     title: "{days} días de prueba + {trialYunits} Yunits",
-    line: "Preparada para {org}. Sin tarjeta, y luego {price} € sin IVA / mes, sin permanencia.",
-    lineNoOrg: "Sin tarjeta, y luego {price} € sin IVA / mes, sin permanencia.",
+    line: "Preparada para {org}. Sin tarjeta, y luego {price} € / mes, sin permanencia.",
+    lineNoOrg: "Sin tarjeta, y luego {price} € / mes, sin permanencia.",
     support:
       "El equipo de Yuno te propondrá configurar tu cuenta contigo: aceptas, o no, desde tu Consola.",
     done: "Tu prueba dura hasta el {date}.",

@@ -8,7 +8,7 @@
 // you / Yuno gives you" switch, bento, pricing, FAQ, final call) rebuilt on the
 // Yuno design system (Claude Design project "Design system Yuno créé").
 //
-// Facts must match the yuno repo: one subscription (24 € HT launch price, 34 €
+// Facts must match the yuno repo: one subscription (24 € launch price, no VAT (art. 293 B), 34 €
 // later for new accounts, annual = 10 months, "2 months free" since 03/11), 10,000 Yunits
 // offered ONCE with the monthly subscription (nothing every month), 14-day trial
 // with 2,000 Yunits and no card, recharges at 500 Yunits per
@@ -50,7 +50,7 @@ const fr = {
       "Connexion à ChatGPT, Claude et Gemini par MCP",
     ],
     description:
-      "Gardez Shotgun, ajoutez un CRM : fichier clients, habitués qui décrochent, e-mails et SMS ciblés, bilans de soirée. 24 € HT/mois, 14 jours d’essai sans carte.",
+      "Gardez Shotgun, ajoutez un CRM : fichier clients, habitués qui décrochent, e-mails et SMS ciblés, bilans de soirée. 24 €/mois, 14 jours d’essai sans carte.",
   },
   whatsappMessage:
     "Bonjour Paul 👋 Je vends sur Shotgun et j’aimerais en savoir plus sur Yuno CRM.",
@@ -795,8 +795,8 @@ const fr = {
     launch: "Prix de lancement",
     month: 24,
     year: 240,
-    perMonth: "HT / mois",
-    perYear: "HT / an",
+    perMonth: "/ mois",
+    perYear: "/ an",
     subMonthly:
       "Puis 34 € pour les nouveaux clients. Vous, vous gardez 24 € tant que vous restez abonné.",
     subAnnual: "Soit 20 € par mois au lieu de 24 €. Facturé une fois par an.",
@@ -820,7 +820,7 @@ const fr = {
       { t: "Votre IA par le MCP", d: "ChatGPT, Claude, Gemini" },
       { t: "Équipe sans limite", d: "aucun siège à payer" },
     ],
-    vat: "Prix hors taxes. TVA 20 % ajoutée à la facture.",
+    vat: "TVA non applicable (article 293 B du CGI) : le prix affiché est le prix payé.",
     yunits: {
       eyebrow: "Les Yunits",
       title: "Qu’est-ce qu’un Yunit ?",
@@ -937,7 +937,7 @@ const fr = {
       },
       {
         q: "Combien ça coûte, et après les 14 jours ?",
-        a: "24 € HT par mois. L’essai offre 2 000 Yunits ; l’abonnement en offre 10 000 une fois, au mensuel comme à l’annuel (240 € HT par an, 2 mois offerts). Ensuite, vos envois se rechargent en Yunits. Sans abonnement à la fin de l’essai, le compte se met en pause : vous voyez toujours votre base, rien ne part.",
+        a: "24 € par mois. L’essai offre 2 000 Yunits ; l’abonnement en offre 10 000 une fois, au mensuel comme à l’annuel (240 € par an, 2 mois offerts). Ensuite, vos envois se rechargent en Yunits. Sans abonnement à la fin de l’essai, le compte se met en pause : vous voyez toujours votre base, rien ne part.",
       },
       {
         q: "Que se passe-t-il s’il me manque des Yunits ?",
@@ -1039,7 +1039,7 @@ const en: CrmContent = {
       "ChatGPT, Claude and Gemini connection through MCP",
     ],
     description:
-      "Yuno CRM plugs into Shotgun and gathers your buyers in one customer file: regulars, newcomers, people to win back. Emails, SMS, night reports. €24 excl. VAT a month, 14-day trial, no card.",
+      "Yuno CRM plugs into Shotgun and gathers your buyers in one customer file: regulars, newcomers, people to win back. Emails, SMS, night reports. €24 a month, 14-day trial, no card.",
   },
   whatsappMessage: "Hi Paul 👋 I sell on Shotgun and I'd like to know more about Yuno CRM.",
   nav: {
@@ -1746,8 +1746,8 @@ const en: CrmContent = {
     launch: "Launch price",
     month: 24,
     year: 240,
-    perMonth: "excl. VAT / month",
-    perYear: "excl. VAT / year",
+    perMonth: "/ month",
+    perYear: "/ year",
     subMonthly: "Then €34 for new customers. You keep €24 for as long as you stay subscribed.",
     subAnnual: "That's €20 a month instead of €24. Billed once a year.",
     monthlyYunits: "**10,000 Yunits** offered when you subscribe",
@@ -1770,7 +1770,7 @@ const en: CrmContent = {
       { t: "Your AI through MCP", d: "ChatGPT, Claude, Gemini" },
       { t: "Unlimited team", d: "no seats to pay for" },
     ],
-    vat: "Prices excl. VAT. VAT added on the invoice.",
+    vat: "VAT not applicable (art. 293 B of the French tax code): the price shown is the price you pay.",
     yunits: {
       eyebrow: "Yunits",
       title: "What's a Yunit?",
@@ -1867,7 +1867,7 @@ const en: CrmContent = {
       },
       {
         q: "How much is it, and after the 14 days?",
-        a: "€24 excl. VAT a month. The trial offers 2,000 Yunits; the subscription offers 10,000 once, monthly or yearly (€240 excl. VAT a year, 2 months free). After that, you top up Yunits for your sends. Without a subscription at the end of the trial, the account pauses: you still see your base, nothing goes out.",
+        a: "€24 a month. The trial offers 2,000 Yunits; the subscription offers 10,000 once, monthly or yearly (€240 a year, 2 months free). After that, you top up Yunits for your sends. Without a subscription at the end of the trial, the account pauses: you still see your base, nothing goes out.",
       },
       {
         q: "What if I run out of Yunits?",
@@ -1954,7 +1954,7 @@ const es: CrmContent = {
       "Conexión con ChatGPT, Claude y Gemini por MCP",
     ],
     description:
-      "Yuno CRM se conecta a Shotgun y reúne a tus compradores en un solo archivo de clientes: habituales, nuevos, a recuperar. E-mails, SMS, informes de cada fiesta. 24 € + IVA al mes, 14 días de prueba sin tarjeta.",
+      "Yuno CRM se conecta a Shotgun y reúne a tus compradores en un solo archivo de clientes: habituales, nuevos, a recuperar. E-mails, SMS, informes de cada fiesta. 24 € al mes, 14 días de prueba sin tarjeta.",
   },
   whatsappMessage: "Hola Paul 👋 Vendo en Shotgun y me gustaría saber más sobre Yuno CRM.",
   nav: {
@@ -2689,8 +2689,8 @@ const es: CrmContent = {
     launch: "Precio de lanzamiento",
     month: 24,
     year: 240,
-    perMonth: "+ IVA / mes",
-    perYear: "+ IVA / año",
+    perMonth: "/ mes",
+    perYear: "/ año",
     subMonthly: "Luego 34 € para los nuevos clientes. Tú mantienes 24 € mientras sigas suscrito.",
     subAnnual: "Es decir, 20 € al mes en lugar de 24 €. Facturado una vez al año.",
     monthlyYunits: "**10.000 Yunits** de regalo al suscribirte",
@@ -2713,7 +2713,7 @@ const es: CrmContent = {
       { t: "Tu IA con el MCP", d: "ChatGPT, Claude, Gemini" },
       { t: "Equipo sin límite", d: "ningún puesto que pagar" },
     ],
-    vat: "Precios sin IVA. El IVA se añade a la factura.",
+    vat: "IVA no aplicable (art. 293 B del código fiscal francés): el precio mostrado es el precio que pagas.",
     yunits: {
       eyebrow: "Los Yunits",
       title: "¿Qué es un Yunit?",
@@ -2810,7 +2810,7 @@ const es: CrmContent = {
       },
       {
         q: "¿Cuánto cuesta, y después de los 14 días?",
-        a: "24 € + IVA al mes. La prueba regala 2.000 Yunits; la suscripción regala 10.000 una vez, mensual o anual (240 € + IVA al año, 2 meses gratis). Después, recargas Yunits para tus envíos. Sin suscripción al final de la prueba, la cuenta se pone en pausa: sigues viendo tu base, no sale nada.",
+        a: "24 € al mes. La prueba regala 2.000 Yunits; la suscripción regala 10.000 una vez, mensual o anual (240 € al año, 2 meses gratis). Después, recargas Yunits para tus envíos. Sin suscripción al final de la prueba, la cuenta se pone en pausa: sigues viendo tu base, no sale nada.",
       },
       {
         q: "¿Qué pasa si me faltan Yunits?",

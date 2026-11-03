@@ -78,7 +78,7 @@ export const brevo: CrmPageContent = {
         [
           "Prix d’entrée",
           "Gratuit (300 e-mails/jour), Starter dès 7 €/mois",
-          "24 € HT/mois, envois en Yunits (1 e-mail = 1 Yunit)",
+          "24 €/mois, envois en Yunits (1 e-mail = 1 Yunit)",
         ],
       ],
       footnote:
@@ -133,7 +133,7 @@ export const brevo: CrmPageContent = {
     items: [
       {
         q: "Brevo est-il moins cher que Yuno CRM ?",
-        a: "Pour de l’e-mail seul, oui : Brevo a une offre gratuite et une offre Starter dès 7 € par mois. Yuno CRM coûte 24 € HT par mois parce qu’il fait autre chose : lire votre billetterie, classer vos clients et relier chaque vente au message qui l’a amenée.",
+        a: "Pour de l’e-mail seul, oui : Brevo a une offre gratuite et une offre Starter dès 7 € par mois. Yuno CRM coûte 24 € par mois parce qu’il fait autre chose : lire votre billetterie, classer vos clients et relier chaque vente au message qui l’a amenée.",
       },
       {
         q: "Mes désabonnés Brevo seront-ils respectés ?",

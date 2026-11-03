@@ -155,7 +155,7 @@ export const organizer: CrmPageContent = {
       },
       {
         q: "Combien ça coûte ?",
-        a: "24 € HT par mois au prix de lancement, puis vos envois en Yunits (1 e-mail = 1 Yunit, 1 SMS en France = 35 Yunits). Essai de 14 jours sans carte.",
+        a: "24 € par mois au prix de lancement, puis vos envois en Yunits (1 e-mail = 1 Yunit, 1 SMS en France = 35 Yunits). Essai de 14 jours sans carte.",
       },
     ],
   },
