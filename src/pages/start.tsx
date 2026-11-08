@@ -17,6 +17,7 @@ import {
 } from "@/components/landing/context";
 import { SignupFlow } from "@/components/landing/SignupFlow";
 import { CrmSignup } from "@/components/crm/signup/CrmSignup";
+import { SignupClosedGate } from "@/components/landing/SignupClosedGate";
 import { YunoLogo } from "@/components/landing/ui";
 
 // "/start", "/fr/start", "/es/start" — the direct path to a Yuno pro account:
@@ -68,7 +69,13 @@ function CrmStartBody() {
   useEffect(() => setMounted(true), []);
   return (
     <div className="ycrm min-h-screen overflow-x-clip">
-      {mounted ? <CrmSignup lang={lang} /> : <div className="min-h-screen bg-white" aria-hidden />}
+      {mounted ? (
+        <SignupClosedGate tone="page">
+          <CrmSignup lang={lang} />
+        </SignupClosedGate>
+      ) : (
+        <div className="min-h-screen bg-white" aria-hidden />
+      )}
     </div>
   );
 }
@@ -154,13 +161,15 @@ function SuiteStartBody({ role, email, org }: { role?: SignupRole; email?: strin
         <section className="order-1 md:order-2">
           <div className="yl-card p-6 sm:p-8">
             {mounted ? (
-              <SignupFlow
-                source="start"
-                initialRole={role}
-                initialEmail={email}
-                initialOrgName={org}
-                variant="page"
-              />
+              <SignupClosedGate>
+                <SignupFlow
+                  source="start"
+                  initialRole={role}
+                  initialEmail={email}
+                  initialOrgName={org}
+                  variant="page"
+                />
+              </SignupClosedGate>
             ) : (
               <div className="h-[420px] animate-pulse rounded-2xl bg-zinc-50" aria-hidden />
             )}

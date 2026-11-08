@@ -5,6 +5,7 @@ import type { AssoContent } from "@/content/asso";
 import type { CrmContent } from "@/content/crm";
 import { useLanding } from "./context";
 import { SignupFlow } from "./SignupFlow";
+import { SignupClosedGate } from "@/components/landing/SignupClosedGate";
 import { EASE } from "./ui";
 
 // The landing's conversion dialog: every "Create my free account" CTA opens it.
@@ -93,17 +94,19 @@ export function SignupModal({
             >
               <X className="size-4" />
             </button>
-            <SignupFlow
-              source={source}
-              audience={audience}
-              assoCopy={assoCopy}
-              product={product}
-              crmCopy={crmCopy}
-              initialRole={signup.role}
-              initialEmail={signup.email}
-              initialOrgName={signup.orgName}
-              onClose={closeSignup}
-            />
+            <SignupClosedGate>
+              <SignupFlow
+                source={source}
+                audience={audience}
+                assoCopy={assoCopy}
+                product={product}
+                crmCopy={crmCopy}
+                initialRole={signup.role}
+                initialEmail={signup.email}
+                initialOrgName={signup.orgName}
+                onClose={closeSignup}
+              />
+            </SignupClosedGate>
           </motion.div>
         </motion.div>
       )}
