@@ -34,7 +34,6 @@ import opium from "@/assets/clubs/mono/opium.png";
 import rubicon from "@/assets/clubs/mono/rubicon.png";
 import santos from "@/assets/clubs/mono/santos.png";
 import verbena from "@/assets/clubs/mono/verbena.png";
-import woh from "@/assets/clubs/mono/woh.png";
 
 // Feature icons floating on the concentric arcs around the headline — Yuno's
 // equivalent of the reference layout's integration logos. `x` is in px from the
@@ -373,7 +372,6 @@ const CLIENTS: { src: string; name: string; aspect: number }[] = [
   { src: santos, name: "Santos Todos", aspect: 1.04 },
   { src: copernico, name: "Copérnico", aspect: 4.21 },
   { src: fitz, name: "Fitz", aspect: 1.87 },
-  { src: woh, name: "WOH", aspect: 2.02 },
   { src: verbena, name: "Verbena", aspect: 1.02 },
   { src: rubicon, name: "Rubicon", aspect: 5.31 },
   { src: losamantes, name: "Los Amantes", aspect: 1.92 },
