@@ -982,7 +982,8 @@ const fr = {
       {
         title: "Légal",
         links: [
-          { label: "CGU", href: "/fr/terms" },
+          { label: "Conditions Yuno CRM", href: "https://yunoapp.eu/legal/cgv-crm" },
+          { label: "Sous-traitance des données", href: "https://yunoapp.eu/legal/dpa" },
           { label: "Confidentialité", href: "/fr/privacy" },
         ],
       },
@@ -1017,6 +1018,13 @@ const fr = {
     tool: "Votre billetterie",
     toolHint:
       "Shotgun se connecte directement ; pour les autres, vous importerez votre fichier clients.",
+    // Les conditions du CRM et la politique de confidentialité vivent sur yunoapp.eu.
+    termsA: "J'accepte les",
+    termsLink: "Conditions Yuno CRM",
+    termsHref: "https://yunoapp.eu/legal/cgv-crm",
+    termsB: "(accord de sous-traitance des données compris) et la",
+    privacyLink: "politique de confidentialité",
+    privacyHref: "https://yunoapp.eu/legal/privacy",
   },
 };
 
@@ -1911,7 +1919,8 @@ const en: CrmContent = {
       {
         title: "Legal",
         links: [
-          { label: "Terms", href: "/terms" },
+          { label: "Yuno CRM Terms", href: "https://yunoapp.eu/legal/cgv-crm" },
+          { label: "Data processing", href: "https://yunoapp.eu/legal/dpa" },
           { label: "Privacy", href: "/privacy" },
         ],
       },
@@ -1934,6 +1943,12 @@ const en: CrmContent = {
     structureSub: "Your console and your first reports are built on it.",
     tool: "Your ticketing",
     toolHint: "Shotgun connects directly; for the others, you'll import your customer file.",
+    termsA: "I accept the",
+    termsLink: "Yuno CRM Terms",
+    termsHref: "https://yunoapp.eu/legal/cgv-crm",
+    termsB: "(data processing agreement included) and the",
+    privacyLink: "privacy policy",
+    privacyHref: "https://yunoapp.eu/legal/privacy",
   },
 };
 
@@ -2854,7 +2869,8 @@ const es: CrmContent = {
       {
         title: "Legal",
         links: [
-          { label: "Condiciones", href: "/terms" },
+          { label: "Condiciones de Yuno CRM", href: "https://yunoapp.eu/legal/cgv-crm" },
+          { label: "Encargo del tratamiento", href: "https://yunoapp.eu/legal/dpa" },
           { label: "Privacidad", href: "/privacy" },
         ],
       },
@@ -2877,6 +2893,12 @@ const es: CrmContent = {
     structureSub: "Tu consola y tus primeros informes se construyen con esto.",
     tool: "Tu ticketera",
     toolHint: "Shotgun se conecta directamente; para las demás, importarás tu archivo de clientes.",
+    termsA: "Acepto las",
+    termsLink: "Condiciones de Yuno CRM",
+    termsHref: "https://yunoapp.eu/legal/cgv-crm",
+    termsB: "(acuerdo de encargo del tratamiento incluido) y la",
+    privacyLink: "política de privacidad",
+    privacyHref: "https://yunoapp.eu/legal/privacy",
   },
 };
 
